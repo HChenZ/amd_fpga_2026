@@ -1,0 +1,13 @@
+# Preserve recovered archive bytes across Git checkouts and core.autocrlf settings.
+# These snapshots are verified against SHA-256 values in the recovery manifest.
+board/vivado_zynq7000_xc7z020_baseline/** -text
+board/vivado_kintex7_legacy/** -text
+src/firmware/cicc1000023/** -text
+sim/cicc1000023/** -text
+data/recovery/cicc1000023/smoke/** -text
+build/reports/cicc1000023_archive/** -text
+
+# Legacy files already have LF Git blobs and CRLF working copies in fe66fd8.
+# Keep those existing blobs and reproduce the recovery manifest's working bytes.
+board/vivado_kintex7_legacy/riscv_vivado_project.xpr text eol=crlf whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+board/vivado_kintex7_legacy/riscv_vivado_project.srcs/constrs_1/new/constrs.xdc text eol=crlf whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

@@ -1,0 +1,57 @@
+{
+  "original_files_unchanged": 61,
+  "recovered_asset_hashes_pass": 579,
+  "recovered_asset_bytes": 2430359,
+  "xpr_file_refs": {
+    "vivado_zynq7000_xc7z020_baseline": 36,
+    "vivado_kintex7_legacy": 32,
+    "riscv_vivado_project": 32
+  },
+  "xci_json_and_coe_paths_pass": true,
+  "authored_markdown_files": 32,
+  "local_links_pass": 79,
+  "new_files_since_turn_start": 599,
+  "preexisting_files_intentionally_updated": [
+    "AGENTS.md",
+    "README.md",
+    "board/readme.md",
+    "build/readme.md",
+    "data/readme.md",
+    "docs/architecture.md",
+    "docs/decisions.md",
+    "docs/development_workflow.md",
+    "docs/interfaces.md",
+    "docs/project_overview.md",
+    "docs/repository_audit.md",
+    "docs/risks.md",
+    "docs/technical_rules.md",
+    "project_log/actual_progress.md",
+    "project_log/development_log.md",
+    "project_log/lessons_learned.md",
+    "sim/readme.md",
+    "src/readme.md",
+    "tasks/milestones.md",
+    "tasks/task_board.md"
+  ],
+  "generated_dirs_and_large_binaries_excluded": true,
+  "git_preserves_recovered_asset_bytes": 579,
+  "verify": {
+    "exit_code": 0,
+    "stdout": "Verified 579 recovered file hashes.\n",
+    "stderr": ""
+  },
+  "reject_existing": {
+    "exit_code": 2,
+    "stdout": "Verified 579 recovered file hashes.\n",
+    "stderr": "usage: prepare_cicc1000023_sources.py [-h] [--stage NAME]\nprepare_cicc1000023_sources.py: error: Refusing to overwrite existing stage: E:\\amd_fpga_2026\\build\\local\\cicc1000023_sources\n"
+  },
+  "reject_traversal": {
+    "exit_code": 2,
+    "stdout": "Verified 579 recovered file hashes.\n",
+    "stderr": "usage: prepare_cicc1000023_sources.py [-h] [--stage NAME]\nprepare_cicc1000023_sources.py: error: Stage name must use lowercase ASCII letters, digits, _ or -\n"
+  },
+  "head_main_unchanged_and_index_empty": true,
+  "git_diff_check_pass": true,
+  "git_status_short": " M README.md\n?? .gitattributes\n?? .gitignore\n?? AGENTS.md\n?? board/readme.md\n?? board/vivado_kintex7_legacy/\n?? board/vivado_zynq7000_xc7z020_baseline/\n?? build/\n?? data/\n?? docs/\n?? project_log/\n?? report/\n?? sim/\n?? skill/\n?? src/firmware/\n?? src/readme.md\n?? tasks/\n",
+  "git_diff_stat": " README.md | 113 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n 1 file changed, 113 insertions(+)\n"
+}

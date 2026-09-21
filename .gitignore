@@ -1,0 +1,81 @@
+# Vivado disposable output. Keep .xpr/.xdc/.xci/.bd/.tcl and memory inputs.
+.Xil/
+*.cache/
+*.runs/
+*.gen/
+*.sim/
+*.hw/
+*.ip_user_files/
+ip_user_files/
+.ipcache/
+webtalk*
+vivado*.jou
+vivado*.log
+vivado*.str
+*.wdb
+*.wlf
+*.vcd
+*.fst
+*.vvp
+
+# Vitis local workspace state and compiled scratch directories.
+.metadata/
+.analytics/
+.autopilot/
+.vitis/
+_ide/
+**/vitis_workspace/**/Debug/
+**/vitis_workspace/**/Release/
+**/vitis_workspace/.cache/
+
+# Disposable builds only; NEVER ignore the whole build/ tree.
+/build/local/
+/build/tmp/
+/build/cache/
+/build/generated/
+/build/artifacts/
+/sim/tmp/
+/sim/waves/
+*.o
+*.obj
+
+# Python / PYNQ notebook and local environment caches.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.ipynb_checkpoints/
+.ipython/
+.jupyter/runtime/
+*.egg-info/
+
+# Editors, OS files, and private agent workspaces.
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.tmp
+.DS_Store
+Thumbs.db
+desktop.ini
+.codex/
+.claude/
+.cursor/
+.reasonix/
+.codebuddy/
+.continue/
+.windsurf/
+.agent-work/
+.agents/worktrees/
+
+# Intentionally tracked in normal source/evidence locations:
+# build/*.tcl, build/reports/*, build/metadata/*,
+# data/**/*.csv, data/**/*.json, data/**/kat*, logs selected as evidence,
+# board source .xpr/.xdc/.xci/.bd/.coe/.mem, PYNQ notebooks and manifests.
+# Export selected synthesis/implementation/timing/utilization summaries out
+# of ignored *.runs/ into build/reports/. Foundation closeout removed the two
+# formerly tracked cache/hw metadata files; ignore rules alone do not delete them.
