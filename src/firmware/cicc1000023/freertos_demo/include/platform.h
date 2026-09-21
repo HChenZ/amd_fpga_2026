@@ -1,0 +1,55 @@
+#ifndef FREERTOS_DEMO_PLATFORM_H
+#define FREERTOS_DEMO_PLATFORM_H
+
+#include <stdint.h>
+
+#define PLATFORM_RAM_BASE          0x10000000UL
+#define PLATFORM_RAM_SIZE          (128UL * 1024UL)
+#define PLATFORM_CPU_CLOCK_HZ      100000000UL
+
+#define PLATFORM_CLINT_BASE        0x12000000UL
+#define PLATFORM_CLINT_MSIP        (PLATFORM_CLINT_BASE + 0x0000UL)
+#define PLATFORM_CLINT_MTIMECMP    (PLATFORM_CLINT_BASE + 0x4000UL)
+#define PLATFORM_CLINT_MTIME       (PLATFORM_CLINT_BASE + 0xBFF8UL)
+
+#define PLATFORM_UART_BASE         0x20000000UL
+#define PLATFORM_UART_STATUS       (PLATFORM_UART_BASE + 0x0UL)
+#define PLATFORM_UART_DATA         (PLATFORM_UART_BASE + 0x4UL)
+#define PLATFORM_UART_CTRL         (PLATFORM_UART_BASE + 0x8UL)
+
+#define UART_STATUS_TX_BUSY        (1UL << 0)
+#define UART_STATUS_RX_NOT_EMPTY   (1UL << 1)
+#define UART_STATUS_TX_FULL        (1UL << 2)
+#define UART_STATUS_RX_FULL        (1UL << 3)
+#define UART_STATUS_RX_OVERRUN     (1UL << 4)
+#define UART_STATUS_TX_EMPTY       (1UL << 5)
+#define UART_STATUS_TX_OVERRUN     (1UL << 6)
+#define UART_STATUS_IRQ            (1UL << 7)
+
+#define PLATFORM_GPIO_BASE         0x20010000UL
+#define PLATFORM_GPIO_LED          (PLATFORM_GPIO_BASE + 0x0UL)
+#define PLATFORM_GPIO_BTN          (PLATFORM_GPIO_BASE + 0x4UL)
+#define PLATFORM_GPIO_LED_PWM_ENABLE       (1UL << 16)
+#define PLATFORM_GPIO_LED_PWM_DUTY_SHIFT   8UL
+
+#define PLATFORM_CPI_BASE          0x60000000UL
+#define PLATFORM_CPI_INSTRET_LO    (PLATFORM_CPI_BASE + 0x00UL)
+#define PLATFORM_CPI_INSTRET_HI    (PLATFORM_CPI_BASE + 0x04UL)
+#define PLATFORM_CPI_STALL_LD_LO   (PLATFORM_CPI_BASE + 0x08UL)
+#define PLATFORM_CPI_STALL_LD_HI   (PLATFORM_CPI_BASE + 0x0CUL)
+#define PLATFORM_CPI_STALL_MD_LO   (PLATFORM_CPI_BASE + 0x10UL)
+#define PLATFORM_CPI_STALL_MD_HI   (PLATFORM_CPI_BASE + 0x14UL)
+#define PLATFORM_CPI_FLUSH_BR_LO   (PLATFORM_CPI_BASE + 0x18UL)
+#define PLATFORM_CPI_FLUSH_BR_HI   (PLATFORM_CPI_BASE + 0x1CUL)
+
+static inline uint32_t mmio_read32(uintptr_t addr)
+{
+    return *(volatile uint32_t *) addr;
+}
+
+static inline void mmio_write32(uintptr_t addr, uint32_t value)
+{
+    *(volatile uint32_t *) addr = value;
+}
+
+#endif

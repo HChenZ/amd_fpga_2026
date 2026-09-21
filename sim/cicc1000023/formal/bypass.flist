@@ -1,0 +1,4 @@
+# File list for JasperGold formal verification of bypass module
+../rtl/bypass.v
+bypass_props.sv
+bypass_bind.sv
