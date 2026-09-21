@@ -1,0 +1,77 @@
+# 任务看板
+
+更新：2026-09-21。所有 owner 为 **TBD**，仅由项目方指派。截止日期为内部计划；依赖完成是开工/验收门槛，不能用到期日替代。日期以 Asia/Shanghai 为准。
+
+编号：B=baseline/build，C=cryptography software，I=instruction extension，V=verification，Y=PYNQ，S=skill，P=PUF/security，D=documentation/release。
+
+status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progress` 已有工作未验收；`blocked` 有已知阻塞；`done` 有满足验收的证据；`gated` 未获前置门禁；`deferred` 明确移出本轮。done 仅表示任务本身完成，不表示整个系统可运行。事实与失败见 [实际进度](../project_log/actual_progress.md) 和 [经验](../project_log/lessons_learned.md)。
+
+## baseline 与标准软件（P0）
+
+| ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
+|---|---|---|---|---|---|---|---|
+| B01 | baseline repo audit | TBD | 无 | docs/repository_audit.md | 完整树/模块/part/生成文件/路径问题/读取范围与静态检查证据；不改原工程 | 2026-09-23 | done |
+| B02 | Rebuild and verify recovered XC7Z020 CICC baseline | TBD | B01；Vivado 2025.2 环境 | 原 XPR/XCI/XDC/COE 已恢复；尚需重建入口与新报告 | 明确版本、part、top；从已恢复 XCI 再生成 IP；独立 checkout 综合/实现与基线运行证据，无本机缓存依赖 | 2026-09-27 | in_progress |
+| B03 | xc7z020 board sanity check | TBD | B01；physical board model pending；上板阶段需 B02 | target part = xc7z020clg400-1 confirmed；待板型、约束/image 清单与 sanity 日志 | target part 已确认；核验 physical board model / revision，时钟/复位/UART/LED/存储及 PYNQ 平台；独立配置上板 | 2026-09-28 | blocked |
+| B04 | baseline firmware build/load | TBD | B01；精确 FreeRTOS kernel/bootloader 依赖 | 已恢复部分启动/链接/构建源；待重编译/加载 | clean build 固件，入口/内存匹配；加载后可报告状态和 mcycle；不依赖未入库镜像 | 2026-09-28 | blocked |
+| C01 | NIST SP800-232 reference | TBD | B01 | 规范/参考版本/许可清单与可信 KAT/hash | 固定 final 标准、C/Python reference 提交；区别旧版/draft；核对 IV、端序和 KAT 来源 | 2026-09-24 | todo |
+| C02 | Ascon-AEAD128 software port | TBD | C01；目标固件需 B04 | 既有 ascon 目录内标准 C 移植、API/构建入口 | 加解密 API、长度/错误规则明确；host 与目标编译通过；不将已有代码直接算完成 | 2026-09-28 | in_progress |
+| C03 | KAT | TBD | C02、C01 | sim 验证入口、data KAT 结果 | 完整锁定可信 KAT 逐字节比对；空/边界/多块/AD；篡改 tag/ciphertext 拒绝；保留失败日志 | 2026-09-29 | todo |
+| C04 | RISC-V software benchmark | TBD | C03、B02、B03、B04、V01 | 纯软件程序、mcycle 读取、原始 CSV/JSON | 自研 CPU 上运行且 KAT 正确；64-bit cycle 可靠读取；记录 flags/频率/Cache/中断/计时范围及代码量 | 2026-09-30 | todo |
+
+## ISE 与验证（P0）
+
+| ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
+|---|---|---|---|---|---|---|---|
+| I01 | hotspot analysis | TBD | C04 | permutation hotspot 与候选指令分析 | 基于真实周期/反汇编给出瓶颈、RV32 状态布局、预期收益与资源代价；估算独立标记 | 2026-10-01 | todo |
+| I02 | custom instruction spec | TBD | I01、C01 | docs 指令 spec/encoding/semantics 与测试矩阵 | 编码无冲突；输入/输出/端序/latency/stall/flush/异常及 RV32/64 边界明确 | 2026-10-03 | todo |
+| I03 | RTL implementation | TBD | I02 | src/rtl 中 ISE RTL 与集成清单 | 与 spec 一致，参数/复位/握手明确定义；通过 elaboration 并提交给 I04 | 2026-10-06 | todo |
+| I04 | unit test | TBD | I03、I02、C01 | sim TestBench/golden model/覆盖与结果 | 定向/随机/边界/重置/连续请求/延迟测试通过，报告 seed 和失败复现；与最终标准 permutation 对照 | 2026-10-07 | todo |
+| I05 | CPU integration | TBD | I04、B02、V01 | decode/execute/旁路/控制接入与集成测试 | baseline 回归通过；数据相关、stall/flush、中断/异常与 ISE 交互通过；ISE-disabled 可运行 | 2026-10-11 | todo |
+| I06 | inline asm/intrinsic | TBD | I02；联调需 I05 | 软件封装、调用测试和反汇编/执行证据 | 不改 GCC backend；寄存器约束正确，热点实际执行对应 opcode；无静默 fallback | 2026-10-12 | todo |
+| I07 | software vs ISE benchmark | TBD | I05、I06、V02、C04 | 两种程序与原始 benchmark/加速比 | 同平台同条件 KAT 正确；cycles/cycles-per-byte/代码量与原始数据齐全；第一版真实加速数据 | 2026-10-14 | todo |
+| I08 | PPA comparison | TBD | I05、B03 | software/ISE 综合与实现报告、对比表 | 同工具/part/约束/策略，LUT/FF/BRAM/DSP/Fmax/时序均有证据；时序失败不能算达标 | 2026-10-20 | todo |
+| V01 | baseline regression/counter sanity | TBD | 完整验收需 B02、B03、B04；模块测试可先行 | 两个模块 TB 已过；待 ISA/外设/Cache/AXI/中断及 counter 测试 | 保存可重跑程序/TB/日志；mcycle 读取与溢出、计数开销已检查；支持范围明确 | 2026-09-29 | in_progress |
+| V02 | software/ISE differential verification | TBD | I05、I06、C03 | CPU 级 KAT 与差分/负向验证 | 两套固件均通过可信 KAT，篡改拒绝；流水 hazard/flush 场景无回归 | 2026-10-13 | todo |
+| V03 | PS/PL end-to-end regression | TBD | Y02、Y03、V02 | 自动板级测试/错误场景日志 | 软件/ISE 输入到输出可复现；错误 tag、超时、长度边界、重复命令、缓存可见性可检查 | 2026-10-20 | todo |
+| V04 | core freeze regression | TBD | Y05、I08、V03 | 冻结回归清单与证据索引 | P0/P1 验收齐全、无未关闭阻断缺陷；冻结哈希与环境留档；不以 P2 拖延 | 2026-10-27 | todo |
+
+## PYNQ 与通用 Skill（P1）
+
+| ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
+|---|---|---|---|---|---|---|---|
+| Y01 | Zynq PS/PL interface design | TBD | B03、B04；C02 API | 版本化 register/mailbox/buffer 协议 | 控制路径、firmware loading、地址/端序/长度、所有权/一致性、cycle/status/error/timeout 明确，双方可据此实现 | 2026-10-08 | todo |
+| Y02 | PYNQ overlay | TBD | Y01、I05、B02 | Tcl/IP 配置、overlay 发布清单与 hash | 在已核验 image/板卡上加载，bit/hwh 匹配；PS 可控制 CPU，干净构建可生成 | 2026-10-17 | todo |
+| Y03 | Python host API | TBD | Y01、C03；联调需 Y02 | Python API、golden checker、测试 | 输入 key/nonce/AD/plaintext，返回 ciphertext/tag/cycles，错误显式；匹配锁定 C/Python reference | 2026-10-18 | todo |
+| Y04 | Jupyter demo | TBD | Y02、Y03、I07 | 可从头执行 notebook 与说明 | 重启后顺序执行，展示软件/ISE 正确性与加速比，区分 CPU 与端到端计时 | 2026-10-20 | todo |
+| Y05 | automatic benchmark/report | TBD | Y04、V03、I07、I08 | 自动 KAT/benchmark/report 入口和原始数据 | 同次运行可生成结果、失败返回非成功状态；软件/ISE 对比可追溯、无手填性能值 | 2026-10-21 | todo |
+| S01 | generic overlay loader | TBD | Y02 | skill 通用 loader | 板型/overlay 路径参数化，校验 bit/hwh/版本，给出适用与失效条件 | 2026-10-21 | todo |
+| S02 | register map helper | TBD | Y01、Y03 | skill 寄存器访问 helper | 地址/位宽/端序由配置提供，读写与边界测试通过，不硬编码 Ascon | 2026-10-21 | todo |
+| S03 | golden reference checker | TBD | C03、Y03 | skill 可注入 golden checker | 算法作为 callback/适配器，报告首个差异与失败；用非 Ascon 示例验证 | 2026-10-21 | todo |
+| S04 | performance/report collector | TBD | Y05、I08 | skill 数据收集与报告工具 | schema/指标可配置，缺失与估算明确，使用非 Ascon 数据示例验证 | 2026-10-21 | todo |
+| S05 | PYNQ skill README | TBD | S01、S02、S03、S04 | skill 使用/边界/案例/来源说明 | 陌生使用者按说明运行通用示例；P1 验收版随 M05，11-01 完成提交材料整理 | 2026-10-21 | todo |
+
+## 可选安全原型（P2）
+
+以下日期仅在 P0/P1 全稳定、前述 09-23～10-21 节点达标且 Skill 核心交付稳定时有效；否则直接 deferred，不延期主线。
+
+| ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
+|---|---|---|---|---|---|---|---|
+| P01 | RO PUF prototype | TBD | B02/B03/C04/I04/I07/I08/Y05/V03、S01-S05 与 P0/P1 门禁通过 | 独立 RO PUF RTL/约束/观测记录 | 综合/实现后结构保留，有真实响应，异常与限制记录完整 | 2026-10-23（条件节点） | gated |
+| P02 | stability measurement | TBD | P01 | 多次上电/温度/电压响应与统计 | 预先声明采样和阈值，报告 BER/失败率，不能只选成功样本 | 2026-10-24（条件节点） | gated |
+| P03 | key reconstruction | TBD | P02 | enrollment/reconstruction 与 helper data 方案 | 多次重建/失败处理实测，密钥不入日志；可靠性阈值达标 | 2026-10-26（条件节点） | gated |
+| P04 | authenticated boot prototype | TBD | P03、C03、V02 | Ascon 镜像认证/完整性原型 | 正确镜像允许、修改镜像拒绝；说明信任边界和回滚限制；冻结前未验收即延期 | 2026-10-27（条件节点） | gated |
+
+## 文档与发布
+
+| ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
+|---|---|---|---|---|---|---|---|
+| D00 | repository collaboration skeleton | TBD | B01 | README/AGENTS/docs/tasks/project_log/目录说明/.gitignore | 请求的入口齐全、任务字段完整、链接可用、原工程未变、忽略规则保留证据 | 2026-09-23 | done |
+| D01 | architecture figure | TBD | B01；定稿需 I02/Y01 | 架构图与版本说明 | 当前/计划分开；最终图与 CPU/PS/PL 实现一致，报告可引用 | 2026-10-29 | in_progress |
+| D02 | benchmark tables | TBD | I07、I08、Y05、V04 | 对比表与数据来源索引 | 每个数值追溯原始结果，测试条件一致，未测项明确 | 2026-10-30 | todo |
+| D03 | report | TBD | D01、D02、V04、S01-S04 | 报告、PPT、LLM 协作记录 | 原理/创新/对比/失败与复现材料齐全，规则/来源可追溯，无虚构成果 | 2026-11-01 | todo |
+| D04 | demo video | TBD | Y04、Y05、V04 | 演示视频与脚本/文件 hash 索引 | 真实目标板上输入输出、KAT 和两模式指标一致，关键过程可辨识 | 2026-11-01 | todo |
+| D05 | clean-clone reproduction | TBD | B02、B03、B04、V04、D03、D04、S05 | 干净机器/clone 的端到端日志 | 无开发机缓存/IP/绝对路径依赖，重新构建并运行 KAT/benchmark/demo；材料引用有效 | 2026-11-02 | todo |
+| D06 | final package | TBD | D05、D03、D04、S05 | 最终清单/许可证/哈希/材料包 | 11-03 只修材料并核对包；11-04 仅正式提交，由用户控制提交动作 | 2026-11-03 | todo |
+
+下一步首选 B02、B03、C01；B04 已恢复选择的固件源，仍缺准确 kernel/bootloader 源与运行证据；B02/V01 的部分进展不等于完整验收。
