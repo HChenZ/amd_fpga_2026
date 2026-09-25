@@ -1,5 +1,8 @@
 `timescale 1ns / 1ps
 
+`ifndef ASCON_ROUND_V
+`define ASCON_ROUND_V
+
 module ror #(
     parameter n = 0
 )(
@@ -68,3 +71,5 @@ module round (
     assign s_out[319:256] = t4_out ^ t4_out_r7 ^ t4_out_r41;
 
 endmodule
+
+`endif

@@ -1,5 +1,16 @@
 `timescale 1ns / 1ps
 
+`ifndef ASCON_WORD_V
+`define ASCON_WORD_V
+
+module pad(
+    input wire [63:0] i_in,
+    output wire [63:0] i_out);
+
+    assign i_out = 64'h1 << (8 * i_in);
+
+endmodule
+
 module load_bytes(
     input wire [63:0] bytes,
     input wire [3:0] n,
@@ -33,3 +44,5 @@ module store_bytes(
     end
 
 endmodule
+
+`endif
