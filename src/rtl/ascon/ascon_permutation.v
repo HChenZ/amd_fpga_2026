@@ -1,5 +1,8 @@
 `timescale 1ns / 1ps
 
+`ifndef ASCON_PERMUTATION_V
+`define ASCON_PERMUTATION_V
+
 `include "ascon_round.v"
 
 module p12(
@@ -91,3 +94,5 @@ module p8(
     assign s_out = (round_cnt >= 4'd8) ? s_reg : 320'd0;
 
 endmodule
+
+`endif
