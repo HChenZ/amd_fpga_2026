@@ -9,7 +9,8 @@ module p12(
     input wire clk,
     input wire reset,
     input wire [319:0] s_in,
-    output wire [319:0] s_out);
+    output wire [319:0] s_out,
+    output wire done);
 
     wire [319:0] round_out;
 
@@ -48,7 +49,8 @@ module p12(
         end
     end
 
-    assign s_out = (round_cnt >= 4'd12) ? s_reg : 320'd0;
+    assign s_out = s_reg;
+    assign done = (round_cnt >= 4'd12);
 
 endmodule
 
@@ -56,7 +58,8 @@ module p8(
     input wire clk,
     input wire reset,
     input wire [319:0] s_in,
-    output wire [319:0] s_out);
+    output wire [319:0] s_out,
+    output wire done);
 
     wire [319:0] round_out;
 
@@ -91,7 +94,8 @@ module p8(
         end
     end
 
-    assign s_out = (round_cnt >= 4'd8) ? s_reg : 320'd0;
+    assign s_out = s_reg;
+    assign done = (round_cnt >= 4'd8);
 
 endmodule
 
