@@ -47,6 +47,8 @@ module p12(
             s_reg <= round_out;
             round_cnt <= round_cnt + 1'b1;
         end
+        else
+            round_cnt <= round_cnt;
     end
 
     assign s_out = s_reg;
@@ -92,6 +94,8 @@ module p8(
             s_reg <= round_out;
             round_cnt <= round_cnt + 1'b1;
         end
+        else
+            round_cnt <= round_cnt;
     end
 
     assign s_out = s_reg;
