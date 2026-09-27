@@ -86,11 +86,11 @@ module crypto_aead_encrypt(
     always @(*) begin
         case (state)
             INITIALIZE_1ST: next_state = p12_done ?  INITIALIZE_2ND : state;
-            INITIALIZE_2ND: next_state = (adlen == 7'd0) ? DOMAIN_SEPARATION : ((adlen >= `ASCON_128A_RATE) ? FULL_ASSOCIATED : FINAL_ASSOCIATED);
-            FULL_ASSOCIATED: next_state = (adlen < `ASCON_128A_RATE) ? FINAL_ASSOCIATED : state;
+            INITIALIZE_2ND: next_state = (adlen_reg == 7'd0) ? DOMAIN_SEPARATION : ((adlen_reg >= `ASCON_128A_RATE) ? FULL_ASSOCIATED : FINAL_ASSOCIATED);
+            FULL_ASSOCIATED: next_state = (adlen_reg < `ASCON_128A_RATE) ? FINAL_ASSOCIATED : state;
             FINAL_ASSOCIATED: next_state = p8_done ? DOMAIN_SEPARATION : state;
-            DOMAIN_SEPARATION: next_state = (mlen >= `ASCON_128A_RATE) ? FULL_PLAINTEXT : FINAL_PLAINTEXT;
-            FULL_PLAINTEXT: next_state = (mlen < `ASCON_128A_RATE) ? FINAL_PLAINTEXT : state;
+            DOMAIN_SEPARATION: next_state = (mlen_reg >= `ASCON_128A_RATE) ? FULL_PLAINTEXT : FINAL_PLAINTEXT;
+            FULL_PLAINTEXT: next_state = (mlen_reg < `ASCON_128A_RATE) ? FINAL_PLAINTEXT : state;
             FINAL_PLAINTEXT: next_state = FINALIZE_1ST;
             FINALIZE_1ST: next_state = p12_done ? FINALIZE_2ND : state;
             FINALIZE_2ND: next_state = GET_TAG;
@@ -102,8 +102,6 @@ module crypto_aead_encrypt(
     reg [63:0] s0_p8_in, s1_p8_in;
     reg [2:0] full_associated_cnt;
     reg [2:0] full_plaintext_cnt;
-    reg [63:0] s0_fapad_temp, s1_fapad_temp;
-    reg [63:0] s0_fppad_temp, s1_fppad_temp;
 
     always @(posedge clk) begin
         if (reset) begin
@@ -149,15 +147,13 @@ module crypto_aead_encrypt(
                     if (adlen_reg > 7'd8) begin
                         s1_load_n <= adlen_reg - 7'd8;
                         s1_pad_in <= adlen_reg - 7'd8;
-                        s0 <= s0 ^ s0_load_out;
-                        s1_fapad_temp <= s1 ^ s1_load_out;
-                        s1 <= s1_fapad_temp ^ s1_pad_out;
+                        s0 <= s0 ^ s0_load_out; // 这里需要延迟一拍
+                        s1 <= s1 ^ s1_load_out ^ s1_pad_out;
                     end
                     else begin
                         s0_load_n <= adlen_reg;
                         s0_pad_in <= adlen_reg;
-                        s0_fapad_temp <= s0 ^ s0_load_out;
-                        s0 <= s0_fapad_temp ^ s0_pad_out;
+                        s0 <= s0 ^ s0_load_out ^ s0_pad_out; // 这里需要延迟一拍
                     end
                 end
                 else begin
@@ -172,10 +168,10 @@ module crypto_aead_encrypt(
                 if ((full_plaintext_cnt == 3'd0) || p8_done) begin
                     s0_load_in <= m_reg;
                     s0_load_n <= 4'd8;
-                    s0 = s0 ^ s0_load_out;
                     s1_load_in <= m_reg + 64'd8;
                     s1_load_n <= 4'd8;
-                    s1 = s1 ^ s1_load_out;
+                    s0 = s0 ^ s0_load_out;
+                    s1 = s1 ^ s1_load_out; // 这里需要延迟一拍
 
                     m_reg <= m_reg + `ASCON_128A_RATE;
                     c_reg <= c_reg + `ASCON_128A_RATE;
@@ -188,45 +184,39 @@ module crypto_aead_encrypt(
             end
             else if (state == FINAL_PLAINTEXT) begin
                 if (mlen_reg >= 7'd8) begin
-                    s0 = s0 ^ s0_load_out;
+                    s0 <= s0 ^ s0_load_out;
                     s1_load_n <= mlen_reg - 4'd8;
-                    s1_fppad_temp <= s1 ^ s1_load_out; // 这里需要延迟一拍
 
                     s0_store_in <= s0;
                     s0_store_n <= 4'd8;
-                    c_reg <= s0_store_out;
+                    c_reg <= s0_store_out; // 这里需要延迟一拍
 
-                    s1_store_in <= s1_fppad_temp;
+                    s1_store_in <= s1 ^ s1_load_out; // 这里需要延迟一拍
                     s1_store_n <= mlen_reg - 4'd8;
                     c_reg <= c_reg + 64'd8; // 这里需要延迟一拍
 
                     s1_pad_in <= mlen_reg - 4'd8;
-                    s1 = s1_fppad_temp ^ s1_pad_out;
+                    s1 <= s1 ^ s1_load_out ^ s1_pad_out;
 
                     m_reg <= m_reg + mlen_reg;
                     c_reg <= c_reg + mlen_reg; // 这里需要延迟一拍
                 end
                 else begin
                     s0_load_n <= mlen_reg;
-                    s0_fppad_temp <= s0 ^ s0_load_out; // 这里需要延迟一拍
 
                     s0_store_n <= mlen_reg;
-                    c_reg <= s0_store_out;
+                    c_reg <= s0_store_out; // 这里需要延迟一拍
 
                     s1_pad_in <= mlen_reg;
-                    s0 <= s0_fppad_temp ^ s0_pad_out;
+                    s0 <= s0 ^ s0_load_out ^ s0_pad_out; // 这里需要延迟一拍
 
                     m_reg <= m_reg + mlen_reg;
                     c_reg <= c_reg + mlen_reg; // 这里需要延迟一拍
                 end
             end
             else if (state == FINALIZE_1ST) begin
-                s2 <= s2 ^ K0;
-                s3 <= s3 ^ K1;
-
-                // 这里需要延迟一拍
-                p12_in <= {s4, s3, s2, s1, s0};
-                {s4, s3, s2, s1, s0} <= p12_out;
+                p12_in <= {s4, s3 ^ K1, s2 ^ K0, s1, s0};
+                {s4, s3, s2, s1, s0} <= p12_out; // 这里需要延迟一拍
             end
             else if (state == FINALIZE_2ND) begin
                 s3 <= s3 ^ K0;
@@ -235,7 +225,7 @@ module crypto_aead_encrypt(
             else if (state == GET_TAG) begin
                 s3_store_in <= s3;
                 s3_store_n <= 4'd8;
-                c_reg <= s3_store_out;
+                c_reg <= s3_store_out; // 这里需要延迟一拍
 
                 s4_store_in <= s4;
                 s4_store_n <= 4'd8;
@@ -245,6 +235,28 @@ module crypto_aead_encrypt(
     end
 
     assign c = c_reg;
+
+endmodule
+
+module crypto_aead_decrypt(
+    input wire clk,
+    input wire reset,
+    output wire result,
+    output wire [63:0] m);
+
+    parameter INITIALIZE_1ST = 11'b000_0000_0001,
+              INITIALIZE_2ND = 11'b000_0000_0010,
+              FULL_ASSOCIATED = 11'b000_0000_0100,
+              FINAL_ASSOCIATED = 11'b000_0000_1000,
+              DOMAIN_SEPARATION = 11'b000_0001_0000,
+              FULL_PLAINTEXT = 11'b000_0010_0000,
+              FINAL_PLAINTEXT = 11'b000_0100_0000,
+              FINALIZE_1ST = 11'b000_1000_0000,
+              FINALIZE_2ND = 11'b001_0000_0000,
+              GET_TAG = 11'b010_0000_0000,
+              VERIFY = 11'b100_0000_0000;
+
+    reg [10:0] state, next_state;
 
 endmodule
 
