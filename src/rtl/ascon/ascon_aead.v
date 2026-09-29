@@ -15,24 +15,24 @@ module crypto_aead_encrypt(
 
     reg [63:0] s0, s1, s2, s3, s4;
 
-    wire [7:0] adlen;
-    wire [7:0] mlen;
+    wire [4:0] adlen;
+    wire [4:0] mlen;
 
     reg [127:0] ad_reg;
     reg [127:0] m_reg;
     reg [127:0] c_reg;
-    reg [7:0] adlen_reg;
-    reg [7:0] mlen_reg;
+    reg [4:0] adlen_reg;
+    reg [4:0] mlen_reg;
 
-    get_width #(.MAX_W(128)) get_width_ad (.value(ad), .width(adlen));
-    get_width #(.MAX_W(128)) get_width_m (.value(m), .width(mlen));
+    get_bytes #(.MAX_W(128)) get_bytes_ad (.value(ad), .bytes(adlen));
+    get_bytes #(.MAX_W(128)) get_bytes_m (.value(m), .bytes(mlen));
 
     wire [63:0] K0, K1, N0, N1;
 
-    load_bytes load_bytes_K0 (.bytes(k), .n(4'd8), .x(K0));
-    load_bytes load_bytes_K1 (.bytes(k + 64'd8), .n(4'd8), .x(K1));
-    load_bytes load_bytes_N0 (.bytes(npub), .n(4'd8), .x(N0));
-    load_bytes load_bytes_N1 (.bytes(npub + 64'd8), .n(4'd8), .x(N1));
+    load_bytes load_bytes_K0 (.bytes(k[63:0]), .n(4'd8), .x(K0));
+    load_bytes load_bytes_K1 (.bytes(k[127:64]), .n(4'd8), .x(K1));
+    load_bytes load_bytes_N0 (.bytes(npub[63:0]), .n(4'd8), .x(N0));
+    load_bytes load_bytes_N1 (.bytes(npub[127:64]), .n(4'd8), .x(N1));
 
     wire [319:0] p12_out;
     wire [319:0] p8_out;
@@ -125,10 +125,10 @@ module crypto_aead_encrypt(
             else if (state == FULL_ASSOCIATED) begin
                 full_associated_cnt <= 3'd0;
                 if ((full_associated_cnt == 3'd0) || p8_done) begin
-                    s0_load_in <= ad_reg;
+                    s0_load_in <= ad_reg[63:0];
                     s0_load_n <= 4'd8;
                     s0_p8_in <= s0 ^ s0_load_out; // 这里需要延迟一拍
-                    s1_load_in <= ad_reg + 64'd8;
+                    s1_load_in <= ad_reg[127:64];
                     s1_load_n <= 4'd8;
                     s1_p8_in <= s1 ^ s1_load_out; // 这里需要延迟一拍
 
@@ -260,20 +260,20 @@ module crypto_aead_decrypt(
 
 endmodule
 
-module get_width #(
+module get_bytes #(
     parameter MAX_W = 128,
-    parameter CNT_W = $clog2(MAX_W + 1)
+    parameter CNT_W = $clog2((MAX_W + 7) / 8 + 1)
 )(
     input  wire [MAX_W-1:0] value,
-    output reg  [CNT_W-1:0] width);
+    output reg  [CNT_W-1:0] bytes);
 
     integer i;
 
     always @(*) begin
-        width = {{(CNT_W-1){1'b0}}, 1'b1};
-        for (i = 0; i < MAX_W; i++) begin
+        bytes = {CNT_W{1'b0}};
+        for (i = 0; i < MAX_W; i = i + 1) begin
             if (value[i])
-                width = i + 1;
+                bytes = (i / 8) + 1;
         end
     end
 
