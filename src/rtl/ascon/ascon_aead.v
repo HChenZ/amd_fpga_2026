@@ -7,25 +7,25 @@
 module crypto_aead_encrypt(
     input wire clk,
     input wire reset,
-    input wire [63:0] m,
-    input wire [63:0] ad,
-    input wire [63:0] npub,
-    input wire [63:0] k,
-    output wire [63:0] c);
+    input wire [127:0] m,
+    input wire [127:0] ad,
+    input wire [127:0] npub,
+    input wire [127:0] k,
+    output wire [63:0] c); // c 的位宽不确定
 
     reg [63:0] s0, s1, s2, s3, s4;
 
-    wire [6:0] adlen;
-    wire [6:0] mlen;
+    wire [7:0] adlen;
+    wire [7:0] mlen;
 
-    reg [63:0] ad_reg;
-    reg [63:0] m_reg;
-    reg [63:0] c_reg;
-    reg [6:0] adlen_reg;
-    reg [6:0] mlen_reg;
+    reg [127:0] ad_reg;
+    reg [127:0] m_reg;
+    reg [127:0] c_reg;
+    reg [7:0] adlen_reg;
+    reg [7:0] mlen_reg;
 
-    get_width #(.MAX_W(64)) get_width_ad (.value(ad), .width(adlen));
-    get_width #(.MAX_W(64)) get_width_m (.value(m), .width(mlen));
+    get_width #(.MAX_W(128)) get_width_ad (.value(ad), .width(adlen));
+    get_width #(.MAX_W(128)) get_width_m (.value(m), .width(mlen));
 
     wire [63:0] K0, K1, N0, N1;
 
@@ -229,7 +229,7 @@ module crypto_aead_encrypt(
 
                 s4_store_in <= s4;
                 s4_store_n <= 4'd8;
-                c_reg <= c_reg + 64'd8; // 这里需要延迟一拍
+                c_reg <= s4_store_out; // 这里需要延迟一拍，并且存储在 c_reg 的位置有问题
             end
         end
     end
@@ -261,7 +261,7 @@ module crypto_aead_decrypt(
 endmodule
 
 module get_width #(
-    parameter MAX_W = 64,
+    parameter MAX_W = 128,
     parameter CNT_W = $clog2(MAX_W + 1)
 )(
     input  wire [MAX_W-1:0] value,
