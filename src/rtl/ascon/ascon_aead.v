@@ -11,7 +11,7 @@ module crypto_aead_encrypt(
     input wire [127:0] ad,
     input wire [127:0] npub,
     input wire [127:0] k,
-    output wire [63:0] c); // c µÄÎ»¿í²»È·¶¨
+    output wire [63:0] c); // c çš„ä½å®½ä¸ç¡®å®š
 
     reg [63:0] s0, s1, s2, s3, s4;
 
@@ -127,13 +127,13 @@ module crypto_aead_encrypt(
                 if ((full_associated_cnt == 3'd0) || p8_done) begin
                     s0_load_in <= ad_reg[63:0];
                     s0_load_n <= 4'd8;
-                    s0_p8_in <= s0 ^ s0_load_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                    s0_p8_in <= s0 ^ s0_load_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
                     s1_load_in <= ad_reg[127:64];
                     s1_load_n <= 4'd8;
-                    s1_p8_in <= s1 ^ s1_load_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                    s1_p8_in <= s1 ^ s1_load_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
 
                     ad_reg <= ad_reg + `ASCON_128A_RATE;
-                    adlen_reg <= adlen_reg - 7'd16; // ±¾À´Ó¦Ê¹ÓÃ `ASCON_128A_RATE£¬µ«ÓÉÓÚ adlen_reg ÊÇ 7 Î»£¬ËùÒÔÔİÊ±Ê¹ÓÃ 7'd16 ´úÌæ
+                    adlen_reg <= adlen_reg - 7'd16; // æœ¬æ¥åº”ä½¿ç”¨ `ASCON_128A_RATEï¼Œä½†ç”±äº adlen_reg æ˜¯ 7 ä½ï¼Œæ‰€ä»¥æš‚æ—¶ä½¿ç”¨ 7'd16 ä»£æ›¿
 
                     full_associated_cnt <= full_associated_cnt + 3'd1;
                 end
@@ -143,17 +143,17 @@ module crypto_aead_encrypt(
                 end
             end
             else if (state == FINAL_ASSOCIATED) begin
-                if (p8_done) begin // ÕâÀïµÄÅĞ¶ÏÂß¼­»¹´æÔÚÎÊÌâ
+                if (p8_done) begin // è¿™é‡Œçš„åˆ¤æ–­é€»è¾‘è¿˜å­˜åœ¨é—®é¢˜
                     if (adlen_reg > 7'd8) begin
                         s1_load_n <= adlen_reg - 7'd8;
                         s1_pad_in <= adlen_reg - 7'd8;
-                        s0 <= s0 ^ s0_load_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                        s0 <= s0 ^ s0_load_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
                         s1 <= s1 ^ s1_load_out ^ s1_pad_out;
                     end
                     else begin
                         s0_load_n <= adlen_reg;
                         s0_pad_in <= adlen_reg;
-                        s0 <= s0 ^ s0_load_out ^ s0_pad_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                        s0 <= s0 ^ s0_load_out ^ s0_pad_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
                     end
                 end
                 else begin
@@ -171,11 +171,11 @@ module crypto_aead_encrypt(
                     s1_load_in <= m_reg + 64'd8;
                     s1_load_n <= 4'd8;
                     s0 = s0 ^ s0_load_out;
-                    s1 = s1 ^ s1_load_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                    s1 = s1 ^ s1_load_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
 
                     m_reg <= m_reg + `ASCON_128A_RATE;
                     c_reg <= c_reg + `ASCON_128A_RATE;
-                    mlen_reg <= mlen_reg - 7'd16; // ±¾À´Ó¦Ê¹ÓÃ `ASCON_128A_RATE£¬µ«ÓÉÓÚ mlen_reg ÊÇ 7 Î»£¬ËùÒÔÔİÊ±Ê¹ÓÃ 7'd16 ´úÌæ
+                    mlen_reg <= mlen_reg - 7'd16; // æœ¬æ¥åº”ä½¿ç”¨ `ASCON_128A_RATEï¼Œä½†ç”±äº mlen_reg æ˜¯ 7 ä½ï¼Œæ‰€ä»¥æš‚æ—¶ä½¿ç”¨ 7'd16 ä»£æ›¿
                 end
                 else begin
                     p8_in <= {s4, s3, s2, s1, s0};
@@ -189,34 +189,34 @@ module crypto_aead_encrypt(
 
                     s0_store_in <= s0;
                     s0_store_n <= 4'd8;
-                    c_reg <= s0_store_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                    c_reg <= s0_store_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
 
-                    s1_store_in <= s1 ^ s1_load_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                    s1_store_in <= s1 ^ s1_load_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
                     s1_store_n <= mlen_reg - 4'd8;
-                    c_reg <= c_reg + 64'd8; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                    c_reg <= c_reg + 64'd8; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
 
                     s1_pad_in <= mlen_reg - 4'd8;
                     s1 <= s1 ^ s1_load_out ^ s1_pad_out;
 
                     m_reg <= m_reg + mlen_reg;
-                    c_reg <= c_reg + mlen_reg; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                    c_reg <= c_reg + mlen_reg; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
                 end
                 else begin
                     s0_load_n <= mlen_reg;
 
                     s0_store_n <= mlen_reg;
-                    c_reg <= s0_store_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                    c_reg <= s0_store_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
 
                     s1_pad_in <= mlen_reg;
-                    s0 <= s0 ^ s0_load_out ^ s0_pad_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                    s0 <= s0 ^ s0_load_out ^ s0_pad_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
 
                     m_reg <= m_reg + mlen_reg;
-                    c_reg <= c_reg + mlen_reg; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                    c_reg <= c_reg + mlen_reg; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
                 end
             end
             else if (state == FINALIZE_1ST) begin
                 p12_in <= {s4, s3 ^ K1, s2 ^ K0, s1, s0};
-                {s4, s3, s2, s1, s0} <= p12_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                {s4, s3, s2, s1, s0} <= p12_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
             end
             else if (state == FINALIZE_2ND) begin
                 s3 <= s3 ^ K0;
@@ -225,11 +225,11 @@ module crypto_aead_encrypt(
             else if (state == GET_TAG) begin
                 s3_store_in <= s3;
                 s3_store_n <= 4'd8;
-                c_reg <= s3_store_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ
+                c_reg <= s3_store_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹
 
                 s4_store_in <= s4;
                 s4_store_n <= 4'd8;
-                c_reg <= s4_store_out; // ÕâÀïĞèÒªÑÓ³ÙÒ»ÅÄ£¬²¢ÇÒ´æ´¢ÔÚ c_reg µÄÎ»ÖÃÓĞÎÊÌâ
+                c_reg <= s4_store_out; // è¿™é‡Œéœ€è¦å»¶è¿Ÿä¸€æ‹ï¼Œå¹¶ä¸”å­˜å‚¨åœ¨ c_reg çš„ä½ç½®æœ‰é—®é¢˜
             end
         end
     end
