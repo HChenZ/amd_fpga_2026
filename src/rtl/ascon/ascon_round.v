@@ -29,24 +29,25 @@ module round (
     wire [63:0] t0_out, t1_out, t2_out, t3_out, t4_out;
     wire [63:0] t0_out_r19, t0_out_r28, t1_out_r61, t1_out_r39, t2_out_r1, t2_out_r6, t3_out_r10, t3_out_r17, t4_out_r7, t4_out_r41;
 
+    // initialize
     assign s0_in = s_in[63:0];
     assign s1_in = s_in[127:64];
     assign s2_in = s_in[191:128] ^ {56'b0, C};
     assign s3_in = s_in[255:192];
     assign s4_in = s_in[319:256];
-
+    //non_linear_computation
     assign s0_out = s0_in ^ s4_in;
     assign s1_out = s1_in;
     assign s2_out = s2_in ^ s1_out;
     assign s3_out = s3_in;
     assign s4_out = s4_in ^ s3_out;
-
+    //start_S-box
     assign t0_in = s0_out ^ (~s1_out & s2_out);
     assign t1_in = s1_out ^ (~s2_out & s3_out);
     assign t2_in = s2_out ^ (~s3_out & s4_out);
     assign t3_in = s3_out ^ (~s4_out & s0_out);
     assign t4_in = s4_out ^ (~s0_out & s1_out);
-
+    //end_S-box
     assign t0_out = t0_in ^ t4_in;
     assign t1_out = t1_in ^ t0_in;
     assign t2_out = ~t2_in;
@@ -64,6 +65,7 @@ module round (
     ror #(.n(7)) ror_t4_r7 (.x(t4_out), .y(t4_out_r7));
     ror #(.n(41)) ror_t4_r41 (.x(t4_out), .y(t4_out_r41));
 
+    //take in
     assign s_out[63:0] = t0_out ^ t0_out_r19 ^ t0_out_r28;
     assign s_out[127:64] = t1_out ^ t1_out_r61 ^ t1_out_r39;
     assign s_out[191:128] = t2_out ^ t2_out_r1 ^ t2_out_r6;

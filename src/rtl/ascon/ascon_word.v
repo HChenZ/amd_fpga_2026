@@ -7,7 +7,7 @@ module pad(
     input wire [63:0] i_in,
     output wire [63:0] i_out);
 
-    assign i_out = 64'h1 << (8 * i_in);
+    assign i_out = 64'h80 << (8 * i_in);
 
 endmodule
 
