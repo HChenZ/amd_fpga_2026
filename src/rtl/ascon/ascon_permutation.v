@@ -8,9 +8,12 @@
 module p12(
     input wire clk,
     input wire reset,
+    input wire start,
     input wire [319:0] s_in,
-    output wire [319:0] s_out,
-    output wire done);
+    output reg [319:0] s_out,
+    output reg done,
+    output reg busy
+);
 
     wire [319:0] round_out;
 
@@ -40,28 +43,43 @@ module p12(
  
     always @(posedge clk) begin
         if (reset) begin
-            s_reg <= s_in;
             round_cnt <= 4'd0;
+            s_out <= 320'd0;
+            s_reg <= 320'd0;
+            done <= 1'b0;
+            busy <= 1'b0;
         end
-        else if (round_cnt < 4'd12) begin
-            s_reg <= round_out;
-            round_cnt <= round_cnt + 1'b1;
+        else begin 
+            done <= 0;
+            if (start) begin
+                s_reg <= s_in;
+                round_cnt <= 4'd0;
+                busy <= 1'b1;
+            end else if (busy) begin
+                if (round_cnt < 4'd12) begin
+                    s_reg <= round_out;
+                    round_cnt <= round_cnt + 1'b1;
+                end else begin
+                    s_out <= s_reg;
+                    done <= 1'b1;
+                    busy <= 1'b0;
+                end
+            end
         end
-        else
-            round_cnt <= round_cnt;
     end
 
-    assign s_out = s_reg;
-    assign done = (round_cnt >= 4'd12);
 
 endmodule
 
 module p8(
     input wire clk,
     input wire reset,
+    input wire start,
     input wire [319:0] s_in,
-    output wire [319:0] s_out,
-    output wire done);
+    output reg [319:0] s_out,
+    output reg done,
+    output reg busy
+);
 
     wire [319:0] round_out;
 
@@ -87,19 +105,31 @@ module p8(
  
     always @(posedge clk) begin
         if (reset) begin
-            s_reg <= s_in;
+            s_reg <= 320'd0;
             round_cnt <= 4'd0;
+            done <= 1'b0;
+            busy <= 1'b0;
+            s_out <= 320'd0;
         end
-        else if (round_cnt < 4'd8) begin
-            s_reg <= round_out;
-            round_cnt <= round_cnt + 1'b1;
+        else begin
+            done <= 0;
+            if (start) begin
+                s_reg <= s_in;
+                round_cnt <= 4'd0;
+                busy <= 1'b1;
+            end else if (busy) begin
+                if (round_cnt < 4'd8) begin
+                s_reg <= round_out;
+                round_cnt <= round_cnt + 1'b1;
+                end else begin
+                    s_out <= s_reg;
+                    done <= 1'b1;
+                    busy <= 1'b0;
+                end
+            end
         end
-        else
-            round_cnt <= round_cnt;
     end
 
-    assign s_out = s_reg;
-    assign done = (round_cnt >= 4'd8);
 
 endmodule
 
