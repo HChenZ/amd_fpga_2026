@@ -7,7 +7,7 @@
 | 比赛 | 全国大学生嵌入式芯片与系统设计竞赛 2026，FPGA 创新设计赛道，AMD 自主选题初级组 |
 | 目标硬件 | Zynq-7000 **XC7Z020CLG400-1**；具体板卡型号、版本、PYNQ image 待 B03 核实 |
 | 最终提交 | **2026-11-04**（用户给定截止日期；11 月 4 日不安排开发） |
-| 当前阶段 | 真实 CICC1000023 baseline 源恢复已本地提交；Vivado/上板复现待验证 |
+| 当前阶段 | NIST Final reference/KAT 与 host 软件验证已建立；独立 RTL encryption/permutation regression 已运行，full-source integration、RTL decrypt、CPU ISE 与板级验证待完成 |
 | 当前工程实际配置 | 恢复 baseline：`xc7z020clg400-1` / Vivado `2025.2` / `top_pl_bram`；原 Kintex 工程另行保留 |
 | 开源协议 | [Apache-2.0](LICENSE)；引入第三方代码须单独核对来源与许可 |
 
@@ -26,7 +26,7 @@ flowchart LR
     Host["PYNQ / Jupyter（计划）"] --> PS["Zynq PS：Python API / 黄金参考（计划）"]
     PS --> Link["AXI / shared BRAM / mailbox（待 Y01 定案）"]
     Link --> CPU["PL：现有自研 RISC-V CPU"]
-    CPU --> SW["Ascon-AEAD128：软件 / ISE 两种路径（待验证）"]
+    CPU --> SW["Ascon-AEAD128：host 软件已验；目标 CPU 软件待运行"]
     CPU --> ISE["Ascon permutation ISE（计划）"]
     CPU --> Counter["已有 mcycle / CPI 事件计数器"]
     Counter --> Link
@@ -39,14 +39,16 @@ flowchart LR
 
 | 路径 | 用途 / 现状 |
 |---|---|
-| `src/rtl/` | 保持原位的 CPU、Cache、总线、外设；`ascon/` 只有初步辅助模块 |
-| `ascon/ascon_c/`、`ascon/pyascon/` | 已有 C/Python Ascon；版本来源与最终标准 KAT 待确认，不搬入 `src/` |
+| `src/rtl/` | CPU、Cache、总线、外设保持原位；`ascon/` 已有 round、P8/P12 permutation 和 AEAD v2 encryption RTL，isolated regression 通过，但 decrypt 与 production source-set integration 未收口 |
+| `ascon/ascon_c/`、`ascon/pyascon/` | C/Python host 实现已通过锁定的 NIST Final KAT；C decrypt 认证失败时返回失败、`mlen=0` 并清除候选明文；目标 RISC-V 构建/运行待验证 |
 | `board/vivado_zynq7000_xc7z020_baseline/` | 原比赛 XPR、31 RTL/header、3 XCI、XDC、FreeRTOS COE |
 | `board/vivado_kintex7_legacy/` | 原 tracked 工程经 git mv 归并后的唯一 Kintex 入口；只作 legacy |
 | `src/firmware/cicc1000023/` | CoreMark RV32/RV64、FreeRTOS 应用、RISC-V tests 源/构建输入 |
-| `sim/cicc1000023/` | 恢复的模块/ISA/formal 验证源；适配与完整回归待完成 |
+| `sim/ascon/` | Final host validation、认证失败门禁、独立 round/P8/P12/AEAD RTL regression 与 golden 接口；full-source integration FAIL 被保留 |
+| `sim/cicc1000023/` | 恢复的模块/ISA/formal 验证源；适配与完整 CPU 回归待完成 |
 | `build/` | 资产哈希/原名还原脚本、精选历史报告、本轮验证元数据 |
-| `data/` | recovery 清单/哈希/差异/小测试输入；可信 Ascon KAT/benchmark 仍待建立 |
+| `data/ascon/` | 锁定来源与许可、完整 Final KAT、固定 AEAD/permutation golden vectors、host/RTL 验证与失败证据；没有 benchmark/PPA 实测数据 |
+| `data/recovery/` | CICC1000023 recovery 清单、哈希、差异与小测试输入 |
 | `skill/` | 不绑定 Ascon 的通用 PYNQ Skill 预留 |
 | `report/` | 报告、图表、视频索引与 LLM 协作记录预留 |
 | `docs/` | 审计、技术契约、架构与工作流程 |
@@ -55,13 +57,30 @@ flowchart LR
 
 完整原始树、逐文件清单与差异见 [仓库审计](docs/repository_audit.md)。新增普通路径用英文小写、数字、下划线或连字符；扩展名分隔点及明确要求的 `README.md`、`AGENTS.md`、`.gitignore` 是约定例外。已有路径不做批量改名。
 
-## 当前进度（2026-09-21）
+## 当前进度（2026-10-07）
 
-- B01 / D00：审计与协作骨架完成；全部任务 owner 仍为 `TBD`。foundation 收口已去重 Kintex 并清理两项旧生成元数据，详见 [收口检查](docs/repository_foundation_closeout.md)。
-- 原始 ZIP 已找到真实 XC7Z020 工程、三个 IP、固件/测试和历史 bitstream/report；选取 579 个资产恢复，已纳入本地提交。Git HEAD 缺失不等于资料不可用。
-- Icarus 12.0：恢复 RTL 的 `top` elaboration、`tb_bypass`、`tb_regfile` 通过；未重跑 Vivado/IP/固件构建或上板。历史 100 MHz / WNS 0.056 ns 仅作归档证据。
-- 已有 Ascon C/Python 和 `ror/load_bytes/store_bytes` RTL，尚无可信 KAT 比对结果、指令接入、benchmark 或 PPA 数据。
-- B02/B03 与 C01 是下一步入口；PYNQ 未开始，PUF/启动认证处于门禁状态。
+已验证：
+
+- NIST SP 800-232 Final / Ascon-AEAD128 是唯一主线。Final PDF、ascon-c/pyascon 固定提交、CC0 许可、逐文件 SHA-256 和 1,089 组官方上游 KAT 已锁定，见 [标准基准](docs/ascon_standard_baseline.md)。
+- 仓库 C/Python host 实现与锁定 KAT 逐字节一致；完整四 backend host validation 为 28,661 PASS / 0 FAIL。C decrypt 的项目安全契约已修复并通过 23,965 项 raw-buffer 检查：认证失败返回 `-1`、`mlen=0`，并清除已知长度的候选明文。
+- 独立 golden regression 已验证 round、P8、P12；`ascon_aead_2.v` encryption 已用锁定 Final reference 验证长度边界、尾零、reset 和连续请求。队友 testbench 的五组 ciphertext/tag 也由独立 reference 证实。
+- CICC1000023 恢复资产、真实 XC7Z020 XPR/XCI/XDC/COE 和固件输入已纳入仓库；恢复 RTL 的 `top` elaboration、`tb_bypass`、`tb_regfile` 已通过既有 Icarus 检查。
+
+部分完成：
+
+- 当前 `ascon_aead_2.v` encryption 接口最多容纳 plaintext 16 bytes、AD 16 bytes；这是当前接口能力上限，不代表 Final 算法长度上限。
+- isolated encryption/permutation regression PASS；把 `src/rtl/ascon/` 全部 production 源同时编译仍 FAIL，已有旧/新 module 重复和 legacy 接口问题。因此不能宣称整个 AEAD RTL 已完成或可集成。
+- XC7Z020 baseline 源已恢复，但 Vivado 重新生成 IP、综合、实现、固件加载和实板复现尚未完成。
+
+尚未完成：
+
+- RTL decrypt 尚未实现；CPU custom ISE 的 spec、decode/execute、流水线集成和 inline assembly/intrinsic 尚未完成。
+- 尚无目标 RISC-V CPU 上的 KAT、`mcycle` 软件/ISE benchmark、真实加速比或本轮 PPA/Fmax 数据；所有这些结果仍为 `not_measured`。
+- PYNQ/PS-PL 控制链、Python host demo 和 clean-clone FPGA 端到端复现尚未完成。
+
+历史证据：归档中有旧工程 bitstream/report，以及 100 MHz 下 WNS 0.056 ns、placed LUT/FF/BRAM/DSP 等历史结果；它们不是当前 Ascon 集成的本轮重建、PPA 或上板实测。
+
+计划项：P0 继续收口 baseline、目标软件、RTL integration/decrypt 和 CPU ISE；PYNQ 属于后续 P1。PUF/启动认证仍受门禁约束并暂缓，不进入当前主线。全部 owner 仍为 `TBD`。
 
 事实台账以 [actual_progress](project_log/actual_progress.md) 为准，任务字段以 [task_board](tasks/task_board.md) 为准。
 
@@ -69,11 +88,34 @@ flowchart LR
 
 1. `git clone https://github.com/HChenZ/amd_fpga_2026.git`，进入目录后记录 `git rev-parse HEAD` 和 `git status --short`。
 2. 按 [AGENTS.md](AGENTS.md) 阅读项目约定，再读 [审计](docs/repository_audit.md) 的缺口清单。
-3. 按 [build/readme.md](build/readme.md) 做已有 RTL 的静态 elaboration 检查；这不是 CPU 程序验证。
-4. 阅读 [恢复审计](docs/cicc1000023_recovery_audit.md)，运行 `python build/prepare_cicc1000023_sources.py` 核对恢复资产。B02 用 Vivado 2025.2 复现独立的真实 XC7Z020 baseline；B03 核对实物板；B04 补齐准确的 FreeRTOS kernel/bootloader 来源和测试适配。操作要求见 [开发流程](docs/development_workflow.md)。
-5. baseline 验收后，按 C01→C02→C03→C04 接通标准软件与板上 cycle；然后进入 Ixx 与 Yxx。
+3. 在 WSL/Linux 从仓库根目录运行 Final host 与认证失败验证；完整范围和输出格式见 [sim/ascon/readme](sim/ascon/readme.md)：
 
-**目前不能承诺 clean clone 即可上板运行。** 恢复内容已本地提交，本轮尚未 push；历史 bitstream 保留在 ZIP，不是本轮重建/上板结果。PS/PYNQ overlay 尚未实现。
+   ```sh
+   python3 sim/ascon/run_validation.py
+   python3 sim/ascon/check_failure_contract.py
+   python3 sim/ascon/test_harness.py
+   ```
+
+   Windows PowerShell 可调用当前 WSL 工作目录：
+
+   ```powershell
+   wsl -d Ubuntu -- python3 sim/ascon/run_validation.py
+   wsl -d Ubuntu -- python3 sim/ascon/check_failure_contract.py
+   wsl -d Ubuntu -- python3 sim/ascon/test_harness.py
+   ```
+
+4. 准备独立 RTL vectors 后运行 native Icarus regression：
+
+   ```powershell
+   wsl -d Ubuntu -- python3 sim/ascon/prepare_rtl_vectors.py
+   python sim/ascon/run_rtl_regression.py
+   ```
+
+   runner 同时执行 isolated 与 production source-set 门禁；当前预期 overall exit 1，因为 full-source integration 的真实 FAIL 被纳入结果。isolated PASS 不能替代该门禁。
+5. 按 [build/readme.md](build/readme.md) 做已有 CPU RTL 的静态 elaboration 检查；这不是 CPU 程序验证。阅读 [恢复审计](docs/cicc1000023_recovery_audit.md)，运行 `python build/prepare_cicc1000023_sources.py` 核对恢复资产。
+6. B02 使用 Vivado 2025.2 重建真实 XC7Z020 baseline，B03 核对实物板，B04 补齐准确 FreeRTOS kernel/bootloader 来源并验证目标软件；完成 C04 真实 cycle 后再进入 CPU ISE 与 PYNQ 集成。
+
+**目前不能承诺 clean clone 即可完成 FPGA 端到端运行。** 历史 bitstream/report 只是归档证据，当前 Ascon CPU ISE、目标 benchmark、PPA 和 PS/PYNQ overlay 尚未完成。
 
 ## 文档索引
 
@@ -85,6 +127,8 @@ flowchart LR
 | [recovery_audit](docs/cicc1000023_recovery_audit.md) / [rtl_diff](docs/cicc1000023_rtl_diff.md) / [vivado_diff](docs/vivado_project_diff.md) | ZIP 工程、固件审计、逐文件哈希与源配置比较 |
 | [architecture](docs/architecture.md) / [interfaces](docs/interfaces.md) | 当前与目标架构、地址和交接契约 |
 | [technical_rules](docs/technical_rules.md) | 标准、ISE、验证和测量规范 |
+| [ascon_standard_baseline](docs/ascon_standard_baseline.md) / [C API contract](ascon/ascon_c/aead/readme.md) | Final 来源/KAT/hash、软件接口与认证失败处理证据 |
+| [Ascon validation](sim/ascon/readme.md) / [RTL regression audit](docs/ascon_rtl_regression_audit.md) | host/RTL 复现命令、golden 接口、isolated PASS 与 integration FAIL 边界 |
 | [development_workflow](docs/development_workflow.md) / [agent_workflow](docs/agent_workflow.md) | 分支、评审、复现和 agent 交接 |
 | [decisions](docs/decisions.md) / [risks](docs/risks.md) | 决策及风险触发条件 |
 | [task_board](tasks/task_board.md) / [milestones](tasks/milestones.md) | 任务清单、日期与门禁 |
@@ -94,7 +138,7 @@ flowchart LR
 
 保留 baseline 路径；先读接口再修改；RTL 变更附验证，ISE 附 spec/encoding/semantics、RTL/software test、KAT 和 cycle benchmark。第一阶段只用 inline asm/intrinsic，不修改 GCC backend。实测、仿真和估算分开记录，禁止编造性能数据。`main` 的目标是始终可构建/运行；当前复现缺口须先由 B02/B03 关闭，不能靠文字认定已满足。
 
-推荐 `feat/ascon-sw`、`feat/ascon-ise`、`feat/pynq`、`feat/puf`、`feat/boot-auth`、`docs/*`、`fix/*`。**agent 不自行 commit/push**；本轮只交付工作区改动，由用户检查。
+推荐 `feat/ascon-sw`、`feat/ascon-ise`、`feat/pynq`、`feat/puf`、`feat/boot-auth`、`docs/*`、`fix/*`。默认不自行 commit/push；获得用户明确授权后按审查范围执行。
 
 ## 内部 milestone
 
