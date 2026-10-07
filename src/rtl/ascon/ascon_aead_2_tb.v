@@ -1,4 +1,7 @@
 `timescale 1ns / 1ps
+
+`include "ascon_aead_2.v"
+
 module tb;
     reg clk, rst_n, start;
     reg [127:0] k, npub, ad, m;
@@ -31,7 +34,8 @@ module tb;
             if (tag !== v_exp_tag) begin
                 $display("FAIL tag: got %h exp %h", tag, v_exp_tag);
                 errors = errors + 1;
-            end else
+            end
+            else
                 $display("PASS tag: %h", tag);
             if (v_mlen > 0) begin
                 if (v_mlen == 5'd16) mask = {32{4'hF}};
@@ -39,7 +43,8 @@ module tb;
                 if ((c & mask) !== (v_exp_ct & mask)) begin
                     $display("FAIL ct : got %h exp %h (mlen=%0d)", c & mask, v_exp_ct & mask, v_mlen);
                     errors = errors + 1;
-                end else
+                end
+                else
                     $display("PASS ct : %h", c & mask);
             end
         end
@@ -63,8 +68,10 @@ module tb;
         run_vector(128'h00000000000000000000000403020100, 128'h00000000000000000000000000070605, 5'd5, 5'd3, 128'h00000000000000000000000000E86555, 128'h8684F9C40FA3B232ECC7AC43B17BDC5B);
 
         #20;
-        if (errors == 0) $display("ALL PASS");
-        else $display("%0d ERRORS", errors);
+        if (errors == 0)
+            $display("ALL PASS");
+        else
+            $display("%0d ERRORS", errors);
         $finish;
     end
 endmodule
