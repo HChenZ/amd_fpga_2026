@@ -1,5 +1,31 @@
 # 经验与踩坑
 
+## 2026-10-07 — regression 提交换行收口
+
+- L31：data/ascon 按原字节保留，Windows Path.write_text 默认 CRLF；拼接含 CRLF 的
+  工具 stdout 后又产生 CRCRLF，暂存检查将报告每行判为 trailing whitespace。
+  修生成器规范化 stdout 换行、显式 newline=LF，并重新生成/运行验证；不手改生成
+  日志或关闭 whitespace 检查。生产 RTL 与失败门禁不变。
+
+## 2026-10-07 — 最新 RTL 回归追加
+
+- L24：同目录不同 .v 文件可声明重复 module；ascon_aead 与 ascon_aead_2 同时进生产
+  source-set 实际 compile exit 6，isolated 新版 PASS 不能推导 whole-source PASS。
+- L25：permutation 从 reset 改为 rst_n 后，旧 AEAD .reset 连接实际 elaboration exit 2。
+  独立旧入口检查避免错误被 duplicate-module 诊断掩盖；未修改生产源来消除失败。
+- L26：队友 TB 5组 expected 数学值已被锁定 C/Python独立证实，但原始出处未记录。
+  TB 本身 wait 无 timeout、错误仅打印后正常 finish。自己的 TB 必须 watchdog/fatal，
+  wrapper 同时检查退出码与失败标记，不能仅相信 ALL PASS。
+- L27：5-bit length 并不等于物理接口能处理31 bytes；128-bit m/ad 只容纳16 bytes。
+  不把截断/重复数据当成17-byte测试。当前无长度拒绝码，待接口规范收口。
+- L28：AEAD key 未锁存，busy期间换 key 实测改变 tag；busy-start 在 permutation
+  restart、在 AEAD ignore。算法 PASS 条件与协议未冻结事项分开记录，不宣称任意时序正确。
+- L29：短 ciphertext 总线含有效长度外的状态，empty 后保留旧 c；比较只读 mlen bytes，
+  单独记录总线观察，接收方需要明确屏蔽规则。decryption 仍 not_implemented。
+- L30：Windows Git whitespace 输出包含 UTF-8 字符；默认 GBK 解码导致审计 helper
+  异常。改为 bytes + UTF-8 解码并重查 checkpoint；CRLF-aware 剩余诊断均为锁定
+  上游原件。不要把输出编码/CRLF 诊断当成算法失败，也不能静默抹掉来源原字节。
+
 ## 2026-10-07 — C01/C03 已观察结果
 
 - L18：Python README 写 draft，C 保留 128A 命名，但 AEAD 参数与完整 Final KAT

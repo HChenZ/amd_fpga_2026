@@ -52,7 +52,8 @@ buffer aliasing/huge lengths and target firmware are outside this host suite.
 
 ## RTL consumers
 
-No existing RTL is edited or instantiated by this suite. The frozen files
+The host software suite does not instantiate RTL. Production RTL is never
+edited; the separate RTL regression below instantiates it unchanged. The frozen files
 `data/ascon/permutation_cases.json`, `data/ascon/permutation.mem`, and
 `data/ascon/aead_cases.json` are available offline to future TestBenches.
 
@@ -114,3 +115,42 @@ The official text KAT is never rewritten. Review generated differences and
 hashes before explicitly replacing frozen data; source/standard lock changes
 require a new C01 review. Extension/permutation vectors are reference-derived,
 not NIST-published vectors or a NIST certification.
+
+## RTL regression after latest main
+
+Read [RTL audit](../../docs/ascon_rtl_regression_audit.md) for exact tested scope,
+limitations, source-set failures and module/port issues. From the repository root:
+
+```sh
+python3 sim/ascon/prepare_rtl_vectors.py
+python3 sim/ascon/run_rtl_regression.py
+```
+
+Preparation needs Python/GCC and uses the locked C/Python references after a
+complete official KAT gate. Simulation needs Python and `iverilog`/`vvp`.
+For this Windows environment, use WSL for the C reference and native Icarus:
+
+```powershell
+$asconWslRoot = (wsl -d Ubuntu -- wslpath -a $PWD.Path).Trim()
+wsl -d Ubuntu -- python3 "$asconWslRoot/sim/ascon/prepare_rtl_vectors.py"
+python sim/ascon/run_rtl_regression.py
+```
+
+Temporary data/libraries/vvp remain in ignored build/local/ascon_rtl. The final
+`data/ascon/results/rtl_regression.json` and `.log` contain the peer vector audit,
+reference gate metadata, tool/source hashes, actual commands, outcomes and
+behavior observations. All five peer expected values are independently checked.
+The testbench extraction intentionally fails on changed/unrecognized formatting
+instead of silently selecting fewer cases. Frozen vectors and producer source
+hashes are checked before use. Case memory packs mlen/adlen (8 bits each), then
+128-bit key, nonce, AD, plaintext, expected ciphertext and tag, all as numeric
+little-endian buses. Permutation memory retains the earlier 656-bit contract.
+
+The isolated new encryption module currently passes 60 input cases and control
+tests under stable key, explicit <=16-byte lengths and one-cycle start pulses.
+round/P8/P12 also pass. **The runner currently returns exit 1** because it includes
+the failing legacy-port and full-source integration gates; this is intentional.
+It excludes only *_tb.v from the production source set, records all production
+inputs, and does not silently omit the old AEAD. Decryption is not_implemented.
+Busy-start/key-change/unused-output observations are labelled separately from
+valid stable-key algorithm checks. Own TestBenches have watchdogs and $fatal(1).

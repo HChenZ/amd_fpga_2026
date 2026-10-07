@@ -1,5 +1,37 @@
 # 实际进度
 
+## 2026-10-07 — 独立 RTL regression 提交收口
+
+owner TBD；用户授权在 feat/ascon-kat-validation 创建
+`test(ascon): add independent RTL regression`，不 push/merge。
+审计原待提交 11 文件合计 190,057 bytes，最大 85,773 bytes；无重复大文件、缓存、
+编译物或硬编码运行路径。结果中的绝对路径仅为实际命令证据，正式入口动态定位。
+生产源/验证源与结果 hash 匹配，锁定来源/许可证完整；ignored pycache/vvp/so 不纳入。
+暂存检查发现 Windows 报告换行问题，已修 runner 源输出为 LF 并重新生成/复验，
+生产 RTL 不变。isolated PASS、旧接口 exit 2/full source exit 6 的 FAIL 原样保留，
+整体 gate 未关闭；下一接收 RTL owner/TBD。
+
+## 2026-10-07 — 同步最新 RTL 与独立回归追加
+
+- owner TBD；用户授权 checkpoint/rebase。原 cba792c checkpoint 已无冲突 rebase 到
+  origin/main `13d954f0755c2ec09290443e341cd5fb910fbf21`，新 checkpoint 为
+  `a1d19dd7cd26da7d036d9b5612fb27f3cbf25680`。未 push/merge main；本地 main 未移动。
+- 独立 C/Python 完整 KAT gate 重跑 12,936 PASS，队友五组 expected CT/tag 5/5
+  与锁定 Final reference 一致；原始向量出处未记录，不能从 TB PASS 推断来源。
+- Icarus/vvp 12.0：round/P8/P12 PASS，308 冻结基础用例及连续调用/reset/restart；
+  新 isolated encryption 60 固定输入+9 控制请求 PASS（69 次 CT/tag 比较）。
+  覆盖 mlen/adlen={0,1,7,8,9,15,16} 矩阵与尾零，没有伪造17-byte运行。
+- 旧 AEAD isolated compile FAIL exit 2（reset/rst_n）；全部生产 .v compile FAIL
+  exit 6（三个重复 module）。runner 整体 exit 1；isolated PASS 不等于可集成。
+- decrypt=not_implemented。新 m/ad 各128 bits，目前能力上限各16 bytes。
+  key 未锁存，须稳定到完成；busy-start 策略不一致、无效 c 位/empty 旧数据等
+  观察与建议见 docs/ascon_rtl_regression_audit.md。
+
+证据 `data/ascon/results/rtl_regression.json/.log`；新增入口及自己的 TB 在 sim/ascon。
+生产 RTL 与 origin/main 相同，队友 TB 未修改。新回归/日志保留未提交，除授权
+checkpoint 无新增 commit。看板仍不改；交接 RTL owner/TBD 修重复/接口后 I04 复验。
+未做 Vivado/CPU/板级/PUF/PYNQ；硬件 cycles/PPA not_measured。
+
 ## 2026-10-07 — C01/C03 Final 标准与 host KAT 证据追加
 
 本段为当前证据；下方 2026-09-21 表格保留历史快照。owner TBD。

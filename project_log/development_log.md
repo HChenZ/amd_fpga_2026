@@ -1,5 +1,32 @@
 # 开发记录
 
+## 2026-10-07 — independent RTL regression 提交收口
+
+- 用户授权提交现有回归，分支 feat/ascon-kat-validation，不 push/merge。
+- 核对全部 11 个待提交文件：原集合 190,057 bytes，最大文件约86 KB，无重复大文件；
+  pycache 与本地 vvp/so 均 ignored，无编译物待提交。
+- 正式脚本/复现说明无机器路径依赖，报告的绝对路径属于实际执行证据。
+  当前源码与结果记录 hash、reference/license lock、生产路径未改检查均通过。
+- 按指定消息 `test(ascon): add independent RTL regression` 创建提交；不把当前
+  full-source FAIL 或 decrypt 未实现改写为成功。提交后检查 git status 与最近5 commit。
+- 暂存后 whitespace 检查发现 Windows 默认报告 CRLF/日志重复 CR；修 runner 源配置
+  为显式 LF，重新运行同一 RTL regression，生成新证据，不手改生成日志来掩盖失败。
+
+## 2026-10-07 — checkpoint、rebase 与最新 Ascon RTL regression
+
+- 按用户授权审计大小/缓存/可移植性/许可。正式 WSL 示例动态定位路径；race 原日志
+  无损 gzip，保留 hash 和 ignored 本地备份。构建库、vvp、pycache 未提交。
+- checkpoint cba792c；fetch 确认 origin/main 13d954f；无冲突 rebase 后 a1d19dd。
+  未 push/merge main；未改生产 RTL、CPU、Vivado、队友 TB。
+- 新 prepare_rtl_vectors.py 用锁定 C/Python gate 后独立核验5 peer expected；新增
+  自己的 round/P8/P12 与 AEAD TB、run_rtl_regression.py，全源集也实际编译。
+- reference gate 12,936 PASS；permutation 与 isolated encryption PASS；旧 reset
+  接口 compile exit 2、full duplicate module compile exit 6，runner exit 1，完整日志保留。
+- 接口观察：AEAD busy-start ignore；permutation busy-start restart；busy 改 key 会改 tag；
+  <=16-byte 接口无17-byte支持、decrypt空壳、输出无效位/空数据陈旧值不屏蔽。
+- 更新独立 RTL 审计、sim readme、actual_progress/lessons。接收 RTL owner/TBD→I04。
+  新工作停在可审查未提交状态，C02/C03 全项目门槛仍未关闭。
+
 ## 2026-10-07 — C01/C03 Final 基准、固定 KAT 与独立验证入口
 
 - owner TBD；用户授权同步 clean main、审计及新增 KAT；禁止改现有 RTL、CPU/Vivado、
