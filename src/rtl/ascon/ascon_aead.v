@@ -4,14 +4,17 @@
 `include "ascon_permutation.v"
 `include "ascon_word.v"
 
-module crypto_aead_encrypt(
+// 需要添加 mlen, adlen, clen 这三个参数
+module crypto_aead_encrypt #(
+    parameter integer clen = 128
+)(
     input wire clk,
     input wire reset,
-    input wire [127:0] m,
-    input wire [127:0] ad,
+    input wire [127:0] m, // m 的位宽不固定
+    input wire [127:0] ad, // ad 的位宽不固定
     input wire [127:0] npub,
     input wire [127:0] k,
-    output wire [63:0] c); // c 的位宽不确定
+    output wire [63:0] c); // c 的位宽不固定
 
     reg [63:0] s0, s1, s2, s3, s4;
 
@@ -24,8 +27,8 @@ module crypto_aead_encrypt(
     reg [4:0] adlen_reg;
     reg [4:0] mlen_reg;
 
-    get_bytes #(.MAX_W(128)) get_bytes_ad (.value(ad), .bytes(adlen));
-    get_bytes #(.MAX_W(128)) get_bytes_m (.value(m), .bytes(mlen));
+    // get_bytes #(.MAX_W(128)) get_bytes_ad (.value(ad), .bytes(adlen));
+    // get_bytes #(.MAX_W(128)) get_bytes_m (.value(m), .bytes(mlen));
 
     wire [63:0] K0, K1, N0, N1;
 
@@ -166,9 +169,9 @@ module crypto_aead_encrypt(
             else if (state == FULL_PLAINTEXT) begin
                 full_plaintext_cnt <= 3'd0;
                 if ((full_plaintext_cnt == 3'd0) || p8_done) begin
-                    s0_load_in <= m_reg;
+                    s0_load_in <= m_reg[63:0];
                     s0_load_n <= 4'd8;
-                    s1_load_in <= m_reg + 64'd8;
+                    s1_load_in <= m_reg[127:64];
                     s1_load_n <= 4'd8;
                     s0 = s0 ^ s0_load_out;
                     s1 = s1 ^ s1_load_out; // 这里需要延迟一拍
@@ -242,7 +245,7 @@ module crypto_aead_decrypt(
     input wire clk,
     input wire reset,
     output wire result,
-    output wire [63:0] m);
+    output wire [127:0] m);
 
     parameter INITIALIZE_1ST = 11'b000_0000_0001,
               INITIALIZE_2ND = 11'b000_0000_0010,
@@ -260,21 +263,21 @@ module crypto_aead_decrypt(
 
 endmodule
 
-module get_bytes #(
-    parameter MAX_W = 128,
-    parameter CNT_W = $clog2((MAX_W + 7) / 8 + 1)
-)(
-    input  wire [MAX_W-1:0] value,
-    output reg  [CNT_W-1:0] bytes);
+// module get_bytes #(
+//     parameter MAX_W = 128,
+//     parameter CNT_W = $clog2((MAX_W + 7) / 8 + 1)
+// )(
+//     input  wire [MAX_W-1:0] value,
+//     output reg  [CNT_W-1:0] bytes);
 
-    integer i;
+//     integer i;
 
-    always @(*) begin
-        bytes = {CNT_W{1'b0}};
-        for (i = 0; i < MAX_W; i = i + 1) begin
-            if (value[i])
-                bytes = (i / 8) + 1;
-        end
-    end
+//     always @(*) begin
+//         bytes = {CNT_W{1'b0}};
+//         for (i = 0; i < MAX_W; i = i + 1) begin
+//             if (value[i])
+//                 bytes = (i / 8) + 1;
+//         end
+//     end
 
-endmodule
+// endmodule
