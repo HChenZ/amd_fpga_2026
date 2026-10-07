@@ -44,6 +44,14 @@ RV32 使用 high→low→high 读取，不一致则重试。C04 要测真实软�
 
 标准、可信参考 SHA 和 KAT SHA 由 C01 给出；C03 同时验证加解密与篡改拒绝。现有 XOF 代码保留，非 P0 主线。
 
+C02 host 契约补记（2026-10-07）：production C 位于 `ascon/ascon_c/aead/`，
+锁定且不得修改的 reference 位于 `sim/ascon/reference/`。完整 16-byte tag 配置，
+成功解密返回 0、`*mlen=clen-16`、输出对应明文；认证失败返回 -1、`*mlen=0`，
+仅清零 `m[0..clen-16)` 的候选明文。`clen<16` 返回 -1、`*mlen=0`，不写 m。
+调用者必须提供有效 mlen 指针及足够容量、无重叠的输入/输出，检查返回值后
+才能使用成功输出；详见 [C API 说明](../ascon/ascon_c/aead/readme.md)。
+此为项目验收要求，不把擦除行为声称为 SUPERCOP API 的强制条件。
+
 ## ISE 契约（I02 待冻结）
 
 目前没有已分配的 Ascon custom opcode。现有 `ror/load_bytes/store_bytes` 不是 CPU 指令规范。I02 的交付应填满：指令名/编码、输入/输出寄存器、RV32 64-bit state 表示方式、状态布局、round constant、latency、stall/flush/interrupt、非法编码、clobber、软件封装、golden model、覆盖矩阵。禁止先让 RTL 与软件各自猜一个编码。

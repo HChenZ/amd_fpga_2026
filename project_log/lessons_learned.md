@@ -1,5 +1,49 @@
 # 经验与踩坑
 
+## 2026-10-07 — regression 提交换行收口
+
+- L31：data/ascon 按原字节保留，Windows Path.write_text 默认 CRLF；拼接含 CRLF 的
+  工具 stdout 后又产生 CRCRLF，暂存检查将报告每行判为 trailing whitespace。
+  修生成器规范化 stdout 换行、显式 newline=LF，并重新生成/运行验证；不手改生成
+  日志或关闭 whitespace 检查。生产 RTL 与失败门禁不变。
+
+## 2026-10-07 — 最新 RTL 回归追加
+
+- L24：同目录不同 .v 文件可声明重复 module；ascon_aead 与 ascon_aead_2 同时进生产
+  source-set 实际 compile exit 6，isolated 新版 PASS 不能推导 whole-source PASS。
+- L25：permutation 从 reset 改为 rst_n 后，旧 AEAD .reset 连接实际 elaboration exit 2。
+  独立旧入口检查避免错误被 duplicate-module 诊断掩盖；未修改生产源来消除失败。
+- L26：队友 TB 5组 expected 数学值已被锁定 C/Python独立证实，但原始出处未记录。
+  TB 本身 wait 无 timeout、错误仅打印后正常 finish。自己的 TB 必须 watchdog/fatal，
+  wrapper 同时检查退出码与失败标记，不能仅相信 ALL PASS。
+- L27：5-bit length 并不等于物理接口能处理31 bytes；128-bit m/ad 只容纳16 bytes。
+  不把截断/重复数据当成17-byte测试。当前无长度拒绝码，待接口规范收口。
+- L28：AEAD key 未锁存，busy期间换 key 实测改变 tag；busy-start 在 permutation
+  restart、在 AEAD ignore。算法 PASS 条件与协议未冻结事项分开记录，不宣称任意时序正确。
+- L29：短 ciphertext 总线含有效长度外的状态，empty 后保留旧 c；比较只读 mlen bytes，
+  单独记录总线观察，接收方需要明确屏蔽规则。decryption 仍 not_implemented。
+- L30：Windows Git whitespace 输出包含 UTF-8 字符；默认 GBK 解码导致审计 helper
+  异常。改为 bytes + UTF-8 解码并重查 checkpoint；CRLF-aware 剩余诊断均为锁定
+  上游原件。不要把输出编码/CRLF 诊断当成算法失败，也不能静默抹掉来源原字节。
+
+## 2026-10-07 — C01/C03 已观察结果
+
+- L18：Python README 写 draft，C 保留 128A 命名，但 AEAD 参数与完整 Final KAT
+  实测一致。不能凭名字或本地 C/Python 相互一致认定标准；先锁定 Final 与独立 KAT。
+- L19：bad tag 返回码正确不等于失败输出安全。本地 C 实测 rc=-1、mlen=17、
+  buffer 等于明文；`check_failure_contract.py` exit 1。测试 adapter 丢弃候选不修复
+  C02 生产 API。接收 C02/TBD；原始失败日志保留。
+- L20：并行 reference gate/validation 同时链接固定 upstream-c.so，发生一次加载
+  失败，证据 `runner_race_before_fix.*`。改用每调用独立 TemporaryDirectory 后
+  复验相同并行场景通过；失败不是算法 KAT mismatch。
+- L21：NIST PDF urllib 首次 HTTP 403，浏览器可读；加 User-Agent 后取得原始 PDF
+  与真实 SHA-256。访问失败不等于没有来源，不编造向量或 hash。
+- L22：锁定原件 hash 需防 Git checkout 换行转换。仅给新增 data/reference 路径
+  -text，新测试脚本 LF；不格式化 upstream KAT/source 或现有 RTL。
+- L23：收尾检查器最初把 Git 的 LF→CRLF 提示和 no-index diff 的 exit 1 当成
+  whitespace 失败；修正为检查实际 whitespace 输出。PDF diff 又触发文本解码错误，
+  新 PDF 设 -diff，按来源/hash 审查二进制，不修改原件。这些不是 KAT 失败。
+
 更新：2026-09-21。区分“已观察”与“待验证假设”，失败不删除，结论变化时追加证据。
 
 | ID | 现象 / 状态 | 原因或证据 | 应对与关联任务 |
@@ -36,3 +80,22 @@ L01/L02 仅描述初始 Git HEAD；三个 IP 与原 XC7Z020 工程现已在 ZIP 
 L08 的“保留两个跟踪生成元数据”是此前策略；本轮按用户“无 generated build cache”要求完成清理。ignore 不会取消跟踪，需显式移出索引。git mv 会暂存 rename，故收口后不能继续报告“索引为空”；普通 git diff --stat 也不包含 staged rename 或 untracked 资产，应同时检查 cached diff 和状态。
 
 收尾发现：默认 cached diff 检查把原 Kintex XPR/XDC 的 CRLF 判作行尾空白。保持源字节不动，仅在 `.gitattributes` 对这两个文件声明 cr-at-eol，同时保留 blank-at-eol、blank-at-eof、space-before-tab 检查；复核原哈希和检查结果。
+
+## 2026-10-07 — C02 认证失败输出契约
+
+- 返回 -1 只证明认证拒绝，不能证明 buffer 不含明文。原 C 先写候选明文再验 tag，
+  bad tag 仍返回 mlen=17 和原明文。原 KAT adapter 丢弃失败输出，掩盖 raw API 问题。
+  新门禁直接检查整个已知输出区域，不能按返回 mlen 截断后误报擦除成功。
+- 同一个扩展门禁实测修复前 8,926 FAIL / exit 1、修复后 0 FAIL / exit 0。
+  保存 source hash、真实失败与 raw byte 示例；两侧 A5 canary 验证擦除边界，
+  加密 aggregate SHA256 前后相同。禁止为修 production 改 locked reference/KAT。
+- 短输入以前先 return -1，未写 mlen，调用者旧长度可残留。入口归零 mlen 后再
+  检查 clen<16；没有明文候选时不擦 buffer，也不发生 clen-16 下溢。
+- NIST 算法 fail、SUPERCOP C 返回 -1、项目失败擦除是不同层的约束；不把项目
+  增强契约声称为上游强制规则。完整 16-byte XOR/OR comparison 保留，失败用
+  volatile stores 避免优化丢弃；host disassembly 不是全平台 timing proof。
+- 从 main 开始的未提交工作依赖另一 feature 时，先用 stash 保存全部状态，再让
+  修复分支直接基于依赖分支，只恢复本任务增量；整文件恢复 project_log/readme
+  会丢掉依赖分支记录，应采用增量合并并用三点 diff 审计。
+- 本轮 PowerShell→wslpath 原 Windows 路径传参丢反斜杠，脚本路径变为 /sim/...，
+  exit 2、没有测试运行。使用仓库根目录下 WSL 相对路径成功，不写死本机盘符。

@@ -1,0 +1,255 @@
+{
+  "task_ids": [
+    "C01",
+    "C03"
+  ],
+  "date": "2026-10-07",
+  "head": "8c8634f80f55cff50ae1ffcaf6fb79d67e5a7a93",
+  "should_submit": [
+    {
+      "path": "data/ascon/aead_cases.json",
+      "bytes": 88335,
+      "sha256": "a059447af720e6ac38811e4b7be0f4163e57aa9cd2dda1e7005367a055d703e8"
+    },
+    {
+      "path": "data/ascon/derived_integrity.json",
+      "bytes": 470,
+      "sha256": "da202e393a1199bd016f451337d466f0a478efeaf5ede88624a51daa5e8debe6"
+    },
+    {
+      "path": "data/ascon/kat/asconaead128.txt",
+      "bytes": 260253,
+      "sha256": "bbbc34692fe05e5fda0a3b025585622ab3e3747495e5e3655b29aae8c2a4bd33"
+    },
+    {
+      "path": "data/ascon/permutation.mem",
+      "bytes": 50820,
+      "sha256": "5f3c8321daa298cbd8ca0632ce6d34a52360ba9e5309a64456fc61b26d0ed30f"
+    },
+    {
+      "path": "data/ascon/permutation_cases.json",
+      "bytes": 230685,
+      "sha256": "9ec18891c762be1f55611430a0b3d2f66221c058d761f33e13e79a41aa2f594e"
+    },
+    {
+      "path": "data/ascon/provenance.json",
+      "bytes": 9316,
+      "sha256": "533cd2eb6bd636733c92146b585aafbf2d2dca695e7444d3ad67d8042d7e75c7"
+    },
+    {
+      "path": "data/ascon/readme.md",
+      "bytes": 3014,
+      "sha256": "d0993802a429f7dcb6dbe856fc8f7e73d79c117a955c530e4b2eb9f06b9d71f9"
+    },
+    {
+      "path": "data/ascon/results/audit_snapshot.json",
+      "bytes": 7706,
+      "sha256": "f0ef3229d431158d0353a6f686458745f78ab1f9c14dd567ae6235cacf78d668"
+    },
+    {
+      "path": "data/ascon/results/failure_contract.json",
+      "bytes": 3112,
+      "sha256": "4716464cb81694f6906d500229e7a64d8e2a878ec8807752dc06d6c5de3fa352"
+    },
+    {
+      "path": "data/ascon/results/failure_contract.log",
+      "bytes": 257,
+      "sha256": "91b60117a052c5cddd430ee419e3507d2b4b2f0ffcaa3dd393124b3afe101c77"
+    },
+    {
+      "path": "data/ascon/results/harness.log",
+      "bytes": 682,
+      "sha256": "673c9457df9450d92d2faeac3ef3b09af37b0ee6618b6b126fbeb695a7775d53"
+    },
+    {
+      "path": "data/ascon/results/host_validation.json",
+      "bytes": 6130,
+      "sha256": "db6e3658f40bc46656d2014c6897b72985844109c4ec4dd553988e356d9a88de"
+    },
+    {
+      "path": "data/ascon/results/host_validation.log",
+      "bytes": 1166101,
+      "sha256": "615a90a6b80880beac3fddee33be8d5f56e4fa1fe28c04b775fde39eb773956a"
+    },
+    {
+      "path": "data/ascon/results/reference_gate.json",
+      "bytes": 3577,
+      "sha256": "e843407b93ff8b6742b45346f8aa64ebdd3b34e626e2e60fc3d7660527766c7e"
+    },
+    {
+      "path": "data/ascon/results/reference_gate.log",
+      "bytes": 516972,
+      "sha256": "03a72100deb3834e9b99e21e481b16a0550582505e19d78d8b86bfd9c0737d74"
+    },
+    {
+      "path": "data/ascon/results/runner_race_before_fix.json",
+      "bytes": 4663,
+      "sha256": "56c60bc2157e9aa72a5e46ee644d4913e0fac11876104ba6051c45f4d8358a23"
+    },
+    {
+      "path": "data/ascon/results/runner_race_before_fix.log.gz",
+      "bytes": 63504,
+      "sha256": "a50b8d3887122bc0ed151edb0d54878b014eb77f4e8dd16ff5663861ca8e31df"
+    },
+    {
+      "path": "data/ascon/sources/ascon_c_readme.md",
+      "bytes": 25773,
+      "sha256": "753220cfdd7217728d1bf33a0ff77db2aa0b915ab935735651c354aae77b3cb8"
+    },
+    {
+      "path": "data/ascon/sources/nist_sp_800_232.pdf",
+      "bytes": 1194488,
+      "sha256": "1be9bb9a5fef3665ee8b258babe54b8e500d667fcfbbcc99710fe6077c6bad27"
+    },
+    {
+      "path": "data/ascon/sources/pyascon_readme.md",
+      "bytes": 5078,
+      "sha256": "30db38de02d0221735e30c703ca899588f2b36e6c12654c79f54fb734a4c43cb"
+    },
+    {
+      "path": "docs/ascon_standard_baseline.md",
+      "bytes": 15131,
+      "sha256": "bcef27b1619ff78d553da1d04b46aef4f9220883a0db17d112d92145b7a230cf"
+    },
+    {
+      "path": "sim/ascon/c_bridge.c",
+      "bytes": 510,
+      "sha256": "3f0c1fd49f55536b1e98d5291e79e1fbb3cbafb1be15aba6d3d428beab7a3759"
+    },
+    {
+      "path": "sim/ascon/check_failure_contract.py",
+      "bytes": 1656,
+      "sha256": "22278610d3f6de25810b2460121396b1b82f009370dcc2adf31d6d36c595b90e"
+    },
+    {
+      "path": "sim/ascon/freeze_vectors.py",
+      "bytes": 5842,
+      "sha256": "a1d25337ff30c42333185c2c0fadefa76c301484ff808b2a92c0bc7f3811fe04"
+    },
+    {
+      "path": "sim/ascon/golden.py",
+      "bytes": 2224,
+      "sha256": "d07fb398401de07fa6212209d124bb429b69abe8afc17a81ce3dd1be86643ad4"
+    },
+    {
+      "path": "sim/ascon/readme.md",
+      "bytes": 5698,
+      "sha256": "992cefdeb8200efe4f2d26ff3969b78b91f4232927332480ab8ba64793d82927"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/aead.c",
+      "bytes": 6321,
+      "sha256": "44814f4f207cc22dcd335b4b07d46a8932e944d0f0cffd4cfb85b2309c9aa53c"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/api.h",
+      "bytes": 216,
+      "sha256": "c86910483647b8323d7e1e9e1aa3e8053c9f78f909c9fd8e00a0c52a1ba0cdbd"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/ascon.h",
+      "bytes": 130,
+      "sha256": "c83217138b791c0e37ab1ab7bde216ed0392fc0c17bc2078f7454217bd4e1ea5"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/constants.h",
+      "bytes": 4588,
+      "sha256": "91cae918bdd5c365090afec02767916764e2c33e72a5d89348b96d20e0c7819e"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/crypto_aead.h",
+      "bytes": 681,
+      "sha256": "5c715ebe73ac8117ef5164e3d1ae7bc00f07fee85ca248e54cb153ee25cf5c34"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/implementors",
+      "bytes": 38,
+      "sha256": "ac0b9c04174cb475d19c36d830755bf36a18a5e9d9aa5dade7e7f53f2f930b5f"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/license.txt",
+      "bytes": 6554,
+      "sha256": "5537d4d10b76b81b6e8dfd8b644480a4b1efa332fbb0cdb61126c5be781ef7b4"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/permutations.h",
+      "bytes": 789,
+      "sha256": "58ac28a23c4f310228e79dc18eb7608b62ba3abeedbc28e80d97eb7e3be5d8fb"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/printstate.c",
+      "bytes": 1200,
+      "sha256": "628fc41e54f56917c8fdec2e31b80772eb5f673892f0fdcee5d18d934faf3121"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/printstate.h",
+      "bytes": 648,
+      "sha256": "bf59de3eb2e71c72f47d64c2cdee393fd3a1ca8337f0bd5636d41cca196f19d0"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/round.h",
+      "bytes": 1215,
+      "sha256": "3ed06f5c6330b085952f6626e5df4a9ca598911f33b15b3ebc5d58dddb8fda11"
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/word.h",
+      "bytes": 969,
+      "sha256": "7418003e426a80197c74d9eca2fa7099c0ec6593bd4522c4a2f1edc4141e4e75"
+    },
+    {
+      "path": "sim/ascon/reference/pyascon/ascon.py",
+      "bytes": 19959,
+      "sha256": "b799653fc09e56fc4eb72c90b3574b967b3ead4c337b2402123148d5b1873eda"
+    },
+    {
+      "path": "sim/ascon/reference/pyascon/license.txt",
+      "bytes": 7048,
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    {
+      "path": "sim/ascon/run_validation.py",
+      "bytes": 2756,
+      "sha256": "e6540d059a34a5d2aadf2e00bb304ff6b969456a6f3030071d46d485c9c3a221"
+    },
+    {
+      "path": "sim/ascon/support.py",
+      "bytes": 12766,
+      "sha256": "8ca01dfb0f512172b78fb003440f1f7976b0c8cb53c3fec5ceb5737188fc8fb8"
+    },
+    {
+      "path": "sim/ascon/test_harness.py",
+      "bytes": 4715,
+      "sha256": "5ee6c31dcdd3ec4c13099babb6c2c10cfcfd8eeec9ca4f4e4b9920914eb1f190"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 1071,
+      "sha256": "0ef210e91db12672a9c4713eef5e22dd6bb144fcb92fcdb00d4d2ad6e988f2ca"
+    },
+    {
+      "path": "project_log/actual_progress.md",
+      "bytes": 6012,
+      "sha256": "e89aeb3e02aab11a5095fae13b0cd4257c59fdcdabd874ce58f2e7254857860c"
+    },
+    {
+      "path": "project_log/development_log.md",
+      "bytes": 6750,
+      "sha256": "192363695a515ab0d38871dd7f8ea918dadddf9e7fac4be04cc3257ca9cae5b0"
+    },
+    {
+      "path": "project_log/lessons_learned.md",
+      "bytes": 6625,
+      "sha256": "94595b981b93328471a5ca4e7636be28b755171fb222b76ceab49f3c966b1bc1"
+    }
+  ],
+  "should_not_submit": [
+    "build/local/** (compiled libraries, frozen regeneration outputs, review scratch, raw-log backup)",
+    "sim/ascon/**/__pycache__/*.pyc (ignored)"
+  ],
+  "pending_file_artifacts": [],
+  "total_pending_bytes": 3763048,
+  "portability": "Runnable scripts resolve ROOT from __file__; WSL examples derive cwd via wslpath; absolute paths retained only in historical commands/results",
+  "licensing": "18 downloaded assets rehashed; exact pinned sources and both CC0 license texts present; NIST PDF authority attribution recorded",
+  "large_files": "Normative PDF, full official KAT, JSON/memory for different consumers, independent host/reference logs retained; old race log losslessly compressed",
+  "blocking_issues": []
+}

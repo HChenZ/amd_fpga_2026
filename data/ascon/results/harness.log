@@ -1,0 +1,10 @@
+test_cli_matches_frozen_expectations (__main__.GoldenInterfaceTests.test_cli_matches_frozen_expectations) ... ok
+test_readmemh_packing_matches_json_words (__main__.GoldenInterfaceTests.test_readmemh_packing_matches_json_words) ... ok
+test_first_wrong_ciphertext_byte (__main__.HarnessRejectionTests.test_first_wrong_ciphertext_byte) ... ok
+test_integrity_failure_is_not_skipped (__main__.HarnessRejectionTests.test_integrity_failure_is_not_skipped) ... ok
+test_invalid_tags_must_not_be_accepted (__main__.HarnessRejectionTests.test_invalid_tags_must_not_be_accepted) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 4.994s
+
+OK

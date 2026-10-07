@@ -1,0 +1,2671 @@
+{
+  "schema_version": 1,
+  "reference": {
+    "ascon_c_commit": "446347f21b209f3921c65ece70027c366cbe1693",
+    "pyascon_commit": "ed24e54abf9507d26fa49b46a56091570c7e743e",
+    "official_kat_sha256": "bbbc34692fe05e5fda0a3b025585622ab3e3747495e5e3655b29aae8c2a4bd33",
+    "generator_sha256": "a1d25337ff30c42333185c2c0fadefa76c301484ff808b2a92c0bc7f3811fe04",
+    "prerequisite": "both locked upstreams passed complete official KAT",
+    "expected_origin": "ascon-c ref; pyascon cross-check after independent KAT gate"
+  },
+  "cases": [
+    {
+      "id": "kat_0001",
+      "origin": "upstream_kat",
+      "count": 1,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "",
+      "ad": "",
+      "plaintext_bytes": 0,
+      "ad_bytes": 0,
+      "ciphertext": "",
+      "tag": "4f9c278211bec9316bf68f46ee8b2ec6",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "4e9c278211bec9316bf68f46ee8b2ec6",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "4f9c278211bec9316bf68f46ee8b2ec7",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0002",
+      "origin": "upstream_kat",
+      "count": 2,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "",
+      "ad": "30",
+      "plaintext_bytes": 0,
+      "ad_bytes": 1,
+      "ciphertext": "",
+      "tag": "cccb674fe18a09a285d6ab11b35675c0",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cdcb674fe18a09a285d6ab11b35675c0",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cccb674fe18a09a285d6ab11b35675c1",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0016",
+      "origin": "upstream_kat",
+      "count": 16,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "",
+      "ad": "303132333435363738393a3b3c3d3e",
+      "plaintext_bytes": 0,
+      "ad_bytes": 15,
+      "ciphertext": "",
+      "tag": "759102a6953861627aae1836d003a294",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "749102a6953861627aae1836d003a294",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "759102a6953861627aae1836d003a295",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0017",
+      "origin": "upstream_kat",
+      "count": 17,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "",
+      "ad": "303132333435363738393a3b3c3d3e3f",
+      "plaintext_bytes": 0,
+      "ad_bytes": 16,
+      "ciphertext": "",
+      "tag": "e4230cdb8330ee9dc0cfd7c7b346e6dc",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e5230cdb8330ee9dc0cfd7c7b346e6dc",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e4230cdb8330ee9dc0cfd7c7b346e6dd",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0018",
+      "origin": "upstream_kat",
+      "count": 18,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "",
+      "ad": "303132333435363738393a3b3c3d3e3f40",
+      "plaintext_bytes": 0,
+      "ad_bytes": 17,
+      "ciphertext": "",
+      "tag": "bd8851cd3af9847844839a791dd70e8c",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bc8851cd3af9847844839a791dd70e8c",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bd8851cd3af9847844839a791dd70e8d",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0033",
+      "origin": "upstream_kat",
+      "count": 33,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "",
+      "ad": "303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f",
+      "plaintext_bytes": 0,
+      "ad_bytes": 32,
+      "ciphertext": "",
+      "tag": "efc3e78b02ad9a80a6f0548c5b0bb5ba",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "eec3e78b02ad9a80a6f0548c5b0bb5ba",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "efc3e78b02ad9a80a6f0548c5b0bb5bb",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0034",
+      "origin": "upstream_kat",
+      "count": 34,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20",
+      "ad": "",
+      "plaintext_bytes": 1,
+      "ad_bytes": 0,
+      "ciphertext": "e8",
+      "tag": "dd576aba1cd3e6fc704de02aedb79588",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 1,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8dc576aba1cd3e6fc704de02aedb79588",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8dd576aba1cd3e6fc704de02aedb79589",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e9dd576aba1cd3e6fc704de02aedb79588",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e9dd576aba1cd3e6fc704de02aedb79588",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0035",
+      "origin": "upstream_kat",
+      "count": 35,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20",
+      "ad": "30",
+      "plaintext_bytes": 1,
+      "ad_bytes": 1,
+      "ciphertext": "96",
+      "tag": "2b8016836c75a7d86866588ca245d886",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 1,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "962a8016836c75a7d86866588ca245d886",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "962b8016836c75a7d86866588ca245d887",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "972b8016836c75a7d86866588ca245d886",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "972b8016836c75a7d86866588ca245d886",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0049",
+      "origin": "upstream_kat",
+      "count": 49,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20",
+      "ad": "303132333435363738393a3b3c3d3e",
+      "plaintext_bytes": 1,
+      "ad_bytes": 15,
+      "ciphertext": "20",
+      "tag": "89cb1de2ae7d3e45ba7e9cc293548546",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 1,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "2088cb1de2ae7d3e45ba7e9cc293548546",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "2089cb1de2ae7d3e45ba7e9cc293548547",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "2189cb1de2ae7d3e45ba7e9cc293548546",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "2189cb1de2ae7d3e45ba7e9cc293548546",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0050",
+      "origin": "upstream_kat",
+      "count": 50,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20",
+      "ad": "303132333435363738393a3b3c3d3e3f",
+      "plaintext_bytes": 1,
+      "ad_bytes": 16,
+      "ciphertext": "63",
+      "tag": "8bbace2c82a050832e46b3224a9552a0",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 1,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "638abace2c82a050832e46b3224a9552a0",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "638bbace2c82a050832e46b3224a9552a1",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "628bbace2c82a050832e46b3224a9552a0",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "628bbace2c82a050832e46b3224a9552a0",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0051",
+      "origin": "upstream_kat",
+      "count": 51,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20",
+      "ad": "303132333435363738393a3b3c3d3e3f40",
+      "plaintext_bytes": 1,
+      "ad_bytes": 17,
+      "ciphertext": "bf",
+      "tag": "e87e33ba792df45d597057279a071e6b",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 1,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bfe97e33ba792df45d597057279a071e6b",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bfe87e33ba792df45d597057279a071e6a",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bee87e33ba792df45d597057279a071e6b",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bee87e33ba792df45d597057279a071e6b",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0066",
+      "origin": "upstream_kat",
+      "count": 66,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20",
+      "ad": "303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f",
+      "plaintext_bytes": 1,
+      "ad_bytes": 32,
+      "ciphertext": "cb",
+      "tag": "9963324ed507234028425d0f64ba269c",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 1,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb9863324ed507234028425d0f64ba269c",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb9963324ed507234028425d0f64ba269d",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ca9963324ed507234028425d0f64ba269c",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ca9963324ed507234028425d0f64ba269c",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0232",
+      "origin": "upstream_kat",
+      "count": 232,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20212223242526",
+      "ad": "",
+      "plaintext_bytes": 7,
+      "ad_bytes": 0,
+      "ciphertext": "e8c3deee246cc5",
+      "tag": "653b4f72d2456ee9dbda057677a3f87a",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5643b4f72d2456ee9dbda057677a3f87a",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 22,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5653b4f72d2456ee9dbda057677a3f87b",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e9c3deee246cc5653b4f72d2456ee9dbda057677a3f87a",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 6,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc4653b4f72d2456ee9dbda057677a3f87a",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0233",
+      "origin": "upstream_kat",
+      "count": 233,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20212223242526",
+      "ad": "30",
+      "plaintext_bytes": 7,
+      "ad_bytes": 1,
+      "ciphertext": "96107d8a29a752",
+      "tag": "a3e5b4f8b7a22d7a31c17fc5fca4d8d3",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a752a2e5b4f8b7a22d7a31c17fc5fca4d8d3",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 22,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a752a3e5b4f8b7a22d7a31c17fc5fca4d8d2",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "97107d8a29a752a3e5b4f8b7a22d7a31c17fc5fca4d8d3",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 6,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a753a3e5b4f8b7a22d7a31c17fc5fca4d8d3",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0247",
+      "origin": "upstream_kat",
+      "count": 247,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20212223242526",
+      "ad": "303132333435363738393a3b3c3d3e",
+      "plaintext_bytes": 7,
+      "ad_bytes": 15,
+      "ciphertext": "20fd19dabc1a5c",
+      "tag": "4b24fed82dd497366a3ab11494b70ee4",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5c4a24fed82dd497366a3ab11494b70ee4",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 22,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5c4b24fed82dd497366a3ab11494b70ee5",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "21fd19dabc1a5c4b24fed82dd497366a3ab11494b70ee4",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 6,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5d4b24fed82dd497366a3ab11494b70ee4",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0248",
+      "origin": "upstream_kat",
+      "count": 248,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20212223242526",
+      "ad": "303132333435363738393a3b3c3d3e3f",
+      "plaintext_bytes": 7,
+      "ad_bytes": 16,
+      "ciphertext": "6373ebb28be97c",
+      "tag": "81153837f5a24c224cf022089b62dfa6",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c80153837f5a24c224cf022089b62dfa6",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 22,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c81153837f5a24c224cf022089b62dfa7",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6273ebb28be97c81153837f5a24c224cf022089b62dfa6",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 6,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97d81153837f5a24c224cf022089b62dfa6",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0249",
+      "origin": "upstream_kat",
+      "count": 249,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20212223242526",
+      "ad": "303132333435363738393a3b3c3d3e3f40",
+      "plaintext_bytes": 7,
+      "ad_bytes": 17,
+      "ciphertext": "bf77c71b3de9f1",
+      "tag": "e7490974ad705bb7b4adcae104d905ea",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1e6490974ad705bb7b4adcae104d905ea",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 22,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1e7490974ad705bb7b4adcae104d905eb",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "be77c71b3de9f1e7490974ad705bb7b4adcae104d905ea",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 6,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f0e7490974ad705bb7b4adcae104d905ea",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0264",
+      "origin": "upstream_kat",
+      "count": 264,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "20212223242526",
+      "ad": "303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f",
+      "plaintext_bytes": 7,
+      "ad_bytes": 32,
+      "ciphertext": "cb34d04660a66d",
+      "tag": "d96dc2d3e9060e5f2acacca9a8f101e6",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dd86dc2d3e9060e5f2acacca9a8f101e6",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 22,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dd96dc2d3e9060e5f2acacca9a8f101e7",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ca34d04660a66dd96dc2d3e9060e5f2acacca9a8f101e6",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 6,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66cd96dc2d3e9060e5f2acacca9a8f101e6",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0265",
+      "origin": "upstream_kat",
+      "count": 265,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "2021222324252627",
+      "ad": "",
+      "plaintext_bytes": 8,
+      "ad_bytes": 0,
+      "ciphertext": "e8c3deee246cc5ea",
+      "tag": "e455ef6b33b782a3dd91ed6695373c27",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae555ef6b33b782a3dd91ed6695373c27",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 23,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae455ef6b33b782a3dd91ed6695373c26",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e9c3deee246cc5eae455ef6b33b782a3dd91ed6695373c27",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5ebe455ef6b33b782a3dd91ed6695373c27",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0266",
+      "origin": "upstream_kat",
+      "count": 266,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "2021222324252627",
+      "ad": "30",
+      "plaintext_bytes": 8,
+      "ad_bytes": 1,
+      "ciphertext": "96107d8a29a7529a",
+      "tag": "6a458fd77624539f22f62ac4498e9023",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a6b458fd77624539f22f62ac4498e9023",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 23,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a6a458fd77624539f22f62ac4498e9022",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "97107d8a29a7529a6a458fd77624539f22f62ac4498e9023",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529b6a458fd77624539f22f62ac4498e9023",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0280",
+      "origin": "upstream_kat",
+      "count": 280,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "2021222324252627",
+      "ad": "303132333435363738393a3b3c3d3e",
+      "plaintext_bytes": 8,
+      "ad_bytes": 15,
+      "ciphertext": "20fd19dabc1a5cc4",
+      "tag": "6ccb928d9578ab5b256e6eba95632f34",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc46dcb928d9578ab5b256e6eba95632f34",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 23,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc46ccb928d9578ab5b256e6eba95632f35",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "21fd19dabc1a5cc46ccb928d9578ab5b256e6eba95632f34",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc56ccb928d9578ab5b256e6eba95632f34",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0281",
+      "origin": "upstream_kat",
+      "count": 281,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "2021222324252627",
+      "ad": "303132333435363738393a3b3c3d3e3f",
+      "plaintext_bytes": 8,
+      "ad_bytes": 16,
+      "ciphertext": "6373ebb28be97c9b",
+      "tag": "ff4ad146b3ae40035ce2d47dc825f46a",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bfe4ad146b3ae40035ce2d47dc825f46a",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 23,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bff4ad146b3ae40035ce2d47dc825f46b",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6273ebb28be97c9bff4ad146b3ae40035ce2d47dc825f46a",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9aff4ad146b3ae40035ce2d47dc825f46a",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0282",
+      "origin": "upstream_kat",
+      "count": 282,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "2021222324252627",
+      "ad": "303132333435363738393a3b3c3d3e3f40",
+      "plaintext_bytes": 8,
+      "ad_bytes": 17,
+      "ciphertext": "bf77c71b3de9f1c5",
+      "tag": "1611f5bd26e89ff6d79fb4f17d2f0a90",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c51711f5bd26e89ff6d79fb4f17d2f0a90",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 23,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c51611f5bd26e89ff6d79fb4f17d2f0a91",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "be77c71b3de9f1c51611f5bd26e89ff6d79fb4f17d2f0a90",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c41611f5bd26e89ff6d79fb4f17d2f0a90",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0297",
+      "origin": "upstream_kat",
+      "count": 297,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "2021222324252627",
+      "ad": "303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f",
+      "plaintext_bytes": 8,
+      "ad_bytes": 32,
+      "ciphertext": "cb34d04660a66dbf",
+      "tag": "a1381376eda2316c9683dc3f391dc406",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfa0381376eda2316c9683dc3f391dc406",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 23,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfa1381376eda2316c9683dc3f391dc407",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ca34d04660a66dbfa1381376eda2316c9683dc3f391dc406",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbea1381376eda2316c9683dc3f391dc406",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0298",
+      "origin": "upstream_kat",
+      "count": 298,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728",
+      "ad": "",
+      "plaintext_bytes": 9,
+      "ad_bytes": 0,
+      "ciphertext": "e8c3deee246cc5eae3",
+      "tag": "329bc950ae101b9247f3605ebedcbf6c",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 9,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3339bc950ae101b9247f3605ebedcbf6c",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 24,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3329bc950ae101b9247f3605ebedcbf6d",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e9c3deee246cc5eae3329bc950ae101b9247f3605ebedcbf6c",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae2329bc950ae101b9247f3605ebedcbf6c",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0299",
+      "origin": "upstream_kat",
+      "count": 299,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728",
+      "ad": "30",
+      "plaintext_bytes": 9,
+      "ad_bytes": 1,
+      "ciphertext": "96107d8a29a7529a79",
+      "tag": "558544b3e0bfa4e8376ee8df76a48386",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 9,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a79548544b3e0bfa4e8376ee8df76a48386",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 24,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a79558544b3e0bfa4e8376ee8df76a48387",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "97107d8a29a7529a79558544b3e0bfa4e8376ee8df76a48386",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a78558544b3e0bfa4e8376ee8df76a48386",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0313",
+      "origin": "upstream_kat",
+      "count": 313,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728",
+      "ad": "303132333435363738393a3b3c3d3e",
+      "plaintext_bytes": 9,
+      "ad_bytes": 15,
+      "ciphertext": "20fd19dabc1a5cc449",
+      "tag": "cf7089e8c1c27a8bbd286393716751cb",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 9,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449ce7089e8c1c27a8bbd286393716751cb",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 24,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449cf7089e8c1c27a8bbd286393716751ca",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "21fd19dabc1a5cc449cf7089e8c1c27a8bbd286393716751cb",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc448cf7089e8c1c27a8bbd286393716751cb",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0314",
+      "origin": "upstream_kat",
+      "count": 314,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728",
+      "ad": "303132333435363738393a3b3c3d3e3f",
+      "plaintext_bytes": 9,
+      "ad_bytes": 16,
+      "ciphertext": "6373ebb28be97c9bac",
+      "tag": "fc9ac21399c069deed58c9d07d0efbfa",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 9,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bacfd9ac21399c069deed58c9d07d0efbfa",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 24,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bacfc9ac21399c069deed58c9d07d0efbfb",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6273ebb28be97c9bacfc9ac21399c069deed58c9d07d0efbfa",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9badfc9ac21399c069deed58c9d07d0efbfa",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0315",
+      "origin": "upstream_kat",
+      "count": 315,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728",
+      "ad": "303132333435363738393a3b3c3d3e3f40",
+      "plaintext_bytes": 9,
+      "ad_bytes": 17,
+      "ciphertext": "bf77c71b3de9f1c5b3",
+      "tag": "972116d01ccc9733f4fabdee5ea0c888",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 9,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b3962116d01ccc9733f4fabdee5ea0c888",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 24,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b3972116d01ccc9733f4fabdee5ea0c889",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "be77c71b3de9f1c5b3972116d01ccc9733f4fabdee5ea0c888",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b2972116d01ccc9733f4fabdee5ea0c888",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0330",
+      "origin": "upstream_kat",
+      "count": 330,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728",
+      "ad": "303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f",
+      "plaintext_bytes": 9,
+      "ad_bytes": 32,
+      "ciphertext": "cb34d04660a66dbfbe",
+      "tag": "b55047438ebe45f11374d66d6e75ddab",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 9,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbeb45047438ebe45f11374d66d6e75ddab",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 24,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbeb55047438ebe45f11374d66d6e75ddaa",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ca34d04660a66dbfbeb55047438ebe45f11374d66d6e75ddab",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbfb55047438ebe45f11374d66d6e75ddab",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0496",
+      "origin": "upstream_kat",
+      "count": 496,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e",
+      "ad": "",
+      "plaintext_bytes": 15,
+      "ad_bytes": 0,
+      "ciphertext": "e8c3deee246cc5eae3e872313897a2",
+      "tag": "83aecc1da0834a52940ec4bfcddb6404",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a282aecc1da0834a52940ec4bfcddb6404",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 30,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a283aecc1da0834a52940ec4bfcddb6405",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e9c3deee246cc5eae3e872313897a283aecc1da0834a52940ec4bfcddb6404",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 14,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a383aecc1da0834a52940ec4bfcddb6404",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0497",
+      "origin": "upstream_kat",
+      "count": 497,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e",
+      "ad": "30",
+      "plaintext_bytes": 15,
+      "ad_bytes": 1,
+      "ciphertext": "96107d8a29a7529a7941bdc7df1fe3",
+      "tag": "70915182ee42081f9d1622ad33f30be6",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe371915182ee42081f9d1622ad33f30be6",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 30,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe370915182ee42081f9d1622ad33f30be7",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "97107d8a29a7529a7941bdc7df1fe370915182ee42081f9d1622ad33f30be6",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 14,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe270915182ee42081f9d1622ad33f30be6",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0511",
+      "origin": "upstream_kat",
+      "count": 511,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e",
+      "ad": "303132333435363738393a3b3c3d3e",
+      "plaintext_bytes": 15,
+      "ad_bytes": 15,
+      "ciphertext": "20fd19dabc1a5cc449a621d34dac60",
+      "tag": "d7f316f7f9aee44f263c8d7b7094c199",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac60d6f316f7f9aee44f263c8d7b7094c199",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 30,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac60d7f316f7f9aee44f263c8d7b7094c198",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "21fd19dabc1a5cc449a621d34dac60d7f316f7f9aee44f263c8d7b7094c199",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 14,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac61d7f316f7f9aee44f263c8d7b7094c199",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0512",
+      "origin": "upstream_kat",
+      "count": 512,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e",
+      "ad": "303132333435363738393a3b3c3d3e3f",
+      "plaintext_bytes": 15,
+      "ad_bytes": 16,
+      "ciphertext": "6373ebb28be97c9bac090cf399c13e",
+      "tag": "646be0c80b0404770341eb48d6178948",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13e656be0c80b0404770341eb48d6178948",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 30,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13e646be0c80b0404770341eb48d6178949",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6273ebb28be97c9bac090cf399c13e646be0c80b0404770341eb48d6178948",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 14,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13f646be0c80b0404770341eb48d6178948",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0513",
+      "origin": "upstream_kat",
+      "count": 513,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e",
+      "ad": "303132333435363738393a3b3c3d3e3f40",
+      "plaintext_bytes": 15,
+      "ad_bytes": 17,
+      "ciphertext": "bf77c71b3de9f1c5b372ef273a08e8",
+      "tag": "c1cfcfdc64bb8caa4433e48a1e50014a",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e8c0cfcfdc64bb8caa4433e48a1e50014a",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 30,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e8c1cfcfdc64bb8caa4433e48a1e50014b",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "be77c71b3de9f1c5b372ef273a08e8c1cfcfdc64bb8caa4433e48a1e50014a",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 14,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e9c1cfcfdc64bb8caa4433e48a1e50014a",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0528",
+      "origin": "upstream_kat",
+      "count": 528,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e",
+      "ad": "303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f",
+      "plaintext_bytes": 15,
+      "ad_bytes": 32,
+      "ciphertext": "cb34d04660a66dbfbe9c856601f5b8",
+      "tag": "c79104f5675250a98b8eeadc36b8ebbe",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b8c69104f5675250a98b8eeadc36b8ebbe",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 30,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b8c79104f5675250a98b8eeadc36b8ebbf",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ca34d04660a66dbfbe9c856601f5b8c79104f5675250a98b8eeadc36b8ebbe",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 14,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b9c79104f5675250a98b8eeadc36b8ebbe",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0529",
+      "origin": "upstream_kat",
+      "count": 529,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f",
+      "ad": "",
+      "plaintext_bytes": 16,
+      "ad_bytes": 0,
+      "ciphertext": "e8c3deee246cc5eae3e872313897a2bb",
+      "tag": "9eaa915c9dd3245d77048f24d46d27a7",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a2bb9faa915c9dd3245d77048f24d46d27a7",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a2bb9eaa915c9dd3245d77048f24d46d27a6",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e9c3deee246cc5eae3e872313897a2bb9eaa915c9dd3245d77048f24d46d27a7",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a2ba9eaa915c9dd3245d77048f24d46d27a7",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0530",
+      "origin": "upstream_kat",
+      "count": 530,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f",
+      "ad": "30",
+      "plaintext_bytes": 16,
+      "ad_bytes": 1,
+      "ciphertext": "96107d8a29a7529a7941bdc7df1fe3c6",
+      "tag": "b48691673a22da04bcc261fee0fd6a4d",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe3c6b58691673a22da04bcc261fee0fd6a4d",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe3c6b48691673a22da04bcc261fee0fd6a4c",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "97107d8a29a7529a7941bdc7df1fe3c6b48691673a22da04bcc261fee0fd6a4d",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe3c7b48691673a22da04bcc261fee0fd6a4d",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0544",
+      "origin": "upstream_kat",
+      "count": 544,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f",
+      "ad": "303132333435363738393a3b3c3d3e",
+      "plaintext_bytes": 16,
+      "ad_bytes": 15,
+      "ciphertext": "20fd19dabc1a5cc449a621d34dac6013",
+      "tag": "72248bb7d46cc4a7f5f9c1ab782255b6",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac601373248bb7d46cc4a7f5f9c1ab782255b6",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac601372248bb7d46cc4a7f5f9c1ab782255b7",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "21fd19dabc1a5cc449a621d34dac601372248bb7d46cc4a7f5f9c1ab782255b6",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac601272248bb7d46cc4a7f5f9c1ab782255b6",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0545",
+      "origin": "upstream_kat",
+      "count": 545,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f",
+      "ad": "303132333435363738393a3b3c3d3e3f",
+      "plaintext_bytes": 16,
+      "ad_bytes": 16,
+      "ciphertext": "6373ebb28be97c9bac090cf399c13ef1",
+      "tag": "3abfc0d209e8f4844c90814d13f32c59",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13ef13bbfc0d209e8f4844c90814d13f32c59",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13ef13abfc0d209e8f4844c90814d13f32c58",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6273ebb28be97c9bac090cf399c13ef13abfc0d209e8f4844c90814d13f32c59",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13ef03abfc0d209e8f4844c90814d13f32c59",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0546",
+      "origin": "upstream_kat",
+      "count": 546,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f",
+      "ad": "303132333435363738393a3b3c3d3e3f40",
+      "plaintext_bytes": 16,
+      "ad_bytes": 17,
+      "ciphertext": "bf77c71b3de9f1c5b372ef273a08e89b",
+      "tag": "6a67a7a5995c860ce8f00bc0fc2ebad6",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e89b6b67a7a5995c860ce8f00bc0fc2ebad6",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e89b6a67a7a5995c860ce8f00bc0fc2ebad7",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "be77c71b3de9f1c5b372ef273a08e89b6a67a7a5995c860ce8f00bc0fc2ebad6",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e89a6a67a7a5995c860ce8f00bc0fc2ebad6",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0561",
+      "origin": "upstream_kat",
+      "count": 561,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f",
+      "ad": "303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f",
+      "plaintext_bytes": 16,
+      "ad_bytes": 32,
+      "ciphertext": "cb34d04660a66dbfbe9c856601f5b8aa",
+      "tag": "7a81d0a7a37f8a346c0f6fc60093d40b",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b8aa7b81d0a7a37f8a346c0f6fc60093d40b",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b8aa7a81d0a7a37f8a346c0f6fc60093d40a",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ca34d04660a66dbfbe9c856601f5b8aa7a81d0a7a37f8a346c0f6fc60093d40b",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b8ab7a81d0a7a37f8a346c0f6fc60093d40b",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0562",
+      "origin": "upstream_kat",
+      "count": 562,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f30",
+      "ad": "",
+      "plaintext_bytes": 17,
+      "ad_bytes": 0,
+      "ciphertext": "e8c3deee246cc5eae3e872313897a2bb60",
+      "tag": "301002539d456275dd0b0ceab3b23844",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 17,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a2bb60311002539d456275dd0b0ceab3b23844",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a2bb60301002539d456275dd0b0ceab3b23845",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e9c3deee246cc5eae3e872313897a2bb60301002539d456275dd0b0ceab3b23844",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a2bb61301002539d456275dd0b0ceab3b23844",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0563",
+      "origin": "upstream_kat",
+      "count": 563,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f30",
+      "ad": "30",
+      "plaintext_bytes": 17,
+      "ad_bytes": 1,
+      "ciphertext": "96107d8a29a7529a7941bdc7df1fe3c6c7",
+      "tag": "ea70d7986e7b59cd0d357239f5d25bf5",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 17,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe3c6c7eb70d7986e7b59cd0d357239f5d25bf5",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe3c6c7ea70d7986e7b59cd0d357239f5d25bf4",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "97107d8a29a7529a7941bdc7df1fe3c6c7ea70d7986e7b59cd0d357239f5d25bf5",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe3c6c6ea70d7986e7b59cd0d357239f5d25bf5",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0577",
+      "origin": "upstream_kat",
+      "count": 577,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f30",
+      "ad": "303132333435363738393a3b3c3d3e",
+      "plaintext_bytes": 17,
+      "ad_bytes": 15,
+      "ciphertext": "20fd19dabc1a5cc449a621d34dac6013ef",
+      "tag": "182d0b63844365aa804f51124f8f8b8d",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 17,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac6013ef192d0b63844365aa804f51124f8f8b8d",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac6013ef182d0b63844365aa804f51124f8f8b8c",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "21fd19dabc1a5cc449a621d34dac6013ef182d0b63844365aa804f51124f8f8b8d",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac6013ee182d0b63844365aa804f51124f8f8b8d",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0578",
+      "origin": "upstream_kat",
+      "count": 578,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f30",
+      "ad": "303132333435363738393a3b3c3d3e3f",
+      "plaintext_bytes": 17,
+      "ad_bytes": 16,
+      "ciphertext": "6373ebb28be97c9bac090cf399c13ef14e",
+      "tag": "97e8b4e670b6af4cb7db044b2685f85a",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 17,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13ef14e96e8b4e670b6af4cb7db044b2685f85a",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13ef14e97e8b4e670b6af4cb7db044b2685f85b",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6273ebb28be97c9bac090cf399c13ef14e97e8b4e670b6af4cb7db044b2685f85a",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13ef14f97e8b4e670b6af4cb7db044b2685f85a",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0579",
+      "origin": "upstream_kat",
+      "count": 579,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f30",
+      "ad": "303132333435363738393a3b3c3d3e3f40",
+      "plaintext_bytes": 17,
+      "ad_bytes": 17,
+      "ciphertext": "bf77c71b3de9f1c5b372ef273a08e89be9",
+      "tag": "d507d7b3c2aee97911e791f7970d6635",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 17,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e89be9d407d7b3c2aee97911e791f7970d6635",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e89be9d507d7b3c2aee97911e791f7970d6634",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "be77c71b3de9f1c5b372ef273a08e89be9d507d7b3c2aee97911e791f7970d6635",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e89be8d507d7b3c2aee97911e791f7970d6635",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_0594",
+      "origin": "upstream_kat",
+      "count": 594,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f30",
+      "ad": "303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f",
+      "plaintext_bytes": 17,
+      "ad_bytes": 32,
+      "ciphertext": "cb34d04660a66dbfbe9c856601f5b8aa51",
+      "tag": "0d7caab912fc145145df923a2403a85f",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 17,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b8aa510c7caab912fc145145df923a2403a85f",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b8aa510d7caab912fc145145df923a2403a85e",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ca34d04660a66dbfbe9c856601f5b8aa510d7caab912fc145145df923a2403a85f",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b8aa500d7caab912fc145145df923a2403a85f",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_1057",
+      "origin": "upstream_kat",
+      "count": 1057,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+      "ad": "",
+      "plaintext_bytes": 32,
+      "ad_bytes": 0,
+      "ciphertext": "e8c3deee246cc5eae3e872313897a2bb6089aa3e15e80307970f2d1f006654c2",
+      "tag": "aaa5fa172cb9f07d07463cefc7440bc1",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a2bb6089aa3e15e80307970f2d1f006654c2aba5fa172cb9f07d07463cefc7440bc1",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 47,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a2bb6089aa3e15e80307970f2d1f006654c2aaa5fa172cb9f07d07463cefc7440bc0",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e9c3deee246cc5eae3e872313897a2bb6089aa3e15e80307970f2d1f006654c2aaa5fa172cb9f07d07463cefc7440bc1",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "e8c3deee246cc5eae3e872313897a2bb6089aa3e15e80307970f2d1f006654c3aaa5fa172cb9f07d07463cefc7440bc1",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_1058",
+      "origin": "upstream_kat",
+      "count": 1058,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+      "ad": "30",
+      "plaintext_bytes": 32,
+      "ad_bytes": 1,
+      "ciphertext": "96107d8a29a7529a7941bdc7df1fe3c6c7210336ab5b1eb94cfc067ce2248742",
+      "tag": "b9e5dbbb767a4ad97d1949f09022cd66",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe3c6c7210336ab5b1eb94cfc067ce2248742b8e5dbbb767a4ad97d1949f09022cd66",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 47,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe3c6c7210336ab5b1eb94cfc067ce2248742b9e5dbbb767a4ad97d1949f09022cd67",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "97107d8a29a7529a7941bdc7df1fe3c6c7210336ab5b1eb94cfc067ce2248742b9e5dbbb767a4ad97d1949f09022cd66",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "96107d8a29a7529a7941bdc7df1fe3c6c7210336ab5b1eb94cfc067ce2248743b9e5dbbb767a4ad97d1949f09022cd66",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_1072",
+      "origin": "upstream_kat",
+      "count": 1072,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+      "ad": "303132333435363738393a3b3c3d3e",
+      "plaintext_bytes": 32,
+      "ad_bytes": 15,
+      "ciphertext": "20fd19dabc1a5cc449a621d34dac6013ef43f597df00a4fcc9570f4c64c4d006",
+      "tag": "dbc8504a6ee24be1de7f594925d38471",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac6013ef43f597df00a4fcc9570f4c64c4d006dac8504a6ee24be1de7f594925d38471",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 47,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac6013ef43f597df00a4fcc9570f4c64c4d006dbc8504a6ee24be1de7f594925d38470",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "21fd19dabc1a5cc449a621d34dac6013ef43f597df00a4fcc9570f4c64c4d006dbc8504a6ee24be1de7f594925d38471",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "20fd19dabc1a5cc449a621d34dac6013ef43f597df00a4fcc9570f4c64c4d007dbc8504a6ee24be1de7f594925d38471",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_1073",
+      "origin": "upstream_kat",
+      "count": 1073,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+      "ad": "303132333435363738393a3b3c3d3e3f",
+      "plaintext_bytes": 32,
+      "ad_bytes": 16,
+      "ciphertext": "6373ebb28be97c9bac090cf399c13ef14ea6c5e519e30a5c6ef44f7cea881ab7",
+      "tag": "abef171657d19c6c1138b7577693e439",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13ef14ea6c5e519e30a5c6ef44f7cea881ab7aaef171657d19c6c1138b7577693e439",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 47,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13ef14ea6c5e519e30a5c6ef44f7cea881ab7abef171657d19c6c1138b7577693e438",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6273ebb28be97c9bac090cf399c13ef14ea6c5e519e30a5c6ef44f7cea881ab7abef171657d19c6c1138b7577693e439",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6373ebb28be97c9bac090cf399c13ef14ea6c5e519e30a5c6ef44f7cea881ab6abef171657d19c6c1138b7577693e439",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_1074",
+      "origin": "upstream_kat",
+      "count": 1074,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+      "ad": "303132333435363738393a3b3c3d3e3f40",
+      "plaintext_bytes": 32,
+      "ad_bytes": 17,
+      "ciphertext": "bf77c71b3de9f1c5b372ef273a08e89be9675adc5777342f1d1ef3c5d4bfc7aa",
+      "tag": "055dd1908bb4c524bc967452ffdaa943",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e89be9675adc5777342f1d1ef3c5d4bfc7aa045dd1908bb4c524bc967452ffdaa943",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 47,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e89be9675adc5777342f1d1ef3c5d4bfc7aa055dd1908bb4c524bc967452ffdaa942",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "be77c71b3de9f1c5b372ef273a08e89be9675adc5777342f1d1ef3c5d4bfc7aa055dd1908bb4c524bc967452ffdaa943",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "bf77c71b3de9f1c5b372ef273a08e89be9675adc5777342f1d1ef3c5d4bfc7ab055dd1908bb4c524bc967452ffdaa943",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "kat_1089",
+      "origin": "upstream_kat",
+      "count": 1089,
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "plaintext": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+      "ad": "303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f",
+      "plaintext_bytes": 32,
+      "ad_bytes": 32,
+      "ciphertext": "cb34d04660a66dbfbe9c856601f5b8aa51a499b55ac8f7fbefbc331a613ee9cd",
+      "tag": "fd191750a47f211c0a15ed28173d7caa",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b8aa51a499b55ac8f7fbefbc331a613ee9cdfc191750a47f211c0a15ed28173d7caa",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 47,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b8aa51a499b55ac8f7fbefbc331a613ee9cdfd191750a47f211c0a15ed28173d7cab",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ca34d04660a66dbfbe9c856601f5b8aa51a499b55ac8f7fbefbc331a613ee9cdfd191750a47f211c0a15ed28173d7caa",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cb34d04660a66dbfbe9c856601f5b8aa51a499b55ac8f7fbefbc331a613ee9ccfd191750a47f211c0a15ed28173d7caa",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "extended_00",
+      "origin": "locked_ascon_c_ref",
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "ad": "",
+      "plaintext": "00",
+      "ad_bytes": 0,
+      "plaintext_bytes": 1,
+      "ciphertext": "c8",
+      "tag": "4c4bc1957cad5aa2660f67326c05eeb7",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 1,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "c84d4bc1957cad5aa2660f67326c05eeb7",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "c84c4bc1957cad5aa2660f67326c05eeb6",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "c94c4bc1957cad5aa2660f67326c05eeb7",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "c94c4bc1957cad5aa2660f67326c05eeb7",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "extended_01",
+      "origin": "locked_ascon_c_ref",
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "ad": "",
+      "plaintext": "a5",
+      "ad_bytes": 0,
+      "plaintext_bytes": 1,
+      "ciphertext": "6d",
+      "tag": "a5ded06f15a2d32a6d5e20230e382091",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 1,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6da4ded06f15a2d32a6d5e20230e382091",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6da5ded06f15a2d32a6d5e20230e382090",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6ca5ded06f15a2d32a6d5e20230e382091",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6ca5ded06f15a2d32a6d5e20230e382091",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "extended_02",
+      "origin": "locked_ascon_c_ref",
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "ad": "",
+      "plaintext": "a500",
+      "ad_bytes": 0,
+      "plaintext_bytes": 2,
+      "ciphertext": "6de2",
+      "tag": "32ea77aaab178d1d13afdefbb274e613",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 2,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6de233ea77aaab178d1d13afdefbb274e613",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 17,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6de232ea77aaab178d1d13afdefbb274e612",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6ce232ea77aaab178d1d13afdefbb274e613",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 1,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6de332ea77aaab178d1d13afdefbb274e613",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "extended_03",
+      "origin": "locked_ascon_c_ref",
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "ad": "00",
+      "plaintext": "a5a5a5a5a5a5a500",
+      "ad_bytes": 1,
+      "plaintext_bytes": 8,
+      "ciphertext": "c7a3378d9653024e",
+      "tag": "cc35abd4352b4cc098df75907e2e67de",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 8,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "c7a3378d9653024ecd35abd4352b4cc098df75907e2e67de",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 23,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "c7a3378d9653024ecc35abd4352b4cc098df75907e2e67df",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "c6a3378d9653024ecc35abd4352b4cc098df75907e2e67de",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 7,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "c7a3378d9653024fcc35abd4352b4cc098df75907e2e67de",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "extended_04",
+      "origin": "locked_ascon_c_ref",
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "ad": "303030303030303030303030303030",
+      "plaintext": "a5a5a5a5a5a5a5a5a5a5a5a5a5a500",
+      "ad_bytes": 15,
+      "plaintext_bytes": 15,
+      "ciphertext": "1bf6651bac02ad0e5e6364394cc725",
+      "tag": "6138756fa90ea80b71258fc41ce68a22",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "1bf6651bac02ad0e5e6364394cc7256038756fa90ea80b71258fc41ce68a22",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 30,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "1bf6651bac02ad0e5e6364394cc7256138756fa90ea80b71258fc41ce68a23",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "1af6651bac02ad0e5e6364394cc7256138756fa90ea80b71258fc41ce68a22",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 14,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "1bf6651bac02ad0e5e6364394cc7246138756fa90ea80b71258fc41ce68a22",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "extended_05",
+      "origin": "locked_ascon_c_ref",
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "ad": "30303030303030303030303030303000",
+      "plaintext": "a5a5a5a5a5a5a5a5a5a5a5a5a5a50000",
+      "ad_bytes": 16,
+      "plaintext_bytes": 16,
+      "ciphertext": "03aaf7dd2b4687915ea0627e0327be59",
+      "tag": "751255b3abcd104223a70e8cd32b8f34",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "03aaf7dd2b4687915ea0627e0327be59741255b3abcd104223a70e8cd32b8f34",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 31,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "03aaf7dd2b4687915ea0627e0327be59751255b3abcd104223a70e8cd32b8f35",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "02aaf7dd2b4687915ea0627e0327be59751255b3abcd104223a70e8cd32b8f34",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 15,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "03aaf7dd2b4687915ea0627e0327be58751255b3abcd104223a70e8cd32b8f34",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "extended_06",
+      "origin": "locked_ascon_c_ref",
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "ad": "3030303030303030303030303030300000",
+      "plaintext": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5000000",
+      "ad_bytes": 17,
+      "plaintext_bytes": 17,
+      "ciphertext": "6ee234ce88d4d9070d2bfa121463a316c1",
+      "tag": "7844e0197b8b1400da52ccc2ea2b44c7",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 17,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6ee234ce88d4d9070d2bfa121463a316c17944e0197b8b1400da52ccc2ea2b44c7",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6ee234ce88d4d9070d2bfa121463a316c17844e0197b8b1400da52ccc2ea2b44c6",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6fe234ce88d4d9070d2bfa121463a316c17844e0197b8b1400da52ccc2ea2b44c7",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 16,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "6ee234ce88d4d9070d2bfa121463a316c07844e0197b8b1400da52ccc2ea2b44c7",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "extended_07",
+      "origin": "locked_ascon_c_ref",
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "ad": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f00",
+      "plaintext": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f00",
+      "ad_bytes": 33,
+      "plaintext_bytes": 33,
+      "ciphertext": "2ed8b73fa8f825a1b3f6e5ee3c505692a834270bdc4a03aa7dfebb9c89aecc5b54",
+      "tag": "8d591e0c48797133b56bc3cd11a31e4c",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 33,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "2ed8b73fa8f825a1b3f6e5ee3c505692a834270bdc4a03aa7dfebb9c89aecc5b548c591e0c48797133b56bc3cd11a31e4c",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 48,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "2ed8b73fa8f825a1b3f6e5ee3c505692a834270bdc4a03aa7dfebb9c89aecc5b548d591e0c48797133b56bc3cd11a31e4d",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "2fd8b73fa8f825a1b3f6e5ee3c505692a834270bdc4a03aa7dfebb9c89aecc5b548d591e0c48797133b56bc3cd11a31e4c",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 32,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "2ed8b73fa8f825a1b3f6e5ee3c505692a834270bdc4a03aa7dfebb9c89aecc5b558d591e0c48797133b56bc3cd11a31e4c",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "extended_08",
+      "origin": "locked_ascon_c_ref",
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "ad": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e00",
+      "plaintext": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e00",
+      "ad_bytes": 48,
+      "plaintext_bytes": 64,
+      "ciphertext": "ccc3b9a47fa96e12495f9a96d10bee7ba56d98cef681915a63a3e2decea5710a060313f6e88c24d5efcae6540ebf9da87cb9968606100dc2b7d4142a01e5e594",
+      "tag": "5b227df98e3f847761b90ce059a5443d",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 64,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ccc3b9a47fa96e12495f9a96d10bee7ba56d98cef681915a63a3e2decea5710a060313f6e88c24d5efcae6540ebf9da87cb9968606100dc2b7d4142a01e5e5945a227df98e3f847761b90ce059a5443d",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 79,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ccc3b9a47fa96e12495f9a96d10bee7ba56d98cef681915a63a3e2decea5710a060313f6e88c24d5efcae6540ebf9da87cb9968606100dc2b7d4142a01e5e5945b227df98e3f847761b90ce059a5443c",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "cdc3b9a47fa96e12495f9a96d10bee7ba56d98cef681915a63a3e2decea5710a060313f6e88c24d5efcae6540ebf9da87cb9968606100dc2b7d4142a01e5e5945b227df98e3f847761b90ce059a5443d",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 63,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "ccc3b9a47fa96e12495f9a96d10bee7ba56d98cef681915a63a3e2decea5710a060313f6e88c24d5efcae6540ebf9da87cb9968606100dc2b7d4142a01e5e5955b227df98e3f847761b90ce059a5443d",
+          "expected": "fail"
+        }
+      ]
+    },
+    {
+      "id": "extended_09",
+      "origin": "locked_ascon_c_ref",
+      "key": "000102030405060708090a0b0c0d0e0f",
+      "nonce": "101112131415161718191a1b1c1d1e1f",
+      "ad": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f00",
+      "plaintext": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f00",
+      "ad_bytes": 81,
+      "plaintext_bytes": 129,
+      "ciphertext": "74d3ffe74b8e686334cfb54f995d87688402e617f6a8c7f3ccf0a6aa655691456e4e661245d6a19c93b645684bc1b80b1f10cdb3f7be222a0af449b1e99770630af6d7cadc6ab980d60812bf9c26244125d2f956b9a9f3e0a3932d764a2c5c531e91aed4ca5ffd379e338af3d228286355ba275acd7d87ea865bf8abcb57710894",
+      "tag": "045898382b8ea681972b087dfbddd951",
+      "negative": [
+        {
+          "kind": "tag_first",
+          "byte_offset": 129,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "74d3ffe74b8e686334cfb54f995d87688402e617f6a8c7f3ccf0a6aa655691456e4e661245d6a19c93b645684bc1b80b1f10cdb3f7be222a0af449b1e99770630af6d7cadc6ab980d60812bf9c26244125d2f956b9a9f3e0a3932d764a2c5c531e91aed4ca5ffd379e338af3d228286355ba275acd7d87ea865bf8abcb57710894055898382b8ea681972b087dfbddd951",
+          "expected": "fail"
+        },
+        {
+          "kind": "tag_last",
+          "byte_offset": 144,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "74d3ffe74b8e686334cfb54f995d87688402e617f6a8c7f3ccf0a6aa655691456e4e661245d6a19c93b645684bc1b80b1f10cdb3f7be222a0af449b1e99770630af6d7cadc6ab980d60812bf9c26244125d2f956b9a9f3e0a3932d764a2c5c531e91aed4ca5ffd379e338af3d228286355ba275acd7d87ea865bf8abcb57710894045898382b8ea681972b087dfbddd950",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_first",
+          "byte_offset": 0,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "75d3ffe74b8e686334cfb54f995d87688402e617f6a8c7f3ccf0a6aa655691456e4e661245d6a19c93b645684bc1b80b1f10cdb3f7be222a0af449b1e99770630af6d7cadc6ab980d60812bf9c26244125d2f956b9a9f3e0a3932d764a2c5c531e91aed4ca5ffd379e338af3d228286355ba275acd7d87ea865bf8abcb57710894045898382b8ea681972b087dfbddd951",
+          "expected": "fail"
+        },
+        {
+          "kind": "ciphertext_last",
+          "byte_offset": 128,
+          "xor_mask": "01",
+          "ciphertext_and_tag": "74d3ffe74b8e686334cfb54f995d87688402e617f6a8c7f3ccf0a6aa655691456e4e661245d6a19c93b645684bc1b80b1f10cdb3f7be222a0af449b1e99770630af6d7cadc6ab980d60812bf9c26244125d2f956b9a9f3e0a3932d764a2c5c531e91aed4ca5ffd379e338af3d228286355ba275acd7d87ea865bf8abcb57710895045898382b8ea681972b087dfbddd951",
+          "expected": "fail"
+        }
+      ]
+    }
+  ]
+}

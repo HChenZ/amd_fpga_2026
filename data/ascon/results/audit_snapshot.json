@@ -1,0 +1,210 @@
+{
+  "task_ids": [
+    "C01",
+    "C03"
+  ],
+  "owner": "TBD",
+  "date": "2026-10-07",
+  "timezone": "Asia/Shanghai",
+  "head": "8c8634f80f55cff50ae1ffcaf6fb79d67e5a7a93",
+  "branch": "feat/ascon-kat-validation",
+  "remote": "origin\thttps://github.com/HChenZ/amd_fpga_2026.git (fetch)\norigin\thttps://github.com/HChenZ/amd_fpga_2026.git (push)",
+  "recent_commits": [
+    {
+      "sha": "8c8634f80f55cff50ae1ffcaf6fb79d67e5a7a93",
+      "author_date": "2026-10-07T13:30:35+08:00",
+      "subject": "将pad更改回去"
+    },
+    {
+      "sha": "cedd1578305ddfb23845ee8dc95cf294528ee3de",
+      "author_date": "2026-10-06T20:15:09+08:00",
+      "subject": "fix:增加握手接口，给下一步主程序修正时序做准备"
+    },
+    {
+      "sha": "8309402570c3c0dc1e3d5b0ecfd0ab015afb7d23",
+      "author_date": "2026-09-29T20:35:35+08:00",
+      "subject": "fix:增加注释和修改pad加1位置"
+    },
+    {
+      "sha": "9859de56e612edd53c3ce277db5c02ee497520a0",
+      "author_date": "2026-09-29T20:34:05+08:00",
+      "subject": "fix: 修改 ascon_aead.v 文件的编码"
+    },
+    {
+      "sha": "4810d7c0298b3f8dd1137c71f6e9da27e11c697e",
+      "author_date": "2026-09-29T20:19:34+08:00",
+      "subject": "fix: 修改 adlen 和 mlen 的位宽，以及字节获取模块的实现"
+    },
+    {
+      "sha": "9ecac406bc8c96acfcb712dfa8132ddb05ac1066",
+      "author_date": "2026-09-29T19:58:30+08:00",
+      "subject": "fix: 修改数据位宽"
+    },
+    {
+      "sha": "d19c79397ae996fac9abcf5a8b25ee25fc0f3e62",
+      "author_date": "2026-09-27T21:50:34+08:00",
+      "subject": "fix: 修复了一些问题"
+    },
+    {
+      "sha": "1e9844e783a76a05b0cd979e41f0fedfd6df4d90",
+      "author_date": "2026-09-27T20:09:02+08:00",
+      "subject": "feat: 新增 crypto_aead_encrypt 模块"
+    },
+    {
+      "sha": "d3a7078f589660033221b80630c818a1b4347796",
+      "author_date": "2026-09-27T11:27:19+08:00",
+      "subject": "feat: 新增完成标志到 p12 和 p8 模块"
+    },
+    {
+      "sha": "8f56302019a329e3a2641ff893eca64c031fadaa",
+      "author_date": "2026-09-26T21:12:46+08:00",
+      "subject": "fix: 修复 ascon_constants.vh 中常量定义的语法问题"
+    }
+  ],
+  "initial_state": {
+    "clean": true,
+    "branch": "main",
+    "head_prefix": "ab458e5",
+    "local_only_commits": 0,
+    "remote_only_commits": 13
+  },
+  "sync_commands": [
+    "git fetch origin",
+    "git switch main",
+    "git pull --ff-only origin main"
+  ],
+  "padding_commit_verified": "8c8634f",
+  "tools": {
+    "windows_python": "3.14.3",
+    "wsl_python": "3.12.3",
+    "gcc": "13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1)"
+  },
+  "commands": [
+    {
+      "command": "wsl -d Ubuntu -- python3 /mnt/e/amd_fpga_2026/sim/ascon/run_validation.py",
+      "exit_code": 0,
+      "passed": 28661,
+      "failed": 0
+    },
+    {
+      "command": "wsl -d Ubuntu -- python3 /mnt/e/amd_fpga_2026/sim/ascon/test_harness.py",
+      "exit_code": 0,
+      "tests_passed": 5
+    },
+    {
+      "command": "wsl -d Ubuntu -- python3 /mnt/e/amd_fpga_2026/sim/ascon/check_failure_contract.py",
+      "exit_code": 1,
+      "passed": 1,
+      "failed": 1
+    },
+    {
+      "command": "wsl -d Ubuntu -- python3 /mnt/e/amd_fpga_2026/sim/ascon/freeze_vectors.py --output /mnt/e/amd_fpga_2026/build/local/ascon_frozen",
+      "exit_code": 0,
+      "gate_passed": 12936
+    },
+    {
+      "command": "wsl -d Ubuntu -- python3 /mnt/e/amd_fpga_2026/sim/ascon/freeze_vectors.py --output /mnt/e/amd_fpga_2026/build/local/ascon_frozen_recheck",
+      "exit_code": 0,
+      "gate_passed": 12936
+    },
+    {
+      "command": "wsl -d Ubuntu -- python3 /mnt/e/amd_fpga_2026/sim/ascon/freeze_vectors.py --output /mnt/e/amd_fpga_2026/build/local/ascon_frozen_recheck2",
+      "exit_code": 0,
+      "gate_passed": 12936
+    }
+  ],
+  "reproduction": [
+    {
+      "path": "data/ascon/aead_cases.json",
+      "sha256": "a059447af720e6ac38811e4b7be0f4163e57aa9cd2dda1e7005367a055d703e8",
+      "byte_identical": true
+    },
+    {
+      "path": "data/ascon/permutation_cases.json",
+      "sha256": "9ec18891c762be1f55611430a0b3d2f66221c058d761f33e13e79a41aa2f594e",
+      "byte_identical": true
+    },
+    {
+      "path": "data/ascon/permutation.mem",
+      "sha256": "5f3c8321daa298cbd8ca0632ce6d34a52360ba9e5309a64456fc61b26d0ed30f",
+      "byte_identical": true
+    },
+    {
+      "path": "data/ascon/derived_integrity.json",
+      "sha256": "da202e393a1199bd016f451337d466f0a478efeaf5ede88624a51daa5e8debe6",
+      "byte_identical": true
+    }
+  ],
+  "modified_files": [
+    ".gitattributes",
+    "project_log/actual_progress.md",
+    "project_log/development_log.md",
+    "project_log/lessons_learned.md"
+  ],
+  "new_files": [
+    "data/ascon/aead_cases.json",
+    "data/ascon/derived_integrity.json",
+    "data/ascon/kat/asconaead128.txt",
+    "data/ascon/permutation.mem",
+    "data/ascon/permutation_cases.json",
+    "data/ascon/provenance.json",
+    "data/ascon/readme.md",
+    "data/ascon/results/audit_snapshot.json",
+    "data/ascon/results/failure_contract.json",
+    "data/ascon/results/failure_contract.log",
+    "data/ascon/results/harness.log",
+    "data/ascon/results/host_validation.json",
+    "data/ascon/results/host_validation.log",
+    "data/ascon/results/reference_gate.json",
+    "data/ascon/results/reference_gate.log",
+    "data/ascon/results/runner_race_before_fix.json",
+    "data/ascon/results/runner_race_before_fix.log",
+    "data/ascon/sources/ascon_c_readme.md",
+    "data/ascon/sources/nist_sp_800_232.pdf",
+    "data/ascon/sources/pyascon_readme.md",
+    "docs/ascon_standard_baseline.md",
+    "sim/ascon/c_bridge.c",
+    "sim/ascon/check_failure_contract.py",
+    "sim/ascon/freeze_vectors.py",
+    "sim/ascon/golden.py",
+    "sim/ascon/readme.md",
+    "sim/ascon/reference/ascon_c/aead.c",
+    "sim/ascon/reference/ascon_c/api.h",
+    "sim/ascon/reference/ascon_c/ascon.h",
+    "sim/ascon/reference/ascon_c/constants.h",
+    "sim/ascon/reference/ascon_c/crypto_aead.h",
+    "sim/ascon/reference/ascon_c/implementors",
+    "sim/ascon/reference/ascon_c/license.txt",
+    "sim/ascon/reference/ascon_c/permutations.h",
+    "sim/ascon/reference/ascon_c/printstate.c",
+    "sim/ascon/reference/ascon_c/printstate.h",
+    "sim/ascon/reference/ascon_c/round.h",
+    "sim/ascon/reference/ascon_c/word.h",
+    "sim/ascon/reference/pyascon/ascon.py",
+    "sim/ascon/reference/pyascon/license.txt",
+    "sim/ascon/run_validation.py",
+    "sim/ascon/support.py",
+    "sim/ascon/test_harness.py"
+  ],
+  "protected_paths_unchanged": true,
+  "index_unchanged": true,
+  "commits_created": 0,
+  "pushes": 0,
+  "interface_changes": "Independent JSON, 656-bit readmemh and golden CLI; production interfaces unchanged",
+  "limitations": [
+    "C raw failed-decrypt retains plaintext and nonzero length",
+    "RTL/target firmware/mcycle/PPA/board/Vivado/PYNQ/PUF not_measured"
+  ],
+  "resolved_runner_failure": "Shared library build race; failure retained, isolated directories and concurrent rerun passed",
+  "review_notes": [
+    "All untracked diffs captured without staging",
+    "Checker corrected to allow no-index difference exit 1 and LF-to-CRLF notice; whitespace output remains empty",
+    "Locked checkout bytes preserved",
+    "Complete new-file diff captured successfully; PDF reviewed using pinned SHA256 and normative browser text"
+  ],
+  "task_recommendations": {
+    "C01": "done after review",
+    "C02": "in_progress",
+    "C03": "host subset complete; overall in_progress pending C02"
+  }
+}

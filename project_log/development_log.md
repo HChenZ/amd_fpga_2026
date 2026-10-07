@@ -1,5 +1,49 @@
 # 开发记录
 
+## 2026-10-07 — independent RTL regression 提交收口
+
+- 用户授权提交现有回归，分支 feat/ascon-kat-validation，不 push/merge。
+- 核对全部 11 个待提交文件：原集合 190,057 bytes，最大文件约86 KB，无重复大文件；
+  pycache 与本地 vvp/so 均 ignored，无编译物待提交。
+- 正式脚本/复现说明无机器路径依赖，报告的绝对路径属于实际执行证据。
+  当前源码与结果记录 hash、reference/license lock、生产路径未改检查均通过。
+- 按指定消息 `test(ascon): add independent RTL regression` 创建提交；不把当前
+  full-source FAIL 或 decrypt 未实现改写为成功。提交后检查 git status 与最近5 commit。
+- 暂存后 whitespace 检查发现 Windows 默认报告 CRLF/日志重复 CR；修 runner 源配置
+  为显式 LF，重新运行同一 RTL regression，生成新证据，不手改生成日志来掩盖失败。
+
+## 2026-10-07 — checkpoint、rebase 与最新 Ascon RTL regression
+
+- 按用户授权审计大小/缓存/可移植性/许可。正式 WSL 示例动态定位路径；race 原日志
+  无损 gzip，保留 hash 和 ignored 本地备份。构建库、vvp、pycache 未提交。
+- checkpoint cba792c；fetch 确认 origin/main 13d954f；无冲突 rebase 后 a1d19dd。
+  未 push/merge main；未改生产 RTL、CPU、Vivado、队友 TB。
+- 新 prepare_rtl_vectors.py 用锁定 C/Python gate 后独立核验5 peer expected；新增
+  自己的 round/P8/P12 与 AEAD TB、run_rtl_regression.py，全源集也实际编译。
+- reference gate 12,936 PASS；permutation 与 isolated encryption PASS；旧 reset
+  接口 compile exit 2、full duplicate module compile exit 6，runner exit 1，完整日志保留。
+- 接口观察：AEAD busy-start ignore；permutation busy-start restart；busy 改 key 会改 tag；
+  <=16-byte 接口无17-byte支持、decrypt空壳、输出无效位/空数据陈旧值不屏蔽。
+- 更新独立 RTL 审计、sim readme、actual_progress/lessons。接收 RTL owner/TBD→I04。
+  新工作停在可审查未提交状态，C02/C03 全项目门槛仍未关闭。
+
+## 2026-10-07 — C01/C03 Final 基准、固定 KAT 与独立验证入口
+
+- owner TBD；用户授权同步 clean main、审计及新增 KAT；禁止改现有 RTL、CPU/Vivado、
+  看板，不 commit/push。初始无分叉，ff-only 同步 13 commits，HEAD 8c8634f，
+  分支 feat/ascon-kat-validation。
+- 读取 AGENTS/README/overview/rules/看板/接口/工作流程/日志、C AEAD/XOF、Python
+  AEAD/生成器、五个 Ascon RTL，以及 NIST Final 与设计者维护的锁定参考。
+- 独立下载标准/参考源/许可/完整上游 KAT；新增 data/ascon、sim/ascon。扩展输出
+  来自经过完整 KAT gate 的锁定 C，Python 第二检查；限定 .gitattributes 防换行转换。
+- WSL Python 3.12.3/GCC 13.3：gate 12,936 PASS；全套 28,661 PASS；harness 5 PASS；
+  冻结数据重生成 byte-identical。C failure-output 实际 FAIL exit 1、一次 runner race
+  原日志保留，race 已修复复验。
+- 文档记录参数/来源/许可/hash/RTL 只读问题/实际命令/局限；更新 actual_progress、
+  lessons，看板按用户要求仅给建议。现有生产接口不变。
+- 接收 C02/C03/TBD 先收口失败明文发布与 target 构建，再 C04→I01/I02。未做现有
+  RTL/CPU/板级/Vivado/PYNQ/PUF 验证；最终 git diff HEAD 自审，不提交。
+
 ## 2026-09-21 — 第一阶段仓库审计与协作骨架
 
 - 范围：按用户要求完成仓库组织、审计、协作规则、任务和时间计划；原工程保持原位；不开展大规模 Ascon 实现，不 commit/push。
@@ -42,3 +86,25 @@
 - 579 工作区资产哈希一致；577 个 ZIP 资产暂存字节与 manifest 一致。两份 legacy 文件在既有 Git 历史中为 LF、工作区为 CRLF；仅对这两个 B 类 .gitattributes 规则声明 text/eol=crlf，以保留既有 Git blob 和原工作区哈希。历史源文件字节不动。
 - recovery commit：fc9147785cc4490b1673a0b86e16f337f256f122，584 文件、83139 行新增。本记录随独立 foundation 提交保存，B 类单独要求 git diff --cached --check 为 exit 0。
 - 本轮不 push、不 merge，不运行 Vivado/Ascon/PUF/PYNQ/ISE，不修改任何历史 RTL/XPR/XDC。
+
+## 2026-10-07 — C02 authentication-failure software repair
+
+- owner TBD；分支 `fix/ascon-c-auth-failure`，直接基线为已推送的验证分支
+  `c34728558469f0d4e4068730801dea59e0ca2100`。开始时误从 main 13d954f 建分支，
+  完成测试后用可恢复 stash 保存全部工作，将分支基线调整到 c347285，再只恢复
+  C02 增量；没有复制提交上一分支资产，没有改写远端。
+- 审计 NIST Final §4.1.2 Algorithm 4 与 SUPERCOP API 2020.08.01：算法输出 fail，
+  C API 无效 ciphertext 返回 -1；项目额外要求失败不得返回可使用明文。
+- 原复现 exit 1：rc=-1、mlen=17、buffer=原明文。扩展 raw 测试覆盖完整固定
+  AEAD corpus、PT=0/1/8/16/17、tag/CT 首尾翻转、短输入与 canary；修复前
+  15,039 PASS / 8,926 FAIL / exit 1。失败记录保留，未调整 golden。
+- 唯一 production 修改：aead.c decrypt 保存输出起点和已知明文长度，初始化 mlen=0，
+  完整 tag 比较后失败用 volatile byte stores 清除候选区域、mlen=0、return -1。
+  不改 encryption/成功路径算法，不改 reference/Python/RTL/Vivado。
+- 修复后 raw 23,965 PASS、完整四 backend host 28,661 PASS、harness 5 tests PASS，
+  均 exit 0；修改前 full host 同样 28,661 PASS；加密输出 aggregate SHA256 一致。
+  GCC 13.3.0 -O2 objdump 实际确认完整 16-byte comparison 和 wipe stores 留存。
+- 报告及完整日志在 data/ascon/results；重复长日志/大 before-fix JSON lossless gzip。
+  首次 wslpath 传参丢反斜杠，exit 2、未执行测试；改用 WSL 当前目录相对路径成功。
+- C02 host 安全子项完成，target build/B04 未验仍 in_progress；C03 软件 PASS，
+  不自动 done、不改任务看板；下一接收 target port/KAT/C04。RTL blocker 留给 TBD owner。

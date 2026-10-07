@@ -134,11 +134,14 @@ int crypto_aead_decrypt(unsigned char *m, unsigned long long *mlen,
 {
   (void)nsec;
 
+  unsigned char *const m_out = m;
+  *mlen = 0;
   if (clen < CRYPTO_ABYTES)
     return -1;
 
   /* set plaintext size */
-  *mlen = clen - CRYPTO_ABYTES;
+  const unsigned long long plaintext_len = clen - CRYPTO_ABYTES;
+  *mlen = plaintext_len;
 
   /* print input bytes */
   print("decrypt\n");
@@ -258,6 +261,20 @@ int crypto_aead_decrypt(unsigned char *m, unsigned long long *mlen,
   for (i = 0; i < CRYPTO_ABYTES; ++i)
     result |= c[i] ^ t[i];
   result = (((result - 1) >> 8) & 1) - 1;
+
+  if (result != 0)
+  {
+    /* Clear only the candidate plaintext; volatile stores retain the wipe. */
+    volatile unsigned char *p = m_out;
+    unsigned long long remaining = plaintext_len;
+    while (remaining != 0)
+    {
+      *p++ = 0;
+      --remaining;
+    }
+    *mlen = 0;
+    return result;
+  }
 
   /* print output bytes */
   printbytes("m", m - *mlen, *mlen);

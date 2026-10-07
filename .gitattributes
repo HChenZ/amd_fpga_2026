@@ -7,6 +7,13 @@ sim/cicc1000023/** -text
 data/recovery/cicc1000023/smoke/** -text
 build/reports/cicc1000023_archive/** -text
 
+# C01/C03 lock downloaded and frozen reference/KAT bytes for SHA-256 checks.
+data/ascon/** -text
+data/ascon/sources/*.pdf -diff
+sim/ascon/reference/** -text
+sim/ascon/*.py text eol=lf
+sim/ascon/*.c text eol=lf
+
 # Legacy files already have LF Git blobs and CRLF working copies in fe66fd8.
 # Keep those existing blobs and reproduce the recovery manifest's working bytes.
 board/vivado_kintex7_legacy/riscv_vivado_project.xpr text eol=crlf whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

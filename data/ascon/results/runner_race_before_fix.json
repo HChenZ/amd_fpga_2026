@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "evidence_kind": "host_software",
+    "source_head": "8c8634f80f55cff50ae1ffcaf6fb79d67e5a7a93",
+    "validation_source_hashes": {
+      "sim/ascon/check_failure_contract.py": "22278610d3f6de25810b2460121396b1b82f009370dcc2adf31d6d36c595b90e",
+      "sim/ascon/freeze_vectors.py": "a1d25337ff30c42333185c2c0fadefa76c301484ff808b2a92c0bc7f3811fe04",
+      "sim/ascon/golden.py": "d07fb398401de07fa6212209d124bb429b69abe8afc17a81ce3dd1be86643ad4",
+      "sim/ascon/run_validation.py": "e6540d059a34a5d2aadf2e00bb304ff6b969456a6f3030071d46d485c9c3a221",
+      "sim/ascon/support.py": "534d14dd45b77d4e1b564e0d12a8308c4d2ef620827da2c271f116b1df108af4",
+      "sim/ascon/test_harness.py": "0cbe1d37c799d4d4eb455190f8278f747493e83992c63d0773b41296b1c02807"
+    },
+    "backends_requested": [
+      "upstream-c",
+      "upstream-python",
+      "repository-c",
+      "repository-python"
+    ],
+    "reference_commits": {
+      "ascon_c_commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "pyascon_commit": "ed24e54abf9507d26fa49b46a56091570c7e743e"
+    },
+    "corpus": {
+      "official_kat": 1089,
+      "supplemental": 64,
+      "permutation": 308
+    },
+    "upstream-python": {
+      "path": "sim/ascon/reference/pyascon/ascon.py",
+      "sha256": "b799653fc09e56fc4eb72c90b3574b967b3ead4c337b2402123148d5b1873eda"
+    },
+    "repository-c": {
+      "compiler": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-shared",
+        "-fPIC",
+        "-I",
+        "/mnt/e/amd_fpga_2026/ascon/ascon_c/aead",
+        "/mnt/e/amd_fpga_2026/ascon/ascon_c/aead/aead.c",
+        "/mnt/e/amd_fpga_2026/sim/ascon/c_bridge.c",
+        "-o",
+        "/mnt/e/amd_fpga_2026/build/local/ascon_kat/repository-c.so"
+      ],
+      "exit_code": 0,
+      "output": "",
+      "source_hashes": {
+        "ascon/ascon_c/aead/aead.c": "1cd8acf61ef195c15043de3281e1ac2795f4e75de2af706af6c6afecc451d0e3",
+        "ascon/ascon_c/aead/api.h": "4102b37b91cef127fd059a0319fd1b69d284299dd2386cb8ea2c3468b0bcbaf0",
+        "ascon/ascon_c/aead/ascon.h": "24b8b35c623b30f6fb55908170f920a8e059842c7e4f12cad0fdd04ad5f9be99",
+        "ascon/ascon_c/aead/constants.h": "6e95f0ca2457f41fd6f0f301e608804c492a3c9244e21d0e8354b5cd564b1875",
+        "ascon/ascon_c/aead/permutations.h": "b9f0d9c50549a0a5c8733196217a352bea10c12420249ceccd809a7ccf0a97c1",
+        "ascon/ascon_c/aead/printstate.c": "1f7c69900b61138987d46f27837a8249a7a19adcd5290b71574fd4e90b037b32",
+        "ascon/ascon_c/aead/printstate.h": "49d911e69a3ee4873be8a3a2211549659d9efbc97ec5297e18200c6fd19c8381",
+        "ascon/ascon_c/aead/round.h": "b44435ff8c33966a2fdc11aefce83df3f1923b956e82913734480dc6da66d294",
+        "ascon/ascon_c/aead/word.h": "257b5e3248e29ed1b65c9e670ade92bcf0432790364e332c6ae78f5fd9fa5ab1"
+      },
+      "bridge_sha256": "3f0c1fd49f55536b1e98d5291e79e1fbb3cbafb1be15aba6d3d428beab7a3759",
+      "binary_sha256": "fceb762bf6121791657959320ed165003afd4ef6fd89f5d8dd96e974117eb7a8"
+    },
+    "repository-python": {
+      "path": "ascon/pyascon/ascon.py",
+      "sha256": "d1f3e185ff299a891eb7ab286c2c053ae75ccf25a1246f99eb2946625123b66e"
+    }
+  },
+  "summary": {
+    "passed": 21496,
+    "failed": 1,
+    "exit_code": 1
+  },
+  "groups": {
+    "locked_source_and_data_sha256": {
+      "passed": 1,
+      "failed": 0
+    },
+    "upstream-c": {
+      "passed": 0,
+      "failed": 1
+    },
+    "upstream-python": {
+      "passed": 7165,
+      "failed": 0
+    },
+    "repository-c": {
+      "passed": 7165,
+      "failed": 0
+    },
+    "repository-python": {
+      "passed": 7165,
+      "failed": 0
+    }
+  },
+  "failures": [
+    {
+      "name": "upstream-c/setup_or_corpus",
+      "status": "FAIL",
+      "detail": "OSError: /mnt/e/amd_fpga_2026/build/local/ascon_kat/upstream-c.so: cannot open shared object file: No such file or directory"
+    }
+  ],
+  "original_log_archive": {
+    "path": "data/ascon/results/runner_race_before_fix.log.gz",
+    "uncompressed_sha256": "95ce46669235880f6a45e985e4ffd3e148f8623579b02a922acdd6fd1abe9a0b",
+    "uncompressed_bytes": 899834,
+    "archive_sha256": "a50b8d3887122bc0ed151edb0d54878b014eb77f4e8dd16ff5663861ca8e31df",
+    "archive_bytes": 63504,
+    "reason": "lossless compression of repeated PASS evidence; failure details retained in JSON"
+  }
+}
