@@ -86,3 +86,29 @@ checkpoint 无新增 commit。看板仍不改；交接 RTL owner/TBD 修重复/�
 首次审计曾复现 top_pl_bram 缺三个 IP module 的 Icarus 报错；该历史结果保留在 repository_audit。如今 XCI 已恢复，但 XCI 不是 Icarus 可直接编译的 Verilog 模型，仍需 Vivado 生成对应产物。
 
 foundation 收口的 579 资产分类：A source 485、B build/config input 85、C test/reference data 3、D historical evidence 6。最终 board 仅两个工程，未改 RTL、未跑 Ascon。提交准备与 Git 检查见 [收口检查](../docs/repository_foundation_closeout.md)。
+
+## 2026-10-07 — C02 production C 认证失败输出收口
+
+owner TBD；基线 `origin/feat/ascon-kat-validation` 的
+`c34728558469f0d4e4068730801dea59e0ca2100`；分支
+`fix/ascon-c-auth-failure`。本节不修改任务看板。
+
+| 项 | 本轮真实结果 | 状态建议 |
+|---|---|---|
+| 原问题 | bad tag 返回 -1，但 mlen=17、buffer=原明文；原门禁 1 PASS/1 FAIL/exit 1 | 失败证据保留 |
+| 扩展 raw 门禁修复前 | 15,039 PASS / 8,926 FAIL / exit 1；包括短输入保留 stale mlen | 失败证据保留 |
+| production C 最小修复 | 仅 decrypt：失败清零已知候选区域并设 mlen=0；短输入仅设 mlen=0；完整 tag XOR/OR 比较保留 | host 子项关闭 |
+| 修复后 raw 门禁 | 23,965 PASS / 0 FAIL / exit 0；直接读完整 buffer，检查两侧 canary | C03 软件失败输出子项 PASS |
+| 四 backend host validation | 修改前后均 28,661 PASS / 0 FAIL / exit 0 | Final 固定 KAT 无回归 |
+| harness/golden | 5 tests PASS / exit 0 | 错输出/假接受/hash 故障确实非零退出 |
+| 加密不变 | 1,153 固定 AEAD 输入输出拼接 SHA256 修改前后一致 | encryption 无改动 |
+| C01 | 锁定来源、标准、许可、KAT/hash 与软件证据已可用 | 可评审 done |
+| C02 | host API 安全契约已收口；target build/port 与 B04 仍未验 | 保持 in_progress，不能 done |
+| C03 | 软件验证全部 PASS；target/整体前置未验收 | 不自行 done |
+
+实际命令、编译器/源文件哈希、前后 raw 示例、原始日志与限制见
+[C API 与修复记录](../ascon/ascon_c/aead/readme.md) 和 `data/ascon/results/`。
+锁定 reference、固定 expected、Python、生产 RTL/CPU/Vivado 均未修改。
+目标固件、上板、cycles/PPA、buffer overlap/异常指针/超大长度与全面 timing proof
+未验证或 not_measured。下一接收：C02 target/B04 → C03 target KAT → C04 real
+mcycle，owner TBD；RTL integration/decrypt blocker 仍由 RTL owner 处理。

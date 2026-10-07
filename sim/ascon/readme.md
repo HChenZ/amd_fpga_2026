@@ -1,7 +1,9 @@
 # Ascon Final host validation and RTL golden interface
 
-Task C01/C03, owner TBD, audited 2026-10-07 (Asia/Shanghai).
+Task C01/C02/C03, owner TBD, audited 2026-10-07 (Asia/Shanghai).
 The standard and observed issues are in [ascon_standard_baseline](../../docs/ascon_standard_baseline.md).
+The production C API is documented in
+[aead/readme.md](../../ascon/ascon_c/aead/readme.md).
 
 ## Run
 
@@ -18,10 +20,9 @@ python3 sim/ascon/check_failure_contract.py
 Windows/PowerShell with the available Ubuntu WSL environment:
 
 ```powershell
-$asconWslRoot = (wsl -d Ubuntu -- wslpath -a $PWD.Path).Trim()
-wsl -d Ubuntu -- python3 "$asconWslRoot/sim/ascon/run_validation.py"
-wsl -d Ubuntu -- python3 "$asconWslRoot/sim/ascon/test_harness.py"
-wsl -d Ubuntu -- python3 "$asconWslRoot/sim/ascon/check_failure_contract.py"
+wsl -d Ubuntu -- python3 sim/ascon/run_validation.py
+wsl -d Ubuntu -- python3 sim/ascon/test_harness.py
+wsl -d Ubuntu -- python3 sim/ascon/check_failure_contract.py
 ```
 
 The first command checks all 1,089 official upstream KATs, 64 fixed supplemental
@@ -41,14 +42,25 @@ invalid-tag acceptance, and a hash mismatch; it also calls all four golden CLI
 operations and checks the `$readmemh` layout. Faults are injected only in child
 Python processes; no repository/reference source or fixed expected data changes.
 
-The third command is a separate project API acceptance gate. At the audited
-HEAD it **fails with exit 1**: repository C returns `-1` for an invalid tag but
-retains plaintext and `mlen=17`. The KAT adapter discards failed C output; this
-adapter does not repair the actual firmware API. This raw-output issue must be
-closed in C02 before claiming the project's authenticated decryption contract.
+The third command is a separate production C API acceptance gate. It now calls
+raw C with A5 canaries before and after exactly `max(0, clen-16)` output bytes,
+starts with a stale nonzero mlen, and inspects the whole output independently of
+returned mlen. For all 1,089 official and 64 supplemental cases it checks valid
+decrypt, unchanged encrypt, first/last tag and ciphertext tampering, failure
+mlen=0, zeroed plaintext and unchanged canaries. Empty ciphertext has only tag
+tampering. All 16 truncated lengths must fail, reset mlen and leave canaries
+untouched. Public-vector raw samples at PT=0/1/8/16/17 are saved in the JSON.
+Before repair it reports 15,039 PASS / 8,926 FAIL, exit 1; after repair it reports
+23,965 PASS / 0 FAIL, exit 0. The original two-check reproducer also failed;
+all before-fix evidence is retained. Merely hiding the buffer by returning
+mlen=0 cannot pass the new test. The unchanged upstream reference is subject to
+algorithm KAT, not the project's extra output-erasure contract.
+Stored full logs and the large before-fix JSON are losslessly gzip-compressed
+in data/ascon/results; rerunning the scripts writes normal JSON and log files.
 Python rejects a short tag via assertion (converted to rejection in the test
 adapter); it is not a production input-validation wrapper. Timing resistance,
 buffer aliasing/huge lengths and target firmware are outside this host suite.
+WSL inherits the repository working directory; run these commands at its root.
 
 ## RTL consumers
 

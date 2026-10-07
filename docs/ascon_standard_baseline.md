@@ -1,5 +1,9 @@
 # NIST Final Ascon-AEAD128 标准基准与验证审计
 
+本文件是 `feat/ascon-kat-validation` 的历史标准审计，软件/RTL 问题与测试数字
+固定到下面注明的审计 HEAD，不代表本分支的当前失败状态。C02 production C 的
+认证失败修复及最新实测见 [软件 API 与修复记录](../ascon/ascon_c/aead/readme.md)。
+
 日期：2026-10-07（Asia/Shanghai）。任务 C01/C03，owner TBD。
 HEAD：`8c8634f80f55cff50ae1ffcaf6fb79d67e5a7a93`；分支 `feat/ascon-kat-validation`。
 现有软件、Ascon/CPU RTL、Vivado 工程、tasks/task_board.md 均未修改；未 commit/push。

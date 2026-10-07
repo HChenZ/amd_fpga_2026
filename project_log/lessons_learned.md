@@ -80,3 +80,22 @@ L01/L02 仅描述初始 Git HEAD；三个 IP 与原 XC7Z020 工程现已在 ZIP 
 L08 的“保留两个跟踪生成元数据”是此前策略；本轮按用户“无 generated build cache”要求完成清理。ignore 不会取消跟踪，需显式移出索引。git mv 会暂存 rename，故收口后不能继续报告“索引为空”；普通 git diff --stat 也不包含 staged rename 或 untracked 资产，应同时检查 cached diff 和状态。
 
 收尾发现：默认 cached diff 检查把原 Kintex XPR/XDC 的 CRLF 判作行尾空白。保持源字节不动，仅在 `.gitattributes` 对这两个文件声明 cr-at-eol，同时保留 blank-at-eol、blank-at-eof、space-before-tab 检查；复核原哈希和检查结果。
+
+## 2026-10-07 — C02 认证失败输出契约
+
+- 返回 -1 只证明认证拒绝，不能证明 buffer 不含明文。原 C 先写候选明文再验 tag，
+  bad tag 仍返回 mlen=17 和原明文。原 KAT adapter 丢弃失败输出，掩盖 raw API 问题。
+  新门禁直接检查整个已知输出区域，不能按返回 mlen 截断后误报擦除成功。
+- 同一个扩展门禁实测修复前 8,926 FAIL / exit 1、修复后 0 FAIL / exit 0。
+  保存 source hash、真实失败与 raw byte 示例；两侧 A5 canary 验证擦除边界，
+  加密 aggregate SHA256 前后相同。禁止为修 production 改 locked reference/KAT。
+- 短输入以前先 return -1，未写 mlen，调用者旧长度可残留。入口归零 mlen 后再
+  检查 clen<16；没有明文候选时不擦 buffer，也不发生 clen-16 下溢。
+- NIST 算法 fail、SUPERCOP C 返回 -1、项目失败擦除是不同层的约束；不把项目
+  增强契约声称为上游强制规则。完整 16-byte XOR/OR comparison 保留，失败用
+  volatile stores 避免优化丢弃；host disassembly 不是全平台 timing proof。
+- 从 main 开始的未提交工作依赖另一 feature 时，先用 stash 保存全部状态，再让
+  修复分支直接基于依赖分支，只恢复本任务增量；整文件恢复 project_log/readme
+  会丢掉依赖分支记录，应采用增量合并并用三点 diff 审计。
+- 本轮 PowerShell→wslpath 原 Windows 路径传参丢反斜杠，脚本路径变为 /sim/...，
+  exit 2、没有测试运行。使用仓库根目录下 WSL 相对路径成功，不写死本机盘符。

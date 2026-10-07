@@ -86,3 +86,25 @@
 - 579 工作区资产哈希一致；577 个 ZIP 资产暂存字节与 manifest 一致。两份 legacy 文件在既有 Git 历史中为 LF、工作区为 CRLF；仅对这两个 B 类 .gitattributes 规则声明 text/eol=crlf，以保留既有 Git blob 和原工作区哈希。历史源文件字节不动。
 - recovery commit：fc9147785cc4490b1673a0b86e16f337f256f122，584 文件、83139 行新增。本记录随独立 foundation 提交保存，B 类单独要求 git diff --cached --check 为 exit 0。
 - 本轮不 push、不 merge，不运行 Vivado/Ascon/PUF/PYNQ/ISE，不修改任何历史 RTL/XPR/XDC。
+
+## 2026-10-07 — C02 authentication-failure software repair
+
+- owner TBD；分支 `fix/ascon-c-auth-failure`，直接基线为已推送的验证分支
+  `c34728558469f0d4e4068730801dea59e0ca2100`。开始时误从 main 13d954f 建分支，
+  完成测试后用可恢复 stash 保存全部工作，将分支基线调整到 c347285，再只恢复
+  C02 增量；没有复制提交上一分支资产，没有改写远端。
+- 审计 NIST Final §4.1.2 Algorithm 4 与 SUPERCOP API 2020.08.01：算法输出 fail，
+  C API 无效 ciphertext 返回 -1；项目额外要求失败不得返回可使用明文。
+- 原复现 exit 1：rc=-1、mlen=17、buffer=原明文。扩展 raw 测试覆盖完整固定
+  AEAD corpus、PT=0/1/8/16/17、tag/CT 首尾翻转、短输入与 canary；修复前
+  15,039 PASS / 8,926 FAIL / exit 1。失败记录保留，未调整 golden。
+- 唯一 production 修改：aead.c decrypt 保存输出起点和已知明文长度，初始化 mlen=0，
+  完整 tag 比较后失败用 volatile byte stores 清除候选区域、mlen=0、return -1。
+  不改 encryption/成功路径算法，不改 reference/Python/RTL/Vivado。
+- 修复后 raw 23,965 PASS、完整四 backend host 28,661 PASS、harness 5 tests PASS，
+  均 exit 0；修改前 full host 同样 28,661 PASS；加密输出 aggregate SHA256 一致。
+  GCC 13.3.0 -O2 objdump 实际确认完整 16-byte comparison 和 wipe stores 留存。
+- 报告及完整日志在 data/ascon/results；重复长日志/大 before-fix JSON lossless gzip。
+  首次 wslpath 传参丢反斜杠，exit 2、未执行测试；改用 WSL 当前目录相对路径成功。
+- C02 host 安全子项完成，target build/B04 未验仍 in_progress；C03 软件 PASS，
+  不自动 done、不改任务看板；下一接收 target port/KAT/C04。RTL blocker 留给 TBD owner。
