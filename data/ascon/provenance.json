@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "retrieved_date": "2026-10-07",
+  "timezone": "Asia/Shanghai",
+  "standard": "NIST SP 800-232 Final / Ascon-AEAD128",
+  "specification": {
+    "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-232.pdf",
+    "version": "NIST SP 800-232 Final, August 2025",
+    "publication_date": "2025-08-13",
+    "license": "NIST public-domain publication (PDF front matter)",
+    "sha256": "1be9bb9a5fef3665ee8b258babe54b8e500d667fcfbbcc99710fe6077c6bad27",
+    "status": "downloaded",
+    "path": "data/ascon/sources/nist_sp_800_232.pdf",
+    "bytes": 1194488
+  },
+  "ascon_c_commit": "446347f21b209f3921c65ece70027c366cbe1693",
+  "pyascon_commit": "ed24e54abf9507d26fa49b46a56091570c7e743e",
+  "licenses": {
+    "ascon-c": "CC0-1.0",
+    "pyascon": "CC0-1.0"
+  },
+  "files": [
+    {
+      "path": "sim/ascon/reference/ascon_c/aead.c",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/crypto_aead/asconaead128/ref/aead.c",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "crypto_aead/asconaead128/ref/aead.c",
+      "sha256": "44814f4f207cc22dcd335b4b07d46a8932e944d0f0cffd4cfb85b2309c9aa53c",
+      "bytes": 6321
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/api.h",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/crypto_aead/asconaead128/ref/api.h",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "crypto_aead/asconaead128/ref/api.h",
+      "sha256": "c86910483647b8323d7e1e9e1aa3e8053c9f78f909c9fd8e00a0c52a1ba0cdbd",
+      "bytes": 216
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/ascon.h",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/crypto_aead/asconaead128/ref/ascon.h",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "crypto_aead/asconaead128/ref/ascon.h",
+      "sha256": "c83217138b791c0e37ab1ab7bde216ed0392fc0c17bc2078f7454217bd4e1ea5",
+      "bytes": 130
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/constants.h",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/crypto_aead/asconaead128/ref/constants.h",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "crypto_aead/asconaead128/ref/constants.h",
+      "sha256": "91cae918bdd5c365090afec02767916764e2c33e72a5d89348b96d20e0c7819e",
+      "bytes": 4588
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/crypto_aead.h",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/tests/crypto_aead.h",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "tests/crypto_aead.h",
+      "sha256": "5c715ebe73ac8117ef5164e3d1ae7bc00f07fee85ca248e54cb153ee25cf5c34",
+      "bytes": 681
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/implementors",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/crypto_aead/asconaead128/ref/implementors",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "crypto_aead/asconaead128/ref/implementors",
+      "sha256": "ac0b9c04174cb475d19c36d830755bf36a18a5e9d9aa5dade7e7f53f2f930b5f",
+      "bytes": 38
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/license.txt",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/LICENSE",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "LICENSE",
+      "sha256": "5537d4d10b76b81b6e8dfd8b644480a4b1efa332fbb0cdb61126c5be781ef7b4",
+      "bytes": 6554
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/permutations.h",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/crypto_aead/asconaead128/ref/permutations.h",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "crypto_aead/asconaead128/ref/permutations.h",
+      "sha256": "58ac28a23c4f310228e79dc18eb7608b62ba3abeedbc28e80d97eb7e3be5d8fb",
+      "bytes": 789
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/printstate.c",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/crypto_aead/asconaead128/ref/printstate.c",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "crypto_aead/asconaead128/ref/printstate.c",
+      "sha256": "628fc41e54f56917c8fdec2e31b80772eb5f673892f0fdcee5d18d934faf3121",
+      "bytes": 1200
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/printstate.h",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/crypto_aead/asconaead128/ref/printstate.h",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "crypto_aead/asconaead128/ref/printstate.h",
+      "sha256": "bf59de3eb2e71c72f47d64c2cdee393fd3a1ca8337f0bd5636d41cca196f19d0",
+      "bytes": 648
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/round.h",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/crypto_aead/asconaead128/ref/round.h",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "crypto_aead/asconaead128/ref/round.h",
+      "sha256": "3ed06f5c6330b085952f6626e5df4a9ca598911f33b15b3ebc5d58dddb8fda11",
+      "bytes": 1215
+    },
+    {
+      "path": "sim/ascon/reference/ascon_c/word.h",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/crypto_aead/asconaead128/ref/word.h",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "crypto_aead/asconaead128/ref/word.h",
+      "sha256": "7418003e426a80197c74d9eca2fa7099c0ec6593bd4522c4a2f1edc4141e4e75",
+      "bytes": 969
+    },
+    {
+      "path": "sim/ascon/reference/pyascon/ascon.py",
+      "url": "https://raw.githubusercontent.com/meichlseder/pyascon/ed24e54abf9507d26fa49b46a56091570c7e743e/ascon.py",
+      "repository": "meichlseder/pyascon",
+      "commit": "ed24e54abf9507d26fa49b46a56091570c7e743e",
+      "upstream_path": "ascon.py",
+      "sha256": "b799653fc09e56fc4eb72c90b3574b967b3ead4c337b2402123148d5b1873eda",
+      "bytes": 19959
+    },
+    {
+      "path": "sim/ascon/reference/pyascon/license.txt",
+      "url": "https://raw.githubusercontent.com/meichlseder/pyascon/ed24e54abf9507d26fa49b46a56091570c7e743e/LICENSE",
+      "repository": "meichlseder/pyascon",
+      "commit": "ed24e54abf9507d26fa49b46a56091570c7e743e",
+      "upstream_path": "LICENSE",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "bytes": 7048
+    },
+    {
+      "path": "data/ascon/kat/asconaead128.txt",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/crypto_aead/asconaead128/LWC_AEAD_KAT_128_128.txt",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "crypto_aead/asconaead128/LWC_AEAD_KAT_128_128.txt",
+      "sha256": "bbbc34692fe05e5fda0a3b025585622ab3e3747495e5e3655b29aae8c2a4bd33",
+      "bytes": 260253
+    },
+    {
+      "path": "data/ascon/sources/ascon_c_readme.md",
+      "url": "https://raw.githubusercontent.com/ascon/ascon-c/446347f21b209f3921c65ece70027c366cbe1693/README.md",
+      "repository": "ascon/ascon-c",
+      "commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "upstream_path": "README.md",
+      "sha256": "753220cfdd7217728d1bf33a0ff77db2aa0b915ab935735651c354aae77b3cb8",
+      "bytes": 25773
+    },
+    {
+      "path": "data/ascon/sources/pyascon_readme.md",
+      "url": "https://raw.githubusercontent.com/meichlseder/pyascon/ed24e54abf9507d26fa49b46a56091570c7e743e/README.md",
+      "repository": "meichlseder/pyascon",
+      "commit": "ed24e54abf9507d26fa49b46a56091570c7e743e",
+      "upstream_path": "README.md",
+      "sha256": "30db38de02d0221735e30c703ca899588f2b36e6c12654c79f54fb734a4c43cb",
+      "bytes": 5078
+    },
+    {
+      "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-232.pdf",
+      "version": "NIST SP 800-232 Final, August 2025",
+      "publication_date": "2025-08-13",
+      "license": "NIST public-domain publication (PDF front matter)",
+      "sha256": "1be9bb9a5fef3665ee8b258babe54b8e500d667fcfbbcc99710fe6077c6bad27",
+      "status": "downloaded",
+      "path": "data/ascon/sources/nist_sp_800_232.pdf",
+      "bytes": 1194488
+    }
+  ]
+}

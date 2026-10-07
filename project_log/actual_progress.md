@@ -1,5 +1,31 @@
 # 实际进度
 
+## 2026-10-07 — C01/C03 Final 标准与 host KAT 证据追加
+
+本段为当前证据；下方 2026-09-21 表格保留历史快照。owner TBD。
+初始 clean，main 从 ab458e5 fast-forward 到
+`8c8634f80f55cff50ae1ffcaf6fb79d67e5a7a93`，含当天 `01 << (8*n)` padding 恢复。
+创建 `feat/ascon-kat-validation`，本轮未 commit/push。
+
+- C01：Final PDF、C/Python 固定 commit、许可与 18 文件哈希、独立完整上游 KAT
+  已锁定；对照见 `docs/ascon_standard_baseline.md`。建议 done，待用户确认；看板未改。
+- C02：现有 host C/Python AEAD 与 Final KAT 一致，WSL GCC 13.3 编译 C 通过。
+  仍 in_progress：目标固件未编译/运行；C bad-tag 返回 -1 但留下明文和 mlen，
+  failure contract 实测 exit 1。测试 adapter 丢弃输出不等于生产 API 已修复。
+- C03：1,089 完整上游 KAT、64 补充 AEAD、308 permutation golden、16 短 tag 长度。
+  四 backend 共 28,661 PASS / 0 FAIL，exit 0；harness 5 tests PASS。
+  框架/host 子项完成，整体建议 in_progress，待 C02 前置与失败输出契约收口。
+- reference gate 12,936 PASS；冻结数据重生成 byte-identical。真实 FAIL 与一次
+  runner 共享库冲突原日志保存 `data/ascon/results/`；冲突已隔离构建并复验通过。
+- 当前 RTL 已含完整 round、P8/P12 和 AEAD 草稿，09-21 的“只有 ror”是历史状态。
+  本轮只记录长度推断/start 未接/输出截断/packed 数据推进/decrypt 空壳等问题，
+  没有修改或仿真现有软件/RTL/CPU/Vivado；不能据此提升 Ixx 完成度。
+
+证据：`data/ascon/provenance.json`、`results/host_validation.*`、
+`results/failure_contract.*`、`results/audit_snapshot.json`；入口 `sim/ascon/readme.md`。
+新增接口仅为独立 golden JSON/656-bit memory/CLI，生产接口未改。
+硬件 cycles/PPA/RTL 功能 not_measured；接收 C02/C03/TBD，再 C04→I01/I02。
+
 截至：2026-09-21，含 ZIP 恢复及 repository foundation 收口。owner 全 TBD；原 rename/生成元数据清理已在 fe66fd8；恢复资产已在 fc9147785cc4490b1673a0b86e16f337f256f122 本地提交。本文件随独立 foundation 文档提交保存；本轮未 push、未 merge main。初始审计基点仍为 e35d42f，不能将其误作当前开发分支 HEAD。
 
 | 任务 / 范围 | 实际结果 | 证据 | 状态 / 局限 |

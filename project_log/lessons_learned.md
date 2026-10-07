@@ -1,5 +1,23 @@
 # 经验与踩坑
 
+## 2026-10-07 — C01/C03 已观察结果
+
+- L18：Python README 写 draft，C 保留 128A 命名，但 AEAD 参数与完整 Final KAT
+  实测一致。不能凭名字或本地 C/Python 相互一致认定标准；先锁定 Final 与独立 KAT。
+- L19：bad tag 返回码正确不等于失败输出安全。本地 C 实测 rc=-1、mlen=17、
+  buffer 等于明文；`check_failure_contract.py` exit 1。测试 adapter 丢弃候选不修复
+  C02 生产 API。接收 C02/TBD；原始失败日志保留。
+- L20：并行 reference gate/validation 同时链接固定 upstream-c.so，发生一次加载
+  失败，证据 `runner_race_before_fix.*`。改用每调用独立 TemporaryDirectory 后
+  复验相同并行场景通过；失败不是算法 KAT mismatch。
+- L21：NIST PDF urllib 首次 HTTP 403，浏览器可读；加 User-Agent 后取得原始 PDF
+  与真实 SHA-256。访问失败不等于没有来源，不编造向量或 hash。
+- L22：锁定原件 hash 需防 Git checkout 换行转换。仅给新增 data/reference 路径
+  -text，新测试脚本 LF；不格式化 upstream KAT/source 或现有 RTL。
+- L23：收尾检查器最初把 Git 的 LF→CRLF 提示和 no-index diff 的 exit 1 当成
+  whitespace 失败；修正为检查实际 whitespace 输出。PDF diff 又触发文本解码错误，
+  新 PDF 设 -diff，按来源/hash 审查二进制，不修改原件。这些不是 KAT 失败。
+
 更新：2026-09-21。区分“已观察”与“待验证假设”，失败不删除，结论变化时追加证据。
 
 | ID | 现象 / 状态 | 原因或证据 | 应对与关联任务 |

@@ -1,5 +1,22 @@
 # 开发记录
 
+## 2026-10-07 — C01/C03 Final 基准、固定 KAT 与独立验证入口
+
+- owner TBD；用户授权同步 clean main、审计及新增 KAT；禁止改现有 RTL、CPU/Vivado、
+  看板，不 commit/push。初始无分叉，ff-only 同步 13 commits，HEAD 8c8634f，
+  分支 feat/ascon-kat-validation。
+- 读取 AGENTS/README/overview/rules/看板/接口/工作流程/日志、C AEAD/XOF、Python
+  AEAD/生成器、五个 Ascon RTL，以及 NIST Final 与设计者维护的锁定参考。
+- 独立下载标准/参考源/许可/完整上游 KAT；新增 data/ascon、sim/ascon。扩展输出
+  来自经过完整 KAT gate 的锁定 C，Python 第二检查；限定 .gitattributes 防换行转换。
+- WSL Python 3.12.3/GCC 13.3：gate 12,936 PASS；全套 28,661 PASS；harness 5 PASS；
+  冻结数据重生成 byte-identical。C failure-output 实际 FAIL exit 1、一次 runner race
+  原日志保留，race 已修复复验。
+- 文档记录参数/来源/许可/hash/RTL 只读问题/实际命令/局限；更新 actual_progress、
+  lessons，看板按用户要求仅给建议。现有生产接口不变。
+- 接收 C02/C03/TBD 先收口失败明文发布与 target 构建，再 C04→I01/I02。未做现有
+  RTL/CPU/板级/Vivado/PYNQ/PUF 验证；最终 git diff HEAD 自审，不提交。
+
 ## 2026-09-21 — 第一阶段仓库审计与协作骨架
 
 - 范围：按用户要求完成仓库组织、审计、协作规则、任务和时间计划；原工程保持原位；不开展大规模 Ascon 实现，不 commit/push。
