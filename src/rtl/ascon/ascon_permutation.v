@@ -7,7 +7,7 @@
 
 module p12(
     input wire clk,
-    input wire reset,
+    input wire rst_n,
     input wire start,
     input wire [319:0] s_in,
     output reg [319:0] s_out,
@@ -42,7 +42,7 @@ module p12(
     round round_inst (.s_in(s_reg), .C(constant), .s_out(round_out));
  
     always @(posedge clk) begin
-        if (reset) begin
+        if (!rst_n) begin
             round_cnt <= 4'd0;
             s_out <= 320'd0;
             s_reg <= 320'd0;
@@ -73,7 +73,7 @@ endmodule
 
 module p8(
     input wire clk,
-    input wire reset,
+    input wire rst_n,
     input wire start,
     input wire [319:0] s_in,
     output reg [319:0] s_out,
@@ -104,7 +104,7 @@ module p8(
     round round_inst (.s_in(s_reg), .C(constant), .s_out(round_out));
  
     always @(posedge clk) begin
-        if (reset) begin
+        if (!rst_n) begin
             s_reg <= 320'd0;
             round_cnt <= 4'd0;
             done <= 1'b0;
