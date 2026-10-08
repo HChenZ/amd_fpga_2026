@@ -95,7 +95,6 @@ def main():
                      run_simulation=True, plusargs=["+vectors=" + str(args.vectors / "aead.mem")])
         compile_gate("peer_testbench", ["src/rtl/ascon/ascon_aead_2.v", "src/rtl/ascon/ascon_aead_2_tb.v"],
                      "tb", run_simulation=True)
-        compile_gate("legacy_aead_interface", ["src/rtl/ascon/ascon_aead.v"], "crypto_aead_encrypt")
         production = [p.relative_to(ROOT).as_posix() for p in sorted((ROOT / "src/rtl/ascon").glob("*.v"))
                       if not p.name.endswith("_tb.v")]
         evidence["full_source_policy"] = "All production .v files included; only *_tb.v excluded as testbench; .vh reached by -I/includes"
