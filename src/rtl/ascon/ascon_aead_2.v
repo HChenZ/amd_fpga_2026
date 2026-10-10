@@ -101,23 +101,4 @@ module crypto_aead_decrypt(
 
 endmodule
 
-module get_bytes #(
-    parameter MAX_W = 128,
-    parameter CNT_W = $clog2((MAX_W + 7) / 8 + 1)
-)(
-    input  wire [MAX_W-1:0] value,
-    output reg  [CNT_W-1:0] bytes);
-
-    integer i;
-
-    always @(*) begin
-        bytes = {CNT_W{1'b0}};
-        for (i = 0; i < MAX_W; i = i + 1) begin
-            if (value[i])
-                bytes = (i / 8) + 1;
-        end
-    end
-
-endmodule
-
 `endif
