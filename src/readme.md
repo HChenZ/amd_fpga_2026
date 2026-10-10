@@ -1,6 +1,6 @@
 # 设计源码
 
-现有 `rtl/` 是 CPU/SoC baseline，保持目录、文件名和工程引用。已有软件保持在 `../ascon/`，不为目录整齐迁移。`rtl/ascon/` 中只有初步辅助模块，尚未完成 ISE。
+现有 `rtl/` 是 CPU/SoC baseline，保持目录、文件名和工程引用。已有软件保持在 `../ascon/`，不为目录整齐迁移。`rtl/ascon/` 的standalone加解密与round/P8/P12已通过独立黄金回归；尚未完成CPU ISE，接口与边界见[RTL说明](rtl/ascon/readme.md)。
 
 修改前读 [interfaces](../docs/interfaces.md) 与 [technical_rules](../docs/technical_rules.md)。I02/I03/I05 交付 spec、RTL 与回归；10-07 单测、10-14 首版集成结果，10-27 功能冻结。普通新增文件用小写英文路径。
 

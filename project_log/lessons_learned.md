@@ -1,5 +1,40 @@
 # 经验与踩坑
 
+## 2026-10-10 — 发布暂存检查
+
+- L42：git diff --check不检查未跟踪的新日志；暂存后发现修复前日志拼接输出
+  留有多余EOF空行。用固定raw JSON命令输出重新渲染，只修日志生成规则、保留
+  原exit codes/FAIL文本；cached diff --check作为commit前门禁，不手改失败结果。
+
+## 2026-10-09 — 远端Decrypt整合
+
+- L38：Windows worktree的绝对E:/gitdir不能被WSL Git直接解析，reference Report
+  取HEAD时exit128。改新worktree定位为相对路径，native/WSL都读到0a425f9。
+  三方merge输入也须统一CRLF/LF，避免仅换行造成全文冲突；不据此选择RTL版本。
+- L39：remote已有完整解密，不能沿用旧本地“空壳”判断覆盖远端。保留队友
+  原算法/15端口与tag输出，只适配独立TB和必要认证/长度修复；接口逐项及位置连接验证。
+- L40：correct和m在reset/start未清除，busy时实测X/旧认证状态；只在done检查
+  比较正确会漏掉此错误。逐拍外部明文/认证门禁发现，初始化/撤销后完整KAT通过。
+- L41：TB include AEAD并列production源码时重复三个module，compile exit6。
+  首轮guard只包AEAD未包get_bytes仍exit2；guard扩大至整个文件后原TB/全源通过。
+  保留两次真实FAIL，不排除必要模块或改掉队友include来掩盖。
+
+## 2026-10-09 — RTL decrypt 与生产全源集收口
+
+- L32：提交标题“解密认证失败修复”实际只改C；当前RTL decrypt仍空壳。以源码、
+  端口与实际仿真为准，不沿用队友聊天/旧文档完成状态；本轮补齐并独立KAT核验。
+- L33：旧AEAD已删除，runner仍强制编译旧路径，造成无关功能的真实exit1。
+  before日志保留；按当前全production文件枚举门禁，而不是排除现存必要模块。
+- L34：128-bit总线配5-bit length不意味着支持31 bytes。原17-byte请求实际正常
+  done但数据不足；before probe保存exit1。显式拒绝17..31，并扫735种超长组合。
+- L35：decrypt尾块不能直接复用encrypt XOR/pad：必须替换有效ciphertext bytes、
+  保留未消费state；16-byte整块P8后仍有空padded tail。全0..16×0..16独立KAT
+  覆盖这些分支，不只做Encrypt→Decrypt反向运行。
+- L36：只查失败result不足以发现认证前明文泄露。TB每拍检查外部m/mlen/result，
+  错tag/错明文/提前输出三个隔离源码变体都确实fatal exit1；生产源不受注入修改。
+- L37：复位测试的延迟超过done可误称“abort”。首轮73cycle测试已在70cycle
+  完成，改69cycle认证发布前并检查复位前busy。最终五个in-flight点与restart通过。
+
 ## 2026-10-07 — regression 提交换行收口
 
 - L31：data/ascon 按原字节保留，Windows Path.write_text 默认 CRLF；拼接含 CRLF 的

@@ -1,5 +1,8 @@
 `timescale 1ns / 1ps
 
+`ifndef ASCON_AEAD_2_V
+`define ASCON_AEAD_2_V
+
 `include "ascon_constants.vh"
 `include "ascon_permutation.v"
 `include "ascon_word.v"
@@ -17,7 +20,8 @@ module crypto_aead_encrypt(
     output reg [127:0] c,
     output reg [127:0] tag,
     output reg done,
-    output reg busy 
+    output reg busy,
+    output reg error
 ); 
 
     reg [63:0] s0, s1, s2, s3, s4;
@@ -147,6 +151,7 @@ module crypto_aead_encrypt(
             m_rem <= 5'd0;
             c_reg <= 128'd0;
             busy <= 1'b0;
+            error <= 1'b0;
             done <= 1'b0;
             tag <= 128'd0;
             {s0, s1, s2, s3, s4} <= 320'd0;
@@ -161,6 +166,14 @@ module crypto_aead_encrypt(
             case (state)
                 IDLE: begin
                     if(start) begin
+                        error <= 1'b0;
+                        if (adlen > 5'd16 || mlen > 5'd16) begin
+                            done <= 1'b1;
+                            busy <= 1'b0;
+                            error <= 1'b1;
+                            c <= 128'd0;
+                            tag <= 128'd0;
+                        end else begin
                         ad_reg <= ad;
                         m_reg <= m;
                         ad_rem <= adlen;
@@ -169,6 +182,7 @@ module crypto_aead_encrypt(
                         p12_in <= {N1,N0,K1,K0,`ASCON_128A_IV};
                         p12_start <= 1'b1;
                         state <= INIT_W;
+                        end
                     end
                 end
 
@@ -446,6 +460,9 @@ module crypto_aead_decrypt(
             state <= IDLE;
             ad_reg <= 128'd0;
             c_reg <= 128'd0;
+            m_reg <= 128'd0;
+            m <= 128'd0;
+            correct <= 1'b0;
             ad_rem <= 5'd0;
             c_rem <= 5'd0;
             busy <= 1'b0;
@@ -463,6 +480,15 @@ module crypto_aead_decrypt(
             case (state)
                 IDLE: begin
                     if(start) begin
+                        // Revoke previous authentication before processing a new request.
+                        m_reg <= 128'd0;
+                        m <= 128'd0;
+                        correct <= 1'b0;
+                        if (adlen > 5'd16 || clen > 5'd16) begin
+                            done <= 1'b1;
+                            busy <= 1'b0;
+                            tag <= 128'd0;
+                        end else begin
                         ad_reg <= ad;
                         c_reg <= c;
                         ad_rem <= adlen;
@@ -471,6 +497,7 @@ module crypto_aead_decrypt(
                         p12_in <= {N1,N0,K1,K0,`ASCON_128A_IV};
                         p12_start <= 1'b1;
                         state <= INIT_W;
+                        end
                     end
                 end
 
@@ -596,8 +623,14 @@ module crypto_aead_decrypt(
                     done <= 1'b1;
                     busy <= 1'b0;
                     state <= IDLE;
-                    correct <= (diff == 0);
-                    m <= (diff == 0) ? m_reg : 128'd0;   // 失败不发布明文
+                    if (diff == 0) begin
+                        correct <= 1'b1;
+                        m <= m_reg;
+                    end else begin
+                        correct <= 1'b0;
+                        m <= 128'd0;
+                    end
+                    m_reg <= 128'd0;
                 end
 
                 default: begin
@@ -626,3 +659,5 @@ module get_bytes #(
     end
 
 endmodule
+
+`endif
