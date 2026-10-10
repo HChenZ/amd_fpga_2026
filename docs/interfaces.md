@@ -54,6 +54,18 @@ C02 host 契约补记（2026-10-07）：production C 位于 `ascon/ascon_c/aead/
 
 ## ISE 契约（I02 待冻结）
 
+2026-10-09 standalone RTL 补记（V05/C03，owner TBD）：
+`ascon_aead_2.v` encrypt/decrypt 采用显式长度、little-endian128-bit数据/AD总线，
+最多各16 bytes；同步低有效rst_n，一拍start，busy时忽略新请求，done为一拍。
+整合保留远端decrypt原15端口：tag_in输入、tag计算输出、correct/done/busy。
+clen不含tag；done && correct才是成功，按接受请求的clen读取；认证前/失败时
+m=0、correct=0，有效明文长度为0。解密不新增mlen/error/result。
+encrypt增加error，done && !error才是成功输出；17..31长度当拍done/error拒绝。
+解密17..31长度当拍done、correct=0、m=0、tag=0拒绝。
+key/nonce/tag_in须稳定至done；数据/AD与长度在start捕获。>=32长度须在缩窄端口前拒绝。
+完整端口与结果保持规则见 [RTL接口](../src/rtl/ascon/readme.md)。这些是独立AEAD
+接口，不是已冻结的CPU ISE规范；CPU RTL未变。
+
 目前没有已分配的 Ascon custom opcode。现有 `ror/load_bytes/store_bytes` 不是 CPU 指令规范。I02 的交付应填满：指令名/编码、输入/输出寄存器、RV32 64-bit state 表示方式、状态布局、round constant、latency、stall/flush/interrupt、非法编码、clobber、软件封装、golden model、覆盖矩阵。禁止先让 RTL 与软件各自猜一个编码。
 
 ## PS/PL 命令接口（Y01 草案，禁止据此写死寄存器）

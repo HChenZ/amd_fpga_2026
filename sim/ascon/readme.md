@@ -64,8 +64,10 @@ WSL inherits the repository working directory; run these commands at its root.
 
 ## RTL consumers
 
-The host software suite does not instantiate RTL. Production RTL is never
-edited; the separate RTL regression below instantiates it unchanged. The frozen files
+The host software suite does not instantiate RTL. The separate RTL regression
+instantiates production RTL; the 2026-10-09 integration retains the remote
+tag_in/tag/correct decrypt API and adds authentication protection and explicit
+length rejection. The frozen files
 `data/ascon/permutation_cases.json`, `data/ascon/permutation.mem`, and
 `data/ascon/aead_cases.json` are available offline to future TestBenches.
 
@@ -130,12 +132,15 @@ not NIST-published vectors or a NIST certification.
 
 ## RTL regression after latest main
 
-Read [RTL audit](../../docs/ascon_rtl_regression_audit.md) for exact tested scope,
-limitations, source-set failures and module/port issues. From the repository root:
+Read [current RTL validation](../../docs/ascon_rtl_decrypt_validation.md) and
+[RTL interface](../../src/rtl/ascon/readme.md) for tested scope and limitations.
+The [older RTL audit](../../docs/ascon_rtl_regression_audit.md) retains historical
+failures. From the repository root:
 
 ```sh
 python3 sim/ascon/prepare_rtl_vectors.py
 python3 sim/ascon/run_rtl_regression.py
+python3 sim/ascon/test_rtl_harness.py
 ```
 
 Preparation needs Python/GCC and uses the locked C/Python references after a
@@ -143,13 +148,13 @@ complete official KAT gate. Simulation needs Python and `iverilog`/`vvp`.
 For this Windows environment, use WSL for the C reference and native Icarus:
 
 ```powershell
-$asconWslRoot = (wsl -d Ubuntu -- wslpath -a $PWD.Path).Trim()
-wsl -d Ubuntu -- python3 "$asconWslRoot/sim/ascon/prepare_rtl_vectors.py"
+wsl -d Ubuntu -- python3 sim/ascon/prepare_rtl_vectors.py
 python sim/ascon/run_rtl_regression.py
+python sim/ascon/test_rtl_harness.py
 ```
 
 Temporary data/libraries/vvp remain in ignored build/local/ascon_rtl. The final
-`data/ascon/results/rtl_regression.json` and `.log` contain the peer vector audit,
+`data/ascon/results/rtl_integration_regression.json` and `.log` contain the peer vector audit,
 reference gate metadata, tool/source hashes, actual commands, outcomes and
 behavior observations. All five peer expected values are independently checked.
 The testbench extraction intentionally fails on changed/unrecognized formatting
@@ -158,11 +163,22 @@ hashes are checked before use. Case memory packs mlen/adlen (8 bits each), then
 128-bit key, nonce, AD, plaintext, expected ciphertext and tag, all as numeric
 little-endian buses. Permutation memory retains the earlier 656-bit contract.
 
-The isolated new encryption module currently passes 60 input cases and control
-tests under stable key, explicit <=16-byte lengths and one-cycle start pulses.
-round/P8/P12 also pass. **The runner currently returns exit 1** because it includes
-the failing legacy-port and full-source integration gates; this is intentional.
-It excludes only *_tb.v from the production source set, records all production
-inputs, and does not silently omit the old AEAD. Decryption is not_implemented.
+Encrypt and independent decrypt pass all 289 official KAT inputs with PT/AD
+lengths 0..16, plus 11 peer/tail-zero inputs and control tests. Decrypt runs
+2,579 tag/ciphertext/key/nonce/AD tamper rejects and checks external plaintext
+on every busy cycle. Both directions reject all 735 unsupported length pairs
+in the 5-bit range. Round/P8/P12 also pass. The runner now returns exit 0 for
+the current production source set; it excludes only *_tb.v, elaborates all
+production roots, and runs encryption and decryption with all production files.
+The removed legacy source is not required or silently dropped from an existing
+production set. The remaining 800 official cases exceed this packed interface
+and are not claimed as RTL-tested. `rtl_integration_harness.json` records four fault tests:
+accepting bad tags, wrong plaintext and early plaintext each cause vvp exit 1;
+corrupt memory causes runner exit 1. Decrypt uses the unchanged remote 15-port
+API; the same TB checks named and positional callers, computed tag and
+correct=0/m=0 before authentication and on rejection. No decrypt mlen/error
+outputs are needed: use done && correct and the accepted request's clen.
+Preexisting tracked `rtl_regression.*` is preserved; earlier dirty local reports
+remain in the untouched original workspace and external backup.
 Busy-start/key-change/unused-output observations are labelled separately from
 valid stable-key algorithm checks. Own TestBenches have watchdogs and $fatal(1).

@@ -53,23 +53,28 @@ def main():
             ciphertext_difference=ct_error, tag_difference=tag_error))
     if len(peer) != 5:
         raise ValueError(f"Expected 5 literal peer calls, found {len(peer)}; audit parser needs review")
-    lengths = (0, 1, 7, 8, 9, 15, 16)
     matrix = [dict(row, id="matrix_" + row["id"]) for row in official
-              if row["ad_bytes"] in lengths and row["plaintext_bytes"] in lengths]
+              if max(row["ad_bytes"], row["plaintext_bytes"]) <= 16]
     tails = [dict(row, id="tail_" + row["id"]) for row in json.loads((DATA / "aead_cases.json").read_text())["cases"]
              if row["origin"] == "locked_ascon_c_ref" and max(row["ad_bytes"], row["plaintext_bytes"]) <= 16]
     cases = peer + matrix + tails
+    for case in cases:
+        key, nonce, ad, pt = (bytes.fromhex(case[n]) for n in ("key", "nonce", "ad", "plaintext"))
+        expected = bytes.fromhex(case["ciphertext"] + case["tag"])
+        for impl in (oracle, second):
+            if impl.encrypt(key, nonce, ad, pt) != expected or impl.decrypt(key, nonce, ad, expected) != pt:
+                raise ValueError(f"Reference mismatch: {impl.name}/{case['id']}")
     # Retain poison in unused input bytes: explicit lengths must govern masking.
     rows = []
     for case in cases:
         def pack(name):
             value = bytes.fromhex(case[name])
-            pad = b"\xa5" if name in ("ad", "plaintext") else b"\x00"
+            pad = b"\xa5" if name in ("ad", "plaintext", "ciphertext") else b"\x00"
             return f"{int.from_bytes(value + pad * (16-len(value)), 'little'):032x}"
         rows.append(f"{case['plaintext_bytes']:02x}{case['ad_bytes']:02x}" +
                     "".join(pack(n) for n in ("key", "nonce", "ad", "plaintext", "ciphertext", "tag")))
     memory = args.output / "aead.mem"
-    memory.write_text("\n".join(rows) + "\n", encoding="ascii")
+    memory.write_text("\n".join(rows) + "\n", encoding="ascii", newline="\n")
     result = dict(schema_version=1, standard=manifest["standard"],
         reference_commits={k: manifest[k] for k in ("ascon_c_commit", "pyascon_commit")},
         official_kat_sha256=sha256(DATA / "kat/asconaead128.txt"),
@@ -77,8 +82,9 @@ def main():
         original_peer_vector_provenance="not_documented in RTL/testbench/commit; mathematical values independently confirmed here",
         permutation_sha256=sha256(DATA / "permutation.mem"), memory_sha256=sha256(memory),
         supported_lengths=[0, 16], matrix_cases=len(matrix), tail_cases=len(tails),
+        official_cases_total=len(official), official_cases_outside_interface=len(official)-len(matrix),
         peer_expected_pass=sum(c["expected_audit"] == "PASS" for c in peer), cases=cases)
-    (args.output / "vectors.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    (args.output / "vectors.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8", newline="\n")
     for c in peer:
         print(f"{c['expected_audit']} independent_reference/{c['id']} ciphertext={c['ciphertext']} tag={c['tag']}")
     print(f"PASS prepared peer={len(peer)} matrix={len(matrix)} tail={len(tails)}; no >16-byte RTL cases")

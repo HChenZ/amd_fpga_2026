@@ -1,5 +1,84 @@
 # 实际进度
 
+## 2026-10-10 — V05/C03 功能分支提交前审查
+
+owner TBD；用户授权在E:/amd_fpga_2026_integration将已验整合成果commit/push并创建
+PR，base main；最终合并由用户确认。fetch确认main仍为0a425f9，整合分支正确。
+本条记录提交前审查，不把尚未执行的push/PR写成完成；实际SHA与PR见Git历史及交付。
+本轮仅更新发布审查文档/日志，RTL、TB、脚本及KAT均未改；已有PASS的源码哈希
+重新核验。Encrypt所有现有实例均具名连接，无现有位置调用受追加error端口影响。
+原工作区及外部备份只读核验，队友两份dirty结果不纳入；无CPU/Vivado/PYNQ改动。
+提交消息feat(ascon): integrate RTL decryption and KAT validation；明确文件列表暂存，
+不用git add .，不force、不推送main、不合并PR。V05/C03任务状态沿用前次实测边界。
+
+## 2026-10-09 — V05/C03 最新main隔离整合与重新验证
+
+owner TBD；重新fetch确认origin/main=0a425f9，独立worktree
+E:/amd_fpga_2026_integration，分支feat/ascon-decrypt-kat-integration。
+原E:/amd_fpga_2026保持7139a80/cleanup/remove-legacy-ascon-aead及全部28个未提交
+文件。仓库外备份89文件7,636,392 bytes逐一SHA-256核验；包含队友原dirty结果。
+未commit/push/创建PR/合并main；新分支不跟踪origin/main。
+
+- 以remote为基础逐处修复，没有整文件覆盖旧本地RTL。保留队友初始化/AD、
+  整块ciphertext吸收、尾块64-bit state masking/padding、P8/P12/finalization、
+  full tag diff与计算tag输出；P8/P12和原队友TB逐字节未改。
+- Decrypt原15端口名字/方向/宽度/顺序保持不变，无mlen/error/result新端口。
+  done && correct读取接受请求的clen；认证前/失败m=0、correct=0。
+  修reset/start未撤销旧认证/候选、完成后清候选；超长用correct=0拒绝。
+  Encrypt追加error，所有现有具名调用兼容；整个AEAD加include guard。
+- 原remote首请求busy时m/correct为X实测vvp exit1；原TBinclude+显式source编译
+  exit6。首轮guard漏get_bytes编译exit2，失败全部保留，修源后重新完整回归。
+- 新worktree新vector/新source：官方KAT289/289加密和解密，补充11/11；
+  Encrypt311有效/控制调用、Decrypt310、篡改拒绝2,579、每方向超长拒绝735，
+  全部0 FAIL；round264、P8/P12各28state比较PASS。接口具名/位置调用逐拍一致。
+- 所有四个production.v编译exit0，10module无重复，全源加解密仿真exit0，
+  原队友TB5组PASS。故障注入4/4，三个功能故障vvp exit1、坏向量runner exit1。
+  参考全1,089 KAT gate12,936/0；软件四backend本worktree重跑28,661/0。
+- 新证据rtl_integration_regression.*、rtl_integration_harness.json、
+  host_integration_validation.*，记录0a425f9+实际dirty source/TB/scripts hashes，
+  不是旧7139a80结果复用。工具版本/命令/退出码及保护说明见最新解密整合报告。
+- 最终integration_review.json核验当前源码/验证源哈希、原28dirty和89备份未变，
+  远程main仍0a425f9、diff --check exit0；暂存/提交/推送/PR为0。
+
+V05整合子项done；C03 target仍in_progress，I03/I04/I05不因独立AEAD提升验收。
+当前可供用户审查后commit/push功能分支并申请PR。本轮无Ascon仿真功能阻塞；
+多块RTL、CPU/板级、Vivado、cycles/PPA仍未验证或not_measured。
+下一接收B02/B04/V01/TBD→target KAT/mcycle→C04/I01/I02。下节保留先前本地历史。
+
+## 2026-10-09 — V05/C03 standalone Ascon RTL 解密与生产全源集收口
+
+owner TBD；基点7139a80，复用cleanup/remove-legacy-ascon-aead分支。
+初始未提交rtl_regression.json/.log保留，新增rtl_decrypt_regression.*作为默认输出。
+未commit/push/merge；CPU/Vivado/PYNQ/软件/锁定参考均未修改。
+
+- 源码事实：crypto_aead_decrypt仍为空壳；35acd6a是C软件修复。
+  本轮补齐RTL独立解密、完整tag认证与失败输出保护。encrypt新增error，
+  加解密均拒绝物理总线不能承载的17..31-byte长度。
+- before：permutation/encrypt/full-source compile PASS；runner因已删除legacy
+  源路径exit1，保存rtl_decrypt_before.*。原encrypt实测17-byte请求正常done，
+  长度probe simulation exit1，rtl_length_before.json保留真实失败。
+- Icarus/vvp12.0：round264基础state比较PASS；P8/P12各22基础+6控制比较PASS；
+  四个production.v全root编译exit0，10个module无重复；全源加解密仿真exit0。
+- 官方RTL KAT：PT/AD各0..16的全部289组加密/解密均PASS，0失败；11组peer/尾零
+  补充输入亦PASS。独立decrypt使用锁定expected C||T，不以encrypt反向自证。
+  其余800官方组超出接口未运行RTL；完整1,089组C/Python reference gate
+  12,936 PASS，软件四backend重跑28,661 PASS / 0 FAIL，均exit0。
+- encrypt311有效调用；decrypt310有效调用、2,579篡改拒绝；加解密各735超长
+  参数组合拒绝。每拍检查解密认证前m/mlen/result为0，失败当拍及之后仍为0。
+  空/短/8与16边界/尾零、连续调用、busy-start忽略、reset中断/重新调用通过。
+- RTL故障注入4/4：错误tag接受、错误明文、提前发布分别触发vvp exit1；
+  损坏向量触发runner exit1。host harness 5/5通过。最终各入口exit0。
+- 接口：rst_n同步低有效；start一拍；key/nonce/tag保持至done；显式length。
+  decrypt新增c/tag/ad/clen/adlen与128-bit m/mlen/result/done/busy/error。
+  完整契约、命令/版本/退出码/哈希与未测边界见
+  docs/ascon_rtl_decrypt_validation.md、src/rtl/ascon/readme.md与results JSON/log。
+
+看板：C01 done，C03 in_progress（target待验），新增V05 done；I03/I04真正ISE
+保持todo。独立AEAD可以交付算法验证基础，但I05前置B02/V01和I02/I03仍未满足。
+下一接收B02/B04/V01/TBD：CPU baseline与目标软件KAT/mcycle sanity，再C04/I01/I02。
+阻塞：baseline/Vivado/固件依赖/板卡核验与CPU ISE未完成；当前Ascon仿真无功能阻塞。
+Vivado综合/实现、CPU/板上、硬件cycles/speedup/PPA仍not_measured，多块RTL不支持。
+
 ## 2026-10-07 — 独立 RTL regression 提交收口
 
 owner TBD；用户授权在 feat/ascon-kat-validation 创建

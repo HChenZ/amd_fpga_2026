@@ -19,6 +19,11 @@ Audited 2026-10-07; task C01/C03; owner TBD.
 | `results/runner_race_before_fix.*` | Retained transient test-runner build collision; fixed with isolated per-call builds |
 | `results/harness.log` | Five tests for failure detection and golden CLI/memory mapping |
 | `results/audit_snapshot.json` | Git history, actual commands/exit codes, hashes and reproduction evidence |
+| `results/rtl_integration_regression.*` | Fresh 0a425f9 integration: 289 official KAT + 11 extensions, encrypt/decrypt/permutation and complete production compile/simulation PASS; original decrypt interface verified |
+| `results/rtl_integration_before.*` | Actual remote decrypt X output/status and duplicate modules from peer include plus explicit sources, before repair |
+| `results/rtl_integration_setup_failure.*`, `results/rtl_integration_guard_failure.*.gz` | Retained environment/setup and incomplete include-guard FAILs before final successful run |
+| `results/rtl_integration_harness.json` | Four fresh integration fault checks: invalid-tag acceptance, wrong/early plaintext and corrupt vectors all return nonzero |
+| `results/host_integration_validation.*` | Fresh integration-worktree four-backend software run, 28,661 PASS / 0 FAIL; full log losslessly gzip archived |
 
 Lengths are measured in bytes and stored explicitly. No consumer may infer a
 length from nonzero content or strip trailing `00`. Extensions contain `00`,
@@ -38,4 +43,5 @@ the publication is not subject to copyright in the United States and requests
 attribution. This does not relicense the whole project or prove the provenance
 of historical local files. No real secret material is present; all inputs are
 public test data. These results are host software evidence; hardware cycles,
-PPA and RTL functional status remain `not_measured`.
+PPA remain `not_measured`. Standalone RTL encrypt/decrypt and round/P8/P12 now
+have simulation evidence; see [current audit](../../docs/ascon_rtl_decrypt_validation.md).

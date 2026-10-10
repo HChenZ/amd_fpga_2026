@@ -1,5 +1,47 @@
 # 开发记录
 
+## 2026-10-10 — V05/C03 发布审查与用户授权
+
+- 在隔离worktree核分支/HEAD/status，fetch确认origin/main仍0a425f9；索引初始为空，
+  远程功能分支尚未建立；采用已有Git author/committer配置，不猜身份。
+- 检查30个已验成果文件与证据/source hashes、完整Encrypt实例连接、文件大小、
+  生成缓存/临时物/敏感信息、diff --check；补充publication_preflight.json及审查记录。
+- 用户授权按指定消息commit并push功能分支、创建中文PR；合并main仍须用户确认。
+  发布完成状态/commit SHA/PR URL以Git历史和本次交付为准，本段为提交前记录。
+
+## 2026-10-09 — 最新main上的Ascon整合（V05/C03，owner TBD）
+
+- fetch确认0a425f9；仓库外备份全部28dirty与相关资产，共89文件，逐项核验。
+  从origin/main新建feat/ascon-decrypt-kat-integration隔离worktree，不触碰旧工作区。
+- 比较两版RTL/接口/调用及三处remote变化；非RTL文件以7139a80三方整合，
+  生产AEAD只移植必要修复，保留远端decrypt全部算法路径与15端口。
+- Decrypt初始化/撤销候选和correct、失败不发布、超长拒绝；Encrypt新增error；
+  guard完整覆盖AEAD/get_bytes，保留队友原TB include；P8/P12原样保留。
+- TB改用tag_in/correct并验证computed tag，加位置连接逐拍兼容检查；runner增加
+  原接口逐项门禁；保留全部独立KAT/负向/reset/超长/fault测试，重新准备与执行。
+- 环境gitdir/换行setup、远端X状态/重复module、首轮guard漏包的失败各自留证，
+  不伪装PASS。source最终回归/故障/软件全部exit0，0功能FAIL；计数见actual_progress。
+- 更新README/接口/RTL与sim/data说明、看板、最新报告和三日志；原28dirty/备份
+  全部哈希复核，CPU/Vivado/PYNQ未改。未暂存/commit/push/PR/merge。
+
+## 2026-10-09 — V05/C03/I04 standalone RTL 功能验证（owner TBD）
+
+- 检查git status/log与实际生产源码；当前branch cleanup/remove-legacy-ascon-aead，
+  HEAD7139a80。保留初始两份dirty回归报告，不新建/切换分支，不commit/push。
+- 读入口/标准/接口/构建规范及生产AEAD/置换、独立TB和锁定reference。
+  核实decrypt空壳与C修复提交范围，先保留当前回归的stale-source FAIL。
+- 补齐现有AEAD文件内decrypt，只有认证成功发布明文；补加解密容量拒绝。
+  新独立decrypt TB复用原784-bit数据布局；prepare扩展289官方+11补充输入；
+  runner枚举完整当前源码，全root编译并执行全源加解密，不编译已删除旧文件。
+- 实测复现原17-byte请求被当成功处理；保存before source/probe hashes与命令。
+  新测试覆盖735超长组合、每拍认证输出保护、首末及逐bit篡改、重复/reset。
+  修正一次复位覆盖点：73cycles已完成，改69cycles并断言复位前仍busy。
+- WSL Python3.12.3/GCC13.3准备：reference gate12,936/0；native Python3.14.3/
+  Icarus12.0 RTL门禁exit0。host全套重跑28,661/0，host harness5/5。
+  RTL四个故障注入实际触发非零退出，harness4/4通过。
+- 更新README、接口、sim/data/RTL说明、看板、actual_progress/lessons；新增当前
+  验证审计，历史审计注明时间边界。最终工作区供用户审查；接收B02/B04/V01→C04/I01/I02。
+
 ## 2026-10-07 — independent RTL regression 提交收口
 
 - 用户授权提交现有回归，分支 feat/ascon-kat-validation，不 push/merge。

@@ -5,13 +5,13 @@ module tb_ascon_aead_regression;
   reg [127:0] k=0,npub=0,ad=0,m=0;
   reg [4:0] adlen=0,mlen=0;
   wire [127:0] c,tag;
-  wire busy,done;
+  wire busy,done,error;
   crypto_aead_encrypt dut(.clk(clk),.rst_n(rst_n),.start(start),.m(m),.ad(ad),
-    .npub(npub),.k(k),.adlen(adlen),.mlen(mlen),.c(c),.tag(tag),.done(done),.busy(busy));
+    .npub(npub),.k(k),.adlen(adlen),.mlen(mlen),.c(c),.tag(tag),.done(done),.busy(busy),.error(error));
   parameter CASES=60;
   reg [783:0] vectors[0:CASES-1];
   reg [1023:0] vector_path;
-  integer errors=0,i;
+  integer errors=0,i,a,n,invalid_lengths=0;
 
   task compare_bytes;
     input [127:0] got,want;
@@ -60,7 +60,7 @@ module tb_ascon_aead_regression;
       end else begin
         compare_bytes(c,vectors[index][255:128],vectors[index][783:776],0,case_id);
         compare_bytes(tag,vectors[index][127:0],16,1,case_id);
-        if(busy!==0) begin
+        if(busy!==0 || error!==0) begin
           $display("FAIL aead_completion/case=%0d busy=%b",case_id,busy);errors=errors+1;
         end else $display("PASS aead_completion/case=%0d latency=%0d",case_id,count);
       end
@@ -68,6 +68,22 @@ module tb_ascon_aead_regression;
       if(done!==0) begin
         $display("FAIL aead_done_pulse/case=%0d",case_id);errors=errors+1;
       end else $display("PASS aead_done_pulse/case=%0d",case_id);
+    end
+  endtask
+
+  task reject_length;
+    input integer msg_len,ad_len;
+    begin
+      @(negedge clk);load_case(2);mlen=msg_len;adlen=ad_len;start=1;
+      @(negedge clk);start=0;
+      if(done!==1 || busy!==0 || error!==1 || c!==0 || tag!==0) begin
+        $display("FAIL encryption_length/mlen=%0d/adlen=%0d",msg_len,ad_len);errors=errors+1;
+      end else begin
+        invalid_lengths=invalid_lengths+1;
+        $display("PASS encryption_length/mlen=%0d/adlen=%0d",msg_len,ad_len);
+      end
+      @(negedge clk);
+      if(done!==0) begin $display("FAIL encryption_length_done_pulse");errors=errors+1;end
     end
   endtask
 
@@ -120,8 +136,12 @@ module tb_ascon_aead_regression;
     run_case(2,3000,1);
     abort_and_reset(3);abort_and_reset(25);abort_and_reset(45);
     observe_key_and_unused_output();
+    for(n=0;n<32;n=n+1)
+      for(a=0;a<32;a=a+1)
+        if(n>16 || a>16) reject_length(n,a);
+    run_case(2,7000,0);run_case(0,7001,0);
     if(errors) $fatal(1,"FAIL encryption SUMMARY errors=%0d",errors);
-    $display("PASS encryption SUMMARY errors=0; decryption=not_implemented");$finish;
+    $display("PASS encryption SUMMARY errors=0 invalid_lengths=%0d",invalid_lengths);$finish;
   end
-  initial begin #500000;$fatal(1,"FAIL AEAD watchdog");end
+  initial begin #5000000;$fatal(1,"FAIL AEAD watchdog");end
 endmodule

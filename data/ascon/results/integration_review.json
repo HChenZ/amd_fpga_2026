@@ -1,0 +1,300 @@
+{
+  "task_ids": [
+    "V05",
+    "C03"
+  ],
+  "owner": "TBD",
+  "status": "PASS",
+  "evidence_kind": "integration_review",
+  "baseline": "0a425f9f0ed36e0c2666552b87a9173e79ffca0e",
+  "remote_main_at_review": "0a425f9f0ed36e0c2666552b87a9173e79ffca0e",
+  "branch": "feat/ascon-decrypt-kat-integration",
+  "original_worktree": {
+    "root": "E:\\amd_fpga_2026",
+    "head": "7139a80e726df28dc672264014c36b0b55aa27ea",
+    "branch": "cleanup/remove-legacy-ascon-aead",
+    "preserved_dirty_files": 28,
+    "all_backup_files_unchanged": true
+  },
+  "backup": "E:\\amd_fpga_2026_backups\\20261009_ascon_integration_eb072953",
+  "backup_files_verified": 89,
+  "teammate_unchanged": [
+    "src/rtl/ascon/ascon_round.v",
+    "src/rtl/ascon/ascon_permutation.v",
+    "src/rtl/ascon/ascon_word.v",
+    "src/rtl/ascon/ascon_constants.vh",
+    "src/rtl/ascon/ascon_aead_2_tb.v"
+  ],
+  "validation": {
+    "status": "PASS",
+    "failed_gates": [],
+    "exit_code": 0
+  },
+  "official_rtl_kat": {
+    "cases": 289,
+    "total_locked_corpus": 1089,
+    "outside_interface": 800,
+    "encrypt_status": "PASS",
+    "decrypt_status": "PASS"
+  },
+  "interface_compatibility": {
+    "status": "PASS",
+    "baseline_head": "0a425f9f0ed36e0c2666552b87a9173e79ffca0e",
+    "decrypt_ports": [
+      [
+        "input",
+        "wire",
+        "",
+        "clk"
+      ],
+      [
+        "input",
+        "wire",
+        "",
+        "rst_n"
+      ],
+      [
+        "input",
+        "wire",
+        "",
+        "start"
+      ],
+      [
+        "input",
+        "wire",
+        "[127:0]",
+        "c"
+      ],
+      [
+        "input",
+        "wire",
+        "[127:0]",
+        "ad"
+      ],
+      [
+        "input",
+        "wire",
+        "[127:0]",
+        "npub"
+      ],
+      [
+        "input",
+        "wire",
+        "[127:0]",
+        "k"
+      ],
+      [
+        "input",
+        "wire",
+        "[4:0]",
+        "adlen"
+      ],
+      [
+        "input",
+        "wire",
+        "[4:0]",
+        "clen"
+      ],
+      [
+        "input",
+        "wire",
+        "[127:0]",
+        "tag_in"
+      ],
+      [
+        "output",
+        "reg",
+        "[127:0]",
+        "m"
+      ],
+      [
+        "output",
+        "reg",
+        "[127:0]",
+        "tag"
+      ],
+      [
+        "output",
+        "reg",
+        "",
+        "correct"
+      ],
+      [
+        "output",
+        "reg",
+        "",
+        "done"
+      ],
+      [
+        "output",
+        "reg",
+        "",
+        "busy"
+      ]
+    ],
+    "decrypt_interface_unchanged": true,
+    "encrypt_addition": "output error; existing named callers verified"
+  },
+  "fault_harness": {
+    "passed": 4,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "host": {
+    "passed": 28661,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "git_diff_check_exit": 0,
+  "staged_files": 0,
+  "commits_created": 0,
+  "pushed": false,
+  "pr_created": false,
+  "changed_files": [
+    {
+      "path": "README.md",
+      "sha256": "19776a7fc4f46f668f99e9998aa67cb93612a60c9b5a859d988dfea34d6e1755",
+      "bytes": 12777
+    },
+    {
+      "path": "data/ascon/readme.md",
+      "sha256": "476fc04c4daf2b6b1068a888313072d89259c99fb72fb93fec8ba4828e134e6a",
+      "bytes": 4013
+    },
+    {
+      "path": "data/ascon/results/host_integration_validation.json",
+      "sha256": "085c393c23a29fc306184206c9c32da6e1237e272861f16ec8de942e5cbf1852",
+      "bytes": 6660
+    },
+    {
+      "path": "data/ascon/results/host_integration_validation.log.gz",
+      "sha256": "8d59c5d92d86752a803ee07cd17c5fa6ff7886e42f0de609c5f01fa153f6077a",
+      "bytes": 84572
+    },
+    {
+      "path": "data/ascon/results/rtl_integration_before.json",
+      "sha256": "74046afee047553837127a71ad21c619f69e23ccea37d65c6a4b7ec7693bf42c",
+      "bytes": 2454
+    },
+    {
+      "path": "data/ascon/results/rtl_integration_before.log",
+      "sha256": "c487167ee9572696ba77fb3b13b0ced41438332e758cd3c8ccc1ba60e3b3e3a0",
+      "bytes": 1101
+    },
+    {
+      "path": "data/ascon/results/rtl_integration_guard_failure.json.gz",
+      "sha256": "12a823b534d4789f749cf3c4a4e14c46554791b864fd0cf7b40edec61540b0e1",
+      "bytes": 45084
+    },
+    {
+      "path": "data/ascon/results/rtl_integration_guard_failure.log.gz",
+      "sha256": "92165f111f88b96125cb8750f39793ddd4eca5044be21fca360a1ff19df8bdde",
+      "bytes": 26873
+    },
+    {
+      "path": "data/ascon/results/rtl_integration_harness.json",
+      "sha256": "34c781fcbee385db5becdbca8459f439201ab3e4c890b236bdd580095eab3733",
+      "bytes": 6296
+    },
+    {
+      "path": "data/ascon/results/rtl_integration_regression.json",
+      "sha256": "f7e49a433adaa592212aa6000d7143d84d633a8cf002065ed8ab58ce8e58bdd0",
+      "bytes": 478609
+    },
+    {
+      "path": "data/ascon/results/rtl_integration_regression.log",
+      "sha256": "66426b28a792ffbc0d3c930ceda1ee08b3b4f3fd6ba9b5582051237601df610e",
+      "bytes": 324166
+    },
+    {
+      "path": "data/ascon/results/rtl_integration_setup_failure.json",
+      "sha256": "f50a66bcbeaf4a3a300f0e7f2f9d35a8f04ee6525a16d638217418ee852ea3b0",
+      "bytes": 2502
+    },
+    {
+      "path": "data/ascon/results/rtl_integration_setup_failure.log",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "path": "docs/ascon_rtl_decrypt_validation.md",
+      "sha256": "70689ff8ec5fe16de76ca1301fba3bd242b26992b5d837860a4d76c4e8e48ad8",
+      "bytes": 6925
+    },
+    {
+      "path": "docs/ascon_rtl_regression_audit.md",
+      "sha256": "a557f32ac7bae89aa12f448a475225d5ff4f4047389bae28dc197ddada88bdf2",
+      "bytes": 11421
+    },
+    {
+      "path": "docs/interfaces.md",
+      "sha256": "e352ef3809c4cfe02ecaf9062abe5fad1e6ed56ed26acd541c6c1a3b694bb961",
+      "bytes": 7321
+    },
+    {
+      "path": "project_log/actual_progress.md",
+      "sha256": "3bf3e75d64b2f7fa50cae77d7381dcc3606ab1dec663d464c593f66c84727378",
+      "bytes": 15551
+    },
+    {
+      "path": "project_log/development_log.md",
+      "sha256": "8be9abd242c0beefbaa602ddc5061995682d10dc70cb0911aa02f951e17fcfc0",
+      "bytes": 13349
+    },
+    {
+      "path": "project_log/lessons_learned.md",
+      "sha256": "63baaf5f312babd1a0e6a3cdab1ef2a80a4505bb8801c78393b30727a83704b6",
+      "bytes": 12611
+    },
+    {
+      "path": "sim/ascon/prepare_rtl_vectors.py",
+      "sha256": "45ad07293178a7bcfbea27ba04b2d5e8d24cbcdbb12735053d36543408b0cedc",
+      "bytes": 5795
+    },
+    {
+      "path": "sim/ascon/readme.md",
+      "sha256": "9a181fb27d33ca1619b6a58ec3af186b0f9b477809432f3549836c98befe7a08",
+      "bytes": 9756
+    },
+    {
+      "path": "sim/ascon/run_rtl_regression.py",
+      "sha256": "87564e81291f5cba8b9f6f6e406cc38246fe37bd212eeeb7262a865e6805d6b0",
+      "bytes": 11450
+    },
+    {
+      "path": "sim/ascon/tb_rtl_aead.v",
+      "sha256": "4b9a6420ecdeb3e0f0532d78dbc2f5785627dd7ab1e4db4462cb491956aff0f9",
+      "bytes": 5503
+    },
+    {
+      "path": "sim/ascon/tb_rtl_decrypt.v",
+      "sha256": "1389266040a5c14ebb4100572ec6fcf717ea9f7592570b09b1b2e0618b76b76f",
+      "bytes": 6949
+    },
+    {
+      "path": "sim/ascon/test_rtl_harness.py",
+      "sha256": "4c1ea0682a0034468632d61ebe7764dd280f5820d57cd304b461ff427a0e3b7e",
+      "bytes": 5017
+    },
+    {
+      "path": "src/readme.md",
+      "sha256": "6bf82708cdebdae8d4a07ece791bd0528dd92fffc500fd10d11d90316a465ac3",
+      "bytes": 909
+    },
+    {
+      "path": "src/rtl/ascon/ascon_aead_2.v",
+      "sha256": "d6290cab5cc5550fe789c0b2655fa6d2992d8e09eef9184116fd839718b9e915",
+      "bytes": 23629
+    },
+    {
+      "path": "src/rtl/ascon/readme.md",
+      "sha256": "a4e833266cb41f39afd867e4f9ae866cc02cfe617b3feaa19757d4fe8ce4412f",
+      "bytes": 3672
+    },
+    {
+      "path": "tasks/task_board.md",
+      "sha256": "c4a99d4d71a7510389971810357dc508a3faad9fe1b332181757b51c9df853ba",
+      "bytes": 12065
+    }
+  ]
+}
