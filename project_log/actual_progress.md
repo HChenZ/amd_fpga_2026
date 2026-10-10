@@ -1,5 +1,42 @@
 # 实际进度
 
+## 2026-10-10 — Ascon 加解密合并为统一 crypto_aead 模块
+
+owner TBD；用户授权新建独立文件，未改现有 RTL/TB/脚本/KAT。将原独立
+crypto_aead_encrypt / crypto_aead_decrypt 合并为单一 crypto_aead 模块，
+用 mode(0=encrypt/1=decrypt) 选方向、共用一条状态机。关键洞察：Ascon 加
+解密吸收的是同一份"明文 pad 版本"——加密直接喂输入明文，解密由 s^c 恢复
+明文后吸收，故尾块 mask+0x01 逻辑可完全统一，输出恒为 s^data_in。
+
+- 新增 src/rtl/ascon/crypto_aead.v：统一接口 clk/rst_n/start/mode/data_in/
+  ad/npub/k/adlen/datalen/tag_in → data_out/tag/correct/done/busy/error。
+  encrypt 输出密文+tag；decrypt 输出明文，仅 tag_in 匹配才置 correct 发布。
+  17..31 长度两方向均 error 拒绝，decrypt 另保持 correct=0。
+- 新增 sim/ascon/tb_crypto_aead.v：同一冻结向量同时测加解密，含逐拍
+  data_out=0/correct=0 隐藏检查、tag 篡改拒绝、长度拒绝、连续调用。
+- 新增 sim/ascon/prepare_crypto_vectors.py：无需 C 编译器（WSL 不可用），
+  直接从锁定官方 KAT 取 289 组(PT/AD 0..16)生成 784-bit aead.mem，布局与
+  既有 aead.mem 一致。
+- 实测 iverilog 编译 exit0、vvp 运行 errors=0：加密 289、解密 289、篡改
+  拒绝 289、长度拒绝 1470(735×2) 全 PASS；latency 空消息 34 cyc、16B 58~70
+  cyc。全源集(新旧模块共存)编译 exit0、无重复 module。
+- 未动 ascon_aead_2.v 及原 encrypt/decrypt，旧接口回归不受影响。合并模块
+  尚未接入 CPU/ISE；Vivado/PPA/hardware cycles 仍 not_measured。
+
+随后按用户方案 B，把 ascon_aead_2.v 的 crypto_aead_encrypt / crypto_aead_decrypt
+改为实例化 crypto_aead 的薄 wrapper：端口名/方向/宽度/顺序不变，两条重复
+状态机移除，底层逻辑单一来源（get_bytes 保留）。资源上，SoC 只实例化一个
+crypto_aead 即可加解密复用一份，wrapper 为纯连线、综合可优化。
+
+- 回归复验（wrapper 后）：队友 peer TB ALL PASS；加密 300 组+735 长度、解密
+  310 有效+2,579 篡改+735 长度均 errors=0，数字与原 V05 一致；全源集编译
+  exit0、12 模块无重复。tb_rtl_aead/decrypt 用 peer(5)+官方KAT(289)+tails(6)
+  共 300 组向量（build/local/ascon_crypto/aead_full.mem）；WSL 不可用，故 peer
+  ct/tag 取队友 TB 字面量、matrix 取官方 KAT 自带 expected，不重算。
+
+下一接收：SoC 集成(I03/I05)时顶层直接实例化 crypto_aead（一个实例、mode
+切换，加解密复用一份资源）；B02/B03/B04/V01 仍为在自研 CPU 运行 Ascon 前置。
+
 ## 2026-10-10 — V05/C03 功能分支提交前审查
 
 owner TBD；用户授权在E:/amd_fpga_2026_integration将已验整合成果commit/push并创建
