@@ -126,6 +126,7 @@ module id_stage #(
     wire is_auipc    = (opcode == `OP_AUIPC);
     wire is_system   = (opcode == `OP_SYSTEM);
     wire is_misc_mem = (opcode == `OP_MISC_MEM);
+    wire is_ascon    = (opcode == `OP_ASCON);
 
     assign fence_i_en = is_misc_mem && (func3 == `FUNCT3_FENCEI);
 
@@ -1184,6 +1185,59 @@ module id_stage #(
               end
             endcase
           end
+          // ASCON ISE (custom-0 opcode)
+          `OP_ASCON:
+          begin
+            illegal_inst = 1'b0;
+            case (func3)
+              `FUNCT3_ASCON_W:
+              begin
+                id_op_sel   = `EXE_RES_NOP;
+                id_func_sel = `EXE_ASCON_W_OP;
+                id_reg_w_en = 1'b0;
+                id_mem_w_en = 1'b0;
+                id_mem_r_en = 1'b0;
+                is_branch   = 1'b0;
+              end
+              `FUNCT3_ASCON_RD:
+              begin
+                id_op_sel   = `EXE_RES_LOGIC;
+                id_func_sel = `EXE_ASCON_RD_OP;
+                id_reg_w_en = 1'b1;
+                id_mem_w_en = 1'b0;
+                id_mem_r_en = 1'b0;
+                is_branch   = 1'b0;
+              end
+              `FUNCT3_ASCON_P12:
+              begin
+                id_op_sel   = `EXE_RES_NOP;
+                id_func_sel = `EXE_ASCON_P12_OP;
+                id_reg_w_en = 1'b0;
+                id_mem_w_en = 1'b0;
+                id_mem_r_en = 1'b0;
+                is_branch   = 1'b0;
+              end
+              `FUNCT3_ASCON_P8:
+              begin
+                id_op_sel   = `EXE_RES_NOP;
+                id_func_sel = `EXE_ASCON_P8_OP;
+                id_reg_w_en = 1'b0;
+                id_mem_w_en = 1'b0;
+                id_mem_r_en = 1'b0;
+                is_branch   = 1'b0;
+              end
+              default:
+              begin
+                illegal_inst = 1'b1;
+                id_op_sel   = `EXE_RES_NOP;
+                id_func_sel = `EXE_NOP_OP;
+                id_reg_w_en = 1'b0;
+                id_mem_w_en = 1'b0;
+                id_mem_r_en = 1'b0;
+                is_branch   = 1'b0;
+              end
+            endcase
+          end
           default:
           begin
             illegal_inst = 1'b1;
@@ -1245,8 +1299,8 @@ end
 
     //rs1_en,rs2_en独立判断
 
-    assign  rs1_en = is_alu_w || is_alu || is_load || is_store || is_branch_op || is_jalr || csr_reg_op;
-    assign  rs2_en = (opcode == `OP_OP_W) || (opcode == `OP_OP) || is_store || is_branch_op;
+    assign  rs1_en = is_alu_w || is_alu || is_load || is_store || is_branch_op || is_jalr || csr_reg_op || (is_ascon && (func3[1] == 1'b0));
+    assign  rs2_en = (opcode == `OP_OP_W) || (opcode == `OP_OP) || is_store || is_branch_op || (is_ascon && (func3 == `FUNCT3_ASCON_W));
 
     //旁路模块对比地址
     assign rs1_addr = rs1_en ? rs1 : 5'h0;

@@ -25,6 +25,7 @@
 `define OP_OP       7'b0110011
 `define OP_MISC_MEM 7'b0001111
 `define OP_SYSTEM   7'b1110011
+`define OP_ASCON    7'b0001011   // custom-0: Ascon permutation ISE
 
 //================== RV64 ================== 
 `define OP_OP_IMM_W 7'b0011011
@@ -84,6 +85,12 @@
 `define FUNCT3_CSRRCI 3'b111
 // SYSTEM
 `define FUNCT3_ECALL_EBREAK 3'b000
+
+// ASCON ISE (custom-0 opcode, func3 selects the operation)
+`define FUNCT3_ASCON_W    3'b000   // state word write
+`define FUNCT3_ASCON_RD   3'b001   // state word read
+`define FUNCT3_ASCON_P12  3'b010   // P12 permutation
+`define FUNCT3_ASCON_P8   3'b011   // P8 permutation
 
 //Multiply
 `define FUNCT3_MUL 3'b000
@@ -219,6 +226,12 @@
 `define EXE_DIVUW_OP 6'd57
 `define EXE_REMW_OP 6'd58
 `define EXE_REMUW_OP 6'd59
+
+// Ascon ISE (custom-0)
+`define EXE_ASCON_W_OP   6'd60
+`define EXE_ASCON_RD_OP  6'd61
+`define EXE_ASCON_P12_OP 6'd62
+`define EXE_ASCON_P8_OP  6'd63
 
 
 

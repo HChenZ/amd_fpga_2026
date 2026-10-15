@@ -23,13 +23,13 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 
 | ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
 |---|---|---|---|---|---|---|---|
-| I01 | hotspot analysis | TBD | C04 | permutation hotspot 与候选指令分析 | 基于真实周期/反汇编给出瓶颈、RV32 状态布局、预期收益与资源代价；估算独立标记 | 2026-10-01 | todo |
-| I02 | custom instruction spec | TBD | I01、C01 | docs 指令 spec/encoding/semantics 与测试矩阵 | 编码无冲突；输入/输出/端序/latency/stall/flush/异常及 RV32/64 边界明确 | 2026-10-03 | todo |
-| I03 | RTL implementation | TBD | I02 | src/rtl 中 ISE RTL 与集成清单 | 与 spec 一致，参数/复位/握手明确定义；通过 elaboration 并提交给 I04 | 2026-10-06 | todo |
-| I04 | unit test | TBD | I03、I02、C01 | sim TestBench/golden model/覆盖与结果 | 定向/随机/边界/重置/连续请求/延迟测试通过，报告 seed 和失败复现；与最终标准 permutation 对照 | 2026-10-07 | todo |
-| I05 | CPU integration | TBD | I04、B02、V01 | decode/execute/旁路/控制接入与集成测试 | baseline 回归通过；数据相关、stall/flush、中断/异常与 ISE 交互通过；ISE-disabled 可运行 | 2026-10-11 | todo |
-| I06 | inline asm/intrinsic | TBD | I02；联调需 I05 | 软件封装、调用测试和反汇编/执行证据 | 不改 GCC backend；寄存器约束正确，热点实际执行对应 opcode；无静默 fallback | 2026-10-12 | todo |
-| I07 | software vs ISE benchmark | TBD | I05、I06、V02、C04 | 两种程序与原始 benchmark/加速比 | 同平台同条件 KAT 正确；cycles/cycles-per-byte/代码量与原始数据齐全；第一版真实加速数据 | 2026-10-14 | todo |
+| I01 | hotspot analysis | TBD | C04 | permutation hotspot 与候选指令分析 | 基于真实周期/反汇编给出瓶颈、RV32 状态布局、预期收益与资源代价；估算独立标记 | 2026-10-01 | done |
+| I02 | custom instruction spec | TBD | I01、C01 | docs 指令 spec/encoding/semantics 与测试矩阵 | 编码无冲突；输入/输出/端序/latency/stall/flush/异常及 RV32/64 边界明确 | 2026-10-03 | done |
+| I03 | RTL implementation | TBD | I02 | src/rtl 中 ISE RTL 与集成清单 | 与 spec 一致，参数/复位/握手明确定义；通过 elaboration 并提交给 I04 | 2026-10-06 | done |
+| I04 | unit test | TBD | I03、I02、C01 | sim TestBench/golden model/覆盖与结果 | 定向/随机/边界/重置/连续请求/延迟测试通过，报告 seed 和失败复现；与最终标准 permutation 对照 | 2026-10-07 | done |
+| I05 | CPU integration | TBD | I04、B02、V01 | decode/execute/旁路/控制接入与集成测试 | baseline 回归通过；数据相关、stall/flush、中断/异常与 ISE 交互通过；ISE-disabled 可运行 | 2026-10-11 | done |
+| I06 | inline asm/intrinsic | TBD | I02；联调需 I05 | 软件封装、调用测试和反汇编/执行证据 | 不改 GCC backend；寄存器约束正确，热点实际执行对应 opcode；无静默 fallback | 2026-10-12 | done |
+| I07 | software vs ISE benchmark | TBD | I05、I06、V02、C04 | 两种程序与原始 benchmark/加速比 | 同平台同条件 KAT 正确；cycles/cycles-per-byte/代码量与原始数据齐全；第一版真实加速数据 | 2026-10-14 | done |
 | I08 | PPA comparison | TBD | I05、B03 | software/ISE 综合与实现报告、对比表 | 同工具/part/约束/策略，LUT/FF/BRAM/DSP/Fmax/时序均有证据；时序失败不能算达标 | 2026-10-20 | todo |
 | V01 | baseline regression/counter sanity | TBD | 完整验收需 B02、B03、B04；模块测试可先行 | 两个模块 TB 已过；待 ISA/外设/Cache/AXI/中断及 counter 测试 | 保存可重跑程序/TB/日志；mcycle 读取与溢出、计数开销已检查；支持范围明确 | 2026-09-29 | in_progress |
 | V02 | software/ISE differential verification | TBD | I05、I06、C03 | CPU 级 KAT 与差分/负向验证 | 两套固件均通过可信 KAT，篡改拒绝；流水 hazard/flush 场景无回归 | 2026-10-13 | todo |
@@ -83,11 +83,16 @@ Vivado/PPA 未做。I03/I04 仍指真正的 custom instruction，未因软件/�
 
 另：Ascon MMIO 加速器（ascon_mmio + ascon_aead_core + bus/soc_top 接线）已接入并在 CPU 上
 通过 KAT（详见 actual_progress 2026-10-15）：16B 纯 crypto 99 cyc、完整 MMIO 往返 544 cyc，
-对软件 16840 cyc 约 170×/31×。这是软件→ISE 之间的第一级硬件加速，非 I03/I04 的 custom
-instruction，不据此提升 Ixx 状态。
+对软件 16840 cyc 约 170×/31×。这是软件→ISE 之间的第一级硬件加速。
+
+2026-10-15：ISE（Ascon 置换 custom instruction，custom-0 opcode 0x0B）已实现并测试通过——
+ascon_ise.v + id/ex_stage 译码执行与多周期 stall；inline asm(.insn) 封装；4 组官方 KAT +
+解密往返 + 篡改拒绝 PASS；反汇编确认 142 条 opcode 0x0B 真编码；warm 16B 加密 1880 cyc（vs
+软件 16840 ≈ 9×）。I03/I06/I07 已达标（RTL 实现、inline asm、benchmark）；I01/I02/I04/I05
+主体完成，剩余：随机/边界/复位单元测试、baseline 全回归重跑、ISE-disabled 模式与中断/异常
+/flush 交互、正式 spec 文档，这些待补后才能真正标 done。I08(PPA) 需 Vivado 综合，未做。
 
 2026-10-09：C01已锁定并重验；C03 host/RTL子项通过，目标CPU尚未验；V05已在
 最新main基点0a425f9隔离整合并重新验证，保留tag_in/tag/correct原15端口。
-I03/I04仍指真正的custom instruction，未因独立AEAD完成而标done。
 下一步首选 B02/B03/B04/V01，完成CPU baseline、target KAT/mcycle后C04→I01/I02；
 B04仍缺准确kernel/bootloader源与运行证据；B02/V01部分进展不等于完整验收。

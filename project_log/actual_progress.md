@@ -45,6 +45,35 @@ ascon_mmio、ireq_external 并入 ascon_irq），均为 README 记录的增量�
   的第一级硬件加速，MMIO 开销(寄存器写+轮询+读回)是下一步 ISE 要压缩的部分。
 - 未验证/未测：上板、Vivado 综合/PPA、>16 字节消息、真正的 CPU ISE(I02~I07)。未改 crypto_aead.v。
 
+## 2026-10-15 — Ascon 置换 custom instruction (ISE) 完成（最后的优化）
+
+owner TBD；用户授权"继续完成 ISE 优化并测试，这是最后的优化"。在 RV32IM 软核里加入
+Ascon 置换 custom instruction（custom-0 opcode 0x0B），复用已 KAT 验证的 p12/p8 模块，
+CPU 用 inline asm 跑置换、其余 AEAD 逻辑仍用 C。改了 defines.v / id_stage.v / ex_stage.v
+（新增 opcode/func_sel、译码、执行与多周期 stall，仿 divider 的 ex_stall_req 机制），
+未动 crypto_aead.v/p12/p8。
+
+- 新增 src/rtl/ascon/ascon_ise.v：CPU 内 320-bit 状态寄存器 + p12/p8 握手。
+  4 条指令（.insn r 0x0B, funct3, funct7=0, rd, rs1, rs2）：
+  `ascon.w`(f3=0, rs1=data, rs2=word idx) 写状态字；`ascon.rd`(f3=1, rs1=idx, rd=dest) 读状态字；
+  `ascon.p12`(f3=2)、`ascon.p8`(f3=3) 跑置换（多周期，perm_start 电平 + ex_stall_req=~perm_done）。
+  状态字 0..9 对应 s.x[0..4] 的 32-bit 小端切片。
+- 新增 src/firmware/ascon_ise_rv32/（inline asm + 完整 AEAD，code=6216 B）与 run_ascon_ise.sh。
+- 关键坑：GAS `.insn r` 格式是 `opcode,funct3,funct7,rd,rs1,rs2`（funct7 在 rd 之前），
+  不是 `opcode,funct3,rd,rs1,rs2`；写错会报 "bad value for funct7 field"。
+- 实测（Icarus/vvp exit 0）：4 组官方 KAT(empty/1B/16B/16B+AD) 加解密 PASS、解密往返 PASS、
+  tag 篡改拒绝 PASS。反汇编确认 142 条 opcode 0x0B 的 custom 指令，非静默 fallback。
+- 性能（warm，仿真实测）：16B 加密 **1880 cycles**（vs 纯软件 16840 → ~9.0×，~117.5 cpb）。
+  剩余开销来自状态字 load/store（每置换 20 条）与 LOADBYTES/STOREBYTES 字节搬运（未加速）。
+- 未验证/未测：随机/边界/复位/连续请求的定向单元测试（I04 仅跑了 KAT 定向）；baseline 回归
+  重跑（I05 只跑了 ISE 回归，未重跑软件/MMIO 全回归）；ISE-disabled 模式、中断/异常/flush
+  与 ISE 交互；Vivado 综合/PPA（I08，需上板前补）。这些是 I04/I05 验收的剩余项，未标完全达标。
+
+三级加速对比（16B 加密，均为 warm 仿真实测）：纯软件 16840 → MMIO 全卸载 544(~31×) →
+ISE 置换 1880(~9×)。ISE 是 custom instruction 路径（CPU 编排、置换硬件化），MMIO 是全卸载
+协处理器路径；两者互补。ISE 的编码/semantics/stall/inline-asm 落位；I03/I06/I07 已达标，
+I01/I02/I04/I05 主体完成、上述未测项待补。
+
 ## 2026-10-10 — Ascon 加解密合并为统一 crypto_aead 模块
 
 owner TBD；用户授权新建独立文件，未改现有 RTL/TB/脚本/KAT。将原独立

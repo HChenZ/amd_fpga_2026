@@ -33,6 +33,17 @@
 - L50：MMIO 加速器是软件→ISE 之间的第一级：软件 16840 cyc → MMIO 纯 crypto 99 cyc(~170×)、
   完整往返 544 cyc(~31×)。往返开销被寄存器写(10+ 字)+轮询+读回主导，正是下一步 ISE 要省的。
 
+## 2026-10-15 — Ascon 置换 custom instruction (ISE)
+
+- L51：GAS 的 RISC-V `.insn r` 操作数顺序是 `opcode,funct3,funct7,rd,rs1,rs2`（funct7 在 rd
+  之前），不是直觉的 `opcode,funct3,rd,rs1,rs2`。写错报 "bad value for funct7 field"。custom
+  opcode 0x0B 合法（低 2 位=0b11），GAS 会按该字段顺序校验。用 `.insn` 不用手算 `.word`，
+  反汇编 objdump 看 custom 指令条数确认真编码而非 fallback。
+- L52：CPU 内加多周期 custom 指令，直接复刻 divider/mult 的握手：模块用"电平 start + 内部
+  只触发一次(run 标志)"，ex_stage 用 `ex_stall_req = ~done` 冻结流水线；done 为 1 周期脉冲，
+  start 电平在其间自然回零。状态 load/store 指令单周期、置换指令多周期，结果经 logic_out 复用
+  EXE_RES_LOGIC 通道写回。不要在置换模块里用脉冲 start（电平会每周期重锁存跑飞）。
+
 ## 2026-10-10 — 发布暂存检查
 
 - L42：git diff --check不检查未跟踪的新日志；暂存后发现修复前日志拼接输出

@@ -147,6 +147,27 @@ module ex_stage #(
 
 
     // =========================================================================
+    // ASCON ISE (custom-0) permutation coprocessor
+    // =========================================================================
+    wire [31:0] ascon_rd_data;
+    wire        ascon_perm_done;
+    reg         ascon_perm_start;
+    wire        ascon_wr_en     = (id_func_sel == `EXE_ASCON_W_OP);
+    wire [3:0]  ascon_wr_idx    = id_rs2[3:0];
+    wire [31:0] ascon_wr_data   = id_rs1[31:0];
+    wire [3:0]  ascon_rd_idx    = id_rs1[3:0];
+    wire        ascon_perm_p12  = (id_func_sel == `EXE_ASCON_P12_OP);
+
+    ascon_ise u_ascon_ise (
+        .clk(clk), .rst_n(rst_n),
+        .wr_en(ascon_wr_en), .wr_idx(ascon_wr_idx), .wr_data(ascon_wr_data),
+        .rd_idx(ascon_rd_idx), .rd_data(ascon_rd_data),
+        .perm_start(ascon_perm_start), .perm_p12(ascon_perm_p12),
+        .perm_done(ascon_perm_done)
+    );
+
+
+    // =========================================================================
     // 分支判断基本条件 (独立并行比较，避免复用主ALU加法器)
     // =========================================================================
     wire [XLEN-1:0] diff_bits = id_rs1_reg ^ id_rs2_reg;
@@ -250,6 +271,7 @@ module ex_stage #(
             `EXE_AND_OP: logic_out = id_rs1_reg & id_rs2_reg;
             `EXE_CSRRW_OP, `EXE_CSRRS_OP, `EXE_CSRRC_OP,
             `EXE_CSRRWI_OP,`EXE_CSRRSI_OP,`EXE_CSRRCI_OP: logic_out = csr_rdata;
+            `EXE_ASCON_RD_OP: logic_out = {{(XLEN-32){1'b0}}, ascon_rd_data};
             default:     logic_out = {XLEN{1'b0}};
         endcase
     end
@@ -295,6 +317,7 @@ module ex_stage #(
         begin
             mul_start = ~mul_done;
             div_start = 1'b0;
+            ascon_perm_start = 1'b0;
             ex_stall_req = ~mul_done;
             is_mul = 1'b1;
         end
@@ -302,13 +325,23 @@ module ex_stage #(
         begin
             mul_start = 1'b0;
             div_start = ~div_done;
+            ascon_perm_start = 1'b0;
             ex_stall_req = ~div_done;
+            is_mul = 1'b0;
+        end
+        `EXE_ASCON_P12_OP, `EXE_ASCON_P8_OP:
+        begin
+            mul_start = 1'b0;
+            div_start = 1'b0;
+            ascon_perm_start = ~ascon_perm_done;
+            ex_stall_req = ~ascon_perm_done;
             is_mul = 1'b0;
         end
         default:
         begin
             mul_start = 1'b0;
             div_start = 1'b0;
+            ascon_perm_start = 1'b0;
             ex_stall_req = 1'b0;
             is_mul = 1'b0;
         end
