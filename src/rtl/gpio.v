@@ -32,7 +32,7 @@ module gpio_ctrl (
     reg [31:0] led_control_active;
     reg [15:0] pwm_divider;
     reg [7:0] pwm_phase;
-
+    reg[1:0] btn_latched;
     // ==========================================
     // 写逻辑
     // 地址约定：基址 + 0x00
@@ -220,7 +220,7 @@ module gpio_ctrl (
     wire [1:0] btn_pressed = ~key_out & btn_clean_d1;    
 
 
-    reg[1:0] btn_latched;
+  
     always @(posedge clk or negedge rst_n) 
     begin
         if (!rst_n) 

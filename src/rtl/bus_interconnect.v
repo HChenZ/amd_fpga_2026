@@ -81,6 +81,15 @@ module bus_interconnect #(
     input   [31:0] gpio_rdata,
 
     // ==========================================
+    // ASCON 接口
+    // ==========================================
+    output              ascon_re,
+    output              ascon_we,
+    output reg [5:0]    ascon_addr_sel,
+    output     [31:0]   ascon_wdata,
+    input      [31:0]   ascon_rdata,
+
+    // ==========================================
     // CPI_cnt
     // ==========================================
     output          cpi_re,
@@ -113,6 +122,7 @@ module bus_interconnect #(
     wire hit_uart  = (addr_high == 16'h2000);
     wire hit_gpio  = (addr_high == 16'h2001);
     wire hit_cpi   = (addr_high == 16'h6000);
+    wire hit_ascon = (addr_high == 16'h3000);
 
 
     // =================================================================
@@ -350,6 +360,9 @@ module bus_interconnect #(
 
     assign cpi_re = mmio_re & hit_cpi;
 
+    assign ascon_re  = mmio_re & hit_ascon;
+    assign ascon_we  = mmio_we & hit_ascon;
+
     // uart 32位写数据
     wire [31:0] wdata_32;
     generate
@@ -360,6 +373,7 @@ module bus_interconnect #(
     endgenerate
     assign uart_wdata = wdata_32;
     assign gpio_wdata = wdata_32;
+    assign ascon_wdata = wdata_32;
 
     // UART 地址选择
     wire [3:0] uart_addr = cpu_addr[3:0];
@@ -415,6 +429,10 @@ module bus_interconnect #(
       endcase
     end
 
+    // ASCON 地址选择：字节偏移[7:2] 作为 6-bit 字索引
+    always @(*)
+        ascon_addr_sel = cpu_addr[7:2];
+
     // =================================================================
     // 锁存片选信号（上一拍记录谁在读，用于对齐同步读回来的数据）
     // =================================================================
@@ -423,7 +441,8 @@ module bus_interconnect #(
     reg gpio_re_reg;
     reg uart_re_reg;
     reg clint_re_reg;    
-    wire [4:0] read_sel_q;
+    reg ascon_re_reg;
+    wire [5:0] read_sel_q;
 
     always @(posedge clk or negedge rst_n)
     begin
@@ -433,6 +452,7 @@ module bus_interconnect #(
             gpio_re_reg  <= 1'b0;
             uart_re_reg  <= 1'b0;
             clint_re_reg <= 1'b0;
+            ascon_re_reg <= 1'b0;
         end
         else
         begin
@@ -440,11 +460,12 @@ module bus_interconnect #(
             gpio_re_reg  <= gpio_re;
             uart_re_reg  <= uart_re;
             clint_re_reg <= clint_re;
+            ascon_re_reg <= ascon_re;
         end
     end
 
     wire dcache_rdata_valid = (cache_rid_i == 1'b1) && cache_rdata_valid_i;
-    assign read_sel_q = {cpi_re_reg, gpio_re_reg, uart_re_reg, clint_re_reg, dcache_rdata_valid};
+    assign read_sel_q = {ascon_re_reg, cpi_re_reg, gpio_re_reg, uart_re_reg, clint_re_reg, dcache_rdata_valid};
 
 
     // =================================================================
@@ -452,16 +473,19 @@ module bus_interconnect #(
     // =================================================================
     wire [XLEN-1:0] uart_rdata_x;
     wire [XLEN-1:0] gpio_rdata_x;
+    wire [XLEN-1:0] ascon_rdata_x;
     generate
       if(XLEN==64)
       begin
         assign uart_rdata_x = {uart_rdata, uart_rdata};
         assign gpio_rdata_x = {gpio_rdata, gpio_rdata};
+        assign ascon_rdata_x = {ascon_rdata, ascon_rdata};
       end
       else
       begin
         assign uart_rdata_x = uart_rdata;
         assign gpio_rdata_x = gpio_rdata;
+        assign ascon_rdata_x = ascon_rdata;
       end
     endgenerate
 
@@ -470,7 +494,8 @@ module bus_interconnect #(
         (read_sel_q[1] ? clint_rdata  : {(XLEN){1'b0}}) |
         (read_sel_q[2] ? uart_rdata_x : {(XLEN){1'b0}}) |
         (read_sel_q[3] ? gpio_rdata_x : {(XLEN){1'b0}}) |
-        (read_sel_q[4] ? cpi_rdata    : {(XLEN){1'b0}});
+        (read_sel_q[4] ? cpi_rdata    : {(XLEN){1'b0}}) |
+        (read_sel_q[5] ? ascon_rdata_x: {(XLEN){1'b0}});
 
     assign cpu_rdata_valid = dcache_rdata_valid;
 

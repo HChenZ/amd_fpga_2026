@@ -15,9 +15,9 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 | B03 | xc7z020 board sanity check | TBD | B01；physical board model pending；上板阶段需 B02 | target part = xc7z020clg400-1 confirmed；待板型、约束/image 清单与 sanity 日志 | target part 已确认；核验 physical board model / revision，时钟/复位/UART/LED/存储及 PYNQ 平台；独立配置上板 | 2026-09-28 | blocked |
 | B04 | baseline firmware build/load | TBD | B01；精确 FreeRTOS kernel/bootloader 依赖 | 已恢复部分启动/链接/构建源；待重编译/加载 | clean build 固件，入口/内存匹配；加载后可报告状态和 mcycle；不依赖未入库镜像 | 2026-09-28 | blocked |
 | C01 | NIST SP800-232 reference | TBD | B01 | 规范/参考版本/许可清单与可信 KAT/hash | 固定 final 标准、C/Python reference 提交；区别旧版/draft；核对 IV、端序和 KAT 来源 | 2026-09-24 | done |
-| C02 | Ascon-AEAD128 software port | TBD | C01；目标固件需 B04 | 既有 ascon 目录内标准 C 移植、API/构建入口 | 加解密 API、长度/错误规则明确；host 与目标编译通过；不将已有代码直接算完成 | 2026-09-28 | in_progress |
+| C02 | Ascon-AEAD128 software port | TBD | C01；目标固件需 B04 | 既有 ascon 目录内标准 C 移植、API/构建入口 | 加解密 API、长度/错误规则明确；host 与目标编译通过；不将已有代码直接算完成 | 2026-09-28 | done |
 | C03 | KAT | TBD | C02、C01 | host 全1,089 KAT、standalone RTL接口内289 KAT及认证失败验证；target待验 | 完整锁定可信 KAT 逐字节比对；空/边界/多块/AD；篡改 tag/ciphertext 拒绝；保留失败日志 | 2026-09-29 | in_progress |
-| C04 | RISC-V software benchmark | TBD | C03、B02、B03、B04、V01 | 纯软件程序、mcycle 读取、原始 CSV/JSON | 自研 CPU 上运行且 KAT 正确；64-bit cycle 可靠读取；记录 flags/频率/Cache/中断/计时范围及代码量 | 2026-09-30 | todo |
+| C04 | RISC-V software benchmark | TBD | C03、B02、B03、B04、V01 | 纯软件程序、mcycle 读取、原始 CSV/JSON | 自研 CPU 上运行且 KAT 正确；64-bit cycle 可靠读取；记录 flags/频率/Cache/中断/计时范围及代码量 | 2026-09-30 | done |
 
 ## ISE 与验证（P0）
 
@@ -74,6 +74,17 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 | D04 | demo video | TBD | Y04、Y05、V04 | 演示视频与脚本/文件 hash 索引 | 真实目标板上输入输出、KAT 和两模式指标一致，关键过程可辨识 | 2026-11-01 | todo |
 | D05 | clean-clone reproduction | TBD | B02、B03、B04、V04、D03、D04、S05 | 干净机器/clone 的端到端日志 | 无开发机缓存/IP/绝对路径依赖，重新构建并运行 KAT/benchmark/demo；材料引用有效 | 2026-11-02 | todo |
 | D06 | final package | TBD | D05、D03、D04、S05 | 最终清单/许可证/哈希/材料包 | 11-03 只修材料并核对包；11-04 仅正式提交，由用户控制提交动作 | 2026-11-03 | todo |
+
+2026-10-15：C02 目标编译/运行已在仿真层达成（done）；C04 CPU 级软件 benchmark 完成
+（done，仿真层，非上板）：自研 RV32IM CPU 运行锁定生产 Ascon-AEAD128，6 组官方 KAT +
+篡改拒绝 PASS，mcycle/CPI 实测 enc16B=16840、enc32B=21018、dec16B=17226、dec32B=21461 cycles，
+code=38852 B。C03 目标 KAT 为 6 组代表向量（全 1,089 仍仅 host）。板级(B02/B03)、ISE、
+Vivado/PPA 未做。I03/I04 仍指真正的 custom instruction，未因软件/独立AEAD完成而标 done。
+
+另：Ascon MMIO 加速器（ascon_mmio + ascon_aead_core + bus/soc_top 接线）已接入并在 CPU 上
+通过 KAT（详见 actual_progress 2026-10-15）：16B 纯 crypto 99 cyc、完整 MMIO 往返 544 cyc，
+对软件 16840 cyc 约 170×/31×。这是软件→ISE 之间的第一级硬件加速，非 I03/I04 的 custom
+instruction，不据此提升 Ixx 状态。
 
 2026-10-09：C01已锁定并重验；C03 host/RTL子项通过，目标CPU尚未验；V05已在
 最新main基点0a425f9隔离整合并重新验证，保留tag_in/tag/correct原15端口。

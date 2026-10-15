@@ -1,5 +1,50 @@
 # 实际进度
 
+## 2026-10-15 — Ascon-AEAD128 软件版在自研 RV32IM CPU 上运行并测得软件性能
+
+owner TBD；用户授权"调用已有 C 代码库完成软件版、测试保证处理器可用、测软件性能"。
+未改任何现有 RTL/TB/KAT/脚本；新增固件与仿真平台，全部落在约定目录。
+
+- 新增 src/firmware/ascon_rv32/：crt0.S、riscv.ld（ORIGIN=0x10000000 对齐复位 PC）、
+  main.c（`#include` 锁定生产 ascon/ascon_c/aead/aead.c）、uart.c/h、libc_min.c、
+  bin2vhex.py、build.sh。工具链 riscv-none-elf-gcc 15.2.0，
+  `-march=rv32im_zicsr -mabi=ilp32 -O2 -ffreestanding -nostdlib -lgcc`；
+  64 位软件基线因此需要 libgcc(__udivdi3/__lshrdi3 等)。镜像 code=38852 B、data=0、bss=0。
+- 新增 sim/ascon/axi_slave_bram.v（AXI4 行为 BRAM：4 拍 WRAP 读 + 单拍写 + $readmemh）
+  与 tb_ascon_sw.v（soc_top @50MHz + BRAM + UART monitor 解码 txd、检测 DONE/FAIL 标记）。
+  入口 sim/ascon/run_ascon_sw.sh 一次完成 交叉编译→iverilog 编译→vvp 运行。
+- 实测（Icarus 14.0 devel / vvp，退出码 0）：6 组官方 KAT（empty/1B/16B/16B+AD/17B/32B）
+  加解密全 PASS，tag 篡改拒绝 PASS；CPU RTL(soc_top) 确实执行 ISE 无关的纯软件 Ascon。
+- 软件性能（warm，模拟实测，非上板）：enc 16B=16840 cyc(1052.5 cpb)、enc 32B=21018(656.8)、
+  dec 16B=17226(1076.6)、dec 32B=21461(670.7)；CPI≈3.9~4.0。mcycle 用 CSR 0xB00/0xB80
+  high-low-high 读取；指令数用 cpi_cnt MMIO(0x60000000/04)。UART@115200 主导 cycle 量
+  （每字节 4340 clk），故加密/解密各运行两遍取第二遍作为 warm 测量。
+- 未验证/未测：上板(B02/B03)、Vivado 综合/实现/PPA、CPU ISE、完整 1,089 KAT 的目标运行
+  （仅 host 全量 + 目标 6 组代表向量 + 篡改）。cycle 为仿真实测，不是 board 实测；未改任何 RTL。
+
+C02 目标编译/运行与 C04 CPU 级软件 benchmark 已在仿真层达成；C03 目标 KAT 为 6 组代表向量
+（全量仍在 host）。板级与 ISE 仍依赖 B02/B03/V01 后续接收。
+
+## 2026-10-15 — Ascon MMIO 加速器接入 CPU（第一次硬件优化）
+
+owner TBD；用户授权"结合 IO 接口代码把已写好的硬件接入、做第一次优化并测试"。
+复用队友 IO/ 的 ascon_mmio.v（寄存器文件+FSM+缓冲，基址 0x30000000）与已 KAT 验证的
+crypto_aead.v，新写 ascon_aead_core.v（32-bit 流式接口 → 128-bit 并行 crypto_aead 的适配器）。
+改了 bus_interconnect.v（新增 ascon MMIO 译码 + read_sel_q 扩 6 位）与 soc_top.v（实例化
+ascon_mmio、ireq_external 并入 ascon_irq），均为 README 记录的增量接线；未动 crypto_aead.v。
+
+- 新增 src/rtl/ascon/ascon_mmio.v（队友 IO 原件字节一致复制）、ascon_aead_core.v
+  （streaming 适配器，≤16B AD/msg，超长立即 done+success=0 拒绝）。
+- 新增 src/firmware/ascon_hw_rv32/（MMIO 驱动固件，code=3936 B）与 sim/ascon/run_ascon_hw.sh。
+- 关键 bug：crypto_aead 的 mode=0 加密/1 解密，而 ascon_aead_core 的 encrypt=1 加密/0 解密，
+  初版直连导致所有加密请求按解密执行（空消息 tag 恰好仍对，非空全错）。修 .mode(!encrypt_r)。
+- 实测（Icarus 14.0/vvp，exit 0）：4 组官方 KAT(empty/1B/16B/16B+AD) 加解密 PASS、
+  解密往返 PASS、tag 篡改拒绝 PASS、17B 超长拒绝 PASS——CPU 通过 MMIO 驱动硬件 Ascon 正确。
+- 性能（warm，仿真实测，非上板）：16B 加密 纯 crypto 延迟 99 cycles、完整 MMIO 往返 544 cycles；
+  对比纯软件 16840 cycles → crypto 核心 ~170×、端到端(含寄存器读写+轮询) ~31×。这是 ISE 前
+  的第一级硬件加速，MMIO 开销(寄存器写+轮询+读回)是下一步 ISE 要压缩的部分。
+- 未验证/未测：上板、Vivado 综合/PPA、>16 字节消息、真正的 CPU ISE(I02~I07)。未改 crypto_aead.v。
+
 ## 2026-10-10 — Ascon 加解密合并为统一 crypto_aead 模块
 
 owner TBD；用户授权新建独立文件，未改现有 RTL/TB/脚本/KAT。将原独立

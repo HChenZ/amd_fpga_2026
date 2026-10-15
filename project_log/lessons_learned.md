@@ -1,5 +1,38 @@
 # 经验与踩坑
 
+## 2026-10-15 — 目标软件在自研 CPU 上 bring-up
+
+- L43：git-bash 里 `python3` 指向 Microsoft Store 存根（调用 exit 49），不是真 Python；
+  真实解释器是 `python`（3.11.16）。build.sh 写 `python3` 会静默产出空 hex 且 exit 49。
+  脚本统一用 `python`。iverilog/vvp 是 Windows 原生二进制，`.vvp/.hex` 写相对路径即可。
+- L44：AXI BRAM slave 的读数据若与 beat 计数器同一 `always` 用非阻塞寄存器，会晚一拍：
+  4 拍 WRAP 变成 word0/word0/word1/word2（丢 word3），CPU 取到重复字跑飞、长时间无 UART
+  输出。读数据必须组合逻辑（assign）由 rd_beat/地址寄存器直接驱动，rvalid/rlast 也组合
+  输出；icache 的填线顺序是 `miss_woff + fill_cnt` 取模，即 WRAP，slave 按此送 4 拍即匹配。
+- L45：全 SoC vvp 仿真约 2 万 cycles/s；Ascon 软件 + UART(115200) 输出共 ~2.2M cycles，
+  单次 ~2.5 分钟。cycle 数被 UART 主导（每字节 4340 clk），加密/解密 warm 测量要跑两遍。
+  `$write` 重定向到文件时被 C stdio 全缓冲，实时看进度必须 `$fflush`；`$readmemh` 文件行数
+  < RAM_DEPTH 会告警，把 hex 补零到 BRAM 深度(32768)消除。用 UART 打印 DONE/FAIL 标记，
+  TB 用移位寄存器 `hist=(hist<<8)|ch` 匹配 4 字节标记，避免跨字符边界漏判。
+- L46：软件基线（uint64_t Ascon 在 RV32）确实需要 libgcc（`-lgcc` 跟在源文件后），
+  `-nostdlib` 不自动链 libgcc；`-msmall-data-limit=0` 关闭 gp 相对寻址，crt0 仍设置 gp 无害。
+  复位 PC=0x10000000 与链接 ORIGIN 必须一致，否则首条指令错位。mcycle 读 CSR 0xB00/0xB80
+  （本核无 0xC00 别名），CPI 用 cpi_cnt MMIO；指令/周期测量含少量读计数开销，标注近似。
+
+## 2026-10-15 — Ascon MMIO 加速器集成与第一次硬件优化
+
+- L47：集成两个已验模块时，同名含义相反的信号最坑。crypto_aead 的 `mode`=0 加密/1 解密，
+  ascon_aead_core/IO 契约的 `encrypt`=1 加密/0 解密，初版直连让所有加密按解密跑；空消息
+  因 tag 与方向无关而"恰好"通过，非空消息全错，掩盖了极性 bug。跨模块接控制信号先逐字核对
+  注释里的语义，别只看名字。用 $display 打 data/tag 实值定位，比猜快。
+- L48：include 已验 .v 进模块体会把其文件级 `timescale` 带进 module 内报错；正确做法是把它
+  当独立源文件编译、用 -I 指 include 路径，模块里只实例化不 include。`(a-b)[1:0]` 这种对
+  括号表达式取 part-select Icarus 不认，先接中间 wire 再取 [1:0]。
+- L49：iverilog 的"declaration after use"在新增 assign 引用后声明 net 时必现——把
+  `assign x = wdata_32` 放到 `wire wdata_32` 声明之后即可，别和现有外设顺序反着写。
+- L50：MMIO 加速器是软件→ISE 之间的第一级：软件 16840 cyc → MMIO 纯 crypto 99 cyc(~170×)、
+  完整往返 544 cyc(~31×)。往返开销被寄存器写(10+ 字)+轮询+读回主导，正是下一步 ISE 要省的。
+
 ## 2026-10-10 — 发布暂存检查
 
 - L42：git diff --check不检查未跟踪的新日志；暂存后发现修复前日志拼接输出

@@ -191,7 +191,15 @@ module soc_top #(
     wire  [31:0] gpio_wdata;
     wire  [31:0] gpio_rdata;
 
-    wire         ireq_external = gpio_irq | uart_irq;
+    // ascon
+    wire         ascon_re;
+    wire         ascon_we;
+    wire  [5:0]  ascon_addr_sel;
+    wire  [31:0] ascon_wdata;
+    wire  [31:0] ascon_rdata;
+    wire         ascon_irq;
+
+    wire         ireq_external = gpio_irq | uart_irq | ascon_irq;
 
     // cpi
     wire              probe_inst_valid;
@@ -310,7 +318,13 @@ module soc_top #(
 
         .cpi_re(cpi_re),
         .cpi_addr_sel(cpi_addr_sel),
-        .cpi_rdata(cpi_rdata)
+        .cpi_rdata(cpi_rdata),
+
+        .ascon_re(ascon_re),
+        .ascon_we(ascon_we),
+        .ascon_addr_sel(ascon_addr_sel),
+        .ascon_wdata(ascon_wdata),
+        .ascon_rdata(ascon_rdata)
     );
 
     // =========================================================================
@@ -503,6 +517,23 @@ module soc_top #(
         .cpi_re(cpi_re),
         .addr_sel(cpi_addr_sel),
         .cpi_rdata(cpi_rdata)
+    );
+
+    // =========================================================================
+    // Ascon-AEAD128 MMIO accelerator
+    // =========================================================================
+    ascon_mmio #(
+        .MAX_AD_BYTES (256),
+        .MAX_MSG_BYTES(256)
+    ) u_ascon_mmio(
+        .clk(clk),
+        .rst_n(rst_n),
+        .ascon_re(ascon_re),
+        .ascon_we(ascon_we),
+        .ascon_addr_sel(ascon_addr_sel),
+        .ascon_wdata(ascon_wdata),
+        .ascon_rdata(ascon_rdata),
+        .ascon_irq(ascon_irq)
     );
 
 endmodule
