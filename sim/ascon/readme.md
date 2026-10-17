@@ -191,3 +191,6 @@ Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands an
 core for 867 requests. Cryptographic correctness remains gated by the independent Final reference
 regression. Timing continuation reports use distinct `timing_*` labels; see
 [timing review](../../docs/ascon_timing_review.md).
+
+`python sim/ascon/test_evidence_snapshot.py` verifies that missing, empty, partial or changed implementation
+snapshots cannot be certified as matching. This evidence gate runs in seconds and does not invoke Vivado.

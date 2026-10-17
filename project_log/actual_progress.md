@@ -1,5 +1,22 @@
 # 实际进度
 
+## 2026-10-17 — V07 Ross/工程Skills评估与有限审查
+
+owner TBD；先完成稳定检查点`2b48a8a730267787b399fe06304ae5e2b53ff203`并推送，草稿
+[PR4](https://github.com/HChenZ/amd_fpga_2026/pull/4)明确100 MHz未收敛、未上板；原工作区保留。
+Ross官方Windows Server下载遇AMD会话错误19，本机未安装/配置，MCP timing/utilization均not_measured。
+文档核实2026.1完整测试基线及各Skill版本差异；当前2025.2/Tcl保留，未升级或启动网络控制服务。
+
+只安装Matt Pocock code-review/diagnosing-bugs/tdd/pr四项，固定提交、无插件重复；12文件hash一致，
+本机Codex skills/list四项enabled、0 errors。按code-review做只读双轴审查：需求0项，规范1项P2
+（缺失/部分实现快照可能误判匹配）。修复证据门禁，5项测试PASS，独立复核关闭该发现。
+新最终源码清单119文件，六组CPU输入和实现RTL未变，无需重跑长仿真或Vivado。
+
+评估与优先级见[工具报告](../docs/ross_and_engineering_skills_evaluation.md)、
+[双轴审查](../docs/ascon_branch_review.md)及`data/ascon/results/tool_evaluation/`。
+V07评估完成不表示Ross接入或V06时序/板级门禁完成；下轮先核板型和CPU/cache剩余路径，Sweep延后。
+
+
 ## 2026-10-17 — V06 阶段性收尾与证据复核
 
 owner TBD；工作区 E:/amd_fpga_2026_key_lifecycle，分支 fix/ascon-key-lifecycle。

@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-17",
+  "command": [
+    "python",
+    "sim/ascon/test_evidence_snapshot.py"
+  ],
+  "before": {
+    "exit_code": 1,
+    "tests": 5,
+    "failed": 3,
+    "origin": "snapshot validation logic extracted from checkpoint 2b48a8a, before completeness check"
+  },
+  "after": {
+    "exit_code": 0,
+    "tests": 5,
+    "failed": 0
+  },
+  "source_hashes": {
+    "sim/ascon/evidence_snapshot.py": "88371bdf53939af1937dadaa2857d47bd6e9bc6c212c1319531435ebe6559e9e",
+    "sim/ascon/test_evidence_snapshot.py": "984cb0ef819aefaa93c5b9b6d6b0b36966328b9f8c8b2828e512b69c30f22aed",
+    "sim/ascon/summarize_timing_review.py": "aadfe749f811e6a9e2f3805b1c14b724497f81a048d7d2970fb9e6990195fcda"
+  },
+  "rtl_changed": false,
+  "vivado_rerun": false
+}

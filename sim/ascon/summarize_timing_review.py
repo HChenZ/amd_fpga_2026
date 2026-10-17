@@ -6,6 +6,7 @@ import json
 import re
 import subprocess
 from support import ROOT
+from evidence_snapshot import checked_rtl_snapshot
 
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--round', choices=['r1', 'r2'], default='r1')
@@ -59,10 +60,8 @@ for name in ['ascon_key_lifecycle','ascon_timing_r1']+(['ascon_timing_r2'] if a.
     summary['rounds'][name]=result
 
 snapshot=ROOT/'build/local/ascon_timing_r1/development_rtl'
-summary['rtl_snapshot_hashes']={f.relative_to(snapshot).as_posix():digest(f) for f in snapshot.rglob('*') if f.is_file()}
-summary['vivado_snapshot_matches_current_rtl']=all(digest(ROOT/'src/rtl'/name)==value
-    for name,value in summary['rtl_snapshot_hashes'].items())
-assert summary['vivado_snapshot_matches_current_rtl'], 'RTL changed after implementation snapshot'
+summary['rtl_snapshot_hashes']=checked_rtl_snapshot(snapshot, ROOT/'src/rtl')
+summary['vivado_snapshot_matches_current_rtl']=True
 summary['source_hashes']={f.relative_to(ROOT).as_posix():digest(f)
     for folder in ('src/rtl','src/firmware/ascon_rv32','src/firmware/ascon_hw_rv32',
                    'src/firmware/ascon_ise_rv32','ascon/ascon_c/aead','sim/ascon')

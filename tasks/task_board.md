@@ -45,6 +45,7 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 | ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
 |---|---|---|---|---|---|---|---|
 | V06 | Ascon key lifecycle/security and pre-board review | TBD | latest main三种实现、C01 | docs/ascon_key_management.md、key_lifecycle证据、独立Vivado入口 | KAT/动态Key/认证失败保护/ZEROIZE/ISE交互、可复现构建；板级风险独立记录 | 2026-10-16 | in_progress |
+| V07 | Ross and engineering Skills compatibility assessment | TBD | V06 stable checkpoint | docs/ross_and_engineering_skills_evaluation.md、双轴审查与安装证据 | 官方版本/权限/依赖核验；有限只读review；Ross下载阻塞与未测项明确，不改工程 | 2026-10-17 | done |
 
 ## PYNQ 与通用 Skill（P1）
 

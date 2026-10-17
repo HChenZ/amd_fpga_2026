@@ -1,5 +1,14 @@
 # 开发记录
 
+## 2026-10-17 — V07 工具评估（owner TBD）
+
+- V06检查点2b48a8a已commit/push，PR4为draft；未合并main。
+- 读取AMD Ross官方文档与固定提交；本机原生Windows/Codex CLI/Vivado2025.2核验，下载会话阻塞留证。
+- 通过OpenAI Skill Installer仅安装四个Matt Pocock Skills；逐文件核hash，Codex本地stdio发现检查通过。
+- code-review规范/需求两路只读审查；修复证据快照完整性门禁，保留3个red失败及5个green通过日志。
+- 以pr Skill模板整理PR证据/合并风险；无第三轮实现、Strategy Sweep、原工程改写或真实烧录。
+
+
 ## 2026-10-17 — V06 收尾（owner TBD）
 
 - 恢复现有worktree及staged/unstaged成果；原队友dirty工作区保留，未启动第三轮实现。

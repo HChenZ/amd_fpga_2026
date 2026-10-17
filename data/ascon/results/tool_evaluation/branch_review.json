@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-17",
+  "fixed_point": "c37ecae4bba050d833079d56f8aec05365637aad",
+  "reviewed_head": "2b48a8a730267787b399fe06304ae5e2b53ff203",
+  "workflow": "Matt Pocock code-review, independent Standards and Spec agents, read only",
+  "standards": {
+    "findings": 1,
+    "worst": "P2 missing/partial snapshot false success",
+    "status": "closed after fix and independent follow-up"
+  },
+  "spec": {
+    "findings": 0
+  },
+  "runtime_validation": "5 snapshot-gate tests; reused existing source-matched CPU/RTL/host evidence",
+  "excluded": [
+    "Vivado rerun",
+    "third RTL timing optimization",
+    "Strategy Sweep",
+    "board programming",
+    "full ISA/preemptive ABI certification"
+  ]
+}

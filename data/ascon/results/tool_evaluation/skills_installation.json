@@ -1,0 +1,43 @@
+{
+  "commit": "49dd158d1076134a641b33efb035946536778336",
+  "method": "OpenAI Skill Installer, git, selected folders only",
+  "platform": "Windows",
+  "skills": [
+    {
+      "name": "code-review",
+      "files": {
+        "SKILL.md": "9e6d1b00c31e10a002ac3e5fb49014c9589166f668c62996e80a36d23ca21e70",
+        "agents/openai.yaml": "3f72329747a916ac8ab2b4004490c79e1be6774a8a83e5b258d6ddc7e866abfe"
+      },
+      "exact_match": true
+    },
+    {
+      "name": "diagnosing-bugs",
+      "files": {
+        "SKILL.md": "aa87b0ac245c6d1b203c4678eb34dc101af02291448780c55c5e58ccc1619bd7",
+        "agents/openai.yaml": "167ab1659754b8c53706ecca7502ccc7fb219ff14f0c36bfb1db05ae31a8ac58",
+        "scripts/hitl-loop.template.sh": "063ef14e7212113c7778258172e7c76e963926963e448934048f505d6e576e8f"
+      },
+      "exact_match": true
+    },
+    {
+      "name": "tdd",
+      "files": {
+        "mocking.md": "73a10b6a26b56197c738a764c1e4205af98c74553f4a713795997f6bc35b917d",
+        "SKILL.md": "969583080caf842ae86a53501a0091eced13fd89cad65d3aa75c09112318ff33",
+        "tests.md": "0b401f98bd3684d2fea6440d6946afcf8f5f68ac6a65599dd7a2b90dd9f02eb5",
+        "agents/openai.yaml": "f8e2afc1fbcd6a6e1178c30f290ca9f2286c949a0b74b8b68fd14f198b78ebac"
+      },
+      "exact_match": true
+    },
+    {
+      "name": "pr",
+      "files": {
+        "CREDITS.md": "f5b7f7ead794f672324eb6a2cdc6986840e452abf15d72938084b645074bd149",
+        "SKILL.md": "57658baca2e50e9cf98fdb6b74a51f2afd34b71019d516f7c5d45a51a28354b0",
+        "agents/openai.yaml": "33b71355c3ec06963d9a276baff9e9bf89a1ac69a5b9489a368c95021a8d6cc4"
+      },
+      "exact_match": true
+    }
+  ]
+}
