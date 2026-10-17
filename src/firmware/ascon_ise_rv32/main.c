@@ -31,6 +31,16 @@ static inline uint32_t ascon_rd(uint32_t idx)
 static inline void ascon_p12(void) { __asm__ volatile (".insn r 0x0B, 2, 0, x0, x0, x0"); }
 static inline void ascon_p8(void)  { __asm__ volatile (".insn r 0x0B, 3, 0, x0, x0, x0"); }
 
+/* Explicit software-owned state cleanup. Caller-owned key/nonce are unchanged. */
+static void secure_clear(void *ptr, uint32_t n) {
+    volatile uint8_t *p = (volatile uint8_t *)ptr;
+    while(n--) *p++ = 0;
+}
+static void ise_clear(void) {
+    for (uint32_t i=0;i<10;i++) ascon_w(0,i);
+    __asm__ volatile ("" ::: "memory");
+}
+
 /* ------------------------------------------------------------------ */
 /* Performance counter (mcycle)                                       */
 /* ------------------------------------------------------------------ */
@@ -154,6 +164,10 @@ static void ascon_encrypt(uint8_t *c, uint8_t *tag,
     s.x[3] ^= K0; s.x[4] ^= K1;
     STOREBYTES(tag, s.x[3], 8);
     STOREBYTES(tag + 8, s.x[4], 8);
+    ise_clear();
+    secure_clear(&s, sizeof(s));
+    secure_clear(&K0, sizeof(K0)); secure_clear(&K1, sizeof(K1));
+    secure_clear(&N0, sizeof(N0)); secure_clear(&N1, sizeof(N1));
 }
 
 /* ------------------------------------------------------------------ */
@@ -161,8 +175,11 @@ static void ascon_encrypt(uint8_t *c, uint8_t *tag,
 /* ------------------------------------------------------------------ */
 static int ascon_decrypt(uint8_t *m, const uint8_t *c, uint32_t clen,
                          const uint8_t *ad, uint32_t adlen,
-                         const uint8_t *npub, const uint8_t *k)
+                         const uint8_t *npub, const uint8_t *k, uint32_t *mlen)
 {
+    uint8_t *m_out = m;
+    uint32_t plaintext_len = clen;
+    *mlen = 0;
     uint64_t K0 = LOADBYTES(k, 8), K1 = LOADBYTES(k + 8, 8);
     uint64_t N0 = LOADBYTES(npub, 8), N1 = LOADBYTES(npub + 8, 8);
     ascon_state_t s;
@@ -217,18 +234,28 @@ static int ascon_decrypt(uint8_t *m, const uint8_t *c, uint32_t clen,
     ise_p12(&s);
     s.x[3] ^= K0; s.x[4] ^= K1;
 
+    c += clen; /* advance past the partial ciphertext to the appended tag */
     {
         uint8_t t[16];
         STOREBYTES(t, s.x[3], 8);
         STOREBYTES(t + 8, s.x[4], 8);
         for (i = 0; i < 16; i++) result |= c[i] ^ t[i];   /* c now points at the tag */
+        secure_clear(t, sizeof(t));
     }
-    return (result != 0);
+    if (result) secure_clear(m_out, plaintext_len);
+    else *mlen = plaintext_len;
+    ise_clear();
+    secure_clear(&s, sizeof(s));
+    secure_clear(&K0, sizeof(K0)); secure_clear(&K1, sizeof(K1));
+    secure_clear(&N0, sizeof(N0)); secure_clear(&N1, sizeof(N1));
+    return result ? -1 : 0;
 }
 
 /* ------------------------------------------------------------------ */
 /* Test vectors                                                       */
 /* ------------------------------------------------------------------ */
+/* PUBLIC KAT DATA ONLY. Runtime helpers take caller Key/Nonce parameters.
+ * Never replace these constants with deployment secrets. */
 static const uint8_t key[16]  = {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,
                                  0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f};
 static const uint8_t npub[16] = {0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,
@@ -264,6 +291,7 @@ int main(void)
     uint8_t ct[32], tag[16], m[32];
     uint64_t c0, c1;
     int ok, all_ok = 1;
+    uint32_t mlen;
 
     uart_puts("\n=== ASCON-AEAD128 ISE (permutation in hardware) ===\n");
 
@@ -292,7 +320,7 @@ int main(void)
         uint8_t ctt[32];
         for (int i = 0; i < 16; i++) ctt[i]      = ct_16[i];
         for (int i = 0; i < 16; i++) ctt[16 + i] = tag_16[i];
-        ok = (ascon_decrypt(m, ctt, 16, 0, 0, npub, key) == 0) && bytes_eq(m, pt_16, 16);
+        ok = (ascon_decrypt(m, ctt, 16, 0, 0, npub, key, &mlen) == 0) && bytes_eq(m, pt_16, 16);
         uart_puts("dec round  : "); uart_puts(ok ? "PASS\n" : "FAIL\n"); if(!ok) all_ok = 0;
     }
 
@@ -302,7 +330,7 @@ int main(void)
         for (int i = 0; i < 16; i++) bad[i]      = ct_16[i];
         for (int i = 0; i < 16; i++) bad[16 + i] = tag_16[i];
         bad[0] ^= 0x01;
-        ok = (ascon_decrypt(m, bad, 16, 0, 0, npub, key) != 0);
+        ok = (ascon_decrypt(m, bad, 16, 0, 0, npub, key, &mlen) != 0);
         uart_puts("tamper     : "); uart_puts(ok ? "PASS\n" : "FAIL\n"); if(!ok) all_ok = 0;
     }
 

@@ -1,5 +1,11 @@
 # 接口契约与待定项
 
+2026-10-16现行增量：软件/MMIO/ISE已在RV32仿真运行。MMIO CTRL[2]为idle ZEROIZE，
+BUSY写忽略、认证成功且有效长度内才允许OUT读取；ISE新增内部cancel/ack、EX hold接线，
+**没有新opcode**。ISE decrypt helper新增最后一个mlen指针，失败-1/0长度并擦除候选。
+完整地址、编码、端序、生命周期与局限以[密钥管理审查](ascon_key_management.md)为准；
+下文带2026-09/10-09日期的内容保留为历史，不能据其断言CPU ISE仍未实现。
+
 恢复补充（2026-09-21）：原始 XCI 已确认 PLL 50→100 MHz，BRAM 为 32×32768 words（128 KiB）、freertos_demo.coe 初始化。下文 RTL 地址/计数语义保持不变；共有 31 个 RTL 规范化换行后与当前源码一致。配置频率和历史报告不等于本轮板上实测，详见 [恢复审计](cicc1000023_recovery_audit.md)。
 
 更新：2026-09-21。状态：**现有 RTL 静态提取，未上板验证；目标接口草案未冻结**。修改相关实现前先读本文件，变更需同步测试与上下游说明。
@@ -66,7 +72,7 @@ key/nonce/tag_in须稳定至done；数据/AD与长度在start捕获。>=32长度
 完整端口与结果保持规则见 [RTL接口](../src/rtl/ascon/readme.md)。这些是独立AEAD
 接口，不是已冻结的CPU ISE规范；CPU RTL未变。
 
-目前没有已分配的 Ascon custom opcode。现有 `ror/load_bytes/store_bytes` 不是 CPU 指令规范。I02 的交付应填满：指令名/编码、输入/输出寄存器、RV32 64-bit state 表示方式、状态布局、round constant、latency、stall/flush/interrupt、非法编码、clobber、软件封装、golden model、覆盖矩阵。禁止先让 RTL 与软件各自猜一个编码。
+历史阶段尚无已分配的 Ascon custom opcode；现行custom-0规范见上方2026-10-16增量。现有 `ror/load_bytes/store_bytes` 不是 CPU 指令规范。I02 的交付应填满：指令名/编码、输入/输出寄存器、RV32 64-bit state 表示方式、状态布局、round constant、latency、stall/flush/interrupt、非法编码、clobber、软件封装、golden model、覆盖矩阵。禁止先让 RTL 与软件各自猜一个编码。
 
 ## PS/PL 命令接口（Y01 草案，禁止据此写死寄存器）
 

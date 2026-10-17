@@ -1,0 +1,163 @@
+{
+  "task_ids": [
+    "C03",
+    "I04"
+  ],
+  "owner": "TBD",
+  "evidence_kind": "fault_injection",
+  "production_source_sha256": "ee574a05dd6e9a2a22547410303c074ab15312b687fec9a5e2cd586d01df1311",
+  "harness_sha256": "be4196e0a87b22094be23871da383879b77e6471815a28a8d783b1aafa2c702b",
+  "decrypt_tb_sha256": "f92989b8357e48feb68e91d54347b370e4c47d29d6aa6061b05dc25f33feb8d8",
+  "tests": [
+    {
+      "name": "accept_bad_tag",
+      "status": "PASS",
+      "compile": {
+        "command": [
+          "iverilog",
+          "-g2012",
+          "-I",
+          "E:\\amd_fpga_2026_key_lifecycle\\src\\rtl\\ascon",
+          "-s",
+          "tb_ascon_decrypt_regression",
+          "-Ptb_ascon_decrypt_regression.CASES=300",
+          "-o",
+          "E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\faults_i24dw110\\accept_bad_tag.vvp",
+          "E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\faults_i24dw110\\accept_bad_tag.v",
+          "E:\\amd_fpga_2026_key_lifecycle\\src\\rtl\\ascon\\ascon_aead_2.v",
+          "E:\\amd_fpga_2026_key_lifecycle\\sim\\ascon\\tb_rtl_decrypt.v"
+        ],
+        "exit_code": 0,
+        "first_failures": [],
+        "summaries": []
+      },
+      "simulation": {
+        "command": [
+          "vvp",
+          "E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\faults_i24dw110\\accept_bad_tag.vvp",
+          "+vectors=E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\aead.mem"
+        ],
+        "exit_code": 1,
+        "first_failures": [
+          "FAIL decrypt_reject/case=0/mode=1/bit=0 m=00000000000000000000000000000000 correct=1 busy=0",
+          "FAIL decrypt_rejected_output_hold/case=0",
+          "FAIL decrypt_reject/case=0/mode=2/bit=0 m=00000000000000000000000000000000 correct=1 busy=0",
+          "FAIL decrypt_rejected_output_hold/case=0"
+        ],
+        "summaries": [
+          "FATAL: E:\\amd_fpga_2026_key_lifecycle\\sim\\ascon\\tb_rtl_decrypt.v:166: FAIL decryption SUMMARY errors=5158"
+        ]
+      },
+      "mutated_source_sha256": "4aafbf9758b58b5494fca91ac5d363e080b6206a2522591b6055ac984988fb26"
+    },
+    {
+      "name": "wrong_plaintext",
+      "status": "PASS",
+      "compile": {
+        "command": [
+          "iverilog",
+          "-g2012",
+          "-I",
+          "E:\\amd_fpga_2026_key_lifecycle\\src\\rtl\\ascon",
+          "-s",
+          "tb_ascon_decrypt_regression",
+          "-Ptb_ascon_decrypt_regression.CASES=300",
+          "-o",
+          "E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\faults_i24dw110\\wrong_plaintext.vvp",
+          "E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\faults_i24dw110\\wrong_plaintext.v",
+          "E:\\amd_fpga_2026_key_lifecycle\\src\\rtl\\ascon\\ascon_aead_2.v",
+          "E:\\amd_fpga_2026_key_lifecycle\\sim\\ascon\\tb_rtl_decrypt.v"
+        ],
+        "exit_code": 0,
+        "first_failures": [],
+        "summaries": []
+      },
+      "simulation": {
+        "command": [
+          "vvp",
+          "E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\faults_i24dw110\\wrong_plaintext.vvp",
+          "+vectors=E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\aead.mem"
+        ],
+        "exit_code": 1,
+        "first_failures": [
+          "FAIL decrypt_valid/case=1 byte=0 m=49ab47cadecf1bc00f0e0d0c0b0a0909 correct=1 busy=0",
+          "FAIL decrypt_valid/case=2 byte=0 m=1f1e1d1c1b1a19181716151413121111 correct=1 busy=0",
+          "FAIL decrypt_valid/case=3 byte=0 m=581d1c1b1a191817161514131211100e correct=1 busy=0",
+          "FAIL decrypt_valid/case=4 byte=0 m=e6715ac68baa9bc47e327f60a9070604 correct=1 busy=0"
+        ],
+        "summaries": [
+          "FATAL: E:\\amd_fpga_2026_key_lifecycle\\sim\\ascon\\tb_rtl_decrypt.v:166: FAIL decryption SUMMARY errors=290"
+        ]
+      },
+      "mutated_source_sha256": "9c00a038848c0965f2e90d3ff808f9e227a94da6b91e69e9f20eef315631b54f"
+    },
+    {
+      "name": "early_plaintext",
+      "status": "PASS",
+      "compile": {
+        "command": [
+          "iverilog",
+          "-g2012",
+          "-I",
+          "E:\\amd_fpga_2026_key_lifecycle\\src\\rtl\\ascon",
+          "-s",
+          "tb_ascon_decrypt_regression",
+          "-Ptb_ascon_decrypt_regression.CASES=300",
+          "-o",
+          "E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\faults_i24dw110\\early_plaintext.vvp",
+          "E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\faults_i24dw110\\early_plaintext.v",
+          "E:\\amd_fpga_2026_key_lifecycle\\src\\rtl\\ascon\\ascon_aead_2.v",
+          "E:\\amd_fpga_2026_key_lifecycle\\sim\\ascon\\tb_rtl_decrypt.v"
+        ],
+        "exit_code": 0,
+        "first_failures": [],
+        "summaries": []
+      },
+      "simulation": {
+        "command": [
+          "vvp",
+          "E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\faults_i24dw110\\early_plaintext.vvp",
+          "+vectors=E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\aead.mem"
+        ],
+        "exit_code": 1,
+        "first_failures": [
+          "FAIL decrypt_unverified/case=0 m=00000000000000000000000000000001 correct=0 busy=1",
+          "FAIL decrypt_unverified/case=0 m=00000000000000000000000000000001 correct=0 busy=1",
+          "FAIL decrypt_unverified/case=0 m=00000000000000000000000000000001 correct=0 busy=1",
+          "FAIL decrypt_unverified/case=0 m=00000000000000000000000000000001 correct=0 busy=1"
+        ],
+        "summaries": [
+          "FATAL: E:\\amd_fpga_2026_key_lifecycle\\sim\\ascon\\tb_rtl_decrypt.v:166: FAIL decryption SUMMARY errors=138681"
+        ]
+      },
+      "mutated_source_sha256": "1ec5f28350c631ee4bccc5925a0ddbbbb5ce2f9ff77fcea2e9548eb027cd2307"
+    },
+    {
+      "name": "corrupt_vector_hash",
+      "status": "PASS",
+      "run": {
+        "command": [
+          "D:\\python 3.13.7\\python.exe",
+          "E:\\amd_fpga_2026_key_lifecycle\\sim\\ascon\\run_rtl_regression.py",
+          "--vectors",
+          "E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\faults_i24dw110\\corrupt_vectors",
+          "--report",
+          "E:\\amd_fpga_2026_key_lifecycle\\build\\local\\ascon_rtl\\faults_i24dw110\\rejected.json"
+        ],
+        "exit_code": 1,
+        "first_failures": [
+          "FAIL setup: Invalid AEAD memory hash",
+          "FAIL SUMMARY failed_gates=['setup']"
+        ],
+        "summaries": [
+          "FAIL SUMMARY failed_gates=['setup']"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "exit_code": 0
+  }
+}

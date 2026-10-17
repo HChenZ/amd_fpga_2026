@@ -17,7 +17,7 @@ def main():
     parser.add_argument("--report", type=Path, default=DATA / "results/rtl_integration_harness.json")
     args = parser.parse_args()
     vectors = args.vectors.resolve()
-    source_path = ROOT / "src/rtl/ascon/ascon_aead_2.v"
+    source_path = ROOT / "src/rtl/ascon/crypto_aead.v"
     original_hash = sha256(source_path)
     source = source_path.read_text(encoding="utf-8")
     count = len(json.loads((vectors / "vectors.json").read_text())["cases"])
@@ -35,21 +35,21 @@ def main():
     with tempfile.TemporaryDirectory(prefix="faults_", dir=local) as temporary:
         directory = Path(temporary)
         mutations = {
-            "accept_bad_tag": ("if (diff == 0) begin", "if (1'b1) begin"),
-            "wrong_plaintext": ("m <= m_reg;", "m <= m_reg ^ 128'h1;"),
-            "early_plaintext": ("case (state)\n                IDLE: begin", "if (busy) m <= m_reg;\n            case (state)\n                IDLE: begin"),
+            "accept_bad_tag": ("(diff == 0)", "(1'b1)"),
+            "wrong_plaintext": ("(diff == 0) ? out_reg : 128'd0", "(diff == 0) ? (out_reg ^ 128'h1) : 128'd0"),
+            "early_plaintext": ("case (state)\n                IDLE: begin", "if (busy && mode_reg) data_out <= 128'h1;\n            case (state)\n                IDLE: begin"),
         }
-        # Mutate only the decrypt portion of an isolated disposable source copy.
-        offset = source.index("module crypto_aead_decrypt")
+        offset = 0
         for name, (old, new) in mutations.items():
-            if source[offset:].count(old) != 1:
+            expected_occurrences = 2 if name == "accept_bad_tag" else 1
+            if source[offset:].count(old) != expected_occurrences:
                 raise ValueError(f"Mutation target changed: {name}")
             mutant = directory / (name + ".v")
-            mutant.write_text(source[:offset] + source[offset:].replace(old, new, 1), encoding="utf-8", newline="\n")
+            mutant.write_text(source[:offset] + source[offset:].replace(old, new), encoding="utf-8", newline="\n")
             executable = directory / (name + ".vvp")
             build = run([args.iverilog, "-g2012", "-I", str(ROOT / "src/rtl/ascon"),
                          "-s", "tb_ascon_decrypt_regression", f"-Ptb_ascon_decrypt_regression.CASES={count}",
-                         "-o", str(executable), str(mutant), str(HERE / "tb_rtl_decrypt.v")])
+                         "-o", str(executable), str(mutant), str(ROOT / "src/rtl/ascon/ascon_aead_2.v"), str(HERE / "tb_rtl_decrypt.v")])
             simulation = run([args.vvp, str(executable), "+vectors=" + str(vectors / "aead.mem")]) if build["exit_code"] == 0 else None
             passed = build["exit_code"] == 0 and simulation["exit_code"] != 0 and bool(simulation["first_failures"])
             records.append(dict(name=name, status="PASS" if passed else "FAIL", compile=build, simulation=simulation,

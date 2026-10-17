@@ -47,3 +47,11 @@ python build/prepare_cicc1000023_sources.py --stage cicc1000023_sources
 恢复资产由 `.gitattributes` 禁止 Git 自动换行转换，以保持源字节及 manifest 哈希；普通文档不因此要求全仓统一行尾。
 
 Git 行尾例外：两份 Kintex legacy XPR/XDC 在已有提交中的 blob 为 LF、恢复工作区为 CRLF；精确文件规则使用 text/eol=crlf 保留这一既有状态。从 ZIP 恢复的源资产仍使用 -text，禁止格式化；哈希校验依据工作区原始字节。
+
+## 2026-10-16 key lifecycle review
+
+Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands and build evidence: [review](../docs/ascon_key_management.md). Earlier dated status above is historical. Board model remains unknown; no programming performed.
+
+The continuation's [100 MHz review](../docs/ascon_timing_review.md) retains each implementation round.
+`build_ascon_review.tcl` accepts a build leaf, `fresh`/`resume`, and an optional report leaf;
+fresh runs refuse to overwrite either an existing build or report directory.

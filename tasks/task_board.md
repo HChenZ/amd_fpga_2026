@@ -1,6 +1,6 @@
 # 任务看板
 
-更新：2026-10-09。所有 owner 为 **TBD**，仅由项目方指派。截止日期为内部计划；依赖完成是开工/验收门槛，不能用到期日替代。日期以 Asia/Shanghai 为准。
+更新：2026-10-17。所有 owner 为 **TBD**，仅由项目方指派。截止日期为内部计划；依赖完成是开工/验收门槛，不能用到期日替代。日期以 Asia/Shanghai 为准。
 
 编号：B=baseline/build，C=cryptography software，I=instruction extension，V=verification，Y=PYNQ，S=skill，P=PUF/security，D=documentation/release。
 
@@ -24,10 +24,10 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 | ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
 |---|---|---|---|---|---|---|---|
 | I01 | hotspot analysis | TBD | C04 | permutation hotspot 与候选指令分析 | 基于真实周期/反汇编给出瓶颈、RV32 状态布局、预期收益与资源代价；估算独立标记 | 2026-10-01 | done |
-| I02 | custom instruction spec | TBD | I01、C01 | docs 指令 spec/encoding/semantics 与测试矩阵 | 编码无冲突；输入/输出/端序/latency/stall/flush/异常及 RV32/64 边界明确 | 2026-10-03 | done |
-| I03 | RTL implementation | TBD | I02 | src/rtl 中 ISE RTL 与集成清单 | 与 spec 一致，参数/复位/握手明确定义；通过 elaboration 并提交给 I04 | 2026-10-06 | done |
-| I04 | unit test | TBD | I03、I02、C01 | sim TestBench/golden model/覆盖与结果 | 定向/随机/边界/重置/连续请求/延迟测试通过，报告 seed 和失败复现；与最终标准 permutation 对照 | 2026-10-07 | done |
-| I05 | CPU integration | TBD | I04、B02、V01 | decode/execute/旁路/控制接入与集成测试 | baseline 回归通过；数据相关、stall/flush、中断/异常与 ISE 交互通过；ISE-disabled 可运行 | 2026-10-11 | done |
+| I02 | custom instruction spec | TBD | I01、C01 | docs 指令 spec/encoding/semantics 与测试矩阵 | 编码无冲突；输入/输出/端序/latency/stall/flush/异常及 RV32/64 边界明确 | 2026-10-03 | in_progress |
+| I03 | RTL implementation | TBD | I02 | src/rtl 中 ISE RTL 与集成清单 | 与 spec 一致，参数/复位/握手明确定义；通过 elaboration 并提交给 I04 | 2026-10-06 | in_progress |
+| I04 | unit test | TBD | I03、I02、C01 | sim TestBench/golden model/覆盖与结果 | 定向/随机/边界/重置/连续请求/延迟测试通过，报告 seed 和失败复现；与最终标准 permutation 对照 | 2026-10-07 | in_progress |
+| I05 | CPU integration | TBD | I04、B02、V01 | decode/execute/旁路/控制接入与集成测试 | baseline 回归通过；数据相关、stall/flush、中断/异常与 ISE 交互通过；ISE-disabled 可运行 | 2026-10-11 | in_progress |
 | I06 | inline asm/intrinsic | TBD | I02；联调需 I05 | 软件封装、调用测试和反汇编/执行证据 | 不改 GCC backend；寄存器约束正确，热点实际执行对应 opcode；无静默 fallback | 2026-10-12 | done |
 | I07 | software vs ISE benchmark | TBD | I05、I06、V02、C04 | 两种程序与原始 benchmark/加速比 | 同平台同条件 KAT 正确；cycles/cycles-per-byte/代码量与原始数据齐全；第一版真实加速数据 | 2026-10-14 | done |
 | I08 | PPA comparison | TBD | I05、B03 | software/ISE 综合与实现报告、对比表 | 同工具/part/约束/策略，LUT/FF/BRAM/DSP/Fmax/时序均有证据；时序失败不能算达标 | 2026-10-20 | todo |
@@ -36,6 +36,15 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 | V03 | PS/PL end-to-end regression | TBD | Y02、Y03、V02 | 自动板级测试/错误场景日志 | 软件/ISE 输入到输出可复现；错误 tag、超时、长度边界、重复命令、缓存可见性可检查 | 2026-10-20 | todo |
 | V04 | core freeze regression | TBD | Y05、I08、V03 | 冻结回归清单与证据索引 | P0/P1 验收齐全、无未关闭阻断缺陷；冻结哈希与环境留档；不以 P2 拖延 | 2026-10-27 | todo |
 | V05 | standalone Ascon AEAD RTL verification and main integration | TBD | C01；独立于CPU ISE | sim/ascon TB/runner、data/ascon/results/rtl_integration_regression.*、docs/ascon_rtl_decrypt_validation.md | 最新main上整合、远端Decrypt接口兼容；289官方KAT、篡改/超长/reset、round/P8/P12、全生产编译仿真PASS；旧工作区保留 | 2026-10-09 | done |
+
+V06（2026-10-17复核）：安全修复/最终源码仿真PASS，两轮实现后100 MHz timing not met：WNS=-0.177ns/TNS=-2.968ns，31个setup端点失败；已停止优化。阶段性收尾可提交，板型/DRC/IO门禁仍未过。
+V06 审查纠正：I02/I04/I05 的早期 done 覆盖不全。定向hold/cancel/reset与KAT已通过，
+但RV64、完整异常/抢占上下文、ISE-disabled和全部baseline门禁尚未验收，保持in_progress。
+C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
+
+| ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
+|---|---|---|---|---|---|---|---|
+| V06 | Ascon key lifecycle/security and pre-board review | TBD | latest main三种实现、C01 | docs/ascon_key_management.md、key_lifecycle证据、独立Vivado入口 | KAT/动态Key/认证失败保护/ZEROIZE/ISE交互、可复现构建；板级风险独立记录 | 2026-10-16 | in_progress |
 
 ## PYNQ 与通用 Skill（P1）
 

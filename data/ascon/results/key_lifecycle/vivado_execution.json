@@ -1,0 +1,9 @@
+{
+  "tool": "Vivado 2025.2",
+  "synthesis_exit_code": 0,
+  "implementation_exit_code": 0,
+  "implementation_run": "key_review_impl",
+  "timing_acceptance": "FAIL",
+  "board_programming": false,
+  "source_snapshot": "build/local/ascon_vivado3/development_rtl"
+}

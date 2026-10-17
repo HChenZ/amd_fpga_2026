@@ -7,11 +7,20 @@
 | 比赛 | 全国大学生嵌入式芯片与系统设计竞赛 2026，FPGA 创新设计赛道，AMD 自主选题初级组 |
 | 目标硬件 | Zynq-7000 **XC7Z020CLG400-1**；具体板卡型号、版本、PYNQ image 待 B03 核实 |
 | 最终提交 | **2026-11-04**（用户给定截止日期；11 月 4 日不安排开发） |
-| 当前阶段 | NIST Final host KAT与独立RTL加解密/置换、完整Ascon生产源码编译仿真通过；CPU baseline运行、ISE与板级验证待完成 |
+| 当前阶段 | 三种实现的密钥生命周期审查与仿真回归；Vivado结果见本轮证据，实板待核验 |
 | 当前工程实际配置 | 恢复 baseline：`xc7z020clg400-1` / Vivado `2025.2` / `top_pl_bram`；原 Kintex 工程另行保留 |
 | 开源协议 | [Apache-2.0](LICENSE)；引入第三方代码须单独核对来源与许可 |
 
 比赛规则以可追溯官方原文为准。仓库中的历史选题指南只作已有资料，不把未核实条款、评分或工具限制写成官方结论。
+
+## 2026-10-16 密钥安全与上板前审查
+
+三套软件/MMIO/ISE实现已存在并经本轮审查；修复认证失败输出、MMIO清零与读门禁、
+ISE状态生命周期及CPU提前译码/完成握手。结果、剩余风险和复现入口见
+[密钥管理审查](docs/ascon_key_management.md)、[最终验证汇总](data/ascon/results/key_lifecycle/final_validation_summary.json)、
+[100 MHz时序审查](docs/ascon_timing_review.md)、
+[借板清单](docs/ascon_board_checklist.md)。板型仍未知，无实板验证。
+下文2026-10-09进度为历史快照，不能覆盖较新的实际进度。
 
 ## 基线 CPU
 
@@ -57,7 +66,7 @@ flowchart LR
 
 完整原始树、逐文件清单与差异见 [仓库审计](docs/repository_audit.md)。新增普通路径用英文小写、数字、下划线或连字符；扩展名分隔点及明确要求的 `README.md`、`AGENTS.md`、`.gitignore` 是约定例外。已有路径不做批量改名。
 
-## 当前进度（2026-10-09）
+## 历史进度快照（2026-10-09）
 
 已验证：
 

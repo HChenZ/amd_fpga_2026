@@ -98,6 +98,20 @@ module crypto_aead(
 
     reg [3:0] state;
 
+    // Constant byte lanes avoid a variable 64-bit shift/subtract carry chain.
+    // Retain count bytes, append 0x01, and clear the remaining lanes.
+    // count=16 retains the whole rate (the FSM pads after its P8).
+    function [127:0] padded_tail;
+        input [127:0] bytes;
+        input [4:0] count;
+        integer lane;
+        begin
+            for (lane = 0; lane < 16; lane = lane + 1)
+                padded_tail[8*lane +: 8] = (count > lane) ? bytes[8*lane +: 8]
+                                           : (count == lane) ? 8'h01 : 8'h00;
+        end
+    endfunction
+
     // Absorbed words: AD uses the raw bus; the final plaintext block uses the
     // masked+0x01-padded plaintext (m_eff), identical in both directions.
     reg [63:0] absorb_lo, absorb_hi;
@@ -110,26 +124,10 @@ module crypto_aead(
                 absorb_hi = ad_reg[127:64];
             end
             FINAL_ASSOCIATED: begin
-                if (ad_rem >= 5'd8) begin
-                    absorb_lo = ad_reg[63:0];
-                    absorb_hi = (ad_reg[127:64] & ((64'h1 << (8 * (ad_rem - 5'd8))) - 64'b1))
-                              | (64'h1 << (8 * (ad_rem - 5'd8)));
-                end else begin
-                    absorb_lo = (ad_reg[63:0] & ((64'h1 << (8 * ad_rem)) - 64'b1))
-                              | (64'h1 << (8 * ad_rem));
-                    absorb_hi = 64'd0;
-                end
+                {absorb_hi, absorb_lo} = padded_tail(ad_reg, ad_rem);
             end
             FINAL_PLAINTEXT: begin
-                if (data_rem >= 5'd8) begin
-                    absorb_lo = m_eff[63:0];
-                    absorb_hi = (m_eff[127:64] & ((64'h1 << (8 * (data_rem - 5'd8))) - 64'b1))
-                              | (64'h1 << (8 * (data_rem - 5'd8)));
-                end else begin
-                    absorb_lo = (m_eff[63:0] & ((64'h1 << (8 * data_rem)) - 64'b1))
-                              | (64'h1 << (8 * data_rem));
-                    absorb_hi = 64'd0;
-                end
+                {absorb_hi, absorb_lo} = padded_tail(m_eff, data_rem);
             end
             default: begin
                 absorb_lo = 64'd0;
@@ -158,6 +156,8 @@ module crypto_aead(
             correct     <= 1'b0;
             data_out    <= 128'd0;
             {s0, s1, s2, s3, s4} <= 320'd0;
+            p12_in      <= 320'd0;
+            p8_in       <= 320'd0;
             p12_start   <= 1'b0;
             p8_start    <= 1'b0;
         end else begin

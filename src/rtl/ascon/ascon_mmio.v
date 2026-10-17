@@ -7,7 +7,7 @@
 //       写 key/nonce/AD/msg/长度，触发 START，轮询 STATUS，再读回 CT/PT/tag。
 //
 // 寄存器映射（基址 0x30000000，32-bit 字访问，addr_sel = cpu_addr[7:2]）：
-//   0x00 CTRL     W   [0]=START(自清脉冲) [1]=ENCRYPT(1加密/0解密)
+//   0x00 CTRL     W   [0]=START(自清脉冲) [1]=ENCRYPT(1加密/0解密) [2]=ZEROIZE(idle only, wins START)
 //   0x04 STATUS   R   [0]=BUSY [1]=DONE [2]=FAIL(解密 tag 校验失败)
 //   0x08 ADLEN    W   AD 字节数
 //   0x0C MLEN     W   消息字节数
@@ -130,7 +130,10 @@ module ascon_mmio #(
     wire         core_success;
 
     // START 条件：写 CTRL 且 bit0=1，且当前空闲
-    wire start_cond = ascon_we && (ascon_addr_sel == R_CTRL) && ascon_wdata[0] && !busy_r;
+    wire zeroize_cond = ascon_we && (ascon_addr_sel == R_CTRL) && ascon_wdata[2] && !busy_r;
+    reg core_clear;
+    integer ai, oi;
+    wire start_cond = ascon_we && (ascon_addr_sel == R_CTRL) && ascon_wdata[0] && !busy_r && !zeroize_cond;
 
     // 计算字长（字节数向上取整到 4 的倍数）
     wire [15:0] ad_words  = (run_adlen + 16'd3) >> 2;
@@ -155,6 +158,19 @@ module ascon_mmio #(
             tagin_r   <= 128'b0;
             ad_wr_cnt <= {AD_IDX_W{1'b0}};
             msg_wr_cnt<= {MSG_IDX_W{1'b0}};
+            for (ai=0; ai<AD_WORDS; ai=ai+1) AD_BUF[ai] <= 0;
+            for (ai=0; ai<MSG_WORDS; ai=ai+1) MSG_BUF[ai] <= 0;
+        end
+        else if (zeroize_cond) begin
+            adlen_r   <= 16'b0;
+            mlen_r    <= 16'b0;
+            key_r     <= 128'b0;
+            nonce_r   <= 128'b0;
+            tagin_r   <= 128'b0;
+            ad_wr_cnt <= {AD_IDX_W{1'b0}};
+            msg_wr_cnt<= {MSG_IDX_W{1'b0}};
+            for (ai=0; ai<AD_WORDS; ai=ai+1) AD_BUF[ai] <= 0;
+            for (ai=0; ai<MSG_WORDS; ai=ai+1) MSG_BUF[ai] <= 0;
         end
         else begin
             // 新一次操作开始：复位数据缓冲写指针
@@ -163,7 +179,7 @@ module ascon_mmio #(
                 msg_wr_cnt <= {MSG_IDX_W{1'b0}};
             end
 
-            if (ascon_we) begin
+            if (ascon_we && !busy_r) begin
                 case (ascon_addr_sel)
                     R_ADLEN:     adlen_r <= ascon_wdata[15:0];
                     R_MLEN:      mlen_r  <= ascon_wdata[15:0];
@@ -180,12 +196,16 @@ module ascon_mmio #(
                     R_TAGIN2:    tagin_r[95:64]   <= ascon_wdata;
                     R_TAGIN3:    tagin_r[127:96]  <= ascon_wdata;
                     R_AD_WDATA: begin
-                        AD_BUF[ad_wr_cnt] <= ascon_wdata;
-                        ad_wr_cnt <= ad_wr_cnt + 1'b1;
+                        if (ad_wr_cnt < AD_WORDS) begin
+                            AD_BUF[ad_wr_cnt] <= ascon_wdata;
+                            ad_wr_cnt <= ad_wr_cnt + 1'b1;
+                        end
                     end
                     R_MSG_WDATA: begin
-                        MSG_BUF[msg_wr_cnt] <= ascon_wdata;
-                        msg_wr_cnt <= msg_wr_cnt + 1'b1;
+                        if (msg_wr_cnt < MSG_WORDS) begin
+                            MSG_BUF[msg_wr_cnt] <= ascon_wdata;
+                            msg_wr_cnt <= msg_wr_cnt + 1'b1;
+                        end
                     end
                     default: ;
                 endcase
@@ -201,6 +221,10 @@ module ascon_mmio #(
             rdata_reg  <= 32'b0;
             out_rd_cnt <= {MSG_IDX_W{1'b0}};
         end
+        else if (zeroize_cond) begin
+            rdata_reg  <= 32'b0;
+            out_rd_cnt <= {MSG_IDX_W{1'b0}};
+        end
         else begin
             // 新一次操作开始：复位输出读指针
             if (start_cond)
@@ -212,8 +236,12 @@ module ascon_mmio #(
                     R_ADLEN:     rdata_reg <= {16'b0, adlen_r};
                     R_MLEN:      rdata_reg <= {16'b0, mlen_r};
                     R_OUT_RDATA: begin
-                        rdata_reg  <= OUT_BUF[out_rd_cnt];
-                        out_rd_cnt <= out_rd_cnt + 1'b1;
+                        rdata_reg <= 32'b0;
+                        if (done_r && !busy_r && !fail_r && !start_cond &&
+                            out_rd_cnt < msg_words && out_rd_cnt < MSG_WORDS) begin
+                            rdata_reg <= OUT_BUF[out_rd_cnt];
+                            out_rd_cnt <= out_rd_cnt + 1'b1;
+                        end
                     end
                     R_TAGOUT0:   rdata_reg <= tagout_r[31:0];
                     R_TAGOUT1:   rdata_reg <= tagout_r[63:32];
@@ -249,13 +277,37 @@ module ascon_mmio #(
             out_cnt         <= 16'b0;
             tagout_r        <= 128'b0;
             core_start_pulse<= 1'b0;
+            core_clear <= 1'b0;
+            for (oi=0; oi<MSG_WORDS; oi=oi+1) OUT_BUF[oi] <= 0;
+        end
+        else if (zeroize_cond) begin
+            busy_r          <= 1'b0;
+            done_r          <= 1'b0;
+            fail_r          <= 1'b0;
+            irq_r           <= 1'b0;
+            run_encrypt     <= 1'b0;
+            run_adlen       <= 16'b0;
+            run_mlen        <= 16'b0;
+            run_key         <= 128'b0;
+            run_nonce       <= 128'b0;
+            run_tagin       <= 128'b0;
+            total_words     <= 16'b0;
+            feed_cnt        <= 16'b0;
+            out_cnt         <= 16'b0;
+            tagout_r        <= 128'b0;
+            core_start_pulse<= 1'b0;
+            core_clear <= 1'b1;
+            for (oi=0; oi<MSG_WORDS; oi=oi+1) OUT_BUF[oi] <= 0;
         end
         else begin
+            core_clear <= 1'b0;
             // 脉冲信号默认衰减
             core_start_pulse <= 1'b0;
             irq_r            <= 1'b0;
 
             if (start_cond) begin
+                tagout_r <= 128'b0;
+                for (oi=0; oi<MSG_WORDS; oi=oi+1) OUT_BUF[oi] <= 0;
                 // 锁存本次操作的参数，并复位核心侧指针
                 run_encrypt      <= ascon_wdata[1];
                 run_adlen        <= adlen_r;
@@ -277,8 +329,11 @@ module ascon_mmio #(
                     feed_cnt <= feed_cnt + 1'b1;
 
                 // 输出：核心给数据就收进 OUT_BUF
-                if (core_out_valid) begin
-                    OUT_BUF[out_cnt] <= core_out_word;
+                if (core_out_valid && out_cnt < MSG_WORDS) begin
+                    // Mask unused bytes: the packed core bus includes private state.
+                    if (out_cnt == msg_words-1 && run_mlen[1:0] != 0)
+                        OUT_BUF[out_cnt] <= core_out_word & (32'hffffffff >> (8*(4-run_mlen[1:0])));
+                    else OUT_BUF[out_cnt] <= core_out_word;
                     out_cnt <= out_cnt + 1'b1;
                 end
 
@@ -287,7 +342,9 @@ module ascon_mmio #(
                     busy_r    <= 1'b0;
                     done_r    <= 1'b1;
                     fail_r    <= ~core_success;
-                    tagout_r  <= core_tag_out;
+                    tagout_r  <= core_success ? core_tag_out : 128'b0;
+                    if (!core_success)
+                        for (oi=0; oi<MSG_WORDS; oi=oi+1) OUT_BUF[oi] <= 0;
                     irq_r     <= 1'b1;
                 end
             end
@@ -302,7 +359,7 @@ module ascon_mmio #(
         .MAX_MSG_BYTES(MAX_MSG_BYTES)
     ) u_ascon_core (
         .clk       (clk),
-        .rst_n     (rst_n),
+        .rst_n     (rst_n && !core_clear),
         .start     (core_start_pulse),
         .encrypt   (run_encrypt),
         .adlen     (run_adlen),

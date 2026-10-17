@@ -131,6 +131,32 @@ module tb_ascon_sw;
     always #10 clk = ~clk;   // 50 MHz
 
     integer watchdog;
+    integer reset_epoch=0;
+    always @(negedge rst_n) reset_epoch=reset_epoch+1;
+
+    // Directed pipeline interaction: hold a real ISE instruction beyond done.
+    // Optional reset abort restarts the real firmware from the reset vector.
+    initial begin
+        if ($test$plusargs("HOLD_ISE")) begin
+            wait(u_soc_top.u_cpu_core.u_ex_stage.u_ascon_ise.perm_run);
+            @(negedge clk);
+            force u_soc_top.u_cpu_core.dmem_axi_stall_req = 1'b1;
+            repeat(36) @(negedge clk);
+            if (!u_soc_top.u_cpu_core.u_ex_stage.ascon_perm_done)
+                $fatal(1,"ISE lost completion during downstream hold");
+            release u_soc_top.u_cpu_core.dmem_axi_stall_req;
+            $display("PASS injected CPU hold across ISE completion");
+        end
+        if ($test$plusargs("RESET_ISE")) begin
+            wait(u_soc_top.u_cpu_core.u_ex_stage.u_ascon_ise.perm_run);
+            repeat(3) @(negedge clk);
+            force rst_n=0;
+            repeat(5) @(negedge clk);
+            release rst_n;
+            rst_n=1;
+            $display("PASS injected reset during ISE; firmware restarts");
+        end
+    end
 
     initial begin
         done_seen = 0;
@@ -169,22 +195,26 @@ module tb_ascon_sw;
         reg [7:0] ch;
         reg [31:0] hist;
         integer i;
+        integer frame_epoch;
         hist = 0;
         // wait until reset released before watching the line
         @(posedge rst_n);
         forever begin
             @(negedge uart_txd);                 // start bit
+            frame_epoch=reset_epoch;
             repeat (BIT_PERIOD + BIT_PERIOD/2) @(posedge clk);  // center of bit0
             ch = 8'b0;
             for (i = 0; i < 8; i = i + 1) begin
                 ch = ch | ({7'b0, uart_txd} << i);
                 repeat (BIT_PERIOD) @(posedge clk);
             end
-            $write("%c", ch);
-            $fflush;
-            hist = (hist << 8) | ch;
-            if (hist == 32'h444F4E45) done_seen = 1;   // "DONE"
-            if (hist == 32'h4641494C) fail_seen = 1;   // "FAIL"
+            if (rst_n && frame_epoch==reset_epoch) begin
+                $write("%c", ch);
+                $fflush;
+                hist = (hist << 8) | ch;
+                if (hist == 32'h444F4E45) done_seen = 1;   // "DONE"
+                if (hist == 32'h4641494C) fail_seen = 1;   // "FAIL"
+            end else hist=0;
         end
     end
 

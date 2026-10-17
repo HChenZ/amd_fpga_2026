@@ -13,6 +13,15 @@ data/ascon/sources/*.pdf -diff
 sim/ascon/reference/** -text
 sim/ascon/*.py text eol=lf
 sim/ascon/*.c text eol=lf
+sim/ascon/*.sh text eol=lf
+
+# Preserve selected raw Vivado evidence byte-for-byte, including padded tables.
+build/reports/ascon_key_lifecycle/*.rpt -text -diff
+build/reports/ascon_timing_r1/*.rpt -text -diff
+build/reports/ascon_timing_r2/*.rpt -text -diff
+build/reports/ascon_key_lifecycle/*.txt -text -diff
+build/reports/ascon_timing_r1/*.txt -text -diff
+build/reports/ascon_timing_r2/*.txt -text -diff
 
 # Legacy files already have LF Git blobs and CRLF working copies in fe66fd8.
 # Keep those existing blobs and reproduce the recovery manifest's working bytes.

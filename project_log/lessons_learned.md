@@ -1,5 +1,30 @@
 # 经验与踩坑
 
+## 2026-10-17 — V06 收尾门禁
+
+- L65：两轮最终负WNS必须记录为100 MHz timing not met，即使hold和route status通过；31个剩余端点属于cache地址/保持使能路径。达到授权上限即停止，保留完整证据并提交已验证的阶段成果，不能用降低频率或无依据例外宣称收敛。
+- L66：复核发现Vivado自动改写隔离副本blk_mem_gen XCI的enabled元数据与checksum。功能值不变，但不能声称副本XCI字节完全未变；同时保存原件/副本hash与差异，原baseline继续保持不变。
+
+
+## 2026-10-16 — V06 时序续接
+
+- L62：可变尾块掩码的64-bit减一形成7级CARRY4；改成固定字节选择后，867请求的输出与完成周期完全一致，独立Final黄金回归也通过。系统最差路径随后转移到CPU CSR/cache和hold控制，不能把剩余违例继续归因于Ascon算法。
+- L63：Vivado的属性 `STEPS.POST_ROUTE_PHYS_OPT_DESIGN` 与 `launch_runs -to_step` 阶段名不同。2025.2实际接受 `{phys_opt_design (Post-Route)}`；第一次退出1发生在实现启动前，保留日志，仅继续Not started的run，不重做已完成综合。
+- L64：报告中的WNS要取最终timing summary，不能拿placer/router的中间估计代替。源文件记录实际工作区字节hash，并另给LF规范化hash；原始报告与build_context禁用Git行尾转换，避免提交后证据hash漂移。
+
+## 2026-10-16 — V06 密钥/CPU/Vivado实测
+
+- L53：只验返回码隐藏了ISE候选明文残留；非整块decrypt还漏了移动Tag指针。新增canary/整段候选检查、错误Key/Tag/密文与多种Key、1/7/8/9/15/17-byte长度，不能只看16-byte往返。
+- L54：id_stage认得custom操作数还不够。if_id提前译码未更新，旁路/load-use条件为0，本机GCC13.2实际所有ISE KAT失败。修提前译码后独立黄金和CPU测试通过，不能用队友另一编译布局的PASS替代。
+- L55：多周期done一拍脉冲遇下游全流水hold可能重入。完成状态必须保持到EX推进ack；测试需覆盖完成后的继续hold与cancel，不能只让perm_start自行下降。
+- L56：MMIO大数组和16-byte算法接口不是同一容量。无OUT读门禁会发布旧结果/尾部；读出失败计算Tag也不合适。START/失败撤销、长度门禁、末字屏蔽和idle ZEROIZE必须一起验证。
+- L57：旧RTL runner把“新增error”写成永恒条件；统一core后故障注入还修改已删除FSM。按当前真实接口/统一core更新harness；保留初始误报。并发Vivado/CPU负载下30秒回归超时，保留timeout记录，将外部限时放宽120秒，TB自身watchdog不变。
+- L58：Icarus12不支持原TB的void'($value$plusargs)，改为等价if调用；Windows stdout用GBK会在reset打断UART字符后失败，runner显式UTF-8、UART帧按reset epoch丢弃。force/release变量后须重新赋值释放复位，首个错误注入进程终止并保留失败。
+- L59：Vivado以Verilog解析现有i++失败，修独立构建file_type=SystemVerilog，不改生成HDL。原归档impl_1的GeneratedRun元数据生成了空-source命令；保留日志、在副本创建新implementation run并复用已通过synth，不编辑runme/generated脚本。
+- L61：重新编译后的ELF容器hash可能变化，不能据此断言目标代码回归；六个objcopy后实际加载镜像逐字节相同。保存ELF原hash与binary比对证据，不伪造容器一致。
+- L60：软件volatile擦除只证明指定对象的存储动作；不证明CPU cache/寄存器/栈副本或FPGA物理抗提取。interrupt取消ISE清除state也不等于实现了任务上下文恢复，部署必须另验抢占策略。
+
+
 ## 2026-10-15 — 目标软件在自研 CPU 上 bring-up
 
 - L43：git-bash 里 `python3` 指向 Microsoft Store 存根（调用 exit 49），不是真 Python；

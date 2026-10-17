@@ -62,3 +62,7 @@ All 289 supported official KATs, 11 supplemental inputs, 2,579 tamper rejects,
 735 unsupported length pairs per direction, reset/restart, named/positional
 decrypt callers and full production compile/simulation pass. Vivado, target
 CPU/board KAT, hardware cycles/PPA and longer RTL messages remain unverified.
+
+## 2026-10-16 key lifecycle review
+
+Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands and build evidence: [review](../../../docs/ascon_key_management.md). Earlier dated status above is historical. Board model remains unknown; no programming performed.

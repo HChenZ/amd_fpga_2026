@@ -1,5 +1,13 @@
 # 开发记录
 
+## 2026-10-17 — V06 收尾（owner TBD）
+
+- 恢复现有worktree及staged/unstaged成果；原队友dirty工作区保留，未启动第三轮实现。
+- 对最终源码、六组CPU输入、所有报告和XDC/XCI/COE逐项核hash，复用一致的PASS证据。
+- 完整记录第二轮WNS=-0.177ns/TNS=-2.968ns及31个setup失败端点，保持100 MHz timing not met。
+- 更新最终时序/密钥文档、实际进度、看板和经验；按用户授权准备功能分支commit/push，不合并main。
+
+
 ## 2026-10-10 — V05/C03 发布审查与用户授权
 
 - 在隔离worktree核分支/HEAD/status，fetch确认origin/main仍0a425f9；索引初始为空，
@@ -150,3 +158,10 @@
   首次 wslpath 传参丢反斜杠，exit 2、未执行测试；改用 WSL 当前目录相对路径成功。
 - C02 host 安全子项完成，target build/B04 未验仍 in_progress；C03 软件 PASS，
   不自动 done、不改任务看板；下一接收 target port/KAT/C04。RTL blocker 留给 TBD owner。
+
+## 2026-10-16 — V06 key lifecycle review (owner TBD)
+
+- 检查原dirty worktree，fetch origin --prune，从c37ecae创建E:/amd_fpga_2026_key_lifecycle / fix/ascon-key-lifecycle；未触碰队友文件。
+- 阅读现行实现、标准和历史记录，保存before测试，修复证实的MMIO/ISE/CPU生命周期与认证问题；补齐独立黄金、CPU/RTL/故障注入测试。
+- Vivado2025.2独立复制真实baseline，生成三个IP，综合及实现尝试；源配置修复与失败均保留。无板级引脚修改或烧录。
+- 更新实际进度、接口、任务状态、上板清单；最终检查、commit/push结果见本轮validation_summary及交付报告。

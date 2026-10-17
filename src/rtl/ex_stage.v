@@ -7,6 +7,7 @@ module ex_stage #(
 
     input                     clk,
     input                     rst_n,
+    input                     ex_hold, // ID/EX held by pipeline control
 
     input   [XLEN-1:0]        id_pc,
     input   [XLEN-1:0]        id_rs1,
@@ -152,14 +153,16 @@ module ex_stage #(
     wire [31:0] ascon_rd_data;
     wire        ascon_perm_done;
     reg         ascon_perm_start;
-    wire        ascon_wr_en     = (id_func_sel == `EXE_ASCON_W_OP);
-    wire [3:0]  ascon_wr_idx    = id_rs2[3:0];
+    wire        ascon_cancel = inter_req || jump_trap_en || jump_trap_out;
+    wire        ascon_wr_en = (id_func_sel == `EXE_ASCON_W_OP) && !ex_hold && !ascon_cancel;
+    wire [3:0]  ascon_wr_idx    = (id_rs2 < 10) ? id_rs2[3:0] : 4'hf;
     wire [31:0] ascon_wr_data   = id_rs1[31:0];
-    wire [3:0]  ascon_rd_idx    = id_rs1[3:0];
+    wire [3:0]  ascon_rd_idx    = (id_rs1 < 10) ? id_rs1[3:0] : 4'hf;
     wire        ascon_perm_p12  = (id_func_sel == `EXE_ASCON_P12_OP);
 
     ascon_ise u_ascon_ise (
         .clk(clk), .rst_n(rst_n),
+        .cancel(ascon_cancel), .perm_ack(ascon_perm_done && !ex_hold),
         .wr_en(ascon_wr_en), .wr_idx(ascon_wr_idx), .wr_data(ascon_wr_data),
         .rd_idx(ascon_rd_idx), .rd_data(ascon_rd_data),
         .perm_start(ascon_perm_start), .perm_p12(ascon_perm_p12),

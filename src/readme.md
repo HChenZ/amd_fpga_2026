@@ -7,3 +7,7 @@
 源配置入库；生成 RTL/IP 输出回到构建流程生成，不能在这里伪造缺失 IP。
 
 已恢复 [CICC1000023 固件源](firmware/cicc1000023/readme.md)：CoreMark RV32/RV64、FreeRTOS 应用、RISC-V tests。原始文件名映射与哈希受控，构建前在 ignored 工作副本还原；尚缺精确 kernel/bootloader 依赖。
+
+## 2026-10-16 key lifecycle review
+
+Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands and build evidence: [review](../docs/ascon_key_management.md). Earlier dated status above is historical. Board model remains unknown; no programming performed.

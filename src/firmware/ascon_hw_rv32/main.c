@@ -113,15 +113,26 @@ static void ascon_hw_start(int encrypt, uint32_t adlen, uint32_t mlen,
 {
     uint32_t i, aw = (adlen + 3) / 4, mw = (mlen + 3) / 4;
 
-    ASCON_ADLEN = adlen;
-    ASCON_MLEN  = mlen;
+    /* Reject before narrowing 32-bit API lengths to 16-bit registers. */
+    ASCON_ADLEN = adlen > 16 ? 17 : adlen;
+    ASCON_MLEN  = mlen > 16 ? 17 : mlen;
+    if(adlen > 16 || mlen > 16) aw = mw = 0;
     wr128(&ASCON_KEY0, key);
     wr128(&ASCON_NONCE0, nonce);
     if (!encrypt)
         wr128(&ASCON_TAGIN0, tagin);
 
-    for (i = 0; i < aw; i++) ASCON_AD_WDATA = le32(ad + 4 * i);
-    for (i = 0; i < mw; i++) ASCON_MSG_WDATA = le32(msg + 4 * i);
+    /* Never read beyond partial caller buffers (1/7/9/15-byte cases). */
+    for (i = 0; i < aw; i++) {
+        uint32_t w=0;
+        for(uint32_t b=0;b<4 && 4*i+b<adlen;b++) w |= (uint32_t)ad[4*i+b] << (8*b);
+        ASCON_AD_WDATA=w;
+    }
+    for (i = 0; i < mw; i++) {
+        uint32_t w=0;
+        for(uint32_t b=0;b<4 && 4*i+b<mlen;b++) w |= (uint32_t)msg[4*i+b] << (8*b);
+        ASCON_MSG_WDATA=w;
+    }
 
     ASCON_CTRL = (encrypt ? 2u : 0u) | 1u;   /* ENCRYPT | START */
 }
@@ -149,6 +160,8 @@ static void ascon_hw_read_out(uint8_t *out, uint32_t mlen)
 /* ------------------------------------------------------------------ */
 /* Test vectors                                                       */
 /* ------------------------------------------------------------------ */
+/* PUBLIC KAT DATA ONLY. Runtime helpers take caller Key/Nonce parameters.
+ * Never replace these constants with deployment secrets. */
 static const uint8_t key[16]  = {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,
                                  0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f};
 static const uint8_t npub[16] = {0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,
@@ -274,6 +287,8 @@ int main(void)
     uart_puts("--- benchmark (warm) 16B encrypt ---\n");
     uart_puts("crypto latency : "); uart_putdec_u64(crypto_cyc); uart_puts(" cycles\n");
     uart_puts("full MMIO      : "); uart_putdec_u64(full_cyc); uart_puts(" cycles\n");
+
+    ASCON_CTRL = 4u; /* idle ZEROIZE after the final result was consumed */
 
     /* ---- summary ---- */
     uart_puts("===DONE===\n");

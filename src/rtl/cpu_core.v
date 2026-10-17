@@ -713,6 +713,7 @@ module cpu_core #(
         
         .clk(clk),
         .rst_n(rst_n),
+        .ex_hold(stall[2]),
 
         //from ID
         .id_pc(ex_pc),

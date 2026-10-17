@@ -182,3 +182,12 @@ Preexisting tracked `rtl_regression.*` is preserved; earlier dirty local reports
 remain in the untouched original workspace and external backup.
 Busy-start/key-change/unused-output observations are labelled separately from
 valid stable-key algorithm checks. Own TestBenches have watchdogs and $fatal(1).
+
+## 2026-10-16 key lifecycle review
+
+Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands and build evidence: [review](../../docs/ascon_key_management.md). Earlier dated status above is historical. Board model remains unknown; no programming performed.
+
+`run_tail_equivalence.py` compares all public outputs and handshake cycles against the pre-optimization
+core for 867 requests. Cryptographic correctness remains gated by the independent Final reference
+regression. Timing continuation reports use distinct `timing_*` labels; see
+[timing review](../../docs/ascon_timing_review.md).

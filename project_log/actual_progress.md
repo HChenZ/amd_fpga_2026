@@ -1,5 +1,62 @@
 # 实际进度
 
+## 2026-10-17 — V06 阶段性收尾与证据复核
+
+owner TBD；工作区 E:/amd_fpga_2026_key_lifecycle，分支 fix/ascon-key-lifecycle。
+2026-10-16的两轮实现均完整结束；本日只读复核源码/日志/报告，不重开Vivado，不做第三轮优化。
+117个源码hash、所有物理报告hash、六组CPU测试输入和实现RTL快照均匹配；XDC/COE及原baseline未改。
+blk_mem_gen独立副本仅有工具元数据/checksum改写，功能参数不变，双侧hash已保存。
+
+- 最终软件/MMIO/ISE原KAT均PASS；动态密钥安全检查132/123/402项全部PASS。
+  Host Final 28661项、C失败输出23965项、MMIO/ISE RTL 13212/1500项、4个CPU单测、
+  4个RTL故障注入门禁与867请求逐周期等价检查均PASS。复用哈希一致证据，未重跑长测试。
+- 最终Vivado2025.2、xc7z020clg400-1、top_pl_bram：WNS=-0.177ns、TNS=-2.968ns，
+  31个setup失败端点；WHS=0.015ns/THS=0、WPWS=3.750ns/TPWS=0。
+  LUT11636/FF15949/BRAM38.5/DSP4；23917个net fully routed，routing errors=0。
+- **100 MHz timing not met**。DRC已报告95 Warning/0 Critical Warning/0 Error（部分规则达到上限），
+  Methodology另23 Warning。cache地址/hold控制剩余路径、LUT派生复位、BRAM异步控制、PS7与板级IO覆盖仍需处理。
+- 安全修复与时序分析可作为阶段性成果提交；V06保留in_progress，上板门禁未过。
+  官方固定KAT与运行时参数边界明确，新增3组公开Key/Nonce；没有真实秘密或生成缓存纳入提交。
+
+完整证据：[最终汇总](../data/ascon/results/key_lifecycle/final_validation_summary.json)、
+[时序审查](../docs/ascon_timing_review.md)、[密钥审查](../docs/ascon_key_management.md)。
+下一接收 B02/B03/V01/I08/Y01；先保存Git检查点，再进行用户授权的Ross/Skills低风险评估。
+
+
+## 2026-10-16 — V06 密钥生命周期与上板前审查
+
+owner TBD；基于最新 origin/main `c37ecae`，独立 worktree / `fix/ascon-key-lifecycle`。
+用户本轮明确授权检查通过后自动 commit/push，原工作区未提交改动全部保留。
+
+- 三套实现均已存在，不能沿用下文早期“未实现 ISE”的结论。新增 [密钥生命周期审查](../docs/ascon_key_management.md)
+  与 [板卡清单](../docs/ascon_board_checklist.md)，详细结果索引为 `data/ascon/results/key_lifecycle/validation_summary.json`。
+- 修复：MMIO idle CTRL[2] ZEROIZE、BUSY/失败/越界读保护、旧输出清理和尾字屏蔽；
+  ISE 失败输出擦除/长度、部分密文 Tag 指针、状态清理、非法索引、完成保持；
+  CPU 提前译码遗漏的 custom 操作数旁路/load-use；软件 C 本地敏感对象擦除。
+- 固定官方 KAT 不变；3组公开动态 Key/Nonce、27个长度组合由锁定 Final C/Python 交叉核对。
+  MMIO 只跑其中21例（AD/消息各<=16字节），不宣称多块接口。
+- Host Final 28,661 PASS/0 FAIL，production C raw failure 23,965 PASS/0 FAIL；
+  独立 RTL 全源集 Final KAT/置换/认证与故障注入通过。MMIO 13,212、ISE 1,500项检查通过；
+  baseline bypass/regfile/EX ALU 与新增 execute cancel/hold 单测通过。
+- CPU 软件/MMIO/ISE 的最终 KAT、安全测试和周期结果由上述 JSON/原始日志定稿；
+  明确使用 GCC13.2/仿真50MHz，不与队友 GCC15.2 的历史数值混算。
+- Vivado2025.2可运行，原始三个IP未锁定且再生成成功。独立副本综合0 errors/0 critical warnings；
+  实现结果、时序、资源、DRC在最终汇总中列明。原 baseline、XCI、XDC、COE不改，579项恢复资产hash通过。
+- 真实板型未知、未烧录；FreeRTOS COE未换为Ascon固件，PS/PL/PYNQ尚未建立。
+  ISE完整抢占上下文、全部ISA/异常/外设回归、板上测量仍未完成。清零不等于抗侧信道/物理提取。
+
+最终补记：三套CPU原KAT全部PASS；新增安全检查软件132/132、MMIO123/123、ISE402/402，
+ISE含下游hold跨完成和计算中reset重启。16B warm加密仿真周期：软件18348、MMIO完整往返664
+（START→轮询完成100）、ISE2559；软件32B enc22817，dec16B18886/32B23388。
+六个最终源码loadable binary与已测镜像逐字节一致，ISE反汇编有实际custom-0编码。
+Vivado布线完成exit0，但100MHz WNS=-1.641ns、TNS=-607.794ns（1971失败端点），
+LUT11683/FF15960/BRAM38.5/DSP4；DRC已报告95项Warning、无Error（部分规则达到报告上限），
+存在PS7缺失、BRAM/复位与IO delay覆盖告警。故V06保留in_progress，上板门禁未通过。
+已完成的安全修复与仿真可审查，时序收敛/实板功能不可标完成。
+
+下一接收 B02/B03/V01/I08/Y01，owner TBD。历史与中间失败保留，不把综合或仿真冒充上板。
+
+
 ## 2026-10-15 — Ascon-AEAD128 软件版在自研 RV32IM CPU 上运行并测得软件性能
 
 owner TBD；用户授权"调用已有 C 代码库完成软件版、测试保证处理器可用、测软件性能"。

@@ -1,0 +1,146 @@
+{
+  "metadata": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "evidence_kind": "host_software",
+    "source_head": "c37ecae4bba050d833079d56f8aec05365637aad",
+    "validation_source_hashes": {
+      "sim/ascon/check_failure_contract.py": "b2849977d8a3140865b8d1cef9f0b3066d930d5183b458a92352f6985fea4657",
+      "sim/ascon/freeze_vectors.py": "a1d25337ff30c42333185c2c0fadefa76c301484ff808b2a92c0bc7f3811fe04",
+      "sim/ascon/golden.py": "d07fb398401de07fa6212209d124bb429b69abe8afc17a81ce3dd1be86643ad4",
+      "sim/ascon/prepare_crypto_vectors.py": "d47d16e3a5e7da32117e77240dea15ee2b863318c864f432b381420455633e64",
+      "sim/ascon/prepare_key_vectors.py": "bada39573955b894a20d32c60a34b6c27d92d8b67d4728ca3707f1020c39b7c7",
+      "sim/ascon/prepare_rtl_vectors.py": "45ad07293178a7bcfbea27ba04b2d5e8d24cbcdbb12735053d36543408b0cedc",
+      "sim/ascon/run_cpu_regression.py": "77c354a0c0306d1e0a818d1597c883a5545b62c4d89ce347eddff15214ecdc90",
+      "sim/ascon/run_key_rtl.py": "95e33cdd6e670da5eb1dcb08515eccac7687060e5eba783d6fcbd63e1bfa77cd",
+      "sim/ascon/run_rtl_regression.py": "1388bdd9cd8bbf80a9b0d93b573bbc1e3cc3627c87ac202a3fecabc063bf6819",
+      "sim/ascon/run_validation.py": "e6540d059a34a5d2aadf2e00bb304ff6b969456a6f3030071d46d485c9c3a221",
+      "sim/ascon/support.py": "8ca01dfb0f512172b78fb003440f1f7976b0c8cb53c3fec5ceb5737188fc8fb8",
+      "sim/ascon/test_harness.py": "5ee6c31dcdd3ec4c13099babb6c2c10cfcfd8eeec9ca4f4e4b9920914eb1f190",
+      "sim/ascon/test_rtl_harness.py": "09f958d4067eab49dee7c9c7fda900fb574e517342394b944736cd2312fc7edf"
+    },
+    "backends_requested": [
+      "upstream-c",
+      "upstream-python",
+      "repository-c",
+      "repository-python"
+    ],
+    "reference_commits": {
+      "ascon_c_commit": "446347f21b209f3921c65ece70027c366cbe1693",
+      "pyascon_commit": "ed24e54abf9507d26fa49b46a56091570c7e743e"
+    },
+    "corpus": {
+      "official_kat": 1089,
+      "supplemental": 64,
+      "permutation": 308
+    },
+    "upstream-c": {
+      "compiler": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-shared",
+        "-fPIC",
+        "-I",
+        "/mnt/e/amd_fpga_2026_key_lifecycle/sim/ascon/reference/ascon_c",
+        "/mnt/e/amd_fpga_2026_key_lifecycle/sim/ascon/reference/ascon_c/aead.c",
+        "/mnt/e/amd_fpga_2026_key_lifecycle/sim/ascon/c_bridge.c",
+        "-o",
+        "/mnt/e/amd_fpga_2026_key_lifecycle/build/local/ascon_kat/upstream-c-3evz0hrc/upstream-c.so"
+      ],
+      "exit_code": 0,
+      "output": "",
+      "source_hashes": {
+        "sim/ascon/reference/ascon_c/aead.c": "44814f4f207cc22dcd335b4b07d46a8932e944d0f0cffd4cfb85b2309c9aa53c",
+        "sim/ascon/reference/ascon_c/api.h": "c86910483647b8323d7e1e9e1aa3e8053c9f78f909c9fd8e00a0c52a1ba0cdbd",
+        "sim/ascon/reference/ascon_c/ascon.h": "c83217138b791c0e37ab1ab7bde216ed0392fc0c17bc2078f7454217bd4e1ea5",
+        "sim/ascon/reference/ascon_c/constants.h": "91cae918bdd5c365090afec02767916764e2c33e72a5d89348b96d20e0c7819e",
+        "sim/ascon/reference/ascon_c/crypto_aead.h": "5c715ebe73ac8117ef5164e3d1ae7bc00f07fee85ca248e54cb153ee25cf5c34",
+        "sim/ascon/reference/ascon_c/implementors": "ac0b9c04174cb475d19c36d830755bf36a18a5e9d9aa5dade7e7f53f2f930b5f",
+        "sim/ascon/reference/ascon_c/license.txt": "5537d4d10b76b81b6e8dfd8b644480a4b1efa332fbb0cdb61126c5be781ef7b4",
+        "sim/ascon/reference/ascon_c/permutations.h": "58ac28a23c4f310228e79dc18eb7608b62ba3abeedbc28e80d97eb7e3be5d8fb",
+        "sim/ascon/reference/ascon_c/printstate.c": "628fc41e54f56917c8fdec2e31b80772eb5f673892f0fdcee5d18d934faf3121",
+        "sim/ascon/reference/ascon_c/printstate.h": "bf59de3eb2e71c72f47d64c2cdee393fd3a1ca8337f0bd5636d41cca196f19d0",
+        "sim/ascon/reference/ascon_c/round.h": "3ed06f5c6330b085952f6626e5df4a9ca598911f33b15b3ebc5d58dddb8fda11",
+        "sim/ascon/reference/ascon_c/word.h": "7418003e426a80197c74d9eca2fa7099c0ec6593bd4522c4a2f1edc4141e4e75"
+      },
+      "bridge_sha256": "3f0c1fd49f55536b1e98d5291e79e1fbb3cbafb1be15aba6d3d428beab7a3759",
+      "binary_sha256": "fceb762bf6121791657959320ed165003afd4ef6fd89f5d8dd96e974117eb7a8"
+    },
+    "upstream-python": {
+      "path": "sim/ascon/reference/pyascon/ascon.py",
+      "sha256": "b799653fc09e56fc4eb72c90b3574b967b3ead4c337b2402123148d5b1873eda"
+    },
+    "repository-c": {
+      "compiler": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-shared",
+        "-fPIC",
+        "-I",
+        "/mnt/e/amd_fpga_2026_key_lifecycle/ascon/ascon_c/aead",
+        "/mnt/e/amd_fpga_2026_key_lifecycle/ascon/ascon_c/aead/aead.c",
+        "/mnt/e/amd_fpga_2026_key_lifecycle/sim/ascon/c_bridge.c",
+        "-o",
+        "/mnt/e/amd_fpga_2026_key_lifecycle/build/local/ascon_kat/repository-c-ggqd8w7x/repository-c.so"
+      ],
+      "exit_code": 0,
+      "output": "",
+      "source_hashes": {
+        "ascon/ascon_c/aead/aead.c": "3befa1a818a8a86e74405906e778ddb7c7d405b32c567c88888c96ac0777da50",
+        "ascon/ascon_c/aead/api.h": "4102b37b91cef127fd059a0319fd1b69d284299dd2386cb8ea2c3468b0bcbaf0",
+        "ascon/ascon_c/aead/ascon.h": "24b8b35c623b30f6fb55908170f920a8e059842c7e4f12cad0fdd04ad5f9be99",
+        "ascon/ascon_c/aead/constants.h": "6e95f0ca2457f41fd6f0f301e608804c492a3c9244e21d0e8354b5cd564b1875",
+        "ascon/ascon_c/aead/permutations.h": "b9f0d9c50549a0a5c8733196217a352bea10c12420249ceccd809a7ccf0a97c1",
+        "ascon/ascon_c/aead/printstate.c": "1f7c69900b61138987d46f27837a8249a7a19adcd5290b71574fd4e90b037b32",
+        "ascon/ascon_c/aead/printstate.h": "49d911e69a3ee4873be8a3a2211549659d9efbc97ec5297e18200c6fd19c8381",
+        "ascon/ascon_c/aead/readme.md": "81f23d8d2bd3483553d8d55056d6296e2379a7b32190c8e38a8981e47d946d9e",
+        "ascon/ascon_c/aead/round.h": "b44435ff8c33966a2fdc11aefce83df3f1923b956e82913734480dc6da66d294",
+        "ascon/ascon_c/aead/word.h": "257b5e3248e29ed1b65c9e670ade92bcf0432790364e332c6ae78f5fd9fa5ab1"
+      },
+      "bridge_sha256": "3f0c1fd49f55536b1e98d5291e79e1fbb3cbafb1be15aba6d3d428beab7a3759",
+      "binary_sha256": "4460240b63b389744499fd1d92515dbadcaf833f3b54203e9758babe5366a0eb"
+    },
+    "repository-python": {
+      "path": "ascon/pyascon/ascon.py",
+      "sha256": "d1f3e185ff299a891eb7ab286c2c053ae75ccf25a1246f99eb2946625123b66e"
+    }
+  },
+  "summary": {
+    "passed": 28661,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "groups": {
+    "locked_source_and_data_sha256": {
+      "passed": 1,
+      "failed": 0
+    },
+    "upstream-c": {
+      "passed": 7165,
+      "failed": 0
+    },
+    "upstream-python": {
+      "passed": 7165,
+      "failed": 0
+    },
+    "repository-c": {
+      "passed": 7165,
+      "failed": 0
+    },
+    "repository-python": {
+      "passed": 7165,
+      "failed": 0
+    }
+  },
+  "failures": []
+}

@@ -85,7 +85,7 @@ module axi_slave_bram #(
         for (m_i = 0; m_i < RAM_DEPTH; m_i = m_i + 1)
             mem[m_i] = {DATA_WIDTH{1'b0}};
         hexfile = "ascon_sw.hex";
-        void'($value$plusargs("HEX=%s", hexfile));
+        if ($value$plusargs("HEX=%s", hexfile)) begin end
         if (hexfile != "") begin
             $readmemh(hexfile, mem);
             $display("[BRAM] loaded %0s (%0d words max)", hexfile, RAM_DEPTH);

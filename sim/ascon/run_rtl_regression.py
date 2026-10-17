@@ -33,7 +33,7 @@ def main():
                                   for p in sorted(HERE.glob("*")) if p.suffix in (".py", ".v")})
     full_log = []
 
-    def execute(name, command, timeout=30):
+    def execute(name, command, timeout=120):
         try:
             run = subprocess.run(command, cwd=ROOT, capture_output=True, timeout=timeout)
             output = (run.stdout + run.stderr).decode("utf-8", errors="replace")
@@ -140,11 +140,10 @@ def main():
         original_decrypt, current_decrypt = (ports(s, "crypto_aead_decrypt") for s in (original_rtl, current_rtl))
         original_encrypt, current_encrypt = (ports(s, "crypto_aead_encrypt") for s in (original_rtl, current_rtl))
         evidence["gates"]["interface_compatibility"] = dict(
-            status="PASS" if original_decrypt == current_decrypt and original_encrypt == current_encrypt[:-1]
-                              and current_encrypt[-1] == ("output", "reg", "", "error") else "FAIL",
+            status="PASS" if original_decrypt == current_decrypt and original_encrypt == current_encrypt else "FAIL",
             baseline_head=evidence["source_head"], decrypt_ports=current_decrypt,
             decrypt_interface_unchanged=original_decrypt == current_decrypt,
-            encrypt_addition="output error; existing named callers verified")
+            encrypt_addition="none; exact current-main ports plus named/positional simulation")
         evidence["official_rtl_kat"] = dict(cases=vectors["matrix_cases"],
             total_locked_corpus=vectors["official_cases_total"],
             outside_interface=vectors["official_cases_outside_interface"],

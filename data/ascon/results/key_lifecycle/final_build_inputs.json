@@ -1,0 +1,44 @@
+{
+  "reviewed_on": "2026-10-17",
+  "files": [
+    {
+      "path": "riscv_vivado_project.srcs/sources_1/ip/axi_bram_ctrl_0/axi_bram_ctrl_0.xci",
+      "baseline_sha256": "a0c1cf38ec960d1fe945d06e60932894a4deefa22d97c01742c43e099a0cbb4f",
+      "implemented_copy_sha256": "a0c1cf38ec960d1fe945d06e60932894a4deefa22d97c01742c43e099a0cbb4f",
+      "identical": true
+    },
+    {
+      "path": "riscv_vivado_project.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci",
+      "baseline_sha256": "1abf27650c1ba026abed722be4f327185fa5ebd5a20a5f6457524b00b101d1df",
+      "implemented_copy_sha256": "5ff9475aaddc325bd0ac8de129611bda4048fce244d7fcc1f0c8de9d95dd7c77",
+      "identical": false
+    },
+    {
+      "path": "riscv_vivado_project.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci",
+      "baseline_sha256": "1b32fbd495699161d8100b05da48bf9e6af720bbf6ef1dfc22acfbeb431bd923",
+      "implemented_copy_sha256": "1b32fbd495699161d8100b05da48bf9e6af720bbf6ef1dfc22acfbeb431bd923",
+      "identical": true
+    },
+    {
+      "path": "riscv_vivado_project.srcs/sources_1/imports/bin_file/freertos_demo.coe",
+      "baseline_sha256": "1297c202c89189f48278a553ecc2ad443e84fba9ea9044ff5d68bb78984745e9",
+      "implemented_copy_sha256": "1297c202c89189f48278a553ecc2ad443e84fba9ea9044ff5d68bb78984745e9",
+      "identical": true
+    },
+    {
+      "path": "riscv_vivado_project.srcs/constrs_1/new/const.xdc",
+      "baseline_sha256": "01f639212f00fce073b373a470b559772797842fee9dcd394076499f5fcd42bf",
+      "implemented_copy_sha256": "01f639212f00fce073b373a470b559772797842fee9dcd394076499f5fcd42bf",
+      "identical": true
+    }
+  ],
+  "ip_copy_metadata_change": {
+    "path": "blk_mem_gen_0.xci",
+    "changes": [
+      "PRIM_type_to_Implement: enabled=false metadata removed by Vivado",
+      "checksum recalculated"
+    ],
+    "functional_parameter_values_changed": false,
+    "original_baseline_modified": false
+  }
+}
