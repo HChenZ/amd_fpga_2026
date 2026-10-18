@@ -1,0 +1,365 @@
+{
+  "task": "V10",
+  "owner": "TBD",
+  "kind": "fresh_simulation_and_artifact_comparison",
+  "commands": [
+    {
+      "name": "sw",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/run_cpu_regression.py",
+        "--mode",
+        "sw",
+        "--label",
+        "cleanup_v10_sw",
+        "--cc-prefix",
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/sw.log"
+    },
+    {
+      "name": "hw",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/run_cpu_regression.py",
+        "--mode",
+        "hw",
+        "--label",
+        "cleanup_v10_hw",
+        "--cc-prefix",
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/hw.log"
+    },
+    {
+      "name": "ise",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/run_cpu_regression.py",
+        "--mode",
+        "ise",
+        "--label",
+        "cleanup_v10_ise",
+        "--cc-prefix",
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/ise.log"
+    },
+    {
+      "name": "sw_security",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/run_cpu_regression.py",
+        "--mode",
+        "sw",
+        "--security",
+        "--label",
+        "cleanup_v10_sw_security",
+        "--cc-prefix",
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/sw_security.log"
+    },
+    {
+      "name": "hw_security",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/run_cpu_regression.py",
+        "--mode",
+        "hw",
+        "--security",
+        "--label",
+        "cleanup_v10_hw_security",
+        "--cc-prefix",
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/hw_security.log"
+    },
+    {
+      "name": "ise_security",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/run_cpu_regression.py",
+        "--mode",
+        "ise",
+        "--security",
+        "--label",
+        "cleanup_v10_ise_security",
+        "--cc-prefix",
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/ise_security.log"
+    },
+    {
+      "name": "ise_stall",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/run_cpu_regression.py",
+        "--mode",
+        "ise",
+        "--stall",
+        "--label",
+        "cleanup_v10_ise_stall",
+        "--cc-prefix",
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/ise_stall.log"
+    },
+    {
+      "name": "ise_reset",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/run_cpu_regression.py",
+        "--mode",
+        "ise",
+        "--reset",
+        "--label",
+        "cleanup_v10_ise_reset",
+        "--cc-prefix",
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/ise_reset.log"
+    },
+    {
+      "name": "key_rtl",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/run_key_rtl.py",
+        "--label",
+        "cleanup_v10"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/key_rtl.log"
+    },
+    {
+      "name": "units",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/run_cpu_units.py",
+        "--label",
+        "cleanup_v10"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/units.log"
+    },
+    {
+      "name": "isa",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/run_rv32_isa.py",
+        "--label",
+        "cleanup_v10",
+        "--cc-prefix",
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-"
+      ],
+      "exit_code": 1,
+      "log": "build/local/cleanup_v10/isa.log"
+    },
+    {
+      "name": "functional_summary",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/ascon/summarize_timing_acb.py"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/functional_summary.log"
+    },
+    {
+      "name": "sta_summary",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "build/summarize_timing_acb.py"
+      ],
+      "exit_code": 0,
+      "log": "build/local/cleanup_v10/sta_summary.log"
+    }
+  ],
+  "comparisons": {
+    "sw": {
+      "before": "sw_timing_acb_sw.json",
+      "after": "sw_cleanup_v10_sw.json",
+      "pass": true,
+      "sources_identical": true,
+      "loadable_binary_identical": true,
+      "before_binary_sha256": "c48fd1e33b5f5204670019c445f20fa70bf9642b52d8ffe9e7675002649d273e",
+      "after_binary_sha256": "c48fd1e33b5f5204670019c445f20fa70bf9642b52d8ffe9e7675002649d273e",
+      "measurements_identical": true,
+      "measurements": [
+        "KAT empty : PASS",
+        "KAT 1B : PASS",
+        "KAT 16B : PASS",
+        "KAT 16B+AD : PASS",
+        "KAT 17B : PASS",
+        "KAT 32B : PASS",
+        "tamper reject : PASS",
+        "KAT: 6/6 PASS",
+        "enc 16B : 17353 cycles, 4493 inst, CPI 386 (x100)",
+        "enc 32B : 21515 cycles, 5604 inst, CPI 383 (x100)",
+        "dec 16B : 17847 cycles, 4730 inst, CPI 377 (x100)",
+        "dec 32B : 22094 cycles, 5865 inst, CPI 376 (x100)",
+        "===DONE[RESULT] tb_ascon_sw PASS"
+      ]
+    },
+    "hw": {
+      "before": "hw_timing_acb_hw.json",
+      "after": "hw_cleanup_v10_hw.json",
+      "pass": true,
+      "sources_identical": true,
+      "loadable_binary_identical": true,
+      "before_binary_sha256": "6caba66a97bdf7e55481bcc54b3b6d259db48d60b130d26b0d4231a5876e1e00",
+      "after_binary_sha256": "6caba66a97bdf7e55481bcc54b3b6d259db48d60b130d26b0d4231a5876e1e00",
+      "measurements_identical": true,
+      "measurements": [
+        "KAT empty   : PASS",
+        "KAT 1B      : PASS",
+        "KAT 16B     : PASS",
+        "KAT 16B+AD  : PASS",
+        "dec roundtrip: PASS",
+        "tamper reject: PASS",
+        "len reject  : PASS",
+        "crypto latency : 99 cycles",
+        "full MMIO      : 670 cycles",
+        "===DONE[RESULT] tb_ascon_sw PASS"
+      ]
+    },
+    "ise": {
+      "before": "ise_timing_acb_ise.json",
+      "after": "ise_cleanup_v10_ise.json",
+      "pass": true,
+      "sources_identical": true,
+      "loadable_binary_identical": true,
+      "before_binary_sha256": "6dfa1f18999657105acde9c19bed67cf95142bab15f241007e2917b01862df91",
+      "after_binary_sha256": "6dfa1f18999657105acde9c19bed67cf95142bab15f241007e2917b01862df91",
+      "measurements_identical": true,
+      "measurements": [
+        "KAT empty  : PASS",
+        "KAT 1B     : PASS",
+        "KAT 16B    : PASS",
+        "KAT 16B+AD : PASS",
+        "dec round  : PASS",
+        "tamper     : PASS",
+        "ISE cycles   : 2496",
+        "===DONE[RESULT] tb_ascon_sw PASS"
+      ]
+    },
+    "sw_security": {
+      "before": "sw_security_timing_acb_sw_security.json",
+      "after": "sw_security_cleanup_v10_sw_security.json",
+      "pass": true,
+      "sources_identical": true,
+      "loadable_binary_identical": true,
+      "before_binary_sha256": "30553dc054c5d226a793eb5b3050354d014603199f0c78c88c34d5a945367045",
+      "after_binary_sha256": "30553dc054c5d226a793eb5b3050354d014603199f0c78c88c34d5a945367045",
+      "measurements_identical": true,
+      "measurements": [
+        "checks PASS=132 failed=0",
+        "===DONE[RESULT] tb_ascon_sw PASS"
+      ]
+    },
+    "hw_security": {
+      "before": "hw_security_timing_acb_hw_security.json",
+      "after": "hw_security_cleanup_v10_hw_security.json",
+      "pass": true,
+      "sources_identical": true,
+      "loadable_binary_identical": true,
+      "before_binary_sha256": "6b49577336829561754b68b42b755268cd5120dae70897f8a7553a37b42a988a",
+      "after_binary_sha256": "6b49577336829561754b68b42b755268cd5120dae70897f8a7553a37b42a988a",
+      "measurements_identical": true,
+      "measurements": [
+        "checks PASS=123 failed=0",
+        "===DONE[RESULT] tb_ascon_sw PASS"
+      ]
+    },
+    "ise_security": {
+      "before": "ise_security_timing_acb_ise_security.json",
+      "after": "ise_security_cleanup_v10_ise_security.json",
+      "pass": true,
+      "sources_identical": true,
+      "loadable_binary_identical": true,
+      "before_binary_sha256": "aeab7d6f07c6f2e5a804e3db8657fdeea10e6101874a484cac9f7f5d72b0e151",
+      "after_binary_sha256": "aeab7d6f07c6f2e5a804e3db8657fdeea10e6101874a484cac9f7f5d72b0e151",
+      "measurements_identical": true,
+      "measurements": [
+        "checks PASS=402 failed=0",
+        "===DONE[RESULT] tb_ascon_sw PASS"
+      ]
+    },
+    "ise_stall": {
+      "before": "ise_timing_acb_ise_stall.json",
+      "after": "ise_cleanup_v10_ise_stall.json",
+      "pass": true,
+      "sources_identical": true,
+      "loadable_binary_identical": true,
+      "before_binary_sha256": "6dfa1f18999657105acde9c19bed67cf95142bab15f241007e2917b01862df91",
+      "after_binary_sha256": "6dfa1f18999657105acde9c19bed67cf95142bab15f241007e2917b01862df91",
+      "measurements_identical": true,
+      "measurements": [
+        "PASS injected CPU hold across ISE completion",
+        "KAT empty  : PASS",
+        "KAT 1B     : PASS",
+        "KAT 16B    : PASS",
+        "KAT 16B+AD : PASS",
+        "dec round  : PASS",
+        "tamper     : PASS",
+        "ISE cycles   : 2496",
+        "===DONE[RESULT] tb_ascon_sw PASS"
+      ]
+    },
+    "ise_reset": {
+      "before": "ise_timing_acb_ise_reset.json",
+      "after": "ise_cleanup_v10_ise_reset.json",
+      "pass": true,
+      "sources_identical": true,
+      "loadable_binary_identical": true,
+      "before_binary_sha256": "6dfa1f18999657105acde9c19bed67cf95142bab15f241007e2917b01862df91",
+      "after_binary_sha256": "6dfa1f18999657105acde9c19bed67cf95142bab15f241007e2917b01862df91",
+      "measurements_identical": true,
+      "measurements": [
+        "PASS injected reset during ISE; firmware restarts",
+        "KAT empty  : PASS",
+        "KAT 1B     : PASS",
+        "KAT 16B    : PASS",
+        "KAT 16B+AD : PASS",
+        "dec round  : PASS",
+        "tamper     : PASS",
+        "ISE cycles   : 2496",
+        "===DONE[RESULT] tb_ascon_sw PASS"
+      ]
+    }
+  },
+  "sta_reimplemented": false,
+  "status": "FAIL",
+  "key_rtl_identical": true,
+  "units_identical": true,
+  "isa_identical": true,
+  "isa_results": {
+    "passed": 49,
+    "failed": [
+      "rv32ui_ma_data"
+    ],
+    "runner_exit": 1,
+    "full_isa_pass": false
+  },
+  "protected_file_mismatches": [],
+  "deleted_targets_reappeared": [
+    "dfx_runtime.txt",
+    "build/reports/ascon_key_lifecycle",
+    "build/reports/ascon_timing_r1",
+    "build/reports/ascon_timing_r2",
+    "build/reports/strategy_sweep_20261017",
+    "data/ascon/results/strategy_sweep_20261017"
+  ],
+  "error": "",
+  "limitations": [
+    "No new STA implementation or board measurement; retained RPT/DCP/source hashes verified",
+    "ISA ma_data fails identically before and after; not full ISA compliance"
+  ]
+}

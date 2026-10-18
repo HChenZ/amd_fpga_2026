@@ -1,5 +1,100 @@
 # 开发记录
 
+## 2026-10-18 — V10 授权清理与复验（owner TBD，数据已验、留存暂缓）
+
+- 用户确认清除废弃文件/可再生缓存，并进一步选择最终双策略RPT保留、其他旧报告删除。
+- 删除8个废弃根目录/状态文件、10个确认停止的缓存目录、9套旧报告与中间结果，合计564文件。
+- 保留原始恢复归档、生产源/输入、最终RPT/DCP、当前JSON/TXT依赖；留逐文件hash清单。
+- 增加3个历史汇总器缺报告时的防误覆盖提示与 verify_cleanup.py 真实复验器。
+- 新label cleanup_v10 的8项CPU、生命周期、5单元和50项ISA已重跑：镜像/周期/源码及231文件hash一致，ISA既有ma_data失败不变。
+- 复验exit 1仅因6个已删路径被并行会话恢复/重新导出；原FAIL证据保留。用户确认“暂时保留并行产物”，未再次删除。
+- 清理manifest记录数据PASS/留存DEFERRED；V10标blocked等待并行工作完成，不重复已完成回归、不修改其他会话产物。
+
+## 2026-10-18 — 并行任务卡 B：P0 收口文档（owner TBD）
+
+- 交付 I08 收口 docs/ascon_ppa_comparison.md（资源演进/周期加速比/收敛历程三表，
+  全部数字可追溯）；冻结检查点 docs/freeze_checkpoint_20261018.md（收敛版本构成、
+  一键复验命令链、改动门禁、余量脆弱性声明）。
+- 任务看板更新：I08 todo→done（证据指向 PPA 文档，标注芯片级/板上边界）、
+  V02 todo→done（ACB 套件证据）；头部日期更新。
+- 并行任务卡 A（src/pynq/ host 层代码）由另一 AI 执行，本卡未碰其目录。
+
+## 2026-10-18 — V09 A→C→B（owner TBD，完成本轮范围）
+
+- 按用户顺序修改 ascon_ise/mult/ex_stage/dcache；新增 RV32I/M SoC 适配器与乘法 hold/cancel 测试。
+- Ross MCP 在独立目录打开 fix_r1 routed DCP 副本，导出 156 端点明细，核实 A=93、C=48。
+- XSim 2025.2：multiplier 1259 例、ISE 1502 检查 PASS；Icarus A/C units 5/5 PASS。
+- 50 项恢复 RV32I/M：控制、A+C、最终 A+C+B 均 49/50，通过同一适配器保留 ma_data 失败。
+- 最终 8 项整机回归、MMIO/ISE 生命周期与 5 项单元均 PASS；mcycle 回到 HEAD 值，汇总脚本 exit 0。
+- RTL lint：EX 4 条（其中 1 条既有 critical），dcache 2 条；额外乘法警告仅未使用扩展乘积最高位。
+- 新双策略入口 build/build_timing_acb.tcl，fresh 副本/同综合快照、不覆盖旧报告；功能门禁后通过 Ross 启动。
+- 双策略完成 exit 0：PostRoute +0.001/0/0、Remap +0.007/0/0（WNS/TNS/setup失败），
+  hold/pulse/route error 均0。baseline 93/48/11/4 类别在最终全部归零。
+- Remap DCP 只读核实 4 个乘法 DSP 均 AREG/BREG=1，1个PREG=1；没有泛称所有DSP输出都注册打包。
+- build/summarize_timing_acb.py 交叉核对最终报告/CSV/XDC/40源hash，exit 0；总结及接口/看板已同步。
+- 仅既有100MHz约束通过、余量1–7ps；IO delay/电气/DRC/实板未验收。未commit/push。
+
+## 2026-10-18 — V08 dcache fix_r1（owner TBD）
+
+- Ross vivado-mcp-server 2026.9.1 登记到 OpenCode 全局配置（stdio，Vivado 2025.2），实测可用。
+- 修改 src/rtl/dcache.v（MMIO 固定延迟、MISS_CAPTURE 用寄存标志、单拍请求选通）；
+  build/screen_dcache_donttouch.sh 增加 `wt`；build/build_dcache_pipe.tcl 增加可选 tag 参数，
+  旧 MISS_CAPTURE 报告保留不删。
+- 功能门禁全 PASS；HEAD 周期对照在临时 detached worktree 中运行后已移除。
+- 时序 fix_r1：-0.128/-11.213/156，未达 4.4 门禁；报告 build/reports/dcache_pipe_20261018_fix_r1/。
+- 未 commit/push。
+
+## 2026-10-18 — V08 全量扫掠收尾（owner TBD）
+
+- 四批扫掠全部 exit 0：33 个标准流程策略全量完成，另 2 个高级流程回退重复已剔除；
+  最优 Performance_ExploreWithRemap -0.118/-1.008/22 端点。分析与排名已写入
+  docs/ascon_strategy_sweep.md、actual_progress、lessons（L76-L80）、skill。
+- dcache 两版独立评估完成（时序 -0.055/-0.078，功能均死锁），修复方案与英文清单
+  交付另一个 AI；同名 module 实验文件已归位 dcache_experiments/。
+- 未 commit/push；工作区含 dcache.v 修改、实验文件目录、文档与脚本，待审查。
+
+## 2026-10-18 — dcache 流水线版（另一个 AI）独立评估
+
+- 背景：另一个 AI 修改 dcache.v（MISS_CAPTURE 态流水化 miss→bus 请求路径）并遗留两个
+  同名实验文件在 src/rtl（dcache_timing_optimized.v / dcache_aggressive_fsm.v 均声明
+  module dcache）。已移入 src/rtl/dcache_experiments/（保留不删）。
+- 首测误用：Vivado 静默选用后序文件 dcache_timing_optimized.v 综合（同名模块不报错），
+  第一次"新 RTL"时序 -0.078 实为 DONT_TOUCH 版。清理重测后 dcache.v 真实值
+  WNS=-0.055/TNS=-1.122/40 端点（策略 Performance_ExplorePostRoutePhysOpt，报告
+  build/reports/dcache_pipe_20261018/）。最差路径=rs1_o_reg→captured_addr_reg/CE。
+- 功能回归（原生 xpack 工具链，runner 增加 Windows 原生前缀分支）：HEAD 原版 PASS；
+  dcache.v 与 DONT_TOUCH 版均 TIMEOUT（8M 拍无 DONE、0 UART 字符）。
+- 调试 TB（build/local/strategy_sweep_log/tb_ascon_sw_dbg.v）定位死锁：t=275 起
+  pc=100083f0、state=IDLE、stall=1 恒高、无总线活动。根因：MMIO 读等待改写为
+  bus_rdata_valid_i 清除，而 bus_mmio_re_r 仅 1 拍脉冲，AXI 握手不完成→rdata_valid
+  永不到来→mmio_read_wait_r 永 1→CPU 无限 stall。两版同病（均重写了 mmio 等待逻辑）。
+- 结论：两版时序有改善（-0.055/-0.078 vs -0.177）但功能不可用；修复方向=MMIO 读
+  请求保持到握手完成或恢复固定延迟等待。证据：data/ascon/results/key_lifecycle/
+  sw_dcache_pipe2.json（FAIL）、dcache_dt_screen.log、dcache_head_screen.log（PASS 对照）。
+
+## 2026-10-18 — V08 策略扫掠暂停（用户占用 Vivado）
+
+- 首轮 10 策略全部完成留档（最优 Performance_ExplorePostRoutePhysOpt -0.177）。
+- 补充扫掠（17 个 + 10 个 = 全部剩余内置策略）进行中与用户自己的 Ross/Vivado 会话
+  在同一隔离工程上发生双主进程冲突：波 1 三个 SSI 策略布线完成但报告丢失（需重跑），
+  其余待跑。用户要求暂停，待其用完 Vivado 后继续。
+- 续跑命令：build/sweep_strategy_timing.tcl -tclargs "resume jobs 6 extra build/strategies_extra.txt"
+  及第二批 "extra build/strategies_extra2.txt"（含 6 个标准流程 + 4 个高级流程策略）。
+- 2025.2 内置策略全集已从 Vivado/strategies/VDI2025.psg + VDAI2025.psg 核对：33 + 4 = 37 个。
+- 02:22 续跑再次被顶死：另一个 AI 的 Vivado 会话仍在打开本隔离工程（02:21-02:26 新会话启动、
+  工程 run 目录 impl_1/synth_1/explore_postroute 被外部改动、vivado-proxy 新握手）。用户未响应
+  协调询问；暂停等待用户处理，不再自动重试。TSV 仍 10 行、首轮数据完好。
+
+## 2026-10-18 — V08 实现策略扫掠（owner TBD）
+
+- 用户授权全量 10 策略扫掠、提速并行与数据记录分析；未改 RTL/XDC/XCI/COE，未 commit/push。
+- 诊断并解决本机 Vivado 缺 Zynq-7000 器件库（用户补装）；写 sweep/aggregate 脚本，
+  多次中断续跑（缺器件、API 误用、波次 to_step 冲突、双主进程），最终 10/10 完成。
+- 结果最优 Performance_ExplorePostRoutePhysOpt -0.177/-2.968/31，与本机 Default 重跑
+  及 xyq 机 V06 逐位一致；结论见 docs/ascon_strategy_sweep.md，数据见
+  data/ascon/results/strategy_sweep_20261017/。
+- 沉淀 skill vivado-strategy-sweep；更新实际进度与经验（L70-L75）。
+
 ## 2026-10-17 — V07 工具评估（owner TBD）
 
 - V06检查点2b48a8a已commit/push，PR4为draft；未合并main。
@@ -174,3 +269,33 @@
 - 阅读现行实现、标准和历史记录，保存before测试，修复证实的MMIO/ISE/CPU生命周期与认证问题；补齐独立黄金、CPU/RTL/故障注入测试。
 - Vivado2025.2独立复制真实baseline，生成三个IP，综合及实现尝试；源配置修复与失败均保留。无板级引脚修改或烧录。
 - 更新实际进度、接口、任务状态、上板清单；最终检查、commit/push结果见本轮validation_summary及交付报告。
+
+## 2026-10-18 — 并行任务卡 A：PYNQ host 无板子集（owner TBD）
+
+- 仅新增 src/pynq/ascon_host_api.py、golden_checker.py、jupyter_demo.ipynb、readme.md、test_host_api.py；
+  本条为共享开发日志末尾追加，保留已有未提交改动；未改 RTL/固件/reference/docs/tasks，未启动 Vivado、未 commit/push。
+- Y03/Y04 无板子集交付：可替换 Backend、锁定 Python reference 模拟加解密、具体长度/认证/超时/总线异常、
+  官方 KAT 逐字节校验、篡改拒绝与故障注入、notebook 顺序展示；不伪造 PynqBackend 或 Y01 寄存器。
+- CPython 3.11.16 实跑：python src/pynq/golden_checker.py → PASS 1089 / FAIL 0、篡改拒绝4290、exit 0；
+  python src/pynq/test_host_api.py → 17 tests OK、exit 0，含六类向量×三mode、notebook全部代码单元顺序执行。
+  测试实际启动 --inject tag/ciphertext 两子进程，各 PASS1088/FAIL1、byte=0、exit1（预期故障被捕获）。
+- 核实任务卡 ascon/python 实为 ascon/pyascon；锁定上游参考位于 sim/ascon/reference/pyascon。
+  周期 JSON 仅有元数据，实际17353/670/2496在同名.log；仅16B无AD加密返回 historical simulated样本，其他未测返回None。
+- 未测：C重新编译、Jupyter前端、真实总线/PYNQ/板卡/overlay/板级cycles；同步模拟不能抢占，超时仅丢弃迟到结果。
+  下一接收Y01/Y02→Y03/Y04板级部分，owner TBD；按任务卡唯一共享文件限制，主线维护者后续同步实际进度/看板。
+
+## 2026-10-18 — Y01 板型无关协议草案与模拟通信（owner TBD）
+
+- 用户授权先完成不绑定板型部分；沿用并行边界，只改src/pynq并在本日志末尾追加。
+  新增mailbox_protocol.md/.py、mailbox_backend.py、test_mailbox.py；扩展golden_checker CLI及readme，既有Host API不变。
+- draft v1定义逻辑能力握手、48-byte小端请求/响应、epoch/request_id、单槽busy/complete/ACK、长度/认证错误、
+  64-bit周期有效标记、deadline及显式reset恢复。消息内偏移不是MMIO地址；未创建寄存器映射/假PynqBackend。
+- MemoryTransport使用锁定Python reference，正常cycles=None；sw/hw/ise均仅模拟，不宣称硬件多块、真实总线或cache验证。
+- CPython3.11.16实跑：test_mailbox.py 24/24、test_host_api.py 17/17（含notebook）均exit0；
+  golden_checker.py --backend mailbox --mode sw/hw/ise三条各PASS1089/FAIL0、篡改拒绝4290、exit0。
+  mailbox --inject tag/ciphertext各PASS1088/FAIL1、首差byte0、exit1（预期）；包导入与无板加解密示例exit0。
+- 覆盖旧/错响应、重复ID、busy覆盖拒绝、ACK匹配/失败、tag失败无明文、版本/容量协商、
+  超时隔离与显式恢复、reset失败/epoch不变、总线故障、64-bit codec；异常后不自动重试crypto。
+- 未测：真实AXI/PS/PL、cache/屏障、固件加载/物理清零/复位、overlay及实板周期；同步reference不能抢占。
+  协议未冻结、Y01整项/Y02未验收；未启动Vivado、未改RTL/固件/docs/tasks，未commit/push。
+  下一接收：草案审查→B03板型/image→Y01物理映射/固件/cache冻结→Y02，owner TBD；主线维护者同步实际进度/看板。

@@ -48,7 +48,12 @@ module tb_key_ise;
         end
         put(0,32'h123);@(negedge clk);start=1;p12=1;
         repeat(4) @(negedge clk);cancel=1;start=0;
-        @(negedge clk);cancel=0;repeat(25) @(negedge clk);
+        @(negedge clk);cancel=0;
+        check(dut.state===320'd0 && !done,"cancel architectural clear");
+        @(negedge clk);
+        check({dut.u_p12.s_reg,dut.u_p12.s_out,dut.u_p8.s_reg,dut.u_p8.s_out}===1280'd0,
+              "cancel private clear next edge");
+        repeat(24) @(negedge clk);
         state_check(0);check(!done,"cancel no stale completion");
         put(0,32'h456);@(negedge clk);start=1;
         repeat(4) @(negedge clk);rst_n=0;start=0;

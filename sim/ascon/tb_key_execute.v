@@ -37,6 +37,17 @@ module tb_key_execute;
         func=`EXE_ASCON_W_OP;rs1=32'h55;rs2=1;irq=1;
         @(negedge clk);func=`EXE_NOP_OP;irq=0;
         check(dut.u_ascon_ise.state===0,"squashed write cannot commit");
+        // Multiply completion must survive an unrelated downstream hold.
+        func=`EXE_MULH_OP;rs1=32'h80000000;rs2=32'hffffffff;hold=1;
+        repeat(12) @(negedge clk);
+        check(dut.mul_done && !stall && dut.mul_result===0,"multiply held completion");
+        repeat(8) @(negedge clk);
+        check(dut.mul_done && dut.mul_result===0,"multiply no reentry");
+        hold=0;@(negedge clk);func=`EXE_MUL_OP;rs1=7;rs2=9;hold=1;
+        repeat(4) @(negedge clk);
+        check(dut.mul_done && dut.mul_result===63,"consecutive multiply");
+        irq=1;@(negedge clk);func=`EXE_NOP_OP;irq=0;hold=0;
+        check(!dut.mul_done,"interrupt aborts multiply");
         $display("SUMMARY EXECUTE checks=%0d errors=%0d",checks,errors);
         if(errors) $fatal(1,"execute interaction");$finish;
     end

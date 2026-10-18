@@ -1,5 +1,21 @@
 # 接口契约与待定项
 
+## 2026-10-18 V09 时序修复接口增量（owner TBD）
+
+- ISE opcode/字布局/结果/软件 ABI 不变。`ascon_ise` 的 P8/P12 私有复位控制注册化：
+  cancel 当拍架构 `state` 与完成状态清零，下一拍私有 `s_reg/s_out` 清零；正常完成转 idle
+  后最多两拍清除私有副本。取消期间不发布结果。接受与 `p_start` 同拍释放局部复位，
+  不增加正常置换执行周期。系统复位仍可取消操作。
+- `multiplier` 内部接口追加 `mul_ack` 与 `cancel`：输入寄存器 → 乘积寄存器，
+  接受后下一拍乘积与 `mul_done` 有效；`mul_done`/结果保持到 `mul_ack`，cancel/reset
+  取消且不完成。EX 以 `mul_done && !ex_hold` 确认退休。reset-free 数据通路只在完成有效时消费，
+  不承诺 reset 后无效 `mul_result` 的数值。M 扩展编码及算术语义不变，无 multicycle XDC 例外。
+- dcache 仅 cacheable load miss 走 MISS_CAPTURE；store/MMIO 直接发单拍注册请求，恢复 HEAD
+  延迟。MMIO 采用原固定延迟读回（检测 T，T+1 请求/等待，T+2 数据/解除等待），
+  不等待仅用于 cacheable fill 的 `bus_rdata_valid_i`。CPU/总线端口与地址映射不变。
+
+验证与尚未验收项见 [V09 报告](timing_acb_validation.md)。
+
 2026-10-16现行增量：软件/MMIO/ISE已在RV32仿真运行。MMIO CTRL[2]为idle ZEROIZE，
 BUSY写忽略、认证成功且有效长度内才允许OUT读取；ISE新增内部cancel/ack、EX hold接线，
 **没有新opcode**。ISE decrypt helper新增最后一个mlen指针，失败-1/0长度并擦除候选。

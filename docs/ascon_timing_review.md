@@ -1,5 +1,8 @@
 # Ascon 100 MHz 时序续接审查
 
+> V10 留存更新：本文是历史审查记录；V06 旧 RPT 曾被删除，随后并行会话恢复，
+> 用户确认暂时保留。最终双策略报告及清理后数据一致性结论见 [清理与复验](workspace_cleanup.md)。
+
 实现日期2026-10-16；2026-10-17复核；V06 / B02 / I08；owner TBD。承接 `fix/ascon-key-lifecycle` 的安全修复，
 保留 `build/reports/ascon_key_lifecycle/` 的优化前报告。用户授权最多两轮有依据的优化和实现，
 不修改正式频率、时钟约束或时序例外。板型未知，未生成或烧录 bitstream。

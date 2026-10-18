@@ -36,7 +36,7 @@ module dcache #(
     // =========================================================================
     // 参数计算
     // =========================================================================
-    localparam BOFF_WIDTH   = $clog2(XLEN/8);   // RV32=2, RV64=3
+    localparam BOFF_WIDTH   = $clog2(XLEN/8);
     localparam INDEX_WIDTH  = $clog2(DCACHE_SET_SIZE);
     localparam WOFF_WIDTH   = $clog2(DCACHE_LINE_WORDS);
     localparam TAG_WIDTH    = XLEN - INDEX_WIDTH - WOFF_WIDTH - BOFF_WIDTH;
@@ -51,7 +51,6 @@ module dcache #(
 
     wire cacheable = (cpu_addr_i[31:20] == 12'h100);
 
-
     // =========================================================================
     // Way0 / Way1 Tag 存储（分布式 RAM，异步读）
     // =========================================================================
@@ -64,8 +63,7 @@ module dcache #(
     wire [TAG_WIDTH-1:0] tag_way1_out = tag_way1[req_idx];
 
     // =========================================================================
-    // Data 存储（两路独立 BRAM，每路 256×XLEN = 64组×4字）
-    // 地址直连 {req_idx, req_woff}，组合逻辑驱动 BRAM 地址端口
+    // Data 存储
     // =========================================================================
     (* ram_style = "block" *) reg [XLEN-1:0] data_way0 [0:(1<<WDATA_W)-1];
     (* ram_style = "block" *) reg [XLEN-1:0] data_way1 [0:(1<<WDATA_W)-1];
@@ -73,7 +71,7 @@ module dcache #(
     reg [XLEN-1:0] data_way1_out;
 
     // =========================================================================
-    // Valid 位 & LRU 位（FF 实现）
+    // Valid 位 & LRU 位
     // =========================================================================
     reg [DCACHE_SET_SIZE-1:0] valid_way0;
     reg [DCACHE_SET_SIZE-1:0] valid_way1;
@@ -86,7 +84,6 @@ module dcache #(
     wire hit_way1 = cacheable && valid_way1[req_idx] && (tag_way1_out == req_tag);
     wire hit = hit_way0 || hit_way1;
 
-    // 寄存 hit_way0/hit_way1，与 data_way0_out/data_way1_out 同拍更新
     reg hit_way0_r, hit_way1_r;
 
     // =========================================================================
@@ -99,17 +96,17 @@ module dcache #(
                       lru[req_idx];
 
     // =========================================================================
-    // FSM 状态定义
+    // Only cacheable load misses use the extra request pipeline stage.
     // =========================================================================
-    localparam IDLE       = 2'd0;
-    localparam FILL       = 2'd1;
-    localparam STORE_WAIT = 2'd2;
+    localparam IDLE         = 3'd0;
+    localparam MISS_CAPTURE = 3'd1;  // NEW: Capture miss info for one cycle
+    localparam FILL         = 3'd2;
 
-    reg [1:0] state;
-    reg [1:0] next_state;
+    reg [2:0] state;
+    reg [2:0] next_state;
     reg [2:0] fill_cnt;
 
-    // Registered request bundle sent to bus_interconnect.
+    // Registered request bundle
     reg [XLEN-1:0]      bus_addr_r;
     reg [XLEN-1:0]      bus_wdata_r;
     reg [XLEN/8-1:0]    bus_wmask_r;
@@ -119,37 +116,45 @@ module dcache #(
     reg                 bus_mmio_we_r;
     reg                 bus_load_miss_r;
     reg                 bus_store_miss_r;
+
     wire cache_access_fire = (state == IDLE) && !cpu_req_stall_i;
     wire mmio_access_fire = cache_access_fire;
 
     // =========================================================================
-    // Miss 地址锁存（填充期间使用）
+    // Miss 地址锁存
     // =========================================================================
     reg [TAG_WIDTH-1:0]   miss_tag;
     reg [INDEX_WIDTH-1:0] miss_idx;
     reg [WOFF_WIDTH-1:0]  miss_woff;
     reg                   miss_way;
 
+    // Request bundle captured in IDLE, consumed in MISS_CAPTURE
+    reg [XLEN-1:0]      captured_addr;
+    reg [XLEN-1:0]      captured_wdata;
+    reg [XLEN/8-1:0]    captured_wmask;
+
+    // Latched classification: MISS_CAPTURE must never inspect live hit/address.
+    reg                 cap_load_miss_q;
+
     // =========================================================================
     // BRAM 读写地址
     // =========================================================================
     wire [WDATA_W-1:0]   rd_addr = {req_idx, req_woff};
-
     wire [1:0] wr_word = miss_woff + fill_cnt[1:0];
     wire [WDATA_W-1:0] fill_wr_addr = {miss_idx, wr_word};
 
     // =========================================================================
-    // 写使能
+    // 写使能和控制信号
     // =========================================================================
     wire fill_we = (state == FILL) && bus_rdata_valid_i;
     wire fill_way0_we = fill_we && (miss_way == 0);
     wire fill_way1_we = fill_we && (miss_way == 1);
+
     wire load_miss_now = cache_access_fire && cpu_re_i && cacheable && !hit;
     wire store_now = cache_access_fire && cpu_we_i && cacheable;
     wire store_cache_write = store_now;
     wire mmio_read_now = mmio_access_fire && cpu_re_i && !cacheable;
     wire mmio_write_now = mmio_access_fire && cpu_we_i && !cacheable;
-    wire bus_req_capture = load_miss_now || store_now || mmio_read_now || mmio_write_now;
     wire store_miss = store_now && !hit;
 
     wire load_miss = load_miss_now;
@@ -163,7 +168,7 @@ module dcache #(
             load_miss_reg <= load_miss;
     end
 
-    // FILL 期间直接抓取 miss 需要的那一个字（不经过 BRAM 读）
+    // FILL 期间直接抓取第一个字
     reg [XLEN-1:0] fill_capture_data;
 
     always @(posedge clk or negedge rst_n)
@@ -174,30 +179,59 @@ module dcache #(
             fill_capture_data <= bus_rdata_i;
     end
 
-    // fill_done_r: FILL→IDLE 过渡周期为高，用于在 stall 释放的当拍直接返回 fill_capture_data
     reg fill_done_r;
-    always @(posedge clk or negedge rst_n) 
+
+    always @(posedge clk or negedge rst_n)
     begin
         if (!rst_n)
             fill_done_r <= 1'b0;
-        else if (fill_we && fill_cnt == 3'd3)
-            fill_done_r <= 1'b1;
         else
-            fill_done_r <= 1'b0;
+            fill_done_r <= (state == FILL) && (fill_cnt == 3'd3) && bus_rdata_valid_i;
     end
+
     // =========================================================================
-    // Miss 地址锁存 always block
+    // AGGRESSIVE PIPELINE: Capture request in MISS_CAPTURE state
     // =========================================================================
     always @(posedge clk or negedge rst_n)
     begin
-        if (!rst_n) 
+        if (!rst_n)
+        begin
+            captured_addr  <= {XLEN{1'b0}};
+            captured_wdata <= {XLEN{1'b0}};
+            captured_wmask <= {(XLEN/8){1'b0}};
+        end
+        else if (load_miss_now)
+        begin
+            captured_addr  <= cpu_addr_i;
+            captured_wdata <= cpu_wdata_i;
+            captured_wmask <= cpu_wmask_i;
+        end
+    end
+
+    always @(posedge clk or negedge rst_n)
+    begin
+        if (!rst_n)
+        begin
+            cap_load_miss_q  <= 1'b0;
+        end
+        else
+        begin
+            cap_load_miss_q  <= load_miss_now;
+        end
+    end
+
+    wire in_capture = (state == MISS_CAPTURE);
+
+    always @(posedge clk or negedge rst_n)
+    begin
+        if (!rst_n)
         begin
             miss_tag  <= {TAG_WIDTH{1'b0}};
             miss_idx  <= {INDEX_WIDTH{1'b0}};
             miss_woff <= {WOFF_WIDTH{1'b0}};
             miss_way  <= 1'b0;
-        end 
-        else if (load_miss_now) 
+        end
+        else if (load_miss_now)
         begin
             miss_tag  <= req_tag;
             miss_idx  <= req_idx;
@@ -207,27 +241,30 @@ module dcache #(
     end
 
     // =========================================================================
-    // Hit 打拍对齐 BRAM 读延迟
+    // MMIO read: fixed latency, no valid from bus_interconnect.
+    // T   IDLE, mmio_read_now
+    // T+1 bus_mmio_re_o=1, mmio_read_wait_r=1 (stall)
+    // T+2 peripheral data on bus_rdata_i, uncached_req_r=1, stall released
     // =========================================================================
     reg uncached_req_r;
     reg mmio_read_wait_r;
 
-    always @(posedge clk or negedge rst_n) 
+    always @(posedge clk or negedge rst_n)
     begin
-        if (!rst_n) 
+        if (!rst_n)
         begin
-            uncached_req_r <= 1'b0;
+            uncached_req_r   <= 1'b0;
             mmio_read_wait_r <= 1'b0;
-        end 
-        else 
+        end
+        else
         begin
             mmio_read_wait_r <= mmio_read_now;
-            uncached_req_r <= mmio_read_wait_r;
+            uncached_req_r   <= mmio_read_wait_r;
         end
     end
 
     // =========================================================================
-    // BRAM - 读／写分开（与 icache 结构一致）
+    // BRAM 读写
     // =========================================================================
     wire [XLEN-1:0] data_out = hit_way0_r ? data_way0_out : data_way1_out;
 
@@ -235,9 +272,7 @@ module dcache #(
                          fill_done_r     ? fill_capture_data :
                                           data_out;
 
-    // =========================================================================
-    // Stall 输出
-    // =========================================================================
+    // Stall includes new MISS_CAPTURE state
     assign cpu_stall_o = (state != IDLE) || load_miss_reg || mmio_read_wait_r;
 
     // Way0 Port A: CPU 读 / store-hit 字节写
@@ -255,7 +290,7 @@ module dcache #(
         end
     end
 
-    // Way0 Port B: fill 全字写
+    // Way0 Port B: fill
     always @(posedge clk)
     begin
         if (fill_way0_we)
@@ -277,14 +312,14 @@ module dcache #(
         end
     end
 
-    // Way1 Port B: fill 全字写
+    // Way1 Port B: fill
     always @(posedge clk)
     begin
         if (fill_way1_we)
             data_way1[fill_wr_addr] <= bus_rdata_i;
     end
 
-    // hit_way0/hit_way1 寄存（与 data_way0_out/data_way1_out 同拍）
+    // hit_way0/hit_way1 寄存
     always @(posedge clk)
     begin
         hit_way0_r <= hit_way0;
@@ -292,20 +327,40 @@ module dcache #(
     end
 
     // =========================================================================
-    // FSM 次态逻辑（组合）
+    // FSM 次态逻辑 - AGGRESSIVE PIPELINE VERSION
+    // 强制在MISS_CAPTURE状态停留一个周期
     // =========================================================================
     always @(*) begin
         case (state)
-            IDLE:       next_state = load_miss_now ? FILL : IDLE;
-            FILL:       next_state = (fill_cnt == 3'd3 && bus_rdata_valid_i) ? IDLE : FILL;
-            default:    next_state = IDLE;
+            IDLE: begin
+                if (load_miss_now)
+                    next_state = MISS_CAPTURE;  // NEW: Go to capture state first
+                else
+                    next_state = IDLE;
+            end
+
+            MISS_CAPTURE: begin
+                if (cap_load_miss_q)
+                    next_state = FILL;          // Load miss -> FILL
+                else
+                    next_state = IDLE;          // Store/MMIO -> back to IDLE
+            end
+
+            FILL: begin
+                if (fill_cnt == 3'd3 && bus_rdata_valid_i)
+                    next_state = IDLE;
+                else
+                    next_state = FILL;
+            end
+
+            default: next_state = IDLE;
         endcase
     end
 
     // =========================================================================
     // FSM 状态寄存
     // =========================================================================
-    always @(posedge clk or negedge rst_n) 
+    always @(posedge clk or negedge rst_n)
     begin
         if (!rst_n)
             state <= IDLE;
@@ -314,9 +369,9 @@ module dcache #(
     end
 
     // =========================================================================
-    // Fill 计数器（0~5，替代 FILL_0~FILL_RD 离散状态）
+    // Fill 计数器
     // =========================================================================
-    always @(posedge clk or negedge rst_n) 
+    always @(posedge clk or negedge rst_n)
     begin
         if (!rst_n)
             fill_cnt <= 3'd0;
@@ -327,7 +382,7 @@ module dcache #(
     end
 
     // =========================================================================
-    // 外部 MEM 接口控制
+    // 外部 MEM 接口控制 - Use captured signals in MISS_CAPTURE state
     // =========================================================================
     always @(posedge clk or negedge rst_n)
     begin
@@ -337,7 +392,13 @@ module dcache #(
             bus_wdata_r         <= {XLEN{1'b0}};
             bus_wmask_r         <= {(XLEN/8){1'b0}};
         end
-        else if (bus_req_capture)
+        else if (in_capture)
+        begin
+            bus_addr_r  <= captured_addr;
+            bus_wdata_r <= captured_wdata;
+            bus_wmask_r <= captured_wmask;
+        end
+        else if (store_now || mmio_read_now || mmio_write_now)
         begin
             bus_addr_r  <= cpu_addr_i;
             bus_wdata_r <= cpu_wdata_i;
@@ -345,6 +406,9 @@ module dcache #(
         end
     end
 
+    // Single-cycle strobes. Stores/MMIO bypass MISS_CAPTURE (HEAD latency).
+    // bus_interconnect latches mem_re itself; a held strobe would queue a
+    // second read burst (dcache_re_buf) during FILL.
     always @(posedge clk or negedge rst_n)
     begin
         if (!rst_n)
@@ -353,27 +417,17 @@ module dcache #(
             bus_mem_we_r     <= 1'b0;
             bus_load_miss_r  <= 1'b0;
             bus_store_miss_r <= 1'b0;
+            bus_mmio_re_r    <= 1'b0;
+            bus_mmio_we_r    <= 1'b0;
         end
         else
         begin
-            bus_mem_re_r     <= load_miss_now;
+            bus_mem_re_r     <= in_capture && cap_load_miss_q;
             bus_mem_we_r     <= store_now;
-            bus_load_miss_r  <= load_miss_now;
+            bus_load_miss_r  <= in_capture && cap_load_miss_q;
             bus_store_miss_r <= store_miss;
-        end
-    end
-
-    always @(posedge clk or negedge rst_n)
-    begin
-        if (!rst_n)
-        begin
-            bus_mmio_re_r <= 1'b0;
-            bus_mmio_we_r <= 1'b0;
-        end
-        else
-        begin
-            bus_mmio_re_r <= mmio_read_now;
-            bus_mmio_we_r <= mmio_write_now;
+            bus_mmio_re_r    <= mmio_read_now;
+            bus_mmio_we_r    <= mmio_write_now;
         end
     end
 
@@ -382,24 +436,21 @@ module dcache #(
     assign bus_mem_we_o = bus_mem_we_r;
     assign bus_mmio_re_o = bus_mmio_re_r;
     assign bus_mmio_we_o = bus_mmio_we_r;
-
     assign bus_wmask_o = bus_wmask_r;
     assign bus_wdata_o = bus_wdata_r;
     assign bus_load_miss_o = bus_load_miss_r;
     assign bus_store_miss_o = bus_store_miss_r;
 
-
-
-
     // =========================================================================
-    // Tag 写（独立 always 块 → Vivado 推断分布式 RAM）
+    // Tag 写
     // =========================================================================
-    always @(posedge clk) 
+    always @(posedge clk)
     begin
         if (fill_we && fill_cnt == 3'd3 && (miss_way == 0))
             tag_way0[miss_idx] <= miss_tag;
     end
-    always @(posedge clk) 
+
+    always @(posedge clk)
     begin
         if (fill_we && fill_cnt == 3'd3 && (miss_way == 1))
             tag_way1[miss_idx] <= miss_tag;
@@ -408,18 +459,17 @@ module dcache #(
     // =========================================================================
     // Valid / LRU 更新
     // =========================================================================
-    always @(posedge clk or negedge rst_n) 
+    always @(posedge clk or negedge rst_n)
     begin
-        if (!rst_n) 
+        if (!rst_n)
         begin
             valid_way0 <= {DCACHE_SET_SIZE{1'b0}};
             valid_way1 <= {DCACHE_SET_SIZE{1'b0}};
             lru        <= {DCACHE_SET_SIZE{1'b0}};
-        end 
-        else 
+        end
+        else
         begin
-
-            if (load_miss_now) 
+            if (load_miss_now)
             begin
                 if (victim_way == 0)
                     valid_way0[req_idx] <= 1'b0;
@@ -440,20 +490,16 @@ module dcache #(
                 end
             end
 
-            if (fill_we && fill_cnt == 3'd3) 
+            if (fill_we && fill_cnt == 3'd3)
             begin
-                if (miss_way == 0) 
-                begin
+                if (miss_way == 0)
                     valid_way0[miss_idx] <= 1'b1;
-                end 
-                else 
-                begin
+                else
                     valid_way1[miss_idx] <= 1'b1;
-                end
                 lru[miss_idx] <= ~miss_way;
             end
 
-            if (cache_access_fire && hit && (cpu_re_i || cpu_we_i)) 
+            if (cache_access_fire && hit && (cpu_re_i || cpu_we_i))
             begin
                 if (hit_way0)
                     lru[req_idx] <= 1'b1;

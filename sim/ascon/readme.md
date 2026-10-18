@@ -1,5 +1,10 @@
 # Ascon Final host validation and RTL golden interface
 
+V10 cleanup: historical Vivado report directories and unused intermediate results
+were pruned by user request. Final dual-strategy reports, golden inputs and current
+regression evidence remain. `verify_cleanup.py` performs fresh regressions and compares
+binary images/cycles/source/report hashes; see [cleanup](../../docs/workspace_cleanup.md).
+
 Task C01/C02/C03, owner TBD, audited 2026-10-07 (Asia/Shanghai).
 The standard and observed issues are in [ascon_standard_baseline](../../docs/ascon_standard_baseline.md).
 The production C API is documented in
@@ -194,3 +199,17 @@ regression. Timing continuation reports use distinct `timing_*` labels; see
 
 `python sim/ascon/test_evidence_snapshot.py` verifies that missing, empty, partial or changed implementation
 snapshots cannot be certified as matching. This evidence gate runs in seconds and does not invoke Vivado.
+
+## V09 RV32I/M regression and pipeline tests
+
+`run_rv32_isa.py --label <unique> --cc-prefix <prefix>` runs all 50 recovered RV32I/M
+bodies on the production SoC, with `isa_env` adapting only M-mode startup, linking
+and completion. Original instruction test bodies are unchanged. It is not a privileged
+or U/S-mode compliance suite. `ma_data` requires hardware misaligned loads and fails
+on both fix_r1 and V09; the runner retains the failure and returns exit 1.
+Results/commands/hashes are in `data/ascon/results/isa/<label>/`.
+`--rtl-dir <snapshot>` selects an immutable control source set.
+
+`run_cpu_units.py --label <unique>` also runs `tb_multiplier_pipeline`: four multiply
+forms, signed/unsigned edge cases, 1000 deterministic random cases (seed 4d554c31),
+completion holds, cancellation and reset. See [V09 report](../../docs/timing_acb_validation.md).

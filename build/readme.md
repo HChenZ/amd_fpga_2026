@@ -1,5 +1,10 @@
 # 构建与复现
 
+V09 最终双策略实验 RPT 位于 `reports/timing_acb_20261018/`，原始恢复归档保留。
+旧实验报告清理后被并行任务部分恢复；用户最新确认暂时保留这些并行产物，待并行任务结束后收尾。
+被检查脚本实际使用的 JSON/TXT 仍保留。
+详细范围与清理后重跑见 [V10 清理说明](../docs/workspace_cleanup.md)。
+
 已恢复真实 XC7Z020 XPR、三个 IP XCI 和固件/测试源；尚未完成 Vivado/固件重建。历史报告在 reports/cicc1000023_archive，本轮模块测试证据在 metadata。B02/B04 继续关闭构建依赖与验证缺口。
 
 ## 存放约定
@@ -55,3 +60,16 @@ Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands an
 The continuation's [100 MHz review](../docs/ascon_timing_review.md) retains each implementation round.
 `build_ascon_review.tcl` accepts a build leaf, `fresh`/`resume`, and an optional report leaf;
 fresh runs refuse to overwrite either an existing build or report directory.
+
+## 2026-10-18 V09 A/C/B validation
+
+`build_timing_acb.tcl` clones the recovered Zynq project, snapshots production RTL,
+synthesizes once and implements `Performance_ExplorePostRoutePhysOpt` and
+`Performance_ExploreWithRemap` separately. Use Vivado 2025.2 through Ross MCP:
+`source <repo>/build/build_timing_acb.tcl`. Existing work/report directories are
+never overwritten. Do not run it against the strategy-sweep project.
+
+`python build/summarize_timing_acb.py` independently cross-checks final reports,
+endpoint CSVs, source hashes and XDC identity. Current [results](../docs/timing_acb_validation.md)
+meet existing 100 MHz constraints with only 1–7 ps setup slack; board IO/DRC
+signoff remains separate and incomplete.

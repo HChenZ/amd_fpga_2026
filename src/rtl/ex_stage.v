@@ -119,7 +119,7 @@ module ex_stage #(
     assign final_mul_data = is_mul ? mul_result : div_result;
     assign mul_result_out = mul_result;
 
-    //例化乘法模块（合并FSM，1 stall）
+    // Register both sides of the multiplier; keep done until EX advances.
     multiplier #(.XLEN(XLEN))
     u_multiplier (
     .clk       (clk),
@@ -129,7 +129,9 @@ module ex_stage #(
     .rs2_data  (mul_rs2),
     .func_sel  (id_func_sel),
     .mul_result(mul_result),
-    .mul_done  (mul_done)
+    .mul_done  (mul_done),
+    .mul_ack   (mul_done && !ex_hold),
+    .cancel    (inter_req || jump_trap_en || jump_trap_out)
     );
 
     //例化除法/取余模块

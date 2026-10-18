@@ -1,6 +1,6 @@
 # 任务看板
 
-更新：2026-10-17。所有 owner 为 **TBD**，仅由项目方指派。截止日期为内部计划；依赖完成是开工/验收门槛，不能用到期日替代。日期以 Asia/Shanghai 为准。
+更新：2026-10-18。所有 owner 为 **TBD**，仅由项目方指派。截止日期为内部计划；依赖完成是开工/验收门槛，不能用到期日替代。日期以 Asia/Shanghai 为准。
 
 编号：B=baseline/build，C=cryptography software，I=instruction extension，V=verification，Y=PYNQ，S=skill，P=PUF/security，D=documentation/release。
 
@@ -30,9 +30,9 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 | I05 | CPU integration | TBD | I04、B02、V01 | decode/execute/旁路/控制接入与集成测试 | baseline 回归通过；数据相关、stall/flush、中断/异常与 ISE 交互通过；ISE-disabled 可运行 | 2026-10-11 | in_progress |
 | I06 | inline asm/intrinsic | TBD | I02；联调需 I05 | 软件封装、调用测试和反汇编/执行证据 | 不改 GCC backend；寄存器约束正确，热点实际执行对应 opcode；无静默 fallback | 2026-10-12 | done |
 | I07 | software vs ISE benchmark | TBD | I05、I06、V02、C04 | 两种程序与原始 benchmark/加速比 | 同平台同条件 KAT 正确；cycles/cycles-per-byte/代码量与原始数据齐全；第一版真实加速数据 | 2026-10-14 | done |
-| I08 | PPA comparison | TBD | I05、B03 | software/ISE 综合与实现报告、对比表 | 同工具/part/约束/策略，LUT/FF/BRAM/DSP/Fmax/时序均有证据；时序失败不能算达标 | 2026-10-20 | todo |
+| I08 | PPA comparison | TBD | I05、B03 | docs/ascon_ppa_comparison.md（芯片级 STA 证据）；板上 PPA 待 B03/V01 | 同工具/part/约束/策略，LUT/FF/BRAM/DSP/Fmax/时序均有证据；芯片级收敛 WNS+0.007/0 失败端点；板级 IO delay 未约束不标上板达标 | 2026-10-20 | done |
 | V01 | baseline regression/counter sanity | TBD | 完整验收需 B02、B03、B04；模块测试可先行 | 两个模块 TB 已过；待 ISA/外设/Cache/AXI/中断及 counter 测试 | 保存可重跑程序/TB/日志；mcycle 读取与溢出、计数开销已检查；支持范围明确 | 2026-09-29 | in_progress |
-| V02 | software/ISE differential verification | TBD | I05、I06、C03 | CPU 级 KAT 与差分/负向验证 | 两套固件均通过可信 KAT，篡改拒绝；流水 hazard/flush 场景无回归 | 2026-10-13 | todo |
+| V02 | software/ISE differential verification | TBD | I05、I06、C03 | ACB 套件（sw/hw/ise 同 KAT + 篡改拒绝 + stall/reset 注入）证据 data/ascon/results/key_lifecycle/*_timing_acb*.json | 两套固件均通过可信 KAT，篡改拒绝；流水 hazard/flush 场景无回归 | 2026-10-13 | done |
 | V03 | PS/PL end-to-end regression | TBD | Y02、Y03、V02 | 自动板级测试/错误场景日志 | 软件/ISE 输入到输出可复现；错误 tag、超时、长度边界、重复命令、缓存可见性可检查 | 2026-10-20 | todo |
 | V04 | core freeze regression | TBD | Y05、I08、V03 | 冻结回归清单与证据索引 | P0/P1 验收齐全、无未关闭阻断缺陷；冻结哈希与环境留档；不以 P2 拖延 | 2026-10-27 | todo |
 | V05 | standalone Ascon AEAD RTL verification and main integration | TBD | C01；独立于CPU ISE | sim/ascon TB/runner、data/ascon/results/rtl_integration_regression.*、docs/ascon_rtl_decrypt_validation.md | 最新main上整合、远端Decrypt接口兼容；289官方KAT、篡改/超长/reset、round/P8/P12、全生产编译仿真PASS；旧工作区保留 | 2026-10-09 | done |
@@ -46,6 +46,8 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 |---|---|---|---|---|---|---|---|
 | V06 | Ascon key lifecycle/security and pre-board review | TBD | latest main三种实现、C01 | docs/ascon_key_management.md、key_lifecycle证据、独立Vivado入口 | KAT/动态Key/认证失败保护/ZEROIZE/ISE交互、可复现构建；板级风险独立记录 | 2026-10-16 | in_progress |
 | V07 | Ross and engineering Skills compatibility assessment | TBD | V06 stable checkpoint | docs/ross_and_engineering_skills_evaluation.md、双轴审查与安装证据 | 官方版本/权限/依赖核验；有限只读review；Ross下载阻塞与未测项明确，不改工程 | 2026-10-17 | done |
+| V09 | A/C/B timing path repair and dual-strategy validation | TBD | V08 fix_r1 工作区及路由快照；用户授权 A→C→B | docs/timing_acb_validation.md、ISA/CPU 原始证据、双策略 STA | 已完成：8项整机/5单元/生命周期通过，ISA49/50与控制一致；两策略WNS+0.001/+0.007、TNS0、失败端点0；板级IO/DRC不在完成范围 | 2026-10-20 | done |
+| V10 | Prune obsolete artifacts and verify cleanup equivalence | TBD | 用户确认最终双策略 RPT 保留及删除后重跑 | docs/workspace_cleanup.md、build/metadata/cleanup_20261018.json、cleanup_v10_verification.json | 数据复验已一致：8项CPU镜像/周期、单元/安全、ISA及231文件hash相同；6个旧路径被并行恢复，用户确认暂保留，最终留存收口待并行结束 | TBD | blocked |
 
 ## PYNQ 与通用 Skill（P1）
 

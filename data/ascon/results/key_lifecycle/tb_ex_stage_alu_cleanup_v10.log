@@ -1,0 +1,35 @@
+
+VCD info: dumpfile tb_ex_stage_alu.vcd opened for output.
+[PASS] ADD result = 0x0000002a
+[PASS] SUB negative result = 0xfffffffe
+[PASS] AND result = 0x00f000f0
+[PASS] SRA sign-preserving shift = 0xe0000004
+[PASS] SLTU unsigned compare result = 0x00000001
+[PASS] BEQ actual taken = 1
+[PASS] Q wrong-direction triggers flush = 1
+[PASS] BEQ real branch target = 0x00001020
+[PASS] BLTU unsigned compare taken = 1
+[PASS] t BLTU prediction keeps pipeline = 0
+[PASS] JAL always taken = 1
+[PASS] JAL wrong target triggers flush = 1
+[PASS] JAL target uses pc plus imm = 0x00004040
+[PASS] JALR link address = 0x00002004
+[PASS] JALR target clears bit0 = 0x00003012
+[PASS] ect JALR prediction avoids flush = 0
+[PASS] misaligned LH raises trap = 1
+[PASS] load half misalign cause = 0x00000004
+[PASS] misaligned LW raises trap = 1
+[PASS] misaligned address captured = 0x00001002
+[PASS] misaligned SW raises trap = 1
+[PASS] store misalign cause = 0x00000006
+[PASS] CSRRS enables csr read = 1
+[PASS] CSRRS merges set bits = 0x000000ff
+[PASS] illegal instruction trap = 1
+[PASS] legal instruction value captured = 0xffffffff
+[PASS] mret raises trap out = 1
+[PASS] ecall trap asserted = 1
+[PASS] ecall cause = 0x0000000b
+[PASS] interrupt request asserts trap = 1
+[PASS] ception cause unused in ex_stage = 0x00000000
+[RESULT] tb_ex_stage_alu PASS
+sim/cicc1000023/unit/ex_stage_alu/tb_ex_stage_alu.v:347: $finish called at 49000 (1ps)

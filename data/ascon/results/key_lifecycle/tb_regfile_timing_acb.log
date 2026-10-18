@@ -1,0 +1,19 @@
+
+VCD info: dumpfile tb_regfile.vcd opened for output.
+[PASS] x0 read port 1 = 0x00000000
+[PASS] x0 read port 2 = 0x00000000
+[PASS] er defaults to zero in test init = 0x00000000
+[PASS] same-cycle write bypass rs1 = 0x12345678
+[PASS] x1 stored after clock = 0x12345678
+[PASS] x1 read back = 0x12345678
+[PASS] x0 write ignored on read = 0x00000000
+[PASS] upper boundary register bypass = 0xcafebabe
+[PASS] independent second read = 0x12345678
+[PASS] x31 stored after clock = 0xcafebabe
+[PASS] write disabled keeps old value = 0x12345678
+[PASS] dual-port bypass rs1 = 0xa5a55a5a
+[PASS] dual-port bypass rs2 = 0xa5a55a5a
+[PASS] dual-port independent stored rs1 = 0xcafebabe
+[PASS] dual-port independent stored rs2 = 0xa5a55a5a
+[RESULT] tb_regfile PASS
+sim/cicc1000023/unit/regfile/tb_regfile.v:148: $finish called at 61000 (1ps)

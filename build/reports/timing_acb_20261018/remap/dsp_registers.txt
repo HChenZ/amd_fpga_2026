@@ -1,0 +1,4 @@
+u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_multiplier/p_reg0 AREG=1 BREG=1 MREG=0 PREG=0
+u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_multiplier/p_reg0__0 AREG=1 BREG=1 MREG=0 PREG=0
+u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_multiplier/p_reg_reg AREG=1 BREG=1 MREG=0 PREG=1
+u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_multiplier/p_reg_reg__0 AREG=1 BREG=1 MREG=0 PREG=0

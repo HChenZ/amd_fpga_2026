@@ -1,0 +1,6 @@
+{
+  "checked_files": 40,
+  "mismatches": [],
+  "snapshot_matches_tested_worktree": true,
+  "functional_summary": "data/ascon/results/timing_acb_functional_summary.json"
+}

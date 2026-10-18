@@ -13,6 +13,9 @@ p.add_argument('--round', choices=['r1', 'r2'], default='r1')
 p.add_argument('--vivado-exit', type=int, required=True, help='Actual batch process exit code')
 p.add_argument('--review-date', help='Date of a later read-only evidence review (YYYY-MM-DD)')
 a = p.parse_args()
+if not (ROOT/'build/reports/ascon_key_lifecycle').is_dir():
+    p.error('Historical V06 reports were pruned by the authorized cleanup; '
+            'use build/summarize_timing_acb.py for retained final STA evidence.')
 evidence = ROOT/'data/ascon/results/key_lifecycle'
 
 def digest(path):

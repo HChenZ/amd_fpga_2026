@@ -1,5 +1,8 @@
 # Ascon 密钥生命周期审查
 
+> V10 留存更新：本文的安全契约保留；早期 Vivado RPT 曾被清理，随后并行会话恢复了部分报告，
+> 用户确认暂时保留。具体存在/删除范围及数据复验结论见 [清理说明](workspace_cleanup.md)。
+
 2026-10-16（Asia/Shanghai）；V06 / C03 / I04 / I05 / B02；owner **TBD**。
 审查基线 `c37ecae4bba050d833079d56f8aec05365637aad`，分支 `fix/ascon-key-lifecycle`。
 原工作区及其未提交改动保留；本轮在独立 worktree 工作。用户明确授权检查通过后 commit/push，禁止合并 main。

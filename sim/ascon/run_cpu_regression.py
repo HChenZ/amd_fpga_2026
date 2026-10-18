@@ -45,7 +45,11 @@ def main():
             raise RuntimeError(text[-3000:])
         return text
 
-    prefix = ['wsl', '-d', 'Ubuntu', '--'] if os.name == 'nt' else []
+    # Windows: WSL cross compiler for the original workflow; a native Windows
+    # cc-prefix (drive-letter path, e.g. xpack riscv-none-elf) runs directly.
+    prefix = (['wsl', '-d', 'Ubuntu', '--']
+              if (os.name == 'nt' and not a.cc_prefix.startswith(('C:/', 'C:\\')))
+              else [])
     fw = Path('src/firmware') / ('ascon_rv32' if a.mode == 'sw' else f'ascon_{a.mode}_rv32')
     try:
         run(prefix + [a.cc_prefix+'gcc', '--version'])

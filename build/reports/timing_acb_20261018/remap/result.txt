@@ -1,0 +1,1 @@
+RESULT strategy=Performance_ExploreWithRemap wns=0.007 tns=0.000 failing=0 whs=0.023 classes=ise_private 0 multiplier 0 dcache 0 other 0

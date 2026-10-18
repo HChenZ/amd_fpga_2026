@@ -12,6 +12,10 @@ webtalk*
 vivado*.jou
 vivado*.log
 vivado*.str
+/dfx_runtime.txt
+/ascon/dfx_runtime.txt
+/ascon/ASCON.xpr
+/ascon/ASCON.cache/
 *.wdb
 *.wlf
 *.vcd
@@ -34,6 +38,9 @@ _ide/
 /build/cache/
 /build/generated/
 /build/artifacts/
+# Regenerated 33-strategy sweep raw .rpt set (12 MB, ~264 files); the distilled
+# summary lives in data/ascon/results/strategy_sweep_20261017/.
+/build/reports/strategy_sweep_20261017/
 /sim/tmp/
 /sim/waves/
 *.o

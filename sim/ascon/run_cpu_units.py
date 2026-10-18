@@ -17,6 +17,7 @@ tests={
     'tb_regfile':'sim/cicc1000023/unit/regfile/tb_regfile.v',
     'tb_ex_stage_alu':'sim/cicc1000023/unit/ex_stage_alu/tb_ex_stage_alu.v',
     'tb_key_execute':'sim/ascon/tb_key_execute.v',
+    'tb_multiplier_pipeline':'sim/ascon/tb_multiplier_pipeline.v',
 }
 results={}
 for top,tb in tests.items():

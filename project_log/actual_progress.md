@@ -1,5 +1,116 @@
 # 实际进度
 
+## 2026-10-18 — V10 数据复验一致；并行恢复产物按用户决定暂保留
+
+owner TBD。用户明确选择保留最终双策略 RPT，清理旧报告/无用 BAT/JSON/TXT 及可再生缓存，
+并要求删除后重检数据。曾执行删除564个文件（17.82MiB），含312旧RPT、66中间JSON、48TXT、4BAT；
+随后并行会话恢复/重生成6个路径，用户最新决定暂时保留，当前并非只剩最终报告。
+必要元数据、最终DCP、生产源、KAT、ISA控制/最终候选结果未删。逐文件删除hash及231项保留hash已记录。
+8项CPU新label真实重编译/仿真全部PASS，源码/有效固件bin/测试输出/周期逐项一致；
+安全/5单元一致，ISA仍49 PASS+ma_data既有1 FAIL；231项保留hash均不变。
+原复验脚本exit 1及FAIL JSON保留：唯一失败是删除目标重新出现的留存检查，不是数据不一致。
+复验判读为数据PASS、留存DEFERRED；本任务最终清理收口blocked，等待并行任务结束再确认。
+本次不改RTL/固件/XDC，不重做布局布线；旧汇总脚本增加缺报告时的明确退出提示。
+详见 [V10 清理与复验](../docs/workspace_cleanup.md)。未commit/push，未上板。
+
+## 2026-10-18 — V09 100 MHz 芯片级 STA 收敛（已核验）
+
+owner TBD；基线 f52bc49 + 工作区 dcache/ascon_ise/ex_stage/mult 修改（另一个 AI 完成，
+本 Agent 独立核验）。未 commit/push；未上板。
+
+- **收敛结果（已核验两份最终报告 timing_acb_20261018/）**：
+  Performance_ExplorePostRoutePhysOpt WNS=+0.001/TNS=0/0 失败端点/WHS=+0.031；
+  Performance_ExploreWithRemap WNS=+0.007/TNS=0/0/WHS=+0.023。100 MHz STA 通过。
+  此前 93 个 ISE s_reg 复位端点与 48 个乘法器端点全部消除。
+- **功能回归（ACB 套件，已核验）**：sw/hw/ise 与 security、stall/reset 注入全 PASS；
+  ISA 49 PASS + 1 FAIL（rv32ui_ma_data），与修改前对照组完全一致（既有失败，非本次引入）。
+  周期恢复：hw 670 / ise 2496（与 HEAD 持平）。
+- **余量警示**：收敛余量仅 1-7 ps，处于布局噪声量级（s_reg 路径实测跨布局摆动
+  -0.05~-0.128）。双策略同为正提供一定防误证，但此后任何 RTL 改动都可能重新翻负；
+  建议以此为冻结检查点，再动必须全套复验。
+- **未完成**：板级 IO delay/板型/pinout（B02/B03）、PS/PYNQ（P1）、Ascon 固件镜像
+  替换（COE 仍 FreeRTOS）、板上 KAT/benchmark（V01/I08/Y01）。芯片级收敛不等于上板通过。
+- 证据：build/reports/timing_acb_20261018/{postroute,remap}/、
+  data/ascon/results/key_lifecycle/*_timing_acb*.json、data/ascon/results/isa/{fix_r1_control,timing_acb}/。
+
+## 2026-10-18 — V09 A→C→B 与双策略完成：既有 100 MHz STA 通过
+
+owner TBD；用户要求先解除 93 个 ISE 私有复位端点，再处理乘法器 48 端点、恢复 store/MMIO 延迟。
+已通过独立 fix_r1 DCP 端点导出证实基线分类 93/48/11/4（共 156），未改原 DCP/扫掠工程。
+A 注册 ISE 局部 reset；C 注册乘法输入/输出、done 保持到 ack；B 仅让 load miss 走 MISS_CAPTURE。
+A/C 定向 Icarus 与 XSim 测试通过，恢复的 50 项 RV32I/M 指令体全部重跑：49 PASS、ma_data FAIL；
+控制快照同样失败（不支持硬件非对齐读），不隐去 exit 1 或宣称全绿。最终整机 8 项、
+MMIO/ISE 生命周期及单元 5/5 全部 PASS，生产源码 hash 与当前工作区匹配。
+软件、hw full MMIO、ISE 周期恢复到 HEAD 的 17353（enc16B）/670/2496，B 的性能代价已收回。
+两策略同快照实现通过 Ross 完成（exit 0，3895.571秒）：PostRoute WNS=+0.001/TNS=0/WHS=+0.031；
+Remap WNS=+0.007/TNS=0/WHS=+0.023，均 0 setup/hold/pulse 失败端点、0 路由错误。
+**原 93 个 ISE、48 个乘法器、11 个 dcache 与 4 个其他端点类别全部归零**；未改 LRU/频率/时序例外。
+40 个生产源 hash 与测试工作区一致，XDC 与 baseline 副本 hash 相同。
+候选推荐 Remap（LUT11752/FF16040/BRAM38.5/DSP4）；只余 7ps，不宣称跨变更鲁棒性。
+这仅是既有约束下 STA 通过：3 个输入/3 个输出仍缺 IO delay，方法学/板级电气与 DRC/实板未验收。
+详见 [V09 验证](../docs/timing_acb_validation.md)。
+V09 本轮范围 done；未 commit/push，未上板；完整特权/RV64/嵌套中断门禁仍未验收。
+下一接收 B03/V01/I08，先做板卡与 IO/电气约束/DRC，再进行 bitstream/实板 KAT。
+
+## 2026-10-18 — V08 dcache MISS_CAPTURE 功能修复 fix_r1 + Ross 接入 OpenCode
+
+owner TBD；基线 f52bc49 + 工作区。按 [dcache_fix_plan_for_opencode.md](../docs/dcache_fix_plan_for_opencode.md) 执行。
+
+- **Ross**：本机已有 vivado-mcp-server 2026.9.1；登记到 OpenCode 全局配置 `mcp.servers.vivado`
+  （`--stdio`，VIVADO_PATH=2025.2），已实测连接并用于 vivado-rtl-lint。
+- **dcache.v 修复**：MMIO 读改为固定延迟移位（对齐延后一拍的 bus_mmio_re）；MISS_CAPTURE
+  全部改用 IDLE 拍寄存的请求类型标志，不再读活 hit/cacheable/cpu_re_i；总线请求一律单拍脉冲
+  （原 bus_mem_re_r 在 FILL 期间保持高，会让互连排队第二个伪读突发）。接口不变。
+- **功能门禁全 PASS**：HEAD 对照筛选、wt 筛选、sw/hw/ise、hw/ise --security（123/0、402/0）、
+  单元 4/4、ise --stall/--reset；Ross lint 2 条 WARNING 与 HEAD 完全相同。
+- **周期代价（同工具链对 HEAD）**：sw +0.3%，hw full MMIO 670→717（+7.0%），ise 2496→2550（+2.2%）。
+- **时序（ExplorePostRoutePhysOpt）**：WNS=-0.128/TNS=-11.213/156 端点，WHS=0.005，路由无错误。
+  **门禁 4.4（WNS≥-0.078）未过，100 MHz timing not met**。最差 20 条路径无 dcache，
+  新最差为 pc_reg→ascon_ise s_reg/R（复位/冲刷扇出，布线占 80%）。证据见
+  [清单 §11](../docs/dcache_fix_checklist_en.md)。
+- 未 commit/push；未上板。下一步：ISE s_reg 复位扇出路径；可选只让 load miss 走 MISS_CAPTURE。
+
+## 2026-10-18 — V08 全量 33 策略扫掠完成 + dcache 流水线评估
+
+owner TBD；基线 f52bc49。用户授权补测"其余全部策略"并评估另一个 AI 的 dcache 优化。
+
+- **策略扫掠**：四批共 35 个 run（33 个 2025.2 标准流程策略 + 2 个回退重复已剔除），
+  全部 exit 0。最优 **Performance_ExploreWithRemap WNS=-0.118/TNS=-1.008/22 端点**，
+  超过此前最优 ExplorePostRoutePhysOpt（-0.177）。33 策略完整排名与分析见
+  [ascon_strategy_sweep.md](../docs/ascon_strategy_sweep.md)。
+  高级实现流程（Vivado Advanced Implementation 2025）在 xc7z020 上不支持（12-25131
+  静默回退），其 4 个独有策略批处理不可测，已记录。
+- **dcache 流水线版（另一个 AI）**：独立实测（Performance_ExplorePostRoutePhysOpt）
+  MISS_CAPTURE 版 WNS=-0.055/TNS=-1.122/40 端点（三版最佳，DONT_TOUCH 版 -0.078）。
+  但功能回归 sw 模式 TIMEOUT：CPU 在 t=275、pc=0x100083f0 死锁（MMIO 读等待依赖
+  bus_rdata_valid_i 而 bus_mmio_re_r 仅 1 拍脉冲，握手永不完成）。HEAD 原版 PASS 对照。
+  两版均功能不可用；修复方案交付另一个 AI：[dcache_fix_plan_for_opencode.md](../docs/dcache_fix_plan_for_opencode.md)
+  + [英文清单](../docs/dcache_fix_checklist_en.md)。遗留同名 module 实验文件已移入
+  src/rtl/dcache_experiments/（Vivado 同名模块静默选文件的坑）。
+- **收敛预期**：新 RTL（修复后）-0.055 + ExploreWithRemap 相对提升 ~0.059 →
+  ≈+0.004 ns，100 MHz 极可能收敛；待功能修复后实测。
+- 100 MHz timing not met 保持；上板门禁 B02/B03/V01/I08/Y01 不变。未 commit/push。
+
+## 2026-10-18 — V08 实现策略扫掠（Strategy Sweep）
+
+owner TBD；基线 f52bc49，本机 DESKTOP-5H4M0DR（V06 两轮在 xyq 机上）。用户授权
+全量 10 策略扫掠并记录数据与分析；未改任何 RTL/XDC/XCI/COE，未 commit/push。
+
+- 本机 Vivado 2025.2 原缺 Zynq-7000 器件库（open_project 报 part 不可用）；用户经
+  "Add Design Tools or Devices 2025.2"（C:/ruanjian/.xinstall/2025.2/xsetup.exe）
+  补装 Zynq-7000 后 `get_parts xc7z020clg400-1` 通过。
+- 新脚本 build/sweep_strategy_timing.tcl（隔离工程、共享 synth、按最终步骤分组
+  3 路×6 jobs 并行波、TSV 断点续跑）+ build/aggregate_strategy_sweep.py（.rpt 解析
+  交叉核对）。多次中断续跑，最终 exit 0、SWEEP COMPLETE、10/10 策略完成、无真实 ERROR。
+- 结果：最优 **Performance_ExplorePostRoutePhysOpt WNS=-0.177/TNS=-2.968/31 失败端点**，
+  其次 Performance_Explore -0.273、NetDelay_high -0.325；最差 Default -0.942。
+  与本机重跑的 Default/ExplorePostRoute 与 V06 xyq 机逐位一致（跨机可复现）。
+- 结论：10 个内置策略无一收敛 100 MHz；策略空间已关闭，剩余 0.177 ns 属 CPU
+  id_ex→dcache CE/DIADI 地址计算路径（路由主导），转入 RTL 修复。
+  详见 [策略扫掠分析](../docs/ascon_strategy_sweep.md)，数据在 data/ascon/results/strategy_sweep_20261017/。
+- 流程与踩坑沉淀为 skill vivado-strategy-sweep；报告在 build/reports/strategy_sweep_20261017/。
+- 上板门禁不变：100 MHz timing not met，B02/B03/V01/I08/Y01 仍待接收。
+
 ## 2026-10-17 — V07 Ross/工程Skills评估与有限审查
 
 owner TBD；先完成稳定检查点`2b48a8a730267787b399fe06304ae5e2b53ff203`并推送，草稿

@@ -9,6 +9,10 @@ from support import ROOT
 
 evidence=ROOT/'data/ascon/results/key_lifecycle'
 reports=ROOT/'build/reports/ascon_key_lifecycle'
+if not reports.is_dir():
+    raise SystemExit('Historical V06 reports were pruned by the authorized cleanup. '
+                     'Use sim/ascon/summarize_timing_acb.py and build/summarize_timing_acb.py '
+                     'for the retained final evidence; do not rewrite old summaries.')
 # Re-serialize historical report objects without changing results. Older native
 # Windows writers emitted CRLF despite the data tree's byte-preserving attributes.
 for path in evidence.glob('*.json'):

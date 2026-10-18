@@ -1,0 +1,9 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_ise.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ascon_ise
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_permutation.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ror
+INFO: [VRFC 10-311] analyzing module round
+INFO: [VRFC 10-311] analyzing module p12
+INFO: [VRFC 10-311] analyzing module p8
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/ascon/tb_key_ise.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_key_ise

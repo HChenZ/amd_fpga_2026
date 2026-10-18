@@ -1,0 +1,3726 @@
+{
+  "task": "V10",
+  "date": "2026-10-18",
+  "owner": "TBD",
+  "authorization": "User confirmed obsolete-file and regenerable-cache cleanup",
+  "source_head": "f52bc491db731791d43a073e034d66225c0ff370",
+  "targets": [
+    {
+      "path": "TIMING_FIX_README.md",
+      "kind": "obsolete_file",
+      "files": [
+        {
+          "path": "TIMING_FIX_README.md",
+          "bytes": 7761,
+          "sha256": "be7a88fd0c50413cd261fc1f47163e8afb9421f18b235ad58273f41a8fc35067"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "TIMING_OPTIMIZATION_FINAL_REPORT.md",
+      "kind": "obsolete_file",
+      "files": [
+        {
+          "path": "TIMING_OPTIMIZATION_FINAL_REPORT.md",
+          "bytes": 8333,
+          "sha256": "bb2c8a16ab235bce81c6d29a184dc2bf7b39a16cb285683b7fead424c6250f12"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "apply_timing_fix.bat",
+      "kind": "obsolete_file",
+      "files": [
+        {
+          "path": "apply_timing_fix.bat",
+          "bytes": 4570,
+          "sha256": "55a4324b7e34858c063e2d9ef9a6f995adf68de2645e80d0f90e6e06e374b010"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "apply_timing_fix.sh",
+      "kind": "obsolete_file",
+      "files": [
+        {
+          "path": "apply_timing_fix.sh",
+          "bytes": 4182,
+          "sha256": "c2e2313a803ddafbbe10ddce9d80ea4922b46942bac9b96573201443d6ddb1e9"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/reports/timing_experiments_summary.md",
+      "kind": "obsolete_file",
+      "files": [
+        {
+          "path": "build/reports/timing_experiments_summary.md",
+          "bytes": 4989,
+          "sha256": "69c9e968f53744862a07a83698ae0f62996a59de1caeb8e2207ec1273baee98c"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/reports/timing_fix_execution_status.md",
+      "kind": "obsolete_file",
+      "files": [
+        {
+          "path": "build/reports/timing_fix_execution_status.md",
+          "bytes": 4212,
+          "sha256": "d795530a4dde7be399dec2e88a764f97bbc4d321af0aa7afc49062b5cb6e4cbb"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "dfx_runtime.txt",
+      "kind": "obsolete_file",
+      "files": [
+        {
+          "path": "dfx_runtime.txt",
+          "bytes": 113,
+          "sha256": "9f9e707b5dd8a3df414166959494ed073a85615ebc19d2cc41f05e2e53e2f286"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": false
+    },
+    {
+      "path": "ascon/dfx_runtime.txt",
+      "kind": "obsolete_file",
+      "files": [
+        {
+          "path": "ascon/dfx_runtime.txt",
+          "bytes": 114,
+          "sha256": "b43bced38ea6255e9b11696f33b5339fbb837d1392787094568e588c75ee9d3e"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/__pycache__",
+      "kind": "regenerable_cache",
+      "files": [
+        {
+          "path": "build/__pycache__/snapshot_rtl_hashes.cpython-313.pyc",
+          "bytes": 1535,
+          "sha256": "4877e0a4cd109b5ebe17c24bbac3500ec881ad80ec503c2b13d28df9aa0f266d"
+        },
+        {
+          "path": "build/__pycache__/summarize_timing_acb.cpython-313.pyc",
+          "bytes": 6879,
+          "sha256": "f69d17319964cc9abdadb5c24d0260441790f2d035be575823c377bdb113eea2"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "sim/ascon/__pycache__",
+      "kind": "regenerable_cache",
+      "files": [
+        {
+          "path": "sim/ascon/__pycache__/run_rv32_isa.cpython-313.pyc",
+          "bytes": 6059,
+          "sha256": "75822f7c17fd40a70c10101f6546ad5d628787a1b37dcaf35e2d27a39f91bf7d"
+        },
+        {
+          "path": "sim/ascon/__pycache__/summarize_timing_acb.cpython-313.pyc",
+          "bytes": 5076,
+          "sha256": "3a7c871d99f7f7e2ba995912ebc3993386f43c65f0757f28af8024e80f0120ac"
+        },
+        {
+          "path": "sim/ascon/__pycache__/support.cpython-311.pyc",
+          "bytes": 25937,
+          "sha256": "437a666bfee34c8c3cba09ce3a116d6170dd2243d56a6327ad718ebfcf1fa896"
+        },
+        {
+          "path": "sim/ascon/__pycache__/support.cpython-313.pyc",
+          "bytes": 22444,
+          "sha256": "342af18c665b0d18f96e6e4b8d775792129452cf405dad8780d87f5ed387fb2f"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "sim/ascon/reference/pyascon/__pycache__",
+      "kind": "regenerable_cache",
+      "files": [
+        {
+          "path": "sim/ascon/reference/pyascon/__pycache__/ascon.cpython-313.pyc",
+          "bytes": 26248,
+          "sha256": "c7de0cb29da2ccb6f60afafc091a9cd3d7939de6d6aa49c9a1d2369894a45b4e"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/local/ascon_kat/upstream-c-a70cwyck",
+      "kind": "regenerable_cache",
+      "files": [
+        {
+          "path": "build/local/ascon_kat/upstream-c-a70cwyck/upstream-c.dll",
+          "bytes": 73239,
+          "sha256": "cc4bdd9b0591abbdad338e048a9b972274ecdf415423d7eec8616cf1aa32f676"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/local/timing_acb_audit/.Xil",
+      "kind": "regenerable_cache",
+      "files": [],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim",
+      "kind": "regenerable_cache",
+      "files": [
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/compile.bat",
+          "bytes": 1044,
+          "sha256": "feebbba4db9e2bdf61b73166d031b6d0629c62c0ef04c644abadeb34821eb7ce"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/compile.log",
+          "bytes": 406,
+          "sha256": "df6384cfda009e33254aa9d85bf808446152236237b49dff58da48c91a91f0a2"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/elaborate.bat",
+          "bytes": 1282,
+          "sha256": "bebc38e74a60a6e89878a6c79cb019fad03b420003272d9c5dab39a5c555608d"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/elaborate.log",
+          "bytes": 860,
+          "sha256": "8dcf169f8709293516c6e523365424c7e387f576aa3fdc3ec5f94f71b6b91186"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/glbl.v",
+          "bytes": 1762,
+          "sha256": "6270251cf35e1fce3119fc79f8fb968912f7983027e43cf030409ba68f048936"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/simulate.bat",
+          "bytes": 1132,
+          "sha256": "e87ad5a140c9c78850b9df4760ea873dbd01021a54fcf873631e77ec3f0d78f7"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/simulate.log",
+          "bytes": 214,
+          "sha256": "f9ff7e6bcf32d9cae731909040dc40ad93cab8a8b3f72b1c2e708f7c38e81d43"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/tb_key_ise.tcl",
+          "bytes": 457,
+          "sha256": "dcab175e51a2d52dfcb669c904e543f0e6560e9d4b3a653e8732e2e0a1344136"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/tb_key_ise_behav.wdb",
+          "bytes": 137937,
+          "sha256": "51d9dfcca1f01233f1de4bab4fd4901c93b5178f82622c180ea8705fcb94324f"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/tb_multiplier_pipeline.tcl",
+          "bytes": 457,
+          "sha256": "dcab175e51a2d52dfcb669c904e543f0e6560e9d4b3a653e8732e2e0a1344136"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/tb_multiplier_pipeline_behav.wdb",
+          "bytes": 267709,
+          "sha256": "cc58191f3d4fb9493add660b2e7aa53df28c58df371941ca367ac7f6783e7b6c"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/tb_multiplier_pipeline_vlog.prj",
+          "bytes": 451,
+          "sha256": "3bb860e5bbb9c85f4903117765c71d44f9be3d4881d516df6a5c083d62519953"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xelab.pb",
+          "bytes": 1513,
+          "sha256": "1923ca510b5ae389508d306aaeaeb376bc4b5cd1b39b09c88e66aef48887dce1"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.ini",
+          "bytes": 100,
+          "sha256": "91a02ba89869d82d64f507c0674128c015c54b87ca785f66c28cac66f16d771c"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xvlog.log",
+          "bytes": 406,
+          "sha256": "df6384cfda009e33254aa9d85bf808446152236237b49dff58da48c91a91f0a2"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xvlog.pb",
+          "bytes": 562,
+          "sha256": "ce15a905105c406f7a04683c25c0d31811d39d6bb3edff8a7405b3886873b875"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/data/ascon/permutation.mem",
+          "bytes": 50820,
+          "sha256": "5f3c8321daa298cbd8ca0632ce6d34a52360ba9e5309a64456fc61b26d0ed30f"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/xsim.version",
+          "bytes": 6,
+          "sha256": "a15b42b7cedfdc50b6ac3c608a1a64d31d64690c57ccdd42e81a93c1c12b9468"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/Compile_Options.txt",
+          "bytes": 223,
+          "sha256": "961a974dd76a038983b9437544c6db75d102403c5ae5abdb1682e2ac9e8a5c7f"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/TempBreakPointFile.txt",
+          "bytes": 29,
+          "sha256": "89bd34ab9b7056058ec7acc5470f6ec95f1ef47b9aeb329d53e24d38b9607451"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsim.dbg",
+          "bytes": 33776,
+          "sha256": "b35e361eae18429ad733a92e55b52c706ba3f7d8c24b0db426e3a06314fe53c4"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsim.mem",
+          "bytes": 8601,
+          "sha256": "f19fb4058a73adad052abcf6f1c069949316079e09b4f24ed2f1ff9621f07b79"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsim.reloc",
+          "bytes": 7124,
+          "sha256": "62dba1bfdf0e29a9d055f2917f155caa6754ecaeff4f55abaeade40b0ea53461"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsim.rlx",
+          "bytes": 750,
+          "sha256": "74092bddc08df437f4461d70fbeb036c08fc8336c00a7fa2101fbf9f9eab706a"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsim.rtti",
+          "bytes": 371,
+          "sha256": "70ab28d87943286bd9655ab965d3e1fcf1868163de81d1d9ea7d32bd7938bcfc"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsim.svtype",
+          "bytes": 93,
+          "sha256": "219a9b09faf80b4c8d2e91c1167d56102333b4dbc24035ede96c5ce4788844e5"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsim.type",
+          "bytes": 24,
+          "sha256": "cf1c5a4aa3dd8007f3756f2f3d607d67751cd98e99c8f5038c3f8b9fd06aa8c8"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsim.version",
+          "bytes": 6,
+          "sha256": "a15b42b7cedfdc50b6ac3c608a1a64d31d64690c57ccdd42e81a93c1c12b9468"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsim.xdbg",
+          "bytes": 221392,
+          "sha256": "96c25cbae38d706ecbdba3480e0666bfe6e8010f0a86f2b566c894414674966d"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsimcrash.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsimk.exe",
+          "bytes": 124928,
+          "sha256": "ebbefd35bb093a5bdf621dd870342d67ffc844f181d61275249682c5ce8b0704"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsimkernel.log",
+          "bytes": 333,
+          "sha256": "4602e3c6cbf78a997e335746fc2257d248cb9a96d2c5c760239512351a1b21a4"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/xsimSettings.ini",
+          "bytes": 1410,
+          "sha256": "dae969b3ddc4ba3c021f0147e7313989a790aa2c2731c9c618502aeabb1e0fe4"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/obj/xsim_0.win64.obj",
+          "bytes": 70339,
+          "sha256": "e49440301ecba09c2828c16301e065da578d029e5cc313e0e9023e42d5bdc55b"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/obj/xsim_1.c",
+          "bytes": 10295,
+          "sha256": "258d060a42696a2b2675bf295a1f362bfaae112136d87fdef684d44862633a97"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_key_ise_behav/obj/xsim_1.win64.obj",
+          "bytes": 6335,
+          "sha256": "d2527f49c8eab7acc914dc46004b2cab26267b72c0d38e17d6451b1c26929f9e"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/Compile_Options.txt",
+          "bytes": 247,
+          "sha256": "82077905235c3e5811196e282d76f11846ee2804b1b6e8bd6ae786b22075bbe2"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/TempBreakPointFile.txt",
+          "bytes": 29,
+          "sha256": "89bd34ab9b7056058ec7acc5470f6ec95f1ef47b9aeb329d53e24d38b9607451"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsim.dbg",
+          "bytes": 13664,
+          "sha256": "1904f37122bc4ddfd6d2bf4c1e97bf4add598d1a6c72fb81aa00a4589701a354"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsim.mem",
+          "bytes": 4178,
+          "sha256": "8feff05a841b44d63a2b74acf1e75656d01c535c65fa26e64a05ed0fce562af9"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsim.reloc",
+          "bytes": 2415,
+          "sha256": "afd0e6b50d899a037bfd943c7ccd0ea633c12c9d386c418339856816b73455e0"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsim.rlx",
+          "bytes": 811,
+          "sha256": "b71688f85d670258c06675bf9ee3f578e7c3bf6584f22d1a5d373a97b5cd17a6"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsim.rtti",
+          "bytes": 323,
+          "sha256": "0b7733475bd0d5f543106ddbf550cac0571b6d169478f9c12cd3a43e28b42e12"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsim.svtype",
+          "bytes": 93,
+          "sha256": "9ec086bab8b8bac1209582a95acd0c100ab95d9242ad573dbf7cb88666b5378d"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsim.type",
+          "bytes": 24,
+          "sha256": "cf1c5a4aa3dd8007f3756f2f3d607d67751cd98e99c8f5038c3f8b9fd06aa8c8"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsim.version",
+          "bytes": 6,
+          "sha256": "a15b42b7cedfdc50b6ac3c608a1a64d31d64690c57ccdd42e81a93c1c12b9468"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsim.xdbg",
+          "bytes": 7008,
+          "sha256": "8f07e6ce618e39aa427eade380ba71920242299384e86dbb34b9f01da872e47e"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsimcrash.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsimk.exe",
+          "bytes": 88772,
+          "sha256": "59fbb7c76b661aee7cf06c564ba5935a953056c10874706820d709b6e616d438"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsimkernel.log",
+          "bytes": 357,
+          "sha256": "aef53b76648bf5f870ad0e7c39152f5a8d1488d3d636c2244437d58b48dda3c2"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/xsimSettings.ini",
+          "bytes": 1410,
+          "sha256": "dae969b3ddc4ba3c021f0147e7313989a790aa2c2731c9c618502aeabb1e0fe4"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/obj/xsim_0.win64.obj",
+          "bytes": 31201,
+          "sha256": "b858f29c8b234dd29f167133756ba28ec429ed34ea1c00c9f8815bc5f49bb90b"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/obj/xsim_1.c",
+          "bytes": 6530,
+          "sha256": "098392e2e694b7f30fbc671a0fc21f2b8ee0752de66c71fd80a6642212724e04"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/tb_multiplier_pipeline_behav/obj/xsim_1.win64.obj",
+          "bytes": 3968,
+          "sha256": "6beef990de310ecac2200705bdb9eaec8c60ea4b3a5da6472d9a5427532978e0"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/xil_defaultlib/ascon_ise.sdb",
+          "bytes": 5362,
+          "sha256": "c6461bf85e4c2107a5c42e390f921670051210ab180a3c8c001d7b71cfb7bfae"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/xil_defaultlib/glbl.sdb",
+          "bytes": 4914,
+          "sha256": "a7a4dc96ed3b0e3149c2846c92c4e0feb43c542bd88257b7a532d7b3b91daea6"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/xil_defaultlib/multiplier.sdb",
+          "bytes": 5123,
+          "sha256": "f5ea3b7893eed76521008082bf6fd46359c84c44aea5f817d32be424fe20f74f"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/xil_defaultlib/p12.sdb",
+          "bytes": 4150,
+          "sha256": "a9c91c22ecfe3e881568359bc1604dcaecf569bed630b890a89f48c0ee0d8ca4"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/xil_defaultlib/p8.sdb",
+          "bytes": 3836,
+          "sha256": "0115cf7860f83dad5d54589aeb474b7349d5be02dc9840dc4eac1418e37cbd4d"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/xil_defaultlib/ror.sdb",
+          "bytes": 1076,
+          "sha256": "f862584d10ad90dc6afae8f3577861d681846dede117f04407835f53d7342fc6"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/xil_defaultlib/round.sdb",
+          "bytes": 6191,
+          "sha256": "686fd11187384ee1382a038f3aa5739ade8b664ca94b08f1fa454e0ff883beed"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/xil_defaultlib/tb_key_ise.sdb",
+          "bytes": 12209,
+          "sha256": "9a4239ae36f408b1bd740c5545c4cdd88ab12f8c7e34dba526d5b58c93972112"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/xil_defaultlib/tb_multiplier_pipeline.sdb",
+          "bytes": 10201,
+          "sha256": "72fa6d5b1815037611e16d2ea500e671998f97d9402cf620a28e748ee314a121"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/xsim.dir/xil_defaultlib/xil_defaultlib.rlx",
+          "bytes": 2167,
+          "sha256": "e86a154764b6ac34a0b5ae51ea553a95327a17784a1c9892b1dd1e6051fc29f9"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.cache",
+      "kind": "regenerable_cache",
+      "files": [
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.cache/sim/ssm.db",
+          "bytes": 538,
+          "sha256": "11093fc2a395a9c64e77038a0c6e120a985ef8de2a263edc3058ce7c6535532d"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.cache/wt/project.wpc",
+          "bytes": 61,
+          "sha256": "2a7e486eeeabae2a406572a4882b595dbebaca45e1988295ac4c00adce683cd9"
+        },
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.cache/wt/xsim.wdf",
+          "bytes": 239,
+          "sha256": "b986f962cc352b71cac258678a0d4733322cc86dcac7a75a58cfc03cc7fbac68"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.hw",
+      "kind": "regenerable_cache",
+      "files": [
+        {
+          "path": "build/local/timing_acb_audit/xsim_mult/xsim_mult.hw/xsim_mult.lpr",
+          "bytes": 425,
+          "sha256": "b373cf9663fa8b6acdd3cceeb201aea1c7fbbee5cf7c6d675bf0c6ccd52f4c69"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/local/timing_acb_impl/riscv_vivado_project.cache",
+      "kind": "regenerable_cache",
+      "files": [
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/3/4/342c220caa6c209b/342c220caa6c209b.xci",
+          "bytes": 12927,
+          "sha256": "c3d60d6163c2f214d43f0af351003b832f90cd80294073c380b718c24963cb6c"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/3/4/342c220caa6c209b/blk_mem_gen_0.dcp",
+          "bytes": 162499,
+          "sha256": "ab7748d4cfaef6533acf573f5d46091d2b22166bd14afcb6c1fa211a3188e9a3"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/3/4/342c220caa6c209b/blk_mem_gen_0_sim_netlist.v",
+          "bytes": 881166,
+          "sha256": "84dd8bafea143e403e6826155d8b70aff01e1b30abaf5f9d6ad3f9abd4184bdc"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/3/4/342c220caa6c209b/blk_mem_gen_0_sim_netlist.vhdl",
+          "bytes": 977487,
+          "sha256": "4490a17c4e2085b22e279784ed6e71591af0d5d1b7e88147af8895007b27646a"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/3/4/342c220caa6c209b/blk_mem_gen_0_stub.v",
+          "bytes": 4184,
+          "sha256": "4d5ef2a85e1bbd75a773be666cfe95fcbd90c024ff43fb4766a623c00b364a33"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/3/4/342c220caa6c209b/blk_mem_gen_0_stub.vhdl",
+          "bytes": 5001,
+          "sha256": "cba2174847e1e603564a315decd0136f0186adc3eb02ccb2985c4b945e18a6d4"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/7/9/79dae10084157755/79dae10084157755.xci",
+          "bytes": 37773,
+          "sha256": "ee4c6304bc3f0f01d02bad26e75d8a8c0fcd3a9f661dcbe77cd326cb310d1934"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/7/9/79dae10084157755/clk_wiz_0.dcp",
+          "bytes": 13957,
+          "sha256": "178516473471e40427f866d0c74863decf84cca65ff44c976708e2a7eead8926"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/7/9/79dae10084157755/clk_wiz_0_sim_netlist.v",
+          "bytes": 6113,
+          "sha256": "b6054e64def738e2c698ca24d9fde74d6eed98f9d9e0c650100cc2218aa78ad2"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/7/9/79dae10084157755/clk_wiz_0_sim_netlist.vhdl",
+          "bytes": 5645,
+          "sha256": "1d957ecab280defa3c52deb9127fd378cc26b19954a0952f2fa0f38215776bb4"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/7/9/79dae10084157755/clk_wiz_0_stub.v",
+          "bytes": 1929,
+          "sha256": "86f5be5175d97a8e0e677cfe21ec466afe0695f483c4589f419b54449c5d73d0"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/7/9/79dae10084157755/clk_wiz_0_stub.vhdl",
+          "bytes": 2008,
+          "sha256": "c4754b4ce6eddeaa0bf6b25bb1f295553099b4502578f90d1f8ef3ae4eef5be6"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/c/b/cb487a96e9af7579/axi_bram_ctrl_0.dcp",
+          "bytes": 135641,
+          "sha256": "0de9a6a6a0c0bd92f01c1ee7f69652c1e32c86ec82a779c39b3827ab353fb137"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/c/b/cb487a96e9af7579/axi_bram_ctrl_0_sim_netlist.v",
+          "bytes": 278587,
+          "sha256": "e7546bd5c00b3cd07cdc2a5d5aa39c3ae15477b4f3cb7fe1a571873c6d3d1670"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/c/b/cb487a96e9af7579/axi_bram_ctrl_0_sim_netlist.vhdl",
+          "bytes": 323848,
+          "sha256": "f1825a46d1644523185f32e79232d233064595abe894315115af6ffc47abb740"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/c/b/cb487a96e9af7579/axi_bram_ctrl_0_stub.v",
+          "bytes": 8858,
+          "sha256": "a36cce867f0842c74891d88edd04c06bd7cce72e795fc9c8dcc813139155330a"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/c/b/cb487a96e9af7579/axi_bram_ctrl_0_stub.vhdl",
+          "bytes": 11275,
+          "sha256": "f9de49b3c8fa89821ca2e2dafc49b3c4ba0dc6abae7a11433380eb1efc55c4aa"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/ip/2025.2/c/b/cb487a96e9af7579/cb487a96e9af7579.xci",
+          "bytes": 5272,
+          "sha256": "63b6f96776f406c8e5d2eeb90b2769012f8d8195579471bb70a5ba61fad0b8d9"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/wt/project.wpc",
+          "bytes": 61,
+          "sha256": "2a7e486eeeabae2a406572a4882b595dbebaca45e1988295ac4c00adce683cd9"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/wt/synthesis.wdf",
+          "bytes": 7363,
+          "sha256": "05e8b0d967cbc2d8965821a031b0462a8f147020d522c06b8adb3ad41a5a707c"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/wt/synthesis_details.wdf",
+          "bytes": 100,
+          "sha256": "c2433e37a27d83f181dafd22c54777c16a515755dc60d98ffb0152c8353f507b"
+        },
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.cache/wt/webtalk_pa.xml",
+          "bytes": 1119,
+          "sha256": "4ea509a062a772856fcab8a28e1304fbff52108cbea45b271dc990028836ef18"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/local/timing_acb_impl/riscv_vivado_project.hw",
+      "kind": "regenerable_cache",
+      "files": [
+        {
+          "path": "build/local/timing_acb_impl/riscv_vivado_project.hw/riscv_vivado_project.lpr",
+          "bytes": 425,
+          "sha256": "b373cf9663fa8b6acdd3cceeb201aea1c7fbbee5cf7c6d675bf0c6ccd52f4c69"
+        }
+      ],
+      "deleted": true,
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/reports/ascon_key_lifecycle",
+      "kind": "superseded_report",
+      "deleted": true,
+      "files": [
+        {
+          "path": "build/reports/ascon_key_lifecycle/build_context.txt",
+          "bytes": 3920,
+          "sha256": "115ead301a205267ef1281610eaa67fdffa462ac8cfc6bce6d335ff1aebba66e"
+        },
+        {
+          "path": "build/reports/ascon_key_lifecycle/ip_status.rpt",
+          "bytes": 3603,
+          "sha256": "6cb52ad52f5e81f2c8ed3b4967ea790547e05f7128a6bbbdbf00a5250285e9ef"
+        },
+        {
+          "path": "build/reports/ascon_key_lifecycle/methodology.rpt",
+          "bytes": 28897,
+          "sha256": "dc2553f9bd5b5d637aa2486df44fa2e540dce6fc88e69a58167cca8c42d94377"
+        },
+        {
+          "path": "build/reports/ascon_key_lifecycle/route_drc.rpt",
+          "bytes": 67532,
+          "sha256": "d7c905d20a42282f567d03117930165e53e5fe81ac6716092a23455c892c25a2"
+        },
+        {
+          "path": "build/reports/ascon_key_lifecycle/route_timing.rpt",
+          "bytes": 59902,
+          "sha256": "a2897f72f12a72c2c0f21a80f0ee60bd058f51608ce265f054ebc7b2fe4bb2d3"
+        },
+        {
+          "path": "build/reports/ascon_key_lifecycle/route_utilization.rpt",
+          "bytes": 11888,
+          "sha256": "4652136430aad5520cd7969e62fb6d971fcef748bae922f3bcab8cee4fec3d11"
+        },
+        {
+          "path": "build/reports/ascon_key_lifecycle/synth_timing.rpt",
+          "bytes": 39313,
+          "sha256": "8267f0855d19d436e65dee1d2342058eb099ccb037e69842dbc22ccc02f6f88a"
+        },
+        {
+          "path": "build/reports/ascon_key_lifecycle/synth_utilization.rpt",
+          "bytes": 9679,
+          "sha256": "17b98659b806c839beff5248618c515bbe075e795a2c859c01bc5da45f154299"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": false
+    },
+    {
+      "path": "build/reports/ascon_timing_r1",
+      "kind": "superseded_report",
+      "deleted": true,
+      "files": [
+        {
+          "path": "build/reports/ascon_timing_r1/build_context.txt",
+          "bytes": 3996,
+          "sha256": "2463b664bb37823270cf1fc9131e78b3f70438270fb61a6f9f3e8cf2526770af"
+        },
+        {
+          "path": "build/reports/ascon_timing_r1/check_timing.rpt",
+          "bytes": 3356,
+          "sha256": "58517a8567039a4f1c0fce5f65d9eba98fef426aefb83a3d19679ac729b55149"
+        },
+        {
+          "path": "build/reports/ascon_timing_r1/clock_interaction.rpt",
+          "bytes": 1557,
+          "sha256": "3158c245b513594eb24665e7c2f79b8a7a089c13c95ed35f691e390abb7cd0b4"
+        },
+        {
+          "path": "build/reports/ascon_timing_r1/ip_status.rpt",
+          "bytes": 3603,
+          "sha256": "b0d24e250fe05a0d62e617222d04ff0da646bde3839fa9f19622102eebdc3e4d"
+        },
+        {
+          "path": "build/reports/ascon_timing_r1/methodology.rpt",
+          "bytes": 10669,
+          "sha256": "d5715bb1ce53ed03933da14429764634dbed2e6ac1cddb3248cfb8293655a472"
+        },
+        {
+          "path": "build/reports/ascon_timing_r1/route_drc.rpt",
+          "bytes": 67528,
+          "sha256": "af6be60a64c2a417e38929e40a74d41107d4c6ec17f585cc0559f42d482cb837"
+        },
+        {
+          "path": "build/reports/ascon_timing_r1/route_paths.rpt",
+          "bytes": 154726,
+          "sha256": "bea5aa64d0978a4005856e662a3b176bb4b5f0d563b2c6fa9326e23e52739102"
+        },
+        {
+          "path": "build/reports/ascon_timing_r1/route_timing.rpt",
+          "bytes": 58133,
+          "sha256": "49759612906ab47dcfbd561b92091c582e57b25e5f19671686c8ad5783fb56b0"
+        },
+        {
+          "path": "build/reports/ascon_timing_r1/route_utilization.rpt",
+          "bytes": 11884,
+          "sha256": "012508a4bfec0aec88b5dbacf8562b49e8d3f8940652c52bd37e1e98844f3328"
+        },
+        {
+          "path": "build/reports/ascon_timing_r1/synth_timing.rpt",
+          "bytes": 38288,
+          "sha256": "d9616ee30fa760bc47ef65e2ead9a7998a362945191ac53cb4e3edec4f9c60c1"
+        },
+        {
+          "path": "build/reports/ascon_timing_r1/synth_utilization.rpt",
+          "bytes": 9675,
+          "sha256": "e658239ed2411b094e876e39538f4e2e03fbb57652c31c702f2fb88b2858b4b2"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": false
+    },
+    {
+      "path": "build/reports/ascon_timing_r2",
+      "kind": "superseded_report",
+      "deleted": true,
+      "files": [
+        {
+          "path": "build/reports/ascon_timing_r2/build_context.txt",
+          "bytes": 7284,
+          "sha256": "2801a4fd1988ae1ece2f0178aa95d43d3b8db884be4f6512523b595d9bb59bf4"
+        },
+        {
+          "path": "build/reports/ascon_timing_r2/check_timing.rpt",
+          "bytes": 3367,
+          "sha256": "78a4f81f0db4a12b8c3c9bb973cb0e2a45f35f7414ae51bb3e67d34829181e96"
+        },
+        {
+          "path": "build/reports/ascon_timing_r2/clock_interaction.rpt",
+          "bytes": 1568,
+          "sha256": "6c8b91202e93496fb8f1ecf0432ea28cd0349e10946466796e7965fdab8d0598"
+        },
+        {
+          "path": "build/reports/ascon_timing_r2/ip_status.rpt",
+          "bytes": 3603,
+          "sha256": "b0d24e250fe05a0d62e617222d04ff0da646bde3839fa9f19622102eebdc3e4d"
+        },
+        {
+          "path": "build/reports/ascon_timing_r2/methodology.rpt",
+          "bytes": 10667,
+          "sha256": "7cf01d98e3ead86f9b6bfc2859d41181f38b5f9d0074698eb97698ef7584543b"
+        },
+        {
+          "path": "build/reports/ascon_timing_r2/route_drc.rpt",
+          "bytes": 67387,
+          "sha256": "224f90d3493afa309d2b13356a68c785b394b08b4c1562c37b12bce2ea53775e"
+        },
+        {
+          "path": "build/reports/ascon_timing_r2/route_paths.rpt",
+          "bytes": 164017,
+          "sha256": "9e6ae547cc4174cd4f3e16b4817820172429310b2dead2b3582f097a7abda153"
+        },
+        {
+          "path": "build/reports/ascon_timing_r2/route_status.rpt",
+          "bytes": 651,
+          "sha256": "4afff41035f21d30e4254811f7f2a80f91a3267625d5e3b8a295be24dbf99900"
+        },
+        {
+          "path": "build/reports/ascon_timing_r2/route_timing.rpt",
+          "bytes": 59120,
+          "sha256": "bdc308bbc57be1254b8564cb15911d8bd4d68108d590c619caac7bba165cd599"
+        },
+        {
+          "path": "build/reports/ascon_timing_r2/route_utilization.rpt",
+          "bytes": 11895,
+          "sha256": "c08ac9fa58f25ed66c111700070a8e66487ca4fd63d72b23a057b7d76db9c16c"
+        },
+        {
+          "path": "build/reports/ascon_timing_r2/synth_timing.rpt",
+          "bytes": 38288,
+          "sha256": "d9616ee30fa760bc47ef65e2ead9a7998a362945191ac53cb4e3edec4f9c60c1"
+        },
+        {
+          "path": "build/reports/ascon_timing_r2/synth_utilization.rpt",
+          "bytes": 9675,
+          "sha256": "e658239ed2411b094e876e39538f4e2e03fbb57652c31c702f2fb88b2858b4b2"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": false
+    },
+    {
+      "path": "build/reports/dcache_pipe_20261018",
+      "kind": "superseded_report",
+      "deleted": true,
+      "files": [
+        {
+          "path": "build/reports/dcache_pipe_20261018/build_context.txt",
+          "bytes": 863,
+          "sha256": "0a9b0fc532674d339833381fe44ae5eb261016262649a7c2b5aaa6e0a8268032"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018/route_paths.rpt",
+          "bytes": 159623,
+          "sha256": "474fd637ae6b26e5d48ff2eb1437f97877e26255289a7b04292dcc198db3bedd"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018/route_status.rpt",
+          "bytes": 651,
+          "sha256": "021811aab7548dc72c9071673aa6b5bed36f1f10e4df1e1ad6e7b9f5b0ca7ff3"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018/route_timing.rpt",
+          "bytes": 58831,
+          "sha256": "c1859c8d95b28edd1467b2c1f2717dfb30608a084b907e78dec60b630089167b"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018/route_utilization.rpt",
+          "bytes": 11929,
+          "sha256": "f7f72980ccafe11ddbffdbae92bcbe784d31dfe01687e08f8539dcb064bba89d"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018/synth_timing.rpt",
+          "bytes": 38666,
+          "sha256": "956c58009437ce4f7e9ffad6639ea5cd821b476769930398a680e486d3af2c8a"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018/synth_utilization.rpt",
+          "bytes": 9709,
+          "sha256": "dd980f3f3b8099b551e2c6bb47ccbb211efd073aa5687981b59c49e0367f6d01"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/reports/dcache_pipe_20261018_er",
+      "kind": "superseded_report",
+      "deleted": true,
+      "files": [
+        {
+          "path": "build/reports/dcache_pipe_20261018_er/build_context.txt",
+          "bytes": 874,
+          "sha256": "cb9723a08299ab7d2df884e94b71a818bc0f4b89b07caadb05c06e61d707b0fd"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018_er/synth_timing.rpt",
+          "bytes": 38327,
+          "sha256": "0baa61234795bca40b0f47d4a507f362fa40f5a5e059a7b749aecf5553d2374a"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018_er/synth_utilization.rpt",
+          "bytes": 9718,
+          "sha256": "4ef20517bfac497146ec8396a6b400e5bb153eba22d8408289d846fec5837a08"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/reports/dcache_pipe_20261018_fix_r1",
+      "kind": "superseded_report",
+      "deleted": true,
+      "files": [
+        {
+          "path": "build/reports/dcache_pipe_20261018_fix_r1/build_context.txt",
+          "bytes": 882,
+          "sha256": "efc481c8def581c2f4ade1005481e36c1ca246f713709f993fa7415f9fa2d42f"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018_fix_r1/route_paths.rpt",
+          "bytes": 161673,
+          "sha256": "dbfc0f6636b56d5d53efc29144682826357543c0268e13e4498a40abde03e2a9"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018_fix_r1/route_status.rpt",
+          "bytes": 651,
+          "sha256": "f9a3a9a0c64f3d5c2d6a80af4b00e77fae989dac475064423d7b5eec3d3d948f"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018_fix_r1/route_timing.rpt",
+          "bytes": 61776,
+          "sha256": "34071d86d5f12a7f674c29677c2a559fd79d9d1f03e203639c58b5606e45824d"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018_fix_r1/route_utilization.rpt",
+          "bytes": 11950,
+          "sha256": "dbb2568775602da7d9ce20a3a158b314a4f234621fbb73820734e91ae24d85fb"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018_fix_r1/synth_timing.rpt",
+          "bytes": 38339,
+          "sha256": "b5045ca16b49496c3692b58ae6acefd432a3df2846d39bf6928621877067de39"
+        },
+        {
+          "path": "build/reports/dcache_pipe_20261018_fix_r1/synth_utilization.rpt",
+          "bytes": 9730,
+          "sha256": "c58b2262f5c02772f897143ba86723b9d8c93d5987da4b03130963f1c5beb75d"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/reports/strategy_sweep_20261017",
+      "kind": "superseded_report",
+      "deleted": true,
+      "files": [
+        {
+          "path": "build/reports/strategy_sweep_20261017/build_context.txt",
+          "bytes": 4511,
+          "sha256": "8c9b8599a16378f950b2ac3670f23ed7f309e176e06baf55416aea555d17ef15"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/complete_sweep_results.md",
+          "bytes": 5184,
+          "sha256": "ad7293e438dfb8d1f64379b6970576468f5bc1dc65e55a1ede62f4790d0abfc1"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/ip_status.rpt",
+          "bytes": 3642,
+          "sha256": "1fd5d6c180b9235c5d8621b622e5728ef8da3055fa6ebff0ae490c6e0ab64f86"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/pblock_opt_status.md",
+          "bytes": 3170,
+          "sha256": "25132824dcb84bc8fd3d83b5c9cb4246ee537ebab596273b924e8c86edfd046a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/rtl_timing_fix_plan.md",
+          "bytes": 10596,
+          "sha256": "fde7e9f0c0e562253ce410a47b1abc224b5f51326e52552b83c9017e7d6a0eb0"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore/check_timing.rpt",
+          "bytes": 3452,
+          "sha256": "8fe4c3c28e30f87fe7e95460786df2457cd0a091b44eac74bbd2fc7f595efe90"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore/clock_interaction.rpt",
+          "bytes": 1669,
+          "sha256": "49c27187229558f1a2ff8fe88f2cbd850d4a353f491b52dcbc31e8d3d978949c"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore/methodology.rpt",
+          "bytes": 10812,
+          "sha256": "5a960d94777f6132e126567d590bb4c173e91d82da9dfa9eb64bda2723ef0013"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore/route_drc.rpt",
+          "bytes": 67457,
+          "sha256": "8e21d76a301f25808c5315bfe399103d3067bead1b0157618125c5f51ef0e6a1"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore/route_paths.rpt",
+          "bytes": 161771,
+          "sha256": "bd514e5ee28ffa0b35899fd537012f3379b54553c9863e612060f557d93df95d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore/route_status.rpt",
+          "bytes": 651,
+          "sha256": "84f7118428ce0b7796ac5c4fcb1d9a7ad6fb21a703fcd694bfd550a80560a085"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore/route_timing.rpt",
+          "bytes": 58419,
+          "sha256": "87ff7dfd9a996f2bfd03a9c83e5c40e86ac2f03482be8f3afd9b8e5fd655819d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore/route_utilization.rpt",
+          "bytes": 11984,
+          "sha256": "44a5437b33ccc862b6fb847d8bf4ebf1da1ffc352114ea5c40fba49b1c7a42cc"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore/strategy_props.txt",
+          "bytes": 3291,
+          "sha256": "95d6cb662f452488f4cbce45bb386b406564f87331c5177ac0a4dc13def09a81"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_remap/check_timing.rpt",
+          "bytes": 3470,
+          "sha256": "973d33d007df756d9c03ffb3527f60d2642e2b7a80ea8269c04e8f8df5c85974"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_remap/clock_interaction.rpt",
+          "bytes": 1687,
+          "sha256": "faaea06220840c55372ad79342e0086de7d8086c52753f8dd2a3a87632d27025"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_remap/methodology.rpt",
+          "bytes": 10832,
+          "sha256": "d595ac4338ca6e03bbf503802137f7406e8ef9a0e615dafb1a8fb3b4c7e5c11a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_remap/route_drc.rpt",
+          "bytes": 67484,
+          "sha256": "57a6730a6fba3e032664e11082ca7ddad335a5109a1a2b25ef1d1ec6b9c9bbcf"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_remap/route_paths.rpt",
+          "bytes": 160232,
+          "sha256": "ec8d8954612e4b655e11e9a5f8d3d6b8187d9e8369ead29ef0d39e59842623ec"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_remap/route_status.rpt",
+          "bytes": 651,
+          "sha256": "69e3abd49843494acc69122bb6855fdc1da4cf934cdf376ecae8be61f9b3eb1b"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_remap/route_timing.rpt",
+          "bytes": 57808,
+          "sha256": "49f53f6d071bdc0a9d3d6fd6a507d497ef48d64ed8c36c0e9c4ef01b891980a5"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_remap/route_utilization.rpt",
+          "bytes": 12002,
+          "sha256": "0224ff8c466618c55ceca45f622ab2a6711de7352239672b107eda9702773822"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_remap/strategy_props.txt",
+          "bytes": 3455,
+          "sha256": "279af0b28a02f4caa0c69f16fdb602522b7acb325fb45a733e3cfe639b55fab3"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_sequential/check_timing.rpt",
+          "bytes": 3485,
+          "sha256": "e9212eca1f4da2a443793765180918fa285d59f7853ca0c5464edd1f76538158"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_sequential/clock_interaction.rpt",
+          "bytes": 1702,
+          "sha256": "000e80bb269de906faa6fa5699b57e70fd0baf5e91e931ae782b79d6b3fe8071"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_sequential/methodology.rpt",
+          "bytes": 10854,
+          "sha256": "3b9407fb5e57c178e462f2de61b130a9bc93f00ae6a877f5904e93ffe2e3fd90"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_sequential/route_drc.rpt",
+          "bytes": 67504,
+          "sha256": "8d57a557565dde6e3b1abc39ab638550db197b141659b4d5dfe2b93e7fdcb213"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_sequential/route_paths.rpt",
+          "bytes": 162020,
+          "sha256": "eccd1a00bf2c5c349d8ec1c86943f7939c16e19714a62d12a2e0b17ec282697f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_sequential/route_status.rpt",
+          "bytes": 651,
+          "sha256": "8dc0095faedad4772b0f8fff7ac438c78d76e71ae18ff4b418963cb71ba6e791"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_sequential/route_timing.rpt",
+          "bytes": 59220,
+          "sha256": "23e4ffd7b959007e2fb62f9acd9b50c28900d6bdd5a4915f635a05f05b2bc9c1"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_sequential/route_utilization.rpt",
+          "bytes": 12017,
+          "sha256": "260a628e2bec45488608537b14a05a9b04101b00d937643250848073079cee6b"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_area_explore_sequential/strategy_props.txt",
+          "bytes": 3586,
+          "sha256": "4f3706b86bf1f8f7a4c4fe44d8d10fbd9eb56fa68b5e246e4cf6e3b588cb93cc"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_1/check_timing.rpt",
+          "bytes": 3434,
+          "sha256": "79910957e4ca359a4f062ba428c4698ec2e0c0a70bedbb3ca9b630e862a0664d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_1/clock_interaction.rpt",
+          "bytes": 1651,
+          "sha256": "22e98f2d1611d69b6b5a43eaf7d08dc2b68e7c193a17dec61d05a8ab4ab92cf5"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_1/methodology.rpt",
+          "bytes": 10784,
+          "sha256": "70c41f8738eebcec7e61fb308ccb93d67b76f44e36ca0b7d7d8959bf247dace6"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_1/route_drc.rpt",
+          "bytes": 67433,
+          "sha256": "8bc1098c44f90faec05bf3dba60968491e88c63cc4d553953571757a31815e54"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_1/route_paths.rpt",
+          "bytes": 163021,
+          "sha256": "e698bc037b03fc92e1d70806367381c0a85d0c27b5ba44ebf959b54d6246a0ed"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_1/route_status.rpt",
+          "bytes": 651,
+          "sha256": "77a173337f48e901ec77f5c239190cbffc7f2663c3c35e2146d9374c5d24ee1f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_1/route_timing.rpt",
+          "bytes": 59202,
+          "sha256": "0b74c735fdb3e56a69a7b59fee85f439ffe38e6846ba0c845781ef9cadb7cf92"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_1/route_utilization.rpt",
+          "bytes": 11966,
+          "sha256": "eabb1ce3eec9af31f32ab997855422f750e5701827ee977b1062628a24d0b363"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_1/strategy_props.txt",
+          "bytes": 3163,
+          "sha256": "0f657e8f3a674f0d41e62d32841eea19f258473a09e46699e1ab7a30dc0a626e"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_2/check_timing.rpt",
+          "bytes": 3434,
+          "sha256": "c83d2f2de0602ea681eb84e7a6ca0ed467445e3bf82d31cb52ed9a9b6c9b054f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_2/clock_interaction.rpt",
+          "bytes": 1651,
+          "sha256": "ec514c431d4f16db6b4420dd79f676258663fea963e21d976432eb7562a28c09"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_2/methodology.rpt",
+          "bytes": 10784,
+          "sha256": "4349c5965dd6fb1594bd091a59c6286012e6a06c0941880300f1c4d71d4f359b"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_2/route_drc.rpt",
+          "bytes": 67433,
+          "sha256": "2119257ef512f251d2f7aa526248a8b2b55e5fb8ec225bc745394bbac41769db"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_2/route_paths.rpt",
+          "bytes": 163021,
+          "sha256": "48b400c7575056fbace3484a4f2b1c601cff27508384af9a9e8a9d3891222516"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_2/route_status.rpt",
+          "bytes": 651,
+          "sha256": "77a173337f48e901ec77f5c239190cbffc7f2663c3c35e2146d9374c5d24ee1f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_2/route_timing.rpt",
+          "bytes": 59202,
+          "sha256": "cf467a193efd4adc2b2007f77f6e1da39fb83a70c5a6b9d8dad410f5641ee29e"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_2/route_utilization.rpt",
+          "bytes": 11966,
+          "sha256": "af770803ae00d6ea2bc853d8edeaa57dcf7713b443f4c49bf08574895a0bd903"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_2/strategy_props.txt",
+          "bytes": 3163,
+          "sha256": "c39d57b6ccfdf2d6adb4cce778850b68066d17e6f824dc8c113790d6de436e69"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_3/check_timing.rpt",
+          "bytes": 3434,
+          "sha256": "0e325a511f82af952f7be8064a1055e2baaa1c401973e8162df660f69a37eec9"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_3/clock_interaction.rpt",
+          "bytes": 1651,
+          "sha256": "77016a62bebf4148cfeaa5339748bd351b385d83dfff982df1eeeeec17e2cfbd"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_3/methodology.rpt",
+          "bytes": 10784,
+          "sha256": "f3b5e381551d565df40ccd1f25798695fa562a9861ade08c030c15fc21e0af8e"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_3/route_drc.rpt",
+          "bytes": 67436,
+          "sha256": "c357670d83c415e772b0b9b53bd9c50d0aeb2396f10789f324cfeac1d0389fcd"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_3/route_paths.rpt",
+          "bytes": 163021,
+          "sha256": "48ecd50e516b9c705a470b1e6aac7606c99f5f105888cb2dbe687de75dd1161f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_3/route_status.rpt",
+          "bytes": 651,
+          "sha256": "77a173337f48e901ec77f5c239190cbffc7f2663c3c35e2146d9374c5d24ee1f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_3/route_timing.rpt",
+          "bytes": 59202,
+          "sha256": "b7056dd58c5a7420e463b80bcee015b2ce782251b38486141d48c6dd26eee441"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_3/route_utilization.rpt",
+          "bytes": 11966,
+          "sha256": "418e5799b0f7a92f04810ac973d9e62dec799399fe4430cdfabea571dc0a27a0"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_auto_3/strategy_props.txt",
+          "bytes": 3163,
+          "sha256": "f37e0295cce9f70d77191337eebf627ea8d908ca42779b8c2fe38e3e68986ef7"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_high/check_timing.rpt",
+          "bytes": 3482,
+          "sha256": "ca30f11365bfe44350a9d102d7a44739d9f84a3883c79afd2e3799a6772fef65"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_high/clock_interaction.rpt",
+          "bytes": 1699,
+          "sha256": "00bdeed8e2950f7836d1433d2a9e67b5cfbc9303df328a5dcc4b116e16253beb"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_high/methodology.rpt",
+          "bytes": 10848,
+          "sha256": "aff530d66a481a62772c484f6d0a6dfad1384b0d0da62d6722ec61fe5fff0636"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_high/route_drc.rpt",
+          "bytes": 67639,
+          "sha256": "7c740319576bf78a2d2b1dd9e80ca64d8e7878b55d03c476cbdf83da2e00fc8a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_high/route_paths.rpt",
+          "bytes": 172385,
+          "sha256": "675b8302c022f1c1281428d94e4b0fcb772935503ba36eead74a21e868577327"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_high/route_status.rpt",
+          "bytes": 651,
+          "sha256": "8b4f2a6a694c7d67d5bf9e502f283a1b733466223f2cc097b99ed15b241af9a7"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_high/route_timing.rpt",
+          "bytes": 58200,
+          "sha256": "e792fc03c663ce0b179c8255dc35fec24f7bf7f7048ca1f0be223309e9600c4d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_high/route_utilization.rpt",
+          "bytes": 12014,
+          "sha256": "ce144dec3c47d2e74682c6141f2d8568509b0f62a12ba046af1724fd64c556b9"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_high/strategy_props.txt",
+          "bytes": 3586,
+          "sha256": "811729059de331c736afa6be6dce1ca33af436b99256b07bbb96a4846b6441d0"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_low/check_timing.rpt",
+          "bytes": 3479,
+          "sha256": "ba776696331fbd03caa23e0561a8b6e7073d27ab3ddc33d26ebf3e8551f4c35d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_low/clock_interaction.rpt",
+          "bytes": 1696,
+          "sha256": "0ee84d04a618e525aba2a40a6855547ad94415f70d6c41c422fe643d7e5f6032"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_low/methodology.rpt",
+          "bytes": 10844,
+          "sha256": "05be7492a98c61c3b212a381419637a5d18f5f332c8cffd41ce6682fa56fff6e"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_low/route_drc.rpt",
+          "bytes": 67635,
+          "sha256": "08c52f83d7e21fb36490417c58166a633989b6548b772c86299499c0193e3723"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_low/route_paths.rpt",
+          "bytes": 158115,
+          "sha256": "7f51c51f79a4f55ae1796bd4c19f5e68a8b4abb5906f9ffe2c45e023f5f0c6d1"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_low/route_status.rpt",
+          "bytes": 651,
+          "sha256": "9abbaec54a3b03a5c4af7287d619316bf8b174919ff069880116169574ea8c5d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_low/route_timing.rpt",
+          "bytes": 59049,
+          "sha256": "d6a6cf345fc4512e2fcc768e540b0bcc0b974b5cad9c53ceb99e88881b9c587d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_low/route_utilization.rpt",
+          "bytes": 12011,
+          "sha256": "0fa1c455d2bdf3464df765cfcaa78ea3fbeebe076614d6f231e6b4e8440ae7e8"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_low/strategy_props.txt",
+          "bytes": 3549,
+          "sha256": "e52fdb53757d12944b966ce52dd54543989fdc43f5bd0483f28981d1b5ec7e70"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_medium/check_timing.rpt",
+          "bytes": 3488,
+          "sha256": "dbbfeb6812df95f4f31ba16e70be4add47f1730f1fc62f7348150ed94d2a47b2"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_medium/clock_interaction.rpt",
+          "bytes": 1705,
+          "sha256": "0081a2149485724860a3cc7bd6b602cd298befb69ae0c656a667d57824a83ec6"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_medium/methodology.rpt",
+          "bytes": 10856,
+          "sha256": "efa98cca67eb4216164cdf6f45c4448c5c779f219a42dad614ba5720c7d6b1ca"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_medium/route_drc.rpt",
+          "bytes": 67647,
+          "sha256": "7ad4900307743d3332674f3401af7f9349190012caa6f2b9ed77ccc0af606320"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_medium/route_paths.rpt",
+          "bytes": 153027,
+          "sha256": "76f2403544326f584bcc4f458de798f980ccd7822a355835467d733b2c27520a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_medium/route_status.rpt",
+          "bytes": 651,
+          "sha256": "19526194843f21391346a450b801a409ab64a77782f8493d68b349b0b6c88fb4"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_medium/route_timing.rpt",
+          "bytes": 57705,
+          "sha256": "fee01b777b173e18e8658266d33da4d968bea816a959848208744e31fcd68ef5"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_medium/route_utilization.rpt",
+          "bytes": 12020,
+          "sha256": "b7f0d57dcde29a2cbf6cf9f823584a1fc724ed2490f597f37b9c77df539b3e3b"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_spread_medium/strategy_props.txt",
+          "bytes": 3630,
+          "sha256": "7560fb36749a95d5212c0b13e962892d0c18040ef6b5328a4c7c45a18dc6f230"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_high/check_timing.rpt",
+          "bytes": 3473,
+          "sha256": "9386db88f0d980f239bd492e178de294a634f4558bb4bbe2884eac47b87a68d4"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_high/clock_interaction.rpt",
+          "bytes": 1690,
+          "sha256": "53f1d1656c5a4bc7ad5c1f585d048a44d9b1af838fe5128745a63c8500e7deb3"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_high/methodology.rpt",
+          "bytes": 10836,
+          "sha256": "12bdeeffc75625d2909ccc40e69640169f91cc394e9a503136689507956557bb"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_high/route_drc.rpt",
+          "bytes": 67627,
+          "sha256": "c67e3d8059c3f752f2e2ebb3c25dd427f70d8c15b3e52d71b0651ab4e1d277e5"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_high/route_paths.rpt",
+          "bytes": 168592,
+          "sha256": "69799c8a61b548f98cd17cd1b62b6df3b252b85c465e73493550614ba4de166d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_high/route_status.rpt",
+          "bytes": 651,
+          "sha256": "28a67595e236b0cb517820c352233eec161e76b710204f77f844fb1b079bbc0d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_high/route_timing.rpt",
+          "bytes": 58880,
+          "sha256": "6af0cd6b92578b6028fab2f140ce801d818e0fb88640eb0c83c34f2ee917f335"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_high/route_utilization.rpt",
+          "bytes": 12005,
+          "sha256": "d44513eb9b851c0390ac2f9a66a0ee19b3fd5d456e42ae63d757b4bd63fb4f83"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_high/strategy_props.txt",
+          "bytes": 3516,
+          "sha256": "f0ca19b9517ed8357ae7808a90d4bac1844ba87dfec3eb8bd8e0b16ed52c1dbe"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_low/check_timing.rpt",
+          "bytes": 3470,
+          "sha256": "30f0fc616eb3c9e0d74cfc94c717ca7fa9718e6a30d02e7197ea4e197983d0f7"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_low/clock_interaction.rpt",
+          "bytes": 1687,
+          "sha256": "d8da4ba6ca57876b2a5e952fc3a0a8b2ddd41949583c873f8c96e1579c508c1f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_low/methodology.rpt",
+          "bytes": 10832,
+          "sha256": "430c06ffda73ee153a9bb364a3b03fc19ff1eb81430b1b05d110a0b0cf4bbe75"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_low/route_drc.rpt",
+          "bytes": 67623,
+          "sha256": "f73ca97131eb27832928cf739095d702bd2abb635245c3aa3ae3d052b818a923"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_low/route_paths.rpt",
+          "bytes": 161304,
+          "sha256": "c0ce3dc7f604cfc7ea5ceb5449f62df991b2273955b12e688095ed1ce2787b3f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_low/route_status.rpt",
+          "bytes": 651,
+          "sha256": "385252deb015c1581048f124c204d7cf5a9104cc1364da0fbdf28302e20ef2e4"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_low/route_timing.rpt",
+          "bytes": 58933,
+          "sha256": "92ea37d5988cff3bb2eb2fb66fe06c4aacf0a0085eb2e83abf00c55b9df11094"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_low/route_utilization.rpt",
+          "bytes": 12002,
+          "sha256": "0977daeb19b51dc99828803bff9fb56eedb0b3a76f55bd6204ad9c3665b17c5a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_congestion_ssi_low/strategy_props.txt",
+          "bytes": 3479,
+          "sha256": "18f792589e87b7887b4f719cedf58f5f9e9bcb4eaf3a3892e63cb0e0c42a0c48"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_default/check_timing.rpt",
+          "bytes": 3437,
+          "sha256": "078e26a0bc25ac9a5461d7067159c04498a455d6868f9a3cb73f7bcc3b7c2454"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_default/clock_interaction.rpt",
+          "bytes": 1654,
+          "sha256": "f89940d1828867c3f851a02e598f99fa52664515085db302bdde903ccf28b99a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_default/methodology.rpt",
+          "bytes": 10788,
+          "sha256": "4906d22008f72a2ba2f958103264e7e51c629c924f4d4cdb9eb031b399b34e7f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_default/route_drc.rpt",
+          "bytes": 67579,
+          "sha256": "965ce5450ad90042d6c8e8f937ae9dfdf7122da65914e2c32eaf22eaead80e00"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_default/route_paths.rpt",
+          "bytes": 154843,
+          "sha256": "5546a984eb763bffbfb67e2eca5804b485663270316c1262e8c0ac698a1d25fa"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_default/route_status.rpt",
+          "bytes": 651,
+          "sha256": "f5c5e21803dd23eae414d3b6bca802ab5d6b1256eba8aa3e35ec5c2da1f0b498"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_default/route_timing.rpt",
+          "bytes": 58250,
+          "sha256": "d5b04ce94add3388ce407a6b2607ad81c3fa58ad4f072ea099279ca9105db127"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_default/route_utilization.rpt",
+          "bytes": 11969,
+          "sha256": "7a5a9b4aec22a2a40c49c74097f3090c682f55ddb05c9894edd7e63721c51147"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_default/strategy_props.txt",
+          "bytes": 3180,
+          "sha256": "9535fe94e670214771a0837f9b5dff725de8298272118569e4072971027bc50a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_early_block_placement/check_timing.rpt",
+          "bytes": 3479,
+          "sha256": "3be2988baa50ccea7c72e862b663355fd820d1aec48e32ab2b5dbe3553309592"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_early_block_placement/clock_interaction.rpt",
+          "bytes": 1696,
+          "sha256": "2dad953bdc4cca785b6f61320bb9b86142688f810934a0586df473279674aed2"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_early_block_placement/methodology.rpt",
+          "bytes": 10844,
+          "sha256": "aea022cfece44d573865fde375d288d903c6b6896bbc8c6fa46100e0da0dc4da"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_early_block_placement/route_drc.rpt",
+          "bytes": 67496,
+          "sha256": "ca5f90644fd410ad3e9791b57786114a6678c4df31372ede88602336119caf25"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_early_block_placement/route_paths.rpt",
+          "bytes": 158760,
+          "sha256": "415972e6e949be016084a7c8c0e7220a5878d269df6509a39f57cad5695b1806"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_early_block_placement/route_status.rpt",
+          "bytes": 651,
+          "sha256": "f3faecf746e76f29096a3c0b3301e4e24a0e254ef09426e003154a4cde1afefe"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_early_block_placement/route_timing.rpt",
+          "bytes": 58821,
+          "sha256": "6e13505b3a57442ee881dc987f323526a630d08ee5dd272cece13977ed99a0ad"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_early_block_placement/route_utilization.rpt",
+          "bytes": 12011,
+          "sha256": "dd01b0f4dfd38baa054f970840d88363daef778f401b3373aeab145377a4afc9"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_early_block_placement/strategy_props.txt",
+          "bytes": 3543,
+          "sha256": "c42cf05750785d69b6ff723c3ab46c3c785aca77420d83ce5342dd9e462b0c01"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_postroute_physopt/check_timing.rpt",
+          "bytes": 3493,
+          "sha256": "a9059d7ca30cc5090405040b8f9e80c49cf2c0c1a23ebd4946d47cefebaf9652"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_postroute_physopt/clock_interaction.rpt",
+          "bytes": 1710,
+          "sha256": "e657aa6ad5e450643844a4eebfd02250d11d1feba5b63eeea27b621e01feed70"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_postroute_physopt/methodology.rpt",
+          "bytes": 10848,
+          "sha256": "57e09464618561e5109b3995523f3e13459d6f3d3322ecc6be74925a5489d145"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_postroute_physopt/route_drc.rpt",
+          "bytes": 67639,
+          "sha256": "b075e523e580a9383174178baa5d1f9f86e57bbdc71dadfcd4e8940fbb73a01a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_postroute_physopt/route_paths.rpt",
+          "bytes": 159676,
+          "sha256": "3627ee5d590bdc04721f91c98070c0762ecd6dcc692c35a39378f606e0836402"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_postroute_physopt/route_status.rpt",
+          "bytes": 651,
+          "sha256": "36a44b4629caa61884c9f11bc1530432773ae4d26b65296fb81597ded5a9a6db"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_postroute_physopt/route_timing.rpt",
+          "bytes": 58370,
+          "sha256": "7125b0d3c1e0b1d986a16f298f3d6a9cf8dcf341ea0d5e222eb76559514be410"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_postroute_physopt/route_utilization.rpt",
+          "bytes": 12025,
+          "sha256": "a7e931cad89931209faf335039c88ca10af8543b4860f25795df89d23c4d302c"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_postroute_physopt/strategy_props.txt",
+          "bytes": 3561,
+          "sha256": "ea4695dcf1482cf0307704439c54bcac6be1332b282513a67bcda9b2391ef343"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_quick/check_timing.rpt",
+          "bytes": 3446,
+          "sha256": "5d7ac86548b135823e80e07081055cbf73792d3f86e052ddc8685965e9fc3683"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_quick/clock_interaction.rpt",
+          "bytes": 1675,
+          "sha256": "1c33fb795751ae6b13179c459e6d20f1d8d1384127adf0076bff3671708c15c7"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_quick/methodology.rpt",
+          "bytes": 548631,
+          "sha256": "bd67a6aae3d40e132445277cfda9e6c07562c1f7e0ccc007f52343615ab88972"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_quick/route_drc.rpt",
+          "bytes": 67452,
+          "sha256": "14f0723dc5635772a5669e3e61030539c68baeaf47295671ce1ffd674687a472"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_quick/route_paths.rpt",
+          "bytes": 105834,
+          "sha256": "6f9174a2f6aeb8f42dacfba9641319c5b45634c80c6eb9fd71f2f6fd045a3720"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_quick/route_status.rpt",
+          "bytes": 651,
+          "sha256": "682f8cf04fd1927fe1b11c1c68d058875dd9ecf867b0bab062e6dd9318587845"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_quick/route_timing.rpt",
+          "bytes": 58000,
+          "sha256": "f0b1e571488552fe0be90008f351dda45009cb392ced1a0fd1daf546c8194366"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_quick/route_utilization.rpt",
+          "bytes": 11978,
+          "sha256": "f27bd5f23eaa0c490e580a409a0f8a758b40f311585561bba37b822157c3ebe6"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_quick/strategy_props.txt",
+          "bytes": 3240,
+          "sha256": "1da3b2feeacdcfe05252b155d1caf02ece49296cdd1f44e234806c18af09d006"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_run_physopt/check_timing.rpt",
+          "bytes": 3464,
+          "sha256": "cfd580d5a5a1668e1f2457adea75974a560be6aa7bf973c074e42ab00ee440cc"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_run_physopt/clock_interaction.rpt",
+          "bytes": 1681,
+          "sha256": "eafd614d553a71a6ed72b652ce073d442690f0874057081a7152fe7b4c11e01a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_run_physopt/methodology.rpt",
+          "bytes": 10824,
+          "sha256": "4d657ea5c17b364c1cbab44d7f395cfb7774af940f4eb3b648681a78bad30760"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_run_physopt/route_drc.rpt",
+          "bytes": 67615,
+          "sha256": "84383b2adcc8847d7655b60ccbe8d2c69f10786ede40f041fa801f5e6fb45c5a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_run_physopt/route_paths.rpt",
+          "bytes": 159647,
+          "sha256": "c7b808888021cddcb0a7c1f63976061a180363769c9e46a119e341ea2b5f800a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_run_physopt/route_status.rpt",
+          "bytes": 651,
+          "sha256": "36a44b4629caa61884c9f11bc1530432773ae4d26b65296fb81597ded5a9a6db"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_run_physopt/route_timing.rpt",
+          "bytes": 58341,
+          "sha256": "9337d3d3be04eb9478ca23e75b7e94e51ee52d32f5882886ba73c2c63bb73d60"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_run_physopt/route_utilization.rpt",
+          "bytes": 11996,
+          "sha256": "5ed44d7fbf9e1c6316d8373ccb8d92654f02505aa457ca6afdd9f850770e9959"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_run_physopt/strategy_props.txt",
+          "bytes": 3390,
+          "sha256": "0252f90347460e4ee45cc1c5957125115234a216b4ddece29a1e44bd422f666f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_runtimeopt/check_timing.rpt",
+          "bytes": 3461,
+          "sha256": "7a4f92282c0e496c3c3abfdf512a73b96b66f7e377539d4ba522efe933acf8ad"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_runtimeopt/clock_interaction.rpt",
+          "bytes": 1682,
+          "sha256": "192b2ac0779e8147d39d4b138dffba97ee4b5ffa3bcbc7925b6f3051be0a87c9"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_runtimeopt/methodology.rpt",
+          "bytes": 12553,
+          "sha256": "0a6a67472afb15afc2be7c0b62a9ce3bb47862a02ffec1ae75ed2ab18098bb25"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_runtimeopt/route_drc.rpt",
+          "bytes": 67472,
+          "sha256": "13bfc2d3b72a0bbd64e3ea6e3c390ee087399be9fc911d5efaa95302b3822205"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_runtimeopt/route_paths.rpt",
+          "bytes": 153187,
+          "sha256": "a417726b64295a1341718e924f7ff034cf26b1b03bdb73e69620f6117365ae41"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_runtimeopt/route_status.rpt",
+          "bytes": 651,
+          "sha256": "77a173337f48e901ec77f5c239190cbffc7f2663c3c35e2146d9374c5d24ee1f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_runtimeopt/route_timing.rpt",
+          "bytes": 59097,
+          "sha256": "0e25317bc64933fd844d30b3d38945d3a65d078dc188a51bd16e6c877739cca9"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_runtimeopt/route_utilization.rpt",
+          "bytes": 11993,
+          "sha256": "e7072e8f8567ca9b6193920ec635f3f23e6ee48c3506c53a956d0ee39d86b9b6"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_flow_runtimeopt/strategy_props.txt",
+          "bytes": 3398,
+          "sha256": "ffed9636674738cd33ed49a66573610b7c156f37a9e02358fbd6d189a7062722"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slls/check_timing.rpt",
+          "bytes": 3467,
+          "sha256": "a1b93ac4f7764a416f872af81f1e2151383f4062b2f9fd54e62eaae57340a460"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slls/clock_interaction.rpt",
+          "bytes": 1684,
+          "sha256": "715418de90a7fa45bf75fef29ab1837ce8d6a05a6be1fd37db7ef4f587e798e5"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slls/methodology.rpt",
+          "bytes": 10828,
+          "sha256": "0a9199ec6235fe5fdb3745d826c6d5ec7537f733ae386659adcfaf9268fd9dfd"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slls/route_drc.rpt",
+          "bytes": 67619,
+          "sha256": "6ccb1158f20cf8238d5e375b6842746447b63ec5d8477ebc77187567a6c76893"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slls/route_paths.rpt",
+          "bytes": 165266,
+          "sha256": "3ef4332ae43071c4fe9c5a9fde9f71f0f10d74f2af5ee5d9f243603e3df21939"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slls/route_status.rpt",
+          "bytes": 651,
+          "sha256": "a155b4afd446b693a5b98c882d44456285e06db4ed20e1396a3e1731a4dfb5fc"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slls/route_timing.rpt",
+          "bytes": 58951,
+          "sha256": "0c2eb6310ff154e9d18ca8875a6ffb487de40490caeac90b590aec90e1f6f08c"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slls/route_utilization.rpt",
+          "bytes": 11999,
+          "sha256": "47eea8001116921b94f2a48a26d30d82def541137d4d957225ce388e68de7d9d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slls/strategy_props.txt",
+          "bytes": 3431,
+          "sha256": "e418dac28b397fcac548d798bf7f25d467ab3a6a8e0702228cb63cc8941dd698"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slrs/check_timing.rpt",
+          "bytes": 3467,
+          "sha256": "1cae4e12c5c3f1b5acac1c41b45af5f4d01cb18f05fe11c1f8d5dc75de4feace"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slrs/clock_interaction.rpt",
+          "bytes": 1684,
+          "sha256": "7d089da9dc55100617a05dabbd5851d1d87828f712c6b79c779a3f9f1b7454f6"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slrs/methodology.rpt",
+          "bytes": 10828,
+          "sha256": "4b5d1526f72d20864552817f679af98106ec402c4770a97ff250df5da02eeb94"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slrs/route_drc.rpt",
+          "bytes": 67619,
+          "sha256": "b62cd475cf9fc8c2d65ec0a740d30a352b7adc44e0c386c85ee8ebcc7c0f2c6c"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slrs/route_paths.rpt",
+          "bytes": 165266,
+          "sha256": "5fd06c3caf9a324c1572b0ce0968cd6482b32d93e88fd11aaf45ce92f23b4d99"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slrs/route_status.rpt",
+          "bytes": 651,
+          "sha256": "a155b4afd446b693a5b98c882d44456285e06db4ed20e1396a3e1731a4dfb5fc"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slrs/route_timing.rpt",
+          "bytes": 58951,
+          "sha256": "f6ab4bd7d076ce4172ec3d7f288ab4578c7d7b60c44d7cb1ecc324a76d1d45d6"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slrs/route_utilization.rpt",
+          "bytes": 11999,
+          "sha256": "5b4a2567cd9a266f9ff5150200d230fcc3b604a64dc05d90f34b1ebbec8ba021"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_balance_slrs/strategy_props.txt",
+          "bytes": 3431,
+          "sha256": "a647ef057f50ad653b4a19a82ed3fbd307027a33f93fd072797002f8b7d6f82a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore/check_timing.rpt",
+          "bytes": 3452,
+          "sha256": "71ebe51486c01666836e2d4380ecf58aa38ec011f4f407e1004c088eaa7bf5f8"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore/clock_interaction.rpt",
+          "bytes": 1669,
+          "sha256": "db7a7a948630a3cb3f9e913b861ed4a99bce1987d68f6c3ddecb78beb82cd71a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore/methodology.rpt",
+          "bytes": 10808,
+          "sha256": "5f0765033a31a6a2dd6bbbf7a4053f3ff59c340f91fcbba203b555060003d1ad"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore/route_drc.rpt",
+          "bytes": 67457,
+          "sha256": "19f056b97efe016290533b831a7c1021b0097b146cfa92c8dde9d7524860707d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore/route_paths.rpt",
+          "bytes": 163890,
+          "sha256": "c0dff4104bc56fe8a9e6c8b09419311642c250ce24a22ad0ec11f97f1607b224"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore/route_status.rpt",
+          "bytes": 651,
+          "sha256": "c647c24731bee90efd56a7f5bdf76452ac3463a7005bfa6d307ec624c829b633"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore/route_timing.rpt",
+          "bytes": 59226,
+          "sha256": "84446d53f75459b2e293c703cd946ff2bfb6126a1c31c40236b4ed4c28edf5ba"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore/route_utilization.rpt",
+          "bytes": 11984,
+          "sha256": "e2862456a78dde20c05900faa510e4ca8e1136493e62a576e886291581d67244"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore/strategy_props.txt",
+          "bytes": 3294,
+          "sha256": "7bd604c014556091e5d31702c8ac49e2198c4613d1a8e286668a618b8c7cf65e"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_postroute/check_timing.rpt",
+          "bytes": 3493,
+          "sha256": "8fd772d1abcef1fc04011d41cb3f36b82d80f3a4e65fb331cd35ccc9ead96120"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_postroute/clock_interaction.rpt",
+          "bytes": 1710,
+          "sha256": "fadbc20d639367e867adc3ed6121dbf2d635020226a6ba28902cfc47d3361da9"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_postroute/methodology.rpt",
+          "bytes": 10848,
+          "sha256": "ad7697a013eefba197a41c854af7d4c7f7bb07b1f3e249b9bba161755cbab8f8"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_postroute/route_drc.rpt",
+          "bytes": 67497,
+          "sha256": "4b9cd71a0de5ab041614cf70afa3e9a37b2e894a1df0a710091fe0f148e5f9dd"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_postroute/route_paths.rpt",
+          "bytes": 164179,
+          "sha256": "7a27a84f17690fb78b6a205ca6ec57938a70bc2452cdb64c3dc2a408ccdb9cc9"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_postroute/route_status.rpt",
+          "bytes": 651,
+          "sha256": "4afff41035f21d30e4254811f7f2a80f91a3267625d5e3b8a295be24dbf99900"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_postroute/route_timing.rpt",
+          "bytes": 59282,
+          "sha256": "0d9f3c04c4f020d3ae7849c5daf08ad0d8a3117ed4a0e371d9a6ecd5cdd2c37c"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_postroute/route_utilization.rpt",
+          "bytes": 12025,
+          "sha256": "5a72352f9e5981af43f48ce7865f2ff793ef93d40db0267ee6ac85519b14fce1"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_postroute/strategy_props.txt",
+          "bytes": 3572,
+          "sha256": "2b2a415815055a5cb79afc7487d0bf196f97af1d59fbc1c4daec19d71e30b616"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_remap/check_timing.rpt",
+          "bytes": 3481,
+          "sha256": "659f8f99fa82ff1e1b86a85c9d443766141ab1bc6a19a256b5e6436f28865d7b"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_remap/clock_interaction.rpt",
+          "bytes": 1698,
+          "sha256": "a02a1099b18102dc98bf06ed805b5c976c40a13e76301f1bb9dde2e66057d983"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_remap/methodology.rpt",
+          "bytes": 10832,
+          "sha256": "91ce8433e7bc62a73642fc4de337edaad50e771d48c0dd4e9105397baa1163b5"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_remap/route_drc.rpt",
+          "bytes": 67481,
+          "sha256": "0f49fc41b4b8dda9f924411b327b1b2572fba6cf7f5b1cd723a28f377cd34c21"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_remap/route_paths.rpt",
+          "bytes": 157956,
+          "sha256": "85035d1578c49c5f661f69147a41b491ddc7bf5337bc14e46a58b7813e45426e"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_remap/route_status.rpt",
+          "bytes": 651,
+          "sha256": "fe3a155c55ffd8c27d09c270e72ccc3adea4a4bc501fa2c5610ba76eb4089824"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_remap/route_timing.rpt",
+          "bytes": 57867,
+          "sha256": "222121dfee21a065c6295dd00f21c99f3fdc2644204957ac857a08086691a794"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_remap/route_utilization.rpt",
+          "bytes": 12013,
+          "sha256": "3d471805862c46d1deca009ec195442e6d9dbf3d3e14375c0bc068699e006251"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_explore_remap/strategy_props.txt",
+          "bytes": 3485,
+          "sha256": "2faa4acc9fab3abe49e3e86cd009d6beee8128a3caa526bd4c90a269447c6082"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_extra_timing/check_timing.rpt",
+          "bytes": 3467,
+          "sha256": "56ee69ee1cc0be92f543ab31c70bf600ffaddae696148bc2843dad0f6eca0234"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_extra_timing/clock_interaction.rpt",
+          "bytes": 1684,
+          "sha256": "04155d81d33e0bd65e81d612d5be0bce0a2c56ff6bdb4027fd4893d9637e3e2d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_extra_timing/methodology.rpt",
+          "bytes": 10828,
+          "sha256": "8f2329c4fa16885e58e05dc95c2692825ec8f821717cbde12bf64de514080f8c"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_extra_timing/route_drc.rpt",
+          "bytes": 67619,
+          "sha256": "1ebc1b8d9cd10fb21677120060cea4ffec1fd59d6c373e28560f9213ad251879"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_extra_timing/route_paths.rpt",
+          "bytes": 172117,
+          "sha256": "daaa0a56e9617f4307e4c9568723fd3cf6f8f94b5d347e822dac8e344510f6aa"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_extra_timing/route_status.rpt",
+          "bytes": 651,
+          "sha256": "267ac88a4a59364659e2357525b1943ed5fd7c145305e5ccb4e5cb92d018ecae"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_extra_timing/route_timing.rpt",
+          "bytes": 59359,
+          "sha256": "ae2c531834bca36ff527016fe5668549905a05473c11371453c008767644bea3"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_extra_timing/route_utilization.rpt",
+          "bytes": 11999,
+          "sha256": "c886dc20e341d9da865c080bdc4336be7161328ad4f51445f0bad4da9bf6ef16"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_extra_timing/strategy_props.txt",
+          "bytes": 3444,
+          "sha256": "901882713f91e5607bd1ed0c21b73fc7350ddd182ca00ae96f567dab8d782ee8"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_highutil_slrs/check_timing.rpt",
+          "bytes": 3470,
+          "sha256": "3870979cd0cce2f8b8baab194ed64cb27fc048d61fe69cadbbb6ebc0a3c47c97"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_highutil_slrs/clock_interaction.rpt",
+          "bytes": 1687,
+          "sha256": "1d6bbb8a1b43ea8642180920e5bdba8e81219955b766ac51d6855237ea454d24"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_highutil_slrs/methodology.rpt",
+          "bytes": 10832,
+          "sha256": "cb9a798f814cc1a0955cbbbe3bf8b02867272dc7cbf946ad692db391775eb3c9"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_highutil_slrs/route_drc.rpt",
+          "bytes": 67623,
+          "sha256": "d7c715234cacb95488e37b8af775c2d1ed34c708fc521c711b5c812278a4a9a2"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_highutil_slrs/route_paths.rpt",
+          "bytes": 159521,
+          "sha256": "7b200d95c0c5c5bb687cbb8bbdde9b605f5f82bacdf910a1c78f6a070f60fb20"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_highutil_slrs/route_status.rpt",
+          "bytes": 651,
+          "sha256": "fdfd7c0d7c21cefe4c792f041de04946c867b01665a58d3ab6c669b9e76f17ab"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_highutil_slrs/route_timing.rpt",
+          "bytes": 58163,
+          "sha256": "71fda019218f1fc4fa248e0fa05943a3dc6d81407746380c36bc108e4b45fa9f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_highutil_slrs/route_utilization.rpt",
+          "bytes": 12002,
+          "sha256": "426b15a37ec0fb1986be568c68c00d4b6051da24bb2e53146caffdb92c611611"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_highutil_slrs/strategy_props.txt",
+          "bytes": 3458,
+          "sha256": "648b44354db68db02a46239736720d7ed4e50e7dc25acdd192030b3ff2720cbb"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_high/check_timing.rpt",
+          "bytes": 3470,
+          "sha256": "b8792fcd45492d7bf5f039d801caae496bd5718ed0932fa9f7577639184e73db"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_high/clock_interaction.rpt",
+          "bytes": 1687,
+          "sha256": "9b452c6d13ed6eb3036c05663150a9d5290c5ec55423c54478768547979451e8"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_high/methodology.rpt",
+          "bytes": 10832,
+          "sha256": "976bed51cf7535acbbdf9af0d52c651779f81afcbb4391042e4fc15dea22c079"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_high/route_drc.rpt",
+          "bytes": 67623,
+          "sha256": "d1970710b0fb4fbdbb2754fea2a85dd200cdb601cfe92b320a073b1bebab2bdd"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_high/route_paths.rpt",
+          "bytes": 158720,
+          "sha256": "578ffec224db929defdfcd1a69085c6c49d079f9841a1a607227441ff4f4d0e1"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_high/route_status.rpt",
+          "bytes": 651,
+          "sha256": "d02c8e1aade67869044a56d5d548d21f23d24435ab55335564822685709719df"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_high/route_timing.rpt",
+          "bytes": 58761,
+          "sha256": "90c0b894a16b3430085ce00801cc66f71066e794bade26a7c88b3252d55573c9"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_high/route_utilization.rpt",
+          "bytes": 12002,
+          "sha256": "fe298755a524cfc72e807f16e0a794afae317c63ac48285622303ca370f143dd"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_high/strategy_props.txt",
+          "bytes": 3482,
+          "sha256": "0ba7522355e6836d4a4059ab9dbd9d91afed34b79cc67d453f846488dcb50f06"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_low/check_timing.rpt",
+          "bytes": 3467,
+          "sha256": "1355e76c1e656d56e36bff89b08d2aa538c3308421b1ab3873d3edeeac51ec6a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_low/clock_interaction.rpt",
+          "bytes": 1684,
+          "sha256": "2fe9c5c84a047e45c12e3f05d01f743d375fec96da1279097ae3279395904d99"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_low/methodology.rpt",
+          "bytes": 10828,
+          "sha256": "e140e99197a4575da1abb84d5aa53cbde765cc6222fb674ccbedc89439bd7d2a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_low/route_drc.rpt",
+          "bytes": 67477,
+          "sha256": "188d27321d138738b8aa7594cf3f427ab389996ed9dfc6b71be7cb45d218e3b2"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_low/route_paths.rpt",
+          "bytes": 158068,
+          "sha256": "abb5638488a48875316ecf8053ff2016a062e4e743a664d9cc41f00d0a410ff0"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_low/route_status.rpt",
+          "bytes": 651,
+          "sha256": "3f3780f119e96418469360aa4a13b0cf52822d9b1983ace87fbce0a6d42a2b2f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_low/route_timing.rpt",
+          "bytes": 58672,
+          "sha256": "b76beb19291247da0d54efc3a014f847cebfdedd5b102bb5f826b13d1ed56907"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_low/route_utilization.rpt",
+          "bytes": 11999,
+          "sha256": "3d1a439ea52bf62a677884b4142ca454d6284cdc1dfb1096fd5af788a81b35ec"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_netdelay_low/strategy_props.txt",
+          "bytes": 3455,
+          "sha256": "4b53ff76f6f5b668b6439be28c9985f8549fce9849229b57eb172d5d3c49a18f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_refine_placement/check_timing.rpt",
+          "bytes": 3479,
+          "sha256": "febe982dee8f44c0d5ef945be729b9e1768e48b2c9caa60408dfe9835f1dd920"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_refine_placement/clock_interaction.rpt",
+          "bytes": 1696,
+          "sha256": "87fc4613abead839fca1fb1ffd205fba725028cf975c7b23e33e4888534216b7"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_refine_placement/methodology.rpt",
+          "bytes": 10844,
+          "sha256": "96e13e909604a36e9e48cf68ebf0794692174a94e7dbc6fcfafabd2131368c30"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_refine_placement/route_drc.rpt",
+          "bytes": 67635,
+          "sha256": "1c27211a586e423617171a0a8ea0cdcf7efd205a895064fed4a5149626d32a00"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_refine_placement/route_paths.rpt",
+          "bytes": 161313,
+          "sha256": "83ab13b1cc3bf46cc096525a1f1a952d7b6ed35890dc75710f8c22d0b0a5aa10"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_refine_placement/route_status.rpt",
+          "bytes": 651,
+          "sha256": "385252deb015c1581048f124c204d7cf5a9104cc1364da0fbdf28302e20ef2e4"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_refine_placement/route_timing.rpt",
+          "bytes": 58942,
+          "sha256": "b96c5205ed140c07eeffeb6de7a5ede592a81b54f8fb3dca885511bd9f9f4281"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_refine_placement/route_utilization.rpt",
+          "bytes": 12011,
+          "sha256": "ea45c197ccec880417c8942a512ba19943bf6da0a612fd6e470774511d5f3282"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_refine_placement/strategy_props.txt",
+          "bytes": 3541,
+          "sha256": "d9e45f3d025b6c90637dc18f3f5f038d6ca44d17cbf1ab7a07d02a96806f9727"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_retiming/check_timing.rpt",
+          "bytes": 3455,
+          "sha256": "da3976dfd5e2473af6bd7e9dfb8bc621ecb0fe4869ee8839e4f6706df8f65909"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_retiming/clock_interaction.rpt",
+          "bytes": 1672,
+          "sha256": "45ef878b1365ba9f247807bec383a2a5668c106a5ce462fee70ce8828fd03229"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_retiming/methodology.rpt",
+          "bytes": 10812,
+          "sha256": "2d715986fdfa5af09408f6bbbb920ee62e41fd35a86623ec3b48eb7861f71bd1"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_retiming/route_drc.rpt",
+          "bytes": 67603,
+          "sha256": "b2253ca2f190a9bc73b0c8538ecd38e29e63a7451b92f0e855afe19a5a4924aa"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_retiming/route_paths.rpt",
+          "bytes": 160786,
+          "sha256": "bacf84e0fd0f9cad280fa9d8f96985af8e35b60fd7a72560133e81974b2ca5a4"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_retiming/route_status.rpt",
+          "bytes": 651,
+          "sha256": "6262aef625722869c8d9010a08b5c610d34a52c831d9c93439253b69aa8434d6"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_retiming/route_timing.rpt",
+          "bytes": 58612,
+          "sha256": "127a7100d2a0da4efde093b51c89401667dff2391929e45264ec68cb0781fc0e"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_retiming/route_utilization.rpt",
+          "bytes": 11987,
+          "sha256": "da8621f25566b4242d53a3beb9305b74b53abb9f0992c5ab2b10c2d4c05d92c2"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_retiming/strategy_props.txt",
+          "bytes": 3352,
+          "sha256": "68e1c7171ccdd570b6b752972f438bed28f40f78f8b64c796d8fec9b9ca9d2c2"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_spread_slls/check_timing.rpt",
+          "bytes": 3464,
+          "sha256": "031ba02c1b18ce7baf6c13ab18e090200b42a799aab52c81ee9adbe300d1e333"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_spread_slls/clock_interaction.rpt",
+          "bytes": 1681,
+          "sha256": "7580b3fe1fc0803b925dcd38714a81b7fe5a6ddca82a95dad833e7996e7efeec"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_spread_slls/methodology.rpt",
+          "bytes": 10824,
+          "sha256": "c0ef41696ca847bfdc914f4aaf72b95c6340d64443d6361030c9fea7ac6b0e7a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_spread_slls/route_drc.rpt",
+          "bytes": 67615,
+          "sha256": "32ea0de0777028ea8738fd00abb2a3d0a0c343d728a2776d507528baddc71cb4"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_spread_slls/route_paths.rpt",
+          "bytes": 165263,
+          "sha256": "8cd1e0945dddb026dfc12bbb5d8f35306e3b8683ddd83491937f128e7248b181"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_spread_slls/route_status.rpt",
+          "bytes": 651,
+          "sha256": "a155b4afd446b693a5b98c882d44456285e06db4ed20e1396a3e1731a4dfb5fc"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_spread_slls/route_timing.rpt",
+          "bytes": 58948,
+          "sha256": "6ce807e21959e047ba19f6b49ec03c8875825d664335a2dd55e4c5e795387df2"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_spread_slls/route_utilization.rpt",
+          "bytes": 11996,
+          "sha256": "a3c1c91511cc9b75712da289f75e7acdd40832638414fba5e56443c3c14f9920"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_perf_spread_slls/strategy_props.txt",
+          "bytes": 3404,
+          "sha256": "3ac632dd1e59cc87c2fd2ec6a54bed520f156bc4e30b6dbb16bcf93adc877677"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_default/check_timing.rpt",
+          "bytes": 3455,
+          "sha256": "b77e8398135a04dc411dbec69582c5edc8482a2e648f8e7603b74feffadf8499"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_default/clock_interaction.rpt",
+          "bytes": 1672,
+          "sha256": "77072a5fa558ee6fadd386a3245dc7b81f5ce5ad213126609adb715bc0adf635"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_default/methodology.rpt",
+          "bytes": 10812,
+          "sha256": "31771a07364bed54517b9010c420579d8852c66de22e792999b8a7745d2c7a24"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_default/route_drc.rpt",
+          "bytes": 67725,
+          "sha256": "cf164295af57c9a5bd61433086cf984df7a374ab555db982f7e70b974965b933"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_default/route_paths.rpt",
+          "bytes": 160286,
+          "sha256": "8d19ea6f83ee57a34c46aeecef8eb95c1cb8c65135d8f5e03a745adce5e623e9"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_default/route_status.rpt",
+          "bytes": 651,
+          "sha256": "65f4d1a8940bfe65dfa1a6451d1a45a3f1e60116a62c1ff98c01bd9da7634844"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_default/route_timing.rpt",
+          "bytes": 58454,
+          "sha256": "e48462cc43c23b3607ceafb11c56620be8a33c6cd655468b019976a0028a080f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_default/route_utilization.rpt",
+          "bytes": 11987,
+          "sha256": "b97177abeaf33966d7874f76cb1fde17dc9c5816380a3a861d8ce5e84d190c02"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_default/strategy_props.txt",
+          "bytes": 3316,
+          "sha256": "3f47ca08c06d74668cdcee3b0488872ba78555b605d2a9e06dd1b2f8daae69bd"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_explore_area/check_timing.rpt",
+          "bytes": 3470,
+          "sha256": "ed9eb1e22c5f74f92a1e109ca6b40853afbe4e90aa29e868c31f39ce9cbb6aee"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_explore_area/clock_interaction.rpt",
+          "bytes": 1687,
+          "sha256": "e814023cd82ae6e338fbad50e79f1de803bab1c14c5347b25e7a4ceb9d4fd822"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_explore_area/methodology.rpt",
+          "bytes": 10834,
+          "sha256": "c2d7de2a5ea16a9d01d738dd4c7f04435ee7f4958920d91f48408a506fc1e385"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_explore_area/route_drc.rpt",
+          "bytes": 67740,
+          "sha256": "cb4a3c66edcb23c2d43c95c76ae6d5ddc8298b4fbad1a073667030b5d8b292a6"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_explore_area/route_paths.rpt",
+          "bytes": 167677,
+          "sha256": "9280ffd01b1fe07bb58819e2bb496176422a7e4c8838a4dc2906c54f602e180a"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_explore_area/route_status.rpt",
+          "bytes": 651,
+          "sha256": "cbc0d099eaf8d88820318a841937897db3bd7be1b82bb8a48023bd0e9d115f2b"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_explore_area/route_timing.rpt",
+          "bytes": 59462,
+          "sha256": "648579ba77edd44b5880e4429824d6eab798ed31eb3668a1cd43dc1c2597ee92"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_explore_area/route_utilization.rpt",
+          "bytes": 12002,
+          "sha256": "42174dd15806e0fdeb70171f7c00fb4941455ce5bfd8040d42e739b708e8a3df"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_power_explore_area/strategy_props.txt",
+          "bytes": 3456,
+          "sha256": "6006055a982d31e20d547d66db2397b614d11b1f6d6868fe48a36d76c37277bf"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_summary.tsv",
+          "bytes": 2608,
+          "sha256": "9f0f2b666bbb25c448be81d58ed55cd070d9772e50f5f61a805260d57c69c2e6"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_fanout/check_timing.rpt",
+          "bytes": 3461,
+          "sha256": "8f15b060cf252ba8f38259b2b0a7adea86c2527ff9febad2db6b29aa2ae4c34f"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_fanout/clock_interaction.rpt",
+          "bytes": 1678,
+          "sha256": "5d8a767e115291f65b472729342bb573aa25d2637ee2af69e70a56f334522c0d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_fanout/methodology.rpt",
+          "bytes": 10820,
+          "sha256": "cb80d46fb82a01f05239e31202bf5bddc67d8e220a683d264f5ebab5bcf4d165"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_fanout/route_drc.rpt",
+          "bytes": 67611,
+          "sha256": "491a2911ccad3fdaf385f7129ce6b98c18fe10d823bd2b530756789e504c698c"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_fanout/route_paths.rpt",
+          "bytes": 159857,
+          "sha256": "ed1a01efa7c29a39d20aa04186c9e24095223e92f631f6a12d588c0361ad9872"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_fanout/route_status.rpt",
+          "bytes": 651,
+          "sha256": "c7a35e120f4cc08f39a01c9dc900e3331ffe9fb05bf48cb5c4194c6a8f65eda6"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_fanout/route_timing.rpt",
+          "bytes": 58565,
+          "sha256": "2ed7591e876a3dfff7192d80386e95f4e683c436d9b275acd91a536c3c503bce"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_fanout/route_utilization.rpt",
+          "bytes": 11993,
+          "sha256": "cbdec268cac9d267b3e09b03bb14d02bb3150870c1708a296ada0e757c7abc3d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_fanout/strategy_props.txt",
+          "bytes": 3414,
+          "sha256": "da4d653d7f8c9049e713c463ecc12edbc875c339a71f07858cb144921ada39a1"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_placement/check_timing.rpt",
+          "bytes": 3470,
+          "sha256": "47d8faefcc8ce6282eb7351d6b6a6ff7bdf0ab8041e82f496d7f4641e3657363"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_placement/clock_interaction.rpt",
+          "bytes": 1687,
+          "sha256": "4c1d0a766a88a20245f2b93dc7b93fdeec4e987f5ed7009dcd4672a5cd767918"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_placement/methodology.rpt",
+          "bytes": 10832,
+          "sha256": "c30173c16dded3abb4c027c38c2b06d8a68e1d9619e6bb92a52d1c307147c236"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_placement/route_drc.rpt",
+          "bytes": 67481,
+          "sha256": "895f311c45c6ba5a7062289128b07815643216e87e70a73edd36b6cb82afc174"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_placement/route_paths.rpt",
+          "bytes": 148048,
+          "sha256": "38d41817d051aab658cf88bbd34cf74f61e8d35ed0fe98448b446790ee1c43bb"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_placement/route_status.rpt",
+          "bytes": 651,
+          "sha256": "1758b487623cf10ee01208407bc9c1cbf4005350e43271727afe87fec0ad339c"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_placement/route_timing.rpt",
+          "bytes": 58305,
+          "sha256": "1fa8513c80f34ffaa7eb5c743b99ebaee6fdbdf3a905d70bf377d19816117920"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_placement/route_utilization.rpt",
+          "bytes": 12002,
+          "sha256": "e72130149f43239414eb884f1a51a2c33dd96d4ef138744cc852a066b379b8c7"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/sweep_wl_block_placement/strategy_props.txt",
+          "bytes": 3468,
+          "sha256": "122d50964d28e611e18b4d8fc66f12974e8a8b8f53c26e500957603308a62192"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/synth_timing.rpt",
+          "bytes": 38327,
+          "sha256": "86cf92470288583d79cb2908a98704f9d622109d6e13a3d952f6012188c82e80"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/synth_utilization.rpt",
+          "bytes": 9718,
+          "sha256": "ff6d84e3896afa8abd6c152e5c7afa0ffd2e9eaa684b65b79636acc86936c19d"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/timing_analysis_and_solutions.md",
+          "bytes": 7729,
+          "sha256": "3d33395fc58738a0cf2346ddd12e9a5b38666155a3a5f9b188073dd03e2c440c"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/timing_optimization_final_summary.md",
+          "bytes": 6655,
+          "sha256": "3c88c4db3add8f954147e524fc06e6f0511fff8abfe002f2b506ff4dd89638c1"
+        },
+        {
+          "path": "build/reports/strategy_sweep_20261017/vivado_interactive_timing_analysis.md",
+          "bytes": 7044,
+          "sha256": "2de3137538a9dfd78ca992a7c4649f09adf6c0c706ef7e577aac1a9ee8fbefd7"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": false
+    },
+    {
+      "path": "build/reports/timing_acb_baseline",
+      "kind": "superseded_report",
+      "deleted": true,
+      "files": [
+        {
+          "path": "build/reports/timing_acb_baseline/build_context.txt",
+          "bytes": 676,
+          "sha256": "bd59a2b60dd1bc33f32b1d4b1bb8520245fc6888c33fd120604ec4882df3a027"
+        },
+        {
+          "path": "build/reports/timing_acb_baseline/failing_endpoints.csv",
+          "bytes": 24703,
+          "sha256": "a1400abcd56c3530d4b29cad795015aff7af5078467308484ca35ffff5305dc4"
+        },
+        {
+          "path": "build/reports/timing_acb_baseline/result.txt",
+          "bytes": 124,
+          "sha256": "ad8f3e94c3ceeb5bfc5b9159a00f1ec5a9503c81554eb966516f9adc38f45dc7"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "build/reports/timing_acb_lint",
+      "kind": "superseded_report",
+      "deleted": true,
+      "files": [
+        {
+          "path": "build/reports/timing_acb_lint/dcache.csv",
+          "bytes": 112,
+          "sha256": "0e4d6bc7a42cd80cfc246c377e9cfc811e6318c08de83db14d8b910b52f67c31"
+        },
+        {
+          "path": "build/reports/timing_acb_lint/dcache.rpt",
+          "bytes": 2324,
+          "sha256": "75d9c341b20804cfaffca43ea4a4cdd85316b293acd66cb8c5088a02ef1c7438"
+        },
+        {
+          "path": "build/reports/timing_acb_lint/ex_stage.csv",
+          "bytes": 256,
+          "sha256": "38b0d9ffe76355721264464dfbaa03bfb6c43f46bca206a5bcb2c1c34f62e175"
+        },
+        {
+          "path": "build/reports/timing_acb_lint/ex_stage.rpt",
+          "bytes": 2960,
+          "sha256": "f098ac141b38ea21cd6b47413a10175db38bbd13ec7c738d6f3c7891b2191940"
+        },
+        {
+          "path": "build/reports/timing_acb_lint/ex_stage_control.csv",
+          "bytes": 200,
+          "sha256": "434a933b8547c95ed26c05c1f9ef4028a2323c7b43e4d439f2ba917701cec3fc"
+        },
+        {
+          "path": "build/reports/timing_acb_lint/ex_stage_control.rpt",
+          "bytes": 2711,
+          "sha256": "8ac655a241cad4365039bd07d117cec411077808011f42a5c87949e64a6b878a"
+        },
+        {
+          "path": "build/reports/timing_acb_lint/rtl_lint_report.md",
+          "bytes": 4201,
+          "sha256": "d3dae25d923df64968376292bcf8df8ce4f5ec466323dd4a888857ff2c090ec3"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/cpu_units_fix_r1.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/cpu_units_fix_r1.json",
+          "bytes": 24493,
+          "sha256": "c2f2d9a782f25f6614684b370be30133df5dc7d11af9cd12a7f64567574e2c39"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/cpu_units_timing_a.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/cpu_units_timing_a.json",
+          "bytes": 24493,
+          "sha256": "d040c40ff783480b1c1054318382f146de9c9107f8b6f8aa5d640ca15e62a2de"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/cpu_units_timing_ac.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/cpu_units_timing_ac.json",
+          "bytes": 30645,
+          "sha256": "61b27804f7951c1278211676e0b941df514750adb023676f2391a833217718b0"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/hw_fix_r1.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/hw_fix_r1.json",
+          "bytes": 9973,
+          "sha256": "b10759de724b640addd23c1772387708c7ada33375ab322b4d4042f02eabf88e"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/hw_fix_r1.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/hw_fix_r1.log",
+          "bytes": 51566,
+          "sha256": "ad8f74b684c1c7fbee9f91e73238c2e6a302ba05b0767e84d7c1874aedd74ff1"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/hw_security_fix_r1.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/hw_security_fix_r1.json",
+          "bytes": 10291,
+          "sha256": "bdd3902b813569a6dd550889eeb131f7da0619ebc18e9e701c0e20b78b31bdc5"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/hw_security_fix_r1.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/hw_security_fix_r1.log",
+          "bytes": 68876,
+          "sha256": "04cb3bc7f8d8372f73c2d2b3b09eaa3dcd47396cfe5643e8b57bf611f22c2233"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/ise_fix_r1.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/ise_fix_r1.json",
+          "bytes": 10001,
+          "sha256": "ef819c2169bb9128e37803c628b7c7f8c57ba847240ecdaa3fe602a43c825024"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/ise_fix_r1.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/ise_fix_r1.log",
+          "bytes": 79837,
+          "sha256": "1fc215ec1dc74728941f25f12035efff2ec471ad8acfebc0d46eb2a4922858e3"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/ise_fix_r1_reset.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/ise_fix_r1_reset.json",
+          "bytes": 10089,
+          "sha256": "0aafb64e9dc549cf50055915028afc4eef9b887c4f84978a25d64286f2a51564"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/ise_fix_r1_reset.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/ise_fix_r1_reset.log",
+          "bytes": 80041,
+          "sha256": "80f4e4ada9c0f4daf8fead104ef9461bbaee36f8fa83b75925fca6ab7cafd2c1"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/ise_fix_r1_stall.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/ise_fix_r1_stall.json",
+          "bytes": 10088,
+          "sha256": "8057ab39fc555681b3bf4bf9da88383a4d5dc58e48a4db6361c00d1f0506da01"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/ise_fix_r1_stall.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/ise_fix_r1_stall.log",
+          "bytes": 79982,
+          "sha256": "40bd881c29afda21316cc903f5e8a3322575c27786c8faf4f81dfe7981a8fb92"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/ise_security_fix_r1.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/ise_security_fix_r1.json",
+          "bytes": 10318,
+          "sha256": "ba0d84f54730f424072ac8dc89945944011df5097616d3f5012232b2d5644463"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/ise_security_fix_r1.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/ise_security_fix_r1.log",
+          "bytes": 123967,
+          "sha256": "01496c5939e6893bf94e6402d1e72ac802bd5175a008f1678d5fe0abaaac936a"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/key_rtl_timing_a.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/key_rtl_timing_a.json",
+          "bytes": 4067,
+          "sha256": "dfecbb57133c0fe3cfdb23ecaea27893b6e0befa330425575a8c208bd33b58c8"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/rtl_ise_timing_a.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/rtl_ise_timing_a.log",
+          "bytes": 94,
+          "sha256": "865ff389b2f8bc8de869b5a3f488276a2236dc4495243bd18d8dfb12445cb5cb"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/rtl_mmio_timing_a.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/rtl_mmio_timing_a.log",
+          "bytes": 98,
+          "sha256": "c3bc1762ba004223104a5eb35a1ca174615c96c0551e6703e5a63a1b8e5f2f30"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/sw_dcache_pipe.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/sw_dcache_pipe.json",
+          "bytes": 803,
+          "sha256": "86aaaf678922bb402b8713d52066260b435abc551c961f566a0b19e3fdcafdaf"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/sw_dcache_pipe.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/sw_dcache_pipe.log",
+          "bytes": 255,
+          "sha256": "677e87decc59f637a3b9db6c796e4566193ccf48dea2b4da3bd8ba6c749f4e29"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/sw_dcache_pipe2.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/sw_dcache_pipe2.json",
+          "bytes": 10278,
+          "sha256": "4f228a584401b708e7cdba34f03bd9c98c989341e39b20950047ced1a6a20789"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/sw_dcache_pipe2.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/sw_dcache_pipe2.log",
+          "bytes": 423363,
+          "sha256": "865020c0f564061b4fee660efc41fb10e5c62d512a3fa531768f80143bbbe60c"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/sw_fix_r1.json",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/sw_fix_r1.json",
+          "bytes": 9928,
+          "sha256": "285fe28b1ff214cadf0b713885f5ecc947e5845f36557fd94c1b38cd7d371c0d"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/sw_fix_r1.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/sw_fix_r1.log",
+          "bytes": 423605,
+          "sha256": "e60054b12b4acb2a1e2026241e0d57356226790b7d1f1fece7b4fd4c2666f9f5"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_bypass_fix_r1.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_bypass_fix_r1.log",
+          "bytes": 427,
+          "sha256": "7d7ef5064b4f5f86ddbe0e5727476d44e38d6fd7dfa020ef06e4c4594090e076"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_bypass_timing_a.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_bypass_timing_a.log",
+          "bytes": 427,
+          "sha256": "7d7ef5064b4f5f86ddbe0e5727476d44e38d6fd7dfa020ef06e4c4594090e076"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_bypass_timing_ac.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_bypass_timing_ac.log",
+          "bytes": 427,
+          "sha256": "7d7ef5064b4f5f86ddbe0e5727476d44e38d6fd7dfa020ef06e4c4594090e076"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_ex_stage_alu_fix_r1.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_ex_stage_alu_fix_r1.log",
+          "bytes": 1416,
+          "sha256": "6c7c15fbf344eaa13c9494551a69790e00b1e481deacc812d603ee929b51e79b"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_ex_stage_alu_timing_a.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_ex_stage_alu_timing_a.log",
+          "bytes": 1416,
+          "sha256": "6c7c15fbf344eaa13c9494551a69790e00b1e481deacc812d603ee929b51e79b"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_ex_stage_alu_timing_ac.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_ex_stage_alu_timing_ac.log",
+          "bytes": 1416,
+          "sha256": "6c7c15fbf344eaa13c9494551a69790e00b1e481deacc812d603ee929b51e79b"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_key_execute_fix_r1.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_key_execute_fix_r1.log",
+          "bytes": 97,
+          "sha256": "71f036c513b3c4c61475fb6a0b4c9ea4c99415216c4fcd4f8603cf7c8c8cb279"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_key_execute_timing_a.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_key_execute_timing_a.log",
+          "bytes": 97,
+          "sha256": "71f036c513b3c4c61475fb6a0b4c9ea4c99415216c4fcd4f8603cf7c8c8cb279"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_key_execute_timing_ac.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_key_execute_timing_ac.log",
+          "bytes": 98,
+          "sha256": "54c84fcd3ebcdc23836e0ba5b02cb7c9fc76c8e3a665dc23c0efe2bd7552d4e7"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_multiplier_pipeline_timing_ac.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_multiplier_pipeline_timing_ac.log",
+          "bytes": 130,
+          "sha256": "f726712e416ef6c2c7d5334a07382ff1180466343ba90585f13321c201236073"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_regfile_fix_r1.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_regfile_fix_r1.log",
+          "bytes": 824,
+          "sha256": "2f119ce5f237ff53fe4c0b2c6378a085bf49205f5dbfd084691b3c9d78d11080"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_regfile_timing_a.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_regfile_timing_a.log",
+          "bytes": 824,
+          "sha256": "2f119ce5f237ff53fe4c0b2c6378a085bf49205f5dbfd084691b3c9d78d11080"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/key_lifecycle/tb_regfile_timing_ac.log",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/key_lifecycle/tb_regfile_timing_ac.log",
+          "bytes": 824,
+          "sha256": "2f119ce5f237ff53fe4c0b2c6378a085bf49205f5dbfd084691b3c9d78d11080"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/isa/timing_ac",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/isa/timing_ac/compile.json",
+          "bytes": 3620,
+          "sha256": "834fa682471dab6b1c0ff7ef0a80c6568b4089532e9ce98300241ba6e1577314"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_add.json",
+          "bytes": 2572,
+          "sha256": "3fc4dd4457b3af170b6e33a77c91c7e05f84cc89ac41c9f5960e170f34b2c881"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_addi.json",
+          "bytes": 2580,
+          "sha256": "eda91432328c3db7b6bbabaa1569e1a4e997943b64e744e160be93bd3cb1dd24"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_and.json",
+          "bytes": 2572,
+          "sha256": "243ed97d49bbd4ac201df5189825f1c0b32a0f2454c120b781faebc419a6ba7e"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_andi.json",
+          "bytes": 2580,
+          "sha256": "dba48c0fdb38a7c28544883689ec61f39f39ee67e53a8c6f8fdd8473f7c86a46"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_auipc.json",
+          "bytes": 2587,
+          "sha256": "08e083248e2836448203fedb7659f3064b90067f9782b0a3646c0f776c5ef300"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_beq.json",
+          "bytes": 2571,
+          "sha256": "f2ad63e2a70e042062ba21e7ee9145a289a719406e446a109c0749913eaae463"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_bge.json",
+          "bytes": 2571,
+          "sha256": "ff78a7334bfee739da214c393c8401eafaef7a6d03c4f1006f5bd903f73180d2"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_bgeu.json",
+          "bytes": 2581,
+          "sha256": "ad87e778eea7a04ae21ff031289b852eb67b3ff6543efb99e47377e1772f79a8"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_blt.json",
+          "bytes": 2571,
+          "sha256": "a88b3b9fae53988b6e79cfeccd1d5b2f0cc42080d44b0848d6e5a9327c101605"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_bltu.json",
+          "bytes": 2580,
+          "sha256": "b87fb0713b227e453024fd8e82a7684ace1203c3d32d32427f21b5d67b422d13"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_bne.json",
+          "bytes": 2571,
+          "sha256": "7817988ffb15e8dff3f8970068f335a2f1bea9ea63ddd73fe09c30526a36105c"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_fence_i.json",
+          "bytes": 2898,
+          "sha256": "262e3c6e863e86933d46e5b55a4912e9c3b6ed2f7886e2e3bddd1024a294014b"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_jal.json",
+          "bytes": 2569,
+          "sha256": "4f258f40f7ed410921d444b9d2dadd396a11f7091ef3ac37c1cede51bdd34435"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_jalr.json",
+          "bytes": 2578,
+          "sha256": "8868dbc65b31ca164eee580ca1a79519943ba9ea67556e471198c57843ebc4bb"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_lb.json",
+          "bytes": 2848,
+          "sha256": "0f38c630b4cb136abc1760356d401a1d34aca4eca8a03ed10c24dbeed7300d61"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_lbu.json",
+          "bytes": 2858,
+          "sha256": "5267a13da871e840454c78c2f3cf4e24fe79dc6e5ba4c7e234e59f68b6535c54"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_ld_st.json",
+          "bytes": 2879,
+          "sha256": "f92b2bff46805151b5fa03bf4f0ef2918b6251fac66883920bc125fd53592222"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_lh.json",
+          "bytes": 2848,
+          "sha256": "0b8d530bc1b8aa1dcb4b2eb09e0723b17f7222bbd27810de35b82d524a817d0c"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_lhu.json",
+          "bytes": 2858,
+          "sha256": "3e35a529d9879a209f7ffdfd59c85eb55aa56e40d604ca304795398aceab0473"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_lui.json",
+          "bytes": 2569,
+          "sha256": "bfb50077059a04f55aff64e03ee7f7164827155eb429651eb5c69d72307ceb71"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_lw.json",
+          "bytes": 2848,
+          "sha256": "f946f222299307be7784e9d04beb50c6a5530864a6e02a5b992f48ab74f35af3"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_ma_data.json",
+          "bytes": 2921,
+          "sha256": "61d55687a8ad83214b349ea86b7da9a0e3656e5fa1585c0d1c2c8d013647d8bf"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_or.json",
+          "bytes": 2563,
+          "sha256": "84173e54c26b13a0cf8ec5b5a7b59edf0e2abaf97e4c617763ab66826b7a808a"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_ori.json",
+          "bytes": 2571,
+          "sha256": "34e19ac90717b086a2e2c364314f116a775f0573c087ae4a4998052a37f05529"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_sb.json",
+          "bytes": 2849,
+          "sha256": "cd4299c2f7bbdcd799c3e5153d8f66a0437645055427f37ddbc28422bfcce369"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_sh.json",
+          "bytes": 2849,
+          "sha256": "29cd56b56698f7953baee81ce83650905ef5cd0ebc15c635b88d8893a1310ba5"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_simple.json",
+          "bytes": 2595,
+          "sha256": "55837dbfcdb2dc171240cbbc01b30bf6211d27d189c6901a133ea9dacf253ea2"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_sll.json",
+          "bytes": 2572,
+          "sha256": "90df9b021ad1478e938935ac47028359f00be45f5957cf828a4020a902c698a5"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_slli.json",
+          "bytes": 2580,
+          "sha256": "bdb15415b4594e5f980e4eee696455d423acdf61479fb326302a8c387e354fdc"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_slt.json",
+          "bytes": 2572,
+          "sha256": "e53272c5a1e83db91b30706e739a801b8e657e2cbd6d604103fb206778ce0989"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_slti.json",
+          "bytes": 2580,
+          "sha256": "2e5d06f490288b3977ca4e7a5d9bcd132b1aab5390b507c3f0a9b19e18377d4f"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_sltiu.json",
+          "bytes": 2589,
+          "sha256": "38a19fd8e3d433abc38355f73e6ba84bf190f6b4daebb34d4e6b74340435acc9"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_sltu.json",
+          "bytes": 2581,
+          "sha256": "49467d69b2855fcc1306b5f9e2660cb3920eed11d1e7d6c0619fe1094dcc6976"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_sra.json",
+          "bytes": 2572,
+          "sha256": "52797c8e0fc51af1b39901d3b5a4133e77c93e582e8bffe9071f0df9d7276ea3"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_srai.json",
+          "bytes": 2580,
+          "sha256": "15a8d7ef98fedf9827eb700e364eb7756703f298e56e108b86a5883f70c13393"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_srl.json",
+          "bytes": 2572,
+          "sha256": "9a98856b22502593c6d9778db5a70425e229466577a8e33dc41634a72c7715ef"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_srli.json",
+          "bytes": 2580,
+          "sha256": "e6a008e1e544192ced067c4dd11f2800b14eedb9bf9094508b5c87445e9b6a6f"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_st_ld.json",
+          "bytes": 2879,
+          "sha256": "eee83d7d139b45a2167f6003ca261f13af7acb31538ca4a61bf89cf29d28992d"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_sub.json",
+          "bytes": 2572,
+          "sha256": "544682c4b90318e94c453df1aae53316daaa50231fa9a2292a550ce9bc36e3fc"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_sw.json",
+          "bytes": 2849,
+          "sha256": "a708c36add44db6131ad4ee290ea69f806ed2fa28319ead09c38a659113bf6c0"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_xor.json",
+          "bytes": 2572,
+          "sha256": "10a6cdc9454bb09a02889ca4f1a26991e17387925255afa49797973c3c018c57"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32ui_xori.json",
+          "bytes": 2580,
+          "sha256": "aa039fce249d2dc5877cdf88a30643fba2977c53532f8d2e1cb602409afe701d"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32um_div.json",
+          "bytes": 2569,
+          "sha256": "d5aa1d35e2546198d6550bd1f09b48ecf1f386c3328c5ce6bc7d65fcccb72f48"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32um_divu.json",
+          "bytes": 2578,
+          "sha256": "734bcdc6f120356667cafa8ca6156f6c88e500a4222bfa20f0a7291100b25f0b"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32um_mul.json",
+          "bytes": 2572,
+          "sha256": "bc542c81cc0dcf07f6067010f659b96fa8062dc7f053853833ced57392179a54"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32um_mulh.json",
+          "bytes": 2581,
+          "sha256": "c01bea05fb16636c4dd3a34379887320dbb5b1404a0191efba529ee2708a7e9e"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32um_mulhsu.json",
+          "bytes": 2599,
+          "sha256": "415707335ece91afedafb74fe6998894fff3f3f9f7d25c80b527769e1ca10a40"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32um_mulhu.json",
+          "bytes": 2590,
+          "sha256": "0b3eef327e23caef77ee240a452fa34d8f3a57772bfc3370452076626048e7fc"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32um_rem.json",
+          "bytes": 2569,
+          "sha256": "ade846be673a6c93acc3aea28c2b5f22ac54bc40a887da0bf9e888d9b73b6d32"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/rv32um_remu.json",
+          "bytes": 2578,
+          "sha256": "eb7f595152871126a82099f9e21e8796671153d446ff06153cd2ed77898eb288"
+        },
+        {
+          "path": "data/ascon/results/isa/timing_ac/summary.json",
+          "bytes": 5204,
+          "sha256": "515c1bbab33b8a738f374dd207e59a22eb5f1b55e05fcc32125c13f1d9116ec3"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": true
+    },
+    {
+      "path": "data/ascon/results/strategy_sweep_20261017",
+      "kind": "unused_intermediate_result",
+      "deleted": true,
+      "files": [
+        {
+          "path": "data/ascon/results/strategy_sweep_20261017/strategy_sweep_summary.csv",
+          "bytes": 10405,
+          "sha256": "d214cfebc058f8a5c719c0b789b57e481444022aa48bc9ebee201a468f4215ee"
+        },
+        {
+          "path": "data/ascon/results/strategy_sweep_20261017/strategy_sweep_summary.json",
+          "bytes": 23587,
+          "sha256": "88aa5ff3687fc948947fffd9db63f1a8a13b5609fa78cb8dea62ba2a5b56de42"
+        }
+      ],
+      "deleted_at_execution": true,
+      "currently_absent": false
+    }
+  ],
+  "preserved": [
+    "board/",
+    "src/",
+    "src/rtl/dcache_experiments/",
+    "data/ascon/results/",
+    "build/reports/timing_acb_20261018/",
+    "build/local/timing_acb_impl/*_routed.dcp",
+    "build/local/*/development_rtl/",
+    "build/local/key_audit/key_cases.h",
+    "build/local/strategy_sweep/",
+    "ascon/ASCON.xpr and associated caches"
+  ],
+  "summary": {
+    "target_count": 66,
+    "total_deleted_files": 564,
+    "total_deleted_bytes": 18684110,
+    "older_report_directories": 9
+  },
+  "status": "data_verified_cleanup_deferred_by_user",
+  "protected_hashes_before_extended_cleanup": {
+    "src/rtl/axi_full_master.v": "7130b046b3e9074a5dab20099a5c49aa49c5b6ddd24bb9e67b261ea2153b1dd5",
+    "src/rtl/branch_predictor.v": "c8e9c26c8f74ff6d7f11046e6a2b36a5b6cd84fc0196eab806790da8e6da9df1",
+    "src/rtl/bus_interconnect.v": "324d0311d43516a2058da72e44e6fcb33089b8d4bb7aeceed29d9feaa3a18b33",
+    "src/rtl/bypass.v": "31796dd4efa681cd72057f39d9ee5fc2aa4b9a9bfd6f72c402469c740f1cecf5",
+    "src/rtl/clint.v": "539b86f859db13e08a5923832ff7443ec272eeaf17f0872365a8da7b653db95c",
+    "src/rtl/cpi_cnt.v": "01a7e126bdbdb481bf3301aa350457996976690a58ab303312435db63d3f06de",
+    "src/rtl/cpu_axi_bridge.v": "1c08e8ca0a7588ebbfa9938d304172c4bade8ad6fab4ca9fdac10bcb51547987",
+    "src/rtl/cpu_core.v": "f7b96e32224cdb50da281bcf70b8589b4388e9c993c20c08fb14c59ab853223e",
+    "src/rtl/csr_file.v": "b017d3f876957fa5818a3fdbb5f6c1fb6682b8f4f2b67c85973afe7e49838c49",
+    "src/rtl/ctrl.v": "b6f4eef20b1e1c2394c5d6c48cd121e6943224f06d751bc7b2bf6b794a0cb559",
+    "src/rtl/dcache.v": "fbfca1f162da2cab031d06cfa0cb7345ada839545b5640b163587ea88d29e6de",
+    "src/rtl/defines.v": "e51c0590e2d31c5ef41322c11af0d04ac680182188a0264f0d3837f90782c036",
+    "src/rtl/divider.v": "1b553787ab718b493cf89cbc3cb817f28b06104851920e2cf2fe610aafa5b32a",
+    "src/rtl/ex_mem.v": "d656b3387ca73ce2e4d9eb4e01f1503fe8a91c05f9f70fd054c69a9b6fddd7e6",
+    "src/rtl/ex_stage.v": "e620054fc1e6bde099710ad7fd1315d4c845f6d54b33404326523f889f460dc8",
+    "src/rtl/gpio.v": "2eabd855579cad5e4346ccdc5d661fa7a28030410a6e140576818422c149f932",
+    "src/rtl/icache.v": "ab2001b57bac463f168714a7843f07330c2072f91d1c80ec0014fbf4f9dc988f",
+    "src/rtl/id_ex.v": "7588b49e7a4b12d61ee933f73fda8136f902c578cf7cf809c31e540efac9ca84",
+    "src/rtl/id_stage.v": "33e27f9473adc3d7c84235dc522b79ad905c566ddfc1389d541fd87925e3f340",
+    "src/rtl/if_id.v": "052a6135eb3b734535546db5198794320e9b1673c6ddaea405c34ec3e506c41d",
+    "src/rtl/if_stage.v": "e2770b86300b4209dda7ed9673c976ff2efbe7ecabf120b32458bfcc8400a0cb",
+    "src/rtl/mem_stage.v": "9afab521420ad1a6241b571a61269ee4774b87f55fbcf63af0601b616ff26317",
+    "src/rtl/mem_wb.v": "26a5880c73a089249c6278cb8b93b1db6d23ec0f02c2fd8ecfcf1cc4e58e6e10",
+    "src/rtl/mult.v": "c41a81e16a3ca0b8808f0ebd5075cd4429f0b5457943839f414b08783c617ba2",
+    "src/rtl/regfile.v": "5aacf513bb2db596afebe3428ff472c1639d7369769c718a3af64a6d19cfca69",
+    "src/rtl/soc_top.v": "3ce4a48f6b500d912ac32566757b050a14660b28b425bdc8c83cecf2b49716d9",
+    "src/rtl/top.v": "37405e5d5b8f5f5b565499264fac463d7346ee9561ad0b0cbae39ab461229dc2",
+    "src/rtl/top_pl_bram.v": "6098a6f7056fad1fe8275df55e53ef15bbf448e4756e89037ad4a522c7d1fc31",
+    "src/rtl/uart_ctrl.v": "c9a0bba23e8d23c528ba9c7e7e4063624216a1085634aa36c677f534f631a5bc",
+    "src/rtl/uart_rx.v": "b2de3abd1e006c8f3bef4cfd55e8a9cce96606ddbf10a3a13fd17f4dbb697a40",
+    "src/rtl/uart_tx.v": "3e72b58918843c2a57b10b8b52456c4a9f8e0102a7ceee6e0d79b73a7f370c1d",
+    "src/rtl/ascon/ascon_aead_2.v": "8ea360514428ce7408927246c0d16b7c95c90b0da655cfe48d074b77f3353c0c",
+    "src/rtl/ascon/ascon_aead_2_tb.v": "cfbfe00bd4a31e9d32386cbf50abe7b86fe8f58eb5e7b657f4252a93d83b586b",
+    "src/rtl/ascon/ascon_aead_core.v": "94f4e50d6e897caac4b2326c7488020710f8f759c9c7d607d0f4ba0d92904ea0",
+    "src/rtl/ascon/ascon_constants.vh": "3e67b9c988046a81de75c95c35869c7cbfd96a9ba46829de3f3153b86630f2ee",
+    "src/rtl/ascon/ascon_ise.v": "af954d77175653bb28dd9a3e8e39c642ad8bac6819e5d80cf7b73fb3d805b316",
+    "src/rtl/ascon/ascon_mmio.v": "070fc19fdb634ef8c4bfeff2fa2de059b1f618d6a804149afb7511604455f4d9",
+    "src/rtl/ascon/ascon_permutation.v": "9cf94935c45d7719a5975254c4e076f99a8f89e0922e8cc03759bd8e3bbdf1c4",
+    "src/rtl/ascon/ascon_round.v": "64dac0220152e1f0fc6b65a8d3adceaedcbad4516251a3b136a39a0521854016",
+    "src/rtl/ascon/ascon_word.v": "0b3f72c2c2cb5613c3785998409080c87ffa6bd7c0dcf891db99137ff3549ec1",
+    "src/rtl/ascon/crypto_aead.v": "722bf1e3e02574aa7cc530e6aec6d3f6abeaae900be99e6a1c8046ac8d3ec0a4",
+    "src/rtl/ascon/readme.md": "7b2ea2e2ba8da125c3d36ff526762d81a0a13d1c781a058ad8d410d1168e697d",
+    "src/rtl/dcache_experiments/dcache.v.backup_manual": "5532245684c1ccabef440d105dda66f44fb8e5b4a522589740bbe7269924dc11",
+    "src/rtl/dcache_experiments/dcache_aggressive_fsm.v": "76b69ed2ce3eb0fcb475da4a14fdc1ada21c665ea54949538d64185e8d39955c",
+    "src/rtl/dcache_experiments/dcache_timing_optimized.v": "366cc245593a6e04f369c36d1841f8e769e0a2f39b56c6c0f7dbda6e403eb18d",
+    "src/firmware/ascon_rv32/bin2vhex.py": "48e66b5fdfa498d23ee5ce0f3a485be9f4f3afb1546d385ef9489d5ae1c7d468",
+    "src/firmware/ascon_rv32/build.sh": "53f3e9c02063c11bb34aa1df116c43e145155d8accd1c1a8ce5a27e66c06aff4",
+    "src/firmware/ascon_rv32/crt0.S": "ba4a7568cc165ca2b7198c25d2d4a8159547c67b338e283d4abfa66d42128914",
+    "src/firmware/ascon_rv32/libc_min.c": "b2ddf7b7fb9237ecaa26191168e8c22370751b428f6b0b005e99ad4f4b50c042",
+    "src/firmware/ascon_rv32/main.c": "0f4cdcb4f36f79d4a1a80a83664671215b77fca2059743e38f6a83e42b71c614",
+    "src/firmware/ascon_rv32/riscv.ld": "27324abf10d8a733bf159d208e2a2c0e00b211f571f384ab5e2cd8d0b80b7e83",
+    "src/firmware/ascon_rv32/uart.c": "1c0e9d08c8e8e4a9379600874dfc7d10791afcc02743a2648d8d99dcca272a07",
+    "src/firmware/ascon_rv32/uart.h": "5eb620edbe6ffb9ec993f26a41b0017f7f6435218fc9f4b53fe07afec05c84e8",
+    "src/firmware/ascon_hw_rv32/bin2vhex.py": "48e66b5fdfa498d23ee5ce0f3a485be9f4f3afb1546d385ef9489d5ae1c7d468",
+    "src/firmware/ascon_hw_rv32/build.sh": "c82adafdd7a1ded68d7ff5973391ec04f295734fa518888227e6e0f91476b2ec",
+    "src/firmware/ascon_hw_rv32/crt0.S": "ba4a7568cc165ca2b7198c25d2d4a8159547c67b338e283d4abfa66d42128914",
+    "src/firmware/ascon_hw_rv32/libc_min.c": "b2ddf7b7fb9237ecaa26191168e8c22370751b428f6b0b005e99ad4f4b50c042",
+    "src/firmware/ascon_hw_rv32/main.c": "83b645e7fc00bac6cf699a5cb433f6b23ee7ac806504525fd033e110b1699c32",
+    "src/firmware/ascon_hw_rv32/riscv.ld": "27324abf10d8a733bf159d208e2a2c0e00b211f571f384ab5e2cd8d0b80b7e83",
+    "src/firmware/ascon_hw_rv32/uart.c": "1c0e9d08c8e8e4a9379600874dfc7d10791afcc02743a2648d8d99dcca272a07",
+    "src/firmware/ascon_hw_rv32/uart.h": "5eb620edbe6ffb9ec993f26a41b0017f7f6435218fc9f4b53fe07afec05c84e8",
+    "src/firmware/ascon_ise_rv32/bin2vhex.py": "48e66b5fdfa498d23ee5ce0f3a485be9f4f3afb1546d385ef9489d5ae1c7d468",
+    "src/firmware/ascon_ise_rv32/build.sh": "3a14dba0a18dca6be027a194d389797dab72864edc71750696dfea2e35358115",
+    "src/firmware/ascon_ise_rv32/crt0.S": "ba4a7568cc165ca2b7198c25d2d4a8159547c67b338e283d4abfa66d42128914",
+    "src/firmware/ascon_ise_rv32/libc_min.c": "b2ddf7b7fb9237ecaa26191168e8c22370751b428f6b0b005e99ad4f4b50c042",
+    "src/firmware/ascon_ise_rv32/main.c": "5664d0c52564ebde7fddc00dad73725f83fe8d91790471797d8399541c4d39c0",
+    "src/firmware/ascon_ise_rv32/riscv.ld": "27324abf10d8a733bf159d208e2a2c0e00b211f571f384ab5e2cd8d0b80b7e83",
+    "src/firmware/ascon_ise_rv32/uart.c": "1c0e9d08c8e8e4a9379600874dfc7d10791afcc02743a2648d8d99dcca272a07",
+    "src/firmware/ascon_ise_rv32/uart.h": "5eb620edbe6ffb9ec993f26a41b0017f7f6435218fc9f4b53fe07afec05c84e8",
+    "ascon/ascon_c/aead/aead.c": "3befa1a818a8a86e74405906e778ddb7c7d405b32c567c88888c96ac0777da50",
+    "ascon/ascon_c/aead/api.h": "4102b37b91cef127fd059a0319fd1b69d284299dd2386cb8ea2c3468b0bcbaf0",
+    "ascon/ascon_c/aead/ascon.h": "24b8b35c623b30f6fb55908170f920a8e059842c7e4f12cad0fdd04ad5f9be99",
+    "ascon/ascon_c/aead/constants.h": "6e95f0ca2457f41fd6f0f301e608804c492a3c9244e21d0e8354b5cd564b1875",
+    "ascon/ascon_c/aead/permutations.h": "b9f0d9c50549a0a5c8733196217a352bea10c12420249ceccd809a7ccf0a97c1",
+    "ascon/ascon_c/aead/printstate.c": "1f7c69900b61138987d46f27837a8249a7a19adcd5290b71574fd4e90b037b32",
+    "ascon/ascon_c/aead/printstate.h": "49d911e69a3ee4873be8a3a2211549659d9efbc97ec5297e18200c6fd19c8381",
+    "ascon/ascon_c/aead/readme.md": "81f23d8d2bd3483553d8d55056d6296e2379a7b32190c8e38a8981e47d946d9e",
+    "ascon/ascon_c/aead/round.h": "b44435ff8c33966a2fdc11aefce83df3f1923b956e82913734480dc6da66d294",
+    "ascon/ascon_c/aead/word.h": "257b5e3248e29ed1b65c9e670ade92bcf0432790364e332c6ae78f5fd9fa5ab1",
+    "build/reports/timing_acb_20261018/build_context.txt": "c068bd64ec1dc5d0f5f0acef104865d7180d79878cc3dd0e8d58da44bcdcd973",
+    "build/reports/timing_acb_20261018/source_hashes.json": "150b41312638bbf862e1cc68ab195250dfdd4b415e5e187f34cd3d180125a865",
+    "build/reports/timing_acb_20261018/summary.json": "d5c6f7173731d225715a5312f9cc63970a8d13ceea454b2a8656d219f069d6ce",
+    "build/reports/timing_acb_20261018/synth_timing.rpt": "e03fc078a765a56238a49652e855437c3c6317f3c9e5a2a511ef87b56ae2889e",
+    "build/reports/timing_acb_20261018/synth_utilization.rpt": "3fa91c58b4f2205d9034949b566605cce662a876548b87bbb1a1da79e8aa2846",
+    "build/reports/timing_acb_20261018/validation_gate.json": "f1a58a2a8fd75ed4454cc4266e96b270b758332abf749d0a51414ec47ba7ec44",
+    "build/reports/timing_acb_20261018/postroute/failing_endpoints.csv": "5dfee5554de1e054891c2cce7c18c44f07819dccdef9d2ae998e5a41aa95a4c5",
+    "build/reports/timing_acb_20261018/postroute/result.txt": "6d27065dde92ef7c2c6fedb699d3504a81f05008e2b903d9e9be777e844a67e1",
+    "build/reports/timing_acb_20261018/postroute/route_paths.rpt": "7f99c624d8c58c9fddb3150aa4c9a67ac034bee207d8dbfebae0af1f24287761",
+    "build/reports/timing_acb_20261018/postroute/route_status.rpt": "6033b985abce117028ec8d56160ea59a5bb6e340e46740e6d4fc9fd85ed51458",
+    "build/reports/timing_acb_20261018/postroute/route_timing.rpt": "415596e5f1aa1e14c07eefb1030eb122f9258ea7f0bc83c9935d1d815ef8e8ef",
+    "build/reports/timing_acb_20261018/postroute/route_utilization.rpt": "917e692d52821e5689fe6c859cd47db6cd9406e0cda4d6548e6456970d0cf76e",
+    "build/reports/timing_acb_20261018/remap/dsp_registers.txt": "5ae95a0f96800a2422b8ad4c09b6ca7482d3dafe4f91e25e71c4da46d0c9f492",
+    "build/reports/timing_acb_20261018/remap/failing_endpoints.csv": "5dfee5554de1e054891c2cce7c18c44f07819dccdef9d2ae998e5a41aa95a4c5",
+    "build/reports/timing_acb_20261018/remap/result.txt": "a722f3ae4cb88be7363aa3213efb9e83f79c673b182eae13a8383b7ff2ad3ae0",
+    "build/reports/timing_acb_20261018/remap/route_paths.rpt": "d9608a2a341c5d42bdeaf7301a0b4eb1ea33368bc00fbd383350ce8d5f73ec89",
+    "build/reports/timing_acb_20261018/remap/route_status.rpt": "658743437d048245027a64ab726da67fd9c7c93872f37c8d3d91b92a51ba5170",
+    "build/reports/timing_acb_20261018/remap/route_timing.rpt": "5fc1a0da7d43e0c31b32553939b4cebf2a103f65ab5e9b49deff052f9bba25fb",
+    "build/reports/timing_acb_20261018/remap/route_utilization.rpt": "a7ea72f68a10e57e695a990e2e2f9aac4c980ec7b885909524457fa57a714ee6",
+    "data/ascon/results/isa/fix_r1_control/compile.json": "633d4bcb268604da9a4c1f3fdfdc7ea05980dd65530d296b7d84928a4d4ca011",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_add.json": "c5a87f88b823b9964944394aa265c17d31e30b7bafa0eca6a041bc9f0bdf8ba2",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_addi.json": "07c782e52b316a1ab0bd726d4a8fd717c374bb9a490898a6d0677a5354c60ef4",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_and.json": "36b3b2fdf1ef8cc9684f8e7983c1b09086f267349951892e1464c342f4f28b29",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_andi.json": "8cfa963a15fd4b69156e942f00c65c6377ceb5623d154738f29c96cee1e1c8ec",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_auipc.json": "20b66799cd873e8828535e3e5b6767b54c4455d46afabb6dcf6b65be5e181f51",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_beq.json": "19f3a7ecf7363a05861eedd669174ba0829b65ddd96456ffa26be5c43b44fda5",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_bge.json": "e532efd90ec7bc973945d6629683dd6f38c6cecc058a392b251a4d2a177d8623",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_bgeu.json": "43a66712f489e180976e3c9ba70cd9a25127f1289c3bbcd405c6260719996fbe",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_blt.json": "7752a28f735507e9800808e4455971f8b560bea878da80e77721c256416dae2d",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_bltu.json": "eafabe6826653886b49b5eb264c469349d4566bbd0c51e605985a41c017899c6",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_bne.json": "bc9aa312883fe8b5dd4bd0126f527876e4163e73006e8051fd67b62c44c8f47c",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_fence_i.json": "2df82caa13a36b1ed8d64f5382ea625280d5898519619ca8e9617659fca58b6c",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_jal.json": "61cbc3d28b6db89113e01e2e26933807a0cc5bc3d0187c606cac54a1126443eb",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_jalr.json": "3706f73488469a464dd98ba5e9c4fd0d56c56c4fc811b309dbbb07fa93aeb0df",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_lb.json": "46426fc845857b9a4f7fe679b8b98f9e8f533d571968fbd351c161efa7593978",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_lbu.json": "2908dee2e14be386ef4fa1fa28af9de2d4332ff94b43535cdabaa41c9fa4a945",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_ld_st.json": "996bc4f8596b8402e2294138198a4c3e6cae65c2710deb87563d92437d4b2c3e",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_lh.json": "77ffeeba83fd01e80a308644466e4ad7c6b58e7cc475e557cac1da68d43c5ab0",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_lhu.json": "938f6ac78ff683bdb85598d32d5d8149729e942923bf7da73969e2703abc5f0d",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_lui.json": "ffb2c78543e3d1246632543927f4d3b9b497b98bbb5fd23794898cc17d9b6c5e",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_lw.json": "c3f824f83a05dd646de02611ff6d811b5cc7626cf84cf7ebfb484da0f25321df",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_ma_data.json": "6a1063c9c5d77ec0cc176d9bd8a72054ddbd7794a679ed7d877fb3bb67355c72",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_or.json": "411a8d12629fb90f31fb8438bb04c3fc6fc840c735f0cbc90a8029cd6c2a560b",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_ori.json": "68ddbf017bcdfad5c2c8c94bfacd0c21f61ec879550df7183be402a025fb47ba",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_sb.json": "bb6420af51f78513a888c0ceb73200aa973cefa80f1b7af81abd4f8c55088e1e",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_sh.json": "743c00e741aa516d904fa8e8463ff69e4222d5ec4d2676ff0105070461924dd4",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_simple.json": "152236177fbfc860265cefd444057783ab016e81549617b7981739b6bb81e511",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_sll.json": "9b550bead4cda7cf544e7ad8971f3927e2da30c3220925866d30aec4b6c410b2",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_slli.json": "5edc041a2db0613e3a41c556af5f73fde37989238f6c4d51bf2e57dead21b069",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_slt.json": "870c5728a27e1f17cc65b2096d4c8befbd130b427734f6e54d0488a796cb7a1a",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_slti.json": "587aa65d222e072a1022b5457817f9f628b967fff4533da7999331ea62796216",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_sltiu.json": "1b200c66832222f1d044d5dc0d0a20195c49bd9a899ab37e831fdf76559284a6",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_sltu.json": "4be0d5d83d419afa952247f080a02219cdcde831a8b604b90b60cf5d9fcd2ef4",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_sra.json": "d8b49fe2c64a6bd13734a644d38ecca38957662509d70f091e4c0990d2e23081",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_srai.json": "5bb7e1c3a0794128004691fea61eed972551f6d70363a3345fd43e732337f5d9",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_srl.json": "56eab6bd049ffe8f314143e03ef0ab6e613affe3a01829062ca649f8db14249b",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_srli.json": "4d272f143237ab007158dc61d398e51385069177f2f9b6d0e1512dd027d5f633",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_st_ld.json": "89906c2d5b81a09520877efc6ef5149b0911006d129366911142eee67c9105bf",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_sub.json": "03a650ebae57f739f49a9504aab0c12efcb06af406cef9623b1b4722ca48cfba",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_sw.json": "f042cb3821d3bfcd27ec0ed238ac23ac9b053787801330d50f60b5c76c162dc1",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_xor.json": "af412d6a3c25f0fa433bc4a696472866e66fdef32619c901a64cd37683c7c004",
+    "data/ascon/results/isa/fix_r1_control/rv32ui_xori.json": "d662f0719f809d054c2de96ed9407c0d2c5845cd2dc698ea7401a28893e82884",
+    "data/ascon/results/isa/fix_r1_control/rv32um_div.json": "03d954b5571f30ffb3742a45bfed01d0e52c15bb165f27c9aede491ab72fbf7a",
+    "data/ascon/results/isa/fix_r1_control/rv32um_divu.json": "036dda2a158050a365106f23fd35c92dca75390da8a7eaa3e0cb4d26e34bf4ff",
+    "data/ascon/results/isa/fix_r1_control/rv32um_mul.json": "f6e5fa6880fa14b0b0cbd63318dc57af54186867d7d5766fd0522852952275b2",
+    "data/ascon/results/isa/fix_r1_control/rv32um_mulh.json": "f9f9bbca1aa99d57b472bd75e640b4eb73267b0425c579bafb8b8a1b4fe33a40",
+    "data/ascon/results/isa/fix_r1_control/rv32um_mulhsu.json": "535457728181d587e9833c1eafa263c2cbea7334f47cefe25037e644399650f2",
+    "data/ascon/results/isa/fix_r1_control/rv32um_mulhu.json": "74a2154e463897ab73ce6aea44a807d5905aba4912d922c6da011f07e69c039f",
+    "data/ascon/results/isa/fix_r1_control/rv32um_rem.json": "0c30f780a3c670626cc52050728e11665044d45978e25de7ead38ffbd7e1c32f",
+    "data/ascon/results/isa/fix_r1_control/rv32um_remu.json": "3d3ce2fef9d49940023369d2172d3c1852c56c2c3c37cb7c468960ffc6a87f31",
+    "data/ascon/results/isa/fix_r1_control/summary.json": "e3e754d378ba40b38dc9a254e54dbcc58359b0b76f00b3b027d2b51d0ccdd60d",
+    "data/ascon/results/isa/timing_acb/compile.json": "951fa6c69df7e02e5ee07552b04cf0d075f9a0ff0acba9dd92ea8baf91c3c805",
+    "data/ascon/results/isa/timing_acb/rv32ui_add.json": "8d30422dbe88bf100a9a37a514b2a8e02dba40bdb044e73085959066ab311441",
+    "data/ascon/results/isa/timing_acb/rv32ui_addi.json": "472508b67f796ff8155b4f599fc8f1eedc79b6bfa6c1a63ed18a116846b4754c",
+    "data/ascon/results/isa/timing_acb/rv32ui_and.json": "f8a9022fb550e468c91850c9f540bd05b2872e89261aa4f084b9cf6608e2e68f",
+    "data/ascon/results/isa/timing_acb/rv32ui_andi.json": "be409d9014570686b7962c7ca963559fa85c6cf65b4bebc46ce22ffe9b869fe5",
+    "data/ascon/results/isa/timing_acb/rv32ui_auipc.json": "6f9e00bf5dc0ef52165dc89186d602cad1f127510b09bfa05bcb1dcc36ce3c4b",
+    "data/ascon/results/isa/timing_acb/rv32ui_beq.json": "616b42222e3d5e4b646542df1d3cfaeb66ecf30d997135b78648a60ba18d3605",
+    "data/ascon/results/isa/timing_acb/rv32ui_bge.json": "4c87dbad6eb93f30729e2464c316ee3cb195dc966649486e71dd89068f75f859",
+    "data/ascon/results/isa/timing_acb/rv32ui_bgeu.json": "6548eb404f4f714fdee27b47b63d721f7dfbc55088c937de461cef30895f2343",
+    "data/ascon/results/isa/timing_acb/rv32ui_blt.json": "64830e57f3f151e92b6190539b8cf1a07705fe4cddf9276170999c1d0e8a41b7",
+    "data/ascon/results/isa/timing_acb/rv32ui_bltu.json": "fa1e6f1d342159c61825377e03413df00b8aebd8459bba957758077858bf1f6c",
+    "data/ascon/results/isa/timing_acb/rv32ui_bne.json": "f3bc4a11069a940d98dc69ed2f2cd26ee09d192b5c966ff9b4c4b8d963c548ed",
+    "data/ascon/results/isa/timing_acb/rv32ui_fence_i.json": "df48bca2d48e67f1ca5da9ae71e0f48567a50172657c98c904e1b23341cabafd",
+    "data/ascon/results/isa/timing_acb/rv32ui_jal.json": "d4d290fbfeb4cb63ff550a1ada20c2fb2b20aa4b73b47bfab6557c637f8b46fb",
+    "data/ascon/results/isa/timing_acb/rv32ui_jalr.json": "4881903da728f626c66fcdf3739feff9c29a712c4386aab6bafd25391cc154c8",
+    "data/ascon/results/isa/timing_acb/rv32ui_lb.json": "a7116380893a5b6082fab4cc210c330977ed22ab31567d3649643cf2d4ba3579",
+    "data/ascon/results/isa/timing_acb/rv32ui_lbu.json": "cd17b22c2ff64f165cbbdddd22071507c83d001b519f3d16f6fcc6afc31e4c7f",
+    "data/ascon/results/isa/timing_acb/rv32ui_ld_st.json": "491d53f7c2039acc2c9dcef3a3424b724c38c0f092704dfef39eeaa8a261dec4",
+    "data/ascon/results/isa/timing_acb/rv32ui_lh.json": "d1bea4bc8626289262464a55333b0bf41d788683ce3e90c563795155910a5e0b",
+    "data/ascon/results/isa/timing_acb/rv32ui_lhu.json": "857d482de036772a67b0058628bbe39828962fe590326467b5e04427e52280d6",
+    "data/ascon/results/isa/timing_acb/rv32ui_lui.json": "0126e13090b76d622cee807cbe023fab54a4a4a380bf970bdeafaa04884ecbce",
+    "data/ascon/results/isa/timing_acb/rv32ui_lw.json": "39d7660b25909ba8daebd8fd21ce8a20184a17158b0cb501145749893e6b915e",
+    "data/ascon/results/isa/timing_acb/rv32ui_ma_data.json": "f2bff93da008cee07cd6336879c0bd68ae8282a88ef60031e936929f5376b9d2",
+    "data/ascon/results/isa/timing_acb/rv32ui_or.json": "704f4fd4a77a6db269e39ee5d6bd468836ac4cf813360422ac71c0587085aa24",
+    "data/ascon/results/isa/timing_acb/rv32ui_ori.json": "d346b8f8ed1d81fdcc6e36d74dc9eb72783ac29cfcda0cead8190150a1e32f83",
+    "data/ascon/results/isa/timing_acb/rv32ui_sb.json": "935aaf7f9ef44012c255874f67cc774cfd3808b45acba2ddceba770abf2f9937",
+    "data/ascon/results/isa/timing_acb/rv32ui_sh.json": "3088b00e2f10b55fa964eb0042d7e112577e53e635ad92d7281196daeb093130",
+    "data/ascon/results/isa/timing_acb/rv32ui_simple.json": "b7fa2dc88877f85fea236942284b020e18cae5e7ea18eaa9e9751b0a358625f1",
+    "data/ascon/results/isa/timing_acb/rv32ui_sll.json": "d8e57b01e166d9b7d30532fab50c12a3b2edfee4858152a22329663da349a426",
+    "data/ascon/results/isa/timing_acb/rv32ui_slli.json": "443898edcbd0dea1c26ac4aedb690b1d29da2e8659edd40ad6300fba0e655acb",
+    "data/ascon/results/isa/timing_acb/rv32ui_slt.json": "0deae578ec87041fb87cddce3ad2495bcd11cae66aeb760c63c3e6702be006d1",
+    "data/ascon/results/isa/timing_acb/rv32ui_slti.json": "048a3e1881c59e8aa52c4869e012e83fc3053f68126a329bbb1a8b2ca8971693",
+    "data/ascon/results/isa/timing_acb/rv32ui_sltiu.json": "7bf9a5e33bc147a028d572e3f00e16d9a1618ef2fa8f727bce3274b5670c7228",
+    "data/ascon/results/isa/timing_acb/rv32ui_sltu.json": "8c553f66ee939740518d54f61544c595c5f24bbb328a7014dd919eaae973fb72",
+    "data/ascon/results/isa/timing_acb/rv32ui_sra.json": "cc93c8a2c036c07ec91f75ee0164afaaba5e9ec712a8ac8cdbbccc7b66791824",
+    "data/ascon/results/isa/timing_acb/rv32ui_srai.json": "04ac98209780cd047ad068cfb2a7f03fd77a9bee2d430775fc0c1b3f9bb145a1",
+    "data/ascon/results/isa/timing_acb/rv32ui_srl.json": "7fd83ce9f25eb4da88ffdd0b5b80c4394cdf4864a3be20750293a20d8b32abc0",
+    "data/ascon/results/isa/timing_acb/rv32ui_srli.json": "48a6e47a63496bb38775fcd2347f3055afbbdca36c24f0372ecf01c9b201c521",
+    "data/ascon/results/isa/timing_acb/rv32ui_st_ld.json": "5ebd23b5e43ddcb1b28597c3b5d98fb4f75407ab6df3f02a3fe45d62fea11150",
+    "data/ascon/results/isa/timing_acb/rv32ui_sub.json": "50374285e6621bb01397fafb5af4d694a3e275e37d9089c7cf536dc7af508072",
+    "data/ascon/results/isa/timing_acb/rv32ui_sw.json": "2f15b866f5ba787f2885804851815a45d37d5490625a959af848a424cf335c28",
+    "data/ascon/results/isa/timing_acb/rv32ui_xor.json": "b4347f97ccf61f0edbb1e974b851f8e751e849051a6eefd781db4578ffd5015b",
+    "data/ascon/results/isa/timing_acb/rv32ui_xori.json": "f52426076a4d4cc9ddb358e45894fb0dcf694a9db6fe42eb3403ff20de0f2f2b",
+    "data/ascon/results/isa/timing_acb/rv32um_div.json": "32a28ca36fc1c33f66fce380f8e1924c3db77cdef110d60aa1e87605b32c73ed",
+    "data/ascon/results/isa/timing_acb/rv32um_divu.json": "dd96ede3f9f664ec4530a0746da1cec0d46a1dbd27e7c4c629b457fd507575e3",
+    "data/ascon/results/isa/timing_acb/rv32um_mul.json": "efe643b4741ea0884995e067c44916ea56a36ee517c75f1a8f27d2b41089a508",
+    "data/ascon/results/isa/timing_acb/rv32um_mulh.json": "0f2278344cf5e63e8c825a4e137ce9dd31206ee2ca9ff109c7fc754a0330bfce",
+    "data/ascon/results/isa/timing_acb/rv32um_mulhsu.json": "f37c250d92de6fb20e49f3e0fd946e2822d7415f05ccbe43c498c87af9c8e06f",
+    "data/ascon/results/isa/timing_acb/rv32um_mulhu.json": "1b91880b935ee41136f1e028804801b2eef74769fa6b7d8e80ea9e58182079b8",
+    "data/ascon/results/isa/timing_acb/rv32um_rem.json": "b09de35813f62449fa1e7800b6f6d021e26f6595c3ace621a00f491edc234e62",
+    "data/ascon/results/isa/timing_acb/rv32um_remu.json": "30d25e7131361e2cca145e20bedfc8c1ea6100714d476136933f5636c7652d77",
+    "data/ascon/results/isa/timing_acb/summary.json": "60b5b5cb58c3cbb8280ad24344eaf18e7e6b446067aa4d239a4839b6a2729f02",
+    "data/ascon/results/key_lifecycle/cpu_units_timing_acb.json": "aaebada74e4551043aac3aa3615f8e964ac57666f8eaeaa950ff5298ca4d8662",
+    "data/ascon/results/key_lifecycle/hw_security_timing_acb_hw_security.json": "44de9d70ce3c853e5db7f2295ea3e7949554a77cbd178ac2258beb64f8d47152",
+    "data/ascon/results/key_lifecycle/hw_security_timing_acb_hw_security.log": "593f67346a64e5ca38ab0baeaa97fa3e5d3f3b5b29c45782d285b558e15549fc",
+    "data/ascon/results/key_lifecycle/hw_timing_acb_hw.json": "e60f2720f1287bd43d9ddf4d47cd19881626bb7d991ef0709cff173990be523b",
+    "data/ascon/results/key_lifecycle/hw_timing_acb_hw.log": "aa23a7a00b1a617f567010a4c956069b0d7f27ba810b6170c63ec5aa738806e7",
+    "data/ascon/results/key_lifecycle/ise_security_timing_acb_ise_security.json": "3fb90f4af15ec274a2a3bbb18715fcf62ad79e26f513d897ff1cd61c8865cde6",
+    "data/ascon/results/key_lifecycle/ise_security_timing_acb_ise_security.log": "d064d9aeb3fea80e35949fb5b92f36cd88d80a97dd814eab1027af22abe930d2",
+    "data/ascon/results/key_lifecycle/ise_timing_acb_ise.json": "5e4e42fc1f55cda968f0591a2e858638f640d426369ee5ccf69fa614d49243cf",
+    "data/ascon/results/key_lifecycle/ise_timing_acb_ise.log": "6680d71d3b5c98d045463a136ce53210329c4e5def34f9b4db21926350b8f0c0",
+    "data/ascon/results/key_lifecycle/ise_timing_acb_ise_reset.json": "71e6e378bccfc050474a7b130ae8e80a941576f003c11fa445f2ffa1d682c513",
+    "data/ascon/results/key_lifecycle/ise_timing_acb_ise_reset.log": "0e6fd2eee78e85611ee12fb3be66d6ecfe1cf1f072cd6b6eaa4bcf8d9f60947e",
+    "data/ascon/results/key_lifecycle/ise_timing_acb_ise_stall.json": "82f65099721f4d9d8c0771b882a4f67f791c3318fdbc1bff595c44120e90f984",
+    "data/ascon/results/key_lifecycle/ise_timing_acb_ise_stall.log": "4e036335f420a57231fffa0321873cbc9a2c771b7940ae811a3ba6a835d34b9f",
+    "data/ascon/results/key_lifecycle/key_rtl_timing_acb.json": "dfecbb57133c0fe3cfdb23ecaea27893b6e0befa330425575a8c208bd33b58c8",
+    "data/ascon/results/key_lifecycle/rtl_ise_timing_acb.log": "865ff389b2f8bc8de869b5a3f488276a2236dc4495243bd18d8dfb12445cb5cb",
+    "data/ascon/results/key_lifecycle/rtl_mmio_timing_acb.log": "c3bc1762ba004223104a5eb35a1ca174615c96c0551e6703e5a63a1b8e5f2f30",
+    "data/ascon/results/key_lifecycle/sw_security_timing_acb_sw_security.json": "f5e6e4ec08b08ed84470e6fea03cbca538c782a3fe825ea425f5302fc0fe5d80",
+    "data/ascon/results/key_lifecycle/sw_security_timing_acb_sw_security.log": "badadd45fb9a8d82d946752211e35baba22090f8c8a62671056e9ea034329074",
+    "data/ascon/results/key_lifecycle/sw_timing_acb_sw.json": "7f31a4389c2d6bde576c4941ecce19b67618b5dc6ff518a24127c341dae8a1f6",
+    "data/ascon/results/key_lifecycle/sw_timing_acb_sw.log": "7f6270adc69d43c5b8b8472715a425aa2f44fabea1742b50e317b812e1b7ee78",
+    "data/ascon/results/key_lifecycle/tb_bypass_timing_acb.log": "7d7ef5064b4f5f86ddbe0e5727476d44e38d6fd7dfa020ef06e4c4594090e076",
+    "data/ascon/results/key_lifecycle/tb_ex_stage_alu_timing_acb.log": "6c7c15fbf344eaa13c9494551a69790e00b1e481deacc812d603ee929b51e79b",
+    "data/ascon/results/key_lifecycle/tb_key_execute_timing_acb.log": "54c84fcd3ebcdc23836e0ba5b02cb7c9fc76c8e3a665dc23c0efe2bd7552d4e7",
+    "data/ascon/results/key_lifecycle/tb_multiplier_pipeline_timing_acb.log": "f726712e416ef6c2c7d5334a07382ff1180466343ba90585f13321c201236073",
+    "data/ascon/results/key_lifecycle/tb_regfile_timing_acb.log": "2f119ce5f237ff53fe4c0b2c6378a085bf49205f5dbfd084691b3c9d78d11080",
+    "build/local/key_audit/key_cases.h": "22cd372f670c0e077c49158543e6b9989386733ca5a5ea2c40a24c2b53c2fe33",
+    "build/local/key_audit/key_cases.mem": "e59c4260f79b735745e57633a847885da0623879bf4943e22041d7a561e6210f",
+    "build/local/timing_acb_impl/acb_postroute_routed.dcp": "4515c9409a2e90bbcddd258740c6e148266924ab8c5249509bb680618a60ee3a",
+    "build/local/timing_acb_impl/acb_remap_routed.dcp": "935ea547bf662869adbb258776f715f3d517daf832a32ced1dcd59a44fdce271"
+  },
+  "authorization_extension": "User chose to retain BOTH final strategies, delete older reports/unused BAT JSON TXT, and rerun verification",
+  "static_post_cleanup_checks": {
+    "protected_files_checked": 231,
+    "mismatches": [],
+    "legacy_guards": [
+      {
+        "script": "build/aggregate_strategy_sweep.py",
+        "exit_code": 1,
+        "expected_retired_report_error": true
+      },
+      {
+        "script": "sim/ascon/summarize_key_review.py",
+        "exit_code": 1,
+        "expected_retired_report_error": true
+      },
+      {
+        "script": "sim/ascon/summarize_timing_review.py",
+        "exit_code": 2,
+        "expected_retired_report_error": true
+      }
+    ],
+    "python_syntax": "PASS"
+  },
+  "post_verification_review": {
+    "observed_at": "2026-10-18T21:07:40.580743",
+    "original_report": "data/ascon/results/cleanup_v10_verification.json",
+    "original_exit_code": 1,
+    "original_report_preserved": true,
+    "data_equivalence": "PASS",
+    "cpu_runs_identical": 8,
+    "key_lifecycle_identical": true,
+    "units_identical": true,
+    "isa_passed": 49,
+    "isa_existing_failures": [
+      "rv32ui_ma_data"
+    ],
+    "protected_hashes_checked": 231,
+    "protected_mismatches": [],
+    "retention_status": "DEFERRED",
+    "reappeared_paths": [
+      "dfx_runtime.txt",
+      "build/reports/ascon_key_lifecycle",
+      "build/reports/ascon_timing_r1",
+      "build/reports/ascon_timing_r2",
+      "build/reports/strategy_sweep_20261017",
+      "data/ascon/results/strategy_sweep_20261017"
+    ],
+    "original_file_paths_absent_now": 265,
+    "original_file_paths_reappeared_now": 299,
+    "user_decision": "Temporarily preserve parallel-session regenerated/restored artifacts; finish pruning after parallel work.",
+    "sta_reimplemented": false
+  }
+}

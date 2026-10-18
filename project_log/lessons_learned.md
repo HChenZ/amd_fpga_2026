@@ -1,5 +1,95 @@
 # 经验与踩坑
 
+## 2026-10-18 — V10 文件留存与清理
+
+- 清理范围按用户后续明确授权更新：最终双策略RPT保留、旧报告可删除；原始恢复归档不在
+  本轮裁剪范围。不能把“没进综合”直接当作可删，KAT、测试、hash与控制JSON是当前验证依赖。
+- 删除前冻结清单和保留文件hash；删除后用新label真实重编译/仿真并比较二进制与mcycle，
+  不能仅重读旧JSON宣称回归通过。本次真实复验已证数据全部一致。
+- 历史汇总器在缺报告时必须先退出，不能生成空策略结果或先重写全部历史JSON再报错。
+- 用户明确删掉的历史证据应在文档标注已裁剪，不继续宣称旧路径存在；最终报告和源/DCP留存完整。
+- 并行会话可能恢复/重新生成刚删除的报告。本次8项镜像/周期及231hash一致，但最终留存断言
+  因6路径重现而exit 1。不能改掉FAIL或说数据回归失败；分别记录数据PASS和留存待定，先询问用户。
+  用户最终选择暂保留并行产物，因此不反复删除或停止其他会话。
+
+## 2026-10-18 — V09 端点分类与握手
+
+- L88：从 top-20 推测全部端点会漏掉第二瓶颈；导出所有 failing endpoints 才确认
+  ISE 93、乘法 48、dcache 11、其他 4。A 只能消除一类，不能据此承诺收敛。
+- L89：给私有 reset 注册化时，释放要和 start 寄存器同拍；若直接延迟旧 perm_run 复位表达式，
+  首个 start 会在 reset 期间被吞。安全清零的额外一拍必须写入接口并用断言验证，不偷偷删清零。
+- L90：恢复 riscv-tests 不等于已具备当前 SoC harness；新增明确 M-mode 启动/链接/外部 BRAM
+  完成信号适配，不改原测试指令体。ma_data 要求硬件非对齐访存，控制/候选同样失败；保留
+  49 PASS/1 FAIL 与 runner exit 1，不能跳过后叫全绿或称标准特权 compliance。
+- L91：Ross MCP 以命令字符串做短时间重复过滤，不察觉中间 project/top 已改变；相同
+  close_project/launch_simulation 可能误跳过。检查返回值中的 SKIPPED，使用语义相同的显式参数
+  重发，并从真实 simulator transcript 核实本次 top 和终止 PASS，不能复用上次输出。
+- L92：A+C+B 后两策略均能过既有 100MHz，但仅 +1/+7ps。端点归零与板级签核不同；
+  仍缺输入/输出 delay 的 STA 不能升级为上板就绪。保存完整 timing summary 的 coverage 检查，
+  不仅保存 RESULT 行。双策略胜出余量不可外推到其他源码、工具或布局。
+- L93：HDL 有输入/输出寄存器不等于所有 DSP 的对应寄存器均打包。实际查询本轮 Remap：
+  4个DSP均 AREG/BREG=1，仅1个PREG=1，MREG全部0；报告实际属性，不从编码意图猜映射。
+
+## 2026-10-18 — V08 dcache fix_r1
+
+- L81：先前诊断"AXI 握手未完成"不准确：MMIO 外设走互连本地译码、固定一拍读回，
+  cpu_rdata_valid 只来自 cacheable 填充，MMIO 读根本没有 valid。修复前先读互连 RTL 核实数据通路。
+- L82：给流水线插状态时，新状态里所有决策必须用捕获值；stall 是寄存输出，插入拍里
+  cpu_addr_i 已是 EX 下一条指令。同理请求选通必须保持单拍——互连自己锁存 mem_re，保持高会排队伪突发。
+- L83：插一拍后固定延迟要整体后移（MMIO 由 T+2 变 T+3），照搬旧的 2 拍移位会早一拍采样。
+- L84：PowerShell `git show ... | Set-Content` 会加 BOM 并转码中文注释，导出的 RTL 被 Vivado
+  报语法错；导出原字节用 Git Bash 重定向并以 `git hash-object` 对 blob hash 核实。
+- L85：MCP 批命令里一条失败（close_design 无设计）会跳过同批其余命令，后续 lint 读的仍是旧文件；
+  不能把第二次相同输出当成 HEAD 对照。每次 lint 用独立会话/目录并核对日志中的文件路径。
+- L86：布局后估计 WNS=+0.221，布线后 -0.128；只认最终 post-route 报告（延续 L64）。
+  局部 RTL 改动后最差路径可能整体迁移到无关模块（本次为 ISE s_reg 复位扇出），WNS/TNS/端点数需一起看。
+- L87：2025.2 不支持 lint Skill 的 `linterCsvFile` 参数（Synth 8-734）；按 Skill 的 <2026.1
+  分支清空该参数，用 .rpt + parse_lint_report.py 生成 CSV。
+
+## 2026-10-18 — V08 全量扫掠与 dcache 评估
+
+- L76：Vivado `-tclargs` 会把 `=` 也拆成独立词（`jobs=6` → `jobs` `6` 两个 argv 元素），
+  正则匹配 `jobs=(\d+)` 永远不命中。参数解析必须按位置参数（`jobs 6 extra 文件`）。
+  此前一轮 jobs=6 从未生效，只是默认值恰好相同。
+- L77：Vivado Advanced Implementation 2025 流程在 7 系 part 上不支持：create_run
+  报 12-25131 并**静默回退**标准流程（实测产物与标准流程逐位相同），VDAI 独有策略名
+  （AggressiveExplore/NetDelay_medium/SSI_medium/Advanced Defaults）批处理报 not found。
+  7 系上别测高级流程，直接记录不可测。
+- L78：同名 module 文件并存，Vivado **不报错**、静默按文件顺序选一个综合（时序测量会
+  测错对象）；iverilog 会报重复声明（全量编译必炸）。实验文件必须移出编译 glob
+  （挪进子目录即可），并 grep "synthesizing module" 日志确认实际综合的文件。
+- L79：33 策略全量结论：最优 ExploreWithRemap（-0.118，2025.2 自带布线后 phys_opt+
+  Remap）；Auto_1/2/3 三兄弟结果完全相同（ML 指令收敛）；SLL 三兄弟/Flow_RunPhysOpt 与
+  PostRoute 在单 die 上退化相同；SpreadLogic 实际 medium>low>high（单点采样 high 会误判）。
+  "内置策略列表"以安装目录 Vivado/strategies/VDI2025.psg 为准（33 个）。
+- L80：CPU 卡死类回归失败的定位法：TB 加层次监视器（pc/stall/state/总线信号按拍
+  $display），8M 拍 TIMEOUT 也能两分钟定位到具体拍数与 PC。dcache 死锁根因=MMIO 读
+  等待依赖 bus_rdata_valid_i，而请求只发 1 拍脉冲 → 握手永不完成；改等待语义时
+  必须保证请求保持到握手接受，或恢复固定延迟等待。
+
+## 2026-10-18 — V08 策略扫掠
+
+- L70：`get_timing_paths` 不能 `-delay_type max` 与 `-setup` 同用（Vivado 12-608 直接
+  error 退出整个批处理）。WNS/TNS 汇总代码放在所有 run 完成后才执行，一处 API 误用
+  就白丢一轮；先在小验证脚本里跑通新 API 再进主脚本。
+- L71：`launch_runs -to_step` 的上下文会跨 resume 持久化。用不同 to_step 重启同一个
+  run 时，wait_on_run 后 PROGRESS 停在 <100%、STATUS="Not started <下一步>"，主进程
+  报错退出。每个 run 必须始终以其策略的最终流步骤为目标启动，并行波按最终步骤分组。
+- L72：杀进程残留孤儿 run 子进程 + 双主进程会互相顶掉 run（"already running"）。
+  ps -W 第 4 列才是 WINPID（第 1 列是 MSYS PID，taskkill 用错列报"找不到进程"）；
+  杀掉后必须数 vivado|vrs 进程为 0 再重开，启动前 archive 上次日志。
+- L73：器件的 open_project 报错 "part not available" 是缺器件支持包而非 XPR 问题；
+  本机 Vivado 只装了 artix7/kintex7 没有 zynq7。开始菜单 "Add Design Tools or
+  Devices"（xsetup.exe 缓存在 <install>/.xinstall/<ver>/）Modify 勾 Zynq-7000 即可，
+  ~1-2 GB；装完用 get_parts 验证再跑长任务。
+- L74：跨机器可复现性是真实且可依赖的：同工具/part/RTL，本机重跑 Default 与
+  ExplorePostRoutePhysOpt 的 WNS/TNS/失败端点与 xyq 机 V06 报告逐位一致。build_context
+  必须记 host/date/git HEAD，否则跨机对比失去依据。
+- L75：扫掠结论本身：10 个内置策略无一收敛 100 MHz（最优 -0.177/31 端点）；布线后
+  phys_opt 是最大杠杆（Explore -0.273→-0.177），Retiming 在本设计适得其反（-0.518），
+  Congestion_Spread 无效（LUT 仅 22% 无拥塞）。策略空间关闭后必须转 RTL：
+  id_ex→dcache CE/DIADI 地址计算链。
+
 ## 2026-10-17 — V07 工具与证据门禁
 
 - L67：all空集合为True；只遍历已有实现文件会把缺失/不完整快照误判为匹配。必须先核目录及完整RTL文件集合，再比内容hash；5个小型回归锁定该门禁。

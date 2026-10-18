@@ -39,8 +39,18 @@ module ascon_ise (
     reg         perm_run;
     reg         p_start;
     reg         mode_p12;
-    // Private permutation copies are cleared whenever idle or cancelled.
-    wire perm_rst_n = rst_n && !cancel && perm_run;
+    // Local registered reset removes the combinational trap/interrupt cone
+    // from the 1280-bit private permutation reset fan-out. Enable on accept
+    // (alongside p_start), not one cycle later, so no start is lost.
+    // Architectural state still clears on the cancel edge; private copies
+    // clear on the following edge. No result can commit during cancellation.
+    reg perm_rst_n;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            perm_rst_n <= 1'b0;
+        else
+            perm_rst_n <= !cancel && (perm_run || (perm_start && !perm_done));
+    end
 
     wire [319:0] p12_out, p8_out;
     wire         p12_done, p8_done;
