@@ -78,6 +78,7 @@ desktop.ini
 .windsurf/
 .agent-work/
 .agents/worktrees/
+.dide/
 
 # Intentionally tracked in normal source/evidence locations:
 # build/*.tcl, build/reports/*, build/metadata/*,
