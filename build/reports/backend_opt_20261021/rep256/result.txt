@@ -1,0 +1,4 @@
+RESULT variant=rep256 wns=-0.188 tns=-9.696 failing=145 whs=0.051 luts=13598 ffs=16427 rep_cells=287 routing_errors=na
+PATH start=u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs1_o_reg/C end=u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/lru_reg[31]/D datapath=10.063 logic=2.967 net=7.096 levels=11
+KNOBS maxfanout=256 fanout_min=256 frn=1 eqreg=1 place=Default popt=AggressiveExplore prout=AggressiveExplore route=AggressiveExplore fp= dens=
+SOURCE head=3c6f134 synth_dcp=top_pl_bram_opt.dcp tool=2025.2 date=Wed Oct 21 00:48:35 +0800 2026

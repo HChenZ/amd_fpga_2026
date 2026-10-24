@@ -299,3 +299,61 @@
 - 未测：真实AXI/PS/PL、cache/屏障、固件加载/物理清零/复位、overlay及实板周期；同步reference不能抢占。
   协议未冻结、Y01整项/Y02未验收；未启动Vivado、未改RTL/固件/docs/tasks，未commit/push。
   下一接收：草案审查→B03板型/image→Y01物理映射/固件/cache冻结→Y02，owner TBD；主线维护者同步实际进度/看板。
+
+## 2026-10-21 — 后端放置/复制战役（夜间自动化，33→35 臂）
+
+- 新增 `build/backend_opt_20261021/`：`run_variant.tcl`（单臂全流程：属性→opt→pblock→place→
+  定向复制→phys_opt→route→phys_opt→报告）、`run_wave.sh`（并行波次，每臂独占 cwd 与报告目录，
+  已有 result.txt 的臂拒绝重跑）、`floorplan.py`（依赖驱动 pblock）、`dep_analysis.py`、
+  `summarize.py`、`fanout_compare.py`、`probe_levers/probe_layout/probe_pblock/probe_pblock_hold/
+  probe_variant_layout/probe_wall/probe_dcp.tcl`。
+- 起点 `acb_remap/top_pl_bram_opt.dcp`（生产 +0.007 的 post-opt 快照，带 clk/clk_out1、零黑盒）；
+  `synth_1/*.dcp` 不可用（无约束 + 三个 IP 是黑盒，opt 会 DRC INBB-3 失败）。
+- 8 个波次共 35 臂：全局复制（128/256/512/1024、nofrn/noeq 对照）、定向 CE 复制（20/60/120/200/300）、
+  三套 floorplan（fp2/fp3/fpc）、疏松（AltSpreadLogic medium/low）、放置与布线 cost model
+  （ExtraNetDelay_high、HigherDelayCost、NoTimingRelaxation）、生产指令锚点 prod_place、重复对照 ctl_dup。
+- 最好一档 `pl_ndh_crit200_ntr`：WNS +0.138 / TNS 0 / 失败 0 / WHS +0.017 / LUT 13468 / 0 布线错误，
+  重复臂逐位相同；时序墙分布 <0.2 ns 从锚点 127 条降到 7 条、<0.3 ns 从 278 降到 44。
+- 证据：`build/reports/backend_opt_20261021/`（每臂 result.txt、route_timing/paths/utilization/
+  route_status/high_fanout、summary.md、wall_distribution.txt）、`build/local/backend_opt_20261021/`
+  （各臂 routed DCP + 日志，git 忽略）。文档 `docs/backend_placement_campaign.md`。
+- 未改 `src/rtl`/`board/`/baseline 工程；未 commit。未跑功能回归与上板（not_measured）。
+
+## 2026-10-24 — next.html 路线实测（F / R）
+
+- 新目录 `build/local/tests_20261024/`：`run_variantF.tcl`（一次跑完 synth→impl→reports→dcp，
+  参数 = tag/rtl_tree/输入时钟周期/策略）、`check_F.sh`（6 场景 iverilog 等价）、
+  `probe_classes.tcl`（DCP → slack<2.0 路径 CSV）、`classify.py`（按"起点寄存器 + 终点模块"配对）。
+- 关键教训 1：**降频不能靠"改约束重跑实现"**。12.5 ns 重跑给 +0.483，而同一网表 12.5 ns 重算是
+  +2.34；差 1.9 ns 是 P&R 按松约束松手的物理质量差。过度约束（实现 10 ns + MMCM 80 MHz）才拿得到。
+- 关键教训 2：**RTL 改动的收益要用"路径族条数"验收，不能只看 WNS**。F 把目标族从 8858 条压到 60 条，
+  但 WNS 反而 −0.079，因为 A 族顶上来；只看 WNS 会误判 F 无效。
+- 关键教训 3：Vivado 的 `-tclargs` 在本机 MSYS bash 下必须传 `C:/...` 原生路径，
+  `/c/...` 会被 Tcl 的 `file exists` 判为不存在（第一次 ctl_80 就是这样空跑的）。
+- 未改 `src/rtl`/`board/`/XDC；未 commit。
+
+## 2026-10-24 晚 — F+A 复核与 F×后端配方
+
+- 关键教训 4：**先核对 RTL 再排期**。计划文档里的"路线 A"（旁路决策提前到 ID 段末寄存）
+  在 `cpu_core.v:373-386` 已经是这么写的；照计划再做一遍等于空跑。方案文档要带
+  "当前 RTL 是否已是该形态"这一列。
+- 关键教训 5：**后端配方不可迁移**。campaign 的 +0.138 靠复制最差端点的 CE 锥，
+  F 之后墙移到 D 端（valid_way/lru），同一配方在 F 网表上只剩 −0.226。
+  配方必须跟着"当前最差端点类型（CE/D/WE）"一起重选。
+- 关键教训 6：`MAX_FANOUT` 只会被 `opt_design`/综合阶段利用；在 post-opt checkpoint 上
+  设属性不会复制寄存器，必须 `phys_opt_design -force_replication_on_nets $nets`。
+  否则会得到"两条臂逐位相同"的假结果。
+- 关键教训 7：脚本 root 的相对层数按脚本自身位置算；复用别的目录里的 tcl 时先改 `../..`
+  层数，否则会在仓库里生成 `build/build/`。
+
+## 2026-10-24 夜 — 路线 C（dcache store buffer）
+
+- 关键教训 8：**改 BRAM 写地址一定会打碎 RAM 推断**。原设计读/写同址（`rd_addr`）才能推成单口模板；
+  一旦写地址改成 buffer 的地址，Vivado 报 `Synth 8-2914 Unsupported RAM template`。
+  正确形态是把读口独立（Port A 只读）+ 写口与 fill 共用（Port B），即 SDP；
+  顺手把 BRAM 从 38.5 降到 34.5 tile。
+- 关键教训 9：**"0 周期"的验收要连硬件 MMIO 路径一起看**。F 的 MMIO 全卸载 670→675 拍，
+  C 仍是 670 拍——同为"写路径打一拍"，差别在 F 把 MMIO 写延迟放进了软件可见的回合，C 只挡在
+  BRAM 提交这一层并由转发兜住。
+- 关键教训 10：dcache 这种模块最划算的回归是**逐拍差分激励**（同一份确定性激励 + 逐拍信号 dump +
+  diff + 末尾存储器校验和），比写定向断言省一半时间，且能抓到"看起来对但时序变了"的差异。

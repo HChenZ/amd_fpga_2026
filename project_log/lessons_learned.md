@@ -300,3 +300,70 @@ L08 的“保留两个跟踪生成元数据”是此前策略；本轮按用户�
   会丢掉依赖分支记录，应采用增量合并并用三点 diff 审计。
 - 本轮 PowerShell→wslpath 原 Windows 路径传参丢反斜杠，脚本路径变为 /sim/...，
   exit 2、没有测试运行。使用仓库根目录下 WSL 相对路径成功，不写死本机盘符。
+
+## 2026-10-21 — 后端复制/floorplan 战役的六条教训
+
+- **复制成功 ≠ 时序变好。** 全局 `MAX_FANOUT 128/256` + `-force_replication_on_nets`
+  确实把 9650/3989/1280/661/457 pin 的网络全部拆到 256 pin 以下（可逐网络核对
+  `route_high_fanout.rpt`），但 WNS 从锚点 +0.016 掉到 −0.074/−0.188/−0.295。
+  复制前必须先看**这个锥自己的最差裕量**：本例是 +0.9~+2.8 ns，它根本不在失败路径上。
+- **只给属性不触发复制。** `MAX_FANOUT` + `EQUIVALENT_REGISTER_REMOVAL=NO` 但不加
+  `-force_replication_on_nets` 时，结果与无属性臂**逐位相同**；2025.2 的复制入口只有
+  `phys_opt_design -force_replication_on_nets <get_nets 结果>`。
+  加 `-force_replication_on_nets` 时不要试图用它去拆最大的那几个锥（实测拆不动），
+  它的有效用法是**只喂失败端点的 CE 锥**。
+- **`DATAPATH_NET_DELAY` 是整条路径的累计走线**，不是一条网络。本例 10~11 级逻辑、
+  net 7.1~7.5 ns，等于每跳约 0.7 ns 的分布式线长；因此"找到那条坏网络复制一下"不成立，
+  只能靠更短的跳（布局，上限 ±0.1 ns）或更少的跳（RTL）或更长的周期。
+- **floorplan 生效与否要数溢出，不能看 bbox。** `add_cells_to_pblock` 只给层次单元是
+  有效的（pb_cpu 覆盖 10404 个 leaf），但 place 之后的 `phys_opt_design` 会插入副本并做
+  critical-cell 优化，把 2.6% 单元放到区间外；模块 bbox 越界 20 行并不等于约束没生效。
+- **"布局疏松"在这颗器件上是伪需求。** 22% LUT 占用下 Vivado 默认布局已经散开；
+  `place_design` 没有 `-place_density`，pblock 的 `PLACE_DENSITY` 在 2025.2 直接报
+  `Netlist 29-177 property does not exist`（脚本必须 catch，否则整臂崩）；
+  `AltSpreadLogic_medium/low` 实测 +0.002 / −0.027。
+- **先建生产指令锚点，再谈差值。** 裸 `place_design` 的对照臂是 −0.102，而同一网表的
+  生产策略是 +0.007/+0.016；把 place Explore + phys_opt Explore + prout
+  ExploreWithHoldFix 的臂作为锚点（实测 +0.016）之后，其余 30 多个臂的差值才有意义。
+  另外必须有一个**跨波次的重复臂**证明流程确定性（本例 3 组逐位相同），
+  否则 0.03 ns 级的排序只是在读布局随机性。
+
+- **WHS 为正时，所有布线后 hold 修复指令都是空操作。** `phys_opt_design -hold_fix` /
+  `-aggressive_hold_fix` / `ExploreWithHoldFix` / `ExploreWithAggressiveHoldFix` /
+  `-clock_opt` 五个臂打在同一个已布线网表上，WNS/WHS/LUT **一个数都没变**
+  （+0.138/+0.017/不变）——help 原文写的是只修 "high hold violators"。
+  想把正余量抬高只能改最小延时或偏斜：要么把 hold 关键的那对寄存器在物理上拉开
+  （pblock 子区），要么整体放松布局，两者都用 setup 换 hold。
+  本例 35 臂 `corr(WNS,WHS) = −0.516`，WHS ≥ 0.05 的 7 个臂 WNS 全部 ≤ −0.102，
+  说明"项门限式"的 hold 指标在这版网表上无法与 setup 同时满足，应改口径而不是硬扫。
+
+- **hold 余量由"一整群短路径"决定，不是一条。** 把最差 hold 的那对寄存器用 pblock
+  拉开后，最差路径只是换人（`s_out→s4` 0.381 ns → `p8_inst/s_reg` 0.389 ns →
+  `nonce_r` 0.375 ns …），WHS 只从 +0.017 抬到 +0.032，WNS 却从 +0.138 掉到 −0.110
+  （73 个失败端点），交换率约 1:16。判断一个 hold 指标值不值得追：先数
+  `report_timing -hold` 里有多少条 < 目标值的路径、逻辑级数是 0 还是 1；
+  如果是一群 0~1 级路径，除了改 RTL 或降频没有解。
+
+
+## 2026-10-24 — 100 MHz 提余量的九条教训（F/C/80 MHz 实测）
+
+- **降频不能"改约束重跑实现"。** 12.5 ns 重跑只有 +0.483 ns，而同一张按 10 ns 布线的网表
+  重算 12.5 ns 是 +2.34 ns；差 1.9 ns 全是 P&R 按松约束松手（route 7.6→9.17 ns）。
+  正确做法：实现保持 10 ns 过度约束，只把 MMCM 输出降到 80 MHz。
+- **RTL 改动的验收要看路径族条数，不能只看 WNS。** F 把目标族 8858→60 条、WNS 却 −0.079；
+  只看 WNS 会把"生效但被新墙顶掉"误判成"无效"。
+- **方案文档要带"当前 RTL 是否已是该形态"一列。** 计划里的"路线 A"（旁路决策提前到 ID 段末寄存）
+  在 `cpu_core.v:373-386` 早就这么写了，照计划再做一遍是空跑。
+- **后端配方不可迁移。** campaign 的 +0.138 靠复制最差端点的 CE 锥；F 之后墙移到 D 端
+  （valid_way/lru），同一配方只剩 −0.226，C 之后也只有 +0.017。配方要跟着"当前最差端点类型"重选。
+- **`MAX_FANOUT` 只在综合/opt 阶段生效。** 在 post-opt checkpoint 上设属性不会复制寄存器，
+  必须 `phys_opt_design -force_replication_on_nets`；否则得到"两臂逐位相同"的假结果。
+  另：post-route 不支持 `-force_replication_on_nets`（2025.2 直接报错并让该步失败）。
+- **改 BRAM 写地址会打碎 RAM 推断。** 读写同址才能推成单口模板；写地址一换成 buffer 地址就
+  报 `Synth 8-2914 Unsupported RAM template`。正确形态是 SDP：读口独立、写口与 fill 共用。
+- **"0 周期"要连硬件 MMIO 一起验。** F 的 MMIO 全卸载 670→675 拍，C 仍 670 拍；
+  同为"写路径打一拍"，区别在 F 把延迟放进了软件可见的回合。
+- **dcache 这类模块最划算的回归是逐拍差分**：同一份确定性激励 + 逐拍信号 dump + diff +
+  末尾存储器校验和，比写定向断言省一半时间，还能抓到"看着对但时序变了"。
+- **复用别处脚本先改相对层数。** 脚本按自身位置算 root，`backend_opt_20261021/` 的脚本是
+  `../..`，搬到 `build/local/tests_20261024/` 后要多一层，否则会在仓库里生成 `build/build/`。

@@ -1,0 +1,1 @@
+RESULT a1_variant=pb2_et pblock=SLICE_X50Y0:SLICE_X113Y99 place=ExtraTimingOpt route=AggressiveExplore wns=0.022 tns=0.000 failing=0 whs=0.012

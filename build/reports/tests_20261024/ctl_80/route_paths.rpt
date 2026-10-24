@@ -1,0 +1,1675 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sat Oct 24 16:58:11 2026
+| Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -max_paths 20 -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/reports/tests_20261024/ctl_80/route_paths.rpt
+| Design       : top_pl_bram
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Physopt postRoute
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.483ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_0/WEA[0]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.156ns  (logic 1.989ns (17.829%)  route 9.167ns (82.171%))
+  Logic Levels:           10  (CARRY4=2 LUT4=1 LUT5=2 LUT6=4 RAMD64E=1)
+  Clock Path Skew:        -0.004ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.962ns = ( 10.538 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.032     5.127    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X64Y9          LUT5 (Prop_lut5_I0_O)        0.124     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_way_i_4__0/O
+                         net (fo=142, routed)         1.034     6.285    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/stall
+    SLICE_X81Y10         LUT5 (Prop_lut5_I1_O)        0.124     6.409 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/bus_mem_we_r_i_1/O
+                         net (fo=134, routed)         1.031     7.439    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/store_cache_write
+    SLICE_X82Y13         LUT4 (Prop_lut4_I3_O)        0.150     7.589 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_0_i_23/O
+                         net (fo=4, routed)           1.094     8.683    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_0_in0_out[0]
+    RAMB18_X4Y8          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_0/WEA[0]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.650    10.538    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X4Y8          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_0/CLKARDCLK
+                         clock pessimism             -0.514    10.023    
+                         clock uncertainty           -0.121     9.902    
+    RAMB18_X4Y8          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_WEA[0])
+                                                     -0.736     9.166    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_0
+  -------------------------------------------------------------------
+                         required time                          9.166    
+                         arrival time                          -8.683    
+  -------------------------------------------------------------------
+                         slack                                  0.483    
+
+Slack (MET) :             0.524ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/WEA[0]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.328ns  (logic 1.963ns (17.329%)  route 9.365ns (82.671%))
+  Logic Levels:           10  (CARRY4=2 LUT2=1 LUT5=2 LUT6=4 RAMD64E=1)
+  Clock Path Skew:        0.005ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.953ns = ( 10.547 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.032     5.127    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X64Y9          LUT5 (Prop_lut5_I0_O)        0.124     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_way_i_4__0/O
+                         net (fo=142, routed)         1.034     6.285    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/stall
+    SLICE_X81Y10         LUT5 (Prop_lut5_I1_O)        0.124     6.409 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/bus_mem_we_r_i_1/O
+                         net (fo=134, routed)         1.019     7.428    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/store_cache_write
+    SLICE_X87Y13         LUT2 (Prop_lut2_I1_O)        0.124     7.552 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_3_i_17/O
+                         net (fo=4, routed)           1.303     8.855    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_0_in0_out[3]
+    RAMB18_X5Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/WEA[0]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.659    10.547    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X5Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/CLKARDCLK
+                         clock pessimism             -0.514    10.032    
+                         clock uncertainty           -0.121     9.911    
+    RAMB18_X5Y6          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_WEA[0])
+                                                     -0.532     9.379    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3
+  -------------------------------------------------------------------
+                         required time                          9.379    
+                         arrival time                          -8.855    
+  -------------------------------------------------------------------
+                         slack                                  0.524    
+
+Slack (MET) :             0.524ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/WEA[1]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.328ns  (logic 1.963ns (17.329%)  route 9.365ns (82.671%))
+  Logic Levels:           10  (CARRY4=2 LUT2=1 LUT5=2 LUT6=4 RAMD64E=1)
+  Clock Path Skew:        0.005ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.953ns = ( 10.547 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.032     5.127    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X64Y9          LUT5 (Prop_lut5_I0_O)        0.124     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_way_i_4__0/O
+                         net (fo=142, routed)         1.034     6.285    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/stall
+    SLICE_X81Y10         LUT5 (Prop_lut5_I1_O)        0.124     6.409 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/bus_mem_we_r_i_1/O
+                         net (fo=134, routed)         1.019     7.428    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/store_cache_write
+    SLICE_X87Y13         LUT2 (Prop_lut2_I1_O)        0.124     7.552 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_3_i_17/O
+                         net (fo=4, routed)           1.303     8.855    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_0_in0_out[3]
+    RAMB18_X5Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/WEA[1]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.659    10.547    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X5Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/CLKARDCLK
+                         clock pessimism             -0.514    10.032    
+                         clock uncertainty           -0.121     9.911    
+    RAMB18_X5Y6          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_WEA[1])
+                                                     -0.532     9.379    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3
+  -------------------------------------------------------------------
+                         required time                          9.379    
+                         arrival time                          -8.855    
+  -------------------------------------------------------------------
+                         slack                                  0.524    
+
+Slack (MET) :             0.594ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/DIADI[3]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.386ns  (logic 2.281ns (20.033%)  route 9.105ns (79.967%))
+  Logic Levels:           10  (LUT2=1 LUT3=1 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        0.044ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.953ns = ( 10.547 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.412ns
+    Clock Pessimism Removal (CPR):    -0.414ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.729    -2.412    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/clk
+    SLICE_X59Y3          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X59Y3          FDCE (Prop_fdce_C_Q)         0.419    -1.993 r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/Q
+                         net (fo=8, routed)           0.828    -1.165    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/w_reg_waddr_o[3]
+    SLICE_X59Y2          LUT5 (Prop_lut5_I4_O)        0.296    -0.869 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_25/O
+                         net (fo=1, routed)           0.433    -0.436    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_25_n_0
+    SLICE_X59Y2          LUT4 (Prop_lut4_I0_O)        0.150    -0.286 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_23/O
+                         net (fo=1, routed)           0.556     0.270    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_23_n_0
+    SLICE_X53Y0          LUT6 (Prop_lut6_I0_O)        0.326     0.596 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_19/O
+                         net (fo=2, routed)           0.777     1.373    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/csr_re
+    SLICE_X51Y2          LUT3 (Prop_lut3_I1_O)        0.124     1.497 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_10/O
+                         net (fo=32, routed)          1.324     2.821    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_10_n_0
+    SLICE_X43Y1          LUT6 (Prop_lut6_I1_O)        0.124     2.945 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[11]_i_2/O
+                         net (fo=4, routed)           1.269     4.213    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/csr_rdata[11]
+    SLICE_X75Y1          LUT6 (Prop_lut6_I4_O)        0.124     4.337 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_4_LOPT_REMAP_13/O
+                         net (fo=1, routed)           0.582     4.920    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_4/O_n_13
+    SLICE_X79Y1          LUT6 (Prop_lut6_I5_O)        0.124     5.044 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_1_LOPT_REMAP_16/O
+                         net (fo=1, routed)           0.744     5.787    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_1/O_n_16
+    SLICE_X79Y8          LUT6 (Prop_lut6_I5_O)        0.124     5.911 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_0_LOPT_REMAP_16/O
+                         net (fo=3, routed)           0.799     6.710    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/ex_rd_data_i[11]
+    SLICE_X87Y14         LUT5 (Prop_lut5_I0_O)        0.118     6.828 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/captured_wdata[27]_i_1/O
+                         net (fo=3, routed)           1.117     7.945    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/ex_w_data[27]
+    SLICE_X101Y15        LUT2 (Prop_lut2_I1_O)        0.352     8.297 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_3_i_5/O
+                         net (fo=2, routed)           0.677     8.975    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_1_in[3]
+    RAMB18_X5Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/DIADI[3]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.659    10.547    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X5Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/CLKARDCLK
+                         clock pessimism             -0.414    10.133    
+                         clock uncertainty           -0.121    10.012    
+    RAMB18_X5Y6          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[3])
+                                                     -0.443     9.569    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3
+  -------------------------------------------------------------------
+                         required time                          9.569    
+                         arrival time                          -8.975    
+  -------------------------------------------------------------------
+                         slack                                  0.594    
+
+Slack (MET) :             0.605ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3/DIADI[3]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.372ns  (logic 2.281ns (20.058%)  route 9.091ns (79.942%))
+  Logic Levels:           10  (LUT2=1 LUT3=1 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        0.040ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.957ns = ( 10.543 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.412ns
+    Clock Pessimism Removal (CPR):    -0.414ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.729    -2.412    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/clk
+    SLICE_X59Y3          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X59Y3          FDCE (Prop_fdce_C_Q)         0.419    -1.993 r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/Q
+                         net (fo=8, routed)           0.828    -1.165    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/w_reg_waddr_o[3]
+    SLICE_X59Y2          LUT5 (Prop_lut5_I4_O)        0.296    -0.869 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_25/O
+                         net (fo=1, routed)           0.433    -0.436    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_25_n_0
+    SLICE_X59Y2          LUT4 (Prop_lut4_I0_O)        0.150    -0.286 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_23/O
+                         net (fo=1, routed)           0.556     0.270    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_23_n_0
+    SLICE_X53Y0          LUT6 (Prop_lut6_I0_O)        0.326     0.596 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_19/O
+                         net (fo=2, routed)           0.777     1.373    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/csr_re
+    SLICE_X51Y2          LUT3 (Prop_lut3_I1_O)        0.124     1.497 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_10/O
+                         net (fo=32, routed)          1.324     2.821    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_10_n_0
+    SLICE_X43Y1          LUT6 (Prop_lut6_I1_O)        0.124     2.945 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[11]_i_2/O
+                         net (fo=4, routed)           1.269     4.213    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/csr_rdata[11]
+    SLICE_X75Y1          LUT6 (Prop_lut6_I4_O)        0.124     4.337 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_4_LOPT_REMAP_13/O
+                         net (fo=1, routed)           0.582     4.920    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_4/O_n_13
+    SLICE_X79Y1          LUT6 (Prop_lut6_I5_O)        0.124     5.044 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_1_LOPT_REMAP_16/O
+                         net (fo=1, routed)           0.744     5.787    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_1/O_n_16
+    SLICE_X79Y8          LUT6 (Prop_lut6_I5_O)        0.124     5.911 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_0_LOPT_REMAP_16/O
+                         net (fo=3, routed)           0.799     6.710    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/ex_rd_data_i[11]
+    SLICE_X87Y14         LUT5 (Prop_lut5_I0_O)        0.118     6.828 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/captured_wdata[27]_i_1/O
+                         net (fo=3, routed)           1.117     7.945    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/ex_w_data[27]
+    SLICE_X101Y15        LUT2 (Prop_lut2_I1_O)        0.352     8.297 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_3_i_5/O
+                         net (fo=2, routed)           0.663     8.960    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_1_in[3]
+    RAMB18_X4Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3/DIADI[3]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.655    10.543    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X4Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3/CLKARDCLK
+                         clock pessimism             -0.414    10.129    
+                         clock uncertainty           -0.121    10.008    
+    RAMB18_X4Y6          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[3])
+                                                     -0.443     9.565    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3
+  -------------------------------------------------------------------
+                         required time                          9.565    
+                         arrival time                          -8.960    
+  -------------------------------------------------------------------
+                         slack                                  0.605    
+
+Slack (MET) :             0.642ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/DIADI[1]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.337ns  (logic 2.515ns (22.183%)  route 8.822ns (77.817%))
+  Logic Levels:           10  (LUT2=2 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        0.044ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.953ns = ( 10.547 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.412ns
+    Clock Pessimism Removal (CPR):    -0.414ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.729    -2.412    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/clk
+    SLICE_X59Y3          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X59Y3          FDCE (Prop_fdce_C_Q)         0.419    -1.993 r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/Q
+                         net (fo=8, routed)           0.828    -1.165    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/w_reg_waddr_o[3]
+    SLICE_X59Y2          LUT5 (Prop_lut5_I4_O)        0.296    -0.869 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_25/O
+                         net (fo=1, routed)           0.433    -0.436    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_25_n_0
+    SLICE_X59Y2          LUT4 (Prop_lut4_I0_O)        0.150    -0.286 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_23/O
+                         net (fo=1, routed)           0.556     0.270    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_23_n_0
+    SLICE_X53Y0          LUT6 (Prop_lut6_I0_O)        0.326     0.596 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_19/O
+                         net (fo=2, routed)           0.777     1.373    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/csr_re
+    SLICE_X51Y2          LUT2 (Prop_lut2_I0_O)        0.153     1.526 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_14/O
+                         net (fo=32, routed)          1.289     2.815    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_14_n_0
+    SLICE_X43Y11         LUT6 (Prop_lut6_I5_O)        0.327     3.142 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[25]_i_2/O
+                         net (fo=4, routed)           0.497     3.639    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/csr_rdata[25]
+    SLICE_X51Y11         LUT6 (Prop_lut6_I4_O)        0.124     3.763 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_3_LOPT_REMAP_29/O
+                         net (fo=1, routed)           0.840     4.603    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_3/O_n_29
+    SLICE_X56Y13         LUT6 (Prop_lut6_I5_O)        0.124     4.727 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_1_LOPT_REMAP_31/O
+                         net (fo=1, routed)           1.082     5.809    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_1/O_n_31
+    SLICE_X83Y13         LUT6 (Prop_lut6_I5_O)        0.124     5.933 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_0_LOPT_REMAP_31/O
+                         net (fo=2, routed)           0.806     6.739    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/ex_rd_data_i[25]
+    SLICE_X81Y13         LUT5 (Prop_lut5_I4_O)        0.150     6.889 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/captured_wdata[25]_i_1/O
+                         net (fo=3, routed)           0.614     7.502    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/ex_w_data[25]
+    SLICE_X87Y13         LUT2 (Prop_lut2_I1_O)        0.322     7.824 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_3_i_7/O
+                         net (fo=2, routed)           1.101     8.926    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_1_in[1]
+    RAMB18_X5Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/DIADI[1]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.659    10.547    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X5Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3/CLKARDCLK
+                         clock pessimism             -0.414    10.133    
+                         clock uncertainty           -0.121    10.012    
+    RAMB18_X5Y6          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[1])
+                                                     -0.444     9.568    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_3
+  -------------------------------------------------------------------
+                         required time                          9.568    
+                         arrival time                          -8.926    
+  -------------------------------------------------------------------
+                         slack                                  0.642    
+
+Slack (MET) :             0.663ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs1_o_reg/CE
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.413ns  (logic 2.196ns (19.242%)  route 9.217ns (80.758%))
+  Logic Levels:           10  (CARRY4=2 LUT2=1 LUT3=1 LUT6=5 RAMD64E=1)
+  Clock Path Skew:        -0.099ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -2.057ns = ( 10.443 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.008     5.102    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X55Y5          LUT3 (Prop_lut3_I2_O)        0.149     5.251 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_tag[21]_i_5/O
+                         net (fo=42, routed)          0.816     6.067    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/inst_valid_o_reg
+    SLICE_X54Y9          LUT6 (Prop_lut6_I5_O)        0.332     6.399 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/id_ex_u_i_128/O
+                         net (fo=94, routed)          1.055     7.455    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/flush
+    SLICE_X53Y5          LUT2 (Prop_lut2_I0_O)        0.124     7.579 r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/inst_valid_o_i_1/O
+                         net (fo=91, routed)          1.361     8.940    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/inst_valid_o_i_1_n_0
+    SLICE_X70Y11         FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs1_o_reg/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.555    10.443    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/clk
+    SLICE_X70Y11         FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs1_o_reg/C
+                         clock pessimism             -0.514     9.929    
+                         clock uncertainty           -0.121     9.808    
+    SLICE_X70Y11         FDCE (Setup_fdce_C_CE)      -0.205     9.603    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs1_o_reg
+  -------------------------------------------------------------------
+                         required time                          9.603    
+                         arrival time                          -8.940    
+  -------------------------------------------------------------------
+                         slack                                  0.663    
+
+Slack (MET) :             0.663ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_mem_wb_rs1_o_reg/CE
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.413ns  (logic 2.196ns (19.242%)  route 9.217ns (80.758%))
+  Logic Levels:           10  (CARRY4=2 LUT2=1 LUT3=1 LUT6=5 RAMD64E=1)
+  Clock Path Skew:        -0.099ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -2.057ns = ( 10.443 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.008     5.102    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X55Y5          LUT3 (Prop_lut3_I2_O)        0.149     5.251 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_tag[21]_i_5/O
+                         net (fo=42, routed)          0.816     6.067    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/inst_valid_o_reg
+    SLICE_X54Y9          LUT6 (Prop_lut6_I5_O)        0.332     6.399 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/id_ex_u_i_128/O
+                         net (fo=94, routed)          1.055     7.455    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/flush
+    SLICE_X53Y5          LUT2 (Prop_lut2_I0_O)        0.124     7.579 r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/inst_valid_o_i_1/O
+                         net (fo=91, routed)          1.361     8.940    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/inst_valid_o_i_1_n_0
+    SLICE_X70Y11         FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_mem_wb_rs1_o_reg/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.555    10.443    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/clk
+    SLICE_X70Y11         FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_mem_wb_rs1_o_reg/C
+                         clock pessimism             -0.514     9.929    
+                         clock uncertainty           -0.121     9.808    
+    SLICE_X70Y11         FDCE (Setup_fdce_C_CE)      -0.205     9.603    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_mem_wb_rs1_o_reg
+  -------------------------------------------------------------------
+                         required time                          9.603    
+                         arrival time                          -8.940    
+  -------------------------------------------------------------------
+                         slack                                  0.663    
+
+Slack (MET) :             0.684ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_0/WEA[1]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        10.955ns  (logic 1.989ns (18.156%)  route 8.966ns (81.844%))
+  Logic Levels:           10  (CARRY4=2 LUT4=1 LUT5=2 LUT6=4 RAMD64E=1)
+  Clock Path Skew:        -0.004ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.962ns = ( 10.538 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.032     5.127    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X64Y9          LUT5 (Prop_lut5_I0_O)        0.124     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_way_i_4__0/O
+                         net (fo=142, routed)         1.034     6.285    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/stall
+    SLICE_X81Y10         LUT5 (Prop_lut5_I1_O)        0.124     6.409 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/bus_mem_we_r_i_1/O
+                         net (fo=134, routed)         1.031     7.439    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/store_cache_write
+    SLICE_X82Y13         LUT4 (Prop_lut4_I3_O)        0.150     7.589 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_0_i_23/O
+                         net (fo=4, routed)           0.893     8.482    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_0_in0_out[0]
+    RAMB18_X4Y8          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_0/WEA[1]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.650    10.538    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X4Y8          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_0/CLKARDCLK
+                         clock pessimism             -0.514    10.023    
+                         clock uncertainty           -0.121     9.902    
+    RAMB18_X4Y8          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_WEA[1])
+                                                     -0.736     9.166    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_0
+  -------------------------------------------------------------------
+                         required time                          9.166    
+                         arrival time                          -8.482    
+  -------------------------------------------------------------------
+                         slack                                  0.684    
+
+Slack (MET) :             0.687ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_0/WEA[1]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        10.962ns  (logic 1.989ns (18.144%)  route 8.973ns (81.856%))
+  Logic Levels:           10  (CARRY4=2 LUT4=1 LUT5=2 LUT6=4 RAMD64E=1)
+  Clock Path Skew:        0.006ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.952ns = ( 10.548 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.032     5.127    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X64Y9          LUT5 (Prop_lut5_I0_O)        0.124     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_way_i_4__0/O
+                         net (fo=142, routed)         1.034     6.285    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/stall
+    SLICE_X81Y10         LUT5 (Prop_lut5_I1_O)        0.124     6.409 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/bus_mem_we_r_i_1/O
+                         net (fo=134, routed)         1.031     7.439    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/store_cache_write
+    SLICE_X82Y13         LUT4 (Prop_lut4_I3_O)        0.150     7.589 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_0_i_23/O
+                         net (fo=4, routed)           0.900     8.490    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_0_in0_out[0]
+    RAMB18_X4Y5          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_0/WEA[1]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.660    10.548    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X4Y5          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_0/CLKARDCLK
+                         clock pessimism             -0.514    10.033    
+                         clock uncertainty           -0.121     9.912    
+    RAMB18_X4Y5          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_WEA[1])
+                                                     -0.736     9.176    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_0
+  -------------------------------------------------------------------
+                         required time                          9.176    
+                         arrival time                          -8.490    
+  -------------------------------------------------------------------
+                         slack                                  0.687    
+
+Slack (MET) :             0.704ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/csr_addr_o_reg[9]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3/DIADI[5]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.547ns  (logic 2.420ns (20.958%)  route 9.127ns (79.042%))
+  Logic Levels:           10  (LUT2=1 LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        0.113ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.957ns = ( 10.543 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.485ns
+    Clock Pessimism Removal (CPR):    -0.414ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.656    -2.485    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/clk
+    SLICE_X50Y4          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/csr_addr_o_reg[9]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X50Y4          FDCE (Prop_fdce_C_Q)         0.518    -1.967 r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/csr_addr_o_reg[9]/Q
+                         net (fo=5, routed)           0.842    -1.125    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/csr_addr_o[9]
+    SLICE_X51Y3          LUT5 (Prop_lut5_I0_O)        0.152    -0.973 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_24/O
+                         net (fo=1, routed)           0.584    -0.389    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_24_n_0
+    SLICE_X46Y3          LUT4 (Prop_lut4_I3_O)        0.332    -0.057 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_20/O
+                         net (fo=1, routed)           0.297     0.240    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_20_n_0
+    SLICE_X49Y3          LUT6 (Prop_lut6_I4_O)        0.124     0.364 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_16/O
+                         net (fo=115, routed)         1.375     1.738    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_16_n_0
+    SLICE_X43Y1          LUT4 (Prop_lut4_I1_O)        0.152     1.890 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[13]_i_5/O
+                         net (fo=1, routed)           0.859     2.749    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[13]_i_5_n_0
+    SLICE_X43Y1          LUT6 (Prop_lut6_I2_O)        0.326     3.075 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[13]_i_2/O
+                         net (fo=4, routed)           1.209     4.284    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/csr_rdata[13]
+    SLICE_X77Y1          LUT6 (Prop_lut6_I4_O)        0.124     4.408 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_4_LOPT_REMAP_15/O
+                         net (fo=1, routed)           0.295     4.702    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_4/O_n_15
+    SLICE_X78Y1          LUT6 (Prop_lut6_I5_O)        0.124     4.826 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_1_LOPT_REMAP_18/O
+                         net (fo=1, routed)           0.832     5.659    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_1/O_n_18
+    SLICE_X79Y8          LUT6 (Prop_lut6_I5_O)        0.124     5.783 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_0_LOPT_REMAP_18/O
+                         net (fo=3, routed)           0.907     6.690    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/ex_rd_data_i[13]
+    SLICE_X80Y16         LUT5 (Prop_lut5_I0_O)        0.118     6.808 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/captured_wdata[29]_i_1/O
+                         net (fo=3, routed)           1.105     7.913    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/ex_w_data[29]
+    SLICE_X102Y16        LUT2 (Prop_lut2_I1_O)        0.326     8.239 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_3_i_3/O
+                         net (fo=2, routed)           0.824     9.062    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_1_in[5]
+    RAMB18_X4Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3/DIADI[5]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.655    10.543    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X4Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3/CLKARDCLK
+                         clock pessimism             -0.414    10.129    
+                         clock uncertainty           -0.121    10.008    
+    RAMB18_X4Y6          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[5])
+                                                     -0.241     9.767    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3
+  -------------------------------------------------------------------
+                         required time                          9.767    
+                         arrival time                          -9.062    
+  -------------------------------------------------------------------
+                         slack                                  0.704    
+
+Slack (MET) :             0.736ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_0/WEA[0]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        10.913ns  (logic 1.989ns (18.226%)  route 8.924ns (81.774%))
+  Logic Levels:           10  (CARRY4=2 LUT4=1 LUT5=2 LUT6=4 RAMD64E=1)
+  Clock Path Skew:        0.006ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.952ns = ( 10.548 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.032     5.127    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X64Y9          LUT5 (Prop_lut5_I0_O)        0.124     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_way_i_4__0/O
+                         net (fo=142, routed)         1.034     6.285    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/stall
+    SLICE_X81Y10         LUT5 (Prop_lut5_I1_O)        0.124     6.409 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/bus_mem_we_r_i_1/O
+                         net (fo=134, routed)         1.031     7.439    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/store_cache_write
+    SLICE_X82Y13         LUT4 (Prop_lut4_I3_O)        0.150     7.589 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_0_i_23/O
+                         net (fo=4, routed)           0.851     8.440    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_0_in0_out[0]
+    RAMB18_X4Y5          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_0/WEA[0]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.660    10.548    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X4Y5          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_0/CLKARDCLK
+                         clock pessimism             -0.514    10.033    
+                         clock uncertainty           -0.121     9.912    
+    RAMB18_X4Y5          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_WEA[0])
+                                                     -0.736     9.176    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_0
+  -------------------------------------------------------------------
+                         required time                          9.176    
+                         arrival time                          -8.440    
+  -------------------------------------------------------------------
+                         slack                                  0.736    
+
+Slack (MET) :             0.755ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3/DIADI[4]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.423ns  (logic 2.059ns (18.025%)  route 9.364ns (81.975%))
+  Logic Levels:           10  (LUT2=1 LUT3=1 LUT4=1 LUT5=2 LUT6=5)
+  Clock Path Skew:        0.040ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.957ns = ( 10.543 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.412ns
+    Clock Pessimism Removal (CPR):    -0.414ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.729    -2.412    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/clk
+    SLICE_X59Y3          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X59Y3          FDCE (Prop_fdce_C_Q)         0.419    -1.993 r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/w_reg_waddr_o_reg[3]/Q
+                         net (fo=8, routed)           0.828    -1.165    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/w_reg_waddr_o[3]
+    SLICE_X59Y2          LUT5 (Prop_lut5_I4_O)        0.296    -0.869 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_25/O
+                         net (fo=1, routed)           0.433    -0.436    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_25_n_0
+    SLICE_X59Y2          LUT4 (Prop_lut4_I0_O)        0.150    -0.286 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_23/O
+                         net (fo=1, routed)           0.556     0.270    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_23_n_0
+    SLICE_X53Y0          LUT6 (Prop_lut6_I0_O)        0.326     0.596 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_19/O
+                         net (fo=2, routed)           0.777     1.373    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/csr_re
+    SLICE_X51Y2          LUT3 (Prop_lut3_I1_O)        0.124     1.497 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_10/O
+                         net (fo=32, routed)          1.238     2.735    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[31]_i_10_n_0
+    SLICE_X45Y1          LUT6 (Prop_lut6_I2_O)        0.124     2.859 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mie[12]_i_2/O
+                         net (fo=4, routed)           1.115     3.973    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/csr_rdata[12]
+    SLICE_X75Y1          LUT6 (Prop_lut6_I4_O)        0.124     4.097 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_4_LOPT_REMAP_16/O
+                         net (fo=1, routed)           0.492     4.589    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_4/O_n_16
+    SLICE_X78Y1          LUT6 (Prop_lut6_I5_O)        0.124     4.713 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_1_LOPT_REMAP_19/O
+                         net (fo=1, routed)           0.937     5.650    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_1/O_n_19
+    SLICE_X73Y14         LUT6 (Prop_lut6_I5_O)        0.124     5.774 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/i_0_LOPT_REMAP_19/O
+                         net (fo=3, routed)           0.982     6.755    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/ex_rd_data_i[12]
+    SLICE_X80Y14         LUT5 (Prop_lut5_I0_O)        0.124     6.879 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/captured_wdata[28]_i_1/O
+                         net (fo=3, routed)           1.120     8.000    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/ex_w_data[28]
+    SLICE_X102Y16        LUT2 (Prop_lut2_I1_O)        0.124     8.124 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_3_i_4/O
+                         net (fo=2, routed)           0.888     9.011    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_1_in[4]
+    RAMB18_X4Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3/DIADI[4]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.655    10.543    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X4Y6          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3/CLKARDCLK
+                         clock pessimism             -0.414    10.129    
+                         clock uncertainty           -0.121    10.008    
+    RAMB18_X4Y6          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_DIADI[4])
+                                                     -0.241     9.767    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way1_reg_3
+  -------------------------------------------------------------------
+                         required time                          9.767    
+                         arrival time                          -9.011    
+  -------------------------------------------------------------------
+                         slack                                  0.755    
+
+Slack (MET) :             0.791ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[3]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.289ns  (logic 2.424ns (21.473%)  route 8.865ns (78.527%))
+  Logic Levels:           10  (CARRY4=2 LUT2=1 LUT3=2 LUT6=4 RAMD64E=1)
+  Clock Path Skew:        -0.094ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -2.052ns = ( 10.448 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.008     5.102    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X55Y5          LUT3 (Prop_lut3_I2_O)        0.149     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_tag[21]_i_5/O
+                         net (fo=42, routed)          1.082     6.334    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/inst_valid_o_reg
+    SLICE_X64Y12         LUT3 (Prop_lut3_I2_O)        0.358     6.692 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/u_ex_mem_i_34/O
+                         net (fo=21, routed)          0.662     7.354    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/flush
+    SLICE_X65Y13         LUT2 (Prop_lut2_I0_O)        0.326     7.680 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o[31]_i_1/O
+                         net (fo=64, routed)          1.136     8.816    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o[31]_i_1_n_0
+    SLICE_X80Y9          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[3]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.560    10.448    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/clk
+    SLICE_X80Y9          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[3]/C
+                         clock pessimism             -0.514     9.934    
+                         clock uncertainty           -0.121     9.813    
+    SLICE_X80Y9          FDCE (Setup_fdce_C_CE)      -0.205     9.608    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[3]
+  -------------------------------------------------------------------
+                         required time                          9.608    
+                         arrival time                          -8.816    
+  -------------------------------------------------------------------
+                         slack                                  0.791    
+
+Slack (MET) :             0.791ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_2/WEA[0]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.060ns  (logic 1.963ns (17.748%)  route 9.097ns (82.252%))
+  Logic Levels:           10  (CARRY4=2 LUT5=2 LUT6=5 RAMD64E=1)
+  Clock Path Skew:        0.005ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.953ns = ( 10.547 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.032     5.127    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X64Y9          LUT5 (Prop_lut5_I0_O)        0.124     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_way_i_4__0/O
+                         net (fo=142, routed)         1.034     6.285    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/stall
+    SLICE_X81Y10         LUT5 (Prop_lut5_I1_O)        0.124     6.409 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/bus_mem_we_r_i_1/O
+                         net (fo=134, routed)         0.981     7.390    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/store_cache_write
+    SLICE_X90Y16         LUT6 (Prop_lut6_I5_O)        0.124     7.514 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_2_i_17/O
+                         net (fo=4, routed)           1.074     8.588    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_0_in0_out[2]
+    RAMB18_X5Y7          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_2/WEA[0]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.659    10.547    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X5Y7          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_2/CLKARDCLK
+                         clock pessimism             -0.514    10.032    
+                         clock uncertainty           -0.121     9.911    
+    RAMB18_X5Y7          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_WEA[0])
+                                                     -0.532     9.379    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_2
+  -------------------------------------------------------------------
+                         required time                          9.379    
+                         arrival time                          -8.588    
+  -------------------------------------------------------------------
+                         slack                                  0.791    
+
+Slack (MET) :             0.791ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_2/WEA[1]
+                            (rising edge-triggered cell RAMB18E1 clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.060ns  (logic 1.963ns (17.748%)  route 9.097ns (82.252%))
+  Logic Levels:           10  (CARRY4=2 LUT5=2 LUT6=5 RAMD64E=1)
+  Clock Path Skew:        0.005ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.953ns = ( 10.547 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.032     5.127    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X64Y9          LUT5 (Prop_lut5_I0_O)        0.124     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_way_i_4__0/O
+                         net (fo=142, routed)         1.034     6.285    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/stall
+    SLICE_X81Y10         LUT5 (Prop_lut5_I1_O)        0.124     6.409 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/bus_mem_we_r_i_1/O
+                         net (fo=134, routed)         0.981     7.390    u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/store_cache_write
+    SLICE_X90Y16         LUT6 (Prop_lut6_I5_O)        0.124     7.514 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb/data_way0_reg_2_i_17/O
+                         net (fo=4, routed)           1.074     8.588    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/p_0_in0_out[2]
+    RAMB18_X5Y7          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_2/WEA[1]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.659    10.547    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/clk_out1
+    RAMB18_X5Y7          RAMB18E1                                     r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_2/CLKARDCLK
+                         clock pessimism             -0.514    10.032    
+                         clock uncertainty           -0.121     9.911    
+    RAMB18_X5Y7          RAMB18E1 (Setup_ramb18e1_CLKARDCLK_WEA[1])
+                                                     -0.532     9.379    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/data_way0_reg_2
+  -------------------------------------------------------------------
+                         required time                          9.379    
+                         arrival time                          -8.588    
+  -------------------------------------------------------------------
+                         slack                                  0.791    
+
+Slack (MET) :             0.801ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_mem_wb_rs2_o_reg/CE
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.279ns  (logic 2.196ns (19.471%)  route 9.083ns (80.529%))
+  Logic Levels:           10  (CARRY4=2 LUT2=1 LUT3=1 LUT6=5 RAMD64E=1)
+  Clock Path Skew:        -0.095ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -2.053ns = ( 10.447 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.008     5.102    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X55Y5          LUT3 (Prop_lut3_I2_O)        0.149     5.251 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_tag[21]_i_5/O
+                         net (fo=42, routed)          0.816     6.067    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/inst_valid_o_reg
+    SLICE_X54Y9          LUT6 (Prop_lut6_I5_O)        0.332     6.399 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/id_ex_u_i_128/O
+                         net (fo=94, routed)          1.055     7.455    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/flush
+    SLICE_X53Y5          LUT2 (Prop_lut2_I0_O)        0.124     7.579 r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/inst_valid_o_i_1/O
+                         net (fo=91, routed)          1.227     8.806    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/inst_valid_o_i_1_n_0
+    SLICE_X73Y6          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_mem_wb_rs2_o_reg/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.559    10.447    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/clk
+    SLICE_X73Y6          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_mem_wb_rs2_o_reg/C
+                         clock pessimism             -0.514     9.933    
+                         clock uncertainty           -0.121     9.812    
+    SLICE_X73Y6          FDCE (Setup_fdce_C_CE)      -0.205     9.607    u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_mem_wb_rs2_o_reg
+  -------------------------------------------------------------------
+                         required time                          9.607    
+                         arrival time                          -8.806    
+  -------------------------------------------------------------------
+                         slack                                  0.801    
+
+Slack (MET) :             0.803ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[26]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.274ns  (logic 2.424ns (21.501%)  route 8.850ns (78.499%))
+  Logic Levels:           10  (CARRY4=2 LUT2=1 LUT3=2 LUT6=4 RAMD64E=1)
+  Clock Path Skew:        -0.097ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -2.055ns = ( 10.445 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.008     5.102    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X55Y5          LUT3 (Prop_lut3_I2_O)        0.149     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_tag[21]_i_5/O
+                         net (fo=42, routed)          1.082     6.334    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/inst_valid_o_reg
+    SLICE_X64Y12         LUT3 (Prop_lut3_I2_O)        0.358     6.692 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/u_ex_mem_i_34/O
+                         net (fo=21, routed)          0.662     7.354    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/flush
+    SLICE_X65Y13         LUT2 (Prop_lut2_I0_O)        0.326     7.680 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o[31]_i_1/O
+                         net (fo=64, routed)          1.121     8.801    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o[31]_i_1_n_0
+    SLICE_X80Y14         FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[26]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.557    10.445    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/clk
+    SLICE_X80Y14         FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[26]/C
+                         clock pessimism             -0.514     9.931    
+                         clock uncertainty           -0.121     9.810    
+    SLICE_X80Y14         FDCE (Setup_fdce_C_CE)      -0.205     9.605    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[26]
+  -------------------------------------------------------------------
+                         required time                          9.605    
+                         arrival time                          -8.801    
+  -------------------------------------------------------------------
+                         slack                                  0.803    
+
+Slack (MET) :             0.803ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[27]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.274ns  (logic 2.424ns (21.501%)  route 8.850ns (78.499%))
+  Logic Levels:           10  (CARRY4=2 LUT2=1 LUT3=2 LUT6=4 RAMD64E=1)
+  Clock Path Skew:        -0.097ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -2.055ns = ( 10.445 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.008     5.102    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X55Y5          LUT3 (Prop_lut3_I2_O)        0.149     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_tag[21]_i_5/O
+                         net (fo=42, routed)          1.082     6.334    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/inst_valid_o_reg
+    SLICE_X64Y12         LUT3 (Prop_lut3_I2_O)        0.358     6.692 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/u_ex_mem_i_34/O
+                         net (fo=21, routed)          0.662     7.354    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/flush
+    SLICE_X65Y13         LUT2 (Prop_lut2_I0_O)        0.326     7.680 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o[31]_i_1/O
+                         net (fo=64, routed)          1.121     8.801    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o[31]_i_1_n_0
+    SLICE_X80Y14         FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[27]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.557    10.445    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/clk
+    SLICE_X80Y14         FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[27]/C
+                         clock pessimism             -0.514     9.931    
+                         clock uncertainty           -0.121     9.810    
+    SLICE_X80Y14         FDCE (Setup_fdce_C_CE)      -0.205     9.605    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[27]
+  -------------------------------------------------------------------
+                         required time                          9.605    
+                         arrival time                          -8.801    
+  -------------------------------------------------------------------
+                         slack                                  0.803    
+
+Slack (MET) :             0.803ns  (required time - arrival time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[31]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@6.250ns period=12.500ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            12.500ns  (clk_out1_clk_wiz_0 rise@12.500ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        11.274ns  (logic 2.424ns (21.501%)  route 8.850ns (78.499%))
+  Logic Levels:           10  (CARRY4=2 LUT2=1 LUT3=2 LUT6=4 RAMD64E=1)
+  Clock Path Skew:        -0.097ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -2.055ns = ( 10.445 - 12.500 ) 
+    Source Clock Delay      (SCD):    -2.473ns
+    Clock Pessimism Removal (CPR):    -0.514ns
+  Clock Uncertainty:      0.121ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.232ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.498     1.498 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.306     2.804    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.929    -6.125 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.883    -4.242    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -4.141 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.668    -2.473    u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/clk_out1
+    SLICE_X35Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y8          FDCE (Prop_fdce_C_Q)         0.456    -2.017 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/Q
+                         net (fo=290, routed)         1.299    -0.718    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/ADDRC1
+    SLICE_X38Y7          RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.124    -0.594 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_reg_0_63_9_11/RAMC/O
+                         net (fo=1, routed)           0.961     0.367    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/tag_way0_out[11]
+    SLICE_X37Y9          LUT6 (Prop_lut6_I0_O)        0.124     0.491 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8/O
+                         net (fo=1, routed)           0.000     0.491    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_i_8_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     0.892 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3/CO[3]
+                         net (fo=1, routed)           0.000     0.892    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_3_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.006 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way0_r_reg_i_2/CO[3]
+                         net (fo=4, routed)           1.141     2.148    u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/hit_way00
+    SLICE_X40Y10         LUT6 (Prop_lut6_I4_O)        0.124     2.272 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_icache/flush_reg_i_8/O
+                         net (fo=1, routed)           1.053     3.324    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/icache_stall
+    SLICE_X62Y9          LUT6 (Prop_lut6_I3_O)        0.124     3.448 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_2/O
+                         net (fo=14, routed)          0.523     3.971    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/inter_req
+    SLICE_X62Y6          LUT6 (Prop_lut6_I4_O)        0.124     4.095 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/flush_reg_i_4/O
+                         net (fo=14, routed)          1.008     5.102    u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/jump_trap_out
+    SLICE_X55Y5          LUT3 (Prop_lut3_I2_O)        0.149     5.251 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/miss_tag[21]_i_5/O
+                         net (fo=42, routed)          1.082     6.334    u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/inst_valid_o_reg
+    SLICE_X64Y12         LUT3 (Prop_lut3_I2_O)        0.358     6.692 f  u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/u_ex_mem_i_34/O
+                         net (fo=21, routed)          0.662     7.354    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/flush
+    SLICE_X65Y13         LUT2 (Prop_lut2_I0_O)        0.326     7.680 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o[31]_i_1/O
+                         net (fo=64, routed)          1.121     8.801    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o[31]_i_1_n_0
+    SLICE_X80Y14         FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[31]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                     12.500    12.500 r  
+    U18                                               0.000    12.500 r  clk (IN)
+                         net (fo=0)                   0.000    12.500    u_clk_wiz_0/inst/clk_in1
+    U18                  IBUF (Prop_ibuf_I_O)         1.428    13.928 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    15.109    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.032     7.077 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.720     8.797    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     8.888 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16371, routed)       1.557    10.445    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/clk
+    SLICE_X80Y14         FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[31]/C
+                         clock pessimism             -0.514     9.931    
+                         clock uncertainty           -0.121     9.810    
+    SLICE_X80Y14         FDCE (Setup_fdce_C_CE)      -0.205     9.605    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[31]
+  -------------------------------------------------------------------
+                         required time                          9.605    
+                         arrival time                          -8.801    
+  -------------------------------------------------------------------
+                         slack                                  0.803    
+
+
+
+

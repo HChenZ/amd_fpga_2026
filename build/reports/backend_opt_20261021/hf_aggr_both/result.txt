@@ -1,0 +1,4 @@
+RESULT variant=hf_aggr_both wns=0.138 tns=0.000 failing=0 whs=0.017 hold_failing=0 luts=13468 luts_before=13468
+BEFORE wns=0.138 whs=0.017 base=pl_ndh_crit200_ntr_routed.dcp
+KNOBS holdfix=hf_aggr_both (post-route only, no re-place/re-route)
+SOURCE tool=2025.2 date=Wed Oct 21 11:12:46 +0800 2026

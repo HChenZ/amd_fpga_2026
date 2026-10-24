@@ -1,0 +1,78 @@
+--- a/src/rtl/ascon/ascon_ise.v
++++ b/src/rtl/ascon/ascon_ise.v
+@@ -52,6 +52,19 @@
+             perm_rst_n <= !cancel && (perm_run || (perm_start && !perm_done));
+     end
+ 
++    // [TIMING E] `cancel` is the tail of a wide trap/flush cone (icache hit ->
++    // csr_file -> flush -> trap). Feeding it straight into the 320-bit `state`
++    // register puts that whole cone on 320 enables. Register it once and use the
++    // registered copy for the physical zeroing; the read port stays masked by
++    // {cancel, cancel_d} so no stale state is visible during the one-cycle delay.
++    reg cancel_d;
++    always @(posedge clk or negedge rst_n) begin
++        if (!rst_n)
++            cancel_d <= 1'b0;
++        else
++            cancel_d <= cancel;
++    end
++
+     wire [319:0] p12_out, p8_out;
+     wire         p12_done, p8_done;
+     wire [319:0] p_out  = mode_p12 ? p12_out : p8_out;
+@@ -68,7 +81,8 @@
+         .s_in(state), .s_out(p8_out), .done(p8_done), .busy()
+     );
+ 
+-    assign rd_data = (rd_idx < 10) ? state[32*rd_idx +: 32] : 32'd0;
++    assign rd_data = (cancel || cancel_d) ? 32'd0 :
++                     ((rd_idx < 10) ? state[32*rd_idx +: 32] : 32'd0);
+ 
+     always @(posedge clk or negedge rst_n) begin
+         if (!rst_n) begin
+@@ -77,20 +91,19 @@
+             perm_run  <= 1'b0;
+             p_start   <= 1'b0;
+             perm_done <= 1'b0;
+-        end else if (cancel) begin
+-            state <= 320'd0;
+-            mode_p12 <= 1'b0;
+-            perm_run <= 1'b0;
+-            p_start <= 1'b0;
+-            perm_done <= 1'b0;
+         end else begin
+-            p_start   <= 1'b0;
++            p_start <= 1'b0;
+             if (perm_ack) perm_done <= 1'b0;
+ 
+-            if (wr_en && wr_idx < 10 && !perm_run && !perm_done)
+-                state[32*wr_idx +: 32] <= wr_data;
+-
+-            if (perm_start && !perm_run && !perm_done) begin
++            if (cancel) begin
++                // Fast kill of the control state only (5 bits, wide cone is fine).
++                // The 320-bit `state` is zeroed one cycle later, so `cancel` never
++                // reaches its enable.
++                mode_p12  <= 1'b0;
++                perm_run  <= 1'b0;
++                p_start   <= 1'b0;
++                perm_done <= 1'b0;
++            end else if (perm_start && !perm_run && !perm_done) begin
+                 mode_p12 <= perm_p12;
+                 p_start  <= 1'b1;
+                 perm_run <= 1'b1;
+@@ -98,6 +111,14 @@
+                 state     <= p_out;
+                 perm_done <= 1'b1;
+                 perm_run  <= 1'b0;
++            end else if (wr_en && wr_idx < 10 && !perm_run && !perm_done) begin
++                // Real writes keep priority over the delayed zeroing: a new
++                // ascon.w one cycle after cancel must not be swallowed.
++                state[32*wr_idx +: 32] <= wr_data;
++            end else if (cancel_d) begin
++                // [TIMING E] physical zeroing one cycle after cancel; rd_data is
++                // masked during both cancel and cancel_d, so nothing is visible.
++                state <= 320'd0;
+             end
+         end
+     end

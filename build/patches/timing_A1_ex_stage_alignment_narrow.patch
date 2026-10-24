@@ -1,0 +1,29 @@
+--- a/src/rtl/ex_stage.v
++++ b/src/rtl/ex_stage.v
+@@ -436,6 +436,13 @@
+     //assign ex_mem_addr = id_op_sel == `EXE_RES_LOAD_STORE ? mem_addr : {XLEN{1'b0}};
+     assign ex_mem_addr = mem_addr;
+ 
++    // [TIMING A1] Alignment needs only the low 3 bits, and the low bits of a sum do
++    // not depend on the carry chain: (a+b)[2:0] == (a[2:0]+b[2:0])[2:0].
++    // Computing them from a 3-bit partial sum keeps the 32-bit address adder out of
++    // the trap -> flush -> ID/EX register-enable cone (that cone was the worst path:
++    // 13 levels with 8 CARRY4).
++    wire [2:0] mem_addr_lo = id_rs1_reg[2:0] + id_imm_reg[2:0];
++
+     // 非对齐检测逻辑
+     reg non_aligned_word;
+     reg non_aligned_half;
+@@ -443,9 +450,9 @@
+     
+     always @(*) 
+     begin
+-        non_aligned_word = (ex_mem_addr[1:0] != 2'b00);
+-        non_aligned_half = (ex_mem_addr[0]   != 1'b0);
+-        non_aligned_double_word = (ex_mem_addr[2:0] != 3'b000);
++        non_aligned_word = (mem_addr_lo[1:0] != 2'b00);
++        non_aligned_half = (mem_addr_lo[0]   != 1'b0);
++        non_aligned_double_word = (mem_addr_lo[2:0] != 3'b000);
+     end
+ 
+     // =========================================================================

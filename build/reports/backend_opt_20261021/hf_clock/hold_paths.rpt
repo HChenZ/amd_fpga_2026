@@ -1,0 +1,1271 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Wed Oct 21 11:16:31 2026
+| Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type min -max_paths 20 -nworst 1 -input_pins -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/reports/backend_opt_20261021/hf_clock/hold_paths.rpt
+| Design       : top_pl_bram
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Physopt postRoute
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.017ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[315]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s4_reg[59]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.381ns  (logic 0.186ns (48.865%)  route 0.195ns (51.135%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.271ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.341ns
+    Source Clock Delay      (SCD):    -0.572ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.559    -0.572    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/clk_out1
+    SLICE_X35Y51         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[315]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y51         FDRE (Prop_fdre_C_Q)         0.141    -0.431 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[315]/Q
+                         net (fo=1, routed)           0.195    -0.236    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/p12_out[315]
+    SLICE_X37Y49                                                      r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s4[59]_i_1/I2
+    SLICE_X37Y49         LUT6 (Prop_lut6_I2_O)        0.045    -0.191 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s4[59]_i_1/O
+                         net (fo=1, routed)           0.000    -0.191    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst_n_134
+    SLICE_X37Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s4_reg[59]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.830    -0.341    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk_out1
+    SLICE_X37Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s4_reg[59]/C
+                         clock pessimism              0.040    -0.300    
+    SLICE_X37Y49         FDRE (Hold_fdre_C_D)         0.092    -0.208    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s4_reg[59]
+  -------------------------------------------------------------------
+                         required time                          0.208    
+                         arrival time                          -0.191    
+  -------------------------------------------------------------------
+                         slack                                  0.017    
+
+Slack (MET) :             0.020ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/run_key_reg[27]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/key_r_reg[27]/D
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.300ns  (logic 0.148ns (49.334%)  route 0.152ns (50.666%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.286ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.311ns
+    Source Clock Delay      (SCD):    -0.557ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.574    -0.557    u_soc_axi_top/u_soc_top/u_ascon_mmio/clk_out1
+    SLICE_X26Y50         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/run_key_reg[27]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X26Y50         FDCE (Prop_fdce_C_Q)         0.148    -0.409 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/run_key_reg[27]/Q
+                         net (fo=1, routed)           0.152    -0.257    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/key_r_reg[127]_0[27]
+    SLICE_X25Y48         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/key_r_reg[27]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.860    -0.311    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/clk_out1
+    SLICE_X25Y48         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/key_r_reg[27]/C
+                         clock pessimism              0.040    -0.270    
+    SLICE_X25Y48         FDCE (Hold_fdce_C_D)        -0.006    -0.276    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/key_r_reg[27]
+  -------------------------------------------------------------------
+                         required time                          0.276    
+                         arrival time                          -0.257    
+  -------------------------------------------------------------------
+                         slack                                  0.020    
+
+Slack (MET) :             0.025ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in_reg[251]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[251]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.419ns  (logic 0.209ns (49.885%)  route 0.210ns (50.115%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.273ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.340ns
+    Source Clock Delay      (SCD):    -0.573ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.558    -0.573    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk_out1
+    SLICE_X34Y53         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in_reg[251]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X34Y53         FDRE (Prop_fdre_C_Q)         0.164    -0.409 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in_reg[251]/Q
+                         net (fo=1, routed)           0.210    -0.199    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[319]_0[251]
+    SLICE_X34Y49                                                      r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg[251]_i_1/I0
+    SLICE_X34Y49         LUT5 (Prop_lut5_I0_O)        0.045    -0.154 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg[251]_i_1/O
+                         net (fo=1, routed)           0.000    -0.154    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/p_2_in[251]
+    SLICE_X34Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[251]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.831    -0.340    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/clk_out1
+    SLICE_X34Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[251]/C
+                         clock pessimism              0.040    -0.299    
+    SLICE_X34Y49         FDRE (Hold_fdre_C_D)         0.121    -0.178    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[251]
+  -------------------------------------------------------------------
+                         required time                          0.178    
+                         arrival time                          -0.154    
+  -------------------------------------------------------------------
+                         slack                                  0.025    
+
+Slack (MET) :             0.027ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in_reg[229]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[229]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.390ns  (logic 0.186ns (47.676%)  route 0.204ns (52.324%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.272ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.340ns
+    Source Clock Delay      (SCD):    -0.572ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.559    -0.572    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk_out1
+    SLICE_X35Y50         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in_reg[229]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y50         FDRE (Prop_fdre_C_Q)         0.141    -0.431 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in_reg[229]/Q
+                         net (fo=1, routed)           0.204    -0.227    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[319]_0[229]
+    SLICE_X35Y49                                                      r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg[229]_i_1/I0
+    SLICE_X35Y49         LUT5 (Prop_lut5_I0_O)        0.045    -0.182 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg[229]_i_1/O
+                         net (fo=1, routed)           0.000    -0.182    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/p_2_in[229]
+    SLICE_X35Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[229]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.831    -0.340    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/clk_out1
+    SLICE_X35Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[229]/C
+                         clock pessimism              0.040    -0.299    
+    SLICE_X35Y49         FDRE (Hold_fdre_C_D)         0.091    -0.208    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[229]
+  -------------------------------------------------------------------
+                         required time                          0.208    
+                         arrival time                          -0.182    
+  -------------------------------------------------------------------
+                         slack                                  0.027    
+
+Slack (MET) :             0.030ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/data_out_reg[77]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/out_shf_reg[77]/D
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.305ns  (logic 0.128ns (41.975%)  route 0.177ns (58.025%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.263ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.317ns
+    Source Clock Delay      (SCD):    -0.540ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.591    -0.540    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk_out1
+    SLICE_X87Y47         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/data_out_reg[77]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X87Y47         FDRE (Prop_fdre_C_Q)         0.128    -0.412 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/data_out_reg[77]/Q
+                         net (fo=1, routed)           0.177    -0.235    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/crypto_data_out[77]
+    SLICE_X87Y50         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/out_shf_reg[77]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.854    -0.317    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/clk_out1
+    SLICE_X87Y50         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/out_shf_reg[77]/C
+                         clock pessimism              0.040    -0.276    
+    SLICE_X87Y50         FDCE (Hold_fdce_C_D)         0.012    -0.264    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/out_shf_reg[77]
+  -------------------------------------------------------------------
+                         required time                          0.264    
+                         arrival time                          -0.235    
+  -------------------------------------------------------------------
+                         slack                                  0.030    
+
+Slack (MET) :             0.040ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/tag_reg[46]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/tag_out_r_reg[46]/D
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.390ns  (logic 0.186ns (47.651%)  route 0.204ns (52.349%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        0.258ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.348ns
+    Source Clock Delay      (SCD):    -0.571ns
+    Clock Pessimism Removal (CPR):    -0.035ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.560    -0.571    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk_out1
+    SLICE_X47Y39         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/tag_reg[46]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y39         FDRE (Prop_fdre_C_Q)         0.141    -0.430 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/tag_reg[46]/Q
+                         net (fo=1, routed)           0.204    -0.226    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/crypto_tag[46]
+    SLICE_X51Y39                                                      r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/tag_out_r[46]_i_1/I1
+    SLICE_X51Y39         LUT2 (Prop_lut2_I1_O)        0.045    -0.181 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/tag_out_r[46]_i_1/O
+                         net (fo=1, routed)           0.000    -0.181    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead_n_86
+    SLICE_X51Y39         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/tag_out_r_reg[46]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.823    -0.348    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/clk_out1
+    SLICE_X51Y39         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/tag_out_r_reg[46]/C
+                         clock pessimism              0.035    -0.312    
+    SLICE_X51Y39         FDCE (Hold_fdce_C_D)         0.092    -0.220    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/tag_out_r_reg[46]
+  -------------------------------------------------------------------
+                         required time                          0.220    
+                         arrival time                          -0.181    
+  -------------------------------------------------------------------
+                         slack                                  0.040    
+
+Slack (MET) :             0.044ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in_reg[251]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[251]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.410ns  (logic 0.227ns (55.409%)  route 0.183ns (44.591%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.273ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.341ns
+    Source Clock Delay      (SCD):    -0.574ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.557    -0.574    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk_out1
+    SLICE_X43Y50         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in_reg[251]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X43Y50         FDRE (Prop_fdre_C_Q)         0.128    -0.446 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in_reg[251]/Q
+                         net (fo=1, routed)           0.183    -0.263    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[319]_0[251]
+    SLICE_X48Y49                                                      r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg[251]_i_1__0/I0
+    SLICE_X48Y49         LUT5 (Prop_lut5_I0_O)        0.099    -0.164 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg[251]_i_1__0/O
+                         net (fo=1, routed)           0.000    -0.164    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/p_2_in[251]
+    SLICE_X48Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[251]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.830    -0.341    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/clk_out1
+    SLICE_X48Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[251]/C
+                         clock pessimism              0.040    -0.300    
+    SLICE_X48Y49         FDRE (Hold_fdre_C_D)         0.092    -0.208    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[251]
+  -------------------------------------------------------------------
+                         required time                          0.208    
+                         arrival time                          -0.164    
+  -------------------------------------------------------------------
+                         slack                                  0.044    
+
+Slack (MET) :             0.049ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/state_reg[161]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/s_reg_reg[161]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.437ns  (logic 0.186ns (42.596%)  route 0.251ns (57.404%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.266ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.343ns
+    Source Clock Delay      (SCD):    -0.574ns
+    Clock Pessimism Removal (CPR):    -0.035ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.557    -0.574    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/clk_out1
+    SLICE_X51Y8          FDCE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/state_reg[161]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X51Y8          FDCE (Prop_fdce_C_Q)         0.141    -0.433 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/state_reg[161]/Q
+                         net (fo=3, routed)           0.251    -0.182    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/Q[161]
+    SLICE_X42Y9                                                       r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/s_reg[161]_i_1__2/I2
+    SLICE_X42Y9          LUT6 (Prop_lut6_I2_O)        0.045    -0.137 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/s_reg[161]_i_1__2/O
+                         net (fo=1, routed)           0.000    -0.137    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/p_2_in[161]
+    SLICE_X42Y9          FDRE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/s_reg_reg[161]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.828    -0.343    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/clk_out1
+    SLICE_X42Y9          FDRE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/s_reg_reg[161]/C
+                         clock pessimism              0.035    -0.307    
+    SLICE_X42Y9          FDRE (Hold_fdre_C_D)         0.121    -0.186    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/s_reg_reg[161]
+  -------------------------------------------------------------------
+                         required time                          0.186    
+                         arrival time                          -0.137    
+  -------------------------------------------------------------------
+                         slack                                  0.049    
+
+Slack (MET) :             0.052ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[3]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.391ns  (logic 0.141ns (36.077%)  route 0.250ns (63.923%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.273ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.345ns
+    Source Clock Delay      (SCD):    -0.578ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.553    -0.578    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/clk_out1
+    SLICE_X52Y50         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X52Y50         FDRE (Prop_fdre_C_Q)         0.141    -0.437 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[3]/Q
+                         net (fo=5, routed)           0.250    -0.187    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg[3]
+    SLICE_X53Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.826    -0.345    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/clk_out1
+    SLICE_X53Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[3]/C
+                         clock pessimism              0.040    -0.304    
+    SLICE_X53Y49         FDRE (Hold_fdre_C_D)         0.066    -0.238    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[3]
+  -------------------------------------------------------------------
+                         required time                          0.238    
+                         arrival time                          -0.187    
+  -------------------------------------------------------------------
+                         slack                                  0.052    
+
+Slack (MET) :             0.055ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[13]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[13]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.378ns  (logic 0.141ns (37.284%)  route 0.237ns (62.716%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.276ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.317ns
+    Source Clock Delay      (SCD):    -0.553ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.578    -0.553    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/clk_out1
+    SLICE_X57Y51         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[13]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X57Y51         FDRE (Prop_fdre_C_Q)         0.141    -0.412 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[13]/Q
+                         net (fo=5, routed)           0.237    -0.175    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg_n_0_[13]
+    SLICE_X67Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.854    -0.317    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/clk_out1
+    SLICE_X67Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[13]/C
+                         clock pessimism              0.040    -0.276    
+    SLICE_X67Y49         FDRE (Hold_fdre_C_D)         0.047    -0.229    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[13]
+  -------------------------------------------------------------------
+                         required time                          0.229    
+                         arrival time                          -0.175    
+  -------------------------------------------------------------------
+                         slack                                  0.055    
+
+Slack (MET) :             0.056ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[299]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s4_reg[43]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.438ns  (logic 0.226ns (51.569%)  route 0.212ns (48.431%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.262ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.346ns
+    Source Clock Delay      (SCD):    -0.568ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.563    -0.568    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/clk_out1
+    SLICE_X41Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[299]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y49         FDRE (Prop_fdre_C_Q)         0.128    -0.440 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[299]/Q
+                         net (fo=1, routed)           0.212    -0.228    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/p12_out[299]
+    SLICE_X42Y50                                                      r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s4[43]_i_1/I2
+    SLICE_X42Y50         LUT6 (Prop_lut6_I2_O)        0.098    -0.130 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s4[43]_i_1/O
+                         net (fo=1, routed)           0.000    -0.130    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst_n_150
+    SLICE_X42Y50         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s4_reg[43]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.825    -0.346    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk_out1
+    SLICE_X42Y50         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s4_reg[43]/C
+                         clock pessimism              0.040    -0.305    
+    SLICE_X42Y50         FDRE (Hold_fdre_C_D)         0.120    -0.185    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s4_reg[43]
+  -------------------------------------------------------------------
+                         required time                          0.185    
+                         arrival time                          -0.130    
+  -------------------------------------------------------------------
+                         slack                                  0.056    
+
+Slack (MET) :             0.058ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/data_out_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/out_shf_reg[3]/D
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.346ns  (logic 0.128ns (37.023%)  route 0.218ns (62.977%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.275ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.312ns
+    Source Clock Delay      (SCD):    -0.547ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.584    -0.547    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk_out1
+    SLICE_X85Y50         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/data_out_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X85Y50         FDRE (Prop_fdre_C_Q)         0.128    -0.419 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/data_out_reg[3]/Q
+                         net (fo=1, routed)           0.218    -0.201    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/crypto_data_out[3]
+    SLICE_X88Y48         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/out_shf_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.859    -0.312    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/clk_out1
+    SLICE_X88Y48         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/out_shf_reg[3]/C
+                         clock pessimism              0.040    -0.271    
+    SLICE_X88Y48         FDCE (Hold_fdce_C_D)         0.012    -0.259    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/out_shf_reg[3]
+  -------------------------------------------------------------------
+                         required time                          0.259    
+                         arrival time                          -0.201    
+  -------------------------------------------------------------------
+                         slack                                  0.058    
+
+Slack (MET) :             0.059ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/key_r_reg[100]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in_reg[228]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.423ns  (logic 0.186ns (43.972%)  route 0.237ns (56.028%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.273ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.340ns
+    Source Clock Delay      (SCD):    -0.573ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.558    -0.573    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/clk_out1
+    SLICE_X33Y55         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/key_r_reg[100]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X33Y55         FDCE (Prop_fdce_C_Q)         0.141    -0.432 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/key_r_reg[100]/Q
+                         net (fo=3, routed)           0.237    -0.195    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s4_reg[63]_0[100]
+    SLICE_X33Y48                                                      r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in[228]_i_1/I0
+    SLICE_X33Y48         LUT5 (Prop_lut5_I0_O)        0.045    -0.150 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in[228]_i_1/O
+                         net (fo=1, routed)           0.000    -0.150    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in1_in[228]
+    SLICE_X33Y48         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in_reg[228]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.831    -0.340    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk_out1
+    SLICE_X33Y48         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in_reg[228]/C
+                         clock pessimism              0.040    -0.299    
+    SLICE_X33Y48         FDRE (Hold_fdre_C_D)         0.091    -0.208    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in_reg[228]
+  -------------------------------------------------------------------
+                         required time                          0.208    
+                         arrival time                          -0.150    
+  -------------------------------------------------------------------
+                         slack                                  0.059    
+
+Slack (MET) :             0.059ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in_reg[124]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[124]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.418ns  (logic 0.186ns (44.484%)  route 0.232ns (55.516%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.268ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.346ns
+    Source Clock Delay      (SCD):    -0.579ns
+    Clock Pessimism Removal (CPR):    -0.035ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.552    -0.579    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk_out1
+    SLICE_X51Y56         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in_reg[124]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X51Y56         FDRE (Prop_fdre_C_Q)         0.141    -0.438 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in_reg[124]/Q
+                         net (fo=1, routed)           0.232    -0.206    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[319]_0[124]
+    SLICE_X49Y50                                                      r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg[124]_i_1__0/I0
+    SLICE_X49Y50         LUT5 (Prop_lut5_I0_O)        0.045    -0.161 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg[124]_i_1__0/O
+                         net (fo=1, routed)           0.000    -0.161    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/p_2_in[124]
+    SLICE_X49Y50         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[124]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.825    -0.346    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/clk_out1
+    SLICE_X49Y50         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[124]/C
+                         clock pessimism              0.035    -0.310    
+    SLICE_X49Y50         FDRE (Hold_fdre_C_D)         0.091    -0.219    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[124]
+  -------------------------------------------------------------------
+                         required time                          0.219    
+                         arrival time                          -0.161    
+  -------------------------------------------------------------------
+                         slack                                  0.059    
+
+Slack (MET) :             0.061ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[318]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[318]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.387ns  (logic 0.141ns (36.441%)  route 0.246ns (63.559%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.262ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.346ns
+    Source Clock Delay      (SCD):    -0.568ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.563    -0.568    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/clk_out1
+    SLICE_X45Y47         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[318]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X45Y47         FDRE (Prop_fdre_C_Q)         0.141    -0.427 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[318]/Q
+                         net (fo=6, routed)           0.246    -0.181    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg_n_0_[318]
+    SLICE_X46Y51         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[318]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.825    -0.346    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/clk_out1
+    SLICE_X46Y51         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[318]/C
+                         clock pessimism              0.040    -0.305    
+    SLICE_X46Y51         FDRE (Hold_fdre_C_D)         0.064    -0.241    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[318]
+  -------------------------------------------------------------------
+                         required time                          0.241    
+                         arrival time                          -0.181    
+  -------------------------------------------------------------------
+                         slack                                  0.061    
+
+Slack (MET) :             0.063ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/tag_out_r_reg[36]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/tagout_r_reg[36]/D
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.441ns  (logic 0.186ns (42.183%)  route 0.255ns (57.817%))
+  Logic Levels:           1  (LUT3=1)
+  Clock Path Skew:        0.258ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.346ns
+    Source Clock Delay      (SCD):    -0.569ns
+    Clock Pessimism Removal (CPR):    -0.035ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.562    -0.569    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/clk_out1
+    SLICE_X47Y45         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/tag_out_r_reg[36]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y45         FDCE (Prop_fdce_C_Q)         0.141    -0.428 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/tag_out_r_reg[36]/Q
+                         net (fo=1, routed)           0.255    -0.173    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/core_tag_out[36]
+    SLICE_X50Y46                                                      r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/tagout_r[36]_i_1/I2
+    SLICE_X50Y46         LUT3 (Prop_lut3_I2_O)        0.045    -0.128 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/tagout_r[36]_i_1/O
+                         net (fo=1, routed)           0.000    -0.128    u_soc_axi_top/u_soc_top/u_ascon_mmio/p_1_in[36]
+    SLICE_X50Y46         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/tagout_r_reg[36]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.825    -0.346    u_soc_axi_top/u_soc_top/u_ascon_mmio/clk_out1
+    SLICE_X50Y46         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/tagout_r_reg[36]/C
+                         clock pessimism              0.035    -0.310    
+    SLICE_X50Y46         FDCE (Hold_fdce_C_D)         0.120    -0.190    u_soc_axi_top/u_soc_top/u_ascon_mmio/tagout_r_reg[36]
+  -------------------------------------------------------------------
+                         required time                          0.190    
+                         arrival time                          -0.128    
+  -------------------------------------------------------------------
+                         slack                                  0.063    
+
+Slack (MET) :             0.065ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[60]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[60]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.379ns  (logic 0.164ns (43.268%)  route 0.215ns (56.732%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.267ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.346ns
+    Source Clock Delay      (SCD):    -0.578ns
+    Clock Pessimism Removal (CPR):    -0.035ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.553    -0.578    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/clk_out1
+    SLICE_X50Y50         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[60]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X50Y50         FDRE (Prop_fdre_C_Q)         0.164    -0.414 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg_reg[60]/Q
+                         net (fo=5, routed)           0.215    -0.199    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg[60]
+    SLICE_X49Y52         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[60]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.825    -0.346    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/clk_out1
+    SLICE_X49Y52         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[60]/C
+                         clock pessimism              0.035    -0.310    
+    SLICE_X49Y52         FDRE (Hold_fdre_C_D)         0.047    -0.263    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[60]
+  -------------------------------------------------------------------
+                         required time                          0.263    
+                         arrival time                          -0.199    
+  -------------------------------------------------------------------
+                         slack                                  0.065    
+
+Slack (MET) :             0.068ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[251]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[251]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.400ns  (logic 0.141ns (35.252%)  route 0.259ns (64.748%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.262ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.347ns
+    Source Clock Delay      (SCD):    -0.569ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.562    -0.569    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/clk_out1
+    SLICE_X48Y49         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[251]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X48Y49         FDRE (Prop_fdre_C_Q)         0.141    -0.428 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg[251]/Q
+                         net (fo=6, routed)           0.259    -0.169    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg_reg_n_0_[251]
+    SLICE_X49Y53         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[251]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.824    -0.347    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/clk_out1
+    SLICE_X49Y53         FDRE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[251]/C
+                         clock pessimism              0.040    -0.306    
+    SLICE_X49Y53         FDRE (Hold_fdre_C_D)         0.070    -0.236    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out_reg[251]
+  -------------------------------------------------------------------
+                         required time                          0.236    
+                         arrival time                          -0.169    
+  -------------------------------------------------------------------
+                         slack                                  0.068    
+
+Slack (MET) :             0.068ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[279]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[279]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.396ns  (logic 0.141ns (35.650%)  route 0.255ns (64.350%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.257ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.351ns
+    Source Clock Delay      (SCD):    -0.573ns
+    Clock Pessimism Removal (CPR):    -0.035ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.558    -0.573    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/clk_out1
+    SLICE_X39Y13         FDRE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[279]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X39Y13         FDRE (Prop_fdre_C_Q)         0.141    -0.432 r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[279]/Q
+                         net (fo=6, routed)           0.255    -0.177    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg_n_0_[279]
+    SLICE_X51Y13         FDRE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[279]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.820    -0.351    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/clk_out1
+    SLICE_X51Y13         FDRE                                         r  u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[279]/C
+                         clock pessimism              0.035    -0.315    
+    SLICE_X51Y13         FDRE (Hold_fdre_C_D)         0.070    -0.245    u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[279]
+  -------------------------------------------------------------------
+                         required time                          0.245    
+                         arrival time                          -0.177    
+  -------------------------------------------------------------------
+                         slack                                  0.068    
+
+Slack (MET) :             0.069ns  (arrival time - required time)
+  Source:                 u_soc_axi_top/u_soc_top/u_ascon_mmio/run_mlen_reg[6]/C
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/msg_words_reg[4]/D
+                            (rising edge-triggered cell FDCE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_clk_wiz_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_clk_wiz_0 rise@0.000ns - clk_out1_clk_wiz_0 rise@0.000ns)
+  Data Path Delay:        0.474ns  (logic 0.275ns (57.971%)  route 0.199ns (42.029%))
+  Logic Levels:           1  (CARRY4=1)
+  Clock Path Skew:        0.275ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.318ns
+    Source Clock Delay      (SCD):    -0.553ns
+    Clock Pessimism Removal (CPR):    -0.040ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.266     0.266 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.706    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.407    -1.700 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    -1.156    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.130 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.578    -0.553    u_soc_axi_top/u_soc_top/u_ascon_mmio/clk_out1
+    SLICE_X58Y50         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/run_mlen_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X58Y50         FDCE (Prop_fdce_C_Q)         0.164    -0.389 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/run_mlen_reg[6]/Q
+                         net (fo=3, routed)           0.199    -0.189    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/FSM_onehot_state[2]_i_9_0[6]
+    SLICE_X62Y45                                                      r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/msg_words_reg[6]_i_1/S[1]
+    SLICE_X62Y45         CARRY4 (Prop_carry4_S[1]_O[1])
+                                                      0.111    -0.078 r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/msg_words_reg[6]_i_1/O[1]
+                         net (fo=3, routed)           0.000    -0.078    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/p_0_in[4]
+    SLICE_X62Y45         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/msg_words_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_clk_wiz_0 rise edge)
+                                                      0.000     0.000 r  
+    U18                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    u_clk_wiz_0/inst/clk_in1
+    U18                                                               r  u_clk_wiz_0/inst/clkin1_ibufg/I
+    U18                  IBUF (Prop_ibuf_I_O)         0.454     0.454 r  u_clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.935    u_clk_wiz_0/inst/clk_in1_clk_wiz_0
+    PLLE2_ADV_X1Y1                                                    r  u_clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.727    -1.792 r  u_clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.592    -1.200    u_clk_wiz_0/inst/clk_out1_clk_wiz_0
+    BUFGCTRL_X0Y16                                                    r  u_clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.171 r  u_clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=16421, routed)       0.853    -0.318    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/clk_out1
+    SLICE_X62Y45         FDCE                                         r  u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/msg_words_reg[4]/C
+                         clock pessimism              0.040    -0.277    
+    SLICE_X62Y45         FDCE (Hold_fdce_C_D)         0.130    -0.147    u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/msg_words_reg[4]
+  -------------------------------------------------------------------
+                         required time                          0.147    
+                         arrival time                          -0.078    
+  -------------------------------------------------------------------
+                         slack                                  0.069    
+
+
+
+

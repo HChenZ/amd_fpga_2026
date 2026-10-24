@@ -1,0 +1,1 @@
+RESULT bce_patches strategy=Performance_ExplorePostRoutePhysOpt wns=-0.003 tns=-0.004 failing=2 whs=0.020

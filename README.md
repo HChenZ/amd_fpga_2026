@@ -142,6 +142,9 @@ flowchart LR
 | [Current RTL decrypt validation](docs/ascon_rtl_decrypt_validation.md) / [RTL interface](src/rtl/ascon/readme.md) | 2026-10-09独立加解密、官方KAT、认证失败、全源集PASS及接口约束 |
 | [development_workflow](docs/development_workflow.md) / [agent_workflow](docs/agent_workflow.md) | 分支、评审、复现和 agent 交接 |
 | [decisions](docs/decisions.md) / [risks](docs/risks.md) | 决策及风险触发条件 |
+| [timing_margin_plan](docs/timing_margin_plan.md) / [board_bringup_plan](docs/board_bringup_plan.md) | 100 MHz 余量根因与提余量路线、拿到板卡后的分步上板清单 |
+| [cpu_timing_architecture_plan](docs/cpu_timing_architecture_plan.md) | 砍 dcache 的定量结论、时序墙按模块归属、B/C/E → A/D → F 架构改动方案与门禁 |
+| [timing_bce_patches](docs/timing_bce_patches.md) | 时序补丁 B/E 的改前改后、等价性验证（功能+周期）、落地与验收命令 |
 | [task_board](tasks/task_board.md) / [milestones](tasks/milestones.md) | 任务清单、日期与门禁 |
 | [development_log](project_log/development_log.md) / [actual_progress](project_log/actual_progress.md) / [lessons_learned](project_log/lessons_learned.md) | 开发活动、已验事实、失败与经验 |
 

@@ -1,0 +1,50 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Wed Oct 21 02:08:12 2026
+| Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
+| Command      : report_high_fanout_nets -fanout_greater_than 256 -max_nets 60 -load_types -timing -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/reports/backend_opt_20261021/pl_ndh_crit60_ntr/route_high_fanout.rpt
+| Design       : top_pl_bram
+| Device       : xc7z020
+| Design State : Physopt postRoute
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+High Fan-out Nets Information
+
+1. Fanout Summary
+-----------------
+
++-----------------------------------------------------------------------------------------------+--------+-------------+-----------------+-----------------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+
+|                                                                                               |        |             |                 |                 |         Clock Enable        |          Set/Reset          |         Data & Other        |            Clock            |
++-----------------------------------------------------------------------------------------------+--------+-------------+-----------------+-----------------+-------+----+----------------+-------+----+----------------+-------+----+----------------+-------+----+----------------+
+| Net Name                                                                                      | Fanout | Driver Type | Worst Slack(ns) | Worst Delay(ns) | Slice | IO | BRAM/DSP/OTHER | Slice | IO | BRAM/DSP/OTHER | Slice | IO | BRAM/DSP/OTHER | Slice | IO | BRAM/DSP/OTHER |
++-----------------------------------------------------------------------------------------------+--------+-------------+-----------------+-----------------+-------+----+----------------+-------+----+----------------+-------+----+----------------+-------+----+----------------+
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/rst_sync_reg[2]                                          |   9659 | LUT1        |           0.400 |           5.921 |     0 |  0 |              0 |  9659 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/SR[0]                |   3989 | LUT2        |           1.063 |           6.019 |     0 |  0 |              0 |  3989 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/SR[0]                         |   1280 | LUT1        |           2.797 |           4.269 |     0 |  0 |              0 |  1280 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/mode_p12_reg_n_0                    |    661 | FDCE        |           1.489 |           3.433 |     0 |  0 |              0 |     0 |  0 |              0 |   661 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/state[3]                      |    627 | FDRE        |           1.137 |           1.727 |     0 |  0 |              0 |     0 |  0 |              0 |   627 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/sel0[0]                                     |    512 | CARRY4      |           0.866 |           1.811 |     0 |  0 |              0 |     0 |  0 |              0 |   512 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/sel0[1]                                     |    512 | CARRY4      |           0.738 |           1.706 |     0 |  0 |              0 |     0 |  0 |              0 |   512 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/bus_addr_r_reg[2]_1                               |    457 | LUT6        |           1.015 |           2.188 |   416 |  0 |              0 |     0 |  0 |              0 |    41 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/adlen_r[0]                                  |    431 | LUT2        |           3.064 |           4.604 |   419 |  0 |              0 |     0 |  0 |              0 |    12 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/mode_reg                      |    386 | LUT5        |           2.361 |           3.056 |   386 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_start_reg_n_0             |    325 | FDRE        |           1.400 |           4.230 |     0 |  0 |              0 |     0 |  0 |              0 |   325 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_start                      |    325 | FDRE        |           2.005 |           3.147 |     0 |  0 |              0 |     0 |  0 |              0 |   325 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_start                     |    321 | LUT6        |           2.698 |           3.346 |   320 |  0 |              0 |     0 |  0 |              0 |     1 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_start_i_1_n_0              |    321 | LUT4        |           0.886 |           4.092 |   320 |  0 |              0 |     0 |  0 |              0 |     1 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out[319]_i_1_n_0   |    320 | LUT4        |           1.400 |           3.658 |   320 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_reg[319]_i_1_n_0   |    320 | LUT4        |           2.480 |           3.178 |   320 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_out[319]_i_1__0_n_0 |    320 | LUT3        |           3.712 |           3.952 |   320 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_inst/s_reg[319]_i_1__0_n_0 |    320 | LUT3        |           2.005 |           3.633 |   320 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/s_out[319]_i_1__2_n_0         |    320 | LUT5        |           1.119 |           3.495 |   320 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p12/s_reg[319]_i_2__2_n_0         |    320 | LUT5        |           1.031 |           3.153 |   320 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out[319]_i_1__1_n_0          |    320 | LUT4        |           1.172 |           3.903 |   320 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg[319]_i_1__2_n_0          |    320 | LUT4        |           2.779 |           2.715 |   320 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/Q[4]                                            |    298 | FDCE        |          -0.026 |           3.167 |     0 |  0 |              0 |     0 |  0 |              0 |   296 |  0 |              2 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/Q[5]                                            |    278 | FDCE        |          -0.004 |           3.505 |     0 |  0 |              0 |     0 |  0 |              0 |   276 |  0 |              2 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/feed_cnt_reg_n_0_[1]                                     |    276 | FDCE        |           2.236 |           2.557 |     0 |  0 |              0 |     0 |  0 |              0 |   276 |  0 |              0 |     0 |  0 |              0 |
+| u_soc_axi_top/u_soc_top/u_ascon_mmio/feed_cnt_reg_n_0_[2]                                     |    261 | FDCE        |           1.405 |           1.944 |     0 |  0 |              0 |     0 |  0 |              0 |   261 |  0 |              0 |     0 |  0 |              0 |
++-----------------------------------------------------------------------------------------------+--------+-------------+-----------------+-----------------+-------+----+----------------+-------+----+----------------+-------+----+----------------+-------+----+----------------+
+
+

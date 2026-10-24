@@ -1,0 +1,16 @@
+--- a/src/rtl/dcache.v
++++ b/src/rtl/dcache.v
+@@ -398,7 +398,12 @@
+             bus_wdata_r <= captured_wdata;
+             bus_wmask_r <= captured_wmask;
+         end
+-        else if (store_now || mmio_read_now || mmio_write_now)
++        // [TIMING B] Capture on the bare fire condition (state==IDLE && !req_stall)
++        // instead of store_now/mmio_*_now. Those three are strict subsets of
++        // cache_access_fire, so every cycle that matters still captures, but the
++        // register-enable cone no longer contains the tag compare / hit / cacheable
++        // decode. The address is only consumed while its own strobe is high.
++        else if (cache_access_fire)
+         begin
+             bus_addr_r  <= cpu_addr_i;
+             bus_wdata_r <= cpu_wdata_i;

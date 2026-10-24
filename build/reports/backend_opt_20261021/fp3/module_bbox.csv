@@ -1,0 +1,15 @@
+module,cells,placed,minx,maxx,miny,maxy,spanx,spany
+u_soc_axi_top/u_soc_top/u_cpu_core,10460,10404,12,108,14,73,96,59
+u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage,254,253,13,54,35,50,41,15
+u_soc_axi_top/u_soc_top/u_cpu_core/u_icache,645,641,12,49,38,50,37,12
+u_soc_axi_top/u_soc_top/u_cpu_core/u_if_id,460,459,22,57,36,46,35,10
+u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u,454,454,31,54,33,46,23,13
+u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage,3925,3905,35,91,14,49,56,35
+u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise,3335,3328,48,91,24,49,43,25
+u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file,791,789,26,61,25,45,35,20
+u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache,1574,1564,22,108,17,73,86,56
+u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem,105,105,37,57,30,44,20,14
+u_soc_axi_top/u_soc_top/u_cpu_core/u_mem_wb,1418,1416,31,71,18,51,40,33
+u_soc_axi_top/u_soc_top/u_cpu_core/u_predictor,698,696,20,41,18,41,21,23
+u_soc_axi_top/u_soc_top/u_ascon_mmio,18114,18100,43,113,47,128,70,81
+u_soc_axi_top/u_soc_top/u_bus_interconnect,394,393,20,49,40,66,29,26
