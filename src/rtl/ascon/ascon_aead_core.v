@@ -1,7 +1,4 @@
 `timescale 1ns / 1ps
-
-`include "crypto_aead.v"
-
 // =============================================================================
 // ascon_aead_core.v — Ascon-AEAD128 core with a 32-bit streaming interface.
 //

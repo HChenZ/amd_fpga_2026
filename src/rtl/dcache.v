@@ -268,55 +268,159 @@ module dcache #(
     // =========================================================================
     wire [XLEN-1:0] data_out = hit_way0_r ? data_way0_out : data_way1_out;
 
+    // =========================================================================
+    // TIMING C：1 项 store buffer + 元数据更新寄存化
+    //
+    // 改前：store 那一拍直接用 cpu_wdata_i/字节掩码写 data_way0/1 的 BRAM 写口，
+    // 并在同一拍用 hit_way0/hit_way1 清掉另一路 valid、用 hit 更新 LRU。于是
+    // 「store 数据（来自 EX 旁路 mux）→ BRAM WEA」和「请求地址 → tag RAM → hit
+    // → valid_way/lru 的 D 端」都必须在一拍内走完（F 之后 192 条、worst −0.072）。
+    //
+    // 改法：本拍只把 {地址,数据,字节掩码} 打进 1 项 buffer，下一拍写 BRAM；
+    // valid/lru 的"要做什么"在请求当拍算好、寄存一拍再作用。BRAM 写口与元数据
+    // D 端因此只由本地寄存器驱动。可见性由 buffer → load 的定向转发保证。
+    // =========================================================================
+    wire                 sb_capture = store_now;
+    reg                  sb_valid;
+    reg  [WDATA_W-1:0]   sb_addr;
+    reg  [XLEN-1:0]      sb_wdata;
+    reg  [XLEN/8-1:0]    sb_wmask;
+
+    wire sb_commit = sb_valid;          // 捕获后恰好一拍提交
+    // 元数据更新记录（valid / LRU 的一拍延迟版本）
+    reg                    upd_load_miss;
+    reg                    upd_store;
+    reg                    upd_hit0;
+    reg                    upd_hit1;
+    reg                    upd_acc;
+    reg                    upd_victim;
+    reg  [INDEX_WIDTH-1:0] upd_idx;
+
+    reg               sb_fwd_hit_r;
+    reg  [XLEN-1:0]   sb_fwd_data_r;
+    reg  [XLEN/8-1:0] sb_fwd_mask_r;
+
+    always @(posedge clk or negedge rst_n)
+    begin
+        if (!rst_n)
+        begin
+            sb_valid <= 1'b0;
+            sb_addr  <= {WDATA_W{1'b0}};
+            sb_wdata <= {XLEN{1'b0}};
+            sb_wmask <= {(XLEN/8){1'b0}};
+        end
+        else
+        begin
+            sb_valid <= sb_capture;
+            sb_addr  <= rd_addr;
+            sb_wdata <= cpu_wdata_i;
+            sb_wmask <= cpu_wmask_i;
+        end
+    end
+
+    always @(posedge clk or negedge rst_n)
+    begin
+        if (!rst_n)
+        begin
+            upd_load_miss <= 1'b0;
+            upd_store     <= 1'b0;
+            upd_hit0      <= 1'b0;
+            upd_hit1      <= 1'b0;
+            upd_acc       <= 1'b0;
+            upd_victim    <= 1'b0;
+            upd_idx       <= {INDEX_WIDTH{1'b0}};
+        end
+        else
+        begin
+            upd_load_miss <= load_miss_now;
+            upd_store     <= store_now;
+            upd_hit0      <= hit_way0;
+            upd_hit1      <= hit_way1;
+            upd_acc       <= cache_access_fire && hit && (cpu_re_i || cpu_we_i);
+            upd_victim    <= victim_way;
+            upd_idx       <= req_idx;
+        end
+    end
+
+    // store → load 定向转发：同字地址按字节掩码覆盖读出的旧值
+    wire sb_fwd_hit = sb_valid && (sb_addr == rd_addr);
+
+    always @(posedge clk or negedge rst_n)
+    begin
+        if (!rst_n)
+        begin
+            sb_fwd_hit_r  <= 1'b0;
+            sb_fwd_data_r <= {XLEN{1'b0}};
+            sb_fwd_mask_r <= {(XLEN/8){1'b0}};
+        end
+        else
+        begin
+            sb_fwd_hit_r  <= sb_fwd_hit;
+            sb_fwd_data_r <= sb_wdata;
+            sb_fwd_mask_r <= sb_wmask;
+        end
+    end
+
+
+
+    integer fwd_byte_i;
+    reg [XLEN-1:0] data_out_fwd;
+    always @(*)
+    begin
+        data_out_fwd = data_out;
+        if (sb_fwd_hit_r)
+            for (fwd_byte_i = 0; fwd_byte_i < XLEN/8; fwd_byte_i = fwd_byte_i + 1)
+                if (sb_fwd_mask_r[fwd_byte_i])
+                    data_out_fwd[fwd_byte_i*8 +: 8] = sb_fwd_data_r[fwd_byte_i*8 +: 8];
+    end
+
     assign cpu_rdata_o = uncached_req_r  ? bus_rdata_i :
                          fill_done_r     ? fill_capture_data :
-                                          data_out;
+                                          data_out_fwd;
 
     // Stall includes new MISS_CAPTURE state
     assign cpu_stall_o = (state != IDLE) || load_miss_reg || mmio_read_wait_r;
 
-    // Way0 Port A: CPU 读 / store-hit 字节写
-    integer way0_cpu_byte_i;
+    // Way0 Port A: 只读（SDP 的读口）
     always @(posedge clk)
-    begin
         data_way0_out <= data_way0[rd_addr];
-        if (store_cache_write)
-        begin
-            for (way0_cpu_byte_i = 0; way0_cpu_byte_i < XLEN/8; way0_cpu_byte_i = way0_cpu_byte_i + 1)
-            begin
-                if (cpu_wmask_i[way0_cpu_byte_i])
-                    data_way0[rd_addr][way0_cpu_byte_i*8 +: 8] <= cpu_wdata_i[way0_cpu_byte_i*8 +: 8];
-            end
-        end
-    end
 
-    // Way0 Port B: fill
+    // Way0 Port B: fill 与 store buffer 提交共用写口
+    // fill 与 sb_commit 不可能同拍：store 只可能在 IDLE 发起、提交在下一拍，
+    // 而 FILL 期间 CPU 被 stall，MISS_CAPTURE 至少隔一拍。
+    integer way0_cpu_byte_i;
     always @(posedge clk)
     begin
         if (fill_way0_we)
             data_way0[fill_wr_addr] <= bus_rdata_i;
-    end
-
-    // Way1 Port A: CPU 读 / store-hit 字节写
-    integer way1_cpu_byte_i;
-    always @(posedge clk)
-    begin
-        data_way1_out <= data_way1[rd_addr];
-        if (store_cache_write)
+        else if (sb_commit)
         begin
-            for (way1_cpu_byte_i = 0; way1_cpu_byte_i < XLEN/8; way1_cpu_byte_i = way1_cpu_byte_i + 1)
+            for (way0_cpu_byte_i = 0; way0_cpu_byte_i < XLEN/8; way0_cpu_byte_i = way0_cpu_byte_i + 1)
             begin
-                if (cpu_wmask_i[way1_cpu_byte_i])
-                    data_way1[rd_addr][way1_cpu_byte_i*8 +: 8] <= cpu_wdata_i[way1_cpu_byte_i*8 +: 8];
+                if (sb_wmask[way0_cpu_byte_i])
+                    data_way0[sb_addr][way0_cpu_byte_i*8 +: 8] <= sb_wdata[way0_cpu_byte_i*8 +: 8];
             end
         end
     end
 
-    // Way1 Port B: fill
+    // Way1 Port A: 只读（SDP 的读口）
+    always @(posedge clk)
+        data_way1_out <= data_way1[rd_addr];
+
+    // Way1 Port B: fill 与 store buffer 提交共用写口
+    integer way1_cpu_byte_i;
     always @(posedge clk)
     begin
         if (fill_way1_we)
             data_way1[fill_wr_addr] <= bus_rdata_i;
+        else if (sb_commit)
+        begin
+            for (way1_cpu_byte_i = 0; way1_cpu_byte_i < XLEN/8; way1_cpu_byte_i = way1_cpu_byte_i + 1)
+            begin
+                if (sb_wmask[way1_cpu_byte_i])
+                    data_way1[sb_addr][way1_cpu_byte_i*8 +: 8] <= sb_wdata[way1_cpu_byte_i*8 +: 8];
+            end
+        end
     end
 
     // hit_way0/hit_way1 寄存
@@ -469,24 +573,24 @@ module dcache #(
         end
         else
         begin
-            if (load_miss_now)
+            if (upd_load_miss)
             begin
-                if (victim_way == 0)
-                    valid_way0[req_idx] <= 1'b0;
+                if (upd_victim == 1'b0)
+                    valid_way0[upd_idx] <= 1'b0;
                 else
-                    valid_way1[req_idx] <= 1'b0;
+                    valid_way1[upd_idx] <= 1'b0;
             end
 
-            if (store_cache_write)
+            if (upd_store)
             begin
-                if (hit_way0)
-                    valid_way1[req_idx] <= 1'b0;
-                else if (hit_way1)
-                    valid_way0[req_idx] <= 1'b0;
+                if (upd_hit0)
+                    valid_way1[upd_idx] <= 1'b0;
+                else if (upd_hit1)
+                    valid_way0[upd_idx] <= 1'b0;
                 else
                 begin
-                    valid_way0[req_idx] <= 1'b0;
-                    valid_way1[req_idx] <= 1'b0;
+                    valid_way0[upd_idx] <= 1'b0;
+                    valid_way1[upd_idx] <= 1'b0;
                 end
             end
 
@@ -499,13 +603,8 @@ module dcache #(
                 lru[miss_idx] <= ~miss_way;
             end
 
-            if (cache_access_fire && hit && (cpu_re_i || cpu_we_i))
-            begin
-                if (hit_way0)
-                    lru[req_idx] <= 1'b1;
-                else
-                    lru[req_idx] <= 1'b0;
-            end
+            if (upd_acc)
+                lru[upd_idx] <= upd_hit0;
         end
     end
 

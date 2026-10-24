@@ -367,3 +367,8 @@ L08 的“保留两个跟踪生成元数据”是此前策略；本轮按用户�
   末尾存储器校验和，比写定向断言省一半时间，还能抓到"看着对但时序变了"。
 - **复用别处脚本先改相对层数。** 脚本按自身位置算 root，`backend_opt_20261021/` 的脚本是
   `../..`，搬到 `build/local/tests_20261024/` 后要多一层，否则会在仓库里生成 `build/build/`。
+
+- **`include` 一个"同时也是源文件"的 .v 必须配 include guard。** 队友给 `ascon_mmio.v` 加了
+  `` `include "ascon_aead_core.v" ``，而三者都没有 guard → 模块重复定义、整库 elaboration 失败。
+  判据：被 include 的文件若同时出现在源文件列表里，文件头必须是 `` `ifndef X_V/`define X_V ... `endif ``；
+  同目录已经有 4 个文件这么写（`crypto_aead.v` 等），新加 include 时照抄即可。

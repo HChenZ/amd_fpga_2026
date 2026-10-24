@@ -877,3 +877,21 @@ WHS 由一整群 0~1 级逻辑的寄存器对决定，不是单点。**结论：
   报告时未出结果 → not_measured）。
 - 证据：`docs/timing_route_tests_20261024.md` §8、`build/reports/tests_20261024/{c_100,fc_100}/`、
   `build/local/tests_20261024/{rtl_C,rtl_FC,tb_dcache_trace.v,diff/}`。
+
+
+### 2026-10-24 22:05 · 路线 C 落地到 src/rtl + 修掉队友 include 导致的 elaboration 失败
+
+- `src/rtl/dcache.v` 应用 `build/patches/timing_C_dcache_store_buffer.patch`（1 项 store buffer +
+  valid/LRU 更新寄存一拍 + store→load 定向转发）。落地后 sha256
+  `79af461cf53545e79c294814e7f4869c341dbb745527885c0ee1755c1b5c1113`，与 `c_100` 实测那版**逐位相同**
+  → WNS +0.057 / TNS 0 / 0 失败端点 / WHS +0.019 / LUT 11476 / FF 16146 / BRAM 34.5 这组数字对入库代码直接成立。
+- 撤掉 `fb852b5` 在 `ascon/{ascon_mmio,ascon_ise,ascon_aead_core}.v` 顶部加的 `` `include ``：
+  这三个文件无 include guard（同目录 `crypto_aead.v`/`ascon_permutation.v`/`ascon_round.v`/`ascon_word.v`
+  都有），而它们同时作为独立源文件编译 → `'ascon_aead_core' has already been declared`，
+  整库 elaboration 失败、回归跑不起来。撤掉后全 RTL elaboration 通过。
+- 落地后回归：`build/local/tests_20261024/check_final.sh`（control = HEAD 的 dcache.v + 当前其余源
+  vs 当前 `src/rtl`）6 场景，KAT 与 cycles 需逐条相同。
+- 同步：main 上先提交了实测报告/补丁/报告归档（`431695b`），与 origin/main 的 `fb852b5` 做增量合并
+  （`38e96fb`），已验证 5 个补丁合并后仍 `git apply --check` 干净。
+- 未验证：板级 STA；C 之后 100 MHz 仍只有 +0.057 ns 芯片级余量（自定门禁 +1.0 未达），
+  WHS +0.019 < +0.05 门禁。

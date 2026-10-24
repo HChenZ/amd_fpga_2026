@@ -3,8 +3,9 @@
 2026-10-24；owner TBD。基线 `3c6f134`（`src/rtl/dcache.v`、`ascon_ise.v` 的 sha256 与
 2026-10-20 control run 记录一致，见 `build/reports/tests_20261024/*/build_context.txt`）。
 工具 Vivado 2025.2，part `xc7z020clg400-1`，top `top_pl_bram`，策略
-`Performance_ExploreWithRemap`（第二策略另跑，见 §4）。**`src/rtl`、`board/`、XDC 均未改动**，
-所有变体都是 `build/local/tests_20261024/` 下的副本。
+`Performance_ExploreWithRemap`（第二策略另跑，见 §4）。**实验期间 `src/rtl`、`board/`、XDC 均未改动**，
+所有变体都是 `build/local/tests_20261024/` 下的副本；实验结束后**只有路线 C 落地到
+`src/rtl/dcache.v`**（见 §8.6，sha256 与 `c_100` 实测网表逐位一致），其余补丁仍未应用。
 
 本文回答一件事：按 `html/next.html` 的建议顺序（先 R 后 F）真跑一遍，效果到底是多少。
 
@@ -162,7 +163,8 @@ Data Path Delay 11.156 ns  (logic 1.989 / route 9.167, 82% route)  10 级
 
 ## 6. 未做 / 下一步
 
-- **C（store buffer）**：未做。读 `src/rtl/dcache.v:150-160, 280-320` 后判断，写口在
+- **C（store buffer）**：**已做并已落地**（见 §8.6）。原判断记录如下（当时结论是"不是顺手做"，
+  实际做了之后确认工作量约半天、收益 +0.050 ns、0 周期）：写口在
   `store_cache_write` 当拍直接写 `data_way*`，数据来自 `cpu_wdata_i`（旁路 mux 输出）；
   加 1 拍缓冲后**同地址 store→load 会读到旧值**（现在是靠"同拍写 BRAM"侥幸正确，
   流水线里没有 memory RAW 转发），必须补 buffer→load 数据旁路 + 定向 TB，属于 0.5~1 天工作量。
@@ -324,6 +326,18 @@ C 之后的最差单条变成 `pc_reg[5] → u_ex_mem/ex_rd_data_o_reg[0]/CE`（
   store 在 stall 期间发射）必须重验。
 - 未做板级；未做拥塞交叉验证；`c_100` 的 WHS +0.019 仍低于 +0.05 门禁。
 - 若要把 WNS 抬到 +1.0，还差 D（取指/stall 环）与 80 MHz 过度约束的组合。
+
+### 8.6 落地记录（2026-10-24 22:0x）
+
+- `src/rtl/dcache.v` = 本补丁版本，sha256 `79af461cf53545e79c294814e7f4869c341dbb745527885c0ee1755c1b5c1113`，
+  **与 `c_100` 那次实现所用的 RTL 逐位相同**（`build/reports/tests_20261024/c_100/build_context.txt`），
+  所以 +0.057 / 0 失败端点 / BRAM 34.5 这一组数字对入库代码直接成立，不需要重跑实现。
+- 同一提交撤掉了 `fb852b5` 在 `ascon/{ascon_mmio,ascon_ise,ascon_aead_core}.v` 里加的
+  `` `include ``：这三个文件没有 include guard（同目录 `crypto_aead.v`/`ascon_permutation.v`/
+  `ascon_round.v`/`ascon_word.v` 都有），而它们同时又作为独立源文件编译，导致
+  `Synth/Elab: 'ascon_aead_core' has already been declared`，整库 elaboration 失败。
+- 入库后回归：`build/local/tests_20261024/check_final.sh`（control = HEAD 的 dcache.v + 当前其余源，
+  patched = 当前 `src/rtl`）跑 6 场景，KAT 与 cycles 必须逐条相同。
 
 ## 9. 证据路径
 ```
