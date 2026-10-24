@@ -1,0 +1,2 @@
+RESULT tag=prod_rep mode=rep strategy=Performance_ExploreWithRemap wns=0.039 tns=0.000 failing=0 whs=0.020 rep_cells=60
+PATH start=u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_mem/ex_rd_data_o_reg[11]/C end=u_soc_axi_top/u_soc_top/u_cpu_core/u_if_id/pred_target_o_reg[13]/CE dp=9.595 logic=3.183 net=6.412 levels=11

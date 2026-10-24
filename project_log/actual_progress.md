@@ -964,3 +964,23 @@ WHS 由一整群 0~1 级逻辑的寄存器对决定，不是单点。**结论：
 - 追加臂 `rep2_sel`（以 rep_ff400 网表为种子再复制 9 根：`pc_o[5/6]` fo=218/215、
   `func_sel_o[0]` 137、`ascon_mmio/Q[0]`、`p12_inst/Q[0]`）：WNS **+0.055**，
   比只复制一根（+0.130）差 0.075 → **复制必须停在"使能锥上的一根"，继续加反而变差**。
+
+
+### 2026-10-25 01:10 · 复制步骤接入生产策略后重测：收益不复现（+0.087 → +0.039）
+
+- 新脚本 `build/timing_tests/run_prod_rep.tcl`：仍用 `-strategy Performance_ExploreWithRemap`，
+  只给 `STEPS.PHYS_OPT_DESIGN.TCL.POST` 挂一个复制钩子（放置后、布线前），策略/directive 一字不改。
+- 结果（起点=当前 src/rtl，C+D 已落地）：
+  | 臂 | 钩子 | WNS | 失败 | WHS | replica | 最差路径 |
+  |---|---|---|---|---|---|---|
+  | prod_ctl | 无 | **+0.087** | 0 | +0.021 | 51 | state[3]→p12_in_reg，9.870/net 9.290/1 级 |
+  | prod_rep1 | 只复制 state[3]（fo 628） | **+0.039** | 0 | +0.020 | 60 | ex_mem/ex_rd_data_o_reg[11]→if_id/pred_target/CE，9.595/logic 3.183/11 级 |
+  | prod_rep | 复制 2 根 | +0.039 | 0 | +0.020 | 60 | 同上 |
+  - `prod_ctl` 逐位复现 `d_100`（+0.087，同一条最差路径）→ 新 run 流程与 run_variantF 等价。
+  - 钩子确实生效：`fo=628 → after fo=25`，那根 9.29 ns 网从关键路径消失；
+    但整机 −0.048：**省下的走线被 ~50 个副本 FF 的布局扰动吃掉**。
+- 结论：**§10.3 的 +0.127 ns 是自定义流程上的收益，不能迁移到生产策略**；
+  复制步骤**不进流程**，脚本留作工具与证据。
+  **当前 100 MHz 最好成绩 = 生产策略 + C + D = +0.087 ns**（prod_ctl 与 d_100 互证）。
+- 现在剩余的墙是 logic 型：11 级 / 3.183 ns logic 的 `ex_mem → if_id/pred_target/CE`、
+  以及 pc→icache→id_ex CE 一族 —— 继续做扇出/复制没有边际，得动 if_id/if_stage 控制结构（D2）或 icache tag 打拍。

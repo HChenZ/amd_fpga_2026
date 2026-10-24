@@ -38,7 +38,8 @@
 6. **（2026-10-24 深夜追加）把 `u_crypto_aead/state[3]`（fo=628、单根 9.29 ns）放置后复制**：
    同流程对照 +0.003 → **+0.130**（+0.127 ns，是 D 的 4 倍），复制 24 根反而只 +0.124；
    **在 RTL 里写 `max_fanout` 由综合期复制是错的（−0.008、1 个失败端点）** ——
-   扇出复制必须在放置之后做。详见 §10。
+   扇出复制必须在放置之后做。**但接进生产策略后重测只有 +0.039（对照 +0.087）**：
+   那 +0.127 ns 是自定义流程上的收益，不能迁移（§10.6）。详见 §10。
 
 ---
 
@@ -368,6 +369,8 @@ wire inter_accept_ready = id_ex_inst_valid && !dcache_stall && !dmem_axi_stall_r
 
 ### 9.2 改法（补丁 `build/patches/timing_D_interrupt_guard_register.patch
 build/timing_tests/rep_fanout.tcl, probe_fanout.tcl   # 定点扇出复制 + 大扇出网探针
+build/timing_tests/run_prod_rep.tcl                   # 把复制接进生产策略的 run 钩子（结论：不进流程）
+build/reports/tests_20261024/{prod_ctl,prod_rep,prod_rep1}/   # 接入后的重测结果
 build/reports/timing_tests/{rep_ctl,rep_ff400,rep_any150}/   # 三个复制臂的结果
 build/reports/tests_20261024/e_100/                   # RTL max_fanout 反例（−0.008）`，只改 `cpu_core.v`）
 
@@ -511,6 +514,31 @@ vivado -mode batch -source build/timing_tests/rep_fanout.tcl -notrace \
 - WHS 从 +0.024 降到 +0.013（复制改变了 hold 关系），仍 < +0.05 门禁。
 - 仿真不受影响（复制是网表操作，`e_100` 的 6 场景 cycles 与对照完全相同），无功能风险。
 
+### 10.6 接入生产策略后的重测（2026-10-25 01:10）：**收益不复现**
+
+把复制步骤用 `STEPS.PHYS_OPT_DESIGN.TCL.POST` 钩子接进 **Performance_ExploreWithRemap**
+全流程（脚本 `build/timing_tests/run_prod_rep.tcl`，策略与 directive 一字不改），
+起点是当前 `src/rtl`（C+D 已落地）：
+
+| 臂 | 钩子内容 | WNS | 失败端点 | WHS | replica | 最差路径 |
+|---|---|---|---|---|---|---|
+| `prod_ctl` | 无（策略对照） | **+0.087** | 0 | +0.021 | 51 | `state[3] → p12_in_reg[215]/D`，9.870 / net 9.290 / 1 级 |
+| `prod_rep1` | 只复制 `state[3]`（fo 628） | **+0.039** | 0 | +0.020 | 60 | `ex_mem/ex_rd_data_o_reg[11] → if_id/pred_target_o_reg[13]/CE`，9.595 / logic 3.183 / 11 级 |
+| `prod_rep` | 复制 2 根（`state[3]` + `p8_inst/s2_reg[0]_0[2]`） | +0.039 | 0 | +0.020 | 60 | 同上 |
+
+- `prod_ctl` **逐位复现了 `d_100`（+0.087）**，最差路径同一条（9.870 / net 9.290 / 1 级），
+  说明这套 run 流程与 `run_variantF.tcl` 等价，对照可信。
+- 钩子确实执行了：`PRODREP candidates=1 fo=628 → after fo=25`，那根 9.29 ns 的网
+  **被拆成 25 份、从关键路径上消失**（新最差已经不是它）。
+- 但**整机 WNS 从 +0.087 掉到 +0.039**：新最差换成一条 11 级、logic 3.183 ns 的
+  `ex_mem → if_id/pred_target/CE` 路径。也就是说：
+  **省下来的 9.29 ns 走线，被新增 ~50 个副本 FF 带来的布局扰动吃掉了**（−0.048）。
+- 结论：**§10.3 里那 +0.127 ns 是该自定义流程上的收益，不能迁移到生产策略。**
+  那套流程的对照只有 +0.003（比生产策略差 0.08），所以复制只是把一张本身就很差的网表
+  补到及格；生产策略本来就把这根网放得还算合理，再复制就是纯扰动。
+- 因此**当前 100 MHz 的最好成绩仍是生产策略 + C + D 的 +0.087 ns**（`prod_ctl` / `d_100` 相互印证）。
+  复制步骤**不进流程**，脚本保留作为工具与证据。
+
 ## 11. 证据路径
 ```
 build/local/tests_20261024/
@@ -537,6 +565,8 @@ build/local/tests_20261024/paths_c100.csv, paths_d100.csv
 build/patches/timing_C_dcache_store_buffer.patch
 build/patches/timing_D_interrupt_guard_register.patch
 build/timing_tests/rep_fanout.tcl, probe_fanout.tcl   # 定点扇出复制 + 大扇出网探针
+build/timing_tests/run_prod_rep.tcl                   # 把复制接进生产策略的 run 钩子（结论：不进流程）
+build/reports/tests_20261024/{prod_ctl,prod_rep,prod_rep1}/   # 接入后的重测结果
 build/reports/timing_tests/{rep_ctl,rep_ff400,rep_any150}/   # 三个复制臂的结果
 build/reports/tests_20261024/e_100/                   # RTL max_fanout 反例（−0.008）
 ```
