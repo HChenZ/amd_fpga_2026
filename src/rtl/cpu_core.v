@@ -332,11 +332,36 @@ module cpu_core #(
 
     // Accept an interrupt only when trap_pc identifies a valid instruction
     // that can be replayed and no older memory or multicycle work is pending.
-    wire inter_accept_ready = id_ex_inst_valid
+    //
+    // TIMING D（2026-10-24）：把这条判决拆成「pc 长链项寄存一拍 + 当拍快项」。
+    // 原式把 !icache_stall（来自 pc → icache tag RAM → hit）和当拍快条件放在
+    // 同一个与门里，于是
+    //   pc → icache tag → hit → icache_stall → inter_req → flush[1] → ex_mem/CE
+    // 成为 C 之后整机最差路径（+0.057 ns，logic 2.0 / route 7.59 / 9 级）。
+    //
+    // 拆法：携带 pc 长链的那一项只驱动一个触发器；inter_accept_ready 当拍再与
+    // 全部快项相与（都是寄存器出来的：id_ex_inst_valid、dcache/AXI/多周期停顿、
+    // fence_i_stall），因此 flush/CE 锥里不再有 pc。
+    //
+    // 语义：中断仍要求当拍 ID/EX 指令有效、且没有更老的内存/多周期工作未完成；
+    // 只有「上一拍 icache 未 stall」这一项变成滞后判决 —— 最坏情况下中断晚一拍
+    // 被接受（取指数据通路本身不受影响，icache 填充分支由 icache_flush 中止）。
+    wire inter_slow_ok = id_ex_inst_valid && !icache_stall;
+    reg  inter_slow_ok_q;
+
+    always @(posedge clk or negedge rst_n)
+    begin
+        if (!rst_n)
+            inter_slow_ok_q <= 1'b0;
+        else
+            inter_slow_ok_q <= inter_slow_ok;
+    end
+
+    wire inter_accept_ready = inter_slow_ok_q
+                           && id_ex_inst_valid
                            && !dcache_stall
                            && !dmem_axi_stall_req
                            && !ex_stall_req
-                           && !icache_stall
                            && !fence_i_stall;
 
     // =========================================================================

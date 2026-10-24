@@ -895,3 +895,26 @@ WHS 由一整群 0~1 级逻辑的寄存器对决定，不是单点。**结论：
   （`38e96fb`），已验证 5 个补丁合并后仍 `git apply --check` 干净。
 - 未验证：板级 STA；C 之后 100 MHz 仍只有 +0.057 ns 芯片级余量（自定门禁 +1.0 未达），
   WHS +0.019 < +0.05 门禁。
+
+
+### 2026-10-24 22:45 · 路线 D（中断可接受判决拆拍）实测 +0.087 ns 并落地
+
+- 目标路径（C 之后整机最差 +0.057，9 级 / logic 2.0 / route 7.59）：
+  `pc_reg → u_icache tag RAM → hit_way0 → icache_stall → csr_file/inter_req → flush[1] → u_ex_mem/CE`。
+  根因在 `cpu_core.v` 的 `inter_accept_ready` 把 pc 衍生的 `!icache_stall` 和当拍快条件放同一个与门。
+- 改法（补丁 `build/patches/timing_D_interrupt_guard_register.patch`，只改 `cpu_core.v`）：
+  `inter_slow_ok = id_ex_inst_valid && !icache_stall` 只驱动一个触发器 `inter_slow_ok_q`，
+  `inter_accept_ready` 当拍再与 `inter_slow_ok_q` + 全部快项（id_ex_inst_valid /
+  dcache_stall / dmem_axi_stall_req / ex_stall_req / fence_i_stall）相与。`csr_file` 的一次脉冲语义未改。
+- 实测（ExploreWithRemap / 10 ns）：WNS **+0.057 → +0.087**、TNS 0、0 失败端点、WHS +0.021、
+  LUT 11483（+7）、FF 16156（+10）。
+- **机制证据**（`paths_c100.csv` vs `paths_d100.csv`）：起点含 `pc` 的路径 **1389 → 1 条**
+  （worst +0.057 → **+1.491**）；终点 `u_ascon_ise` +0.224 → +0.794；终点 `ex_rd_data_o_reg` +0.057 → +0.648。
+- **D 之后新墙不再是 CPU**：`u_crypto_aead/FSM_sequential_state_reg[3] → u_crypto_aead/p12_in_reg[215]/D`
+  （+0.087，**1 级逻辑**、route 9.290 = 94%）——Ascon 核心 p12_in 状态搬运的物理跨度问题。
+- 等价性：全 SoC 6 场景（control = C 落地后 src/rtl，patched = C+D）KAT 全 PASS，
+  cycles 逐条不变（2496 ×3、hw 99/670、sw 17353/21515/17847/22094）。
+- **风险**：全部固件/单元/ISA TB 都没开中断（无 mtvec/mret/mie），所以本改动在功能上等价空操作；
+  一旦启用中断必须先补定向 TB 验证"晚一拍接受"不会让 trap_pc 指向气泡。
+- 落地：`src/rtl/cpu_core.v` 已应用补丁，与 `d_100` 实测所用 RTL 逐位相同。
+- 当前 100 MHz 芯片级余量：**+0.087 ns**（基线 +0.007 → C +0.057 → C+D +0.087），WHS +0.021。

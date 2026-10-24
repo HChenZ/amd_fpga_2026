@@ -11,7 +11,7 @@
 
 ---
 
-## 1. 结论先行（四条，全部实测）
+## 1. 结论先行（五条，全部实测）
 
 1. **F 按设计生效，但不给 100 MHz 加余量。** 目标族 `dcache/bus_addr_r → ascon_mmio`
    从 **8858 条降到 60 条**（worst +0.525 → **+1.233**），MMIO 终点 <1.0 ns 从 1667 降到 701，
@@ -31,6 +31,10 @@
 4. **（2026-10-24 晚追加）路线 C（store buffer）实测有效且 0 周期**：WNS **+0.007 → +0.057**、
    0 失败端点、6 场景与 4 个差分种子的周期/数据完全不变、目标族 192→12 条（worst +1.752），
    BRAM 还少 4 个 tile。F+C 反而只有 +0.005 → **要上就只上 C**。详见 §8。
+5. **（2026-10-24 深夜追加）路线 D（中断可接受判决拆拍）同样有效且 0 周期**：在 C 之上
+   WNS **+0.057 → +0.087**、0 失败端点、6 场景 cycles 一字不变；**起点为 pc 的路径族 1389 → 1 条**
+   （worst +0.057 → +1.491）。D 之后的新墙不再是 CPU，而是 Ascon 核心内部
+   `u_crypto_aead/FSM → p12_in_reg`（1 级逻辑、route 9.29 ns 占 94%）。详见 §9。
 
 ---
 
@@ -276,6 +280,7 @@ CE 锥"，但在 F 网表上 `crit_ce_nets` 只找到 **13 条** CE 网（fanout
 | control | 10.000 ns | ExploreWithRemap | +0.007 | 0 | 0 | +0.023 | 11509 | 16040 | 38.5 |
 | **`c_100`（C）** | 10.000 ns | ExploreWithRemap | **+0.057** | 0 | **0** | +0.019 | 11476 | 16146 | **34.5** |
 | `fc_100`（F+C） | 10.000 ns | ExploreWithRemap | +0.005 | 0 | 0 | +0.013 | 11784 | 16189 | 34.5 |
+| **`d_100`（C+D）** | 10.000 ns | ExploreWithRemap | **+0.087** | 0 | 0 | +0.021 | 11483 | 16156 | 34.5 |
 | `C_pl_ndh_crit200_ntr`（C+campaign 冠军配方） | 10.000 ns | crep200 + ntr 布线 | +0.017 | 0 | 0 | +0.035 | — | — | — |
 | （对照）`f_100`（F） | 10.000 ns | ExploreWithRemap | −0.072 | −1.289 | 35 | +0.030 | 11711 | — | 38.5 |
 
@@ -339,7 +344,87 @@ C 之后的最差单条变成 `pc_reg[5] → u_ex_mem/ex_rd_data_o_reg[0]/CE`（
 - 入库后回归：`build/local/tests_20261024/check_final.sh`（control = HEAD 的 dcache.v + 当前其余源，
   patched = 当前 `src/rtl`）跑 6 场景，KAT 与 cycles 必须逐条相同。
 
-## 9. 证据路径
+## 9. 路线 D（中断可接受判决拆拍）实测与落地
+
+### 9.1 目标路径
+
+C 之后整机最差路径（+0.057 ns，9 级 / logic 2.0 / route 7.59）是一条跨模块控制锥：
+
+```
+pc_reg → u_icache tag RAM(RAMD64E) → hit_way0 → icache_stall
+      → csr_file/inter_req → (stall_ctrl 优先级链) → flush[1] → u_ex_mem/CE
+```
+
+即 `cpu_core.v` 里的中断接受判决把 pc 衍生的 `!icache_stall` 和当拍快条件放在同一个与门里：
+
+```verilog
+wire inter_accept_ready = id_ex_inst_valid && !dcache_stall && !dmem_axi_stall_req
+                       && !ex_stall_req && !icache_stall && !fence_i_stall;   // 改前
+```
+
+### 9.2 改法（补丁 `build/patches/timing_D_interrupt_guard_register.patch`，只改 `cpu_core.v`）
+
+把 pc 长链那一项拆出来只驱动一个触发器，当拍再与全部快项（都是寄存器输出）相与：
+
+```verilog
+wire inter_slow_ok = id_ex_inst_valid && !icache_stall;   // 慢项：只进寄存器
+always @(posedge clk or negedge rst_n) inter_slow_ok_q <= inter_slow_ok;
+wire inter_accept_ready = inter_slow_ok_q && id_ex_inst_valid
+                       && !dcache_stall && !dmem_axi_stall_req
+                       && !ex_stall_req && !fence_i_stall;               // 改后
+```
+
+`inter_req` 本身仍是「一次脉冲 + `inter_req_reg` 锁存」（`csr_file.v:99-111` 未改），
+所以只在「中断挂起且门槛满足」的那一拍动作；**唯一语义变化**是 icache 那一项变成上一拍的判决
+（最坏晚一拍接受中断，取指数据通路与 icache 填充不受影响，填充由 `icache_flush` 中止）。
+
+### 9.3 实测（Vivado 2025.2 / xc7z020clg400-1 / ExploreWithRemap / 10 ns）
+
+| 变体 | WNS | TNS | 失败端点 | WHS | LUT | FF |
+|---|---|---|---|---|---|---|
+| control（未改） | +0.007 | 0 | 0 | +0.023 | 11509 | 16040 |
+| `c_100`（C） | +0.057 | 0 | 0 | +0.019 | 11476 | 16146 |
+| **`d_100`（C+D）** | **+0.087** | 0 | 0 | +0.021 | 11483 | 16156 |
+
+资源几乎不变（LUT +7、FF +10，就是那个 `inter_slow_ok_q`）。
+
+### 9.4 机制证据（这才是关键，+0.030 本身在噪声带里）
+
+`paths_c100.csv` vs `paths_d100.csv`（slack<2.0 的逐路径族）：
+
+| 族 | C | **C+D** |
+|---|---|---|
+| 起点含 `pc` | **1389 条**，worst +0.057 | **1 条**，worst **+1.491** |
+| 终点 `u_ascon_ise` | 693 条，worst +0.224 | 640 条，worst **+0.794** |
+| 终点 `ex_rd_data_o_reg` | 52 条，worst +0.057 | 63 条，worst **+0.648** |
+
+**C 里由 pc 出发的 1389 条路径被一次全部清掉**（只剩 1 条、余量 +1.491），
+下游 `u_ascon_ise` / `ex_mem` 相关锥也分别抬高 0.57 / 0.59 ns。
+
+D 之后的新墙（`build/reports/tests_20261024/d_100/route_paths.rpt`）：
+
+```
+Slack (MET): 0.087 ns
+u_ascon_mmio/u_ascon_core/u_crypto_aead/FSM_sequential_state_reg[3]
+  → u_ascon_core/u_crypto_aead/p12_in_reg[215]/D
+Data Path Delay 9.870 ns (logic 0.580 / route 9.290)   逻辑级数 1
+```
+
+**只剩 1 级逻辑、route 占 94%** —— 已经不是逻辑深度问题，而是 Ascon 核心 `p12_in` 状态搬运
+寄存器的物理跨度（对应 next.html 里"ad_shf/p12 拆拍"或 floorplan）。CPU 侧已经没有 pc 起点的墙了。
+
+### 9.5 等价性与风险
+
+- 全 SoC 6 场景（`check_D.sh`：control = C 落地后的 src/rtl，patched = C+D）：KAT 全 PASS，
+  cycles **逐条不变**（ise/ise_stall/ise_reset 2496、hw latency 99 / full MMIO 670、
+  sw 17353 / 21515 / 17847 / 22094）。
+- **风险（必须记住）**：现有 6 个固件与全部单元/ISA TB **没有任何一个开启中断**
+  （无 `mtvec` / `mret` / `mie` 写入），所以这条改动在功能上等价于空操作（`interrupt_en=0` 时
+  `inter_req` 恒 0）。**一旦以后固件启用中断，必须先补定向 TB**（clint 定时器中断 →
+  `mie/mtvec` → 进 trap → `mret` 回原指令）确认"晚一拍接受"不会把 `trap_pc` 指到气泡上。
+- 落地：`src/rtl/cpu_core.v` = 补丁版本，与 `d_100` 实测所用 RTL 逐位相同。
+
+## 10. 证据路径
 ```
 build/local/tests_20261024/
 ├── check_F.sh                     # 6 场景等价（iverilog）
@@ -359,6 +444,9 @@ build/local/tests_20261024/probe_mf.tcl        # 确认 MAX_FANOUT 写进去了�
 build/local/tests_20261024/check_C.sh          # C 的全 SoC 6 场景等价
 build/local/tests_20261024/tb_dcache_trace.v   # dcache 逐拍差分激励（4 个种子全相同）
 build/local/tests_20261024/rtl_C/, rtl_FC/     # C / F+C 的 RTL 副本
-build/reports/tests_20261024/{c_100,fc_100}/   # C / F+C 的实现结果
+build/reports/tests_20261024/{c_100,fc_100,d_100}/   # C / F+C / C+D 的实现结果
+build/local/tests_20261024/check_D.sh, check_D_landed.sh
+build/local/tests_20261024/paths_c100.csv, paths_d100.csv
 build/patches/timing_C_dcache_store_buffer.patch
+build/patches/timing_D_interrupt_guard_register.patch
 ```
