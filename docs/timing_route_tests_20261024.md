@@ -11,7 +11,7 @@
 
 ---
 
-## 1. 结论先行（五条，全部实测）
+## 1. 结论先行（六条，全部实测）
 
 1. **F 按设计生效，但不给 100 MHz 加余量。** 目标族 `dcache/bus_addr_r → ascon_mmio`
    从 **8858 条降到 60 条**（worst +0.525 → **+1.233**），MMIO 终点 <1.0 ns 从 1667 降到 701，
@@ -35,6 +35,10 @@
    WNS **+0.057 → +0.087**、0 失败端点、6 场景 cycles 一字不变；**起点为 pc 的路径族 1389 → 1 条**
    （worst +0.057 → +1.491）。D 之后的新墙不再是 CPU，而是 Ascon 核心内部
    `u_crypto_aead/FSM → p12_in_reg`（1 级逻辑、route 9.29 ns 占 94%）。详见 §9。
+6. **（2026-10-24 深夜追加）把 `u_crypto_aead/state[3]`（fo=628、单根 9.29 ns）放置后复制**：
+   同流程对照 +0.003 → **+0.130**（+0.127 ns，是 D 的 4 倍），复制 24 根反而只 +0.124；
+   **在 RTL 里写 `max_fanout` 由综合期复制是错的（−0.008、1 个失败端点）** ——
+   扇出复制必须在放置之后做。详见 §10。
 
 ---
 
@@ -362,7 +366,10 @@ wire inter_accept_ready = id_ex_inst_valid && !dcache_stall && !dmem_axi_stall_r
                        && !ex_stall_req && !icache_stall && !fence_i_stall;   // 改前
 ```
 
-### 9.2 改法（补丁 `build/patches/timing_D_interrupt_guard_register.patch`，只改 `cpu_core.v`）
+### 9.2 改法（补丁 `build/patches/timing_D_interrupt_guard_register.patch
+build/timing_tests/rep_fanout.tcl, probe_fanout.tcl   # 定点扇出复制 + 大扇出网探针
+build/reports/timing_tests/{rep_ctl,rep_ff400,rep_any150}/   # 三个复制臂的结果
+build/reports/tests_20261024/e_100/                   # RTL max_fanout 反例（−0.008）`，只改 `cpu_core.v`）
 
 把 pc 长链那一项拆出来只驱动一个触发器，当拍再与全部快项（都是寄存器输出）相与：
 
@@ -424,7 +431,83 @@ Data Path Delay 9.870 ns (logic 0.580 / route 9.290)   逻辑级数 1
   `mie/mtvec` → 进 trap → `mret` 回原指令）确认"晚一拍接受"不会把 `trap_pc` 指到气泡上。
 - 落地：`src/rtl/cpu_core.v` = 补丁版本，与 `d_100` 实测所用 RTL 逐位相同。
 
-## 10. 证据路径
+## 10. 大扇出节点本地化复制（2026-10-24 深夜）
+
+### 10.1 定位：压死时序的是一根 9.29 ns 的网
+
+C+D 之后最差路径（`build/reports/tests_20261024/d_100/route_paths.rpt`）：
+
+```
+u_ascon_mmio/u_ascon_core/u_crypto_aead/FSM_sequential_state_reg[3]/Q   (SLICE_X35Y87)
+  → net u_crypto_aead/state[3]   fo=627   route 9.290 ns        ← 唯一的元凶
+  → LUT5 (SLICE_X102Y90)  0.124 ns
+  → u_crypto_aead/p12_in_reg[215]/D
+Data Path Delay 9.870 ns (logic 0.580 / route 9.290)，逻辑级数 1
+```
+
+`state[3]` 是 `crypto_aead.v:99` 的 FSM 状态位（`reg [3:0] state`），它扇出到整条 datapath
+的全部使能/选择锥（628 个负载），一根网从 SLICE_X35Y87 横跨到 SLICE_X102Y90。
+全局最大扇出是复位分发网 `u_ascon_mmio/rst_sync_reg[2]`（fo=9757），但它不在最差路径上。
+
+### 10.2 做法：放置后定点复制 + 防折叠约束
+
+脚本 `build/timing_tests/rep_fanout.tcl`（参数化：tag / post-opt.dcp / probe|ctl|rep /
+minfo / with_rst / seed.routed.dcp / drv_kind）：
+
+1. **选点**从**布线后** DCP 取（post-opt 的时序视图只有逻辑延迟，看不出 70~90% 的走线）：
+   最差 200 条 setup 路径的「起点寄存器输出网」+ 终点 2 级扇入里的宽网，fo ≥ minfo；
+   排除时钟网络、常量、进位链、MUX、RAM、输入端口。
+2. **防折叠**：`opt_design` 之前给候选网驱动单元设 `EQUIVALENT_REGISTER_REMOVAL NO`
+   （否则 opt/phys_opt 会把复制出的等价寄存器合并回去 —— campaign 记过这个坑）。
+3. **复制**：`place_design` → `phys_opt_design -directive AggressiveExplore` →
+   `phys_opt_design -force_replication_on_nets <候选>`（2025.2 唯一入口）+ `MAX_FANOUT 128` 提示。
+4. 复制后对新建的 `*_rep*` 单元再设一次 `EQUIVALENT_REGISTER_REMOVAL NO`。
+   **不用 `DONT_TOUCH`** —— 它同时冻结放置，副本就搬不到负载附近了。
+
+### 10.3 结果（同一流程：opt Explore + place Default + phys_opt Aggressive + route Aggressive）
+
+| 臂 | 复制对象 | WNS | TNS | 失败端点 | WHS | replica 单元 |
+|---|---|---|---|---|---|---|
+| `rep_ctl` | 不复制（流程对照） | +0.003 | 0 | 0 | +0.024 | 51 |
+| **`rep_ff400`** | **只复制 `state[3]`（fo=628）** | **+0.130** | 0 | 0 | +0.013 | 60 |
+| `rep_any150` | 24 根宽网（含 rst_sync fo=9757、p_0_in fo=3990） | +0.124 | 0 | 0 | +0.013 | 93 |
+| `e_100` | RTL `(* max_fanout = 64 *)` + 生产策略 | **−0.008** | −0.008 | **1** | +0.028 | — |
+| （参考）`d_100` | 不复制，生产策略 | +0.087 | 0 | 0 | +0.021 | — |
+
+- **只复制一根网就拿到 +0.127 ns（同流程对照 +0.003 → +0.130）**，是 D 那一步（+0.030）的 4 倍；
+  复制 24 根反而略差（+0.124）且多 33 个副本 —— **越外科越有效**。
+- **合成期复制（RTL `max_fanout`）是错的**：`e_100` 掉到 −0.008 / 1 个失败端点。
+  原因是放置后才复制时，Vivado 在**已知的物理位置**上把 628 个负载分给就近的副本；
+  合成期复制出来的副本还要跟整张网表一起被重新摆放，等于没有利用"本地化"。
+- 复制后 `state[*]` 从「fo ≥ 128 的网」清单里彻底消失；
+  新最差变成 `id_ex/sel_ex_mem_rs1_o_reg → u_ascon_ise/state_reg[182]/CE`（+0.130）
+  和 `→ u_dcache/captured_wdata_reg[31]/CE`（+0.130）—— 即下一根要拆的是
+  `sel_*` 那 4 条 fo≈171 的 1 位网（§9.4 也指向它们）。
+
+### 10.4 怎么用
+
+这条收益**不是 RTL 改动**（`src/rtl` 未动），而是实现流程里的一步：
+
+```bash
+# 以生产网表的 post-opt 快照为起点，复制最差路径上的宽网（只复制 1 根就够）
+vivado -mode batch -source build/timing_tests/rep_fanout.tcl -notrace \
+       -tclargs rep_ff400 <impl_runs/impl_m/top_pl_bram_opt.dcp> rep 400 0 <routed.dcp> ff
+# 输出：build/reports/timing_tests/rep_ff400/result.txt + *_routed.dcp
+```
+
+要在正式流程里固化，就把 `rep_fanout.tcl` 的第 3~4 步（EQREG NO → place → phys_opt →
+`-force_replication_on_nets` → 副本 EQREG NO）接进团队的实现脚本；不要写进 RTL。
+
+### 10.5 未验证
+
+- 只做了 3 个复制臂；`minfo`/副本数量没有扫（128/64/32 未比）。
+- 该流程与生产策略（ExploreWithRemap）不是同一个 directive 组合：
+  `rep_ctl` +0.003 说明这套流程本身比生产策略差 0.08，所以 **+0.130 不能直接当作
+  "生产流程上的最终余量"**；要把复制步骤接进生产策略后重测才知道叠加后的绝对值。
+- WHS 从 +0.024 降到 +0.013（复制改变了 hold 关系），仍 < +0.05 门禁。
+- 仿真不受影响（复制是网表操作，`e_100` 的 6 场景 cycles 与对照完全相同），无功能风险。
+
+## 11. 证据路径
 ```
 build/local/tests_20261024/
 ├── check_F.sh                     # 6 场景等价（iverilog）
@@ -449,4 +532,7 @@ build/local/tests_20261024/check_D.sh, check_D_landed.sh
 build/local/tests_20261024/paths_c100.csv, paths_d100.csv
 build/patches/timing_C_dcache_store_buffer.patch
 build/patches/timing_D_interrupt_guard_register.patch
+build/timing_tests/rep_fanout.tcl, probe_fanout.tcl   # 定点扇出复制 + 大扇出网探针
+build/reports/timing_tests/{rep_ctl,rep_ff400,rep_any150}/   # 三个复制臂的结果
+build/reports/tests_20261024/e_100/                   # RTL max_fanout 反例（−0.008）
 ```

@@ -918,3 +918,46 @@ WHS 由一整群 0~1 级逻辑的寄存器对决定，不是单点。**结论：
   一旦启用中断必须先补定向 TB 验证"晚一拍接受"不会让 trap_pc 指向气泡。
 - 落地：`src/rtl/cpu_core.v` 已应用补丁，与 `d_100` 实测所用 RTL 逐位相同。
 - 当前 100 MHz 芯片级余量：**+0.087 ns**（基线 +0.007 → C +0.057 → C+D +0.087），WHS +0.021。
+
+### 2026-10-24 23:05 · 队友提出的 RTL 纪律 skill 收入 `skill/`（只加文档，不动 RTL）
+
+- 起因：队友 2026-10-17 指出 AI 写 Verilog 的通病（同一逻辑写出一堆等价废话、打补丁式改代码、
+  电路层优化意识差、生成无必要的组合逻辑），据此形成的 skill 已落在 agent 侧
+  `skills/verilog-design/rtl-design-discipline/SKILL.md`；本轮把同一份文件复制进仓库受控目录
+  `skill/rtl-design-discipline/SKILL.md`（sha256 `ca5413cd…c7ed`，与 agent 侧逐字节相同，
+  155 行），供队友与提交材料直接取用。
+- `skill/readme.md` 改写为「已交付 / 预留」两段：写明依赖、输入输出、执行步骤、成功判据、
+  失效条件、来源案例，并明确标注**非 Ascon 示例上的对照效果 not_validated**，
+  据此不满足 S05 要求的「已验证效果」一项。
+- 未改 `src/`、`board/`、XDC、XCI、COE，未跑仿真/综合，未 commit。
+- 未验证：该 skill 是否真能降低 LUT/FF 或缩短最差路径（需要的对照实验见 readme 的
+  「已验证效果」段，`not_measured`）。
+
+
+
+### 2026-10-25 00:10 · 大扇出节点本地化复制（state[3] fo=628）+0.130 ns
+
+- 定位（C+D 之后最差路径）：`u_crypto_aead/FSM_sequential_state_reg[3]/Q → net state[3]
+  （fo=627、**单根走线 9.290 ns**）→ LUT5 → p12_in_reg[215]/D`，整条 9.870 ns、**1 级逻辑**。
+  `state[3]` 是 `crypto_aead.v:99` 的 FSM 状态位，扇出到整条 datapath 的使能/选择锥。
+  全局最大扇出是复位分发网 `u_ascon_mmio/rst_sync_reg[2]` fo=9757（但不在关键路径上）。
+- 新脚本 `build/timing_tests/{rep_fanout.tcl,probe_fanout.tcl}`：
+  从**布线后** DCP 选点（post-opt 视图看不出走线）→ opt 前给驱动设
+  `EQUIVALENT_REGISTER_REMOVAL NO`（防折叠）→ place → `phys_opt_design -force_replication_on_nets`
+  + `MAX_FANOUT 128` → 复制体再设 EQREG NO（不用 DONT_TOUCH，否则冻结放置）。
+- 结果（同流程 optExplore+placeDefault+physAgg+routeAgg）：
+  | 臂 | 复制对象 | WNS | WHS | 失败端点 | replica |
+  |---|---|---|---|---|---|
+  | rep_ctl | 无 | +0.003 | +0.024 | 0 | 51 |
+  | **rep_ff400** | **只 state[3]** | **+0.130** | +0.013 | 0 | 60 |
+  | rep_any150 | 24 根宽网 | +0.124 | +0.013 | 0 | 93 |
+  | e_100 | RTL `max_fanout=64` + 生产策略 | **−0.008** | +0.028 | **1** | — |
+  → **只复制一根网就 +0.127（同流程对照），复制 24 根反而略差**；
+  **合成期复制（RTL 属性）是反例**：放置后复制才能把 628 个负载分给就近副本。
+- 复制后 `state[*]` 从 fo≥128 清单消失；新最差 `sel_ex_mem_rs1_o_reg →
+  u_ascon_ise/state_reg[182]/CE`（+0.130）与 `→ dcache/captured_wdata/CE`（+0.130），
+  即下一根要拆的是 `sel_*` 那 4 条 fo≈171 的 1 位网。
+- 性质：**不是 RTL 改动**（`src/rtl` 未动），是实现流程的一步；仿真无影响
+  （`e_100` 的 6 场景 cycles 与对照完全相同）。
+- 未验证：minfo/副本数量未扫；复制步骤尚未接进生产策略（`rep_ctl` +0.003 说明该流程本身
+  比生产策略差 0.08，+0.130 不能直接当最终余量）；WHS +0.013 仍 < +0.05。

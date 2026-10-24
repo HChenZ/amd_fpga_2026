@@ -87,3 +87,7 @@ desktop.ini
 # Export selected synthesis/implementation/timing/utilization summaries out
 # of ignored *.runs/ into build/reports/. Foundation closeout removed the two
 # formerly tracked cache/hw metadata files; ignore rules alone do not delete them.
+
+# Vivado 探针在仓库根目录产生的临时报告
+/clockInfo.txt
+/tight_setup_hold_pins.txt

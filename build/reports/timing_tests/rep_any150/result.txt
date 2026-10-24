@@ -1,0 +1,3 @@
+RESULT tag=rep_any150 mode=rep minfo=150 with_rst=0 wns=0.124 tns=0.000 failing=0 whs=0.013 luts=13546 ffs=17223 rep_cells=93 cand=24
+PATH start=u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs1_o_reg/C end=u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/captured_wdata_reg[19]/D dp=9.529 logic=1.510 net=8.019 levels=8
+SOURCE dcp=top_pl_bram_opt.dcp seed=d_100_routed.dcp tool=2025.2 date=Sat Oct 24 23:40:54 +0800 2026 head=8e51bee
