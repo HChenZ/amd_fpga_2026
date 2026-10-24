@@ -1,4 +1,7 @@
 `timescale 1ns / 1ps
+
+`include "ascon_permutation.v"
+
 // =============================================================================
 // ascon_ise.v — Ascon permutation ISE (custom instruction) coprocessor.
 //
