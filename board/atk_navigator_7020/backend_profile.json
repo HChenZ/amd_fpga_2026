@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "status": "not_configured",
+  "board": "alientek_atk_navigator_7020",
+  "part": "xc7z020clg400-1",
+  "physical_speed_grade": "pending_chip_marking",
+  "pl_external_clock_hz": 50000000,
+  "design_source": null,
+  "protocol_revision": null,
+  "firmware_id": null,
+  "artifacts": null,
+  "ip_bindings": null,
+  "notes": "No PS mailbox exists in the current baseline. Populate only from a reviewed future design and matching HWH. No automatic FPGA download."
+}
