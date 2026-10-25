@@ -18,7 +18,7 @@ python -B sim/board/run_tests.py --mode regression
 
 SW/ISE target固件当前为6组代表KAT加解密与篡改检查；MMIO以其固件支持的≤16B集合为准，不声称target全部1,089 KAT。CPU仿真由原 `run_cpu_regression.py` 完整编译当前生产RTL执行，不用Python密码函数替代RTL。`run_ascon_sw/hw/ise.sh` 是这同一runner的薄入口，因此不再重复运行shell包装。
 
-CPU中断暂为 BLOCKED：没有找到可直接复用的定向中断接受回归，既有固件未开启中断。D-Cache回归直接运行现有TB；若它与当前RTL不兼容或失败，原样记录，不修改Cache来让入口变绿。ISA全套不是本轮最小集合，已有文档记录ma_data对齐能力缺口，不把这次集合当完整CPU合规测试。板上UART/Overlay为NOT_RUN，FPGA cycles/加速比为NOT_MEASURED。
+CPU中断后续已增加独立定向验证，见下方2026-10-25补充；smoke中为NOT_RUN，regression调用实际测试。D-Cache回归实际运行修订后的原路径TB与独立事务TB；历史4个旧时序FAIL保存在冻结快照及旧日志，分类TB_STALE，当前两套TB均必须exit0。没有修改生产Cache。ISA全套不是本轮最小集合，已有文档记录ma_data对齐能力缺口，不把这次集合当完整CPU合规测试。板上UART/Overlay为NOT_RUN，FPGA cycles/加速比为NOT_MEASURED。
 
 ## 工具与报告
 
@@ -56,4 +56,16 @@ python -B sim/board/uart_log.py path/to/captured.log --evidence-kind hardware_ua
 
 可加 `rtl_sha=<40或64hex>`、`bitstream_sha=<64hex>`；无字段保留null。测试值明确simulated，不能当benchmark。也解析现有MMIO/ISE的dec round/tamper/len reject、full MMIO、ISE cycles；crypto latency保存在独立crypto_core_cycles字段，不冒充CSR mcycle。benchmark行没有独立正确性结果时status=NOT_RUN；缺mcycle为NOT_MEASURED。FAIL/FATAL/TIMEOUT、重复字段、非法状态/u64/身份格式导致失败，不能让固定的`KAT: n/n PASS`覆盖前面的真实失败。当前固件尚不输出版本/RTL/bitstream身份，不替它补造字段。
 
-板级资料和交接见 [board/atk_navigator_7020](../../board/atk_navigator_7020/readme.md)，真实配置入口仍NOT_CONFIGURED。项目公共日志超出本轮允许写入路径，须取得用户允许后由主线同步；本轮事实在该目录`handoff.md`，不自动改共享日志或任务状态。
+板级资料和交接见 [board/atk_navigator_7020](../../board/atk_navigator_7020/readme.md)，真实配置入口仍NOT_CONFIGURED。初次上板准备的目录限制与旧事实保存在`handoff.md`；后续提交/定向验证见`validation_followup.md`及项目日志。
+
+## 2026-10-25 后续：D-Cache与CPU中断
+
+```powershell
+python -B sim/board/run_targeted_validation.py --out build/local/targeted_new
+```
+
+可用`--mode dcache|interrupt`单独运行。前者比较引入miss流水前、Store Buffer前和当前源码，保留原4项FAIL证据，并用独立scoreboard/4种子逐拍差分及错误回填/丢写门禁诊断。后者运行生产CPU+真实CLINT，6场景均必须实际接受中断、检查架构CSR、执行handler和mret、恢复循环；禁timer、无mret固件与临时副本绕过guard都必须失败。生产RTL不修改，临时负向副本只在build/local。
+
+新入口gate PASS表示当前事务/架构契约通过且负向门禁有效。旧固定时序TB及其对应生产RTL按已发布68fafc8冻结，仅作历史复现，原始FAIL/exit1仍明确保存；当前生产RTL运行修订版TB，必须PASS/exit0。统一regression直接运行原路径的修订TB，并调用定向入口执行事务TB、故障注入和六场景中断。历史失败与预期故障注入的FAIL不能改写为原始PASS，当前正常测试的真实FAIL也不能豁免。smoke不运行这组RTL测试，状态为NOT_RUN而非“缺测试”BLOCKED。
+
+旧TB修订采用独立预期事务队列、请求事件与有界等待，完整检查地址/方向/数据/字节掩码/请求次数/回填；保持30拍完成上限，新增8拍请求上限与总watchdog。刺激下降沿驱动、输出上升沿NBA之后采样；保留原所有场景/expected，增加连续store、额外byte mask、跨时钟stall与半条line填充时reset。除事务TB原有坏回填/丢写门禁外，修订TB也必须拒绝坏回填、缺读/重复读/错地址/错写数据/错掩码/缺写。详见 [D-Cache测试契约修订](dcache_tb_revision.md)。

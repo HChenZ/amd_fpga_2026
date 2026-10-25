@@ -105,12 +105,13 @@ def main():
                  marker='[RESULT] tb_dcache PASS',cwd=out)
         else:
             report['tests'].append(dict(name='dcache',status='BLOCKED',reason='compile failed',exit_code=None))
+        test('cpu_interrupt',py+['sim/board/run_targeted_validation.py','--out',str(out/'targeted_baseline'),
+             '--cc-prefix',a.cc_prefix],('python','riscv_gcc','iverilog','vvp'),
+             evidence='rtl_simulation',marker='PASS TB_STALE')
     else:
-        for name in ('host_kat','cpu_sw','cpu_hw','cpu_ise','cpu_image_match','mailbox_kat','dcache'):
+        for name in ('host_kat','cpu_sw','cpu_hw','cpu_ise','cpu_image_match','mailbox_kat','dcache','cpu_interrupt'):
             report['tests'].append(dict(name=name,status='NOT_RUN',reason='requires --mode regression',exit_code=None))
-    report['tests'] += [dict(name='cpu_interrupt',status='BLOCKED',exit_code=None,
-                            reason='no reusable directed CPU interrupt acceptance test; firmware has interrupts disabled'),
-                       dict(name='fpga_uart_overlay',status='NOT_RUN',exit_code=None,reason='no board/overlay; hardware cycles NOT_MEASURED')]
+    report['tests'] += [dict(name='fpga_uart_overlay',status='NOT_RUN',exit_code=None,reason='no board/overlay; hardware cycles NOT_MEASURED')]
     changed = [name for name,digest in before.items() if not (ROOT/name).exists() or sha256(ROOT/name)!=digest]
     added = [str(p.relative_to(ROOT)) for directory in ('data/ascon','sim/ascon/reference','board/vivado_zynq7000_xc7z020_baseline')
              for p in (ROOT/directory).rglob('*') if p.is_file() and '__pycache__' not in p.parts
