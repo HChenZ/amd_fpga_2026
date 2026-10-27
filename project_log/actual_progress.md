@@ -1,5 +1,252 @@
 # 实际进度
 
+## 2026-10-26 — 首次上板：软件版 Ascon 板级 KAT 6/6 PASS（100 MHz，WNS +0.087 ns）
+
+owner TBD；本轮由用户在 Vivado GUI 手工建工程/综合/实现/烧录，我在旁核验报告与日志。未改 RTL/XDC。
+
+- **工程**：`board/vivado_zynq7000_xc7z020_ascon/first_time/`（手工新建，非 baseline 副本；XPR=`first_time.xpr`，
+  srcs=`riscv_vivado_project.srcs`）。Vivado 2025.2，part `xc7z020clg400-1`，top `top_pl_bram`。
+- **源**：`f88e178` 的 `src/rtl/*.v`(31) + `src/rtl/ascon/*.v`(8，排除 `*_tb.v`)，**不含 keys/PUF**；
+  旧 baseline `imports/rtl` 快照已重命名为 `rtl_baseline_snapshot_do_not_add`、未入工程。
+- **约束**：baseline `const.xdc` 原样（U18 50 MHz、N16 复位低有效、T19/J15 USB-UART、H15/L15 LED、L14/K16 KEY）。
+- **IP**：`clk_wiz_0`(PLL 50→100 MHz, RESET_TYPE=ACTIVE_HIGH)、`axi_bram_ctrl_0`(AXI4/32b/32768)、
+  `blk_mem_gen_0`(32×32768, byte write, COE=`ascon_sw.coe` sha256 `3dcd59a0…`)。
+- **综合**（Vivado Synthesis Defaults）：LUT 12214 / FF 15945 / RAMB18 5（BRAM 为 OOC 黑盒）/ DSP 4，
+  **CRITICAL WARNING 0**（195 warning 为历史噪音）。报告：`first_time.runs/synth_1/top_pl_bram_utilization_synth.rpt`。
+- **实现**（`Performance_ExploreWithRemap`）：**WNS +0.087 / TNS 0 / 失败端点 0 / WHS +0.021**，
+  布线 24610/24610 全通、0 routing error，DRC 0 Error/0 Critical（仅 1 条 RTSTAT-10 提示）；
+  placed LUT 12426 / FF 16156 / RAMB36 32 + RAMB18 5 = 34.5 / DSP 4。
+  最差路径 `u_ascon_mmio/…/FSM_sequential_state_reg[3]/C → p12_in_reg[215]/D`，与 10-24 签核同一条。
+- **bitstream**：4,045,687 B，sha256 `f4233827e3005e115bb30e31e64a75a4487f9dfdd9efe2946d9c924b8ffb5c2e`
+  （已存档 `build/local/board_bitstream/top_pl_bram_sw.bit`，生成物不入 git）。
+- **板级链路**：ATK-U18 下载器（FT232H，需装 Vivado 自带 cable driver）+ CH340 **COM7**，
+  115200 8N1 无流控，底板 P5 短接 **3–5 / 4–6**（PL 串口），JTAG 下载（非 QSPI）。
+- **板级结果（ascon_sw）**：banner → **KAT 6/6 PASS**（empty/1B/16B/16B+AD/17B/32B）+ **tamper reject PASS**
+  → warm benchmark：enc16B **20806 cyc**/4495 inst/CPI 4.62、enc32B 25787/5600/4.59、
+  dec16B 21360/4722/4.51、dec32B 26444/5857/4.51 → `===DONE===`。
+- **与 2026-10-15 仿真基线的差异（+23.5% cycles、+7.6% inst、+14.6% CPI）暂不归因**：
+  ①今天用 xpack GCC 15.2.0，10-15 仿真用 WSL GCC 13.2（text 39124 vs 38852 B 印证二进制不同）；
+  ②10-15 之后 RTL 落了 B(dcache store buffer)/C(mult 寄存器化)/D(中断判决拆拍)；
+  ③仿真是 `sim/ascon` 的简化 AXI BRAM 模型，板上是真 `axi_bram_ctrl`。
+  已用同 RTL + 同编译器重跑 sw 仿真做对照（证据目录 `build/local/verify_teammate/build/local/board_cmp`）。
+- **对照结论（同 RTL f88e178 + 同编译器 xpack GCC 15.2.0）**：仿真 enc16B **17353 cyc / 4493 inst / CPI 3.86**、
+  enc32B 21515/5604/3.83、dec16B 17847/4730/3.77、dec32B 22094/5865/3.76，KAT 6/6 PASS。
+  **指令数与板上逐项一致（4495 vs 4493、5600 vs 5604、4722 vs 4730、5857 vs 5865，差 ≤8 条）**，
+  → 之前的 +7.6% inst 差额确认为**编译器版本差异**（GCC 13.2 → 15.2），不是算法或固件差异。
+  剩余 **cycles 一致地高 +19.7~19.9%，折算 CPI +0.76/指令**（3.86→4.62），四个操作同比例
+  → 归因为**存储子系统延迟**：板上走真实 `axi_bram_ctrl_0`，仿真是 `sim/ascon` 的简化 AXI BRAM 模型；
+  具体到 icache/dcache miss/refill 的拍数差，需加 miss 计数器才能定量（V01 细化项）。
+  因此：C04/I07 里记录的 16840 / 21018 / 17226 / 21461 是**仿真值**，板上实测比之高约 20%，
+  报告必须分列，不能混用；板上三套之间的加速比仍以板上同条件测量为准。
+- **ISE 版板上结果（第二轮，23:21）**：COE 换 `ascon_ise.coe`（sha256 `7ef0b829…`），OOC 重生成后
+  `.mif` 第 3 字由 `A197` 变 `2197`（确认镜像切换，见 23:03:36 时间戳）；实现仍
+  **WNS +0.087 / TNS 0 / 0 失败端点 / WHS +0.021**、24610/24610 全布通、DRC 0 Error，
+  资源 FF 15945 / LUT 11266 与 sw 版**逐位相同** → 换 COE 未动逻辑。
+  bitstream `f85eb1a63284059f5dbc785aa791d81c9a6f558a27843c2767d2414909144392`（4,045,687 B，
+  与 sw 版差 31,505 字节）。
+  串口：KAT empty/1B/16B/16B+AD + **dec round PASS** + **tamper PASS**，
+  **warm 16B 加密 ISE cycles = 2570**（= 160.6 cpb）。
+  → **板级加速比 20806 / 2570 = 8.10×**（同板同条件，20806 为第一轮软件版实测）。
+  2570 与 `docs/cpu_pipeline_flow.md` 记的 ISE 2559 拍同量级；10-15 仿真的 1880 是旧 RTL/旧编译器口径，不可直接与板上相减。
+- **ISE 版仿真对照（同 RTL f88e178 + 同编译器 15.2.0）**：仿真 **2496 cyc**（KAT 6/6 PASS），板级 **2570**，
+  **仅差 +3.0%（+74 拍）**。与软件版对照（17353 → 20806，**+19.9%**）相比差异极大。
+  → 说明板上那部分额外开销**与访存密度成正比**：ISE 把置换搬进硬件后指令数/访存大幅减少，
+  对存储延迟不敏感；这也解释了为什么 **板上加速比 8.10× 反而高于同编译器仿真比 6.95×**
+  （17353/2496）——软件版被存储延迟拖得更多。报告里应写这个解释，而不是把两者混为一谈。
+- **同 RTL/同编译器口径汇总**：仿真 sw 17353 → ise 2496（6.95×）；板上 sw 20806 → ise 2570（**8.10×**）。
+- **MMIO 版板上结果（第三轮，2026-10-27 18:56）**：COE 换 `ascon_hw.coe`（sha256 `3e464c48…`）；IP 重生成后
+  `.mif` 第 3 字 `2197` + **第 4 字 `81018193`**（hw 独有指纹，ise 版是 `1E018193` —— **只看第 3 字会与 ise 混淆**，
+  本轮新增的判据）。实现仍 **WNS +0.087 / TNS 0 / 0 失败端点 / WHS +0.021**、24610/24610 全布通、
+  DRC 0 Error；placed LUT 12426 / FF 16156 / RAMB36 32；bitstream
+  `2f6f24692533941f902deb812cd7a61192a722b20d3f8536e466e46e4579c544`（与另两份互不相同）。
+  串口：KAT empty/1B/16B/16B+AD + dec roundtrip + tamper reject + **len reject**（16B 上限）全 PASS；
+  **crypto latency 103 cyc / full MMIO 688 cyc**。
+  同 RTL 同编译器仿真为 99 / 670 → 板上 **+4.0% / +2.7%**，与 ISE 的 +3.0% 同一量级（都是访存少的版本），
+  再次印证「板上额外开销 ∝ 访存密度」。
+- **板上三套齐全（warm 16B 加密，同板同 100 MHz）**：
+  软件 **20806 cyc（1.0×）** → **MMIO 688 cyc 端到端（30.2×；裸 crypto 103 cyc ≈ 202×）** →
+  ISE **2570 cyc（8.10×）**。三份 bitstream sha256：sw `f4233827…` / ise `f85eb1a6…` / hw `2f6f2469…`
+  （均存于 `build/local/board_bitstream/`，不入 git）。
+  日志注意：本版串口开头有约 2 行乱码（开串口瞬间的帧错），banner 之后全部干净，不影响判据，原始日志按原样保留。
+- **未做**：三套统一脚本化的板上 benchmark（当前是各固件自打印）、IO delay 约束、PS/PYNQ、PS 端到端、
+  ISA 回归板上抽样。
+
+## 2026-10-26 — 独立核验：队友 preboard 提交 / PUF 子系统 / 余量口径纠正（+0.087 而非 +0.039）
+
+owner TBD；只读核验 + 文档改正，未改 RTL、未 commit/push。核验环境：Vivado 未启动；
+Icarus 14.0 (devel)、riscv-none-elf-gcc 15.2.0、Python 3.14；队友代码用 `git archive origin/main`
+导出到 `build/local/verify_teammate/` 后独立跑，不动本工作区。
+
+- **余量口径定为 +0.087 ns。** `+0.039` 是 `run_prod_arm.tcl mode=hook`（生产策略 + 强制复制钩子）
+  实验臂的数字，2026-10-25 01:10 的结论原文即「复制步骤**不进流程**，当前 100 MHz 最好成绩 =
+  生产策略 + C + D = **+0.087 ns**」。无钩子生产流程已有 6 个臂逐位相同：`prod_ctl`、`pr_ctl`、
+  `pr_ctl2`、`pr_mfonly`、`pr_selprops`、`pr_physopt_only`（另有 `r2_ctl`/`r2_popt`）。
+  故：无密钥子系统 **+0.087**；PUF 集成 +0.051（RO 压成 1 LUT）/ +0.058（256×5 原语 RO）；
+  PUF + key_mmio **+0.023**（`build/reports/keys_sta_20261025_mmio2/`，10-26 14:01）。
+  本文件 2026-10-25 板卡段落的「按 +0.039 ns 记」与 `docs/key_subsystem.md` §5 的
+  「不含密钥子系统 +0.039」两处已就地改正。
+- **队友提交**：`origin/main = 4268b1f`（68fafc8 Navigator 交接 20 文件；4268b1f D-Cache TB 修订 +
+  中断验证 + 公共记录）。本地 main 落后 2 个 commit；`git merge-tree --write-tree HEAD origin/main`
+  试合并无冲突（本工作区 keys/PUF 为未跟踪新文件，不与之相交）。
+- **独立复现（全部真跑）**：
+  - `run_tests.py --mode smoke`：**6 PASS / 0 FAIL / 0 BLOCKED / 9 NOT_RUN，exit 0**。
+  - `run_targeted_validation.py --mode interrupt`：6 个 RV32 场景 PASS，3 个负向门禁
+    （NO_TIMER / BROKEN_MRET / 临时副本绕过 guard）均按预期 exit 1，overall PASS。
+  - `--mode dcache` 全量：26 条命令结果与队友声明一致（legacy 臂按设计 exit 1；修订 TB、
+    独立契约 TB、4 种子 trace 均 PASS）。本次在我机器上因 `pre_store_buffer_trace_1234567.txt`
+    未落盘而整体判 FAIL；单独重跑该命令可正常产出 1.47 MB 文件 → 判为脚本未检查 `$fopen`
+    返回值的偶发缺陷（建议加固），不影响 TB 结论。
+  - **COE**：`build_firmware.py` 出 sw/hw/ise 三套；其中 ise / sw 的 `.coe` 与我按 hex 独立生成的
+    `.coe` **逐字节相同**（sha256 `7ef0b829…` / `3dcd59a0…`，各 32770 行）。
+- **「D-Cache 修好」的准确表述是 TB_STALE，不是 RTL 修复**：4268b1f 不含任何 `src/rtl` 变更；
+  旧 TB 的 4 项 FAIL 源于 MISS_CAPTURE 拆拍后固定拍数假设过期，修订 TB 与独立 scoreboard 在
+  改前/改后两版 RTL 上均 PASS，原 FAIL/exit1 证据保留。
+- **PUF 侧**（仍为未跟踪工作区文件，未进任何分支）：`src/rtl/keys/` 5 模块、`sim/keys/` 6 TB、
+  `docs/key_subsystem.md`、2 个集成补丁、`build/keys_ro_pblock.xdc`、`build/build_keys_sta.tcl`。
+  复跑 `bash sim/keys/run_key_tests.sh`：**tb_puf_key PASS、tb_key_mmio PASS**（REF/MASK 可回读、
+  reconstruct 一致、CLEAR 生效、窗口不暴露 key）。`git apply --check` 两个补丁在 f88e178 上干净。
+  缺口不变：DNA 位序需上板对齐、enroll 结果需经 MMIO/ILA 搬出、P02 稳定性未测、未上板未集成。
+- **未验证**：完整 regression（在跑）、板级任何一项、PS7/PYNQ 链路、ASCON 独立工程的 STA/DRC。
+
+## 2026-10-25 — 扇出复制第二轮 12 臂：`sel_*` 一根都拆不出来；+0.184 定性为「布线解换盆」
+
+owner TBD；未改 `src/rtl`、`board/`、XDC（全部变体是 `build/local/tests_20261025/` 下的副本），未 commit/push。
+工具 Vivado 2025.2，part `xc7z020clg400-1`，top `top_pl_bram`，策略 `Performance_ExploreWithRemap`，核心 10 ns。
+
+- **页面 R1 提的那个实验做完了：单根/双根定点复制也拆不出来。** 12 个臂（单根 / 2 根 / 4 根 /
+  属性写网 / 属性写单元 / `MAX_FANOUT`=16 与 128 / 加 `AggressiveExplore` / 不写属性）**一律副本 51 → 51、
+  FF 17187 → 17187**，日志一律 `Identified N candidate nets` + `Optimized 0 net. Created 0 new instance.`
+  → `-force_replication_on_nets` 只是把网塞进候选清单，是否实例化由 Phase 2 判据决定，判据一致拒绝。
+  对照：同一位置对 `u_crypto_aead/state[3]`（fo=628）则真的把扇出从 628 降到 25。
+- **上一轮的 +0.184 与复制无关，是"定向扰动布线解"**（8 次逐位相同：R1 的 2 次 + 本轮 6 次）。
+  机制用排除法钉死：两臂 **post-place 检查点 32579 个原语的 `NAME→LOC` 逐行 diff 为空**，
+  布线后只有 **35 个单元**不同，净表（副本/FF/LUT）完全相同 → 收益只能来自布线解。
+- **四味消融**：属性不是必需（`r2_noprop` 不写任何属性仍 +0.184）；**选点必需**
+  （`r2_tiny` 点一根 fo=3 的无关小网 → +0.073，比对照还差）；连调两次不叠加（`r2_x2` 仍 +0.184）；
+  **临时过约束逼 phys_opt 干活没用**（`r2_tight`：核心 9 ns 跑 AggressiveExplore，phys_opt 确实动手
+  —— Fanout 相位 TNS +57.529、新增 13 单元 —— 但恢复 10 ns 后只有 **+0.057**，且 LUT +87 / FF +48）。
+- **新墙换人了**：+0.184 网表的最差是 `sel_ex_mem_rs1_o_reg → if_id/pred_target_o_reg[12]/D`，
+  13 级 / logic 3.520 / net 5.808，其中 **8 级是 `u_mem_wb/captured_addr_reg[*]_i_1/CO` 的 32 位增量链**
+  （X57Y33→Y39 竖向，每级 0.114 ns），末端 `dcache_cpu_addr[29]` 一根网 0.988 ns；
+  `sel_*` 自己的 171 扇出网只占 0.955 ns。
+- **`-force_replication_on_nets` 不能用在 post-route**（preflight 实测：
+  `ERROR: [Vivado_Tcl 4-265] ... not supported yet for post-route physical synthesis`），
+  只能在 `PHYS_OPT_DESIGN.TCL.POST` 用。
+
+验证命令（全部真跑，退出码 0）：
+```bash
+bash build/timing_tests/run_batchR2.sh      # 8 臂，14:17→14:40
+bash build/timing_tests/run_batchR2C.sh     # 4 臂（r2_tight 重跑一次，见下）
+python build/timing_tests/collect_r2.py     # 汇总
+```
+证据：`build/reports/tests_20261025/<tag>/result.txt`、`build/local/tests_20261025/logs/<tag>.log`、
+`build/reports/tests_20261025/_place_cmp/*.txt`（32579 行 LOC 快照）、
+`build/timing_tests/logs/preflight.log`；分析写进 `docs/timing_route_replication_r2.md`。
+
+**返工记录**：r2_tight 第一版用 `set_property PERIOD` 改时钟 → `ERROR: [Common 17-107] Cannot change
+read-only property 'PERIOD'`，臂在 phys_opt 前就退出（14:47），改成重新 `create_clock` 后重跑成功（15:31）。
+另有一次 `run_batchR2.sh` 起跑后才发现钩子被拷进 run 目录会断掉 `r2_lib.tcl` 的相对 source，
+杀掉重落后才正式跑（14:17 那次）。
+
+**未验证**：+0.184 的机制只有排除法证据（没有布线器 criticality 的直证）；换 RTL 后是否仍成立（`r2_tiny`
+已证明不是"必然变好"）；`docs/freeze_checkpoint_20261018.md` §2 全套功能回归未跑；8 级 CARRY4 增量链的
+RTL 改法未做。**下一接收任务**：`sel_*` 复制到此结案，转 13 级路径的进位链结构性改法（owner TBD）。
+
+## 2026-10-25 — 板卡确认（正点原子领航者 ZYNQ7020）；密钥子系统 RTL 落地并仿真通过
+
+owner TBD；HEAD `f88e178`。未改 `src/rtl` 既有文件（新增 `src/rtl/keys/` 与两个补丁），
+未综合、未上板，未 commit/push。
+
+- **板卡身份确认**（资料盘 `3_开发板原理图和硬件相关文件/NAVIGATOR_ZYNQ_IO.xdc`）：
+  正点原子 领航者 ZYNQ7020，`sys_clk`=**U18 50 MHz**、`sys_rst_n`=**N16 低有效**、
+  USB-UART=**T19/J15**、`led[1:0]`=**H15/L15**、`key[1:0]`=**L14/K16**，与仓库 `const.xdc`
+  **逐引脚一致**，`RESET_ACTIVE_LOW=1` 默认匹配 → 引脚不用改，50 MHz + MMCM ×2 = 100 MHz
+  与 STA 前提一致，B03 的“板型未知”风险解除。资料盘另有《领航者 ZYNQ 之 PYNQ 开发指南 V3.2》
+  → P1 的 PYNQ 路线可行。
+- **时序现状**：`805b01a` 的 +0.039 是「生产策略 + 强制复制钩子」实验臂的数字（复制已否决、不进流程）；
+  生产流程（无钩子）按 **+0.087 ns** 记（6 个无钩子臂逐位相同，见 2026-10-26 核验条目）；
+  最差路径已变成 `u_crypto_aead FSM → p12_in`（1 级逻辑、9.29 ns 走线）。
+- **密钥子系统**（用户决策：PUF+DNA 组合 / 内部直连 CPU 不可读 / 多数表决+片内 helper / 100 MHz）：
+  新增 `src/rtl/keys/{device_dna,ro_unit,ro_puf_core,puf_key}.v`、
+  `sim/keys/{tb_puf_key,tb_dna_min,DNA_PORT_sim}.v`、`sim/keys/run_puf_key.sh`。
+  仿真 5 项全 PASS：DNA 读出正确、enroll/reconstruct key 一致、无 helper 正确降级、
+  DNA-only 确定性、helper 被破坏时 fallback key == DNA-only key。
+- **集成补丁**（`git apply --check` 均通过）：`key_subsystem_ascon_mmio_hwkey.patch`
+  （加 `key_hw/key_hw_sel`，锁定后 CPU 写 KEY 被丢弃）、`key_subsystem_soc_top_inst.patch`
+  （上电自动生成一次、key 就绪即锁定）。patched 源 + keys 全 SoC **elaborate 干净**。
+- **风险/未完成**：① DNA 位序需上板与 Vivado Device DNA 比对一次（`SHIFT_SKIP`）；
+  ② enroll 的 ref/mask 目前只能靠 ILA 读出（缺 MMIO 状态口）；
+  ③ 约 +1.8k LUT / +6k FF，在 +0.039 ns 余量下必然要重跑 STA（RO 独立 pblock 或慢时钟域），
+  否则演示走 80 MHz。
+- 文档：[key_subsystem](../docs/key_subsystem.md)。
+- 顺带修正 draft 的两个真实缺陷：`device_dna` 在 IDLE 每拍清零 `dna`（上层取不到值）、
+  SHIFT 相位未对齐（加 `SHIFT_SKIP` 参数）；`puf_key` 里 `ref` 是 SystemVerilog 保留字，
+  改名 `h_ref`。
+- **追加（14:40–15:30）①RO 独立 pblock + 慢时钟域，③100 MHz 实测**：重写 `ro_puf_core`
+  为「RO 自身当时钟计数 + ro_clk(25 MHz = clk/4, BUFG) 控制域 + req/done 翻转握手」；
+  新增 `build/keys_ro_pblock.xdc`（pb_ro_puf，X60Y115:X113Y149）与 `build/build_keys_sta.tcl`。
+  集成 STA（生产策略，`build/reports/keys_sta_20261025/`）：
+  **WNS +0.051 / TNS 0 / 0 失败端点 / WHS +0.035**，LUT 13924(+446)、FF 22088(+4901)、
+  BRAM 34.5(−4)；最差路径仍是 CPU 的 `id_ex→dcache/captured_wdata`，**不在密钥子系统中**。
+  落点核查：u_puf 下 7275 个叶子单元 **全部**落在 pb_ro_puf（X56..113 / Y102..149），
+  CPU 被压到 X27..96 / Y0..92，两者物理不相交。
+- 顺带记录一个**真实设计缺陷**（草稿 `../IO/ro_puf_top.v` 同样存在）：用系统时钟去数 RO 上升沿
+  在硬件上测不出频率（RO 150~300 MHz 快于采样时钟，直接混叠），已改为 RO 驱动计数器时钟、
+  窗口结束停计数后取静态快照。另有 `device_dna` 在 IDLE 每拍清零 `dna`（上层取不到值）与
+  SHIFT 相位未对齐（新增 `SHIFT_SKIP`）；`puf_key` 里 `ref` 是 SV 保留字，改名 `h_ref`。
+- **追加（15:30–15:50）RO 原语化 + 复测**：DRC 发现第一版用 `assign` 链搭的 5 级环被综合
+  压成 **1 个 LUT**（`1 LUT cells form a combinatorial loop`），`STAGES` 参数失效、部分 RO 被吞。
+  改为显式 `LUT2(NAND, INIT=0010)` + 4×`LUT1(INV, INIT=01)`，每级 DONT_TOUCH；
+  复测（`build/reports/keys_sta_20261025_r2/`）：**WNS +0.058 / TNS 0 / 0 失败 / WHS +0.020**，
+  LUT 14802(+1324)、FF 22094(+4907)。DRC 变为 `5 LUT cells form a combinatorial loop`，
+  报告覆盖 `g_ro[0..255]` 共 **256 根**（stdout 只打印 101 条是打印上限）。
+  最差路径仍是 CPU `id_ex → dcache`，密钥子系统不在关键路径上。
+- **追加（15:50–16:00）复现 + RO 结构定量核实**：第三次独立 run（`keys_sta_20261025_clean/`）
+  WNS 仍为 **+0.058 / 0 / 0**，与 r2 逐位一致 → 结果可复现。
+  钩子脚本 `build/keys_ro_allow_loops.tcl` 修正后实测 **ro_lut_cells=1280、nets_tagged=1280**
+  （= 256 RO × 5 LUT），定量证明每根 RO 都是 5 级环、无合并。
+  两个踩坑点：ALLOW_COMBINATORIAL_LOOPS 不能写在 XDC（综合前 net 不存在）；
+  也不能用层次名过滤（综合后 `u_puf` 被打平，必须按引脚找 net）。
+  已归档的 clean run 用的是旧钩子，所以 DRC 报告里仍有 256 条 LUTLP-1（预期、可容忍），
+  下一次 build 会带上新钩子。
+- **追加（16:00–16:20）key_mmio 落地**：新增 `src/rtl/keys/key_mmio.v`（挂在 Ascon 窗口 0x80 段，
+  `ascon_addr_sel` 32..52，共 21 个字：STATUS/CTRL/DNA_LO/DNA_HI/QUALITY/REF×4/MASK×4/DITHER×4/RAW×4），
+  `puf_key` 增加 `helper_ref_o/helper_mask_o` 输出；`soc_top` 用 `ascon_rdata = ascon_rdata_core | key_rdata`
+  合并（不改共享的 `bus_interconnect.v`）。**窗口不暴露 key**。
+  新增 `sim/keys/tb_key_mmio.v` 与 `sim/keys/run_key_tests.sh`，两套测试均 PASS：
+  `tb_puf_key PASS`、`tb_key_mmio PASS`（窗口外读 0 / enroll→ready·enrolled·done·quality=89 /
+  DNA_LO·HI 正确 / REF·MASK 回读一致且可用位非空 / reconstruct key 与 enroll 一致 / CLEAR 生效）。
+- **钩子生效**：`RO_ALLOW_LOOPS: ro_lut_cells=1280 nets_tagged=1280`，DRC 里 **LUTLP-1 归零**
+  （之前 256 条）。
+- **key_mmio 集成 STA 已完成**（`keys_sta_mmio2`，生产策略）：
+  **WNS +0.023 / TNS 0 / 0 失败端点 / WHS +0.022 / 布线错误 0**；
+  LUT 17123(+3645)、FF 28498(+11311)、BRAM 34.5；最差路径是 CPU `mem_wb → pc CE`，不在密钥子系统里。
+  DRC LUTLP-1 **归零**（钩子 `ro_lut_cells=1280 nets_tagged=1280` 生效）。
+  代价：相比不含 key_mmio 的 +0.058，加了 21 字 MMIO 窗口后 WNS −0.035 ns；如余量吃紧可砍
+  DITHER/RAW 回读或把 N_RO 降到 128。
+  首轮 `keys_sta_mmio` 在布线中途进程消失（无 ERROR 行、无 result.txt），已用新 tag 重跑并完成。
+- **新增自检固件 `src/firmware/keys_rv32/`**（main.c + 复用 crt0/uart/libc/ld，620 words）：
+  enroll → 打印 STATUS/DNA/REF/MASK/DITHER/RAW → reconstruct → 判定 PASS。
+  `bash src/firmware/keys_rv32/build.sh` 编译通过（text 2474 B）。
+  新增 SoC 级 TB `sim/keys/tb_keys_fw.v` + `sim/keys/run_keys_fw.sh`（KEY_WINDOW=256 提速，
+  `KEY_SIM_DNA` 注入 DNA），跑真固件结果：
+  `===DONE[RESULT] tb_keys_fw PASS (framing_err=0)`，输出 STATUS boot=0000003a、
+  enrol=00008026(quality=128)、DNA=000123456789abcd、recon=00008026、REF/RAW=75df75df 循环。
+- **两处 RTL 修正（仿真暴露的真问题）**：
+  1. `key_mmio` 的 mismatch/fallback 原为粘滞位，CLEAR 后会被 puf_key 的旧电平立刻重新置位
+     → 改为**实时透传**（puf_key 每次 start 自清），只有 ready/done 仍粘滞。
+     修正后 enroll 的 STATUS 从 `0000803e`（mism|fb 误置）变成 `00008026`。
+  2. `soc_top` 增加参数 `KEY_SIM_DNA`（默认 0，仅仿真注入；硬件走 DNA_PORT 原语），
+     否则 SoC 级仿真里 DNA 恒为 0，看不出位序问题。
+- **注意**：仿真里 REF/RAW 是 `75df75df` 循环、DITHER=0、quality=128，这是 RO 行为模型的产物，
+  不能当 PUF 质量证据；已写进 `docs/key_subsystem.md` §6 已知限制。
+- **最终集成 STA（`keys_sta_final`，含 key_mmio + 固件验证过的 RTL，生产策略）**：
+  **WNS +0.168 / TNS 0 / 0 失败端点 / WHS +0.015 / 布线错误 0 / LUTLP-1 = 0**；
+  LUT 17022、FF 28543、BRAM 34.5；最差路径回到 CPU 内部 `id_ex_u/rs1_o→func_sel_o`。
+  同配置的前一次 run（`keys_sta_mmio2`）是 +0.023，差的 0.145 ns 纯属布局差异 →
+  **今后报 WNS 必须带 run 名字，不能说"设计已经到 +0.168"**。
+- 余量仍仅 +0.058 ns（0.6%）；80 MHz 按周期差算术 ≈ +2.56 ns（cycles/加速比不变）。
+
 ## 2026-10-20 — V11 时序余量取证：P&R 空间关闭，建议降频；上板清单成文
 
 owner TBD；基线 `3c6f134`（工作区 clean）。未改 RTL/XDC/XCI/COE，未 commit/push，未上板。
@@ -984,3 +1231,91 @@ WHS 由一整群 0~1 级逻辑的寄存器对决定，不是单点。**结论：
   **当前 100 MHz 最好成绩 = 生产策略 + C + D = +0.087 ns**（prod_ctl 与 d_100 互证）。
 - 现在剩余的墙是 logic 型：11 级 / 3.183 ns logic 的 `ex_mem → if_id/pred_target/CE`、
   以及 pc→icache→id_ex CE 一族 —— 继续做扇出/复制没有边际，得动 if_id/if_stage 控制结构（D2）或 icache tag 打拍。
+
+### 2026-10-25 01:40 · 时序工作台 v2 站点 + 生产流程复制臂矩阵（复制不可迁移；属性与 phys_opt 只在组合下有效）
+
+**任务**：用户在夜间授权做两件事：① 等上一轮复制实验跑完后，把「新一轮工程」做成一个完整的可视化站点
+（参照 `ours/html/` 的旧站，不复用其页面结构，只复用其探针数据）；② 重点放在后端（布局布线）优化，
+再由布局布线的证据推出改 RTL / 改约束的建议。站点在仓库外 `ours/html_v2/`，未改 `src/rtl`、`board/`、XDC，
+未 commit。
+
+**站点**（10 页，纯静态，`file://` 直开）：
+`index / wall / attribution / layout / backend / experiments / rtl / pipeline / next / method`。
+数据全部由 `html_v2/build/build_data.py` 从 `build/reports/**/result.txt`、`path_csv/paths_*.csv`、
+逐跳 `route_paths.rpt`、旧站探针产物（模块 bbox / 复制寄存器）重新抽取 → `data/*.js`；
+`build_site.py` 把 `build/pages/*.html` 套进统一外壳；`build/check_site.py` 用无头 Chrome 逐页
+dump-dom 查 JS 异常/空容器/NaN（当前 10/10 通过）。旧站探针产物被重新打包成 `data/layout.js`
+（base / ndh 两个数据集 + 52 个复制单元），没有重跑那 20 分钟的探针。
+
+**本轮新增的实现臂**（全部 `Performance_ExploreWithRemap` 全流程、核心 10 ns、RTL = 当前 `src/rtl`，
+唯一差别是 `PHYS_OPT_DESIGN.TCL.POST` 钩子；脚本 `build/timing_tests/run_prod_arm.tcl` +
+`hooks/rep_hook.tmpl` / `hooks/physopt_only.tmpl`，批次 `run_batchA/B/C/D.sh`）：
+
+| 臂 | 钩子做的事 | WNS | 失败 | WHS | 复制单元 | FF |
+|---|---|---|---|---|---|---|
+| `pr_ctl` | 无 | **+0.087** | 0 | +0.021 | 51 | 17187 |
+| `pr_ctl2` | 无（独立第二次） | +0.087 | 0 | +0.021 | 51 | 17187 |
+| `pr_mfonly` | 只设 `MAX_FANOUT`，不复制 | +0.087 | 0 | +0.021 | 51 | 17187 |
+| `pr_rep_state` | 按**单元名**选点 → `candidates=0`（空臂） | +0.087 | 0 | +0.021 | 51 | 17187 |
+| `pr_rep2_state` | 复制 `state[3]`（60 副本） | **+0.039** | 0 | +0.020 | 60 | 17196 |
+| `pr_state_b` | 同上（复跑） | **+0.039** | 0 | +0.020 | 60 | 17196 |
+| `pr_rep2_sel` | 属性 + 多一次 `phys_opt_design`（0 副本） | **+0.184** | 0 | +0.021 | 51 | 17187 |
+| `pr_sel_b` | 同上（复跑） | **+0.184** | 0 | +0.021 | 51 | 17187 |
+| `pr_selprops` | 只设属性、**不跑**那次 phys_opt | +0.087 | 0 | +0.021 | 51 | 17187 |
+| `pr_rep2_both` | state + sel 属性 + phys_opt | +0.149 | 0 | +0.023 | 80 | 17216 |
+| `pr_both_b` | 同上（复跑） | +0.149 | 0 | +0.023 | 80 | 17216 |
+| `pr_physopt_only` | **只多跑一次裸 `phys_opt_design`**（不设属性、不复制） | +0.087 | 0 | +0.021 | 51 | 17187 |
+| `pr_physopt_b` | 同上（复跑） | +0.087 | 0 | +0.021 | 51 | 17187 |
+| 协作方 `prod_ctl` / `prod_rep` / `prod_rep1` | 独立实现：对照 / 复制 state | +0.087 / **+0.039** / +0.039 | 0 | +0.020 | 51 / 60 / 60 | — |
+
+**三条结论（全部有复现）**
+
+1. **复制不能从自建流程迁移到生产流程。** 同一根 `u_crypto_aead/state[3]`（fo=628、单根 9.29 ns）：
+   自建流程（`opt Explore / place Default / phys_opt Aggressive / route Aggressive`，对照 `rep_ctl` +0.003）
+   复制后 **+0.130（+0.127）**；生产流程（对照 `pr_ctl` +0.087）复制后 **+0.039（−0.048）**。
+   本站 `pr_rep2_state` 与协作方 `prod_rep` 是不同脚本/不同钩子写法，给出**逐位相同**的 +0.039、相同失败端点、
+   相同 `dp/logic/net/levels`。原因：自建流程本身比生产策略低 0.084，复制修的是那条流程自己的病灶；
+   生产策略的 opt 已经把布局调到"刚好合适"，再插复制会把 CPU 侧 11 级路径顶上来
+   （新墙 `ex_mem/ex_rd_data_o_reg[11] → if_id/pred_target_o_reg[13]/CE`，11 级 / logic 3.183 / net 6.412）。
+
+2. **`sel_*` 复制一个副本都不生成。** 4 条网（12 个别名，fo 172/141/172/140）设 `MAX_FANOUT 128` +
+   `-force_replication_on_nets` 后副本仍 51、FF 仍 17187 —— 工具按**物理收益**决定是否复制，不是按扇出阈值。
+   这条只能靠"数副本数"得到，只 WNS 会误读。
+
+3. **唯一剩下的余量来自一个「组合动作」，而且与复制无关（2×2 消融，每格都有两次独立复现）。**
+
+   |  | 不跑额外 phys_opt | 多跑一次 `phys_opt_design` |
+   |---|---|---|
+   | 不设属性 | `pr_ctl`/`pr_ctl2` **+0.087**（逐位相同） | `pr_physopt_only`/`pr_physopt_b` **+0.087**（逐位相同） |
+   | 设属性（`EQREG NO`+`MAX_FANOUT 128` 于 4 条 `sel_*`） | `pr_selprops` **+0.087** | `pr_rep2_sel`/`pr_sel_b` **+0.184**（逐位相同） |
+
+   也就是说：**属性单独是空操作、裸 pass 单独也是空操作，只有"带着 `MAX_FANOUT/EQREG` 提示要求工具重做那几条网"
+   才拿到 +0.097**。它**没有生成任何副本**（副本 51、FF 17187，与对照一致），收益出现在别处：
+   `state[3]` 那条 slack 从 +0.087 抬到 **+0.284**，新最差变成
+   `sel_ex_mem_rs1_o_reg → if_id/pred_target_o_reg[12]/D`（13 级 / logic 3.52 / net 5.81）。
+   **机制未定论**（没有 `report_design_analysis`、没有前后 placement 逐单元对比），只能当经验结果。
+
+**新踩的坑**（已写进 `project_log/lessons_learned.md`）：
+钩子 `.tcl` 花括号提前闭合（两臂 00:24:41 双退）；选点按驱动单元名而非网名（`state[3]` vs
+`FSM_sequential_state_reg[3]` → `candidates=0` 空臂）；给 `vivado.bat` 传 MSYS 路径
+（`Failed to create directory 'C'`，日志全丢）；`report_timing` 元素表 net 行没有 edge 字母。
+
+**可比性**：18 个生产流程臂的 `build_context.txt` 里 `dcache.v 79af461c…` / `cpu_core.v 95d78121…` /
+`crypto_aead.v 722bf1e3…` 三个 sha256 全部一致；期间 HEAD 从 `3cfbe51` 前进到 `805b01a`（协作方提交了
+prod_rep 的负面结果），但 `git diff --stat 3cfbe51..805b01a -- src/ board/` 为空 —— 所以 2×2 的差异只可能来自钩子。
+
+**站点补记**：布局页已接入第三个数据集 `pr2`（本轮 `pr_rep2_sel` 的真 routed DCP 现跑探针：
+`html/probe/floorplan_probe.tcl -tclargs <dcp> pr2` → `parse_floorplan.py --tag pr2` → `data/layout.js`）。
+探针顺带给出一个独立证据：`pr2` 上 `pc_to_dcache/pc_to_ex_mem/pc_to_ise` 三个路径族**一条路径都抓不到**，
+与 `paths_d100.csv` 里「起点含 pc 的 1389 → 1 条」互相印证 D 的效果。
+
+**未验证**：+0.184 的**第三遍**复现与机制归因（是否换一批 net 名字仍成立）；把该组合动作写成独立 impl 入口后的
+全套功能回归（`docs/freeze_checkpoint_20261018.md` §2）；板级 XDC/PS7 下的 STA；`minfo`/副本数扫掠；
+`pr2` 数据集的复制寄存器探针（未跑，故布局页该层为空）。
+
+## 2026-10-26 — CPU 流水线现状文档（只读，未改 RTL）
+
+- 新增 `docs/cpu_pipeline_flow.md`：当前的 5 级顺序流水线底图（层级 / 逐级职责 / 控制优先级 / 冒险 /
+  存储 / 多周期 / 可改点 / 测量方法）。行号按当前 `src/rtl`（`dcache.v` 611 行含 store buffer）核对。
+- 结论边界：周期数均为代码推导（标「推」）；未跑仿真、未改 RTL、未碰时序。下一步应先复现
+  `docs/board_bringup_plan.md:91` 的 16840 / 664 / 2559 三个基线再谈任何改进收益。owner TBD。

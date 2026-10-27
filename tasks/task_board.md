@@ -12,7 +12,7 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 |---|---|---|---|---|---|---|---|
 | B01 | baseline repo audit | TBD | 无 | docs/repository_audit.md | 完整树/模块/part/生成文件/路径问题/读取范围与静态检查证据；不改原工程 | 2026-09-23 | done |
 | B02 | Rebuild and verify recovered XC7Z020 CICC baseline | TBD | B01；Vivado 2025.2 环境 | 原 XPR/XCI/XDC/COE 已恢复；尚需重建入口与新报告 | 明确版本、part、top；从已恢复 XCI 再生成 IP；独立 checkout 综合/实现与基线运行证据，无本机缓存依赖 | 2026-09-27 | in_progress |
-| B03 | xc7z020 board sanity check | TBD | B01；physical board model pending；上板阶段需 B02 | target part = xc7z020clg400-1 confirmed；待板型、约束/image 清单与 sanity 日志 | target part 已确认；核验 physical board model / revision，时钟/复位/UART/LED/存储及 PYNQ 平台；独立配置上板 | 2026-09-28 | blocked |
+| B03 | xc7z020 board sanity check | TBD | B01；上板阶段需 B02 | target part = xc7z020clg400-1 confirmed；板型=正点原子领航者ZYNQ7020、8 端口逐引脚核验、独立工程 `board/vivado_zynq7000_xc7z020_ascon` 已上板（三套 COE 均烧录运行） | target part 已确认；核验 physical board model / revision，时钟/复位/UART/LED/存储及 PYNQ 平台；独立配置上板 | 2026-09-28 | in_progress |
 | B04 | baseline firmware build/load | TBD | B01；精确 FreeRTOS kernel/bootloader 依赖 | 已恢复部分启动/链接/构建源；待重编译/加载 | clean build 固件，入口/内存匹配；加载后可报告状态和 mcycle；不依赖未入库镜像 | 2026-09-28 | blocked |
 | C01 | NIST SP800-232 reference | TBD | B01 | 规范/参考版本/许可清单与可信 KAT/hash | 固定 final 标准、C/Python reference 提交；区别旧版/draft；核对 IV、端序和 KAT 来源 | 2026-09-24 | done |
 | C02 | Ascon-AEAD128 software port | TBD | C01；目标固件需 B04 | 既有 ascon 目录内标准 C 移植、API/构建入口 | 加解密 API、长度/错误规则明确；host 与目标编译通过；不将已有代码直接算完成 | 2026-09-28 | done |
@@ -108,3 +108,16 @@ ascon_ise.v + id/ex_stage 译码执行与多周期 stall；inline asm(.insn) 封
 最新main基点0a425f9隔离整合并重新验证，保留tag_in/tag/correct原15端口。
 下一步首选 B02/B03/B04/V01，完成CPU baseline、target KAT/mcycle后C04→I01/I02；
 B04仍缺准确kernel/bootloader源与运行证据；B02/V01部分进展不等于完整验收。
+
+2026-10-27 上板复核（三套固件全部跑通）：板型=正点原子领航者 ZYNQ7020，part `xc7z020clg400-1`，
+100 MHz，独立工程 `board/vivado_zynq7000_xc7z020_ascon`（手工新建，Vivado 2025.2，
+Performance_ExploreWithRemap），三份 bitstream 全部 **WNS +0.087 / TNS 0 / 0 失败端点 / DRC 0 Error**：
+sw `f4233827…`、ise `f85eb1a6…`、hw `2f6f2469…`。三份都通过 KAT（含篡改拒绝；hw 另有 16B 长度拒绝）。
+板上 warm 16B 加密：**软件 20806 cyc（1.0×）→ MMIO 688 cyc 端到端（30.2×，裸 crypto 103 cyc）→
+ISE 2570 cyc（8.10×）**，同 RTL 同编译器仿真对照为 17353 / 670 / 2496，
+板上分别 +19.9% / +2.7% / +3.0%（开销 ∝ 访存密度，已在 actual_progress 记录解释）。
+状态调整：B03 blocked→in_progress（PYNQ 平台与镜像仍缺、芯片丝印速度等级未核）；
+B04 的"固件加载链"已由 Ascon 三套实证，但 baseline FreeRTOS 固件仍缺 kernel/bootloader 源；
+C03/V01 的**板上**部分已补齐，完整的 1,089 KAT 与 ISA 板上抽样仍未做。证据见
+`project_log/actual_progress.md` 2026-10-26/27 条目、`first_time.runs/{synth_1,impl_1}` 报告、
+`build/local/board_bitstream/*.bit`（不入 git）、`data/ascon/results/board/`。

@@ -1,5 +1,41 @@
 # 经验与踩坑
 
+## 2026-10-25（二）— 扇出复制：候选、别名、只读属性、钩子断链
+
+- **`-force_replication_on_nets` 只是"塞进候选清单"，不是"一定复制"。**
+  2025.2 帮助原文是 "Forces the drivers of the specified net objects to be replicated, regardless of
+  timing slack"，但实测同一句调用在 `sel_*`（fo 172/141/172/140）上 12 个臂一律只打
+  `Identified N candidate nets` + `Optimized 0 net. Created 0 new instance.`；对 `state[3]`（fo=628）才真的
+  从 628 降到 25。→ **判断"复制是否生效"只能看副本数与网扇出前后值，不能看命令是否执行成功。**
+  另外该选项在 post-route 阶段直接被拒（`ERROR: [Vivado_Tcl 4-265]`），只能在放置后用。
+
+- **`get_nets` 的结果里，一根网可能以多个父子别名反复出现，别把它当成"多根网"。**
+  R1 那臂报 `candidates=12`，实际只是 4 根网 × 3 层别名；Vivado 自己会打
+  `INFO: [Vivado_Tcl 4-166] Using parent net '<parent>' of the net '<alias>'`。
+  → 统计候选数时先按 `Using parent net` 折叠，或者直接用 parent net 名做 `-filter {NAME == ...}`。
+
+- **`MAX_FANOUT` 写网上还是写驱动单元上，对这个判据没有区别**（128 与 16 都试过，结果逐位相同）。
+  想用属性调复制，别在这上面反复试；这不是"属性写错对象"的问题。
+
+- **`PERIOD` 是只读属性，改时钟周期只能重新 `create_clock`。**
+  hook 里 `set_property PERIOD 18.0 [get_clocks clk]` → `ERROR: [Common 17-107] Cannot change read-only
+  property 'PERIOD'`，臂在 phys_opt 之前就死掉（日志里只剩 `period_before`）。
+  正确做法：`create_clock -period 18.000 -name clk [get_ports clk]`（同名覆盖），做完再 `create_clock`
+  恢复原周期；MMCM 派生时钟会自动跟着变（hook 里两边都打 `core=` 确认）。
+
+- **TCL.POST 钩子不要拷进 run 目录。** 钩子如果用 `[file dirname [info script]] .. <lib>.tcl` 找共用库，
+  拷到 `build/local/<wave>/<tag>/` 后相对路径就断了，钩子在 phys_opt 阶段报
+  `missing hook file` / `can't read`。要么原地挂（推荐，钩子是纯 ASCII、只读），要么把库一起拷。
+
+- **验证"布局有没有变"最省事的办法：导出 post-place DCP 的 `NAME → LOC` 做 diff。**
+  `open_checkpoint top_pl_bram_placed.dcp` + `get_cells -hier -filter {IS_PRIMITIVE}` 各写一行，
+  32579 行 diff 为空就是布局逐单元相同。这比 `report_design_analysis` 直观，也足以把
+  "收益来自布局还是布线"一刀切开（本轮就是靠它把 +0.097 归到布线解）。
+
+- **phys_opt 自报的"估计 WNS"不能当结论。** `r2_tight` 里恢复约束后它自报 `est_wns=+0.709`，
+  布线后实测只有 **+0.057**；生产策略里它自报 +0.247 就"跳过全部 setup 优化"，也是一回事。
+  → 任何 phys_opt 阶段的数字都要等 `route_design` 之后的 `get_timing_paths` 才算数。
+
 ## 2026-10-18 — V10 文件留存与清理
 
 - 清理范围按用户后续明确授权更新：最终双策略RPT保留、旧报告可删除；原始恢复归档不在
@@ -407,3 +443,58 @@ L08 的“保留两个跟踪生成元数据”是此前策略；本轮按用户�
   带中文注释的 heredoc 会把大括号串写坏（表现为 `can't read "cand": no such variable`）。
 - **按名字选网时，注意综合会改寄存器名、但保留网名。** `state[3]` 这根网的驱动 FF 被改名成
   `FSM_sequential_state_reg[3]`；只按单元名匹配会选出 0 个候选而静默空转（钩子照跑，什么都不复制）。
+
+- **"复制有效"不能跨流程迁移。** 同一根 fo=628 的 `state[3]`：自建流程（`opt Explore / place Default /
+  phys_opt Aggressive / route Aggressive`，同流程对照 `rep_ctl` **+0.003**）复制后 **+0.130**；
+  生产流程（`Performance_ExploreWithRemap` + 放置后钩子，对照 `pr_ctl` **+0.087**）复制后 **+0.039**。
+  判据：先看两条流程**各自对照臂**差多少（这里 0.084），再判断"这份收益"属于流程还是属于复制。
+  换流程重测的成本远小于被一个跨流程数字误导的成本。
+
+- **"物理上发生了"不等于"时序上有效"。** `pr_rep2_state` 里副本 51 → 60、`state[3]` 从高扇出清单
+  消失（复制确实做了），WNS 仍从 +0.087 掉到 +0.039：拆掉目标墙的同时把 CPU 侧
+  `ex_mem/ex_rd_data_o_reg[11] → if_id/pred_target_o_reg[13]/CE`（11 级 / logic 3.183）顶上来。
+  所以"验证复制发生了"（数副本、看 fo）与"验证复制有用"（看 WNS）是两件事，都要做。
+
+- **一个副本都没生成，也是一条有效结论。** `sel_*` 四根网（fo 172/141/172/140）设
+  `MAX_FANOUT 128` + `phys_opt_design -force_replication_on_nets` 后副本仍 51、FF 仍 17187 ——
+  工具按**物理收益**决定是否复制，而不是按扇出阈值。只看 WNS 会把这次实验读成"复制有效/无效"，
+  实际是"复制根本没发生"。
+
+- **同目标两路独立实现给出逐位相同的结果，才敢下"有害"这种结论。**
+  `pr_rep2_state`（本站，复制 1 个网名）与 `prod_rep`（协作方，复制 2 个别名）脚本与钩子写法都不同，
+  却给出相同 WNS +0.039、相同失败端点、相同 `dp/logic/net/levels`。单臂永远不能证明"复制有害"，
+  必须配**同流程对照臂**。
+
+- **`TCL.POST` 钩子文件要整段写，别让花括号提前闭合。** 第一版 `run_prod_rep.tcl` 在第 66 行就闭合了
+  `puts $fh {...}`，于是第 67~83 行在**父脚本**里执行，`prod_ctl` / `prod_rep` 两个臂在启动 1 秒内
+  报 `can't read "cand": no such variable` 双退。改成「模板文件 + `string map` 实例化」最稳。
+
+- **选点要匹配"网名"，不是"驱动单元名"。** 本项目那根网叫 `u_crypto_aead/state[3]`，驱动它的单元
+  被综合重编码成 `u_crypto_aead/FSM_sequential_state_reg[3]`；只匹配单元名 → `candidates=0`，
+  臂白跑而且结果看起来完全正常（+0.087、51 副本，与对照一字不差）。
+
+- **给 `vivado.bat` 的路径一律用 `C:/…`，不要用 MSYS 的 `/c/…`。** 否则 `-log /c/...` 报
+  `ERROR: [Common 17-1257] Failed to create directory 'C'`，日志与 journal 全丢，事后无法复盘。
+
+- **`report_timing` 元素表里 net 行没有 edge 字母。** 格式是
+  `net (fo=627, routed)   9.290   7.254   <name>`（cell 行才有 `r`/`f`）。要求 edge 必现的正则会
+  把整条走线丢掉，只剩单元 —— 症状是"hops 全是 0~1"。
+
+- **"单独都无效、组合才有效"必须靠 2×2 才能发现。** 时序优化的三个变体（设属性 / 多一次 `phys_opt_design` /
+  两者叠加）：属性单独 **+0.087**（= 对照）、裸 pass 单独 **+0.087**（= 对照）、叠加 **+0.184**（两次逐位相同）。
+  如果只跑其中一个，会分别得出"没用"和"是复制的功劳"两个错误结论 —— 而实际副本数为 0。
+  凡是"某一步看起来有效"，先问"它的每一个组成部分单独做有没有效"。
+
+- **`phys_opt_design` 不带参数时可能什么都不做。** 同一阶段裸跑 `phys_opt_design`，WNS 与对照逐位相同
+  （+0.087），且 hook 里前后两次 `get_timing_paths` 都是 +0.247；而带上
+  `-force_replication_on_nets <nets>` 就会真的跑一轮物理优化。判据：不要假设"调用一次 = 优化一轮"，
+  要在 hook 里前后各打一次 WNS，并把副本数一起记下来。
+
+## 2026-10-26 — 首次上板踩坑（Vivado 2025.2 手工建工程）
+
+- **2025.2 的 Add Sources 向导没有 IP 选项**（只剩 constraints/design/simulation）。“加现成 .xci”靠把文件拖进 Sources 面板，或用 Add or create design sources → Add Files 直接选 .xci；IP Catalog 里是**新建** IP，不是加现成的。
+- **XCI 里的 Coe_File 是相对路径**（`../../imports/bin_file/xxx.coe`，相对 XCI 自身目录）。新建工程时必须把 xci 放到 `srcs/sources_1/ip/<ip>/` 并把 COE 放到 `srcs/sources_1/imports/bin_file/`，否则 IP 生成报 COE 找不到。别写绝对路径（会把本机路径写进被跟踪的 .xci）。
+- **被 `include` 的文件不能单独改文件类型**：`ascon_word.v` 用了 SV 的 `i++`，但它被 `crypto_aead.v` `include`（后者又被 `ascon_aead_2.v` include），Vivado 用**包含者的类型**解析整段文本 → 只把 `ascon_word.v` 设成 SystemVerilog 无效。要么整链都设 SV，要么全工程 .v 统一按 SV 解析（`defines.v` 保持 Verilog Header）。
+- **换 COE 会触发 blk_mem_gen 的 OOC 综合**，Sources 面板出现 “Waiting to update...” 属正常；此时**综合报告里 BRAM 显示 0 RAMB36 / 5 RAMB18**（IP 是黑盒），实现合并后才变成 32 RAMB36 + 5 RAMB18。别据此判断 BRAM 没进来。
+- **Reports 面板里灰色的 Timing Summary 是“该步骤未生成”的占位**：`init_design`、`power_opt_design` 默认不产 timing summary，永远点不开；只有 opt/place/route 后的条目带日期和大小才可双击。
+- **策略的不对称配置是有意的**：综合保持 `Vivado Synthesis Defaults`、实现用 `Performance_ExploreWithRemap` —— 所有历史时序数字都是这个组合测的，单独改综合策略就让 WNS 失去可比性。
