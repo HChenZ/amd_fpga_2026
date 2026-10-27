@@ -490,6 +490,25 @@ L08 的“保留两个跟踪生成元数据”是此前策略；本轮按用户�
   `-force_replication_on_nets <nets>` 就会真的跑一轮物理优化。判据：不要假设"调用一次 = 优化一轮"，
   要在 hook 里前后各打一次 WNS，并把副本数一起记下来。
 
+
+## 2026-10-25 — 旧Cache TB与真实中断覆盖（V01，owner TBD）
+
+- 固定“接受miss下一拍总线一定有效”的断言在MISS_CAPTURE拆拍后会误报。先用git历史证明miss流水前旧TB PASS、Store Buffer前后同4 FAIL，再用逐拍差分和独立CPU数据/事务scoreboard交叉确认；不能仅延后采样或删除断言就标功能通过。原失败证据保留。
+- 差分相同仍可能两版共错，需独立内存reference；错误回填和丢写两类注入必须触发FAIL。本轮578次读/671次写、全部回填与最终内存均检查，并非只看仿真正常finish。
+- CPU内部`id_pc`是ID阶段，EX实际PC为`ex_pc`。初稿中断触发误用ID PC造成DIV场景没触发；改测试观察点并对照ELF opcode，不能据此误判生产CPU坏了。
+- mret在EX时，前面的handler写寄存器可能尚未退休；mret边沿检查CSR/PC，handler结果应在退休之后检查。初稿过早读count=0导致测试FAIL，修正检查边界后仍严格验证count=1与CSR读回。
+- timer pending与branch flush重叠时，icache redirect可使inter_slow_ok_q=0，合法行为是延后到可重放指令。测试应严格检查pending/flush重叠、guard阻止非法接受以及最终真实handler/mret，而不是强求branch那一拍接受。调试日志留在build/local/preboard_followup_20261025_01，最终源码无DEBUG临时打印。
+- 只驱动irq或看到程序继续不算中断验证。必须核对接受次数、实际被中断指令、mepc/mcause/mstatus、flush、mret恢复及返回后的架构结果；禁timer、坏mret、绕过guard反例均应红。
+- 本轮所有负向RTL变体只存在build/local，生产cpu_core/dcache/SoC/PUF/Skill未改；不把六个RV32 BFM场景外推为SoC全总线或板级门禁完成。
+
+
+## 2026-10-25 — 把TB_STALE真正收口为当前回归PASS（V01，owner TBD）
+
+- 仅给旧FAIL分类不能代替修复测试入口。保留修改前日志/源码，把旧TB的固定拍数假设换为有界事务事件，仍检查全部原expected、次数、方向和数据；当前生产RTL的正常测试必须exit0。
+- 固定多等一拍仍会固化微架构。独立预期队列配合8拍请求界限、原30拍完成界限，可以同时发现迟到、缺失、重复与错误请求；posedge NBA后采样、negedge驱动避免调度竞争。
+- Reset只中止半条fill不够，还要证明复位前已有效的line失效，否则可能漏掉valid/tag残留；本轮两类reset场景均通过。
+- 历史失败要冻结TB与RTL为同一版本；不能将旧固定时序断言长期绑定当前生产源，再把它的FAIL永久豁免。当前正常路径、历史复现和故障注入分别记录actual退出码与gate。
+- 放宽时序检查后需用错回填/缺读/重复/错地址/错data/错mask/缺写实错证明仍会红；本轮7种修订TB反例全部exit1，独立reference/差分也PASS。全回归实际15 PASS后才收口，不用定向PASS代替未跑整套结果。
 ## 2026-10-26 — 首次上板踩坑（Vivado 2025.2 手工建工程）
 
 - **2025.2 的 Add Sources 向导没有 IP 选项**（只剩 constraints/design/simulation）。“加现成 .xci”靠把文件拖进 Sources 面板，或用 Add or create design sources → Add Files 直接选 .xci；IP Catalog 里是**新建** IP，不是加现成的。

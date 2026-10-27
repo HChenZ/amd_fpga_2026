@@ -1,0 +1,184 @@
+{
+  "task_id": "B03/Y01 navigator_preboard",
+  "owner": "TBD",
+  "status": "PASS",
+  "evidence_kind": "vendor_static_inspection",
+  "files": {
+    "2_文档教程/5_【正点原子】领航者ZYNQ之PYNQ开发指南_V3.2.pdf": {
+      "bytes": 11172625,
+      "sha256": "d48837edb88a5029849173330a0ad763260c263e02b4c113990a7c2bbc460f4c"
+    },
+    "3_开发板原理图和硬件相关文件/领航者ZYNQ底板原理图_V3.9.pdf": {
+      "bytes": 2361991,
+      "sha256": "ec8b68eeb07e0743e6c60528444f6aeb457dc60e897ddf9eb86d5a56c1ab6a69"
+    },
+    "3_开发板原理图和硬件相关文件/ZYNQ7010_7020核心板原理图_2V5.pdf": {
+      "bytes": 2430251,
+      "sha256": "1c8cf8105e91d762d29ad604e82b629b3921fa474d5a0311ed6c04237db107ea"
+    },
+    "3_开发板原理图和硬件相关文件/NAVIGATOR_ZYNQ_IO.xdc": {
+      "bytes": 9296,
+      "sha256": "80438a533021b8bff2f904e454384e179db1e20aa0384093659d703949b20452"
+    }
+  },
+  "members": {
+    "base/base.srcs/sources_1/bd/base/base.bd": {
+      "sha256": "4571517d2d50053383170f9427401de886a7e9d18c5b7486e11e0d7d8696040e",
+      "bytes": 362710,
+      "design_info": {
+        "boundary_crc": "0x4E7C9FCC4AA4A9B5",
+        "device": "xc7z020clg400-2",
+        "name": "base",
+        "rev_ctrl_bd_flag": "RevCtrlBdOff",
+        "synth_flow_mode": "None",
+        "tool_version": "2020.2",
+        "validated": "true"
+      },
+      "ps7": [
+        {
+          "vlnv": "xilinx.com:ip:processing_system7:5.5",
+          "parameters": {
+            "PCW_UIPARAM_DDR_PARTNO": "MT41J256M16 RE-125",
+            "PCW_UIPARAM_DDR_MEMORY_TYPE": "DDR 3",
+            "PCW_UIPARAM_DDR_BUS_WIDTH": "32 Bit",
+            "PCW_UIPARAM_DDR_FREQ_MHZ": "533.333333",
+            "PCW_UIPARAM_ACT_DDR_FREQ_MHZ": "533.333374",
+            "PCW_DDR_RAM_BASEADDR": "0x00100000",
+            "PCW_DDR_RAM_HIGHADDR": "0x3FFFFFFF",
+            "PCW_UART0_PERIPHERAL_ENABLE": "1",
+            "PCW_UART0_UART0_IO": "MIO 14 .. 15",
+            "PCW_UART0_BAUD_RATE": "115200",
+            "PCW_UART1_PERIPHERAL_ENABLE": "0",
+            "PCW_SD0_PERIPHERAL_ENABLE": "1",
+            "PCW_SD0_SD0_IO": "MIO 40 .. 45",
+            "PCW_SD0_GRP_CD_IO": "MIO 10",
+            "PCW_ENET0_PERIPHERAL_ENABLE": "1",
+            "PCW_ENET0_ENET0_IO": "MIO 16 .. 27",
+            "PCW_ENET0_GRP_MDIO_IO": "MIO 52 .. 53",
+            "PCW_CRYSTAL_PERIPHERAL_FREQMHZ": "33.333333",
+            "PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ": "100.000000",
+            "PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ": "142.857132",
+            "PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ": "11.904762",
+            "PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ": "200.000000",
+            "PCW_EN_RST0_PORT": "1"
+          }
+        }
+      ]
+    },
+    "2_axi_gpio/vivado/axi_gpio/axi_gpio.srcs/sources_1/bd/system/system.bd": {
+      "sha256": "09a1ba2ff5148f871b3f5996ade4bd534dcece92b33ff79660276b000d7b0b22",
+      "bytes": 56448,
+      "design_info": {
+        "boundary_crc": "0x92929597CCE23AAF",
+        "device": "xc7z020clg400-2",
+        "name": "system",
+        "rev_ctrl_bd_flag": "RevCtrlBdOff",
+        "synth_flow_mode": "None",
+        "tool_version": "2020.2",
+        "validated": "true"
+      },
+      "ps7": [
+        {
+          "vlnv": "xilinx.com:ip:processing_system7:5.5",
+          "parameters": {
+            "PCW_UIPARAM_DDR_PARTNO": "MT41J256M16 RE-125",
+            "PCW_UIPARAM_DDR_MEMORY_TYPE": "DDR 3",
+            "PCW_UIPARAM_DDR_BUS_WIDTH": "32 Bit",
+            "PCW_UIPARAM_DDR_FREQ_MHZ": "533.333333",
+            "PCW_UIPARAM_ACT_DDR_FREQ_MHZ": "533.333374",
+            "PCW_DDR_RAM_BASEADDR": "0x00100000",
+            "PCW_DDR_RAM_HIGHADDR": "0x3FFFFFFF",
+            "PCW_UART0_PERIPHERAL_ENABLE": "0",
+            "PCW_UART1_PERIPHERAL_ENABLE": "0",
+            "PCW_SD0_PERIPHERAL_ENABLE": "0",
+            "PCW_ENET0_PERIPHERAL_ENABLE": "0",
+            "PCW_CRYSTAL_PERIPHERAL_FREQMHZ": "33.333333",
+            "PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ": "50.000000",
+            "PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ": "10.000000",
+            "PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ": "10.000000",
+            "PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ": "10.000000",
+            "PCW_EN_RST0_PORT": "1"
+          }
+        }
+      ]
+    },
+    "2_axi_gpio/vivado/axi_gpio/axi_gpio.xpr": {
+      "sha256": "4845b68261aa975e86748a89f5e03a31abc39410bde66e52084e3831a2b278d3",
+      "bytes": 10514,
+      "version_part_lines": [
+        "<!-- Product Version: Vivado v2020.2 (64-bit)              -->",
+        "<Option Name=\"Part\" Val=\"xc7z020clg400-2\"/>"
+      ]
+    },
+    "3_mmio/notebook/mmio.ipynb": {
+      "sha256": "b08e2d84e17f1ed8422b33727c593a1a7f295f8ef11e378bbe618a0369d7689c",
+      "bytes": 36065
+    }
+  },
+  "pin_mapping": [
+    {
+      "port": "clk",
+      "vendor_port": "sys_clk",
+      "pin": "U18",
+      "iostandard": "LVCMOS33"
+    },
+    {
+      "port": "reset_btn",
+      "vendor_port": "sys_rst_n",
+      "pin": "N16",
+      "iostandard": "LVCMOS33"
+    },
+    {
+      "port": "button[0]",
+      "vendor_port": "key[0]",
+      "pin": "L14",
+      "iostandard": "LVCMOS33"
+    },
+    {
+      "port": "button[1]",
+      "vendor_port": "key[1]",
+      "pin": "K16",
+      "iostandard": "LVCMOS33"
+    },
+    {
+      "port": "led[0]",
+      "vendor_port": "led[0]",
+      "pin": "H15",
+      "iostandard": "LVCMOS33"
+    },
+    {
+      "port": "led[1]",
+      "vendor_port": "led[1]",
+      "pin": "L15",
+      "iostandard": "LVCMOS33"
+    },
+    {
+      "port": "uart_rxd",
+      "vendor_port": "uart_rxd",
+      "pin": "T19",
+      "iostandard": "LVCMOS33"
+    },
+    {
+      "port": "uart_txd",
+      "vendor_port": "uart_txd",
+      "pin": "J15",
+      "iostandard": "LVCMOS33"
+    }
+  ],
+  "xdc_status": "PASS_STATIC_ONLY",
+  "archive": {
+    "path": "4_Source_Code/5_PYNQ_Design/ZYNQ_7020_PYNQ.zip",
+    "bytes": 680414199,
+    "member_count": 17381,
+    "sha256": "cbe2a09fdf2efaa262463b20c3fe745dd2536ccefb3d93a397ca7660de85676b"
+  },
+  "archive_images": [],
+  "local_image_candidates": [],
+  "date": "2026-10-25",
+  "limitations": [
+    "static inspection only",
+    "physical speed grade pending",
+    "no bootable image found",
+    "2025.2 project migration NOT_RUN"
+  ]
+}

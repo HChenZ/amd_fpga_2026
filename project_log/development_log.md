@@ -358,6 +358,27 @@
 - 关键教训 10：dcache 这种模块最划算的回归是**逐拍差分激励**（同一份确定性激励 + 逐拍信号 dump +
   diff + 末尾存储器校验和），比写定向断言省一半时间，且能抓到"看起来对但时序变了"的差异。
 
+
+## 2026-10-25 — V01 / Navigator提交与验证收口（owner TBD）
+
+1. fetch后核对main=f88e178、分支feat/navigator_preboard；白名单20文件审查与git diff --cached --check通过，按用户授权commit/push为68fafc8，远程main/Skill/PUF保持不变。
+2. 原D-Cache失败重现；git历史文件独立提取到build/local，三版本旧TB比较、四种子逐拍差分、独立事务scoreboard和回填/丢写负向门禁完成，分类TB_STALE。
+3. 新增RV32汇编与CPU+CLINT TB，真实CSR设置、timer比较、6个trap/handler/mret场景和3个反例门禁实跑通过；未修改生产RTL。
+4. 定向入口实跑PASS/exit0，完整日志/波形/镜像/命令/版本/SHA在build/local/preboard_targeted_final_03；smoke重跑PASS/exit0，新的中断入口接入regression，但旧D-Cache FAIL不隐藏。
+5. 独立板级下一步清单、可移植小证据摘要与交接完成。用户另行授权追加公共日志和V01说明；后续测试/文档均留本地未提交，未再次push。
+
+
+## 2026-10-25 — V01 修订旧D-Cache TB并实跑完整回归（owner TBD）
+
+- 检查branch/HEAD/status与协作树，快照保留13项原有未提交工作；未clone/worktree/reset/clean/stash。原TB两次稳定四FAIL，日志保留。
+- 原路径TB改为事件+事务队列检查，保持原expected与30拍完成界限，补请求上限/无竞争采样、mask/连续store/stall/reset覆盖。更新现有定向runner冻结历史TB+RTL并加入当前修订TB及7种故障注入，无生产RTL修改。
+- 完整smoke实际exit0（6 PASS）；完整regression实际exit0（15 PASS，实板1 NOT_RUN）；内含Ascon三套CPU执行、Host/Mailbox、镜像/COE、Cache交叉验证和6个真实中断场景。Icarus/vvp12 devel、RISC-V GCC13.2、host GCC13.3、Python3.14.3。
+- 正常测试零FAIL；历史/负向子进程exit1原样保存，独立gate验证对应原因。新证据与说明就绪，公共记录/V01同步，本轮未commit/push/merge。
+
+
+## 2026-10-25 — 用户批准提交并合并main（owner TBD）
+
+用户明确授权发布已验证的preboard成果。fetch/分支/待提交15文件/完整验证源SHA/敏感信息/受保护路径已复核通过；origin/main=f88e178未前进、可快进。仅作发布和Git验收，不重复执行输入未变的耗时CPU回归；保留smoke6 PASS与完整regression15 PASS证据。按白名单暂存并检查，提交后快进合并main并核验远程，不使用force push或丢弃工作区。
 ## 2026-10-26 — CPU 流水线底图（只读分析，未改 RTL）
 
 - 新增 `docs/cpu_pipeline_flow.md`：模块层级、逐级职责、5 拍逐拍表、stall/flush 优先级、冒险/旁路矩阵、

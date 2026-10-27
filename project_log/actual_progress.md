@@ -1341,6 +1341,39 @@ prod_rep 的负面结果），但 `git diff --stat 3cfbe51..805b01a -- src/ boar
 全套功能回归（`docs/freeze_checkpoint_20261018.md` §2）；板级 XDC/PS7 下的 STA；`minfo`/副本数扫掠；
 `pr2` 数据集的复制寄存器探针（未跑，故布局页该层为空）。
 
+
+## 2026-10-25 — Navigator成果提交与V01定向验证
+
+owner TBD；用户明确授权首次commit/push，后续新增测试保留本地未提交。
+
+- 已发布20文件至feat/navigator_preboard，commit `68fafc8eca095ce8afdf203edf4aea726151dfbc`；远程main仍`f88e178`。逐文件暂存/敏感信息与生成产物核对/cached diff --check通过；没有Skill/PUF/生产RTL/baseline改动。
+- D-Cache原4项FAIL分类**TB_STALE**：旧TB在36ns三项、206ns一项检查，MISS_CAPTURE实际45/215ns发总线请求。f52bc49（miss流水前）旧TB PASS；38e96fb（Store Buffer前）与当前同4 FAIL。Store Buffer前后4种子逐拍信号/最终MEMSUM完全一致。
+- 新tb_dcache_contract在前后版本均PASS：578 loads、671 stores、404 reads、1616 fill beats；独立参考内存与总线顺序/掩码/回填检查，错误回填/丢写注入均exit1。没有改dcache或原TB来消除失败。
+- CPU+真实CLINT的6个RV32场景均实际接受一次timer interrupt并执行一次handler/mret；覆盖I-Cache miss、DIV、外部存储停顿、D-Cache miss、branch flush/guard延后，检查mepc/mcause/mstatus、真实指令PC、恢复结果。NO_TIMER、BROKEN_MRET及临时副本绕过inter_slow_ok_q都触发exit1。生产CPU/CSR/CLINT/SoC未改。
+- `python -B sim/board/run_targeted_validation.py --out build/local/preboard_targeted_final_03` PASS/exit0（45命令、5额外检查）；Icarus/vvp12 devel、GCC13.2/binutils2.42、Python3.14.3。当前smoke `build/local/preboard_followup_smoke_01/` 6 PASS/0 FAIL/9 NOT_RUN，exit0；中断有测试后在smoke标NOT_RUN、regression实际调用新套件。旧D-Cache FAIL条目及历史全回归报告保留，不宣称完整regression全绿；未重跑耗时Ascon全SoC验证。
+- 局限：未验SoC CLINT MMIO路由、完整AXI/Cache一致性、嵌套/全部优先级、RV64及全部多周期抢占；V01保持in_progress。板级/PYNQ真实链路仍NOT_CONFIGURED/NOT_RUN，FPGA cycles/PPA NOT_MEASURED。
+- 独立PL工程可开始配置/离线重建准备；正式下载前核实实物速度等级、板级clock/reset/UART、重建IP/COE和STA/DRC；先JTAG/LED/UART，再SW→MMIO→ISE，最后PS/PYNQ。镜像优先向厂家取得，备选锁定2.7/2020.2 BSP+sdbuild。未运行Vivado构建或下载。
+
+证据与文件：`board/atk_navigator_7020/validation_followup.md`、`validation_evidence.json`、`next_bringup.md`、`sim/board/run_targeted_validation.py`及3个RTL/assembly测试输入。用户本轮允许后仅追加公共记录并同步V01；这些后续修改未再次commit/push。下一接收V01/B03/B02/Y01/Y02，owner TBD。
+
+
+## 2026-10-25 — V01 D-Cache测试契约修订与完整回归PASS
+
+owner TBD；分支feat/navigator_preboard，HEAD仍68fafc8，保留既有13项未提交工作，本轮未commit/push/merge。
+
+- 独立连续两次复现原TB四项FAIL/exit1，保留修改前文件与日志。根因是IDLE接受请求后经过MISS_CAPTURE才发单拍request；旧36/206ns检查早于45/215ns合法事件。分类TB_STALE，不是生产RTL修复。
+- 仅修订sim/cicc1000023/unit/dcache/tb_dcache.v：8拍有界请求事件等待、独立预期事务队列、方向/地址/data/mask/qualifier/次数和回填检查；完成上限仍30拍，negedge驱动/posedge NBA后采样。原场景和expected保留，增加byte lane、连续store、跨拍stall、半条line reset中止以及已有效line的reset失效检查。
+- 修订TB在Store Buffer前与当前生产源码均PASS：116检查、13事务、18回填beat；独立事务TB保持578读/671写/404读事务/1616beat PASS；4种子逐拍差分一致。
+- 修订TB的坏回填、缺读、重复读、错地址、错写data、错mask、缺写7种反例均exit1；原事务TB的坏回填/丢写和中断3种反例也全部按预期失败。历史原TB+RTL按已发布68fafc8冻结，只用于历史复现，不驱动当前正常测试的FAIL豁免。
+- 按要求实际执行python -B sim/board/run_tests.py --mode smoke：6 PASS/0 FAIL/0 BLOCKED/9 NOT_RUN，exit0，16.394s。完整--mode regression：15 PASS/0 FAIL/0 BLOCKED/1 NOT_RUN，exit0，757.713s；SW/MMIO/ISE、完整Host KAT、Mailbox、COE/CPU镜像一致性、修订TB、独立事务TB与6个真实CPU+CLINT中断场景均实际运行。
+- 唯一regression NOT_RUN是实板UART/Overlay；hardware cycles NOT_MEASURED。正常测试未发现未解释功能性FAIL，仍不等于全部ISA/RV64/异常/SoC/板级门禁；V01保持in_progress。生产RTL、Skill/PUF/密钥管理、原baseline、PYNQ文件未动，前后原始SHA核对PASS。
+
+证据：build/local/dcache_tb_revision_20261025_01/final_report.json；smoke=build/local/preboard/20261025_111612_829523_smoke；regression=build/local/preboard/20261025_111629_599017_regression（targeted_baseline含历史FAIL/负向日志与VCD）。说明sim/board/dcache_tb_revision.md。建议先审核/提交本地必要测试文件后再评估合并，远程68fafc8尚不含修订，本轮没有自动提交。下一接收V01/B02/B03，owner TBD。
+
+
+## 2026-10-25 — 用户授权发布preboard测试修订（owner TBD）
+
+用户在完整回归通过后明确指示“提交并合并到main”，覆盖前轮仅留本地待审的限制。发布前再次fetch，origin/main仍f88e178、功能分支HEAD68fafc8；15项本地改动均属于前两轮已交付的测试/板级交接与公共记录。正常smoke6 PASS、完整regression15 PASS的证据与当前测试输入SHA逐项一致，受保护文件原始字节不变，未发现凭据/私人home路径/大型生成物。仅对明确列出的文件暂存，执行cached diff检查后提交；main满足快进条件，发布结果以Git提交/远程引用及本轮交付为准。V01仍为in_progress，实板NOT_RUN和既有历史FAIL/负向证据继续保留。
 ## 2026-10-26 — CPU 流水线现状文档（只读，未改 RTL）
 
 - 新增 `docs/cpu_pipeline_flow.md`：当前的 5 级顺序流水线底图（层级 / 逐级职责 / 控制优先级 / 冒险 /
