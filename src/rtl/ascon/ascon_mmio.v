@@ -39,7 +39,11 @@ module ascon_mmio #(
     output wire [31:0]  ascon_rdata,
 
     // ---- 完成中断（可选） ----
-    output wire         ascon_irq        // DONE 时给出一拍脉冲
+    output wire         ascon_irq,       // DONE 时给出一拍脉冲
+
+    // ---- 硬件密钥（PUF/DNA 子系统直连，CPU 不可读） ----
+    input  wire [127:0] key_hw,          // 来自 puf_key
+    input  wire         key_hw_sel       // 1 = 使用硬件密钥，忽略 CPU 写 KEY0..3
 );
 
     // -------------------------------------------------------------------------
@@ -183,10 +187,11 @@ module ascon_mmio #(
                 case (ascon_addr_sel)
                     R_ADLEN:     adlen_r <= ascon_wdata[15:0];
                     R_MLEN:      mlen_r  <= ascon_wdata[15:0];
-                    R_KEY0:      key_r[31:0]    <= ascon_wdata;
-                    R_KEY1:      key_r[63:32]   <= ascon_wdata;
-                    R_KEY2:      key_r[95:64]   <= ascon_wdata;
-                    R_KEY3:      key_r[127:96]  <= ascon_wdata;
+                    // [KEY_SS] 硬件密钥锁定后，CPU 写 KEY 一律丢弃
+                    R_KEY0:      if (!key_hw_sel) key_r[31:0]    <= ascon_wdata;
+                    R_KEY1:      if (!key_hw_sel) key_r[63:32]   <= ascon_wdata;
+                    R_KEY2:      if (!key_hw_sel) key_r[95:64]   <= ascon_wdata;
+                    R_KEY3:      if (!key_hw_sel) key_r[127:96]  <= ascon_wdata;
                     R_NONCE0:    nonce_r[31:0]    <= ascon_wdata;
                     R_NONCE1:    nonce_r[63:32]   <= ascon_wdata;
                     R_NONCE2:    nonce_r[95:64]   <= ascon_wdata;
@@ -312,7 +317,8 @@ module ascon_mmio #(
                 run_encrypt      <= ascon_wdata[1];
                 run_adlen        <= adlen_r;
                 run_mlen         <= mlen_r;
-                run_key          <= key_r;
+                // [KEY_SS] 硬件密钥优先：CPU 既不写入也不可读出这把钥匙
+                run_key          <= key_hw_sel ? key_hw : key_r;
                 run_nonce        <= nonce_r;
                 run_tagin        <= tagin_r;
                 total_words      <= ((adlen_r + 16'd3) >> 2) + ((mlen_r + 16'd3) >> 2);

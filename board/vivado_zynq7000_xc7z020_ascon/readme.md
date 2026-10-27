@@ -71,3 +71,14 @@ MMIO 轮（10-27 18:43）的签核产物。若在该工程里重建，Vivado 会
 
 IO delay 未约束（`no_input_delay`/`no_output_delay` 为已知项，板级 IO 未签核）、板上 ISA 回归抽样、
 PS7/PYNQ 链路（厂家 PYNQ 2.7.0 镜像缺失）、芯片丝印速度等级未现场核对、PUF/密钥子系统未纳入本工程。
+
+
+## 阶段 4：PUF/密钥子系统（2026-10-27 集成，板级待验）
+
+- 已在 `src/rtl` 应用两处补丁（`ascon_mmio` 的 `key_hw/key_hw_sel`、`soc_top` 的 `puf_key`+`key_mmio` 实例化），
+  工程已加入 `src/rtl/keys/*.v`(5)、`build/keys_ro_pblock.xdc`、`Coe_File=ascon_keys.coe`，
+  并给 `impl_1` 挂了 RO 环豁免钩子 `build/keys_ro_allow_loops.tcl`（否则会出 256 条 LUTLP-1 警告）。
+- 预期：WNS **+0.023 ns**、LUT 17123 / FF 28498 / BRAM 34.5、DRC 0 Error；串口打印
+  `=== KEY SUBSYSTEM SELF-TEST ===` 并以 `PASS key subsystem: enroll + reconstruct stable` 结束。
+- 换回三套 P0 镜像（sw/ise/hw）时，`Coe_File` 改回对应 COE 即可；**PUF 版 RTL 已进 `src/rtl`**，
+  要复现 PUF 之前的三份 bitstream 需 checkout 到应用补丁之前的源集（哈希见冻结文档 §9）。

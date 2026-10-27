@@ -1,5 +1,33 @@
 # 实际进度
 
+## 2026-10-27 阶段 4 — PUF/密钥子系统纳入上板工程（RTL 已集成，板级待跑）
+
+owner TBD。本轮改 `src/rtl`（两处集成补丁）+ 工程配置 + 新固件/COE；未 commit 前已验证 elaboration 与 IP 重生成。
+
+- **RTL 集成**：对 f88e178 的 `src/rtl` 应用两个补丁（`git apply` 均干净）——
+  `ascon/ascon_mmio.v` 加 `key_hw/key_hw_sel`（锁定后 CPU 写 KEY0..3 被丢弃；`run_key` 取硬件密钥）；
+  `soc_top.v` 实例化 `puf_key`(u_puf_key) / `key_mmio`(u_key_mmio)，`ro_clk = clk/4` 过 BUFG，
+  复位后等 `0xFFFF` 拍自动尝试一次 reconstruct，`key_valid_p` 到来即锁定 `key_hw_sel`。
+  集成后源集哈希：`src/rtl/*.v`(31) **2a83bec0…**（原 `a323df37…`，只有 soc_top 变）、
+  `src/rtl/keys/*.v`(5) **be9507ef…**、`src/rtl/ascon/*.v`(9) **96fe170d…**。
+  ⚠ 三份已签核 bitstream 对应的是 **PUF 之前**的源集，不能从现在的工作区重现同一字节；其哈希已冻结在
+  `docs/freeze_checkpoint_20261027.md`。
+- **固件**：`src/firmware/keys_rv32` 构建成功（text 2474 B / 620 words）→ `ascon_keys.coe`
+  sha256 `bebed9437961d774…`；`.mif` 第 3 字指纹 **1197**（sw=A197、ise=2197+1E018193、hw=2197+81018193、keys=1197）。
+- **工程**：`riscv_vivado_project` 加入 5 个 keys 源（源文件 43→49）、`build/keys_ro_pblock.xdc`（约束 1→2）、
+  `Coe_File = ascon_keys.coe`、`impl_1` 的 `STEPS.OPT_DESIGN.TCL.PRE = build/keys_ro_allow_loops.tcl`（RO 环豁免）、
+  `include_dirs` 增加 `src/rtl/keys`；`synth_design -rtl` **elaboration PASS**；
+  blk_mem_gen OOC 重生成完成（mif 19:17:42、dcp 19:19:27、`__synthesis_is_complete__`）。
+- **预期指标**（依据同 RTL+补丁的 `build/reports/keys_sta_20261025_mmio2`）：WNS **+0.023 ns**、TNS 0、
+  0 失败端点、WHS +0.022、LUT **17123**、FF **28498**、BRAM 34.5、DRC **0 条 LUTLP-1**（钩子生效）、布线 0 错；
+  最差路径仍在 CPU（`mem_wb → if_stage/pc CE`），不在密钥子系统内。
+- **串口预期**：`=== KEY SUBSYSTEM SELF-TEST ===` → `STATUS boot/enrol（含 quality）` → `DNA` →
+  `REF/MASK/DITHER/RAW` 各 4 字 → `STATUS recon` → 通过时 `PASS key subsystem: enroll + reconstruct stable` + `DONE`。
+  已知失败条件：`FAIL enroll timeout` / `FAIL quality=0`（RO 未工作）/ `FAIL puf mismatch` / `FAIL dna-only fallback`。
+- **未验证**：板上任何一项（用户将烧第 4 个 bitstream）；DNA 位序（`SHIFT_SKIP`）需与 Vivado 读到的 Device DNA 比对；
+  enroll 得到的 REF/MASK 需回填 `KEY_INIT_REF/KEY_INIT_MASK` 才能免去每次上电 enroll；P02 稳定性/纠错未测；
+  本阶段 bitstream **不替代**已冻结的三套（P0 演示仍用 sw/ise/hw）。
+
 ## 2026-10-26 — 首次上板：软件版 Ascon 板级 KAT 6/6 PASS（100 MHz，WNS +0.087 ns）
 
 owner TBD；本轮由用户在 Vivado GUI 手工建工程/综合/实现/烧录，我在旁核验报告与日志。未改 RTL/XDC。

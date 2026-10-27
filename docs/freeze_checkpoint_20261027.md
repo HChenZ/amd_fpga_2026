@@ -120,3 +120,18 @@ CHECK RUN blk_mem_gen_0_synth_1 synth_design Complete! 100%
 - PS7 / PYNQ 链路未通（厂家镜像缺失，见 `board/atk_navigator_7020/vendor_findings.md`）
 - 芯片丝印速度等级未现场核对（厂家示例 BD 为 `-2`，本项目按 `-1` 约束）
 - PUF/密钥子系统**未进入本工程**（`src/rtl/keys` 仍未跟踪、未集成）
+
+
+## 9. 阶段 4：PUF/密钥子系统（2026-10-27，独立于上面的三套签核结果）
+
+三套 sw/ise/hw bitstream 对应的是 **PUF 之前的源集**（`src/rtl/*.v` 合并哈希 `a323df37…`）。
+2026-10-27 晚把两处密钥子系统补丁应用到 `src/rtl` 后，源集变为 `2a83bec0…`（仅 `soc_top.v` 变，
+另新增 `src/rtl/keys/*.v` 5 个文件、合并哈希 `be9507ef…`）。因此：
+
+- 上面三份 bitstream **只能由 PUF 之前的源集重现**；最新工作区重建会得到第 4 份（keys 版）bitstream。
+- 阶段 4 工程配置：`Coe_File = ascon_keys.coe`（`.mif` 第 3 字指纹 `1197`）、约束增加
+  `build/keys_ro_pblock.xdc`、`impl_1` 挂 `STEPS.OPT_DESIGN.TCL.PRE = build/keys_ro_allow_loops.tcl`、
+  include_dirs 加 `src/rtl/keys`、源文件 49 个（43 + 5 keys + keys COE）。
+- 依据同源集的 STA（`build/reports/keys_sta_20261025_mmio2`）：WNS **+0.023**、TNS 0、0 失败端点、
+  LUT 17123 / FF 28498 / BRAM 34.5、DRC 0 条 LUTLP-1。
+- 阶段 4 的板级结果**尚未产生**；在它出来之前，P0 的三套结论不受影响，但也不得把 PUF 写成"已上板"。
