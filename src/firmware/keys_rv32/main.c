@@ -34,9 +34,10 @@
 #define ST_FALLBACK  (1u << 4)
 #define ST_DONE      (1u << 5)
 
-/* 硬件 keygen 一次约 3.3 ms@100MHz(WINDOW=16384,M=5)；这里给 ~8 ms 的余量。
- * 仿真里 KEY_WINDOW 被调小，这个循环会立刻返回。 */
-#define TIMEOUT_LOOPS 200000u
+/* 硬件 keygen 一次约 13 ms@100MHz（WINDOW=65536,M=5，5 个窗口 + 起振/结算）。
+ * 板上实测上电自动 reconstruct + enroll + reconstruct 三次共约 40 ms。 */
+#define TIMEOUT_LOOPS 800000u   /* 单次操作完成上限，给 ~6 倍余量 */
+#define TIMEOUT_IDLE  400000u   /* 等 busy 落下（上电自动 reconstruct 也要等） */
 
 static void nl(void) { uart_putc('\n'); }
 
@@ -61,6 +62,30 @@ static void settle_delay(void)
 {
     volatile uint32_t d;
     for (d = 0; d < 2000u; d++) { }
+}
+
+/* 等器件空闲：上电后 soc_top 会自动发一次 reconstruct，此刻 busy=1。
+ * 不等它落下就发 START，自己的操作会和它撞车，wait_done 抓到的是它的 done
+ * —— 板上第一次新版固件就是这样把 enroll 读成 quality=0 的。 */
+static int wait_idle(void)
+{
+    uint32_t n = TIMEOUT_IDLE;
+    while (n--) { if (!(REG(R_STATUS) & ST_BUSY)) return 0; }
+    return -1;
+}
+
+/* CLEAR→START，并确认这次 START 真的被受理（busy 拉高，或操作已极快完成） */
+static int start_op(uint32_t mode_bit)
+{
+    uint32_t n = TIMEOUT_LOOPS;
+    settle_delay();
+    REG(R_CTRL) = 0x4;                 /* 清 done/mismatch/fallback 粘滞位 */
+    REG(R_CTRL) = 0x1u | mode_bit;     /* START [+ENROLL] */
+    while (n--) {
+        uint32_t st = REG(R_STATUS);
+        if ((st & ST_BUSY) || (st & ST_DONE)) return 0;
+    }
+    return -1;
 }
 
 /* 等 done；返回 0 成功，-1 超时 */
@@ -90,15 +115,23 @@ int main(void)
 
     uart_puts("=== KEY SUBSYSTEM SELF-TEST ===\n");
 
-    /* 1. 上电状态（不以此为判定依据） */
-    st = REG(R_STATUS);
+    /* 1. 上电状态（只记录，不作为判定依据） */
     show_status("STATUS boot   : ");
 
+    /* 1b. 必须等上电自动 reconstruct 收尾，否则自己的 START 会和它撞车 */
+    if (wait_idle()) {
+        show_status("STATUS idle   : ");
+        uart_puts("FAIL boot op stuck (busy never cleared)\nDONE\n");
+        return 1;
+    }
+    show_status("STATUS idle   : ");
+
     /* 2. enroll */
-    settle_delay();
-    REG(R_CTRL) = 0x4;             /* 清粘滞 */
-    REG(R_CTRL) = 0x3;             /* START + ENROLL */
-    show_status("STATUS pre-enr: ");
+    if (start_op(0x2u)) {
+        show_status("STATUS at enr : ");
+        uart_puts("FAIL enroll start not accepted\nDONE\n");
+        return 1;
+    }
     if (wait_done()) {
         show_status("STATUS at enr : ");
         uart_puts("FAIL enroll timeout\nDONE\n");
@@ -122,18 +155,27 @@ int main(void)
     dump4("DITHER      : ", R_DITH0);
     dump4("RAW         : ", R_RAW0);
 
-    /* 3. reconstruct（超时则重试一次：START 现在忙时会排队，不会丢） */
-    settle_delay();
-    REG(R_CTRL) = 0x4;             /* 清粘滞 */
-    REG(R_CTRL) = 0x1;             /* START，reconstruct */
-    show_status("STATUS pre-rec: ");
+    /* REF 全 0 说明比对器系统性偏一边（128 位全落在同一侧），功能上仍能匹配，
+     * 但熵为零，必须记录；这是 PUF 质量问题的直接证据。 */
+    if ((REG(R_REF0) | REG(R_REF0 + 4) | REG(R_REF0 + 8) | REG(R_REF0 + 12)) == 0u) {
+        uart_puts("WARN ref==0 (comparator biased, no entropy)\n");
+    }
+
+    /* 3. reconstruct（超时则重试一次） */
+    if (wait_idle()) {
+        show_status("STATUS at rec : ");
+        uart_puts("FAIL busy stuck after enroll\nDONE\n");
+        return 1;
+    }
+    if (start_op(0x0u)) {
+        show_status("STATUS at rec : ");
+        uart_puts("FAIL reconstruct start not accepted\nDONE\n");
+        return 1;
+    }
     if (wait_done()) {
         show_status("STATUS at rec : ");
         uart_puts("RETRY reconstruct\n");
-        settle_delay();
-        REG(R_CTRL) = 0x4;
-        REG(R_CTRL) = 0x1;
-        if (wait_done()) {
+        if (start_op(0x0u) || wait_done()) {
             show_status("STATUS retry  : ");
             uart_puts("FAIL reconstruct timeout\nDONE\n");
             return 1;

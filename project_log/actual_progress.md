@@ -1,5 +1,37 @@
 # 实际进度
 
+## 2026-10-27 阶段 4 第二次板上实测 — 硬件握手已修，固件与上电 reconstruct 抢跑（软件已修，待第三次烧录）
+
+owner TBD。烧录 v2（新 RTL + 新固件）后串口日志关键行：
+
+```
+STATUS boot   : 00000001 busy=1 enrolled=0 done=0 quality=0
+STATUS pre-enr: 00000001 busy=1          ← 上电自动 reconstruct 还在跑
+STATUS enrol  : 00000023                 ← busy=1 且 done=1：done 属于 boot 那次操作
+FAIL enroll not marked / FAIL quality=0  ← 读到的是"进行中"的残值
+REF : 00000000 ...                       ← enroll 还没写完 ref
+STATUS pre-rec: 00007f05 busy=1 enrolled=1 quality=127   ← 排队的那次 enroll 真的跑完了
+STATUS recon  : 00007f26 busy=0 enrolled=1 done=1 quality=127  ← mismatch=0 fallback=0
+FAIL                                     ← 汇总行，来自前面两条误判
+```
+
+- **结论 1（硬件）**：握手修复生效。v1 会直接超时；v2 里 `STATUS pre-enr busy=1` 说明 START 被**排队**
+  而不是丢弃，随后 enroll 完成（`quality=127`，与首测一致），reconstruct 也完成
+  （`0x7f26` = ready+enrolled+done，`mismatch=0`、`fallback=0`）。
+- **结论 2（软件）**：固件与上电自动 reconstruct 抢跑。它没等 `busy` 落下就写 CLEAR+START，
+  `wait_done()` 抓到的是 boot 那次操作的 done，于是把 enroll 的中途状态当成结果打印，
+  连带 REF/MASK/DITHER/RAW 都是半写值。**不是"没匹配上"，mismatch 位自始至终是 0。**
+- **固件修改（v3）**：新增 `wait_idle()`（每个操作前等 busy=0，含上电那次）、`start_op()`
+  （CLEAR→START 后确认 busy 抬起或已完成，证明本次 START 被受理）、超时放宽到
+  `TIMEOUT_LOOPS=800000` / `TIMEOUT_IDLE=400000`、新增 `WARN ref==0 (comparator biased)`
+  告警（若 REF 仍全 0 则说明 128 位比对系统性偏一边、熵为零）。text 3019→3470 B。
+- **镜像**：`ascon_keys.coe` sha256 `edd66d37…`，blk_mem_gen OOC 重生成，`.mif` 第 4 行核对
+  `58818193`（v2 为 `3C818193`）。
+- **流程约束（新发现）**：`write_mem_info` 对纯 `blk_mem_gen` 工程报
+  `This design does not have any processors or XPM Libraries`，因此**不能**用 `updatemem`
+  只换 BRAM 内容；改固件必须重跑 synth→impl→bitstream。已实测确认，不再尝试。
+- **未验证**：v3 固件的板上行为（待第 3 次烧录）；REF 是否真的有熵，要等 v3 在 idle 之后读才有可能判断。
+
 ## 2026-10-27 阶段 4 修正 — 板上 reconstruct 超时的握手加固（仿真已验，板级待复测）
 
 owner TBD。现象：板上 `ascon_keys` 首次烧录，enroll 成功（quality=127/128、DNA 可读、REF==RAW、
@@ -1452,3 +1484,40 @@ owner TBD；分支feat/navigator_preboard，HEAD仍68fafc8，保留既有13项�
   验收/降级阶梯/风险）、`docs/pynq_bringup_m1.md`（M1 纯 GUI 分步 + 证据清单）。
 - 下一接收：M1 起板（用户执行，按 `docs/pynq_bringup_m1.md` 交 boot log/env/jupyter 证据），
   然后 M2 建工程出 bit+hwh，再 `make_pynq_profile.py` 出 profile 过 `validate_overlay`。owner TBD。
+
+
+## 2026-10-27 — 板级 IO 时序签核变体（B03/I08 的 IO 门禁）
+
+owner TBD；分支 feat/board-bringup（期间并发工作线把工作区分支切到 feat/pynq-overlay，
+并在 20:04 提交 `8623ea3` 改了 `src/rtl/keys/ro_puf_core.v`、`key_mmio.v`）。本轮未 commit/push，
+未改 `src/rtl`、未改 `const.xdc`、未重建/覆盖三份冻结 bitstream。
+
+- 新增 `board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.srcs/constrs_1/new/const_io.xdc`：
+  7 个板级端口各给「`false_path`（与 RTL 一致的异步语义）+ 一条只用于覆盖计数的 IO delay」，
+  另加两个虚拟参考时钟。`const.xdc` 原样（1 时钟 + 7 引脚 + reset false_path）。
+- 关键负结果（本轮花时间最多的地方，全部带实测数字）：**"给异步 IO 编个宽松 input/output delay"
+  在这块板上不可能成立**。Vivado 的 requirement 取"最小正边沿对"，只要 delay 数值 > 捕获时钟
+  周期（本设计 10 ns）就为负，而负 requirement 会被当作**违反**报出来：
+  变体A（参考端口 clk 20 ns、in 20/out 15）→ WNS −18.481 / TNS −5785.882 / 7972 失败；
+  变体B（虚拟位时钟 8680.556）→ uart_rxd −17.623、uart_txd −27.105（req 仅 9.444/0.556）；
+  变体D（8680.000，与 10 ns 网格可公度）→ uart_rxd −17.067、uart_txd −17.661（req 10.000）；
+  变体E（LED 用 10 µs 虚拟时钟 + 20 ns 预算）→ led setup −13.888 / hold −18.452。
+  另实测：`false_path` **不会**让 check_timing 的 `no_input_delay`/`no_output_delay` 豁免该端口
+  （只加 false_path 时计数仍是 4/3），两者必须同时存在。
+- 最终变体（false_path + 形式 delay）在钉住的源快照 `8623ea3` 上跑 synth+impl：
+  `no_input_delay`/`no_output_delay` **4/3 → 0/0**，WNS **+0.152**、TNS 0、失败端点 **0/59513**、
+  WHS +0.034，DRC **0 Error**（825 checks / 12 条 Warning 类别），TIMING-8 = 0。
+  与同源同脚本、唯一差别是不加 const_io.xdc 的对照组**逐项相同**（WNS/TNS/端点数/最差路径全同），
+  即可归因代价 = **0.000 ns**。
+- 未达成项（不是 IO 问题，交 keys 线）：`no_clock`=10944、`unconstrained_internal_endpoints`=27312，
+  100% 在 `u_soc_axi_top/u_soc_top/u_puf_key/u_puf/*`，根时钟脚 `ro_clk_div_reg[1]/Q` 被常量折叠为 HIGH
+  （5824 个寄存器无时钟）；`TIMING-17` 1000 条同域；DRC `UTLZ-3` 报 `pb_ro_puf` 超容
+  （CARRY4 需 1681 > 1470、Slice 需 2707 > 1470）。上述在"无 IO 约束"对照组里同样存在。
+- 证据：`docs/io_timing_signoff.md`（约束推导/四种被否写法/判据/复现命令）、
+  `build/reports/io_sta_20261027/{io,noio,io_clkframe,noio_rtl_bd10697}/`、
+  `build/local/io_sta_20261027/`（工程副本、钉住源快照、STA 探针日志）、
+  `build/{build_io_sta.tcl,collect_io_sta_results.py,collect_applied_constraints.tcl}`。
+  三份冻结 bitstream 哈希复核未变：sw `f4233827…`、ise `f85eb1a6…`、hw `2f6f2469…`。
+- 局限：板级真实 IO 延迟 **not_measured**（无示波器/眼图/环回抖动）；本轮不产出 bitstream，
+  加约束后的布线未上板验证；`+0.152` 与 P0 的 `+0.087` 之差**不能**归因于 IO（源集不同 + P&R 波动）。
+  下一接收：B03（板级 IO 实测 / PYNQ）、keys 线（RO 域 no_clock 与 pblock 超容）、owner TBD。
