@@ -103,6 +103,14 @@ module ro_puf_core #(
     reg [BITS-1:0]  raw_r, dith_r;
     integer         b;
 
+    // ---------------------------------------------------------------- 看门狗
+    // 板上实测：连续第三次操作时 done 永不到来（ro_clk 域卡在采样中间态）。
+    // 采样域必须保证"请求进来 → 一定给出 done"，否则上层总线软件只能超时。
+    // 上限取 M 个窗口 + 余量，超出即强制收尾（用当前累加值出结果）。
+    localparam integer WD_RO = (M * (WINDOW + 2*DWELL + 8)) + 32*DWELL;
+    localparam [23:0]  WD_RO_C = WD_RO[23:0];
+    reg [23:0] ro_wd;
+
     always @(posedge ro_clk or negedge ro_rst_n) begin
         if (!ro_rst_n) begin
             req_sync  <= 3'b000;
@@ -117,11 +125,33 @@ module ro_puf_core #(
             ro_en     <= 1'b0;
             cnt_en    <= 1'b0;
             cnt_clr   <= 1'b0;
+            ro_wd     <= 24'd0;
         end else begin
             req_sync <= {req_sync[1:0], req_tgl};
             cnt_clr  <= 1'b0;
 
-            case (rstate)
+            // 离线/看门狗计数（非 IDLE 才走）
+            if (rstate == R_IDLE) ro_wd <= 24'd0;
+            else if (ro_wd != 24'hFFFFFF) ro_wd <= ro_wd + 24'd1;
+
+            if (req_event) begin
+                // 新请求是权威的：无论当前在 IDLE 还是卡在中间态，一律从起振重来
+                ro_en   <= 1'b1;
+                dwell   <= {WW{1'b0}};
+                win     <= {WW{1'b0}};
+                m       <= 3'd0;
+                acc     <= {(BITS*ACC_W){1'b0}};
+                cnt_en  <= 1'b0;
+                cnt_clr <= 1'b1;
+                ro_wd   <= 24'd0;
+                rstate  <= R_DWELL;
+            end else if ((rstate != R_IDLE) && (ro_wd >= WD_RO_C)) begin
+                // 看门狗兜底：强制出结果，保证上层一定收到 valid/done
+                ro_en    <= 1'b0;
+                cnt_en   <= 1'b0;
+                done_tgl <= ~done_tgl;
+                rstate   <= R_IDLE;
+            end else case (rstate)
                 R_IDLE: begin
                     ro_en  <= 1'b0;
                     cnt_en <= 1'b0;

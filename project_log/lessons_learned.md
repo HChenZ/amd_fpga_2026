@@ -517,3 +517,42 @@ L08 的“保留两个跟踪生成元数据”是此前策略；本轮按用户�
 - **换 COE 会触发 blk_mem_gen 的 OOC 综合**，Sources 面板出现 “Waiting to update...” 属正常；此时**综合报告里 BRAM 显示 0 RAMB36 / 5 RAMB18**（IP 是黑盒），实现合并后才变成 32 RAMB36 + 5 RAMB18。别据此判断 BRAM 没进来。
 - **Reports 面板里灰色的 Timing Summary 是“该步骤未生成”的占位**：`init_design`、`power_opt_design` 默认不产 timing summary，永远点不开；只有 opt/place/route 后的条目带日期和大小才可双击。
 - **策略的不对称配置是有意的**：综合保持 `Vivado Synthesis Defaults`、实现用 `Performance_ExploreWithRemap` —— 所有历史时序数字都是这个组合测的，单独改综合策略就让 WNS 失去可比性。
+
+## 2026-10-27 — PYNQ 通道：先查"能不能接到 CPU"，再谈接线（owner TBD）
+
+- **"PS 直写共享 BRAM 当邮箱"在这套 SoC 上一定读到旧数据**：`dcache.v:52` 只把
+  `addr[31:20]==0x100` 判为 cacheable，而全设计没有 d-cache 失效/清洗指令（只有 `fence.i`
+  刷 icache）。所以共享 buffer 只要落在内存窗口内，PS 改了 BRAM、CPU 仍可能命中旧行；
+  `volatile`/`fence` 都不能修。要么给 CPU 一条 uncached 的新 MMIO 窗口（改
+  `bus_interconnect.v`），要么别用共享 BRAM。
+- **RV32 的外设空间没有通向 PL 的出口**：`bus_interconnect` 把 clint/uart/gpio/cpi/ascon
+  全部内部译码，外部只有一条 AXI 主口且只承载 `0x100x_xxxx` 内存路径。任何"新增 PS 可见
+  寄存器窗口"的方案都得动那个文件 —— 先确认这点，再决定是加窗口还是复用已有外设。
+- **复用已有 UART 当 PS↔PL 通道是被低估的选项**：它是 uncached MMIO、已在板上跑通、
+  固件驱动不用改；代价只是带宽（6.25 Mbaud 下每字节 1.6 µs）。当"PS 端到端时间"和
+  "CPU cycles"分开报时，带宽不污染加速比。
+- **PUF 的 `key_hw_sel` 会静默改掉 HW 模式的密钥来源**：`soc_top.v` 里它只在
+  `key_valid` 后置 1、无参数可关；一旦锁存，`ascon_mmio` 丢弃 CPU 写的 KEY。
+  任何要"用调用方 key 复现官方 KAT"的工程必须钉住 keys 之前的源集，否则 KAT 会莫名失败。
+  用 `git rev-parse <rev>:<file>` 对比 `git hash-object <file>` 可以精确证明"只有哪几个文件不同"
+  （注意 `core.autocrlf=true` 时直接比 sha256 会全部假阳性）。
+- **RTL 模块拖进 BD 不会自动变成 AXI 从口**：必须给 `s_axi_*` 端口加
+  `(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWADDR" *)` 这类属性，
+  否则 BD 里是一堆散线、Connection Automation 接不上 `M_AXI_GP0`。时钟/复位同理
+  （`signal:clock` / `signal:reset` + `ASSOCIATED_BUSIF`）。
+- **没跑 Vivado 也能抓接线错**：用 `iverilog -g2012 -t null` 加一份 Xilinx IP 空壳
+  （`sim/pynq/ip_stubs.v`）可以把整棵树 elaborate 一遍，端口名/位宽错误当场暴露。
+  它只能证明"接得上"，不能替代功能仿真，更不是综合证据 —— 写报告时必须这么界定。
+- **证据索引里的合并哈希必须写清口径**：`docs/freeze_checkpoint_20261027.md` 的
+  `a323df37…` 用 hex 串联/原始字节/sha256sum 行格式/文件名+哈希等 6 种常见口径都复现不出来。
+  哈希没有口径等于没有证据；以后记录合并哈希时把"排序方式、是否含文件名、分隔符"一起写。
+
+## 2026-10-27 — PUF 复用与"忙时丢请求"
+
+- **上层软件无法区分"请求被丢弃"和"操作没做完"**：`if (start && !busy)` 这种写法在忙时静默丢请求，
+  表现为上层超时，排查方向完全错。总线外设的 START 要么排队，要么给出 busy/ack 拒绝位，不能吞。
+- **跨时钟域的 PUF 采样器必须有看门狗**：RO 计数器由各自的振荡器驱动，跨域快照/计数在真实器件上
+  可能停滞；没有超时兜底时 `done` 永不到来，软件只能挂到自己的超时。看门狗要把"一定给出 done"
+  当成接口契约，而不是等到有 bug 才补。
+- **仿真连做 6 次不复现 ≠ 硬件没问题**：要把"忙时再来一个请求""窗口中途打断"这类时序组合写进 TB，
+  并用 force 制造卡死来验证看门狗真的能救回来，否则测试只是覆盖了顺利路径。

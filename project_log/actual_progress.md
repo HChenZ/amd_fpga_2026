@@ -1,5 +1,32 @@
 # 实际进度
 
+## 2026-10-27 阶段 4 修正 — 板上 reconstruct 超时的握手加固（仿真已验，板级待复测）
+
+owner TBD。现象：板上 `ascon_keys` 首次烧录，enroll 成功（quality=127/128、DNA 可读、REF==RAW、
+MASK 只屏蔽 2 位且与 DITHER 对应），但紧接着 `CTRL=0x4`→`CTRL=0x1` 的 **reconstruct 永远等不到 done**，
+`FAIL reconstruct timeout`；按 PL RESET 重跑结果完全相同（确定性）。
+
+- **定位到的两个脆弱点**（仿真 6 次连续操作不复现，属硬件才暴露的一类）：
+  1. `key_mmio` 在 `key_busy=1` 时写 START 会**静默丢弃**（`if (wdata[0] && !key_busy)`），
+     上层无从得知，只能超时；
+  2. `ro_puf_core` 的 ro_clk 域 FSM 没有任何超时兜底：一旦卡在中间态（跨域计数在真实器件上
+     可能因异步计数/亚稳态停滞），`done_tgl` 永不翻转，整条链路挂死。
+- **修改（3 处）**：
+  - `src/rtl/keys/ro_puf_core.v`：`req_event` 改为**权威重启**（任何状态收到请求都从起振重来）；
+    新增 24-bit 采样看门狗 `WD_RO = M*(WINDOW+2*DWELL+8)+32*DWELL`，超时强制收尾并翻转 `done_tgl`。
+  - `src/rtl/keys/key_mmio.v`：START 改为**排队**（忙时置 `start_pend`，空闲补发；模式在请求时刻快照；
+    CLEAR 取消排队；ENROLL/RECONSTRUCT 模式不再被 CLEAR 覆盖）。
+  - `src/firmware/keys_rv32/main.c`：每次操作前后打印 STATUS（含 busy/enrolled/done/quality），
+    reconstruct 超时后 **重试一次**，并在 CLEAR→START 之间加空拍。text 2474→3019 B。
+- **验证（仿真，全部实跑 PASS）**：`tb_puf_key`（原回归）、`tb_key_mmio`（原回归）、
+  新增 `tb_puf_key_reuse`（单实例 6 次连续 op：boot-recon → enroll → recon ×4 全部 done）、
+  新增 `tb_ro_reuse`（5 次正常 + 忙中请求合并 + 背靠背合并 + **force 卡死窗口验证看门狗出 valid**）。
+  工程侧 `synth_design -rtl` **elaboration PASS**（49 个源文件）。
+- **镜像**：`ascon_keys.coe` 重新生成为 sha256 `77c11ab0…`（与旧版差 **724 个字**），
+  blk_mem_gen OOC 重生成后 `.mif` 第 4 行已核对匹配（`3C818193`，旧版 `1A818193`）。
+- **未验证**：板上行为（需第 4 次烧录）；若下次仍超时，新固件会打印 `STATUS at rec`：
+  **busy=1 → 卡在内部（查 DNA/KDF）；busy=0 → START 仍被吞（查 key_mmio）**，可直接定位。
+
 ## 2026-10-27 阶段 4 — PUF/密钥子系统纳入上板工程（RTL 已集成，板级待跑）
 
 owner TBD。本轮改 `src/rtl`（两处集成补丁）+ 工程配置 + 新固件/COE；未 commit 前已验证 elaboration 与 IP 重生成。
@@ -1380,3 +1407,48 @@ owner TBD；分支feat/navigator_preboard，HEAD仍68fafc8，保留既有13项�
   存储 / 多周期 / 可改点 / 测量方法）。行号按当前 `src/rtl`（`dcache.v` 611 行含 store buffer）核对。
 - 结论边界：周期数均为代码推导（标「推」）；未跑仿真、未改 RTL、未碰时序。下一步应先复现
   `docs/board_bringup_plan.md:91` 的 16840 / 664 / 2559 三个基线再谈任何改进收益。owner TBD。
+
+## 2026-10-27 — C 线 PYNQ overlay 通道与端到端骨架（M2/M3 代码就位，未上板）
+
+分支 `feat/pynq-overlay`（自 `bd10697` 新建），未 commit/push；owner TBD。
+任务号：Y01/Y02/Y03（板级部分 B03/C 线 M1–M3）。**所有板级数字仍为 not_measured。**
+
+- **架构决策（必须记录）**：任务书 M2 原写"AXI-Lite 控制 + 共享 BRAM"。查证冻结 RTL 后不可行：
+  (a) RV32 的外设访问全在 `bus_interconnect.v` 内部译码，没有通向 PL 边界的 MMIO 出口；
+  (b) `dcache.v:52` 只有 `0x100x_xxxx` 是 cacheable，且全设计没有 d-cache 失效指令，
+  所以"PS 直写共享 BRAM"必然读到旧 cache 行，靠 volatile/fence 不能修。改/复制 SoC 顶层又要
+  在 WNS +0.087 ns 上重新签核。→ 采用 **方案 A'**：复用 RV32 已有的 UART MMIO（0x20000000）
+  当 PS↔PL 数据通道，新增 `pynq_mbox.v` 在 PL 里做"串口的另一端"；冻结 RTL 一行未改。
+  代价：PS 端到端 ≈200–300 µs（估算，未测），CPU cycles（20806/688/2570）不受影响。
+- 新增 RTL（4 个文件，全部是新增）：`src/rtl/pynq/pynq_ctl.v`（控制/状态 AXI-Lite）、
+  `pynq_mbox.v`（TX64B/RX256B FIFO + uart_tx/uart_rx + CNT）、`pynq_soc.v`（SoC+BRAM 封装）、
+  `top_pynq.v`（三块组合的单模块顶层）。AXI 口带 `X_INTERFACE_*` 属性，BD 能自动识别为 AXI4Lite。
+- 新增固件 `src/firmware/pynq_svc/`：单槽邮箱服务，帧格式与 `src/pynq/mailbox_protocol.md` 一致，
+  另加两个服务帧 `Y01S`（能力/自检/mcycle，64B）与 `Y01E`（PS 下发 epoch，20B）。
+  SW 模式直接 `#include ascon/ascon_c/aead/aead.c`（与 host golden 同一份参考），
+  ISE 模式用 custom-0 置换指令，HW 模式走 ascon_mmio，三种模式开机各跑 6 项官方 KAT 自检。
+- 新增 Python：`src/pynq/pynq_transport.py`（Transport 实现：MMIO、帧解析、批量压入、
+  绝对 deadline、epoch/ACK 语义）、`test_pynq_transport.py`（13 项寄存器级模型测试）、
+  `make_pynq_profile.py`（.hwh → navigator profile，并调用 `validate_overlay()` 自检）。
+- **钉住 RTL 源集**：工作区 `soc_top.v`/`ascon_mmio.v` 已被 PUF 补丁改过，`key_hw_sel` 在
+  `key_valid` 后无条件锁存，会让 ascon_mmio 忽略 CPU 写的 KEY → HW 模式 KAT 无法复现。
+  故 `board/vivado_zynq7000_xc7z020_pynq/rtl_p0/` 存放 `8a86afd` 版这两个文件
+  （其余 29 个 `src/rtl/*.v` 与 `8a86afd` 逐文件 git blob 相同，已全量核对）；keys 不进工程。
+- 实测（本机）：`iverilog 14.0` 桥单元测试 **PASS**；`bash sim/pynq/elab_check.sh`
+  42 文件整树 elaborate **PASS**（Xilinx IP 用 `sim/pynq/ip_stubs.v` 空壳）；
+  `bash src/firmware/pynq_svc/build.sh` **exit 0**，text 46104 B/bss 336 B，custom-0 共 22 条
+  （`0x200b`×1、`0x300b`×4），`pynq_svc.bin`=`dba0a861…`、`pynq_svc.coe`=`d7e9382f…`；
+  `python src/pynq/test_pynq_transport.py` **13/13 PASS**；
+  `python src/pynq/make_pynq_profile.py --selftest` **PASS**；既有
+  `test_mailbox.py`(24 tests OK)/`test_navigator.py`/`golden_checker.py --backend mailbox --mode ise`
+  (KAT 1089 PASS、TAMPER 4290) 无回归。
+- **未验/阻塞**：Vivado 综合/实现/bit/hwh NOT_RUN（本机另有 Vivado PID 16988 在跑 PUF 版，
+  按"同时只允许一个实现"未并发）；上板 KAT/PS 端到端时间/串口时序全部 not_measured；
+  M_AXI_GP0 是否在厂家 FSBL 里使能未验证（若未使能 MMIO 会读回 0xFFFFFFFF）。
+- 审计附带发现：`docs/freeze_checkpoint_20261027.md` §2 的 `src/rtl/*.v` 合并哈希
+  `a323df37…` 用 6 种常见口径在 `8a86afd`/`f88e178` 上都无法复现；本轮独立口径为
+  `8d4589e2…`（keys 合入后 `f4ad6ab6…`）。建议补记该哈希的计算口径，否则不能当复现凭据。
+- 文档：`board/vivado_zynq7000_xc7z020_pynq/readme.md`（架构/位表/地址/GUI 建工程分步/
+  验收/降级阶梯/风险）、`docs/pynq_bringup_m1.md`（M1 纯 GUI 分步 + 证据清单）。
+- 下一接收：M1 起板（用户执行，按 `docs/pynq_bringup_m1.md` 交 boot log/env/jupyter 证据），
+  然后 M2 建工程出 bit+hwh，再 `make_pynq_profile.py` 出 profile 过 `validate_overlay`。owner TBD。

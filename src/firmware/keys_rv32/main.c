@@ -42,6 +42,27 @@ static void nl(void) { uart_putc('\n'); }
 
 static void put_label(const char *s) { uart_puts(s); }
 
+/* 打印 STATUS 并逐字段解释：busy=1 说明操作已进入但没走完；busy=0 且 done=0
+ * 说明 START 根本没被接受（这一版已改成排队，理论上不应再出现）。 */
+static void show_status(const char *tag)
+{
+    uint32_t st = REG(R_STATUS);
+    put_label(tag);
+    uart_puthex32(st);
+    uart_puts(" busy=");     uart_putdec_u32(st & 1u);
+    uart_puts(" enrolled="); uart_putdec_u32((st >> 2) & 1u);
+    uart_puts(" done=");     uart_putdec_u32((st >> 5) & 1u);
+    uart_puts(" quality=");  uart_putdec_u32((st >> 8) & 0xFFu);
+    nl();
+}
+
+/* 短暂延时：CLEAR 与下一次 START 之间留出空拍，避免同拍覆盖 */
+static void settle_delay(void)
+{
+    volatile uint32_t d;
+    for (d = 0; d < 2000u; d++) { }
+}
+
 /* 等 done；返回 0 成功，-1 超时 */
 static int wait_done(void)
 {
@@ -71,14 +92,15 @@ int main(void)
 
     /* 1. 上电状态（不以此为判定依据） */
     st = REG(R_STATUS);
-    put_label("STATUS boot : ");
-    uart_puthex32(st);
-    nl();
+    show_status("STATUS boot   : ");
 
     /* 2. enroll */
+    settle_delay();
     REG(R_CTRL) = 0x4;             /* 清粘滞 */
     REG(R_CTRL) = 0x3;             /* START + ENROLL */
+    show_status("STATUS pre-enr: ");
     if (wait_done()) {
+        show_status("STATUS at enr : ");
         uart_puts("FAIL enroll timeout\nDONE\n");
         return 1;
     }
@@ -100,12 +122,22 @@ int main(void)
     dump4("DITHER      : ", R_DITH0);
     dump4("RAW         : ", R_RAW0);
 
-    /* 3. reconstruct */
+    /* 3. reconstruct（超时则重试一次：START 现在忙时会排队，不会丢） */
+    settle_delay();
     REG(R_CTRL) = 0x4;             /* 清粘滞 */
     REG(R_CTRL) = 0x1;             /* START，reconstruct */
+    show_status("STATUS pre-rec: ");
     if (wait_done()) {
-        uart_puts("FAIL reconstruct timeout\nDONE\n");
-        return 1;
+        show_status("STATUS at rec : ");
+        uart_puts("RETRY reconstruct\n");
+        settle_delay();
+        REG(R_CTRL) = 0x4;
+        REG(R_CTRL) = 0x1;
+        if (wait_done()) {
+            show_status("STATUS retry  : ");
+            uart_puts("FAIL reconstruct timeout\nDONE\n");
+            return 1;
+        }
     }
     st = REG(R_STATUS);
     put_label("STATUS recon: ");

@@ -82,15 +82,38 @@ module key_mmio (
     end
 
     // ---------------------------------------------------------------- 控制
+    // 板上实测问题：忙时写 START 会被静默丢弃（第三次操作 reconstruct 就这样超时）。
+    // 现在改为"排队"：忙时置 start_pend，空闲后自动补发一次，模式在请求时刻快照。
+    // 另外 ENROLL/RECONSTRUCT 模式只在真正发 START 的那一拍更新，CLEAR 不再改模式。
+    reg start_pend;
+    reg pend_mode;
+
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             key_start       <= 1'b0;
             key_enroll_mode <= 1'b0;
+            start_pend      <= 1'b0;
+            pend_mode       <= 1'b0;
         end else begin
             key_start <= 1'b0;                       // 自清脉冲
             if (ascon_we && (ascon_addr_sel == A_CTRL)) begin
-                if (ascon_wdata[0] && !key_busy) key_start <= 1'b1;
-                key_enroll_mode <= ascon_wdata[1];   // 保持型：区分 enroll / reconstruct
+                if (ascon_wdata[0]) begin
+                    if (!key_busy) begin
+                        key_start       <= 1'b1;
+                        key_enroll_mode <= ascon_wdata[1];
+                    end else begin
+                        start_pend <= 1'b1;          // 忙：排队，不丢
+                        pend_mode  <= ascon_wdata[1];
+                    end
+                end
+                if (ascon_wdata[2]) start_pend <= 1'b0;   // CLEAR 取消排队
+            end
+            // 排队请求在器件空闲时补发（与 CLEAR 同拍时让 CLEAR 优先）
+            if (start_pend && !key_busy && !key_start &&
+                !(ascon_we && (ascon_addr_sel == A_CTRL) && ascon_wdata[2])) begin
+                key_start       <= 1'b1;
+                key_enroll_mode <= pend_mode;
+                start_pend      <= 1'b0;
             end
         end
     end
