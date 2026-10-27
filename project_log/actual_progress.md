@@ -1,5 +1,47 @@
 # 实际进度
 
+## 2026-10-27 23:48 阶段 4 板级通过 — PUF 密钥子系统 enroll + reconstruct 全链路成功
+
+owner TBD。v3 固件（先等 idle 再发 START）烧录后，串口**全部通过**（原始日志待归档为
+`data/ascon/results/board/uart_20261027_keys3.txt`，以下数字转录自截图）：
+
+```
+STATUS boot   : 00000001 busy=1 enrolled=0 done=0 quality=0
+STATUS idle   : 0000003a busy=0 enrolled=0 done=1 quality=0
+STATUS enrol  : 00008026 quality=128
+DNA    : 008968143982d0b8
+REF    : 58abef60 2834c32c fab29602 8816bf92
+MASK   : ffffffff ffffffff ffffffff ffffffff
+DITHER : 00000000 00000000 00000000 00000000
+RAW    : 58abef60 2834c32c fab29602 8816bf92
+STATUS recon: 00008026 quality=128
+PASS key subsystem: enroll + reconstruct stable
+DONE
+```
+
+**状态字解码**：
+- `0x0000003A` = ready+mismatch+fallback+done → 上电自动 reconstruct 在无 helper
+  （INIT_MASK=0）时**按设计降级**，不是错误。
+- `0x00008026` = ready+enrolled+done，`quality=128`；enroll 与 reconstruct 两次读数完全相同，
+  `mismatch=0`、`fallback=0` → 重建密钥与注册一致。
+- `REF == RAW` → 本次 enroll 的对比结果与回读完全自洽；REF 的 1 个数 59/128 = 46.1%，
+  接近理想 50%，**排除"比对器系统性偏一边"**（此前担心的 bias 不成立）。
+- `DITHER=0` / `MASK=全 1` / `quality=128`：M=5 个窗口逐位一致，无抖动位。
+
+**能写进材料的结论**（精确口径）：
+- 256 路 RO-PUF + 57 位 Device DNA 的密钥子系统在 XC7Z020 实板上完成 enroll → reconstruct
+  闭环，quality 128/128，密钥未出现在任何 CPU 可读地址。
+- 无 helper 时的降级路径（mismatch+fallback）与设计一致。
+
+**不能写/未验证**：
+- **跨上电稳定性未验证**：helper 存在易失寄存器里，掉电即失效，每次上电都重新 enroll，
+  所以"同一密钥跨上电可重建"这件事还没测过。需要先把 REF/MASK 持久化（BRAM 保留域或 PS 侧
+  Flash/文件）再做多次上电对比。
+- 温压/老化稳定性、误码率统计、唯一性（多板互比）均 `not_measured`。
+- RO 采样域仍未纳入 STA（`no_clock 10930`），"PUF 时序已签核"不成立。
+- `DITHER=0` 只能说明"本次 5 窗口无翻转"，不能外推为"永不翻转"；上次会话的 RAW 第 0 字为
+  `58bbef60`（与本次差 1 bit），但那次读数是抢跑残值，不能作为跨会话不稳定的证据。
+
 ## 2026-10-27 阶段 4 第二次板上实测 — 硬件握手已修，固件与上电 reconstruct 抢跑（软件已修，待第三次烧录）
 
 owner TBD。烧录 v2（新 RTL + 新固件）后串口日志关键行：
