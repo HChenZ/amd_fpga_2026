@@ -2,8 +2,8 @@
 
 ## 2026-10-27 23:48 阶段 4 板级通过 — PUF 密钥子系统 enroll + reconstruct 全链路成功
 
-owner TBD。v3 固件（先等 idle 再发 START）烧录后，串口**全部通过**（原始日志待归档为
-`data/ascon/results/board/uart_20261027_keys3.txt`，以下数字转录自截图）：
+owner TBD。v3 固件（先等 idle 再发 START）烧录后，串口**全部通过**（原始日志已归档：`data/ascon/results/board/uart_20261027_keys3.txt`，
+原始字节 `xcom_raw_20261027_keys3.XDat`）：
 
 ```
 STATUS boot   : 00000001 busy=1 enrolled=0 done=0 quality=0

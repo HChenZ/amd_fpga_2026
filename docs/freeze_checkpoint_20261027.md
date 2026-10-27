@@ -67,6 +67,8 @@ owner TBD。本文是**证据索引**，不是成果声明：每条数字都能�
 | `uart_sw_20261026.txt` | 软件版（XCOM "保存窗口"直接存盘，纯 sw） | `0a6485bd424feb9f16981ecd9f32a522ea9b0d499d7319bcb27ee0ee879f9758` |
 | `xcom_raw_20261026.XDat` | XCOM 原始会话数据（含帧头字节，可回溯） | `ca033509c6c57bafb3e1ed50be813c22eccc5d5722d1d57366b07b431e55c80e` |
 | `xcom_raw_20261027.XDat` | 同上（MMIO 轮） | `5aa335835aab6f00a56c1ffc1be8c949dd30f23cfd66e958ade1e18843b8f5ed` |
+| `uart_20261027_keys3.txt` | PUF 密钥子系统（含 v2 抢跑失败段 + v3 通过段，31 行，已标注分段） | `ad634d898e216d7a029529069a99355800c4e1ef753c8a1b6c5f0880d88c4ba0` |
+| `xcom_raw_20261027_keys3.XDat` | 同一捕获的原始字节（含首尾 0x00 与 CRLF，可回溯） | `3f85131638abdc425ee906210a0a505a9114f60e560e30398ac213cbf8fbfc7e` |
 
 ⚠ MMIO 版日志开头有约 2 行乱码（打开串口瞬间的帧错），banner 之后干净；`.txt` 是从 `.XDat`
 去掉非打印字节后的可读版，两者可互相核对（原始文件保留，不修改）。
