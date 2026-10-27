@@ -539,6 +539,18 @@ vivado -mode batch -source build/timing_tests/rep_fanout.tcl -notrace \
 - 因此**当前 100 MHz 的最好成绩仍是生产策略 + C + D 的 +0.087 ns**（`prod_ctl` / `d_100` 相互印证）。
   复制步骤**不进流程**，脚本保留作为工具与证据。
 
+### 10.7 第二轮（2026-10-25 14:17–15:31）：12 臂把这件事结案
+
+`docs/timing_route_replication_r2.md` 单独记录。三条要点：
+1. **`sel_*` 类网拆不出来**：单根 / 2 根 / 4 根 / 属性写网或写单元 / `MAX_FANOUT`=16 或 128 /
+   加 `AggressiveExplore`，12 个臂一律副本 51→51、`Optimized 0 net. Created 0 new instance.`
+   → 上表 `prod_rep1`（`state[3]`）能成，是因为那根网的负载散开；`sel_*` 的负载已经够集中。
+2. **§10.6 那个 +0.184 已定性为"定向扰动布线解"**（8 次逐位相同）：两臂 post-place 检查点
+   32579 个原语的 `NAME→LOC` **逐行 diff 为空**，布线后只有 35 个单元不同，净表完全相同。
+   属性不是必需（不写属性仍 +0.184），但**点哪根网必需**（点一根 fo=3 的小网 → +0.073）。
+3. **新最差换成 13 级 / 8 级 CARRY4 增量链**（`u_mem_wb/captured_addr_reg[*]_i_1`），
+   复制路线到此为止；`r2_tight`（临时 9 ns 逼 phys_opt）只有 +0.057 且多 87 LUT / 48 FF。
+
 ## 11. 证据路径
 ```
 build/local/tests_20261024/

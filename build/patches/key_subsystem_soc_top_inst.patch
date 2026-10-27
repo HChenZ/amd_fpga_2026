@@ -1,0 +1,154 @@
+--- a/src/rtl/soc_top.v
++++ b/src/rtl/soc_top.v
+@@ -8,7 +8,15 @@
+     parameter UART_BPS = 115200,
+     parameter UART_BAUD_CNT_MAX = UART_CLK_FREQ / UART_BPS,
+     parameter UART_RX_FIFO_DEPTH = 16,
+-    parameter UART_TX_FIFO_DEPTH = 16
++    parameter UART_TX_FIFO_DEPTH = 16,
++    // ---- 密钥子系统（PUF + DNA） ----
++    parameter KEY_USE_PUF   = 1,        // 0 = 只用 DNA 派生（降级/联调）
++    parameter KEY_ENROLL    = 0,        // 1 = 上电执行 enroll（一次性）
++    parameter KEY_N_RO      = 256,
++    parameter KEY_WINDOW    = 65536,    // 采样窗口（clk 周期）
++    parameter KEY_M         = 5,        // 多数表决次数
++    parameter [127:0] KEY_INIT_REF  = 128'h0,   // enroll 后回填
++    parameter [127:0] KEY_INIT_MASK = 128'h0    // 同上：1 = 该位稳定
+ )(
+ 
+     input       clk,
+@@ -196,7 +204,10 @@
+     wire         ascon_we;
+     wire  [5:0]  ascon_addr_sel;
+     wire  [31:0] ascon_wdata;
+-    wire  [31:0] ascon_rdata;
++    wire  [31:0] ascon_rdata;        // 总线读数据（ascon 核心 | 密钥窗口）
++    wire  [31:0] ascon_rdata_core;   // ascon_mmio 自己的读数据
++    wire  [31:0] key_rdata;          // key_mmio 的读数据（未选中时为 0）
++    assign ascon_rdata = ascon_rdata_core | key_rdata;
+     wire         ascon_irq;
+ 
+     wire         ireq_external = gpio_irq | uart_irq | ascon_irq;
+@@ -522,6 +533,106 @@
+     // =========================================================================
+     // Ascon-AEAD128 MMIO accelerator
+     // =========================================================================
++    // =========================================================================
++    // 密钥子系统：PUF + DNA -> 128-bit key -> ascon_mmio（CPU 不经手）
++    // =========================================================================
++    wire [127:0] key_hw_q;      // puf_key 的 key 输出（内部保持）
++    wire [127:0] key_hw;        // 送给 ascon_mmio 的硬件密钥
++    wire         key_hw_sel;
++
++    wire [127:0] key_ref, key_mask;
++    wire         key_start_mmio, key_enroll_mmio;
++    reg  [15:0]  key_boot_cnt;
++    reg          key_start_pulse;
++    reg          key_started;
++    reg          key_hw_sel_r;
++    wire         key_busy, key_done, key_valid_p, key_mismatch, key_fallback, key_enrolled;
++    wire [7:0]   key_quality;
++    wire [56:0]  key_dna;
++    wire [127:0] key_raw, key_dither;
++
++    // 复位释放后等 MMCM 锁定/电压稳定再采样 PUF，且只启动一次
++    always @(posedge clk or negedge rst_n) begin
++        if (!rst_n) begin
++            key_boot_cnt    <= 16'd0;
++            key_start_pulse <= 1'b0;
++            key_started     <= 1'b0;
++        end else begin
++            key_start_pulse <= 1'b0;
++            if (!key_started) begin
++                if (key_boot_cnt == 16'hFFFF) begin
++                    key_start_pulse <= 1'b1;
++                    key_started     <= 1'b1;
++                end else
++                    key_boot_cnt <= key_boot_cnt + 16'd1;
++            end
++        end
++    end
++
++    always @(posedge clk or negedge rst_n) begin
++        if (!rst_n)           key_hw_sel_r <= 1'b0;
++        else if (key_valid_p) key_hw_sel_r <= 1'b1;   // 密钥就绪即锁定
++    end
++    assign key_hw_sel = key_hw_sel_r;
++    assign key_hw     = key_hw_q;
++
++    // RO 采样用的慢时钟域：clk/4 = 25 MHz，过 BUFG 走全局时钟
++    reg  [1:0] ro_clk_div;
++    wire       ro_clk_ungated;
++    wire       ro_clk;
++    always @(posedge clk or negedge rst_n) begin
++        if (!rst_n) ro_clk_div <= 2'd0;
++        else        ro_clk_div <= ro_clk_div + 2'd1;
++    end
++    assign ro_clk_ungated = ro_clk_div[1];
++    BUFG u_ro_clk_bufg (.I(ro_clk_ungated), .O(ro_clk));
++
++    puf_key #(
++        .USE_PUF      (KEY_USE_PUF),
++        .N_RO         (KEY_N_RO),
++        .WINDOW       (KEY_WINDOW),
++        .M            (KEY_M),
++        .INIT_REF     (KEY_INIT_REF),
++        .INIT_MASK    (KEY_INIT_MASK)
++    ) u_puf_key (
++        .clk      (clk),
++        .ro_clk   (ro_clk),
++        .rst_n    (rst_n),
++        .start    (key_start_pulse | key_start_mmio),
++        .mode     (key_enroll_mmio | (KEY_ENROLL != 0)),
++        .key      (key_hw_q),
++        .key_valid(key_valid_p),
++        .busy     (key_busy),
++        .done     (key_done),
++        .mismatch (key_mismatch),
++        .fallback (key_fallback),
++        .enrolled (key_enrolled),
++        .quality  (key_quality),
++        .dna_o    (key_dna),
++        .puf_raw_o(key_raw),
++        .dither_o (key_dither),
++        .helper_ref_o (key_ref),
++        .helper_mask_o(key_mask)
++    );
++
++    // =========================================================================
++    // 密钥子系统 MMIO 窗口（Ascon 窗口内的 0x80 段，见 src/rtl/keys/key_mmio.v）
++    //   CPU 可读：STATUS / DNA / QUALITY / REF / MASK / DITHER / RAW（key 不暴露）
++    //   CPU 可写：CTRL[start, enroll, clear]
++    // =========================================================================
++    key_mmio u_key_mmio (
++        .clk(clk), .rst_n(rst_n),
++        .ascon_re(ascon_re), .ascon_we(ascon_we),
++        .ascon_addr_sel(ascon_addr_sel), .ascon_wdata(ascon_wdata),
++        .key_rdata(key_rdata),
++        .key_start(key_start_mmio), .key_enroll_mode(key_enroll_mmio),
++        .key_valid(key_valid_p), .key_busy(key_busy), .key_done(key_done),
++        .key_mismatch(key_mismatch), .key_fallback(key_fallback),
++        .key_enrolled(key_enrolled), .key_quality(key_quality),
++        .key_dna(key_dna), .key_ref(key_ref), .key_mask(key_mask),
++        .key_dither(key_dither), .key_raw(key_raw)
++    );
++
+     ascon_mmio #(
+         .MAX_AD_BYTES (256),
+         .MAX_MSG_BYTES(256)
+@@ -532,8 +643,13 @@
+         .ascon_we(ascon_we),
+         .ascon_addr_sel(ascon_addr_sel),
+         .ascon_wdata(ascon_wdata),
+-        .ascon_rdata(ascon_rdata),
+-        .ascon_irq(ascon_irq)
++        .ascon_rdata(ascon_rdata_core),
++        .ascon_irq(ascon_irq),
++        // 硬件密钥直连（CPU 不可读）
++        .key_hw(key_hw),
++        .key_hw_sel(key_hw_sel)
+     );
+ 
++
++
+ endmodule

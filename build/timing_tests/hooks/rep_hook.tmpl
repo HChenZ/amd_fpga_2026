@@ -1,0 +1,65 @@
+# PHYS_OPT_DESIGN.TCL.POST 钩子：放置后、布线前的大扇出网定点复制
+#
+# 由 run_prod_arm.tcl 从 hooks/rep_hook.tmpl 生成，占位符已替换：
+#   FO_MIN  = @@FO_MIN@@
+#   PATS    = @@PATS@@        (TCL 列表，任一匹配驱动单元名即入选)
+#   MAXFAN  = @@MAXFAN@@
+#   DOREP   = @@DOREP@@       (1 = phys_opt_design -force_replication_on_nets，0 = 只写 MAX_FANOUT 属性)
+#
+# 不用 DONT_TOUCH：它同时冻结放置，副本就搬不到负载附近。
+# 用 EQUIVALENT_REGISTER_REMOVAL=NO 阻止后续 post-route phys_opt 把副本折回。
+set fo_min @@FO_MIN@@
+set pats   {@@PATS@@}
+set maxfan @@MAXFAN@@
+set dorep  @@DOREP@@
+
+proc _match_any {name pats} {
+    foreach p $pats { if {[string match $p $name]} { return 1 } }
+    return 0
+}
+
+# 本钩子挂在 PHYS_OPT_DESIGN.TCL.POST：此时设计已放置未布线，走线尚未存在，
+# 所以选点按「驱动单元名 + 扇出数」而不是按布线后路径 slack。
+#
+# 注意（2026-10-25 踩过一次）：候选必须同时匹配【网名】和【驱动单元名】。
+# 只匹配单元名会漏掉本项目真正的那根网 —— 网叫 `u_crypto_aead/state[3]`，
+# 而驱动它的单元叫 `u_crypto_aead/FSM_sequential_state_reg[3]`（Vivado 把 FSM 重新编码成 one-hot）。
+# 表现就是 candidates=0、replica_cells=51（与对照完全相同），臂白跑。
+set cand {}
+foreach n [get_nets -quiet -hier -filter "FLAT_PIN_COUNT >= $fo_min"] {
+    set drv [get_pins -quiet -leaf -of_objects $n -filter {DIRECTION == "OUT"}]
+    if {[llength $drv] != 1} { continue }
+    set c [get_cells -quiet -of_objects $drv]
+    if {[llength $c] != 1} { continue }
+    set nm [get_property NAME $n]
+    set cname [get_property NAME $c]
+    if {![_match_any $nm $pats] && ![_match_any $cname $pats]} { continue }
+    if {![string match "FD*" [get_property REF_NAME $c]]} { continue }
+    lappend cand $n
+}
+puts "PRODREP fo_min=$fo_min pats={$pats} maxfan=$maxfan dorep=$dorep candidates=[llength $cand]"
+foreach n $cand {
+    set dc [get_cells -quiet -of_objects [get_pins -quiet -leaf -of_objects $n -filter {DIRECTION == "OUT"}]]
+    puts "  PRODREP before fo=[get_property FLAT_PIN_COUNT $n] net=[get_property NAME $n] drv=[get_property NAME $dc] loc=[get_property LOC $dc]"
+}
+
+# 原驱动单元冻结等价寄存器（防止 opt/phys_opt 折回），并给 MAX_FANOUT 提示
+foreach n $cand {
+    set drv [get_pins -quiet -leaf -of_objects $n -filter {DIRECTION == "OUT"}]
+    foreach c [get_cells -quiet -of_objects $drv] { catch { set_property EQUIVALENT_REGISTER_REMOVAL NO $c } }
+    catch { set_property MAX_FANOUT $maxfan $n }
+}
+
+if {$dorep && [llength $cand] > 0} {
+    if {[catch { phys_opt_design -force_replication_on_nets $cand } err]} {
+        puts "PRODREP repl_error=$err"
+    }
+}
+
+set reps [get_cells -hier -quiet -filter {IS_SEQUENTIAL && NAME =~ "*_rep*"}]
+puts "PRODREP replica_cells=[llength $reps]"
+foreach c $reps { catch { set_property EQUIVALENT_REGISTER_REMOVAL NO $c } }
+foreach n $cand {
+    set dc [get_cells -quiet -of_objects [get_pins -quiet -leaf -of_objects $n -filter {DIRECTION == "OUT"}]]
+    puts "  PRODREP after  fo=[get_property FLAT_PIN_COUNT $n] net=[get_property NAME $n] loc=[get_property LOC $dc]"
+}

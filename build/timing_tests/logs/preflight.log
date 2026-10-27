@@ -1,0 +1,109 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun Oct 25 14:16:21 2026
+# Process ID         : 41856
+# Current directory  : C:/wenjian/game/FPGA2026/ours/amd_fpga_2026
+# Command line       : vivado.exe -mode batch -source build/timing_tests/probe_r2_preflight.tcl -notrace -log build/timing_tests/logs/preflight.log -journal build/timing_tests/logs/preflight.jou
+# Log file           : C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/timing_tests/logs/preflight.log
+# Journal file       : C:/wenjian/game/FPGA2026/ours/amd_fpga_2026\build/timing_tests/logs/preflight.jou
+# Running On         : DESKTOP-5H4M0DR
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 7 255HX
+# CPU Frequency      : 2880 MHz
+# CPU Physical cores : 20
+# CPU Logical cores  : 20
+# Host memory        : 33778 MB
+# Swap memory        : 5391 MB
+# Total Virtual      : 39170 MB
+# Available Virtual  : 14606 MB
+#-----------------------------------------------------------
+source build/timing_tests/probe_r2_preflight.tcl -notrace
+PREFLIGHT hooks=7
+  r2_net1.tcl              complete=1 chars=843 ascii=1
+  r2_net1_aggr.tcl         complete=1 chars=1039 ascii=1
+  r2_net1_cell.tcl         complete=1 chars=822 ascii=1
+  r2_net1_mf16.tcl         complete=1 chars=1086 ascii=1
+  r2_net2.tcl              complete=1 chars=749 ascii=1
+  r2_net4_cell.tcl         complete=1 chars=877 ascii=1
+  r2_popt.tcl              complete=1 chars=712 ascii=1
+Command: open_checkpoint C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/tests_20261024/pr_rep2_sel/pr_rep2_sel_routed.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 332.660 ; gain = 4.965
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.113 . Memory (MB): peak = 829.285 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1783 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.061 . Memory (MB): peak = 948.754 ; gain = 6.930
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 1554.082 ; gain = 0.000
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1554.082 ; gain = 0.000
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1554.082 ; gain = 0.000
+Read placeStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.457 . Memory (MB): peak = 1560.953 ; gain = 6.871
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1560.953 ; gain = 0.000
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.197 . Memory (MB): peak = 1578.641 ; gain = 17.688
+Read Physdb Files: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.703 . Memory (MB): peak = 1578.641 ; gain = 24.559
+Restored from archive | CPU: 1.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.735 . Memory (MB): peak = 1578.641 ; gain = 24.559
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1599.223 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 241 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 10 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 4 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 223 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 4 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2025.2 (64-bit) build 6299465
+open_checkpoint: Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1607.312 ; gain = 1288.883
+PREFLIGHT source C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/timing_tests/hooks/r2_net1_aggr.tcl
+R2 before fo=172  loc=SLICE_X61Y34 drv=u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs1_o_reg net=u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs1_o
+R2 r2_net1_aggr replica_cells_before=51 candidates=1
+Command: phys_opt_design -directive AggressiveExplore
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Vivado_Tcl 4-241] Physical synthesis in post route mode 
+INFO: [Vivado_Tcl 4-137] Directive used for phys_opt_design is: AggressiveExplore
+
+Starting Initial Update Timing Task
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:04 . Memory (MB): peak = 1682.047 ; gain = 5.738
+INFO: [Vivado_Tcl 4-2280] Estimated Timing Summary | WNS= 0.184 | TNS= 0.000 | WHS= 0.021 |
+INFO: [Vivado_Tcl 4-383] Design worst setup slack (WNS) is greater than or equal to 0.000 ns. All physical synthesis setup optimizations will be skipped.
+INFO: [Vivado_Tcl 4-2291] Design worst hold slack (WHS) is greater than or equal to 0.000 ns. Hold fix optimization will be skipped.
+ 
+INFO: [Vivado_Tcl 4-232] No setup violation found. The netlist was not modified.
+INFO: [Common 17-83] Releasing license: Implementation
+20 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+phys_opt_design: Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 1682.047 ; gain = 74.734
+R2 r2_net1_aggr replica_cells_after_aggr=51
+Command: phys_opt_design -force_replication_on_nets u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs1_o
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Vivado_Tcl 4-241] Physical synthesis in post route mode 
+ERROR: [Vivado_Tcl 4-265] Option -force_replication_on_nets is specified but not supported yet for post-route physical synthesis. Please remove the option and rerun phys_opt_design
+INFO: [Common 17-83] Releasing license: Implementation
+23 Infos, 0 Warnings, 0 Critical Warnings and 1 Errors encountered.
+phys_opt_design failed
+R2 r2_net1_aggr repl_error=ERROR: [Common 17-39] 'phys_opt_design' failed due to earlier errors.
+
+R2 r2_net1_aggr replica_cells=51
+R2 after  fo=172  loc=SLICE_X61Y34 drv=u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs1_o_reg net=u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs1_o
+PREFLIGHT sel_rs1 fo=172
+PREFLIGHT replica_cells=51
+PREFLIGHT DONE
+INFO: [Common 17-206] Exiting Vivado at Sun Oct 25 14:16:47 2026...

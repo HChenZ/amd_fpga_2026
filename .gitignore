@@ -91,3 +91,8 @@ desktop.ini
 # Vivado 探针在仓库根目录产生的临时报告
 /clockInfo.txt
 /tight_setup_hold_pins.txt
+
+# 时序实验原始 run 报告（2026-10-24/25 共 33 MB 的复制/策略臂产物）；结论已蒸馏进
+# docs/timing_route_replication_r2.md 与 docs/timing_route_tests_20261024.md。
+/build/reports/tests_20261024/
+/build/reports/tests_20261025/
