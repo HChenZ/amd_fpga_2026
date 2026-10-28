@@ -99,3 +99,4 @@ desktop.ini
 
 # Vivado 运行时残留
 **/dfx_runtime.txt
+/build/reports/io_sta_20261027/
