@@ -96,3 +96,6 @@ desktop.ini
 # docs/timing_route_replication_r2.md 与 docs/timing_route_tests_20261024.md。
 /build/reports/tests_20261024/
 /build/reports/tests_20261025/
+
+# Vivado 运行时残留
+**/dfx_runtime.txt
