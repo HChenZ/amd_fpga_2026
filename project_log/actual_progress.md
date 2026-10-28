@@ -1,5 +1,35 @@
 # 实际进度
 
+## 2026-10-28 23:58 — PYNQ 实板三模式容量内 KAT 通过
+
+owner TBD。正点原子领航者 ZYNQ7020 通过厂家 PYNQ 2.7.0 / Python 3.8.2 启动，网络地址为
+`192.168.2.99`；PYNQ overlay 已加载，MMIO ID 检查通过。板端证据已归档至
+`data/pynq/board_20261028/`：
+`pynq_board_full.json`、`pynq_board_full.log`、`pynq_board_20261028.log`、
+`pynq_board_result.json` 和 `identity.txt`。
+
+完整容量内板端测试使用 release bit/hwh/firmware，对应 `identity.txt` 中的
+Git `ac9143d5c6acc9e7ac61f907a7e802eb6b35cddd`、bit SHA-256
+`6e7f93203519269e1509f4ece1ee76b93c25c8254fe0f8ae9c942314a197d30d`、
+hwh SHA-256 `3ebd26408504ed6181a1eac1f31a79ab0e5449c0f0d4d8f76f53fa6332067581`。
+服务报告为 `firmware_id=pynq-svc-v1`、`simulated=false`、`selftest_mask=7`、
+`max_message_bytes=16`、`max_ad_bytes=16`、`board_validation=PASS`。
+
+实板结果：
+
+| 模式 | 加密 KAT | 错误 Tag 拒绝 | 周期证据 |
+|---|---:|---:|---|
+| SW | 289/289 | 289/289 | 每次调用前后读取 64-bit `mcycle` |
+| HW | 289/289 | 289/289 | 每次调用前后读取 64-bit `mcycle` |
+| ISE | 289/289 | 289/289 | 每次调用前后读取 64-bit `mcycle` |
+
+该结果证明真实 PYNQ → AXI-Lite → RV32 服务固件 → SW/HW/ISE → Ascon 输出链路在当前
+16-byte message/AD 容量内通过。Host reference 的 1,089 组与 4,290 次拒绝仍需和板端
+结果分开表述；超过当前接口容量的 800 组板端不执行，标记为 `NOT_RUN`。当前证据尚不
+覆盖 Notebook 从头执行、长时间连续请求、重复断电上电稳定性、真实 FCLK 独立测量及完整
+错误/超时/缓存一致性门禁。PYNQ 实板结果不能替代 baseline FreeRTOS 固件验收或 PUF
+跨上电稳定性验收。
+
 ## 2026-10-27 23:48 阶段 4 板级通过 — PUF 密钥子系统 enroll + reconstruct 全链路成功
 
 owner TBD。v3 固件（先等 idle 再发 START）烧录后，串口**全部通过**（原始日志已归档：`data/ascon/results/board/uart_20261027_keys3.txt`，

@@ -1,6 +1,6 @@
 # RISC-V Lightweight Cryptography SoC with ASCON ISE
 
-2026-10-28 PYNQ 集成交接入口：[今晚逐步操作手册](board/vivado_zynq7000_xc7z020_pynq/handoff_20261028.md)、[本轮验证](board/vivado_zynq7000_xc7z020_pynq/validation_20261028.md)。AXI-Lite/UART 服务链复用 P0 源集；板级状态仍 NOT_RUN，下文旧快照不覆盖本轮记录。
+2026-10-28 PYNQ 集成交接入口：[今晚逐步操作手册](board/vivado_zynq7000_xc7z020_pynq/handoff_20261028.md)、[本轮验证](board/vivado_zynq7000_xc7z020_pynq/validation_20261028.md)。AXI-Lite/UART 服务链已在正点原子领航者 ZYNQ7020 实板运行；SW/HW/ISE 各 289 组容量内 KAT 与坏 Tag 拒绝通过，证据见 `data/pynq/board_20261028/`。Notebook、长期稳定性和完整错误门禁仍待完成。
 
 在 CICC1000023「基于 RISC-V 的高性能 CPU 设计及 FPGA 验证」基础上扩展轻量级密码学：在自研 RISC-V CPU 上运行 **NIST SP 800-232 Ascon-AEAD128**，加入 custom instruction set extension（ISE），通过 FPGA 实测比较软件与 ISE，再用 PYNQ/Jupyter 完成控制、黄金参考比对和展示。
 
@@ -9,7 +9,7 @@
 | 比赛 | 全国大学生嵌入式芯片与系统设计竞赛 2026，FPGA 创新设计赛道，AMD 自主选题初级组 |
 | 目标硬件 | Zynq-7000 **XC7Z020CLG400-1**；具体板卡型号、版本、PYNQ image 待 B03 核实 |
 | 最终提交 | **2026-11-04**（用户给定截止日期；11 月 4 日不安排开发） |
-| 当前阶段 | 三种实现的密钥生命周期审查与仿真回归；Vivado结果见本轮证据，实板待核验 |
+| 当前阶段 | PYNQ 实板三模式容量内 KAT 已通过；正在整理 mcycle benchmark、Notebook 与剩余端到端门禁 |
 | 当前工程实际配置 | 恢复 baseline：`xc7z020clg400-1` / Vivado `2025.2` / `top_pl_bram`；原 Kintex 工程另行保留 |
 | 开源协议 | [Apache-2.0](LICENSE)；引入第三方代码须单独核对来源与许可 |
 
@@ -87,8 +87,8 @@ flowchart LR
 尚未完成：
 
 - CPU custom ISE 的 spec、decode/execute、流水线集成和 inline assembly/intrinsic 尚未完成；独立AEAD核心通过不能代替CPU ISE门禁。
-- 尚无目标 RISC-V CPU 上的 KAT、`mcycle` 软件/ISE benchmark、真实加速比或本轮 PPA/Fmax 数据；所有这些结果仍为 `not_measured`。
-- PYNQ/PS-PL 控制链、Python host demo 和 clean-clone FPGA 端到端复现尚未完成。
+- 目标 RISC-V/PYNQ 板上已有容量内 KAT 与 `mcycle` 原始样本；最终 warm benchmark、cycles/byte、加速比统计和独立 FCLK 测量仍未完成。
+- PYNQ/PS-PL 控制链已在实板完成容量内三模式验证；Notebook 顺序执行、长时间连续请求、完整错误门禁和 clean-clone FPGA 端到端复现尚未完成。
 
 历史证据：归档中有旧工程 bitstream/report，以及 100 MHz 下 WNS 0.056 ns、placed LUT/FF/BRAM/DSP 等历史结果；它们不是当前 Ascon 集成的本轮重建、PPA 或上板实测。
 
@@ -127,7 +127,7 @@ flowchart LR
 5. 按 [build/readme.md](build/readme.md) 做已有 CPU RTL 的静态 elaboration 检查；这不是 CPU 程序验证。阅读 [恢复审计](docs/cicc1000023_recovery_audit.md)，运行 `python build/prepare_cicc1000023_sources.py` 核对恢复资产。
 6. B02 使用 Vivado 2025.2 重建真实 XC7Z020 baseline，B03 核对实物板，B04 补齐准确 FreeRTOS kernel/bootloader 来源并验证目标软件；完成 C04 真实 cycle 后再进入 CPU ISE 与 PYNQ 集成。
 
-**目前不能承诺 clean clone 即可完成 FPGA 端到端运行。** 历史 bitstream/report 只是归档证据，当前 Ascon CPU ISE、目标 benchmark、PPA 和 PS/PYNQ overlay 尚未完成。
+**目前不能承诺 clean clone 即可完成全部 FPGA 端到端验收。** 当前 release overlay 已有实板容量内验证，但完整 benchmark、Notebook、错误/超时/缓存门禁和 clean-clone 复现仍待完成。
 
 ## 文档索引
 

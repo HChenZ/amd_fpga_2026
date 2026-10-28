@@ -33,7 +33,7 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 | I08 | PPA comparison | TBD | I05、B03 | docs/ascon_ppa_comparison.md（芯片级 STA 证据）；板上 PPA 待 B03/V01；板级 IO 覆盖见 docs/io_timing_signoff.md | 同工具/part/约束/策略，LUT/FF/BRAM/DSP/Fmax/时序均有证据；芯片级收敛 WNS+0.007/0 失败端点；IO 覆盖已闭合（no_input_delay/no_output_delay=0），但板级真实延迟 not_measured，不标板级 IO 已签核 | 2026-10-20 | done |
 | V01 | baseline regression/counter sanity | TBD | 完整验收需 B02、B03、B04；模块测试可先行 | 修订dcache TB/独立事务/故障注入/6中断场景及完整smoke、regression均PASS；ISA/SoC/板级完整门禁待验 | 保存可重跑程序/TB/日志；mcycle 读取与溢出、计数开销已检查；支持范围明确 | 2026-09-29 | in_progress |
 | V02 | software/ISE differential verification | TBD | I05、I06、C03 | ACB 套件（sw/hw/ise 同 KAT + 篡改拒绝 + stall/reset 注入）证据 data/ascon/results/key_lifecycle/*_timing_acb*.json | 两套固件均通过可信 KAT，篡改拒绝；流水 hazard/flush 场景无回归 | 2026-10-13 | done |
-| V03 | PS/PL end-to-end regression | TBD | Y02、Y03、V02 | 自动板级测试/错误场景日志 | 软件/ISE 输入到输出可复现；错误 tag、超时、长度边界、重复命令、缓存可见性可检查 | 2026-10-20 | todo |
+| V03 | PS/PL end-to-end regression | TBD | Y02、Y03、V02 | 自动板级测试/错误场景日志 | 软件/ISE 输入到输出可复现；错误 tag、超时、长度边界、重复命令、缓存可见性可检查 | 2026-10-20 | in_progress |
 | V04 | core freeze regression | TBD | Y05、I08、V03 | 冻结回归清单与证据索引 | P0/P1 验收齐全、无未关闭阻断缺陷；冻结哈希与环境留档；不以 P2 拖延 | 2026-10-27 | todo |
 | V05 | standalone Ascon AEAD RTL verification and main integration | TBD | C01；独立于CPU ISE | sim/ascon TB/runner、data/ascon/results/rtl_integration_regression.*、docs/ascon_rtl_decrypt_validation.md | 最新main上整合、远端Decrypt接口兼容；289官方KAT、篡改/超长/reset、round/P8/P12、全生产编译仿真PASS；旧工作区保留 | 2026-10-09 | done |
 
@@ -54,7 +54,7 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 | ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
 |---|---|---|---|---|---|---|---|
 | Y01 | Zynq PS/PL interface design | TBD | B03、B04；C02 API | 版本化 register/mailbox/buffer 协议 | 控制路径、firmware loading、地址/端序/长度、所有权/一致性、cycle/status/error/timeout 明确，双方可据此实现 | 2026-10-08 | in_progress |
-| Y02 | PYNQ overlay | TBD | Y01、I05、B02 | 独立工程 `board/vivado_zynq7000_xc7z020_pynq/`、overlay 发布清单与 hash | 在已核验 image/板卡上加载，bit/hwh 匹配；PS 可控制 CPU，干净构建可生成 | 2026-10-29 | in_progress |
+| Y02 | PYNQ overlay | TBD | Y01、I05、B02 | 独立工程 `board/vivado_zynq7000_xc7z020_pynq/`、overlay 发布清单与 hash | 在已核验 image/板卡上加载，bit/hwh 匹配；PS 可控制 CPU，干净构建可生成 | 2026-10-29 | done |
 | Y03 | Python host API | TBD | Y01、C03；联调需 Y02 | `src/pynq/pynq_transport.py` + 模型测试 + profile 生成器 | 输入 key/nonce/AD/plaintext，返回 ciphertext/tag/cycles，错误显式；匹配锁定 C/Python reference | 2026-10-29 | in_progress |
 | Y04 | Jupyter demo | TBD | Y02、Y03、I07 | 可从头执行 notebook 与说明 | 重启后顺序执行，展示软件/ISE 正确性与加速比，区分 CPU 与端到端计时 | 2026-10-20 | todo |
 | Y05 | automatic benchmark/report | TBD | Y04、V03、I07、I08 | 自动 KAT/benchmark/report 入口和原始数据 | 同次运行可生成结果、失败返回非成功状态；软件/ISE 对比可追溯、无手填性能值 | 2026-10-21 | todo |
@@ -138,6 +138,12 @@ WNS **+0.152 / TNS 0 / 0 失败端点（0/59513）**，与同源同脚本的**�
 
 ## 2026-10-28 PYNQ 最终交付补充（owner TBD）
 
-Y01/Y02/Y03/Y04/V01/V04：UART服务链、真实Python入口、自动BD/Tcl与离线P0回归已落地；当前详细构建/发布状态以board/vivado_zynq7000_xc7z020_pynq/validation_20261028.md为准。上板验收保持待执行（NOT_RUN），不得把离线PASS等同P1完成。下一接收B03实物/镜像确认 → Y02 ID/HWH → Y03三模式 → Y04官方KAT/真实mcycle；owner TBD。
+2026-10-28：PYNQ 实板已启动并完成 overlay 加载、MMIO ID、三模式代表性与完整容量内 KAT。
+`data/pynq/board_20261028/` 中的 `pynq_board_full.json` 报告 `simulated=false`、
+`selftest_mask=7`，SW/HW/ISE 各 289/289 KAT 与 289/289 错误 Tag 拒绝通过。Y02
+overlay 实板验收完成；Y03 已有真实板端结果但协议错误/超时/重复命令/缓存门禁尚未
+完整验收；Y04 Notebook、Y05 自动报告和 V04 冻结仍未完成。owner TBD。
 
-Y02离线构建收口：100MHz bit/hwh与服务固件正式纳入release，时序/DRC门禁通过；Y01/Y03离线真实CPU服务链PASS。Y02/Y03/Y04板级验收继续NOT_RUN，owner TBD。
+Y02 构建与实板收口：100MHz bit/hwh 与服务固件正式纳入 release，时序/DRC 门禁通过，
+实板 overlay/MMIO 通过。Y03 实板三模式功能已通过当前容量范围，但完整错误场景与可复现
+协议证据仍待补齐；Y04/Y05/V04 继续待完成，owner TBD。

@@ -18,8 +18,8 @@ Y01/Y02/Y03/Y04/V01/V04，owner TBD。分支feat/pynq-final-integration，从远
 | python -B sim/board/run_tests.py --mode regression --pynq-p0 | PASS / exit0；CPU SW/HW/ISE、镜像一致性、Host/mailbox KAT、DCache和定向中断 | regression_final/summary.json |
 | Vivado BRAM MIF与最终BIN逐字节比较 | PASS，128KiB含补零 | bram_image.json |
 | 生产Python语法按3.8 AST解析 | PASS；不是目标PYNQ运行验证 | 开发日志命令 |
-| PYNQ系统/网络/Jupyter/Overlay/PS7实际MMIO | NOT_RUN | 今晚执行handoff手册 |
-| FPGA真实周期与速度比 | NOT_MEASURED | 不填模拟数字 |
+| PYNQ系统/网络/Jupyter/Overlay/PS7实际MMIO | PASS（系统/网络/Overlay/MMIO；Jupyter Notebook仍未执行） | `data/pynq/board_20261028/identity.txt`、`pynq_board_full.json`、`pynq_board_20261028.log` |
+| FPGA真实周期与速度比 | PARTIAL PASS（板上 `mcycle` 已采集；最终统计/重复 warm benchmark 待整理） | `data/pynq/board_20261028/pynq_board_full.json` |
 
 运行环境：Windows PowerShell、CPython3.14.3（以日志实际version探测为准）、WSL Ubuntu、GCC13.2.0、native Icarus/vvp12.0、Vivado2025.2 SW6299465/IP6300035。全部命令从仓库根运行。WSL elaboration使用 `IVERILOG=/mnt/d/iverilog/iverilog/bin/iverilog.exe`，队友可配置为自己的路径或PATH。
 
@@ -40,6 +40,25 @@ DRC **0 Error / 0 Critical Warning**；默认report列出53项Warning，其中�
 
 
 Tcl导入现有两项XCI到独立工作目录；只改本工程的COE配置并移除旧COE依赖，未改原始baseline/PL-only XCI。PS7 GP0、100MHz FCLK、proc_sys_reset（生成结果C_EXT_RESET_HIGH=0）、两独立AXI-Lite窗口已验证BD。ascon_word.v含i++，在新工程仅将此辅助源标为SystemVerilog；BD三个module reference顶层仍Verilog。
+
+## 2026-10-28 实板结果补充
+
+在正点原子领航者 ZYNQ7020、PYNQ 2.7.0、Python 3.8.2 环境中，release overlay
+真实加载并通过 MMIO ID 检查。服务报告确认 `firmware_id=pynq-svc-v1`、
+`simulated=false`、`selftest_mask=7`、`max_message_bytes=16`、
+`max_ad_bytes=16`。实板完整容量内 KAT 结果为：
+
+| mode | encryption KAT | bad-tag rejection | result |
+|---|---:|---:|---|
+| SW | 289/289 | 289/289 | PASS |
+| HW | 289/289 | 289/289 | PASS |
+| ISE | 289/289 | 289/289 | PASS |
+
+每次调用前后读取 64-bit `mcycle`，原始 JSON 和终端日志保存在
+`data/pynq/board_20261028/`。Host reference 的 1,089 组和 4,290 次拒绝仍是独立
+host 范围；板端超过 16-byte message/AD 接口容量的 800 组为 `NOT_RUN`，不宣称
+硬件通过。当前尚未完成 Notebook 顺序执行、长时间/重复请求、超时/缓存一致性错误
+场景、重复上电稳定性和独立 FCLK 测量。
 
 ## 保留的失败/限制
 
