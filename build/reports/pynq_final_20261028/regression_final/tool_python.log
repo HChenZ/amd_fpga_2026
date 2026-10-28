@@ -1,0 +1,2 @@
+{"command": ["C:\\Users\\xiong\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe", "-B", "--version"], "cwd": "E:\\amd_fpga_2026", "exit_code": 0, "status": "PASS", "elapsed_s": 0.011}
+Python 3.14.3

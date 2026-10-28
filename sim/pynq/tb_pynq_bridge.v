@@ -27,6 +27,7 @@ module tb_pynq_bridge;
     reg  [11:0] awaddr  = 12'h0;
     reg         awvalid = 1'b0;
     reg  [31:0] wdata   = 32'h0;
+    reg [3:0] wstrb=4'hf;
     reg         wvalid  = 1'b0;
     reg  [11:0] araddr  = 12'h0;
     reg         arvalid = 1'b0;
@@ -64,7 +65,7 @@ module tb_pynq_bridge;
         .clk(clk), .rst_n(rst_n),
         .s_axi_awaddr(sel_mb ? 12'h0 : awaddr), .s_axi_awprot(3'b0),
         .s_axi_awvalid(sel_mb ? 1'b0 : awvalid), .s_axi_awready(ctl_awready),
-        .s_axi_wdata(wdata), .s_axi_wstrb(4'hF),
+        .s_axi_wdata(wdata), .s_axi_wstrb(wstrb),
         .s_axi_wvalid(sel_mb ? 1'b0 : wvalid), .s_axi_wready(ctl_wready),
         .s_axi_bresp(ctl_bresp), .s_axi_bvalid(ctl_bvalid),
         .s_axi_bready(sel_mb ? 1'b0 : bready),
@@ -92,7 +93,7 @@ module tb_pynq_bridge;
         .clk(clk), .rst_n(rst_n),
         .s_axi_awaddr(sel_mb ? awaddr : 12'h0), .s_axi_awprot(3'b0),
         .s_axi_awvalid(sel_mb ? awvalid : 1'b0), .s_axi_awready(mb_awready),
-        .s_axi_wdata(wdata), .s_axi_wstrb(4'hF),
+        .s_axi_wdata(wdata), .s_axi_wstrb(wstrb),
         .s_axi_wvalid(sel_mb ? wvalid : 1'b0), .s_axi_wready(mb_wready),
         .s_axi_bresp(mb_bresp), .s_axi_bvalid(mb_bvalid),
         .s_axi_bready(sel_mb ? bready : 1'b0),
@@ -196,6 +197,15 @@ module tb_pynq_bridge;
             $display("FAIL empty RX pop changed state %h", v); errors = errors + 1;
         end
 
+        // Byte enables must protect control and FIFO side effects.
+        wstrb=0;
+        axi_write(0,0,1);
+        axi_read(0,0,v);
+        if(v[0]) $fatal(1,"zero WSTRB changed reset");
+        axi_write(1,0,8'h99);
+        axi_read(1,12'h018,v);
+        if(v!=0) $fatal(1,"zero WSTRB pushed TX");
+        wstrb=15;
         // ---- 3. 回显环 ----
         for (i = 0; i < 8; i = i + 1) begin
             v = 32'h0;
@@ -239,14 +249,39 @@ module tb_pynq_bridge;
         axi_read(1'b1, 12'h018, v);
         if (v !== 32'h0) begin $display("FAIL CNT after flush=%h", v); errors = errors + 1; end
 
+        // Overflow must be detected; UART cannot backpressure its transmitter.
+        axi_write(0,0,0);
+        for(i=0;i<260;i=i+1) begin
+            while(peer_tx_busy) @(negedge clk);
+            @(negedge clk); peer_tx_data=i; peer_tx_en=1;
+            @(negedge clk); peer_tx_en=0;
+        end
+        repeat(200) @(negedge clk);
+        axi_read(1,12'h00c,v);
+        if(!v[18] || v[15:0]!=256) $fatal(1,"RX full/overflow %h",v);
+        for(i=0;i<256;i=i+1) begin
+            axi_read(1,12'h004,v);
+            if(v[7:0] !== (i & 255)) $fatal(1,"RX FIFO order %0d %h",i,v);
+        end
+        axi_write(1,12'h010,1);
+        axi_read(1,12'h00c,v);
+        if(v[18] || !v[17]) $fatal(1,"overflow clear/empty %h",v);
+        // Reset while a serialized byte is in flight must abort the byte.
+        axi_write(1,0,8'ha5);
+        repeat(30) @(negedge clk);
+        axi_write(0,0,1);
+        repeat(20) @(negedge clk);
+        if(!mbox_txd) $fatal(1,"TX did not reset to idle");
+        axi_read(1,12'h018,v);
+        if(v!=0) $fatal(1,"reset counters %h",v);
         if (errors == 0) $display("TB_PYNQ_BRIDGE: PASS");
-        else             $display("TB_PYNQ_BRIDGE: FAIL errors=%0d", errors);
+        else             $fatal(1,"TB_PYNQ_BRIDGE: FAIL errors=%0d", errors);
         $finish;
     end
 
     initial begin
         #4000000;
-        $display("TB_PYNQ_BRIDGE: TIMEOUT");
+        $fatal(1,"TB_PYNQ_BRIDGE: TIMEOUT");
         $finish;
     end
 

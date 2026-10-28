@@ -1,0 +1,4 @@
+{"command": ["C:\\Users\\xiong\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe", "-B", "sim/board/build_firmware.py", "--out", "E:\\amd_fpga_2026\\build\\local\\pynq_final\\smoke\\firmware", "--cc-prefix", "riscv64-unknown-elf-"], "cwd": "E:\\amd_fpga_2026", "exit_code": 0, "status": "PASS", "elapsed_s": 6.258}
+sw PASS 
+hw PASS 
+ise PASS 

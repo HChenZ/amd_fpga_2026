@@ -18,6 +18,7 @@ def aggregate(statuses):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--pynq-p0', action='store_true', help='validate explicit PYNQ frozen P0 source set')
     p.add_argument('--mode', choices=('smoke','regression'), default='smoke')
     p.add_argument('--out', type=Path)
     p.add_argument('--cc-prefix', default='riscv64-unknown-elf-')
@@ -84,7 +85,7 @@ def main():
         test('host_kat', host_command+['sim/ascon/run_validation.py','--report',host_report], ('host_gcc',))
         for mode in ('sw','hw','ise'):
             test('cpu_'+mode, py+['sim/board/legacy_runner.py','--evidence',str(out/('cpu_'+mode)),
-                 'run_cpu_regression.py','--mode',mode,'--label','preboard_'+name,'--cc-prefix',a.cc_prefix],
+                 'run_cpu_regression.py','--mode',mode,'--label','preboard_'+name,'--cc-prefix',a.cc_prefix]+(['--pynq-p0'] if a.pynq_p0 else []),
                  ('python','riscv_gcc','iverilog','vvp'), evidence='rtl_simulation',
                  marker='[RESULT] tb_ascon_sw PASS')
         if all(row['status']=='PASS' for row in report['tests'] if row['name'] in ('firmware','cpu_sw','cpu_hw','cpu_ise')):

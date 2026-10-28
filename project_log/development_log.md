@@ -409,3 +409,7 @@
 - 未做：Vivado 综合/实现/bit/hwh（另一个 Vivado 在跑，未并发）、上板、任何实测时间/周期。
 - 下一步：M1（用户按 GUI 文档起板交证据）→ M2（建 BD、出 bit+hwh、`make_pynq_profile.py` 过
   `validate_overlay`）→ M3（邮箱跑通、三模式 KAT、端到端时间单列）。owner TBD。
+
+## 2026-10-28 — Y01/Y02/Y03/Y04 最终集成，owner TBD
+
+完成工作区/远端审查、安全快进与开发分支；审查P0/PUF源差异；实现Tcl自动BD、固件/驱动/桥修复、真实CPU+服务+AXI-Lite/UART联合验证、离线回归、SHA发布与中文上板手册。实际命令/退出码/工具/失败原件位于build/reports/pynq_final_20261028，最终状态见PYNQ validation文档。按本轮用户授权执行中文提交及main交付；不改历史板级证据。

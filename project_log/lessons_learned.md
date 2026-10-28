@@ -569,3 +569,13 @@ L08 的“保留两个跟踪生成元数据”是此前策略；本轮按用户�
   也就不能 `updatemem` 只换 BRAM 内容；改固件必须重跑完整实现流程，排期时要留出这 20+ 分钟。
 - **打印中间状态要带时间锚点**：`STATUS pre-*` 这类"操作前"打印如果不先等 idle，
   读到的全是残值，日志看起来像失败，实际是测量方法错。
+
+## 2026-10-28 — PYNQ骨架到真实链路，owner TBD
+
+- 模型把服务帧SIMULATED与selftest位沿用错误，全部模型PASS仍不能证明真实标志语义；显式测试real service flags（bit0模拟，bit1自检）才发现错误。
+- 固件UART RX非空实际是bit1，骨架误用bit3（满）。真实CPU联合仿真显示epoch发出20B后仍卡svc_getc；修bit1后36请求与半帧复位验证通过。不要仅凭注释实现寄存器。
+- 空消息/整块后余数为0也必须padding；复制ISE时else if(len>0)漏掉0会破坏KAT。
+- UART两线无远端反压；满RX不能留valid重复压入，必须置溢出并丢弃新字节，由主机判错和reset恢复。
+- Windows checkout把新shell脚本变CRLF，WSL set -euo pipefail报错；新增eol=lf约束。默认Python采用GBK读UTF8文件会报错，脚本显式UTF8。
+- Vivado module reference顶层不接受SystemVerilog类型；仅把含i++的辅助ascon_word.v标为SV。import_ip会把旧COE注册成工程依赖，即使CONFIG.Coe_File已更换也须移除旧依赖，再生成BRAM。
+- 新main包含PUF，但旧CPU runner没列keys/primitive模型；原main回归编译失败，增加显式--pynq-p0源集，绝不默默替换main测试口径。初稿全局替换错误将此参数传给固件/targeted脚本，保留失败并修调用点后整套重跑PASS。

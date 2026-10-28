@@ -1,0 +1,14 @@
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.081s
+
+OK
+sw simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured
+hw simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured
+ise simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured
+sw official sample KAT PASS; tampered tag rejected
+hw official sample KAT PASS; tampered tag rejected
+ise official sample KAT PASS; tampered tag rejected
+sw speedup= NOT_MEASURED
+hw speedup= NOT_MEASURED
+ise speedup= NOT_MEASURED

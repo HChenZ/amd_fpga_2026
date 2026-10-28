@@ -1,0 +1,2 @@
+selftest OK: bindings={'control': {'name': 'pynq_ctl_0', 'phys_addr': 1073741824, 'addr_range': 4096}, 'mailbox': {'name': 'pynq_mbox_0', 'phys_addr': 1073745920, 'addr_range': 4096}} bit=top_pynq.bit
+selftest profile written to C:\Users\xiong\AppData\Local\Temp\pynq_profile_selftest_d8_4sg8i\pynq_profile.json (synthetic, not project evidence)

@@ -22,6 +22,7 @@
 static uint8_t  rxbuf[BUF_BYTES];
 static uint8_t  txbuf[BUF_BYTES];
 static uint64_t fw_epoch;
+static uint64_t fw_last_rid;
 static uint64_t fw_boot_id;
 
 /* ------------------------------ 小端工具 ------------------------------ */
@@ -142,6 +143,11 @@ static void handle_request(void)
     tlen  = get_u32(h + 44);
 
     /* 先算 body 长度，无论是否合法都要把字节从流里读干净，保持帧同步 */
+    /* Never drain an untrusted 32-bit length (overflow/unbounded wait). */
+    if (alen > MAX_AD_BYTES || dlen > MAX_MSG_BYTES || tlen > 16u) {
+        send_response(epoch, rid, op, mode, ST_LENGTH, 0, 0, 0, 0);
+        return;
+    }
     body_bytes = 32u + alen + dlen + tlen;
 
     if (get_u16(h + 4) != PROTO_VERSION || get_u16(h + 6) != 0) {
@@ -155,7 +161,7 @@ static void handle_request(void)
         status = ST_LENGTH;
     } else if (cap < (op == OP_ENCRYPT ? dlen + 16u : dlen)) {
         status = ST_LENGTH;
-    } else if (epoch != fw_epoch) {
+    } else if (epoch == 0 || epoch != fw_epoch || rid == 0 || rid <= fw_last_rid) {
         status = ST_INTERNAL;                     /* 旧 epoch：明确拒绝，不执行 */
     }
 
@@ -173,6 +179,7 @@ static void handle_request(void)
         return;
     }
 
+    fw_last_rid = rid;
     key   = rxbuf;
     nonce = rxbuf + 16;
     ad    = rxbuf + 32;
@@ -208,7 +215,8 @@ static void handle_request(void)
     /* 请求缓冲里含 key/nonce/明文：发完响应后立刻清零 */
     {
         uint32_t i;
-        for (i = 0; i < BUF_BYTES; i++) rxbuf[i] = 0;
+        volatile uint8_t *r = rxbuf, *t = txbuf;
+        for (i = 0; i < BUF_BYTES; i++) { r[i] = 0; t[i] = 0; }
     }
 }
 
@@ -220,6 +228,9 @@ static void sync_and_dispatch(void)
 
     for (;;) {
         for (i = 0; i < 4; i++) m[i] = svc_getc();
+        while (!magic_is(m, "Y01Q") && !magic_is(m, "Y01E")) {
+            m[0]=m[1]; m[1]=m[2]; m[2]=m[3]; m[3]=svc_getc();
+        }
         if (magic_is(m, "Y01Q")) {
             /* 把魔数放回缓冲头，保持 48B header 布局 */
             rxbuf[0] = m[0]; rxbuf[1] = m[1]; rxbuf[2] = m[2]; rxbuf[3] = m[3];
@@ -232,7 +243,7 @@ static void sync_and_dispatch(void)
             read_bytes(e, EPOCH_FRAME_BYTES - 4);
             if (get_u32(e) == PROTO_VERSION && get_u32(e + 4) == 0) {
                 new_epoch = get_u64(e + 8);
-                if (new_epoch != 0) fw_epoch = new_epoch;
+                if (new_epoch != 0 && new_epoch != fw_epoch) { fw_epoch = new_epoch; fw_last_rid = 0; }
             }
             {
                 uint32_t mask = 0;

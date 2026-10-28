@@ -3,13 +3,13 @@
  * 与 P0 固件（ascon_*_rv32/uart.c）相同的寄存器语义，但这里提供阻塞收字节，
  * 因为 pynq_svc 是"服务端"：它按帧读取驱动发来的请求。
  * TX：等待 STATUS.bit0（tx_busy_or_pending）清零再写 DATA。
- * RX：等待 STATUS.bit3（!rx_empty）置位再读 DATA（读即弹出一个字节）。
+ * RX：等待 STATUS.bit1（!rx_empty）置位再读 DATA（读即弹出一个字节）。
  */
 #include "svc.h"
 
 uint8_t svc_getc(void)
 {
-    while (!(UART_STATUS & 0x08u)) { }
+    while (!(UART_STATUS & 0x02u)) { }
     return (uint8_t)(UART_DATA & 0xFFu);
 }
 

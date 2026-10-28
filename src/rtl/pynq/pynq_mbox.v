@@ -13,7 +13,7 @@
 //   改动任何冻结 RTL。详见 board/vivado_zynq7000_xc7z020_pynq/readme.md。
 //
 // 寄存器（AXI-Lite 字节偏移，32-bit）：
-//   0x00 TXDATA   W  [7:0] 压入一个字节（FIFO 满时该写被丢弃，先查 TXSTAT）
+//   0x00 TXDATA   W  [7:0] 压入一个字节（FIFO 满时延迟写响应，主机先查 TXSTAT）
 //   0x04 RXDATA   R  [7:0] 弹出一个字节（空时读 0 且不弹出）
 //   0x08 TXSTAT   R  [15:0]=深度 [16]=满 [17]=空
 //   0x0C RXSTAT   R  [15:0]=深度 [16]=满 [17]=空 [18]=溢出(粘滞)
@@ -97,9 +97,13 @@ module pynq_mbox #(
     reg         aw_done, w_done;
     reg  [11:0] awaddr_r;
     reg  [31:0] wdata_r;
+    reg [3:0] wstrb_r;
     reg         bvalid_r;
 
-    wire        do_write = aw_done && w_done;
+    // Hold an accepted TX write until FIFO space exists; never silently drop.
+    wire tx_full;
+    wire do_write = aw_done && w_done &&
+        (!(awaddr_r[5:2] == 0 && wstrb_r[0]) || !tx_full || link_flush);
     wire [3:0]  wr_idx   = awaddr_r[5:2];
 
     assign s_axi_awready = ~aw_done & ~bvalid_r;
@@ -113,6 +117,7 @@ module pynq_mbox #(
             w_done   <= 1'b0;
             awaddr_r <= 12'h0;
             wdata_r  <= 32'h0;
+            wstrb_r <= 0;
             bvalid_r <= 1'b0;
         end else begin
             if (s_axi_awvalid && s_axi_awready) begin
@@ -121,6 +126,7 @@ module pynq_mbox #(
             end
             if (s_axi_wvalid && s_axi_wready) begin
                 wdata_r <= s_axi_wdata;
+                wstrb_r <= s_axi_wstrb;
                 w_done  <= 1'b1;
             end
             if (do_write) begin
@@ -133,8 +139,8 @@ module pynq_mbox #(
         end
     end
 
-    wire tx_flush_req = do_write && (wr_idx == 4'd5) && wdata_r[0];
-    wire rx_ovf_clr   = do_write && (wr_idx == 4'd4) && wdata_r[0];
+    wire tx_flush_req = do_write && wstrb_r[0] && (wr_idx == 4'd5) && wdata_r[0];
+    wire rx_ovf_clr   = do_write && wstrb_r[0] && (wr_idx == 4'd4) && wdata_r[0];
 
     // =========================================================================
     // TX FIFO：PS 压入 -> uart_tx -> SoC uart_rxd
@@ -145,9 +151,9 @@ module pynq_mbox #(
     reg  [15:0]      tx_bytes;
     reg  [15:0]      rx_bytes;
 
-    wire tx_full  = (tx_cnt == TX_DEPTH);
+    assign tx_full = (tx_cnt == TX_DEPTH);
     wire tx_empty = (tx_cnt == 0);
-    wire tx_push  = do_write && (wr_idx == 4'd0) && ~tx_full && ~link_flush;
+    wire tx_push  = do_write && wstrb_r[0] && (wr_idx == 4'd0) && ~tx_full && ~link_flush;
 
     wire uart_tx_busy;
     wire tx_pop     = ~uart_tx_busy && ~tx_empty && ~link_flush && ~tx_flush_req;
@@ -187,7 +193,7 @@ module pynq_mbox #(
         .BAUD_CNT_MAX (BAUD_CNT_MAX)
     ) u_ps_uart_tx (
         .tx_clk       (clk),
-        .rst_n        (rst_n),
+        .rst_n        (rst_n & ~link_flush & ~tx_flush_req),
         .uart_tx_en   (uart_tx_en),
         .uart_tx_data (tx_mem[tx_rp]),
         .uart_txd     (mbox_txd),
@@ -207,8 +213,8 @@ module pynq_mbox #(
     wire rx_valid;
     wire [7:0] rx_data;
 
-    // SoC 侧发来的字节：FIFO 有空间才应答，形成反压（SoC 的 UART TX 因此会停）
-    wire rx_ack  = rx_valid && (~rx_full || link_flush);
+    // UART 无远端反压。满时丢弃新字节并置溢出，禁止重复入队旧数据。
+    wire rx_ack  = rx_valid;
     wire rx_push = rx_ack && ~link_flush && ~rx_full;
 
     wire rx_pop = s_axi_arvalid && s_axi_arready && (s_axi_araddr[5:2] == 4'd1) && ~rx_empty;
@@ -241,7 +247,7 @@ module pynq_mbox #(
                 default: rx_cnt <= rx_cnt;
             endcase
 
-            if (rx_valid && rx_full && ~rx_ack)
+            if (rx_valid && rx_full)
                 rx_ovf <= 1'b1;
             else if (rx_ovf_clr)
                 rx_ovf <= 1'b0;
@@ -254,7 +260,7 @@ module pynq_mbox #(
         .BAUD_CNT_MAX (BAUD_CNT_MAX)
     ) u_ps_uart_rx (
         .rx_clk        (clk),
-        .rst_n         (rst_n),
+        .rst_n         (rst_n & ~link_flush),
         .uart_rxd      (mbox_rxd),
         .rx_ack        (rx_ack),
         .rx_data_valid (rx_valid),

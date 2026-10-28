@@ -1,0 +1,2 @@
+TB_PYNQ_BRIDGE: PASS
+sim/pynq/tb_pynq_bridge.v:279: $finish called at 457140000 (1ps)

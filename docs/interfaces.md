@@ -105,3 +105,7 @@ Python 展示输入 key/nonce/AD/plaintext，读取 ciphertext/tag/cycles；认�
 `schema_version, run_id, task_id, source_commit, dirty_patch_hash, timestamp, evidence_kind, board, part, xlen, clock_hz, vivado_version, compiler_version, compile_flags, firmware_hash, bitstream_hash, reference_commit, kat_hash, mode, operation, ad_bytes, message_bytes, cache_policy, interrupt_policy, measurement_scope, repetitions, raw_cycles, cycles_per_byte, code_bytes, lut, ff, bram, dsp, fmax_hz, timing_met, status, notes`。
 
 JSON 保存原始值/结构化元数据，CSV 给出可比汇总；未测字段为 null/N/A 并说明原因。schema 正式实现由 C04/I07/Y05 维护版本，接口变更记录在 [decisions](decisions.md)。
+
+## 2026-10-28 PYNQ UART服务实现补充（Y01，owner TBD）
+
+PS控制/邮箱地址由HWH核验，当前BD分配0x40000000/0x40001000，各4KiB。CPU UART STATUS bit1=非空、bit3=满；不是PS地址。AXI写遵循WSTRB[0]，TX满延迟写响应，RX满置bit18溢出，UART无远端反压。SoC reset清FIFO及串口半帧，主机等boot Y01S后再发Y01E。Y01S bit0=simulated、bit1=selftest_pass、bit2=epoch_set；Y01R沿用mailbox协议bit0=cycles_valid/bit1=simulated，不混用。单请求/单客户端，ACK由Transport本地确认已收完整响应后释放；固件顺序处理，不另发ACK帧。超时/半帧需主机reset换epoch，不隐式重试。消息和AD上限各16B；repeat request_id及epoch0拒绝；64bit mcycle hi-lo-hi循环读取。

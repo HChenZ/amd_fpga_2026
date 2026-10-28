@@ -1563,3 +1563,9 @@ owner TBD；分支 feat/board-bringup（期间并发工作线把工作区分支�
 - 局限：板级真实 IO 延迟 **not_measured**（无示波器/眼图/环回抖动）；本轮不产出 bitstream，
   加约束后的布线未上板验证；`+0.152` 与 P0 的 `+0.087` 之差**不能**归因于 IO（源集不同 + P&R 波动）。
   下一接收：B03（板级 IO 实测 / PYNQ）、keys 线（RO 域 no_clock 与 pblock 超容）、owner TBD。
+
+## 2026-10-28 — PYNQ 最终集成（Y01/Y02/Y03/Y04/V01/V04，owner TBD）
+
+从干净main 4268b1f fetch/ff至0f5d49c，在feat/pynq-final-integration开发；另外两个worktree未动。用户本轮明确授权中文commit/merge/push。
+新增自动Vivado BD/构建、真实硬件CLI/Notebook、真实CPU服务链仿真；修复UART RX bit1、ISE padding、服务帧证据位、启动握手、WSTRB/满FIFO/复位串口、畸形长度/重复ID与缓冲擦除。PYNQ使用rtl_p0软件key路径，不把main的PUF硬件key覆盖混入官方KAT。
+最终P0 regression与smoke PASS，初始main runner缺PUF源的FAIL及误传参数失败均保留；bridge/host/model PASS。构建/联合仿真最终证据及发布状态见board/vivado_zynq7000_xc7z020_pynq/validation_20261028.md；板上PYNQ/网络/真实cycles NOT_RUN/NOT_MEASURED。详细接收手册handoff_20261028.md，下一任务B03/Y02/Y03/Y04实板取证，owner TBD。

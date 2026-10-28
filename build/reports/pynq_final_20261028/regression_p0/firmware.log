@@ -1,0 +1,4 @@
+{"command": ["C:\\Users\\xiong\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe", "-B", "sim/board/build_firmware.py", "--out", "E:\\amd_fpga_2026\\build\\local\\pynq_final\\regression_p0\\firmware", "--cc-prefix", "riscv64-unknown-elf-", "--pynq-p0"], "cwd": "E:\\amd_fpga_2026", "exit_code": 2, "status": "FAIL", "elapsed_s": 0.099}
+usage: build_firmware.py [-h] --out OUT [--cc-prefix CC_PREFIX]
+                         [--mode {all,sw,hw,ise}]
+build_firmware.py: error: unrecognized arguments: --pynq-p0

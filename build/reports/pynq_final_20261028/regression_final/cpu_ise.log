@@ -1,0 +1,16 @@
+{"command": ["C:\\Users\\xiong\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe", "-B", "sim/board/legacy_runner.py", "--evidence", "E:\\amd_fpga_2026\\build\\local\\pynq_final\\regression_final\\cpu_ise", "run_cpu_regression.py", "--mode", "ise", "--label", "preboard_20261028_064735_782103_regression", "--cc-prefix", "riscv64-unknown-elf-", "--pynq-p0"], "cwd": "E:\\amd_fpga_2026", "exit_code": 0, "status": "PASS", "elapsed_s": 86.831}
+Existing runner: run_cpu_regression.py evidence redirected to: E:\amd_fpga_2026\build\local\pynq_final\regression_final\cpu_ise
+[BRAM] loaded build/local/key_audit/ise_preboard_20261028_064735_782103_regression/firmware.hex (32768 words max)
+
+=== ASCON-AEAD128 ISE (permutation in hardware) ===
+KAT empty  : PASS
+KAT 1B     : PASS
+KAT 16B    : PASS
+KAT 16B+AD : PASS
+dec round  : PASS
+tamper     : PASS
+--- benchmark (warm) 16B encrypt ---
+ISE cycles   : 2559
+===DONE[RESULT] tb_ascon_sw PASS
+sim/ascon/tb_ascon_sw.v:188: $finish called at 20546590000 (1ps)
+
