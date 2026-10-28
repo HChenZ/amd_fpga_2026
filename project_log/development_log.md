@@ -391,3 +391,21 @@
 - `ctrl.v:62-63` 的 `rs1_hit_2st/rs2_hit_2st` 仍是死逻辑（只消费 `_1st`）。
 - 未验证：多周期延迟（mul 2~3 / div ~33 / p12 ~13 / p8 ~9 拍）为代码推导，未逐拍仿真；
   可改点收益均为方向性估计。owner TBD。
+
+## 2026-10-27 — C 线 PYNQ overlay：通道决策、RTL/固件/驱动骨架（未上板）
+
+- 新建分支 `feat/pynq-overlay`，未 commit/push。
+- 读 `board/atk_navigator_7020/interface_plan.md`、`src/pynq/{navigator_backend,mailbox_backend,mailbox_protocol}.py`、
+  `docs/freeze_checkpoint_20261027.md`、`vendor_findings.md` 后，先做**可行性排查**而不是直接接线：
+  RV32 外设全内部译码（无 PL 出口）+ dcache 只把 `0x100x_xxxx` 当 cacheable + 无 dcache 失效指令
+  ⇒ 共享 BRAM 邮箱不可行（详见 lessons_learned 同日条目）。改采"复用 UART MMIO 当通道"。
+- 产出（全为新增文件）：`src/rtl/pynq/{pynq_ctl,pynq_mbox,pynq_soc,top_pynq}.v`；
+  `src/firmware/pynq_svc/*`（单槽邮箱服务，三模式，开机自检）；
+  `src/pynq/{pynq_transport,test_pynq_transport,make_pynq_profile}.py`；
+  `sim/pynq/{tb_pynq_bridge.v,ip_stubs.v,elab_check.sh}`；
+  `board/vivado_zynq7000_xc7z020_pynq/{readme.md,rtl_p0/*.v}`；`docs/pynq_bringup_m1.md`。
+- 验证：桥 TB PASS、42 文件整树 elaborate PASS、固件编译 exit0（text 46104 B，含 0x200b×1/0x300b×4）、
+  Python 驱动 13/13 PASS、profile 生成器 self-test PASS；既有 mailbox/navigator/golden 无回归。
+- 未做：Vivado 综合/实现/bit/hwh（另一个 Vivado 在跑，未并发）、上板、任何实测时间/周期。
+- 下一步：M1（用户按 GUI 文档起板交证据）→ M2（建 BD、出 bit+hwh、`make_pynq_profile.py` 过
+  `validate_overlay`）→ M3（邮箱跑通、三模式 KAT、端到端时间单列）。owner TBD。

@@ -30,7 +30,7 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 | I05 | CPU integration | TBD | I04、B02、V01 | decode/execute/旁路/控制接入与集成测试 | baseline 回归通过；数据相关、stall/flush、中断/异常与 ISE 交互通过；ISE-disabled 可运行 | 2026-10-11 | in_progress |
 | I06 | inline asm/intrinsic | TBD | I02；联调需 I05 | 软件封装、调用测试和反汇编/执行证据 | 不改 GCC backend；寄存器约束正确，热点实际执行对应 opcode；无静默 fallback | 2026-10-12 | done |
 | I07 | software vs ISE benchmark | TBD | I05、I06、V02、C04 | 两种程序与原始 benchmark/加速比 | 同平台同条件 KAT 正确；cycles/cycles-per-byte/代码量与原始数据齐全；第一版真实加速数据 | 2026-10-14 | done |
-| I08 | PPA comparison | TBD | I05、B03 | docs/ascon_ppa_comparison.md（芯片级 STA 证据）；板上 PPA 待 B03/V01 | 同工具/part/约束/策略，LUT/FF/BRAM/DSP/Fmax/时序均有证据；芯片级收敛 WNS+0.007/0 失败端点；板级 IO delay 未约束不标上板达标 | 2026-10-20 | done |
+| I08 | PPA comparison | TBD | I05、B03 | docs/ascon_ppa_comparison.md（芯片级 STA 证据）；板上 PPA 待 B03/V01；板级 IO 覆盖见 docs/io_timing_signoff.md | 同工具/part/约束/策略，LUT/FF/BRAM/DSP/Fmax/时序均有证据；芯片级收敛 WNS+0.007/0 失败端点；IO 覆盖已闭合（no_input_delay/no_output_delay=0），但板级真实延迟 not_measured，不标板级 IO 已签核 | 2026-10-20 | done |
 | V01 | baseline regression/counter sanity | TBD | 完整验收需 B02、B03、B04；模块测试可先行 | 修订dcache TB/独立事务/故障注入/6中断场景及完整smoke、regression均PASS；ISA/SoC/板级完整门禁待验 | 保存可重跑程序/TB/日志；mcycle 读取与溢出、计数开销已检查；支持范围明确 | 2026-09-29 | in_progress |
 | V02 | software/ISE differential verification | TBD | I05、I06、C03 | ACB 套件（sw/hw/ise 同 KAT + 篡改拒绝 + stall/reset 注入）证据 data/ascon/results/key_lifecycle/*_timing_acb*.json | 两套固件均通过可信 KAT，篡改拒绝；流水 hazard/flush 场景无回归 | 2026-10-13 | done |
 | V03 | PS/PL end-to-end regression | TBD | Y02、Y03、V02 | 自动板级测试/错误场景日志 | 软件/ISE 输入到输出可复现；错误 tag、超时、长度边界、重复命令、缓存可见性可检查 | 2026-10-20 | todo |
@@ -53,9 +53,9 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 
 | ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
 |---|---|---|---|---|---|---|---|
-| Y01 | Zynq PS/PL interface design | TBD | B03、B04；C02 API | 版本化 register/mailbox/buffer 协议 | 控制路径、firmware loading、地址/端序/长度、所有权/一致性、cycle/status/error/timeout 明确，双方可据此实现 | 2026-10-08 | todo |
-| Y02 | PYNQ overlay | TBD | Y01、I05、B02 | Tcl/IP 配置、overlay 发布清单与 hash | 在已核验 image/板卡上加载，bit/hwh 匹配；PS 可控制 CPU，干净构建可生成 | 2026-10-17 | todo |
-| Y03 | Python host API | TBD | Y01、C03；联调需 Y02 | Python API、golden checker、测试 | 输入 key/nonce/AD/plaintext，返回 ciphertext/tag/cycles，错误显式；匹配锁定 C/Python reference | 2026-10-18 | todo |
+| Y01 | Zynq PS/PL interface design | TBD | B03、B04；C02 API | 版本化 register/mailbox/buffer 协议 | 控制路径、firmware loading、地址/端序/长度、所有权/一致性、cycle/status/error/timeout 明确，双方可据此实现 | 2026-10-08 | in_progress |
+| Y02 | PYNQ overlay | TBD | Y01、I05、B02 | 独立工程 `board/vivado_zynq7000_xc7z020_pynq/`、overlay 发布清单与 hash | 在已核验 image/板卡上加载，bit/hwh 匹配；PS 可控制 CPU，干净构建可生成 | 2026-10-29 | in_progress |
+| Y03 | Python host API | TBD | Y01、C03；联调需 Y02 | `src/pynq/pynq_transport.py` + 模型测试 + profile 生成器 | 输入 key/nonce/AD/plaintext，返回 ciphertext/tag/cycles，错误显式；匹配锁定 C/Python reference | 2026-10-29 | in_progress |
 | Y04 | Jupyter demo | TBD | Y02、Y03、I07 | 可从头执行 notebook 与说明 | 重启后顺序执行，展示软件/ISE 正确性与加速比，区分 CPU 与端到端计时 | 2026-10-20 | todo |
 | Y05 | automatic benchmark/report | TBD | Y04、V03、I07、I08 | 自动 KAT/benchmark/report 入口和原始数据 | 同次运行可生成结果、失败返回非成功状态；软件/ISE 对比可追溯、无手填性能值 | 2026-10-21 | todo |
 | S01 | generic overlay loader | TBD | Y02 | skill 通用 loader | 板型/overlay 路径参数化，校验 bit/hwh/版本，给出适用与失效条件 | 2026-10-21 | todo |
@@ -121,3 +121,17 @@ B04 的"固件加载链"已由 Ascon 三套实证，但 baseline FreeRTOS 固件
 C03/V01 的**板上**部分已补齐，完整的 1,089 KAT 与 ISA 板上抽样仍未做。证据见
 `project_log/actual_progress.md` 2026-10-26/27 条目、`first_time.runs/{synth_1,impl_1}` 报告、
 `build/local/board_bitstream/*.bit`（不入 git）、`data/ascon/results/board/`。
+
+2026-10-27 板级 IO 时序签核变体（B03/I08 的 IO 门禁）：新增
+`board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/.../constrs_1/new/const_io.xdc`
+（**不改** `const.xdc`、不改 `src/rtl`、不产出 bitstream），在独立工程副本上跑
+synth+impl（Vivado 2025.2、`xc7z020clg400-1`、`top_pl_bram`、`Performance_ExploreWithRemap`、
+`ascon_hw.coe`）：`no_input_delay`/`no_output_delay` **4/3 → 0/0**，
+WNS **+0.152 / TNS 0 / 0 失败端点（0/59513）**，与同源同脚本的**无 IO 约束对照逐项相同**
+（+0.152 / 0 / 0 / 同一最差路径），DRC **0 Error**（825 checks，12 条 Warning 类别）。
+三份冻结 bitstream 哈希未变。**未达成项**：`no_clock`=10944、
+`unconstrained_internal_endpoints`=27312，两者 100% 属 PUF/RO 域
+（`u_puf_key/u_puf`，根时钟脚 `ro_clk_div_reg[1]/Q` 被常量折叠为 HIGH），属 keys 线而非 IO；
+板级真实 IO 延迟仍 **not_measured**（无示波器/眼图）。约束推导、被否掉的 4 种写法的实测数字、
+复现命令见 `docs/io_timing_signoff.md`。B03 状态不变（仍 in_progress：PYNQ/镜像、
+丝印速度等级、板级 IO 实测均未闭环）；I08 的 IO 门禁改为"覆盖已闭合、真实延迟未测"。
