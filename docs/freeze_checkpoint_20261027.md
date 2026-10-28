@@ -137,3 +137,30 @@ CHECK RUN blk_mem_gen_0_synth_1 synth_design Complete! 100%
 - 依据同源集的 STA（`build/reports/keys_sta_20261025_mmio2`）：WNS **+0.023**、TNS 0、0 失败端点、
   LUT 17123 / FF 28498 / BRAM 34.5、DRC 0 条 LUTLP-1。
 - 阶段 4 的板级结果**尚未产生**；在它出来之前，P0 的三套结论不受影响，但也不得把 PUF 写成"已上板"。
+
+## PUF 版镜像与实现证据（2026-10-27 23:47，v3 固件）
+
+镜像与报告取自同一轮实现（`impl_1`，Vivado 2025.2，part `xc7z020clg400-1`，top `top_pl_bram`）：
+
+| 项 | 值 |
+|---|---|
+| bitstream | `build/local/board_bitstream/top_pl_bram_keys3.bit`（4,045,687 B） |
+| SHA-256 | `edaf8417d88e7b735f33302325a691a75dbc97b2764068ff4daead33697518aa` |
+| 固件 COE | `ascon_keys.coe` sha256 `edd66d37…`（`.mif` 第 4 行 `58818193`，v3 固件） |
+| 综合/实现策略 | `Vivado Synthesis Defaults` / `Performance_ExploreWithRemap` |
+| WNS / TNS | **+0.152 ns** / 0.000 ns，失败端点 0 / 59513（`All user specified timing constraints are met`） |
+| WHS / THS | +0.034 ns / 0.000 ns，失败端点 0 / 59513 |
+| WPWS / TPWS | 0.000 ns / 0.000 ns，失败端点 0 / 18636 |
+| 最差路径 | `u_cpu_core/id_ex_u/sel_ex_mem_rs1_o_reg/C` → 0.152 ns（`clk_out1_clk_wiz_0`，10 ns） |
+| 布线 | 40894 / 40894 fully routed，routing errors 0 |
+| DRC（routed） | **Error 0 / Critical Warning 0**；Warning 825（含 `LUTLP-2` ×256、`PDRC-153` ×256，源自 256 路 RO 有意的组合环与 pblock 放置） |
+| 资源（placed） | LUT 15987（30.05%）、FF 28508（26.79%）、BRAM 34.5、DSP 4 |
+| Methodology | `TIMING-17` ×1001、`TIMING-23` ×257 —— **RO 采样域仍未纳入 STA** |
+
+口径说明：
+- `+0.152 ns` 是这一版（含 PUF + v3 固件）的芯片内部时序余量，与 P0 三套（`+0.087`）不是同一源集，
+  不可混用；也不同于 PUF 首版（`+0.168`，RTL 未含忙时排队/看门狗）。
+- **不能据此声明 PUF 时序已签核**：RO 采样域（`ro_clk`、`osc[k]`）仍无时钟模型，
+  `no_clock`/`unconstrained_internal_endpoints` 未消除。
+- IO 时序仍未约束（`no_input_delay`/`no_output_delay`），上述余量仅为芯片内部。
+
