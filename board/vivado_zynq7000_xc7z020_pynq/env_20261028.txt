@@ -1,0 +1,39 @@
+xilinx@pynq:~$ uname -a
+Linux pynq 5.4.0-xilinx-v2020.2 #1 SMP PREEMPT Wed Aug 27 07:20:50 UTC 2025 armv7l armv7l armv7l GNU/Linux
+xilinx@pynq:~$ cat /etc/issue
+PYNQ Linux, based on Ubuntu 20.04 \n \l
+
+xilinx@pynq:~$ python3 --version
+Python 3.8.2
+xilinx@pynq:~$ python3 -c "import pynq; print(pynq.__version__)"
+/home/xilinx/pynq/pl_server/xrt_device.py:88: UserWarning: xbutil failed to run - unable to determine XRT version
+  warnings.warn(
+2.7.0
+xilinx@pynq:~$ ip -4 addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+3: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.2.99/24 brd 192.168.2.255 scope global eth0:1
+       valid_lft forever preferred_lft forever
+xilinx@pynq:~$ lsblk
+NAME         MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+mmcblk0      179:0    0 29.1G  0 disk
+├─mmcblk0p1  179:1    0  130M  0 part /boot
+└─mmcblk0p2  179:2    0   29G  0 part /
+mmcblk1      179:8    0  7.3G  0 disk
+└─mmcblk1p1  179:9    0  7.3G  0 part
+mmcblk1boot0 179:16   0    4M  1 disk
+mmcblk1boot1 179:24   0    4M  1 disk
+xilinx@pynq:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        29G  5.8G   22G  22% /
+devtmpfs        437M     0  437M   0% /dev
+tmpfs           501M     0  501M   0% /dev/shm
+tmpfs           101M  1.7M   99M   2% /run
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           501M     0  501M   0% /sys/fs/cgroup
+tmpfs           101M  4.0K  101M   1% /run/user/1000
+/dev/mmcblk0p1  130M  6.5M  124M   5% /boot
+xilinx@pynq:~$ ls /sys/class/fpga_manager/
+fpga0
