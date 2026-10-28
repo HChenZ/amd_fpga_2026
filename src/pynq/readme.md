@@ -10,6 +10,16 @@
 - `golden_checker.py`：全量 KAT、逐字节差异、篡改拒绝、可选故障注入。
 - `jupyter_demo.ipynb`：无板展示骨架，无已保存输出；可从仓库根或本目录顺序运行。
 - `test_host_api.py`：17 项标准库测试，包括 notebook 全部代码单元顺序执行。
+- `pynq_transport.py`（2026-10-27 新增）：**真实硬件** Transport 实现 —— pynq.MMIO 两个窗口
+  （控制 + 字节 FIFO）、Y01 分帧、批量反压、绝对 deadline、epoch/ACK 语义。
+  默认构造即 fail-closed（无 overlay / ID 寄存器不对 → `NotConfiguredError`），
+  握手帧若带 SIMULATED 位就如实上报 simulated=True，绝不回落到模拟。
+- `test_pynq_transport.py`：13 项**寄存器级模型**测试（无板）；模型帧带 SIMULATED 位，
+  所以只证明驱动逻辑，不产生硬件证据。
+- `make_pynq_profile.py`：`.hwh` → navigator profile（含 bit/hwh/firmware 的 sha256），
+  生成后立刻调 `navigator_backend.validate_overlay()` 自检；`--selftest` 用合成 hwh 跑通链路。
+- 板级设计、寄存器表、GUI 建工程步骤见 `board/vivado_zynq7000_xc7z020_pynq/readme.md`；
+  M1 起板步骤见 `docs/pynq_bringup_m1.md`。
 
 从仓库根目录运行（`python` 应为 Python 3.11；验证时使用 3.11.16）：
 
