@@ -1569,3 +1569,5 @@ owner TBD；分支 feat/board-bringup（期间并发工作线把工作区分支�
 从干净main 4268b1f fetch/ff至0f5d49c，在feat/pynq-final-integration开发；另外两个worktree未动。用户本轮明确授权中文commit/merge/push。
 新增自动Vivado BD/构建、真实硬件CLI/Notebook、真实CPU服务链仿真；修复UART RX bit1、ISE padding、服务帧证据位、启动握手、WSTRB/满FIFO/复位串口、畸形长度/重复ID与缓冲擦除。PYNQ使用rtl_p0软件key路径，不把main的PUF硬件key覆盖混入官方KAT。
 最终P0 regression与smoke PASS，初始main runner缺PUF源的FAIL及误传参数失败均保留；bridge/host/model PASS。构建/联合仿真最终证据及发布状态见board/vivado_zynq7000_xc7z020_pynq/validation_20261028.md；板上PYNQ/网络/真实cycles NOT_RUN/NOT_MEASURED。详细接收手册handoff_20261028.md，下一任务B03/Y02/Y03/Y04实板取证，owner TBD。
+
+本轮硬件收口：Vivado真实生成100MHz bitstream；WNS+0.034ns/TNS0/WHS+0.020ns，DRC0 Error/0 Critical（warnings及限制见报告）。最终COE生成MIF与BIN逐字节一致，官方4代表KAT×三模式36请求及半帧reset真实CPU联合仿真PASS。源码提交86dc10f13e96adbb360f1adfe0c4891ce2f8e2a7；正式发布在PYNQ工程release/，SHA256逐项复核PASS；实板仍NOT_RUN。

@@ -413,3 +413,5 @@
 ## 2026-10-28 — Y01/Y02/Y03/Y04 最终集成，owner TBD
 
 完成工作区/远端审查、安全快进与开发分支；审查P0/PUF源差异；实现Tcl自动BD、固件/驱动/桥修复、真实CPU+服务+AXI-Lite/UART联合验证、离线回归、SHA发布与中文上板手册。实际命令/退出码/工具/失败原件位于build/reports/pynq_final_20261028，最终状态见PYNQ validation文档。按本轮用户授权执行中文提交及main交付；不改历史板级证据。
+
+构建/发布收口：build.tcl创建BD，rebuild_firmware.tcl修旧COE依赖后完成综合/实现/bitstream；verify.tcl重开routed设计实际运行setup/hold/DRC门禁PASS，发布sha256sum -c全部PASS。后续源码空白检查发现TB两行尾空格，单独清除，不改变仿真语义。

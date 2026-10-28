@@ -11,8 +11,8 @@ module tb_pynq_svc;
     localparam XLEN = 32;
     localparam BIT_PERIOD = 434;   // 50 MHz / 115200
 
-    
-    
+
+
     wire uart_rxd = mbox_txd;
     wire             uart_txd;
     wire [1:0] button = soc_button;

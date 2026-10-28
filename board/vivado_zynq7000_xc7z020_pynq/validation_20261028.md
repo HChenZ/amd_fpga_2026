@@ -46,3 +46,5 @@ Tcl导入现有两项XCI到独立工作目录；只改本工程的COE配置并�
 初始当前main回归缺少新PUF模块、首轮P0 wrapper误传参数均FAIL，保留regression/和regression_p0/；修调用点后regression_final整套PASS。首轮Vivado缺include header、辅助RTL解析、旧COE依赖错误保留后续原始日志。修复前固件误读UART接收位在service_before_fix.log显示epoch20B后卡svc_getc；停止自己的旧仿真后重跑，不把中止写成PASS。
 
 P0源集声明是本轮scope，不代表PUF main全系统回归。原PL-only三版历史bit不在本机仓库工作区，不能伪称本次已重新上板。16B容量内官方289组已提供板端命令，本轮真实CPU联合仿真是4代表组×三模式，不宣称289/1089目标全量PASS。服务固件半帧读取依赖host超时后reset；无本地接收超时；单客户端串行，无跨进程锁。UART无远端流控，实际吞吐与PS访问延迟待测。HW polling超时目前可能表现为内部失败/解密认证失败，异常时整链reset后重测，不作为认证性能数据。
+
+最终硬件/固件对应源码提交：`86dc10f13e96adbb360f1adfe0c4891ce2f8e2a7`。发布目录含bit/hwh/COE/ELF/BIN、manifest与sha256sums，已在WSL逐项校验PASS。真实HWH生成profile并validate_overlay自检PASS（静态地址/哈希检查，非板上加载）。

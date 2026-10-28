@@ -139,3 +139,5 @@ WNS **+0.152 / TNS 0 / 0 失败端点（0/59513）**，与同源同脚本的**�
 ## 2026-10-28 PYNQ 最终交付补充（owner TBD）
 
 Y01/Y02/Y03/Y04/V01/V04：UART服务链、真实Python入口、自动BD/Tcl与离线P0回归已落地；当前详细构建/发布状态以board/vivado_zynq7000_xc7z020_pynq/validation_20261028.md为准。上板验收保持待执行（NOT_RUN），不得把离线PASS等同P1完成。下一接收B03实物/镜像确认 → Y02 ID/HWH → Y03三模式 → Y04官方KAT/真实mcycle；owner TBD。
+
+Y02离线构建收口：100MHz bit/hwh与服务固件正式纳入release，时序/DRC门禁通过；Y01/Y03离线真实CPU服务链PASS。Y02/Y03/Y04板级验收继续NOT_RUN，owner TBD。
