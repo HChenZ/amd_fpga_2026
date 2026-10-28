@@ -1,0 +1,13 @@
+/usr/lib/gcc/riscv64-unknown-elf/13.2.0/../../../riscv64-unknown-elf/bin/ld: warning: ../../../build/local/pynq_svc/pynq_svc.elf has a LOAD segment with RWX permissions
+Done! 11898 words -> ../../../build/local/pynq_svc/pynq_svc.hex (padded to 32768)
+Done! 11898 words (padded to 32768) -> ../../../build/local/pynq_svc/pynq_svc.coe
+========================================
+Build OK: ../../../build/local/pynq_svc/pynq_svc.elf
+   text	   data	    bss	    dec	    hex	filename
+  47588	      4	    344	  47936	   bb40	../../../build/local/pynq_svc/pynq_svc.elf
+custom-0: p12(0x200B)=1  p8(0x300B)=4  all-opcode-0x0B=24
+sha256:
+c8b7001d5fd70df46f35f2b18390ab577f6562ec1841d032e94369b529b93f5b  ../../../build/local/pynq_svc/pynq_svc.elf
+723631655c30d92352e2b0c557bdb07a5776927c3f75baa57b4b330a85e33a4e  ../../../build/local/pynq_svc/pynq_svc.bin
+401cbfdc1dfeb40a02bbfa28a329553eb22f77dce22b6887ef3874f2b4dcb946  ../../../build/local/pynq_svc/pynq_svc.coe
+========================================

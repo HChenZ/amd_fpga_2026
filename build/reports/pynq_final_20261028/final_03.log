@@ -1,0 +1,16 @@
+PASS service evidence flag independent from selftest
+PASS identity mismatch -> NotConfigured
+PASS hello capabilities
+PASS official KAT through the frame path
+PASS tamper rejected
+PASS 17B rejected at advertised cap
+PASS tiny FIFO backpressure
+PASS text noise tolerated
+PASS silent peer -> timeout
+PASS reset changes epoch
+PASS stale epoch -> INTERNAL
+PASS slot/ACK discipline
+PASS frame decoder
+PASS submit before hello
+
+all 14 pynq_transport tests passed

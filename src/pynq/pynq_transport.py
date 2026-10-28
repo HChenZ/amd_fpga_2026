@@ -202,7 +202,7 @@ def parse_service_frame(frame):
     modes = int.from_bytes(frame[16:20], 'little')
     return {
         'version': version,
-        'simulated': bool(flags & SIMULATED),
+        'simulated': bool(flags & 0x1),
         'selftest_pass': bool(flags & 0x2),
         'epoch_set': bool(flags & 0x4),
         'epoch': int.from_bytes(frame[8:16], 'little'),
@@ -299,6 +299,8 @@ class PynqUartTransport(Transport):
         self.decoder = FrameDecoder()
         self.regs.flush()
         self.regs.release_reset()
+        # Wait until boot selftest finishes: CPU RX FIFO is only 16 bytes.
+        self._pump(deadline, want='S')
         self._push(epoch_frame(epoch), deadline)
         # 复位后固件会先发一帧 epoch=0 的开机服务帧（可能还有文本 banner），
         # 必须等到"已采用本 epoch"的那一帧才算握手完成。
@@ -310,6 +312,8 @@ class PynqUartTransport(Transport):
                 break
         if self.expected_firmware_id and svc['firmware_id'] != self.expected_firmware_id:
             raise BackendProtocolError('firmware identity differs from release manifest')
+        if not svc['selftest_pass'] or svc['selftest_mask'] != 7:
+            raise BackendProtocolError('firmware boot selftest failed')
         if not svc['modes']:
             raise BackendProtocolError('firmware advertised no modes')
         self._simulated = svc['simulated']
@@ -330,9 +334,7 @@ class PynqUartTransport(Transport):
         _need_finite(deadline)
         self._check(deadline)
         self.regs.check_identity()
-        if not self.regs.status() & 0x1:
-            # SoC 还没释放复位（或固件没起来）：由调用方显式 reset
-            self.regs.hold_reset()
+        self.regs.hold_reset()
         self._pending = None
         self._response = None
         return self._handshake(deadline, 1)

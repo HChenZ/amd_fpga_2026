@@ -1,0 +1,2 @@
+{"command": ["C:\\Users\\xiong\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe", "-B", "sim/board/verify_cpu_images.py", "--builds", "E:\\amd_fpga_2026\\build\\local\\pynq_final\\regression_final\\firmware\\builds.json", "--cpu-evidence", "E:\\amd_fpga_2026\\build\\local\\pynq_final\\regression_final", "--out", "E:\\amd_fpga_2026\\build\\local\\pynq_final\\regression_final\\cpu_image_match.json"], "cwd": "E:\\amd_fpga_2026", "exit_code": 0, "status": "PASS", "elapsed_s": 0.165}
+PASS E:\amd_fpga_2026\build\local\pynq_final\regression_final\cpu_image_match.json

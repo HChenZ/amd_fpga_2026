@@ -1,0 +1,12 @@
+{"command": ["C:\\Users\\xiong\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe", "-B", "sim/board/legacy_runner.py", "--evidence", "E:\\amd_fpga_2026\\build\\local\\pynq_final\\regression\\cpu_sw", "run_cpu_regression.py", "--mode", "sw", "--label", "preboard_20261028_062946_291269_regression", "--cc-prefix", "riscv64-unknown-elf-"], "cwd": "E:\\amd_fpga_2026", "exit_code": 1, "status": "FAIL", "elapsed_s": 2.007}
+Existing runner: run_cpu_regression.py evidence redirected to: E:\amd_fpga_2026\build\local\pynq_final\regression\cpu_sw
+src/rtl/soc_top.v:588: error: Unknown module type: BUFG
+src/rtl/soc_top.v:597: error: Unknown module type: puf_key
+src/rtl/soc_top.v:623: error: Unknown module type: key_mmio
+4 error(s) during elaboration.
+*** These modules were missing:
+        BUFG referenced 1 times.
+        key_mmio referenced 1 times.
+        puf_key referenced 1 times.
+***
+

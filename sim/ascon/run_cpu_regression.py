@@ -18,6 +18,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--mode', choices=['sw', 'hw', 'ise'], required=True)
     p.add_argument('--security', action='store_true')
+    p.add_argument('--pynq-p0', action='store_true', help='explicit frozen P0 SoC/MMIO, without PUF key override')
     p.add_argument('--legacy', action='store_true')
     p.add_argument('--label', default='after')
     p.add_argument('--stall', action='store_true')
@@ -75,6 +76,10 @@ def main():
         rtl = [s.as_posix() for s in sorted(Path('src/rtl').glob('*.v'))
                if s.name not in ('top.v','top_pl_bram.v')]
         rtl += [s.as_posix() for s in sorted(Path('src/rtl/ascon').glob('*.v')) if not s.name.endswith('_tb.v')]
+        if a.pynq_p0:
+            rtl = [s for s in rtl if Path(s).name not in ('soc_top.v','ascon_mmio.v')]
+            rtl += [str(s) for s in Path('board/vivado_zynq7000_xc7z020_pynq/rtl_p0').glob('*.v')]
+            report['source_set'] = 'pynq rtl_p0 (no PUF)'
         inputs = rtl+[main_c,'sim/ascon/tb_ascon_sw.v','sim/ascon/axi_slave_bram.v']
         inputs += [s.as_posix() for s in fw.iterdir() if s.is_file()]
         inputs += [s.as_posix() for s in Path('ascon/ascon_c/aead').iterdir() if s.is_file()]

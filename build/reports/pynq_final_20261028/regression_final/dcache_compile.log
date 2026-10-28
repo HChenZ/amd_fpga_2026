@@ -1,0 +1,1 @@
+{"command": ["iverilog", "-g2012", "-I", "src/rtl", "-s", "tb_dcache", "-o", "E:\\amd_fpga_2026\\build\\local\\pynq_final\\regression_final\\dcache.vvp", "src/rtl/dcache.v", "sim/cicc1000023/unit/dcache/tb_dcache.v"], "cwd": "E:\\amd_fpga_2026", "exit_code": 0, "status": "PASS", "elapsed_s": 0.071}

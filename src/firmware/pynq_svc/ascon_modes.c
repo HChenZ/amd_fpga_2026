@@ -168,7 +168,7 @@ static void ise_ad_absorb(ise_state_t *s, const uint8_t *ad, uint32_t adlen)
         s->x[0] ^= ld64(ad, 8);
         s->x[1] ^= ld64(ad + 8, (int)adlen - 8);
         s->x[1] ^= 1ull << (8 * (adlen - 8));
-    } else if (adlen > 0) {
+    } else {
         s->x[0] ^= ld64(ad, (int)adlen);
         s->x[0] ^= 1ull << (8 * adlen);
     }
@@ -205,7 +205,7 @@ static int ise_encrypt(uint8_t *c, uint8_t *tag,
         st64(c, s.x[0], 8);
         st64(c + 8, s.x[1], (int)mlen - 8);
         s.x[1] ^= 1ull << (8 * (mlen - 8));
-    } else if (mlen > 0) {
+    } else {
         s.x[0] ^= ld64(m, (int)mlen);
         st64(c, s.x[0], (int)mlen);
         s.x[0] ^= 1ull << (8 * mlen);
@@ -260,7 +260,7 @@ static int ise_decrypt(uint8_t *m, uint32_t *mlen,
         s.x[0] = c0;
         s.x[1] = (s.x[1] & ~((1ull << (8 * (clen - 8))) - 1)) | c1;
         s.x[1] ^= 1ull << (8 * (clen - 8));
-    } else if (clen > 0) {
+    } else {
         uint64_t c0 = ld64(c, (int)clen);
         st64(m, s.x[0] ^ c0, (int)clen);
         s.x[0] = (s.x[0] & ~((1ull << (8 * clen)) - 1)) | c0;
@@ -342,7 +342,11 @@ static void hw_start(int encrypt, uint32_t adlen, uint32_t mlen,
 static uint32_t hw_poll(void)
 {
     uint32_t st;
-    do { st = ASCON_STATUS; } while (!(st & ASCON_ST_DONE));
+    uint64_t deadline = svc_mcycle() + 10000000ull;
+    do {
+        st = ASCON_STATUS;
+        if (svc_mcycle() >= deadline) return 1u;
+    } while (!(st & ASCON_ST_DONE));
     return (st & ASCON_ST_FAIL) ? 1u : 0u;
 }
 

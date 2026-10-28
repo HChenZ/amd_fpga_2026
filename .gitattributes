@@ -30,3 +30,9 @@ board/vivado_kintex7_legacy/riscv_vivado_project.srcs/constrs_1/new/constrs.xdc 
 
 # 上板工程：保留 XPR/XCI/XDC/COE 的原始字节，避免换行转换改变哈希（索引见 docs/freeze_checkpoint_20261027.md）。
 board/vivado_zynq7000_xc7z020_ascon/** -text
+
+src/firmware/pynq_svc/*.sh text eol=lf
+sim/pynq/*.sh text eol=lf
+board/vivado_zynq7000_xc7z020_pynq/release/** -text
+build/reports/pynq_final_20261028/** -text -diff
+board/vivado_zynq7000_xc7z020_pynq/release/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

@@ -460,7 +460,14 @@ def t_no_hello_submit():
            lambda: fresh.submit(b'Y01Q' + b'\x00' * 44, time.monotonic() + 1), 'no hello')
 
 
+def t_real_service_flags():
+    f=FirmwareModel(simulated=False).service_frame(False)
+    svc=parse_service_frame(f)
+    assert svc['selftest_pass'] and not svc['simulated']
+    assert parse_service_frame(FirmwareModel(simulated=True).service_frame(False))['simulated']
+
 TESTS = [
+    ("service evidence flag independent from selftest", t_real_service_flags),
     ('identity mismatch -> NotConfigured', t_identity_mismatch),
     ('hello capabilities', t_hello_caps),
     ('official KAT through the frame path', t_kat_vectors),

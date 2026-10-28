@@ -1,3 +1,9 @@
+# 2026-10-28 更新入口
+
+本文件下文是10-27骨架历史说明。当前优先按 [交接手册](handoff_20261028.md) 与 [验证记录](validation_20261028.md) 执行。
+新增 `build.tcl` 自动创建独立工程、BD、综合/实现并导出同名 bit/hwh；无需重新按历史GUI步骤建工程。
+`package_release.py` 校验服务联合仿真通过后打包固件和SHA256清单。发布状态以 validation 与 release/manifest.json 为准；实板 NOT_RUN。
+
 # PYNQ overlay 工程（C 线，PS↔PL 打通）— 设计与建工程说明
 
 2026-10-27，分支 `feat/pynq-overlay`，owner TBD。

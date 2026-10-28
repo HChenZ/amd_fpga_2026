@@ -13,7 +13,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
-IV=${IVERILOG:-/c/wenjian/.vscode/iverilog/bin/iverilog.exe}
+IV=${IVERILOG:-iverilog}
 OUT=${1:-build/local/pynq/elab_check.vvp}
 
 mkdir -p "$(dirname "$OUT")"

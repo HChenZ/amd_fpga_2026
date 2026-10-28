@@ -1,0 +1,6 @@
+{"command": ["C:\\Users\\xiong\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe", "-B", "-m", "unittest", "discover", "-s", "sim/board", "-p", "test_*.py"], "cwd": "E:\\amd_fpga_2026", "exit_code": 0, "status": "PASS", "elapsed_s": 0.238}
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.118s
+
+OK

@@ -1,0 +1,54 @@
+[BRAM] loaded build/local/pynq_svc/pynq_svc.hex (32768 words max)
+WARNING: sim/pynq/tb_pynq_svc.v:276: $readmemh(build/local/pynq_final/requests.hex): Not enough words in the file for the requested range [0:65535].
+WARNING: sim/pynq/tb_pynq_svc.v:277: $readmemh(build/local/pynq_final/expected.hex): Not enough words in the file for the requested range [0:65535].
+WARNING: sim/pynq/tb_pynq_svc.v:278: $readmemh(build/local/pynq_final/sizes.hex): Not enough words in the file for the requested range [0:1023].
+WARNING: sim/pynq/tb_pynq_svc.v:279: $readmemh(build/local/pynq_final/counts.hex): Not enough words in the file for the requested range [0:1023].
+progress pc=10002450 reset=1 txbytes=    0 rxbytes=  104 step=          x
+progress pc=1000ac80 reset=1 txbytes=    0 rxbytes=  104 step=          x
+progress pc=10003a20 reset=1 txbytes=   20 rxbytes=  269 step=          0
+progress pc=1000aa08 reset=1 txbytes=   20 rxbytes=  269 step=          0
+request 1 PASS (real RV32 firmware/AXI-Lite/UART)
+progress pc=1000b6cc reset=1 txbytes=  196 rxbytes=  397 step=          2
+request 2 PASS (real RV32 firmware/AXI-Lite/UART)
+request 3 PASS (real RV32 firmware/AXI-Lite/UART)
+progress pc=100000d8 reset=1 txbytes=  373 rxbytes=  540 step=          4
+request 4 PASS (real RV32 firmware/AXI-Lite/UART)
+request 5 PASS (real RV32 firmware/AXI-Lite/UART)
+request 6 PASS (real RV32 firmware/AXI-Lite/UART)
+progress pc=10001b8c reset=1 txbytes=  663 rxbytes=  655 step=          7
+request 7 PASS (real RV32 firmware/AXI-Lite/UART)
+request 8 PASS (real RV32 firmware/AXI-Lite/UART)
+progress pc=10009ef0 reset=1 txbytes=  887 rxbytes=  799 step=          9
+request 9 PASS (real RV32 firmware/AXI-Lite/UART)
+request 10 PASS (real RV32 firmware/AXI-Lite/UART)
+progress pc=100000b4 reset=1 txbytes= 1127 rxbytes=  927 step=         11
+request 11 PASS (real RV32 firmware/AXI-Lite/UART)
+progress pc=1000b0b0 reset=1 txbytes= 1255 rxbytes=  991 step=         12
+request 12 PASS (real RV32 firmware/AXI-Lite/UART)
+request 13 PASS (real RV32 firmware/AXI-Lite/UART)
+request 14 PASS (real RV32 firmware/AXI-Lite/UART)
+request 15 PASS (real RV32 firmware/AXI-Lite/UART)
+request 16 PASS (real RV32 firmware/AXI-Lite/UART)
+request 17 PASS (real RV32 firmware/AXI-Lite/UART)
+request 18 PASS (real RV32 firmware/AXI-Lite/UART)
+request 19 PASS (real RV32 firmware/AXI-Lite/UART)
+request 20 PASS (real RV32 firmware/AXI-Lite/UART)
+request 21 PASS (real RV32 firmware/AXI-Lite/UART)
+request 22 PASS (real RV32 firmware/AXI-Lite/UART)
+request 23 PASS (real RV32 firmware/AXI-Lite/UART)
+request 24 PASS (real RV32 firmware/AXI-Lite/UART)
+request 25 PASS (real RV32 firmware/AXI-Lite/UART)
+request 26 PASS (real RV32 firmware/AXI-Lite/UART)
+request 27 PASS (real RV32 firmware/AXI-Lite/UART)
+request 28 PASS (real RV32 firmware/AXI-Lite/UART)
+request 29 PASS (real RV32 firmware/AXI-Lite/UART)
+request 30 PASS (real RV32 firmware/AXI-Lite/UART)
+request 31 PASS (real RV32 firmware/AXI-Lite/UART)
+request 32 PASS (real RV32 firmware/AXI-Lite/UART)
+request 33 PASS (real RV32 firmware/AXI-Lite/UART)
+request 34 PASS (real RV32 firmware/AXI-Lite/UART)
+request 35 PASS (real RV32 firmware/AXI-Lite/UART)
+request 36 PASS (real RV32 firmware/AXI-Lite/UART)
+RESET_DURING_FRAME PASS
+PYNQ_SVC_COSIM PASS
+sim/pynq/tb_pynq_svc.v:312: $finish called at 21622270000 (1ps)

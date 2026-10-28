@@ -13,7 +13,7 @@
 /* ---- UART MMIO（见 src/rtl/uart_ctrl.v：0x00 STATUS / 0x04 DATA / 0x08 CTRL）---- */
 #define UART_STATUS (*(volatile uint32_t *)0x20000000u)
 #define UART_DATA   (*(volatile uint32_t *)0x20000004u)
-/* STATUS bit0 = TX busy/pending，bit3 = !RX empty */
+/* STATUS bit0 = TX busy/pending，bit1 = !RX empty */
 
 /* ---- Ascon MMIO 加速器（0x30000000，见 src/rtl/ascon/ascon_mmio.v）---- */
 #define ASCON_BASE   0x30000000u
@@ -81,10 +81,9 @@ static inline uint32_t rd_csr(uint32_t csr)
 static inline uint64_t svc_mcycle(void)
 {
     uint32_t hi, lo, hi2;
-    hi  = rd_csr(0xB80);
-    lo  = rd_csr(0xB00);
-    hi2 = rd_csr(0xB80);
-    if (hi != hi2) { hi = rd_csr(0xB80); lo = rd_csr(0xB00); }
+    do {
+        hi = rd_csr(0xB80); lo = rd_csr(0xB00); hi2 = rd_csr(0xB80);
+    } while (hi != hi2);
     return ((uint64_t)hi << 32) | lo;
 }
 

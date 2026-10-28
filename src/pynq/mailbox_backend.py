@@ -1,4 +1,6 @@
 """Transport-neutral Y01 draft adapter and an explicitly simulated single-slot peer."""
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 import math

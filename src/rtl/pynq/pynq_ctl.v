@@ -5,7 +5,7 @@
 // 让 PS(ARM) 通过 pynq.MMIO 控制 RV32 SoC 的复位、透传按键、读回 LED 状态。
 // 不修改 src/rtl 任何冻结文件；只在 top_pynq.v 里与 top(SoC) 连线。
 //
-// 寄存器（AXI-Lite 字节偏移，32-bit，wstrb 忽略即整字写）：
+// 寄存器（AXI-Lite 字节偏移，32-bit，遵循 wstrb[0]）：
 //   0x00 CTRL     RW  [0] SOC_RESET  1=保持 RV32 复位（上电默认 1），0=释放
 //                     [3:2] BUTTON[1:0] -> SoC gpio_ctrl 按键输入
 //   0x04 STAT     RO  [0] SOC_RST_N  送给 SoC 的复位（1=运行）
@@ -82,6 +82,7 @@ module pynq_ctl #(
     reg         aw_done, w_done;
     reg  [11:0] awaddr_r;
     reg  [31:0] wdata_r;
+    reg [3:0] wstrb_r;
     reg         bvalid_r;
 
     wire        do_write = aw_done && w_done;
@@ -97,6 +98,7 @@ module pynq_ctl #(
             w_done   <= 1'b0;
             awaddr_r <= 12'h0;
             wdata_r  <= 32'h0;
+            wstrb_r <= 0;
             bvalid_r <= 1'b0;
         end else begin
             if (s_axi_awvalid && s_axi_awready) begin
@@ -105,6 +107,7 @@ module pynq_ctl #(
             end
             if (s_axi_wvalid && s_axi_wready) begin
                 wdata_r <= s_axi_wdata;
+                wstrb_r <= s_axi_wstrb;
                 w_done  <= 1'b1;
             end
             if (do_write) begin
@@ -121,7 +124,7 @@ module pynq_ctl #(
         if (!rst_n) begin
             soc_reset  <= RESET_CTL_DEFAULT;
             soc_button <= 2'b00;
-        end else if (do_write && awaddr_r[11:2] == 10'h000) begin
+        end else if (do_write && wstrb_r[0] && awaddr_r[11:2] == 10'h000) begin
             soc_reset  <= wdata_r[0];
             soc_button <= wdata_r[3:2];
         end

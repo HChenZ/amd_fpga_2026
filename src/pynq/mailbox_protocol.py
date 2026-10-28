@@ -1,4 +1,6 @@
 """Y01 draft v1 message codec. Byte offsets here are NOT hardware addresses."""
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import IntEnum
 import struct
