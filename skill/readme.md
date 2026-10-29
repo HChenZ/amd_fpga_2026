@@ -3,6 +3,10 @@
 本目录存放可复用 Skill 的**受控副本**（不是本工程的运行时依赖，也不绑定具体 agent 平台）。
 下表的状态栏只写已验证的事实；没有验证证据的一律写 `not_validated`。
 
+2026-10-29 状态：P0/P1 实板主链已完成，但 S01-S05 的通用 PYNQ Skill 仍未实现，
+S05 尚无验收版说明。当前仅 `rtl-design-discipline` 内容成形，且非 Ascon 对照效果
+仍为 `not_validated`。
+
 ## 已交付
 
 | Skill | 来源 | 状态 |

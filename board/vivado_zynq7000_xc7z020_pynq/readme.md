@@ -1,14 +1,14 @@
-# 2026-10-28 更新入口
+# PYNQ overlay 工程（PS↔PL 已打通）
 
-本文件下文是10-27骨架历史说明。当前优先按 [交接手册](handoff_20261028.md) 与 [验证记录](validation_20261028.md) 执行。
-新增 `build.tcl` 自动创建独立工程、BD、综合/实现并导出同名 bit/hwh；无需重新按历史GUI步骤建工程。
-`package_release.py` 校验服务联合仿真通过后打包固件和SHA256清单。发布状态以 validation 与 release/manifest.json 为准；实板 NOT_RUN。
+更新：2026-10-29；owner TBD。
 
-# PYNQ overlay 工程（C 线，PS↔PL 打通）— 设计与建工程说明
+**当前状态：**100 MHz overlay、同名 bit/hwh、服务固件、Python API、Notebook、
+容量内三模式 KAT、warm benchmark 和 V03 错误/恢复门禁均已在正点原子领航者
+ZYNQ7020 实板通过。最新证据见 [validation_20261029](validation_20261029.md)；
+当前总状态见 [current_status](../../docs/current_status_20261029.md)。
 
-2026-10-27，分支 `feat/pynq-overlay`，owner TBD。
-状态：**RTL 桥单元仿真 PASS、固件交叉编译 PASS、Python 驱动模型测试 PASS；
-但 Vivado 工程尚未构建，bit/hwh/KAT/加速比全部 = not_measured（本机另有一个 Vivado 在跑，未并发）。**
+下文 2026-10-27 的设计与 GUI 步骤保留为历史构建说明；其中“未构建/未上板/
+not_measured”均已被上述实板结果覆盖。
 
 对应任务：Y01（协议落地）、Y02（overlay）、Y03（Python 端到端）、M2/M3 里程碑。
 

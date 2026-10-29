@@ -1,11 +1,17 @@
-# Y01 板型无关 mailbox 协议草案
+# Y01 UART mailbox 协议 v1
 
-2026-10-18 / owner TBD / **draft v1，未冻结、未接入 RTL/固件/实板**。
+2026-10-18 起草，2026-10-29 完成当前实现验收。owner TBD。
 
-这是 Host 与未来固件之间的逻辑契约和可执行模拟，不是现有硬件接口说明。
-不分配 AXI 地址、寄存器偏移、BRAM 窗口、PS/PL 时钟、引脚或中断号。
+当前物理映射为两个 AXI-Lite 窗口 + AXI-Lite byte FIFO + RV32 UART uncached MMIO：
+control `0x4000_0000`、mailbox `0x4000_1000`，CPU UART `0x2000_0000`；
+地址最终以同次 HWH 为准。2026-10-28/29 已完成三模式 KAT、Notebook、warm benchmark
+和 V03 错误/恢复门禁，证据见
+`board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md`。
+
+这是 Host 与 `pynq_svc` 固件之间的逻辑与物理实现契约。
+本节其余内容描述消息逻辑；实际 AXI 地址、FIFO 位宽和 UART 映射以上方当前状态为准。
 下文的字节偏移仅为**消息内偏移**，禁止作为 MMIO 地址使用。
-原 `docs/interfaces.md` 中 Y01 待定状态不变；板型确认后须审查并冻结物理映射。
+历史草案中关于“尚未接入硬件”的描述已经被上述实板结果取代。
 
 ## 1. 范围与实现入口
 
@@ -29,7 +35,7 @@ AsconHost (既有 API，不变)
 
 在任何带密钥请求之前，`hello(absolute_deadline)` 返回不可变 `Capabilities`：
 
-| 字段 | 草案含义 |
+| 字段 | 含义 |
 |---|---|
 | version | 必须等于 1，不兼容版本拒绝，不静默降级 |
 | epoch | 非零 u64 会话标识；reset 后变化，真实实现不得在旧响应可能存在时复用 |
@@ -38,8 +44,8 @@ AsconHost (既有 API，不变)
 | simulated | 结果证据类别，response 必须与握手一致；不具备密码学身份认证含义 |
 | firmware_id | 非空、最长128字符的运行固件标识；模拟值明确为 simulated-reference |
 
-握手本身是 Transport 方法返回的逻辑对象，**尚未定义其寄存器或二进制物理布局**。
-未来 board profile 应将它映射为只读能力区或控制消息，并在加载阶段核对固件/overlay hash。
+握手是 Transport 方法返回的逻辑对象。当前 board profile 从 HWH 校验窗口地址，
+并用 `Y01S` 服务帧核对 firmware_id/版本/能力；详细物理映射见本文开头。
 所有已广告 mode 共用该容量上限；若真实 MMIO 仅支持16B，须只广告适用 mode，或保守地
 令共同上限为16B；要实现每mode不同容量必须升级能力契约，不能让 host 猜测。
 内存 peer 默认32B/32B只是为了覆盖1,089官方向量，**不是硬件多块支持证明**。
@@ -86,7 +92,7 @@ idle --submit--> busy --原子完成--> complete --匹配ACK并清理--> idle
 header、body 必须精确一致，拒绝截断、额外尾字节、未知版本/mode/op、错误tag长度。
 codec 的消息/AD最大值各65536B，服务容量另以握手为准；先检查容量和长度，再执行算法。
 不支持隐式截断、整数缩窄、重叠输出或任意地址指针，避免地址溢出和输入/输出别名。
-本草案采用内联payload；未来 BRAM/DDR buffer 描述符、对齐与地址翻译尚未定义。
+当前 v1 采用内联 payload；未来 BRAM/DDR buffer 描述符、对齐与地址翻译尚未定义。
 
 ## 4. 响应消息与认证发布
 
@@ -119,7 +125,8 @@ codec 直接拒绝“错误状态附带候选明文/周期”的帧。
 真正固件必须完整tag验证、候选擦除和状态清理后才发布失败；认证前不得对PS开放候选输出。
 header和payload需要一致快照，完成发布与读取具备release/acquire语义；48B复制本身
 不是原子硬件动作，物理适配器需要独立完成标记/序号或等效快照机制。
-本草案的“原子”仅是逻辑契约，MemoryTransport 不验证硬件原子性。
+协议中的“原子”是逻辑契约；当前硬件实现已验证单槽完成/ACK，但未来共享内存方案
+仍需单独验证物理原子性。
 
 成功响应必须与本次 epoch/id/op/mode、证据类型及精确预期输出长度一致，否则隔离通道。
 ACK失败时即使拿到了正确解密结果也不向调用方返回。
@@ -159,25 +166,19 @@ MemoryTransport 的reference执行同步不可抢占，超时只能在返回后�
 - caller负责部署时key/nonce唯一性策略；运输异常不能作为“加密肯定未发生”的证明。
 - 不在异常中输出key、nonce、明文、tag或底层设备详情。数据帧包含秘密，不应保存到普通日志。
 
-## 6. 真实buffer/固件加载的待冻结项
+## 6. 当前实现与边界
 
-下面是实现要求，**当前没有硬件代码或实测证据**：
-
-1. 绑定后选择AXI/BRAM/mailbox方案，明确PS/PL双侧地址翻译、buffer物理容量与对齐。
-   当前内联消息不能直接视为已有BRAM布局；输出/输入不得重叠。
-2. PS写请求 → flush → release/屏障 → 发布start；固件acquire/必要invalidate后读取。
-   固件写成功输出 → flush/屏障 → 原子发布done；PS观察done后acquire/invalidate读取。
-   同时核验RV32软核D-cache策略；PYNQ API名和屏障指令必须按最终平台核实，不猜测。
-3. 单槽所有权覆盖请求buffer、输出buffer和敏感暂存区。ACK/reset完成前禁止释放/重用；
-   认证失败清候选，ACK/reset按已知有效容量清请求key和输出，记录可验证清理范围。
-4. 固件加载不是AEAD请求，不能把未校验数据当任意内存写命令。独立loader必须核对
-   ELF/BIN来源/hash、复位向量、映像/栈容量和地址范围；软核保持reset、停旧DMA/命令后加载，
-   完成可见性操作，再释放reset，等待ready/hello并匹配预期firmware_id与版本；失败不开放请求。
-   当前baseline的FreeRTOS COE保留，不在本任务中替换或修改任何XCI/COE。
-5. B03确认板型/PCB/image；Y02提供匹配bit/hwh和hash、真实握手/复位与错误状态映射；
-   再补protocol/firmware/host双向实现及实际总线故障、缓存可见性和板上KAT测试。
-
-无板模型不证明上述缓存、擦除、加载或复位物理行为，也不关闭Y01整项或Y02门禁。
+1. PS/PL 不共享 BRAM。主机通过两个 AXI-Lite 窗口访问 `pynq_ctl`/`pynq_mbox`，
+   后者连接 RV32 UART。当前帧为内联 bytes，没有地址描述符或重叠 buffer。
+2. UART 是 uncached MMIO，因此当前 ABI 不依赖 PS/CPU cache flush 或 invalidate；
+   缓存可见性记为 `NOT_APPLICABLE`。若未来改成 shared BRAM/DDR，必须重新定义一致性。
+3. 单槽、单客户端、顺序处理；ACK 由 Transport 在收到完整合法响应后本地释放 slot。
+   V03 已实板验证重复 request_id、错误 epoch、RX overflow、半帧和显式 reset/epoch 恢复。
+4. 固件镜像通过 `blk_mem_gen_0` 的 COE 随 bitstream 构建，不是运行时任意内存写命令。
+   当前没有通用动态 firmware loader；S01 若实现 loader，必须另行验证哈希、复位向量、
+   内存范围和失败关闭。
+5. 当前硬件容量为 PT/AD 各 16 bytes。800 组超容量 KAT 为 `NOT_RUN`；host 1,089 组
+   通过不能替代目标硬件全量通过。
 
 ## 7. 运行与证据
 
@@ -205,6 +206,10 @@ assert result.simulated and result.cycles is None
 assert host.decrypt(bytes(range(16)), bytes(range(16, 32)), b"", result.ciphertext, result.tag).plaintext == b"hello"
 ```
 
-2026-10-18初次实跑 CPython3.11.16：协议测试24/24通过，exit0；ISE模拟mailbox全量
+2026-10-18 初次无板实跑 CPython3.11.16：协议测试24/24通过；ISE模拟mailbox全量
 KAT PASS1089/FAIL0，篡改拒绝4290，exit0。其余回归与最终命令结果见本目录readme。
 未启动Vivado，未编译/加载固件，无板级测量；全部owner TBD。
+
+2026-10-29 update：上述“无板”结论是历史快照。当前已在领航者 ZYNQ7020 实板完成
+容量内 289/289 KAT、Notebook、30 次 warm benchmark 和 V03 9/9 错误/恢复门禁；
+详细证据见 `board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md`。

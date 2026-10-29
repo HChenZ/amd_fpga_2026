@@ -443,3 +443,10 @@
   check 的 START/PASS/FAIL 和 run 起止摘要，使 Notebook 捕获的日志可独立审计。
 - 用户重新执行后 9/9 checks PASS、7 次恢复和每模式 50 次压力全部通过。归档 JSON/log/
   identity 及 SHA，更新 validation、任务板和 actual progress；Y03/Y05/V03 收口。
+
+## 2026-10-29 — Markdown 状态同步
+
+- 新增 `docs/current_status_20261029.md`，按实板证据区分核心完成项、未完成项和材料优先级。
+- 同步 README、项目概览、架构、接口、PYNQ 协议/说明、任务板、里程碑、风险、交接、
+  上板计划、报告目录与 Skill 目录；旧计划保留历史边界。
+- 未修改 RTL、固件、测试结果或 release 产物。

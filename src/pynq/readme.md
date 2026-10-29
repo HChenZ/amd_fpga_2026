@@ -1,9 +1,13 @@
-# PYNQ host layer — offline subset
+# PYNQ host layer and board validation
 
-任务卡 A / Y03、Y04 无板部分；owner TBD，2026-10-18。
-2026-10-29：新增永久实板 warm benchmark 与 Notebook 一键测试入口；板级执行仍为 `NOT_RUN`。
-仅 Python 3.11 标准库，无 pip、C 编译器、Vivado、PYNQ 包或实板依赖。
-本目录完成不等于 Y01/Y02、完整 Y03/Y04 或 P1 板级验收完成。
+更新：2026-10-29。owner TBD。
+
+当前状态：Y01-Y05 与 V03 已完成实板验收。三模式容量内 289/289 KAT、坏 Tag 拒绝、
+Notebook 从头执行、KAT #529 的 30 次 warm benchmark、9/9 错误/恢复门禁均通过。
+证据见 `board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md`。
+
+本目录仍不包含通用 Skill（S01-S05）、完整 800 组超 16B 硬件 KAT、动态固件 loader
+或 clean-clone 验收。历史无板说明保留在下方，不能覆盖 2026-10-29 结果。
 
 ## 文件与使用
 
@@ -15,7 +19,7 @@
   （控制 + 字节 FIFO）、Y01 分帧、批量反压、绝对 deadline、epoch/ACK 语义。
   默认构造即 fail-closed（无 overlay / ID 寄存器不对 → `NotConfiguredError`），
   握手帧若带 SIMULATED 位就如实上报 simulated=True，绝不回落到模拟。
-- `test_pynq_transport.py`：13 项**寄存器级模型**测试（无板）；模型帧带 SIMULATED 位，
+- `test_pynq_transport.py`：14 项**寄存器级模型**测试（无板）；模型帧带 SIMULATED 位，
   所以只证明驱动逻辑，不产生硬件证据。
 - `make_pynq_profile.py`：`.hwh` → navigator profile（含 bit/hwh/firmware 的 sha256），
   生成后立刻调 `navigator_backend.validate_overlay()` 自检；`--selftest` 用合成 hwh 跑通链路。
@@ -144,7 +148,8 @@ cycle_info(operation, message_bytes, ad_bytes) -> CycleInfo
 host 还会检查输出长度，但不能替代后端的认证门禁或检测任意错误密文；golden checker
 负责逐字节正确性验证。
 
-Y01 仍是未冻结协议：不将现有 CPU MMIO 地址当作 PS 可访问地址，不猜寄存器。
+本段是历史无板状态。当前 Y01 UART mailbox v1 已冻结并通过 V03 实板错误/恢复验收；
+PS 地址来自 HWH，CPU UART 地址为 `0x20000000`。
 未来 `PynqBackend` 按相同接口替换，无需改变用户加解密调用；本轮不实现假硬件类。
 需先冻结协议版本、request_id、端序、buffer 容量、命令/完成/错误、64-bit mcycle、
 所有权、cache flush/invalidate、屏障、固件加载及超时后的取消/复位策略。
@@ -206,15 +211,17 @@ API 本次 CT/tag 是 reference 计算；本次并没有执行 RISC-V、MMIO 或
 notebook 验证是标准库读取 JSON 后顺序执行代码单元，未启动 Jupyter 前端。
 正常 checker 也在默认 Python 3.13.9 下实跑 PASS；目标版本验收以 3.11.16 为准。
 
-## 交接与未验项
+## 历史交接与当前边界
 
 - 已完成：任务卡 A 的 host/reference/KAT/notebook 无板子集；新接口仅在本目录，无 RTL/固件改动。
-- 未验证：真实 PYNQ 后端、overlay/bit/hwh、cache 一致性、PS/PL 命令协议、实物板、板级 cycles。
-- 阻塞：Y01 协议冻结、B03 板型/image、Y02 overlay；下一接收 Y01/Y02 → Y03/Y04 板级联调，owner TBD。
+- 2026-10-29 已补充：真实 PYNQ、overlay/bit/hwh、UART mailbox、实物板周期和错误恢复均已验证；
+  shared cacheable buffer 不适用于当前 ABI。
+- 新阻塞：V04 历史 xpack 工具链缺失导致 firmware ELF entry=`0x10000024`，与复位 PC
+  `0x10000000` 不一致；完整证据见 `docs/current_status_20261029.md`。
 - 按任务卡并行边界，不修改 `docs/`、`tasks/`、actual_progress 或 lessons；交给主线维护者同步状态。
   仅在共享 `project_log/development_log.md` 末尾追加本轮事实；未 commit/push，未启动 Vivado。
 
-## Y01 后续：板型无关协议与通信模拟（2026-10-18）
+## 历史：Y01 板型无关协议与通信模拟（2026-10-18）
 
 用户授权先做无板型部分。协议说明见 **[mailbox_protocol.md](mailbox_protocol.md)**，
 状态为 **draft v1**，不代表真实Y01协议已冻结，不变更现有RTL/固件接口。
@@ -242,7 +249,8 @@ host = AsconHost(backend)
 此后端通过submit/poll/ACK模拟完整单槽事务。响应身份、长度、证据类型不匹配、
 超时或总线错误均隔离通道；失败响应不含明文或周期；ACK失败也不发布结果。
 MemoryTransport正常响应的cycles始终为None/not_measured，**不复用历史周期占位**。
-握手、buffer/cache可见性、固件加载及复位的逻辑要求见协议草案；这些物理行为尚未验证。
+本节是历史无板记录。2026-10-28/29 的 UART mailbox 实板结果以上方当前状态和
+`mailbox_protocol.md` 为准。
 
 最终实跑 CPython **3.11.16**，仓库根：
 
@@ -260,6 +268,5 @@ MemoryTransport正常响应的cycles始终为None/not_measured，**不复用历�
 共41项unittest通过；三mode是模拟选择，不是三套硬件或编译固件的验证。
 周期>32-bit及0/None的测试值只用于codec验证，不是性能结果。
 
-本轮仅改 `src/pynq/` 并在共享开发日志末尾追加；主线看板/实际进度同步仍交维护者，owner TBD。
-下一接收：审查此草案 → B03板型/image → Y01物理映射/固件与cache策略冻结 → Y02 overlay，
-再做板级Y03/Y04/V03。未启动Vivado，未commit/push，完整Y01/Y02仍未验收。
+以上是 2026-10-18 无板阶段的原始交接。后续 B03 平台确认、Y01 物理映射、Y02 overlay、
+Y03/Y04/V03 均已在 2026-10-28/29 完成实板验收；owner TBD。

@@ -53,7 +53,7 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 
 | ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
 |---|---|---|---|---|---|---|---|
-| Y01 | Zynq PS/PL interface design | TBD | B03、B04；C02 API | 版本化 register/mailbox/buffer 协议 | 控制路径、firmware loading、地址/端序/长度、所有权/一致性、cycle/status/error/timeout 明确，双方可据此实现 | 2026-10-08 | in_progress |
+| Y01 | Zynq PS/PL interface design | TBD | B03、B04；C02 API | 版本化 register/mailbox/buffer 协议 | 控制路径、firmware loading、地址/端序/长度、所有权/一致性、cycle/status/error/timeout 明确，双方可据此实现 | 2026-10-08 | done |
 | Y02 | PYNQ overlay | TBD | Y01、I05、B02 | 独立工程 `board/vivado_zynq7000_xc7z020_pynq/`、overlay 发布清单与 hash | 在已核验 image/板卡上加载，bit/hwh 匹配；PS 可控制 CPU，干净构建可生成 | 2026-10-29 | done |
 | Y03 | Python host API | TBD | Y01、C03；联调需 Y02 | `src/pynq/pynq_transport.py` + 模型测试 + profile 生成器 | 输入 key/nonce/AD/plaintext，返回 ciphertext/tag/cycles，错误显式；匹配锁定 C/Python reference | 2026-10-29 | done |
 | Y04 | Jupyter demo | TBD | Y02、Y03、I07 | 可从头执行 notebook 与说明 | 重启后顺序执行，展示软件/ISE 正确性与加速比，区分 CPU 与端到端计时 | 2026-10-20 | done |
@@ -174,3 +174,7 @@ RX overflow 后均可恢复，deadline 抛 BackendTimeoutError，重复 ID/错�
 INTERNAL；每模式 50 次加解密全部匹配 KAT。证据在
 `data/pynq/error_gate_20261029_134023/`。Y03、Y05、V03 改为 done；V04 进入下一门禁，
 owner TBD。
+
+2026-10-29 Y01 收口：UART mailbox v1 已完成实际地址、错误码、epoch、超时和恢复
+实板验收，Y01 改为 done。Y01 done 指当前 AXI-Lite/UART mailbox v1 与 COE 构建时
+固件装载；通用动态 firmware loader 不在当前 ABI，留待独立任务验证。

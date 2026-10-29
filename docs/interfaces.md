@@ -1,5 +1,22 @@
 # 接口契约与待定项
 
+## 2026-10-29 当前实现状态
+
+当前 P0/P1 演示主链已经有实板接口证据：
+
+- PS 两个 4 KiB AXI-Lite 窗口：control `0x4000_0000`、mailbox `0x4000_1000`，地址以
+  同次导出的 HWH 为准。
+- PS/PL 数据通道为 AXI-Lite byte FIFO ↔ RV32 已有 UART `0x2000_0000`，不使用
+  shared BRAM；该 UART 是 uncached MMIO，所以当前 ABI 没有共享 cacheable buffer。
+- 协议为 `src/pynq/mailbox_protocol.md` 中的 UART mailbox v1；请求/响应最长承载
+  PT/AD 各 16 bytes。V03 已实板验证错误长度、半帧、deadline、重复 ID、错误 epoch、
+  RX overflow、显式 reset/epoch 恢复和三模式 KAT。
+- PYNQ 固件以 COE 作为 BRAM 初值随 bitstream 构建，不在运行时动态加载。通用动态
+  firmware loader 不属于当前 ABI。
+
+本条更新 Y01 当前实现；下文 2026-09/10 内容保留历史边界。CPU ISE 的完整 RV64、
+异常/中断矩阵和 baseline 全回归仍未全部关闭。
+
 ## 2026-10-18 V09 时序修复接口增量（owner TBD）
 
 - ISE opcode/字布局/结果/软件 ABI 不变。`ascon_ise` 的 P8/P12 私有复位控制注册化：
@@ -24,7 +41,8 @@ BUSY写忽略、认证成功且有效长度内才允许OUT读取；ISE新增内�
 
 恢复补充（2026-09-21）：原始 XCI 已确认 PLL 50→100 MHz，BRAM 为 32×32768 words（128 KiB）、freertos_demo.coe 初始化。下文 RTL 地址/计数语义保持不变；共有 31 个 RTL 规范化换行后与当前源码一致。配置频率和历史报告不等于本轮板上实测，详见 [恢复审计](cicc1000023_recovery_audit.md)。
 
-更新：2026-09-21。状态：**现有 RTL 静态提取，未上板验证；目标接口草案未冻结**。修改相关实现前先读本文件，变更需同步测试与上下游说明。
+更新快照：2026-09-21。该段描述当时状态：现有 RTL 静态提取、未上板、目标接口草案
+未冻结。当前 PYNQ UART mailbox v1 与 V03 状态以上方 2026-10-29 条目为准。
 
 ## 现有 CPU/存储/MMIO
 
@@ -90,15 +108,18 @@ key/nonce/tag_in须稳定至done；数据/AD与长度在start捕获。>=32长度
 
 历史阶段尚无已分配的 Ascon custom opcode；现行custom-0规范见上方2026-10-16增量。现有 `ror/load_bytes/store_bytes` 不是 CPU 指令规范。I02 的交付应填满：指令名/编码、输入/输出寄存器、RV32 64-bit state 表示方式、状态布局、round constant、latency、stall/flush/interrupt、非法编码、clobber、软件封装、golden model、覆盖矩阵。禁止先让 RTL 与软件各自猜一个编码。
 
-## PS/PL 命令接口（Y01 草案，禁止据此写死寄存器）
+## PS/PL 命令接口（Y01 当前 UART mailbox v1）
 
-| 方向 | 所需逻辑字段 | 待定内容 |
+| 方向 | 字段 | 当前实现 / 边界 |
 |---|---|---|
-| PS → PL | protocol_version、request_id、operation、software/ise mode、key、nonce、AD/input 长度与数据位置、output capacity、start | AXI/BRAM/mailbox 方案、地址、对齐、端序、最大长度、加载固件方式 |
-| PL → PS | request_id、busy/done/error、ciphertext/tag、输出长度、64-bit cycles、实现模式 | 状态位与错误码、原子完成、ack/reset、timeout 与重试 |
-| 共享 buffer | ownership、可见性与生命周期 | PS cache flush/invalidate、CPU Cache 处理、内存屏障、禁止工作中复用 |
+| PS → PL | protocol_version、request_id、operation、mode、key、nonce、AD/input、output capacity | little-endian 内联帧；当前 PT/AD 各 ≤16B；单客户端/单槽 |
+| PL → PS | request_id、status/error、ciphertext/tag、输出长度、64-bit `mcycle`、mode | `Y01R` 帧；非 OK 无 payload/cycles；V03 已验证拒绝与恢复 |
+| 会话 | epoch、ACK/reset | 非零递增 epoch；超时后必须 `recover()`，不自动重试；V03 已验证 |
+| 共享 buffer | ownership/可见性 | `NOT_APPLICABLE`：当前 UART uncached MMIO，无 shared cacheable buffer |
 
-Python 展示输入 key/nonce/AD/plaintext，读取 ciphertext/tag/cycles；认证失败与超时必须显式报错，不形成成功 benchmark。Y01 应用时保留板级参数，不向通用 Skill 硬编码 Ascon 长度或地址。
+Python 展示输入 key/nonce/AD/plaintext，读取 ciphertext/tag/cycles；认证失败与超时
+显式报错，不形成成功 benchmark。S01-S05 若要抽象通用 Skill，仍必须参数化长度和地址，
+不能把当前 16B 或 Ascon 地址硬编码为通用接口。
 
 ## benchmark 记录契约（拟定字段）
 

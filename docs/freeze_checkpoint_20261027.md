@@ -1,5 +1,10 @@
 # 上板冻结检查点（V04 索引）— 2026-10-27
 
+> **2026-10-29 状态更新：**本文保留历史上板签核索引。之后 PYNQ 已另行完成容量内
+> KAT、Notebook、warm benchmark 和 V03 错误/恢复门禁，见
+> `board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md`。当前总表见
+> `docs/current_status_20261029.md`。
+
 owner TBD。本文是**证据索引**，不是成果声明：每条数字都能追到本仓库内的文件或串口原始日志。
 对应任务：B02/B03/B04（板级）、C03/C04/I07（板上 KAT 与 benchmark）、V01（板级抽样）、V04（冻结）。
 

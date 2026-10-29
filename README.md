@@ -1,16 +1,16 @@
 # RISC-V Lightweight Cryptography SoC with ASCON ISE
 
-2026-10-29 PYNQ 验证入口：[Notebook/benchmark/error gate](board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)。AXI-Lite/UART 服务链已在正点原子领航者 ZYNQ7020 实板运行；SW/HW/ISE 各 289 组容量内 KAT、坏 Tag 拒绝、Notebook 从头执行、KAT #529 的 30 次加解密 benchmark、17B/半帧/超时/重复ID/错误epoch/RX overflow 恢复门禁均通过。重复上电稳定性和独立 FCLK 测量仍未完成。
+2026-10-29 当前状态入口：[状态总表](docs/current_status_20261029.md)、[PYNQ 实板验证](board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)。AXI-Lite/UART 服务链已在正点原子领航者 ZYNQ7020 实板运行；SW/HW/ISE 各 289 组容量内 KAT、坏 Tag 拒绝、Notebook、30 次 warm benchmark 和 V03 错误/恢复门禁均通过。P1 通用 Skill 与最终材料仍未完成。
 
 在 CICC1000023「基于 RISC-V 的高性能 CPU 设计及 FPGA 验证」基础上扩展轻量级密码学：在自研 RISC-V CPU 上运行 **NIST SP 800-232 Ascon-AEAD128**，加入 custom instruction set extension（ISE），通过 FPGA 实测比较软件与 ISE，再用 PYNQ/Jupyter 完成控制、黄金参考比对和展示。
 
 | 项目 | 约定 |
 |---|---|
 | 比赛 | 全国大学生嵌入式芯片与系统设计竞赛 2026，FPGA 创新设计赛道，AMD 自主选题初级组 |
-| 目标硬件 | Zynq-7000 **XC7Z020CLG400-1**；具体板卡型号、版本、PYNQ image 待 B03 核实 |
+| 目标硬件 | 正点原子领航者 ZYNQ7020；part **xc7z020clg400-1**；完整丝印/速度等级、板卡 revision 和独立频率测量仍待 B03 取证 |
 | 最终提交 | **2026-11-04**（用户给定截止日期；11 月 4 日不安排开发） |
-| 当前阶段 | PYNQ 实板三模式容量内 KAT 已通过；正在整理 mcycle benchmark、Notebook 与剩余端到端门禁 |
-| 当前工程实际配置 | 恢复 baseline：`xc7z020clg400-1` / Vivado `2025.2` / `top_pl_bram`；原 Kintex 工程另行保留 |
+| 当前阶段 | 核心 PYNQ 演示与 V03 已完成；继续完成 B03 实物证据、P1 通用 Skill 和 D01-D06 材料 |
+| 当前工程实际配置 | PYNQ release：`xc7z020clg400-1` / Vivado `2025.2` / `pynq_wrapper` / FCLK0 100 MHz；原 CICC baseline 与 Kintex legacy 独立保留 |
 | 开源协议 | [Apache-2.0](LICENSE)；引入第三方代码须单独核对来源与许可 |
 
 比赛规则以可追溯官方原文为准。仓库中的历史选题指南只作已有资料，不把未核实条款、评分或工具限制写成官方结论。
@@ -34,17 +34,20 @@ ISE状态生命周期及CPU提前译码/完成握手。结果、剩余风险和�
 
 ```mermaid
 flowchart LR
-    Host["PYNQ / Jupyter（计划）"] --> PS["Zynq PS：Python API / 黄金参考（计划）"]
-    PS --> Link["AXI / shared BRAM / mailbox（待 Y01 定案）"]
+    Host["PYNQ / Jupyter（已实板）"] --> PS["Zynq PS：Python API / 黄金参考"]
+    PS --> Link["AXI-Lite FIFO ↔ UART mailbox v1"]
     Link --> CPU["PL：现有自研 RISC-V CPU"]
-    CPU --> SW["Ascon-AEAD128：host 软件已验；目标 CPU 软件待运行"]
-    CPU --> ISE["Ascon permutation ISE（计划）"]
+    CPU --> SW["Ascon-AEAD128：host 与 RV32 软件已验证"]
+    CPU --> ISE["Ascon P8/P12 custom-0 ISE（已实现并上板）"]
     CPU --> Counter["已有 mcycle / CPI 事件计数器"]
     Counter --> Link
     Link --> Host
 ```
 
-现有工程实际是 `top_pl_bram → top → soc_top → cpu_core/总线/外设`，所需三个 IP XCI 已从原始 ZIP 恢复到独立 baseline 工作区；上图中的 PS/PYNQ 链路尚未实现。详见 [架构](docs/architecture.md)。
+原始 baseline 仍为 `top_pl_bram → top → soc_top → cpu_core/总线/外设`。当前 PYNQ release
+使用独立 BD：PS7 GP0 两个 AXI-Lite 窗口接 `pynq_ctl`/`pynq_mbox`，后者通过 RV32
+UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
+[架构](docs/architecture.md) 与 [PYNQ 工程说明](board/vivado_zynq7000_xc7z020_pynq/readme.md)。
 
 ## 仓库结构
 
@@ -58,7 +61,8 @@ flowchart LR
 | `sim/ascon/` | Final host validation、认证失败门禁、独立round/P8/P12与AEAD加解密、全源集回归、故障注入与golden接口；历史FAIL保留 |
 | `sim/cicc1000023/` | 恢复的模块/ISA/formal 验证源；适配与完整 CPU 回归待完成 |
 | `build/` | 资产哈希/原名还原脚本、精选历史报告、本轮验证元数据 |
-| `data/ascon/` | 锁定来源与许可、完整 Final KAT、固定 AEAD/permutation golden vectors、host/RTL 验证与失败证据；没有 benchmark/PPA 实测数据 |
+| `data/ascon/` | 锁定来源与许可、完整 Final KAT、固定 golden vectors、host/RTL 与失败证据 |
+| `data/pynq/` | 2026-10-28/29 容量内 KAT、Notebook、warm benchmark 与 V03 错误恢复原始证据 |
 | `data/recovery/` | CICC1000023 recovery 清单、哈希、差异与小测试输入 |
 | `skill/` | 不绑定 Ascon 的通用 PYNQ Skill 预留 |
 | `report/` | 报告、图表、视频索引与 LLM 协作记录预留 |
@@ -127,13 +131,16 @@ flowchart LR
 5. 按 [build/readme.md](build/readme.md) 做已有 CPU RTL 的静态 elaboration 检查；这不是 CPU 程序验证。阅读 [恢复审计](docs/cicc1000023_recovery_audit.md)，运行 `python build/prepare_cicc1000023_sources.py` 核对恢复资产。
 6. B02 使用 Vivado 2025.2 重建真实 XC7Z020 baseline，B03 核对实物板，B04 补齐准确 FreeRTOS kernel/bootloader 来源并验证目标软件；完成 C04 真实 cycle 后再进入 CPU ISE 与 PYNQ 集成。
 
-**目前不能承诺 clean clone 即可完成全部 FPGA 端到端验收。** 当前 release overlay 已有实板容量内验证，但完整 benchmark、Notebook、错误/超时/缓存门禁和 clean-clone 复现仍待完成。
+**目前不能承诺 clean clone 即可完成全部 FPGA 端到端验收。** 当前 release overlay 已有
+容量内 KAT、benchmark、Notebook 和 V03 实板验证；B03 实物证据、通用 Skill 与
+clean-clone 复现尚未完成。
 
 ## 文档索引
 
 | 文档 | 内容 |
 |---|---|
 | [AGENTS.md](AGENTS.md) | 三分钟入场、行为红线 |
+| [current_status_20261029](docs/current_status_20261029.md) | 2026-10-29 已完成、未完成与提交前顺序 |
 | [project_overview](docs/project_overview.md) | P0/P1/P2 与完成定义 |
 | [repository_audit](docs/repository_audit.md) | 初始 HEAD 审计快照及恢复后的结论更正 |
 | [recovery_audit](docs/cicc1000023_recovery_audit.md) / [rtl_diff](docs/cicc1000023_rtl_diff.md) / [vivado_diff](docs/vivado_project_diff.md) | ZIP 工程、固件审计、逐文件哈希与源配置比较 |

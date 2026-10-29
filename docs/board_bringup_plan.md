@@ -1,8 +1,12 @@
 # 拿到板卡后的分步推进清单（上板 bring-up）
 
-2026-10-20；owner TBD。截止 11-04，功能冻结 10-27，code freeze 10-28。
-本文是操作清单，不是成果声明。当前事实：芯片级 STA WNS +0.007 ns（无 IO delay、无 PS7）、
-COE 仍是 FreeRTOS、板上任何一项都未验证 —— 拿到板子不等于可以直接烧。
+2026-10-20 起草；owner TBD。下方是原始分步操作清单，保留历史。当前已实际完成：
+正点原子领航者 ZYNQ7020 起板、100 MHz PYNQ overlay、SW/HW/ISE 容量内 KAT、
+Python/Notebook、warm benchmark 和 V03 错误/恢复门禁。尚未完成 B03 完整实物照片/
+丝印速度等级、板上 ISA 抽样、重复上电和独立 FCLK 测量。最新状态见
+[current_status_20261029](current_status_20261029.md)。
+
+复选框保留原计划语义，不代表 2026-10-29 当前状态。
 
 配套文档：[时序余量方案](timing_margin_plan.md)、[借板清单](ascon_board_checklist.md)、
 [冻结检查点](freeze_checkpoint_20261018.md)、[任务看板](../tasks/task_board.md)。

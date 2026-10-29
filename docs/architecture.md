@@ -1,6 +1,24 @@
 # 系统架构
 
-更新：2026-09-21。下列“当前”来自源码静态检查；“目标”是待实现设计。
+更新：2026-10-29。CPU/baseline 部分更新于 2026-09-21；“目标”段保留历史设计，
+其中 PYNQ/ISE 主链现已有独立实现和实板证据。
+
+## 2026-10-29 已实现 PYNQ 拓扑
+
+```mermaid
+flowchart LR
+    Jupyter["PYNQ / Jupyter"] --> API["AsconHost / MailboxBackend"]
+    API --> AXI["PS7 GP0：AXI-Lite control + byte FIFO"]
+    AXI --> UART["pynq_mbox ↔ RV32 UART MMIO"]
+    UART --> FW["pynq_svc：SW / MMIO / ISE"]
+    FW --> Result["ciphertext/tag/status/mcycle"]
+    Result --> AXI
+```
+
+当前 release 为 `pynq_wrapper`，FCLK0=100 MHz；control `0x4000_0000`、mailbox
+`0x4000_1000`，各 4 KiB。UART 是 uncached MMIO，无 shared cacheable buffer。
+Y01-Y05/V03 实板验收见
+[validation_20261029](../board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)。
 
 ## 当前结构
 
@@ -20,7 +38,10 @@ flowchart TD
 
 CPU 另含 bypass、stall_ctrl、predictor、multiplier、divider 和流水寄存器。`defines.v` 默认 XLEN=32，RAM_DEPTH=32768；复位 PC 为 `0x10000000`。模块名不必等于文件名，定位见审计。
 
-`top_pl_bram` 约定 50 MHz 输入 XDC、名为 `clk_100m` 的内部时钟及 100 MHz UART 参数；恢复的 clock XCI 确认 PLL 的 50→100 MHz 配置，BRAM XCI 为 32×32768 words（128 KiB），初始化为 freertos_demo.coe。配置不是实测 Fmax。独立原始 XC7Z020 baseline 与保留的 Kintex 工程并存；无 PS block design 或 PYNQ overlay。
+`top_pl_bram` 约定 50 MHz 输入 XDC、名为 `clk_100m` 的内部时钟及 100 MHz UART 参数；
+恢复的 clock XCI 确认 PLL 的 50→100 MHz 配置，BRAM XCI 为 32×32768 words（128 KiB），
+初始化为 freertos_demo.coe。该段描述原始 baseline；另有独立 PYNQ block design，
+不能把 baseline 的固件/时钟结论混入 PYNQ release。
 
 ## 目标结构与分工
 
@@ -42,7 +63,8 @@ flowchart LR
 - **测量**：RISC-V mcycle 测算法，PS 端计时测端到端；二者分列，不混成同一个加速比。
 - **PPA**：同 part、约束、tool/IP 版本、实现策略对比，记录时序失败和资源代价。
 
-图是 D01 架构初稿，实物板与 Y01/I02 冻结后更新为报告用定稿。
+下方“目标结构”是历史初稿。实物 PYNQ 拓扑以上方 2026-10-29 图为准；CPU ISE 的完整
+I02/I05 契约、B03 实物证据和 D01 报告定稿仍需收口。
 
 ## 上下游交接
 

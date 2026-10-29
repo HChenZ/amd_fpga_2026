@@ -1,6 +1,6 @@
 # 风险清单
 
-更新：2026-09-21。probability / impact 是定性评估，不是实测统计。owner 全部 TBD；已观察问题明确标注。触发后更新 task_board 与 actual_progress，不隐瞒延期或失败。
+更新：2026-10-29。probability / impact 是定性评估，不是实测统计。owner 全部 TBD；已观察问题明确标注。触发后更新 task_board 与 actual_progress，不隐瞒延期或失败。
 
 | ID | 风险 | probability | impact | mitigation | trigger |
 |---|---|---|---|---|---|
@@ -9,7 +9,7 @@
 | R3 | custom instruction 正确但软件未调用 | 中 | 高：加速结论无效 | I06 检查反汇编并保留实际 opcode 执行证据，比较强制软件与 ISE 路径 | 热点反汇编无 opcode；编译优化删调用；runtime fallback |
 | R4 | benchmark 前后条件不同 | 高 | 高：不可比 | C04/I07 固定输入/编译器/频率/Cache/中断/计时边界，原始数据与环境元数据一起保存 | flags、频率或输入集不同；只有均值无原始记录 |
 | R5 | ISE 使 FPGA 时序恶化 | 中 | 高：周期收益被频率抵消 | I08 同约束 post-route 比较；根据关键路径选择分级/多周期，重新测吞吐与延迟 | WNS<0、时序未收敛、Fmax 下降或资源超限 |
-| R6 | PYNQ 芯片兼容但板级 image 不兼容 | 高：板型未确认 | 高：PS/PL 无法运行 | B03 核验板型/revision/DDR/时钟/引脚；Y02 锁定 image 与 overlay 元数据并实机启动 | 只凭 XC7Z020 选 image；启动/DDR/overlay 加载失败 |
+| R6 | PYNQ 板级身份/频率证据不完整 | 已降低：正点原子领航者 ZYNQ7020 + 厂家 PYNQ 2.7.0 已实板运行；完整 revision/丝印/独立频率仍缺 | 中：当前演示可运行，但提交证据和跨板保证不足 | B03 留档完整丝印/速度等级、SD 镜像/SHA/写卡、跳线照片和独立 FCLK；Y02 已锁定 bit/hwh hash | 只凭成功启动代替物理板核验；换板/换镜像后不重测 |
 | R7 | PUF 不稳定 | 中（未启动） | P2 高，P0/P1 不应受影响 | P02 多次上电、温度/电压统计，报告 BER；P03 明确纠错与失败阈值 | 重建失败超预先声明阈值；未覆盖环境条件 |
 | R8 | PUF 被综合器优化掉 | 中（未启动） | P2 高 | P01 检查综合后结构、布局与约束，并做受控实测；所有例外有依据 | RO 合并/删除；实现后无振荡；结构与预期不符 |
 | R9 | PUF 占用主线时间 | 高 | 极高：错过核心交付 | Pxx gated；仅 P0/P1 全稳定且 10-21 门槛通过才启动；冻结前未完成就 deferred | 核心任务未 done 却做 PUF；影响 ISE/PYNQ 修复或 10-27 冻结 |
