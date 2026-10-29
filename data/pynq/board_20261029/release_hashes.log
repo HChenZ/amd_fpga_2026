@@ -1,0 +1,6 @@
+board/vivado_zynq7000_xc7z020_pynq/release/pynq.bit: OK
+board/vivado_zynq7000_xc7z020_pynq/release/pynq.hwh: OK
+board/vivado_zynq7000_xc7z020_pynq/release/pynq_svc.bin: OK
+board/vivado_zynq7000_xc7z020_pynq/release/pynq_svc.coe: OK
+board/vivado_zynq7000_xc7z020_pynq/release/pynq_svc.elf: OK
+board/vivado_zynq7000_xc7z020_pynq/release/manifest.json: OK

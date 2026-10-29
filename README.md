@@ -1,6 +1,6 @@
 # RISC-V Lightweight Cryptography SoC with ASCON ISE
 
-2026-10-28 PYNQ 集成交接入口：[今晚逐步操作手册](board/vivado_zynq7000_xc7z020_pynq/handoff_20261028.md)、[本轮验证](board/vivado_zynq7000_xc7z020_pynq/validation_20261028.md)。AXI-Lite/UART 服务链已在正点原子领航者 ZYNQ7020 实板运行；SW/HW/ISE 各 289 组容量内 KAT 与坏 Tag 拒绝通过，证据见 `data/pynq/board_20261028/`。Notebook、长期稳定性和完整错误门禁仍待完成。
+2026-10-29 PYNQ 验证入口：[Notebook/warm benchmark](board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)。AXI-Lite/UART 服务链已在正点原子领航者 ZYNQ7020 实板运行；SW/HW/ISE 各 289 组容量内 KAT 与坏 Tag 拒绝通过；Notebook 从头执行及 KAT #529 的 30 次加解密 benchmark 已通过。完整错误/超时/恢复门禁、长期稳定性和重复上电仍未完成。
 
 在 CICC1000023「基于 RISC-V 的高性能 CPU 设计及 FPGA 验证」基础上扩展轻量级密码学：在自研 RISC-V CPU 上运行 **NIST SP 800-232 Ascon-AEAD128**，加入 custom instruction set extension（ISE），通过 FPGA 实测比较软件与 ISE，再用 PYNQ/Jupyter 完成控制、黄金参考比对和展示。
 

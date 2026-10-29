@@ -1,6 +1,7 @@
 # PYNQ host layer — offline subset
 
 任务卡 A / Y03、Y04 无板部分；owner TBD，2026-10-18。
+2026-10-29：新增永久实板 warm benchmark 与 Notebook 一键测试入口；板级执行仍为 `NOT_RUN`。
 仅 Python 3.11 标准库，无 pip、C 编译器、Vivado、PYNQ 包或实板依赖。
 本目录完成不等于 Y01/Y02、完整 Y03/Y04 或 P1 板级验收完成。
 
@@ -18,8 +19,46 @@
   所以只证明驱动逻辑，不产生硬件证据。
 - `make_pynq_profile.py`：`.hwh` → navigator profile（含 bit/hwh/firmware 的 sha256），
   生成后立刻调 `navigator_backend.validate_overlay()` 自检；`--selftest` 用合成 hwh 跑通链路。
+- `board_benchmark.py`：实板固定输入 warm benchmark。默认使用官方 KAT `#529`
+  （PT=16 bytes、AD=0），每模式预热 5 次后采集 30 次加密和 30 次解密，保留全部
+  `mcycle`、PS wall time、min/median/P95/max、cycles/byte 和相对 SW 加速比。
+- `test_board_benchmark.py`：benchmark 选择器、统计口径和 Notebook 无临时路径的离线测试。
 - 板级设计、寄存器表、GUI 建工程步骤见 `board/vivado_zynq7000_xc7z020_pynq/readme.md`；
   M1 起板步骤见 `docs/pynq_bringup_m1.md`。
+
+## 实板 benchmark
+
+推荐在板端 Jupyter 中打开 `pynq_board_demo.ipynb`，执行
+`Restart Kernel and Run All Cells`。Notebook 会先跑三模式 smoke KAT，再跑固定输入
+warm benchmark，并把身份、JSON 和日志写入新建的 `data/pynq/notebook_<时间>/`。
+Notebook 默认使用板端绝对路径
+`/home/xilinx/jupyter_notebooks/amd_fpga_2026`；若 Jupyter 以 root 启动，
+`Path.home()` 会变成 `/root`，不能依赖 `~` 推断仓库位置。不同路径用
+`ASCON_REPO` 显式覆盖。
+
+如果 Jupyter 内核没有加载 Overlay 所需的权限，可在板上仓库根目录用
+`nbconvert` 以 root 从头执行，无需临时 Python 文件：
+
+```bash
+sudo -E env ASCON_REPO="$PWD" PYTHONDONTWRITEBYTECODE=1 \
+  PYTHONPATH="$PWD" PATH="$PATH" \
+  jupyter nbconvert --to notebook --execute \
+  src/pynq/pynq_board_demo.ipynb \
+  --output pynq_board_demo.executed.ipynb \
+  --output-dir data/pynq
+```
+
+也可以直接运行永久 CLI：
+
+```bash
+sudo -E env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$PWD" PATH="$PATH" \
+  python3 -B src/pynq/board_benchmark.py \
+  --warmup 5 --repetitions 30 \
+  --out data/pynq/board_20261029/pynq_warm_benchmark.json
+```
+
+`mcycle` scope 是 RV32 固件中的 AEAD 调用边界，不包含 PS/UART 传输；wall time 单列，
+只作 PS 端观察值。`--out` 只在全部调用通过 KAT 后生成，失败返回非零且不写通过报告。
 
 从仓库根目录运行（`python` 应为 Python 3.11；验证时使用 3.11.16）：
 

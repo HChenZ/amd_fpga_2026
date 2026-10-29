@@ -56,8 +56,8 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 | Y01 | Zynq PS/PL interface design | TBD | B03、B04；C02 API | 版本化 register/mailbox/buffer 协议 | 控制路径、firmware loading、地址/端序/长度、所有权/一致性、cycle/status/error/timeout 明确，双方可据此实现 | 2026-10-08 | in_progress |
 | Y02 | PYNQ overlay | TBD | Y01、I05、B02 | 独立工程 `board/vivado_zynq7000_xc7z020_pynq/`、overlay 发布清单与 hash | 在已核验 image/板卡上加载，bit/hwh 匹配；PS 可控制 CPU，干净构建可生成 | 2026-10-29 | done |
 | Y03 | Python host API | TBD | Y01、C03；联调需 Y02 | `src/pynq/pynq_transport.py` + 模型测试 + profile 生成器 | 输入 key/nonce/AD/plaintext，返回 ciphertext/tag/cycles，错误显式；匹配锁定 C/Python reference | 2026-10-29 | in_progress |
-| Y04 | Jupyter demo | TBD | Y02、Y03、I07 | 可从头执行 notebook 与说明 | 重启后顺序执行，展示软件/ISE 正确性与加速比，区分 CPU 与端到端计时 | 2026-10-20 | todo |
-| Y05 | automatic benchmark/report | TBD | Y04、V03、I07、I08 | 自动 KAT/benchmark/report 入口和原始数据 | 同次运行可生成结果、失败返回非成功状态；软件/ISE 对比可追溯、无手填性能值 | 2026-10-21 | todo |
+| Y04 | Jupyter demo | TBD | Y02、Y03、I07 | 可从头执行 notebook 与说明 | 重启后顺序执行，展示软件/ISE 正确性与加速比，区分 CPU 与端到端计时 | 2026-10-20 | done |
+| Y05 | automatic benchmark/report | TBD | Y04、V03、I07、I08 | 自动 KAT/benchmark/report 入口和原始数据 | 同次运行可生成结果、失败返回非成功状态；软件/ISE 对比可追溯、无手填性能值 | 2026-10-21 | in_progress |
 | S01 | generic overlay loader | TBD | Y02 | skill 通用 loader | 板型/overlay 路径参数化，校验 bit/hwh/版本，给出适用与失效条件 | 2026-10-21 | todo |
 | S02 | register map helper | TBD | Y01、Y03 | skill 寄存器访问 helper | 地址/位宽/端序由配置提供，读写与边界测试通过，不硬编码 Ascon | 2026-10-21 | todo |
 | S03 | golden reference checker | TBD | C03、Y03 | skill 可注入 golden checker | 算法作为 callback/适配器，报告首个差异与失败；用非 Ascon 示例验证 | 2026-10-21 | todo |
@@ -147,3 +147,17 @@ overlay 实板验收完成；Y03 已有真实板端结果但协议错误/超时/
 Y02 构建与实板收口：100MHz bit/hwh 与服务固件正式纳入 release，时序/DRC 门禁通过，
 实板 overlay/MMIO 通过。Y03 实板三模式功能已通过当前容量范围，但完整错误场景与可复现
 协议证据仍待补齐；Y04/Y05/V04 继续待完成，owner TBD。
+
+2026-10-29：新增永久 `src/pynq/board_benchmark.py`、离线测试及带 smoke+warm benchmark
+的 `src/pynq/pynq_board_demo.ipynb`。Notebook 与 CLI 均从 release 校验身份，固定官方
+KAT `#529`（PT=16 bytes、AD=0）执行 5 次预热和每操作 30 次采样。离线 5/5 测试、
+Python 3.8 AST 与 Notebook 代码单元解析 PASS；实板 Notebook/benchmark 尚未运行，
+该时点 Y04/Y05 均为 in_progress；后续实板执行结果见下条，owner TBD。
+
+2026-10-29 21:09 实板执行：用户完成 Notebook `Run All`，证据位于
+`data/pynq/notebook_20261029_130920/`。三模式 smoke 各 6/6 KAT、6/6 错误 Tag 拒绝；
+KAT #529 每模式 5 次预热后 30 次加解密全部 KAT PASS，cycles 为确定值。
+30 次中位 cycles：加密 SW/HW/ISE=23,342/1,439/3,995（HW 16.221×、ISE 5.843×）；
+解密 24,005/1,388/4,385（HW 17.295×、ISE 5.474×）。Y04 改为 done；
+Y05 的 benchmark 子项已通过，但因 V03 错误/超时/恢复门禁未完成，Y05 保持 in_progress。
+详细证据与边界见 `board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md`，owner TBD。

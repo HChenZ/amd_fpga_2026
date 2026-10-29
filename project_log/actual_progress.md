@@ -1,5 +1,64 @@
 # 实际进度
 
+## 2026-10-29 21:09 — PYNQ Notebook 与 30 次 warm benchmark 实板通过
+
+owner TBD。用户在领航者 ZYNQ7020 上从头执行 `pynq_board_demo.ipynb`，并将结果下载到
+`data/pynq/notebook_20261029_130920/`。环境为 PYNQ 2.7.0 / Python 3.8.2 /
+Linux 5.4.0-xilinx-v2020.2 armv7l；板端 Git commit `ac9143d`，release source commit
+`86dc10f`，bit/hwh SHA 与正式发布一致，服务为 `pynq-svc-v1`、`simulated=false`、
+`selftest_mask=7`。
+
+- Notebook smoke：SW/HW/ISE 各 6/6 容量内 KAT、6/6 错误 Tag 拒绝，整体 PASS。
+- Warm benchmark：固定锁定官方 KAT `#529`（PT=16B、AD=0），每模式预热 5 次后各采集
+  30 次加密和 30 次解密；全部 CT/tag/PT 匹配、`simulated=false`、`mcycle>0`。
+- `mcycle` scope 为 RV32 固件 AEAD 调用边界，不含 PS/UART。30 次原始 cycles 在各档
+  完全一致，非单次外推。中位结果：
+
+| mode | enc cycles | enc cpb | enc speedup | dec cycles | dec cpb | dec speedup |
+|---|---:|---:|---:|---:|---:|---:|
+| SW | 23,342 | 1,458.875 | 1.000× | 24,005 | 1,500.312 | 1.000× |
+| HW | 1,439 | 89.938 | 16.221× | 1,388 | 86.750 | 17.295× |
+| ISE | 3,995 | 249.688 | 5.843× | 4,385 | 274.062 | 5.474× |
+
+POST-run 校验独立确认 raw cycles 数组长度均为 30、全部正整数且各档唯一值只有一个；
+smoke JSON、benchmark JSON 均在加载后断言 PASS。证据文件 SHA-256 已记录在
+`board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md`。
+
+- Y04 改为 done。Y05 的自动 benchmark/JSON 子项通过，但依赖 V03 的超容量、
+  半帧超时恢复、重复请求压力和缓存可见性门禁仍未闭环，因此 Y05 保持 in_progress。
+- 未验证：已执行 `.ipynb` 本体/截图尚未归档，独立 FCLK 测量、重复上电稳定性和
+  完整错误恢复场景仍为 `NOT_RUN/not_measured`。下一接收 V03/V04/D02，owner TBD。
+
+## 2026-10-29 — PYNQ 永久 warm benchmark 与 Notebook 测试入口
+
+owner TBD。实板 smoke 已在当前 release 上再次通过：SW/HW/ISE 各 6/6 KAT、6/6 错误 Tag
+拒绝，`release_hashes.log` 六个文件全部 `OK`。用户明确说明坏 Tag 恢复此前已通过，本轮
+不再重复。10-29 数据目录仍为未提交证据，保留原样。
+
+- 新增 `src/pynq/board_benchmark.py`：默认固定锁定官方 KAT `#529`（PT=16 bytes、AD=0），
+  每模式预热 5 次，再各采集 30 次加密和解密。每次调用均比对 KAT、拒绝模拟标志并检查
+  `mcycle > 0`；JSON 保留原始 cycles、PS wall time、min/median/P95/max 和相对 SW 加速比。
+  measurement scope 明确为固件 AEAD 调用边界，不包含 PS/UART。
+- `board_demo.py` 抽出 `prepare_hardware()`，KAT 与 benchmark 共用 release hash/profile/
+  Overlay/ID/boot 握手入口，不修改 RTL、固件、bit/hwh 或地址。
+- 更新 `pynq_board_demo.ipynb`：`Restart Kernel and Run All Cells` 依次执行 smoke KAT 和
+  warm benchmark，每个结果仅在 PASS 后写入新建的 `data/pynq/notebook_<时间>/`；支持
+  `ASCON_REPO`，并使用 `nbconvert` 从头执行路线，不再依赖 `/tmp` Python 脚本。
+- 新增 `test_board_benchmark.py`。实际命令与结果：
+  `python -B src/pynq/test_board_benchmark.py` → 5 tests / OK / exit 0；
+  Python 3.8 AST 解析三个 Python 文件 PASS；
+  Notebook JSON 及 4 个代码单元 Python 3.8 AST PASS；
+  `python -B src/pynq/board_benchmark.py --help` → exit 0；`git diff --check` → exit 0。
+  既有 PYNQ 回归同时复跑 PASS：transport 14/14、mailbox 24/24、navigator 8/8、
+  host API 17/17。
+- 板端首次尝试 Notebook 时，root Jupyter 的 `Path.home()` 为 `/root`，与终端
+  `~` 指向 `/home/xilinx` 不同，路径断言在加载 Overlay 前失败。Notebook 默认路径
+  已改为板端绝对路径 `/home/xilinx/jupyter_notebooks/amd_fpga_2026`，仍允许
+  `ASCON_REPO` 覆盖；板级 benchmark 尚未执行。
+- 未验证：真实 PYNQ Notebook 顺序执行、warm benchmark、PS wall time、完整错误/恢复门禁。
+  因此 Y04/Y05 只从 todo 改为 in_progress，不宣称完成。下一接收：在板上执行 Notebook 或
+  permanent CLI，并把结果保存在 `data/pynq/notebook_<时间>/`，owner TBD。
+
 ## 2026-10-28 23:58 — PYNQ 实板三模式容量内 KAT 通过
 
 owner TBD。正点原子领航者 ZYNQ7020 通过厂家 PYNQ 2.7.0 / Python 3.8.2 启动，网络地址为

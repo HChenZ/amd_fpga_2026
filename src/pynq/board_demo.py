@@ -1,8 +1,7 @@
-"""Hardware-only entrypoint. Run from repository root on the board (Python >=3.8)."""
+"""Hardware-only KAT entrypoint. Run from repository root on the board (Python >=3.8)."""
 import argparse
 import hashlib
 import json
-import time
 from pathlib import Path
 if __package__:
     from .ascon_host_api import AsconHost, AuthenticationError
@@ -19,7 +18,8 @@ else:
     from make_pynq_profile import build_profile
     from golden_checker import parse_kat
 
-def run(release, full_kat=False):
+def prepare_hardware(release):
+    """Validate and open the released overlay without changing the SoC design."""
     from pynq import Overlay, MMIO
     release=Path(release).resolve()
     manifest=json.loads((release/'manifest.json').read_text(encoding='utf-8'))
@@ -39,6 +39,10 @@ def run(release, full_kat=False):
     regs.check_identity()
     transport=PynqUartTransport(regs,expected_firmware_id='pynq-svc-v1')
     backend=MailboxBackend(transport,mode='sw',timeout_s=30.0)
+    return backend, transport, overlay, release, manifest
+
+def run(release, full_kat=False):
+    backend, transport, overlay, release, manifest = prepare_hardware(release)
     report={'kind':'hardware','service':transport.last_service,'modes':{},'board_validation':'NOT_RUN'}
     cases=[c for c in parse_kat() if len(c['PT'])<=16 and len(c['AD'])<=16]
     if not full_kat: cases=[cases[i] for i in (0,1,16,17,144,288)]

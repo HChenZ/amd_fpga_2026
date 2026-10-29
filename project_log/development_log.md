@@ -415,3 +415,19 @@
 完成工作区/远端审查、安全快进与开发分支；审查P0/PUF源差异；实现Tcl自动BD、固件/驱动/桥修复、真实CPU+服务+AXI-Lite/UART联合验证、离线回归、SHA发布与中文上板手册。实际命令/退出码/工具/失败原件位于build/reports/pynq_final_20261028，最终状态见PYNQ validation文档。按本轮用户授权执行中文提交及main交付；不改历史板级证据。
 
 构建/发布收口：build.tcl创建BD，rebuild_firmware.tcl修旧COE依赖后完成综合/实现/bitstream；verify.tcl重开routed设计实际运行setup/hold/DRC门禁PASS，发布sha256sum -c全部PASS。后续源码空白检查发现TB两行尾空格，单独清除，不改变仿真语义。
+
+## 2026-10-29 — PYNQ benchmark 与 Notebook 测试入口
+
+- 将临时 benchmark 逻辑转为 `src/pynq/board_benchmark.py` 永久入口，复用
+  `board_demo.prepare_hardware()` 的 release 校验、Overlay/profile 和 boot 握手。
+- Notebook 从仓库路径顺序运行 6-KAT smoke 与 KAT #529 的 5 次 warmup、30 次加解密采样，
+  按时间创建 `data/pynq/notebook_<时间>/` 并保存 identity、JSON 和日志。
+- 新增离线单测并完成 Python 3.8 AST、Notebook JSON/代码解析和 CLI help 检查；
+  既有 transport 14/14、mailbox 24/24、navigator 8/8、host 17/17 回归通过。
+  未加载 PYNQ、未改 RTL/固件/release，实板结果等待下一次板端执行。
+- 修复 root Jupyter 下 `Path.home()` 指向 `/root` 导致仓库路径断言失败：
+  Notebook 默认使用 `/home/xilinx/jupyter_notebooks/amd_fpga_2026`，并保留
+  `ASCON_REPO` 显式覆盖，新增离线断言防止回退。
+- 用户随后完成板端 Notebook `Run All` 并下载证据；独立校验 smoke 与 30 次加解密
+  benchmark 原始数组通过。新增 `validation_20261029.md` 固化环境、release 身份、
+  结果表、scope、文件 SHA 与未验项；Y04 done，Y05 等待 V03。
