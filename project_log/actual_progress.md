@@ -1,5 +1,50 @@
 # 实际进度
 
+## 2026-10-29 21:40 — V03 实板错误/恢复门禁 9/9 PASS
+
+owner TBD。用户在 PYNQ 2.7.0 / Python 3.8.2 上从头执行
+`pynq_board_error_gate.ipynb`，结果归档于 `data/pynq/error_gate_20261029_134023/`。
+同 release bit/hwh/firmware SHA、`pynq-svc-v1`、`simulated=false`、`selftest_mask=7`。
+
+- 9/9 checks PASS，`reset_count=7` 与预期一致，epoch 从 1 连续推进到 8。
+- 17B PT 与 17B AD 均由真实板端返回 `LENGTH`；随后 reset、epoch 变化并通过三模式 KAT。
+- 60B 半帧在 0.25s 内无响应；reset 后恢复。
+- 完整 96B 请求提交后使用已过期 deadline，触发 `BackendTimeoutError`；reset 后恢复。
+- 重复 request_id 首次 `OK`、重复请求 `INTERNAL`；错误 epoch 返回 `INTERNAL`。
+- 连续 5 帧不读响应真实触发 RX FIFO overflow；reset 后恢复。
+- 每模式连续执行 50 次加密+50 次解密，全部匹配 KAT。cycles 均近似确定：
+  SW decrypt median 24,005（max 24,039）、HW decrypt 1,388（max 1,486）、
+  ISE decrypt 4,385（max 4,467）。
+- 当前 PS/PL ABI 为 AXI-Lite FIFO + RV32 UART uncached MMIO，无共享 cacheable buffer；
+  缓存可见性按架构记录为 `NOT_APPLICABLE`，不是跳过失败。
+- 已执行 `pynq_board_error_gate.ipynb` 本体也已归档，3 个代码单元均有执行计数和输出。
+- 文件 SHA-256 与完整检查表见 `board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md`。
+- Y03、Y05、V03 改为 done。下一接收 V04 core freeze regression、B03 实物/频率证据和
+  D02 数据表，owner TBD。
+
+## 2026-10-29 — V03 错误/恢复门禁永久入口就绪（板级待运行）
+
+owner TBD。新增 `src/pynq/board_error_gate.py`、`pynq_board_error_gate.ipynb` 和
+`test_board_error_gate.py`，用于关闭 V03 尚缺的板级错误/恢复场景。未改 RTL、固件、
+bit/hwh、release 或协议语义。
+
+- 覆盖：17B plaintext、17B AD、半帧、真实 transport deadline、重复 request_id、
+  错误 epoch、RX FIFO overflow，以及每模式 50 次合法加解密往返。
+- 每类故障后执行 SoC reset、确认 epoch 改变，并重跑 SW/HW/ISE 的固定官方 KAT。
+- 17B 用例只发送 48-byte header，不压入不可信 body：固件可在读完 header 后返回
+  `LENGTH`，随后 reset 清 FIFO；避免测试因固件不再消费 body 而卡在提交阶段。
+- Y01 使用 AXI-Lite FIFO + RV32 UART uncached MMIO，没有共享可缓存 buffer，报告中
+  将 cache visibility 标为 `NOT_APPLICABLE` 并附架构理由，而不是伪造 shared-BRAM 测试。
+- 离线验证：`python -B src/pynq/test_board_error_gate.py` → 6 tests / OK / exit0；
+  Python 3.8 AST、Notebook 4 个代码单元解析 PASS；CLI `--help` exit0；
+  失败注入确认 JSON 仍写盘且 CLI exit1；`git diff --check` exit0。
+- 该时点尚未取得上述场景的真实板级结果，V03/Y05/V04 为 in_progress/todo；
+  后续板端结果见本文件上方 21:40 条目。
+- 板端反馈首次执行生成的 `.log` 为空。根因是 harness 成功路径只返回 JSON、没有 stdout
+  print，而 Notebook 的日志来自 stdout/stderr 重定向。现已在每个 check 输出
+  START/PASS/FAIL，并在开头/结尾输出 run 参数、最终状态、check 数与 reset 数；
+  离线测试增至 7 项，重新执行板端后 log 不应再为空。
+
 ## 2026-10-29 21:09 — PYNQ Notebook 与 30 次 warm benchmark 实板通过
 
 owner TBD。用户在领航者 ZYNQ7020 上从头执行 `pynq_board_demo.ipynb`，并将结果下载到

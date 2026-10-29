@@ -48,6 +48,36 @@ Python、MMIO 和串口传输，只作端到端描述，不参与 speedup。
 `mcycle` scope 是 RV32 固件 `svc_aead_encrypt/decrypt` 调用边界，不包含 PS/UART。
 FCLK 配置为 100 MHz；独立频率测量仍为 `not_measured`。
 
+## V03 错误与恢复门禁
+
+2026-10-29T13:40:23Z 在相同 release 和板卡上完成永久错误门禁。`9/9` checks PASS，
+`7/7` 次故障恢复成功，epoch 从 1 依次推进到 8；每次 reset 后 SW/HW/ISE 三个模式的
+KAT 都重新通过。
+
+| check | 结果 | 关键证据 |
+|---|---|---|
+| 17B plaintext | PASS | 板端返回 `LENGTH`，epoch 1→2 后三模式 KAT PASS |
+| 17B AD | PASS | 板端返回 `LENGTH`，epoch 2→3 后三模式 KAT PASS |
+| 半帧 | PASS | 60B 部分帧在 0.25s 内无响应；epoch 3→4 后恢复 |
+| deadline | PASS | 96B 请求已提交，过期 deadline 抛 `BackendTimeoutError`；epoch 4→5 后恢复 |
+| 重复 request_id | PASS | 首次 `OK`、重复帧 `INTERNAL`；epoch 5→6 后恢复 |
+| 错误 epoch | PASS | 返回 `INTERNAL`；epoch 6→7 后恢复 |
+| RX FIFO overflow | PASS | 连续 5 帧不读响应触发 overflow；epoch 7→8 后恢复 |
+| 三模式连续请求 | PASS | 每模式 50 次加密+解密全部匹配 KAT |
+| 初始健康检查 | PASS | `pynq-svc-v1`、`simulated=false`、selftest mask=7 |
+
+缓存可见性按当前架构记为 `NOT_APPLICABLE`：PS/PL 使用 AXI-Lite FIFO 与 RV32 UART
+uncached MMIO (`0x20000000`)，没有共享 cacheable buffer。
+
+错误门禁证据目录：`data/pynq/error_gate_20261029_134023/`
+
+```text
+f04a034bd2673bcfc1d210842954ebd762b89f15185c481482dc504bd7404850  identity.json
+54380aa840fa2cbe8fd6010ea0a1b2bee08fe1d7a85576243298ea118c22b882  pynq_board_error_gate.json
+70e8b50b3a227154eee3057e37892f510e06fe9a057447129b769bf424fd1a01  pynq_board_error_gate.log
+a8eed832c0428ef4551d8970c3102a2c8df5b3701dbb6f85d0a95c2debaa1292  pynq_board_error_gate.ipynb
+```
+
 ## 证据文件
 
 目录：`data/pynq/notebook_20261029_130920/`
@@ -63,9 +93,10 @@ fb59cd8391dbe193447037120e4eb5c8e4a90e6822b0ad16cfea33d330fdfea1  pynq_warm_benc
 ## 结论与边界
 
 - Y04 的 Notebook 从头顺序执行、三模式正确性和 CPU/wall time 分列已取得实板证据。
-- Y05 的自动 smoke 与固定输入 benchmark JSON 已能由同一 Notebook 生成；完整验收仍等待 V03。
-- 尚未归档已执行 `.ipynb` 本体或截图，只有其生成的身份、JSON 和日志。
-- 尚未完成超容量 board 请求、半帧超时恢复、重复请求压力、缓存可见性门禁、
-  重复上电稳定性和独立 FCLK 测量。
+- Y05 的自动 smoke、固定输入 benchmark、失败非零出口和原始数据已具备实板证据。
+- V03 的板级错误、超时、重复命令、RX overflow 与恢复门禁全部通过。
+- error-gate 已执行 Notebook 本体、身份、JSON 和日志均已归档；warm-benchmark
+  Notebook 的已执行本体仍未归档。
+- 尚未完成重复上电稳定性和独立 FCLK 测量；缓存可见性按当前 UART 架构为 N/A。
 - 不把本结果与 PL-only 固件历史 cycles 混合；报告性能表以本目录同一次 PYNQ run 为准。
 

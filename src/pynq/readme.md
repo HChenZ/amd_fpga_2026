@@ -23,6 +23,13 @@
   （PT=16 bytes、AD=0），每模式预热 5 次后采集 30 次加密和 30 次解密，保留全部
   `mcycle`、PS wall time、min/median/P95/max、cycles/byte 和相对 SW 加速比。
 - `test_board_benchmark.py`：benchmark 选择器、统计口径和 Notebook 无临时路径的离线测试。
+- `board_error_gate.py`：V03 实板错误/恢复门禁。测试 17-byte 长度拒绝、半帧、
+  transport deadline、重复 request_id、错误 epoch 和 RX FIFO overflow；每个故障后
+  reset、验证 epoch 改变，并重跑 SW/HW/ISE KAT，最后执行每模式 50 次合法往返压力。
+- `test_board_error_gate.py`：门禁的 header-only 注入、状态契约、Notebook 与失败
+  非零退出离线测试。
+- `pynq_board_error_gate.ipynb`：执行完整 V03 门禁并把身份、JSON、日志写入
+  `data/pynq/error_gate_<时间>/`。
 - 板级设计、寄存器表、GUI 建工程步骤见 `board/vivado_zynq7000_xc7z020_pynq/readme.md`；
   M1 起板步骤见 `docs/pynq_bringup_m1.md`。
 
@@ -59,6 +66,26 @@ sudo -E env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$PWD" PATH="$PATH" \
 
 `mcycle` scope 是 RV32 固件中的 AEAD 调用边界，不包含 PS/UART 传输；wall time 单列，
 只作 PS 端观察值。`--out` 只在全部调用通过 KAT 后生成，失败返回非零且不写通过报告。
+
+## 实板错误与恢复门禁
+
+在板端 Jupyter 中打开 `pynq_board_error_gate.ipynb` 并执行
+`Restart Kernel and Run All Cells`。测试会主动复位 RV32 SoC，但不会重新生成或修改
+bit/hwh/firmware。失败报告也会保存，最后一个单元再以断言终止。
+
+也可以在仓库根目录运行永久 CLI：
+
+```bash
+sudo -E env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$PWD" PATH="$PATH" \
+  python3 -B src/pynq/board_error_gate.py \
+  --stress-per-mode 50 \
+  --out data/pynq/board_error_gate.json
+```
+
+17-byte 超长用例只发送 48-byte header，不发送不可信 body，避免固件正确处理长度拒绝后
+主机仍阻塞于未消费 body。报告通过标准是全部 check 为 PASS；任何失败写入 JSON 后
+CLI 返回非零。当前 Y01 使用 UART uncached MMIO，没有共享可缓存 buffer，因此缓存可见性
+记为 `NOT_APPLICABLE` 并附架构理由。
 
 从仓库根目录运行（`python` 应为 Python 3.11；验证时使用 3.11.16）：
 

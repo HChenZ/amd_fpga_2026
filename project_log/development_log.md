@@ -431,3 +431,15 @@
 - 用户随后完成板端 Notebook `Run All` 并下载证据；独立校验 smoke 与 30 次加解密
   benchmark 原始数组通过。新增 `validation_20261029.md` 固化环境、release 身份、
   结果表、scope、文件 SHA 与未验项；Y04 done，Y05 等待 V03。
+
+## 2026-10-29 — V03 板级错误门禁实现
+
+- 新增永久 board harness/Notebook/离线测试，覆盖长度、半帧、deadline、重复 ID、
+  stale epoch、RX overflow、恢复后三模式 KAT 和连续请求压力。
+- 超长请求只发送 header，避免未消费 body 阻塞；故障后统一 reset、epoch 校验并重跑 KAT。
+- 完成 Python 3.8 AST、Notebook 解析、CLI failure exit1/JSON 落盘与 6 项离线测试；
+  未加载 PYNQ，未产生板级结果。
+- 板端发现 error-gate 成功日志为 0 字节：原 harness 只写 JSON，stdout 为空。补每个
+  check 的 START/PASS/FAIL 和 run 起止摘要，使 Notebook 捕获的日志可独立审计。
+- 用户重新执行后 9/9 checks PASS、7 次恢复和每模式 50 次压力全部通过。归档 JSON/log/
+  identity 及 SHA，更新 validation、任务板和 actual progress；Y03/Y05/V03 收口。

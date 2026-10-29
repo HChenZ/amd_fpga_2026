@@ -33,7 +33,7 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 | I08 | PPA comparison | TBD | I05、B03 | docs/ascon_ppa_comparison.md（芯片级 STA 证据）；板上 PPA 待 B03/V01；板级 IO 覆盖见 docs/io_timing_signoff.md | 同工具/part/约束/策略，LUT/FF/BRAM/DSP/Fmax/时序均有证据；芯片级收敛 WNS+0.007/0 失败端点；IO 覆盖已闭合（no_input_delay/no_output_delay=0），但板级真实延迟 not_measured，不标板级 IO 已签核 | 2026-10-20 | done |
 | V01 | baseline regression/counter sanity | TBD | 完整验收需 B02、B03、B04；模块测试可先行 | 修订dcache TB/独立事务/故障注入/6中断场景及完整smoke、regression均PASS；ISA/SoC/板级完整门禁待验 | 保存可重跑程序/TB/日志；mcycle 读取与溢出、计数开销已检查；支持范围明确 | 2026-09-29 | in_progress |
 | V02 | software/ISE differential verification | TBD | I05、I06、C03 | ACB 套件（sw/hw/ise 同 KAT + 篡改拒绝 + stall/reset 注入）证据 data/ascon/results/key_lifecycle/*_timing_acb*.json | 两套固件均通过可信 KAT，篡改拒绝；流水 hazard/flush 场景无回归 | 2026-10-13 | done |
-| V03 | PS/PL end-to-end regression | TBD | Y02、Y03、V02 | 自动板级测试/错误场景日志 | 软件/ISE 输入到输出可复现；错误 tag、超时、长度边界、重复命令、缓存可见性可检查 | 2026-10-20 | in_progress |
+| V03 | PS/PL end-to-end regression | TBD | Y02、Y03、V02 | 自动板级测试/错误场景日志 | 软件/ISE 输入到输出可复现；错误 tag、超时、长度边界、重复命令、缓存可见性可检查 | 2026-10-20 | done |
 | V04 | core freeze regression | TBD | Y05、I08、V03 | 冻结回归清单与证据索引 | P0/P1 验收齐全、无未关闭阻断缺陷；冻结哈希与环境留档；不以 P2 拖延 | 2026-10-27 | todo |
 | V05 | standalone Ascon AEAD RTL verification and main integration | TBD | C01；独立于CPU ISE | sim/ascon TB/runner、data/ascon/results/rtl_integration_regression.*、docs/ascon_rtl_decrypt_validation.md | 最新main上整合、远端Decrypt接口兼容；289官方KAT、篡改/超长/reset、round/P8/P12、全生产编译仿真PASS；旧工作区保留 | 2026-10-09 | done |
 
@@ -55,9 +55,9 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 |---|---|---|---|---|---|---|---|
 | Y01 | Zynq PS/PL interface design | TBD | B03、B04；C02 API | 版本化 register/mailbox/buffer 协议 | 控制路径、firmware loading、地址/端序/长度、所有权/一致性、cycle/status/error/timeout 明确，双方可据此实现 | 2026-10-08 | in_progress |
 | Y02 | PYNQ overlay | TBD | Y01、I05、B02 | 独立工程 `board/vivado_zynq7000_xc7z020_pynq/`、overlay 发布清单与 hash | 在已核验 image/板卡上加载，bit/hwh 匹配；PS 可控制 CPU，干净构建可生成 | 2026-10-29 | done |
-| Y03 | Python host API | TBD | Y01、C03；联调需 Y02 | `src/pynq/pynq_transport.py` + 模型测试 + profile 生成器 | 输入 key/nonce/AD/plaintext，返回 ciphertext/tag/cycles，错误显式；匹配锁定 C/Python reference | 2026-10-29 | in_progress |
+| Y03 | Python host API | TBD | Y01、C03；联调需 Y02 | `src/pynq/pynq_transport.py` + 模型测试 + profile 生成器 | 输入 key/nonce/AD/plaintext，返回 ciphertext/tag/cycles，错误显式；匹配锁定 C/Python reference | 2026-10-29 | done |
 | Y04 | Jupyter demo | TBD | Y02、Y03、I07 | 可从头执行 notebook 与说明 | 重启后顺序执行，展示软件/ISE 正确性与加速比，区分 CPU 与端到端计时 | 2026-10-20 | done |
-| Y05 | automatic benchmark/report | TBD | Y04、V03、I07、I08 | 自动 KAT/benchmark/report 入口和原始数据 | 同次运行可生成结果、失败返回非成功状态；软件/ISE 对比可追溯、无手填性能值 | 2026-10-21 | in_progress |
+| Y05 | automatic benchmark/report | TBD | Y04、V03、I07、I08 | 自动 KAT/benchmark/report 入口和原始数据 | 同次运行可生成结果、失败返回非成功状态；软件/ISE 对比可追溯、无手填性能值 | 2026-10-21 | done |
 | S01 | generic overlay loader | TBD | Y02 | skill 通用 loader | 板型/overlay 路径参数化，校验 bit/hwh/版本，给出适用与失效条件 | 2026-10-21 | todo |
 | S02 | register map helper | TBD | Y01、Y03 | skill 寄存器访问 helper | 地址/位宽/端序由配置提供，读写与边界测试通过，不硬编码 Ascon | 2026-10-21 | todo |
 | S03 | golden reference checker | TBD | C03、Y03 | skill 可注入 golden checker | 算法作为 callback/适配器，报告首个差异与失败；用非 Ascon 示例验证 | 2026-10-21 | todo |
@@ -161,3 +161,16 @@ KAT #529 每模式 5 次预热后 30 次加解密全部 KAT PASS，cycles 为确
 解密 24,005/1,388/4,385（HW 17.295×、ISE 5.474×）。Y04 改为 done；
 Y05 的 benchmark 子项已通过，但因 V03 错误/超时/恢复门禁未完成，Y05 保持 in_progress。
 详细证据与边界见 `board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md`，owner TBD。
+
+2026-10-29 V03 门禁工具就绪：新增 `src/pynq/board_error_gate.py`、
+`pynq_board_error_gate.ipynb` 和离线测试。覆盖 17-byte 长度拒绝（仅发 header）、半帧、
+真实 transport deadline、重复 request_id、错误 epoch、RX FIFO overflow；每个故障后
+reset/epoch 校验并重跑三模式 KAT，另执行每模式 50 次往返压力。离线用例 PASS；
+实板尚未运行，V03/Y05/V04 状态不变，owner TBD。
+
+2026-10-29 21:40 实板补测：`pynq_board_error_gate.ipynb` 从头运行，
+9/9 checks PASS、7/7 次 reset/epoch 恢复 PASS；17B PT/AD 返回 LENGTH，半帧和
+RX overflow 后均可恢复，deadline 抛 BackendTimeoutError，重复 ID/错误 epoch 返回
+INTERNAL；每模式 50 次加解密全部匹配 KAT。证据在
+`data/pynq/error_gate_20261029_134023/`。Y03、Y05、V03 改为 done；V04 进入下一门禁，
+owner TBD。
