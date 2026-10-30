@@ -1,5 +1,26 @@
 # 开发记录
 
+## 2026-10-31 — L3 Notebook 配置项注释（owner TBD）
+
+- 按用户明确要求把五个 Notebook 的仓库定位改为固定路径
+  `/home/xilinx/jupyter_notebooks/amd_fpga_2026`，删除 `ASCON_REPO`/cwd 搜索，
+  并同步 README；换路径时必须统一修改五个文件中的 `repo` 常量。
+- 修复从 `test_board/` 子目录启动时仓库探测只向上找两级的缺陷；改为遍历全部父目录，
+  并在找不到时输出搜索清单。子目录解析测试、五项 Notebook JSON/AST 通过。
+- 给五个上板 Notebook 的 `None`、空列表、缺失工件状态和可选环境变量增加行内说明，
+  区分自动运行时字段、确需人工填写的路径与 UNSAFE/部分结果开关。
+- 同步用户改名后的 `l3_20_gpio.ipynb`、`l3_30_dma.ipynb` 文档引用；JSON 证据文件名
+  保持不变。JSON/AST 与 diff whitespace 检查通过，板级仍为 `not_run`。
+
+## 2026-10-30 — PYNQ Skill L3 上板 Notebook（owner TBD）
+
+- 按人工 L3、无 with/without 对照的边界新增五个 Notebook：预检、Ascon release、
+  BaseOverlay LED GPIO、独立 AXI DMA 回环和汇总；结果直接写入 `data/skill/`。
+- Notebook 对真实工件、manifest、Skill SHA、服务身份、`simulated=false` 和 claim level
+  做机器断言；DMA 工件缺失时 fail closed，汇总不允许把只有部分阶段的运行写成完整 L3。
+- 离线验证：5 个 Notebook JSON/AST 通过；既有 Skill 单测 47/47、变异 13/13。
+  PYNQ、L2 和真实板级结果均未执行，状态保持 `not_run`。
+
 ## 2026-10-30 — pynq_puf3 完整容量内 KAT 实板复验（提交 7544921，owner TBD）
 
 - Notebook 切换 `FULL_KAT=True` 并保存 `data/pynq_puf3/notebook_20261030_144328/`：

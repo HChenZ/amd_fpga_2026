@@ -1,5 +1,49 @@
 # 实际进度
 
+## 2026-10-31 — L3 Notebook 配置项注释与文件名同步（board NOT_RUN，owner TBD）
+
+- 按用户要求，五个 L3 Notebook 已统一固定仓库绝对路径为
+  `/home/xilinx/jupyter_notebooks/amd_fpga_2026`，移除 `ASCON_REPO` 与父目录搜索；
+  路径不存在时直接给出固定路径断言。README 同步说明“换路径需统一修改五个 Notebook”，
+  不再把环境变量作为入口。JSON/AST 与 `git diff --check` 通过，板上 NOT_RUN。
+- 用户从 `skill/ab_eval_pynq/test_board/` 直接启动时，`find_repo()` 只检查当前目录与
+  两级父目录，未覆盖仓库根目录位于第四级的情况，实际报
+  `RuntimeError: repository not found; set ASCON_REPO`。五个 Notebook 已改为遍历全部
+  父目录，并让异常列出实际搜索路径；从该子目录实测可解析到仓库根目录，JSON/AST
+  与 `git diff --check` 通过。未上板，不能据此判断 PYNQ 环境。
+- 在 `skill/ab_eval_pynq/test_board/` 五个 Notebook 中，为自动采集字段、可选环境变量、
+  安全开关、缺失工件占位和刻意故障值逐项添加行内注释；明确 `None`/空列表不是待手工
+  填写的常量，`outputs=[]` 和 `execution_count=null` 也会在 Jupyter 实际运行时生成。
+- 按用户当前文件名同步 `l3_20_gpio.ipynb`、`l3_30_dma.ipynb` 的 README 和进度引用；
+  JSON 结果文件名仍保持 `20_non_ascon_gpio.json`、`30_non_ascon_dma.json`，避免改变
+  已定义的证据 schema。
+- 验证：5 个 Notebook JSON 可解析、全部代码单元 Python AST 通过、`git diff --check`
+  exit 0。未加载 PYNQ，未产生板级数据，未改 RTL/固件/release；未 commit/push。
+
+## 2026-10-30 — PYNQ Skill L3 上板 Notebook 入口就绪（board NOT_RUN，owner TBD）
+
+- 新增 `skill/ab_eval_pynq/test_board/`：预检、Ascon release、非 Ascon AXI GPIO、
+  非 Ascon AXI DMA 回环和结果汇总五个 Notebook；所有执行入口均为 `.ipynb`。
+  原始结果统一写入 `data/skill/l3_<时间>/`，由 `data/skill/l3_current_session.json`
+  关联同一 session。
+- `l3_00_preflight.ipynb` 冻结 Skill/release/manifest 哈希，并用篡改 manifest 证明下载前
+  hash gate 有效；`l3_10_ascon_release.ipynb` 使用通用 artifact/overlay 检查和真实服务握手；
+  `l3_20_gpio.ipynb` 使用 PYNQ BaseOverlay LED GPIO 和 contract/RegisterMap，
+  原状态在 `finally` 中恢复。
+- 非 Ascon DMA bit/hwh 当前未准备。`l3_30_dma.ipynb` 已包含有界 DMA、
+  sentinel、实际长度、golden 和 mutation 检查；缺少显式 `L3_DMA_BIT` +
+  `L3_DMA_MANIFEST` 时会保存 `NOT_RUN` 并非零退出，不能误报 L3 PASS。
+- 验证：5 个 Notebook JSON 可解析、全部代码单元 Python AST 通过；D 盘 Python 3.14
+  在显式工作区临时目录下运行既有 Skill 测试 **47 passed**，变异检查
+  **13/13 killed**。汇总逻辑在临时 session 中验证了 DMA 缺失时
+  `PARTIAL/FAIL`、补齐 DMA 后 `PASS` 三种路径。本机无 `nbformat`，未执行
+  `nbformat.validate`；未加载 PYNQ、未生成实板 L3 数据，L2 运行未触碰。
+- PYNQ 2.7 的 `Clocks.fclk0_mhz` 只作为寄存器派生观察值记录，不作为硬失败；
+  HWH 设计值仍要求 100 MHz，真实频率沿用 Vivado、mcycle 或独立测量证据。
+- 文档：`skill/ab_eval_pynq/test_board/readme.md` 给出板端 Jupyter 顺序执行、
+  `nbconvert` 无界面运行、DMA 工件接口和完整/部分 L3 判定；`data/skill/readme.md`
+  规定 `hardware_measured`/`simulated`/`not_measured` 口径。未 commit/push。
+
 ## 2026-10-30 — pynq_puf3 完整容量内 KAT 实板通过（提交 7544921，owner TBD）
 
 - 证据：[result.json](../data/pynq_puf3/notebook_20261030_144328/result.json)、

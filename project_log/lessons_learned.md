@@ -1,5 +1,14 @@
 # 经验与踩坑
 
+## 2026-10-31 — 路径发现不能只检查有限层父目录
+
+- L3 入口最初只检查 `cwd` 与两级父目录，而 `skill/ab_eval_pynq/test_board/` 到仓库根
+  实际是四级，导致 `repository not found`。若采用自动发现，应遍历
+  `Path.cwd().parents` 并在失败信息打印候选路径。
+- 本项目随后按用户要求改为唯一固定板端路径
+  `/home/xilinx/jupyter_notebooks/amd_fpga_2026`；此时不再读取环境变量或 cwd，
+  避免同一 Notebook 在不同路径下产生不可比证据。
+
 ## 2026-10-30 — 完整 KAT 通过不等于 PUF 验收完成
 
 - `FULL_KAT=True` 的第二次板测已将 PUF3 的 SW/HW/ISE KAT 从代表性样本扩展到项目定义的
