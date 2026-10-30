@@ -1,0 +1,5 @@
+class Clocks:
+    fclk0_mhz = 100.0
+    fclk1_mhz = 50.0
+    fclk2_mhz = 50.0
+    fclk3_mhz = 50.0
