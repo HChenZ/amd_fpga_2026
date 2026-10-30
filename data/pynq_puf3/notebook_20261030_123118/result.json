@@ -1,0 +1,76 @@
+{
+  "timestamp": "2026-10-30T12:31:19.620816+00:00",
+  "kind": "physical_board_pynq_puf3",
+  "host": "Linux-5.4.0-xilinx-v2020.2-armv7l-with-glibc2.29",
+  "python": "3.8.2 (default, Mar 13 2020, 10:14:16) \n[GCC 9.3.0]",
+  "command": [
+    "notebook",
+    "run_board_test"
+  ],
+  "sections": {},
+  "status": "FAIL",
+  "exit_code": 1,
+  "timing_signoff_ro_domain": false,
+  "cross_power_cycle": "not_measured",
+  "bit_sha256": "769ed24c4ef4b155eccf5b92569a94d00315f7f6913b68c7eaffe65a96fa4654",
+  "hwh_sha256": "4a0e7b95b6cb2d25c0a387e3a193aae56e937f0e2201346c67320dbc973a9675",
+  "manifest_sha256": "cab9d5c0044e93cc578cb3c6890f199aa3b89efbceb17df24eea3a4be5ee3fb5",
+  "pynq_version": "2.7.0",
+  "clock": {
+    "hwh": {
+      "crystal_mhz": 33.333333,
+      "iopll_fbdiv": 30,
+      "fclk0_src": "IO PLL",
+      "divisor0": 10,
+      "divisor1": 1,
+      "act_fclk0_mhz": 99.999999
+    },
+    "slcr_before_download": {
+      "io": "0x0001E000",
+      "arm": "0x0002E000",
+      "ddr": "0x00020000",
+      "fpga0": "0x00200500"
+    },
+    "slcr_after_download": {
+      "io": "0x0001E000",
+      "arm": "0x0002E000",
+      "ddr": "0x00020000",
+      "fpga0": "0x00100A00"
+    },
+    "fclk0_mhz_register_derived": 99.999999,
+    "register_detail": {
+      "source_pll": "IO",
+      "pll_fbdiv": 30,
+      "pll_bypass": false,
+      "pll_mhz": 999.9999900000001,
+      "divisor0": 10,
+      "divisor1": 1,
+      "crystal_mhz": 33.333333
+    },
+    "pynq_clocks_fclk0_mhz": 150.0,
+    "pynq_reference_clock_mhz_assumed": 50.0
+  },
+  "ip_dict": {
+    "pynq_ctl_0": {
+      "phys_addr": 1073741824,
+      "addr_range": 4096
+    },
+    "pynq_mbox_0": {
+      "phys_addr": 1073745920,
+      "addr_range": 4096
+    },
+    "ps7": {
+      "phys_addr": null,
+      "addr_range": null
+    }
+  },
+  "control_id": "0x33465150",
+  "error": "BackendProtocolError('unexpected PUF frame')",
+  "final_snapshot": {
+    "soc_rst_n": true,
+    "led": 0,
+    "tx_bytes": 0,
+    "rx_bytes": 296,
+    "service": null
+  }
+}

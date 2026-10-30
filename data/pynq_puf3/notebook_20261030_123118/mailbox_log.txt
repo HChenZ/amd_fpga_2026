@@ -1,0 +1,3 @@
+
+=== pynq_svc_puf3: RV32 Ascon-AEAD128 mailbox service + PUF v1 ===
+mode caps: sw,hw,ise  max_msg=16  max_ad=16  puf: Y01P/
