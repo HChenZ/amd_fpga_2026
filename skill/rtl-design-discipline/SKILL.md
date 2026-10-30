@@ -37,13 +37,15 @@ pc := Mux(ifu.io.pc.ready,
         Mux(redirectNow, redirectNowTarget, nxtPredictedPC),
         Mux(redirectNow, redirectNowTarget, pc))
 
-// 好：把「PC 下一值」和「喂给 IFU 的值」两个信号分开，各自写一次
+// 分离状态与输出的结构示意（不是对上面片段的已验证等价替换）
 pc          := Mux(redirectNow, redirectNowTarget,
                    Mux(ifu.io.pc.ready, nxtPredictedPC, pc))
 pcFeedToIFU := Mux(redirectPendingReg, redirectTargetReg, pc)
 ```
 
-坏版本里 `Mux(redirectNow, redirectNowTarget, …)` 出现了 3 次。只要其中一处和别处有一点点不一致，就是一个真实的取指 / 分支预测 bug。**重复 = 漂移 = bug。**
+上面的坏版本是表达式重复的伪代码，不能直接编译或当作完整优先级规范。
+实际重构须先确定 redirect、pending、ready、stall 同时发生时的优先级，再用独立验证证明等价；
+重复表达式增加漂移风险，但不是已经发生功能错误的证明。
 
 ## 2. 禁止嵌套条件蔓延（No nested-conditional sprawl）
 
@@ -55,23 +57,24 @@ pcFeedToIFU := Mux(redirectPendingReg, redirectTargetReg, pc)
 3. 经验法则：**同一个子表达式出现 ≥2 次，就提成一个具名 wire。**
 
 ```verilog
-// 坏：为支持 stall，把原来的 next_pc 表达式又整个包了一层
-assign pc = stall ? pc
+// 下一值表达式；pc_q 是时序寄存器，不能写 assign pc = stall ? pc : ... 形成组合自反馈
+assign pc_next = stall ? pc_q
           : (redirect ? redirect_target
-                      : (branch ? branch_target : pc + 4));
+                      : (branch ? branch_target : pc_q + 32'd4));
 
 // 好：先算「顺行下一值」，再做平铺的优先级选择
-wire [31:0] seq_pc = branch ? branch_target : pc + 4;
-assign pc = stall    ? pc
+wire [31:0] seq_pc = branch ? branch_target : pc_q + 32'd4;
+assign pc_next = stall    ? pc_q
           : redirect ? redirect_target
           :            seq_pc;
+// 两段是替代写法，不能同时驱动 pc_next；实际模块还需唯一的时序块更新 pc_q。
 ```
 
 ## 3. 分清「优先级选择」与「并行选择」
 
 综合出来的硬件不一样，别写错：
-- `if-else` 链 → **优先级编码器**（级联 Mux，逻辑更深、路径更长）。
-- `case`（带 `default`）→ 分支互斥时综合成**并行 Mux**（更平、更快）。
+- `if-else` 表达优先级；综合器可能结合互斥条件优化，不能只看语法推断级数。
+- 完整 `case` 适合互斥选择，但更换语法不保证面积更小或速度更快，须看实际网表与报告。
 
 语义上需要优先级（中断 > 异常 > 正常、重定向）用 `if-else`；分支天然互斥（指令译码、状态机状态）用 `case`，别写成一串 `if-else`。
 
@@ -111,7 +114,7 @@ end
 
 ## 5. 别替综合器干活，也别假装它万能
 
-- 知道什么综合成什么：Mux→LUT、加法/移位→进位链、比较→LUT、RAM→BRAM、乘→DSP。别手写综合器本来就会优化掉的东西。
+- 理解常见映射，但不作绝对保证：常量移位可能仅为布线，变量移位通常为选择网络；加法常用进位链；RAM/乘法能否映射 BRAM/DSP 取决于模板、位宽与配置。以报告确认。
 - 但**别**故意写冗余项、指望工具替你化简——写你真正要的布尔表达式（化简掉冗余项）。化简是表达**意图**，不是炫技，更不是把一堆冗余 `| x` 丢给工具。
 - 优化只在报告要求时才做：时序不达标 → 看关键路径，针对性优化（重定时、流水、资源共享），而不是一开始就手搓「聪明」电路。**先正确、清晰，再优化。**
 
