@@ -1,0 +1,8 @@
+# Same synth_1 netlist, clocks and constraints; values = 'Post Routing Timing Summary' line of each runme.log
+# (explore_impl.tcl ran to route_design only, so its PROGRESS check printed 'FAILED Not started phys_opt_design (Post-Route)'; that was the script check, not a tool failure)
+impl_1 Performance_ExploreWithRemap (build.tcl first run; after post-route phys_opt WNS=-0.135): WNS=-0.270 | TNS=-9.170 | WHS=0.006  | THS=0.000  |
+impl_2 Performance_Explore: WNS=0.031  | TNS=0.000  | WHS=0.048  | THS=0.000  |
+impl_3 Performance_NetDelay_high: WNS=-0.097 | TNS=-0.400 | WHS=0.018  | THS=0.000  |
+impl_4 Performance_ExtraTimingOpt: WNS=0.154  | TNS=0.000  | WHS=0.038  | THS=0.000  |
+impl_5 Performance_RefinePlacement (selected): WNS=0.208  | TNS=0.000  | WHS=0.016  | THS=0.000  |
+postroute_physopt.tcl on impl_1 (AggressiveExplore/AlternateFlowWithRetiming/AggressiveFanoutOpt + route Explore): start wns=-0.135; after AggressiveExplore wns=-0.135 whs=0.006; after AlternateFlowWithRetiming wns=-0.135 whs=0.006; after AggressiveFanoutOpt wns=-0.135 whs=0.006; after route_design Explore wns=-0.117 whs=0.006

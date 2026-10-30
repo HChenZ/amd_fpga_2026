@@ -1,0 +1,1 @@
+run=impl_5 strategy=Performance_RefinePlacement wns=0.208 whs=0.016 drc_error_or_critical=0 ro_luts=1280 ro_luts_in_pblock=1280 netlist_29_160=0

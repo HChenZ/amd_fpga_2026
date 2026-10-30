@@ -1,0 +1,123 @@
+# PYNQ overlay + PUF v1 (src/rtl/keys) ASCII self-test, Vivado 2025.2.
+# Independent entry: never opens or overwrites the frozen PYNQ release or the JTAG project.
+#   vivado -mode batch -source board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl -notrace
+if {![string match "2025.2*" [version -short]]} {error "Vivado 2025.2 required"}
+set root  [file normalize [file join [file dirname [info script]] ../..]]
+set board [file join $root board vivado_zynq7000_xc7z020_pynq_puf]
+set work  [file join $root build local pynq_puf vivado]
+set rep   [file join $work reports]
+# Board-tested keys_rv32 v3 image (2026-10-27 23:48 PASS), tracked since a4ae769.
+set coe [file join $root board vivado_zynq7000_xc7z020_ascon riscv_vivado_project riscv_vivado_project.srcs sources_1 imports bin_file ascon_keys.coe]
+if {![file exists $coe]} {error "Missing $coe"}
+if {[file exists [file join $work pynq_puf.xpr]]} {error "Existing project $work; remove it explicitly before a fresh build"}
+file mkdir $rep
+
+create_project pynq_puf $work -part xc7z020clg400-1
+set_property target_language Verilog [current_project]
+set src {}
+# PUF variant: src/rtl/soc_top.v + src/rtl/ascon/ascon_mmio.v (with key_hw), not rtl_p0.
+foreach f [glob $root/src/rtl/*.v] {if {[file tail $f] ne "top_pl_bram.v"} {lappend src $f}}
+foreach f [glob $root/src/rtl/ascon/*.v] {if {![string match *_tb.v $f]} {lappend src $f}}
+foreach f [glob $root/src/rtl/keys/*.v] {lappend src $f}
+foreach f [glob $root/src/rtl/pynq/*.v] {lappend src $f}
+add_files -norecurse $src
+add_files -norecurse [glob $root/src/rtl/ascon/*.vh]
+set_property include_dirs [list $root/src/rtl $root/src/rtl/ascon] [get_filesets sources_1]
+set_property file_type SystemVerilog [get_files */ascon_word.v]
+set_property file_type {Verilog Header} [get_files */defines.v]
+set ipbase $root/board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.srcs/sources_1/ip
+foreach ip {axi_bram_ctrl_0 blk_mem_gen_0} {import_ip -files $ipbase/$ip/$ip.xci}
+foreach ip [get_ips] {if {[get_property IS_LOCKED $ip]} {upgrade_ip $ip}}
+set_property CONFIG.Coe_File $coe [get_ips blk_mem_gen_0]
+foreach f [get_files -all -quiet *.coe] {if {[file normalize $f] ne [file normalize $coe]} {remove_files $f}}
+generate_target all [get_ips]
+
+create_bd_design pynq_puf
+create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 ps7
+set psconfig [list CONFIG.PCW_USE_M_AXI_GP0 1 CONFIG.PCW_EN_CLK0_PORT 1 CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ 100]
+set_property -dict $psconfig [get_bd_cells ps7]
+foreach {p v} $psconfig {if {[get_property $p [get_bd_cells ps7]] != $v} {error "PS readback mismatch $p"}}
+# Dedicated PS pins must be top ports, otherwise PS pin constraints hit internal pins (Netlist 29-160).
+make_bd_intf_pins_external [get_bd_intf_pins ps7/FIXED_IO]
+make_bd_intf_pins_external [get_bd_intf_pins ps7/DDR]
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi
+set_property CONFIG.NUM_MI 2 [get_bd_cells axi]
+create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 reset
+create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 one
+set_property CONFIG.CONST_VAL 1 [get_bd_cells one]
+foreach m {pynq_ctl pynq_mbox pynq_soc} {create_bd_cell -type module -reference $m ${m}_0}
+# Distinct identity "PFU1": the three-mode PYNQ client (ID 0x514E5950) must refuse this overlay.
+set ctlcfg [list CONFIG.ID_VALUE 0x31554650 CONFIG.VERSION_VALUE 0x00000001]
+set_property -dict $ctlcfg [get_bd_cells pynq_ctl_0]
+connect_bd_intf_net [get_bd_intf_pins ps7/M_AXI_GP0] [get_bd_intf_pins axi/S00_AXI]
+connect_bd_intf_net [get_bd_intf_pins axi/M00_AXI] [get_bd_intf_pins pynq_ctl_0/S_AXI]
+connect_bd_intf_net [get_bd_intf_pins axi/M01_AXI] [get_bd_intf_pins pynq_mbox_0/S_AXI]
+connect_bd_net [get_bd_pins ps7/FCLK_CLK0] [get_bd_pins ps7/M_AXI_GP0_ACLK] [get_bd_pins axi/ACLK] [get_bd_pins axi/S00_ACLK] [get_bd_pins axi/M00_ACLK] [get_bd_pins axi/M01_ACLK] [get_bd_pins reset/slowest_sync_clk] [get_bd_pins pynq_ctl_0/clk] [get_bd_pins pynq_mbox_0/clk] [get_bd_pins pynq_soc_0/clk]
+connect_bd_net [get_bd_pins ps7/FCLK_RESET0_N] [get_bd_pins reset/ext_reset_in]
+connect_bd_net [get_bd_pins one/dout] [get_bd_pins reset/dcm_locked]
+connect_bd_net [get_bd_pins reset/peripheral_aresetn] [get_bd_pins axi/ARESETN] [get_bd_pins axi/S00_ARESETN] [get_bd_pins axi/M00_ARESETN] [get_bd_pins axi/M01_ARESETN] [get_bd_pins pynq_ctl_0/rst_n] [get_bd_pins pynq_mbox_0/rst_n] [get_bd_pins pynq_soc_0/rst_n]
+foreach {a b} {pynq_ctl_0/soc_reset pynq_mbox_0/link_flush pynq_ctl_0/soc_rst_n pynq_soc_0/soc_rst_n pynq_ctl_0/soc_button pynq_soc_0/button pynq_soc_0/led pynq_ctl_0/soc_led pynq_mbox_0/mbox_txd pynq_soc_0/uart_rxd pynq_soc_0/uart_txd pynq_mbox_0/mbox_rxd} {connect_bd_net [get_bd_pins $a] [get_bd_pins $b]}
+assign_bd_address
+foreach {seg offset} {pynq_ctl_0 0x40000000 pynq_mbox_0 0x40001000} {
+    set_property offset $offset [get_bd_addr_segs ps7/Data/SEG_${seg}_reg0]
+    set_property range 4K [get_bd_addr_segs ps7/Data/SEG_${seg}_reg0]
+}
+foreach {p v} $ctlcfg {if {[get_property $p [get_bd_cells pynq_ctl_0]] != $v} {error "pynq_ctl readback mismatch $p"}}
+validate_bd_design
+save_bd_design
+set bd [get_files */pynq_puf.bd]
+generate_target all $bd
+add_files -norecurse [make_wrapper -files $bd -top]
+set_property top pynq_puf_wrapper [get_filesets sources_1]
+update_compile_order -fileset sources_1
+
+set fp [open $work/context.txt w]
+puts $fp [version]
+puts $fp "part=xc7z020clg400-1 top=pynq_puf_wrapper FCLK0=100MHz ro_clk=clk/4 (inside soc_top) coe=$coe"
+puts $fp "source_head=[exec git -C $root rev-parse HEAD]"
+foreach ip [get_ips] {puts $fp "$ip [get_property IPDEF $ip]"}
+close $fp
+
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+if {[get_property PROGRESS [get_runs synth_1]] ne "100%"} {error "synthesis failed"}
+# 2026-10-30: Performance_ExploreWithRemap (PYNQ release strategy) gave WNS -0.135 on this
+# netlist; Performance_RefinePlacement met 100 MHz (+0.208). See candidate/reports/explore_impl.txt.
+set strategy Performance_RefinePlacement
+set_property strategy $strategy [get_runs impl_1]
+set_property STEPS.OPT_DESIGN.TCL.PRE [file join $board puf_opt_pre.tcl] [get_runs impl_1]
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+if {[get_property PROGRESS [get_runs impl_1]] ne "100%"} {error "implementation failed: [get_property STATUS [get_runs impl_1]]"}
+
+open_run impl_1
+report_timing_summary -delay_type min_max -max_paths 10 -file $rep/timing_summary.rpt
+report_timing_summary -delay_type min_max -max_paths 1 -report_unconstrained -file $rep/timing_unconstrained.rpt
+check_timing -verbose -file $rep/check_timing.rpt
+report_drc -file $rep/drc.rpt
+report_methodology -file $rep/methodology.rpt
+report_utilization -file $rep/utilization.rpt
+report_utilization -pblocks [get_pblocks -quiet pb_ro_puf] -file $rep/pblock_utilization.rpt
+report_clock_interaction -file $rep/clock_interaction.rpt
+report_route_status -file $rep/route_status.rpt
+
+set wns [get_property SLACK [get_timing_paths -delay_type max -max_paths 1]]
+set whs [get_property SLACK [get_timing_paths -delay_type min -max_paths 1]]
+set drc_bad [llength [get_drc_violations -quiet -filter {SEVERITY == "Error" || SEVERITY == "Critical Warning"}]]
+set ro_luts [get_cells -quiet -hier -filter {NAME =~ "*u_ro/*" && REF_NAME =~ "LUT*"}]
+set ro_in_pb [llength [filter $ro_luts {PBLOCK =~ "*pb_ro_puf"}]]
+set impl_log [file join $work pynq_puf.runs impl_1 runme.log]
+set f [open $impl_log r]; set log [read $f]; close $f
+set n29160 [regexp -all {Netlist 29-160} $log]
+set fp [open $rep/gate.txt w]
+puts $fp "run=impl_1 strategy=$strategy wns=$wns whs=$whs drc_error_or_critical=$drc_bad ro_luts=[llength $ro_luts] ro_luts_in_pblock=$ro_in_pb netlist_29_160=$n29160"
+close $fp
+puts "PYNQ_PUF_GATE wns=$wns whs=$whs drc=$drc_bad ro=[llength $ro_luts] ro_in_pb=$ro_in_pb n29160=$n29160"
+if {$wns < 0} {error "setup timing failed; do not release"}
+if {$whs < 0} {error "hold timing failed; do not release"}
+if {$drc_bad} {error "DRC gate failed"}
+if {[llength $ro_luts] != 1280 || $ro_in_pb != 1280} {error "RO structure/pblock gate failed"}
+if {$n29160} {error "PS pin constraints applied to internal pins"}
+file copy -force $work/pynq_puf.runs/impl_1/pynq_puf_wrapper.bit $work/pynq_puf.bit
+file copy -force $work/pynq_puf.gen/sources_1/bd/pynq_puf/hw_handoff/pynq_puf.hwh $work/pynq_puf.hwh
+puts "PYNQ_PUF_BUILD_PASS"

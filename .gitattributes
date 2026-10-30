@@ -36,3 +36,6 @@ sim/pynq/*.sh text eol=lf
 board/vivado_zynq7000_xc7z020_pynq/release/** -text
 build/reports/pynq_final_20261028/** -text -diff
 board/vivado_zynq7000_xc7z020_pynq/release/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# PYNQ + PUF v1 candidate: bytes are pinned by candidate/sha256sums.txt and manifest.json.
+board/vivado_zynq7000_xc7z020_pynq_puf/candidate/** -text -diff
