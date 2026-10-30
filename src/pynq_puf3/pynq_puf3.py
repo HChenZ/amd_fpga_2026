@@ -17,25 +17,20 @@ from __future__ import annotations
 import struct
 
 if __package__:
-    from .ascon_host_api import BackendProtocolError, BackendTimeoutError
-    from .mailbox_protocol import VERSION
-    from .pynq_transport import (BridgeRegs, CTL_ID, CTL_VERSION, FrameDecoder, MB_ID, MB_ID_VALUE,
-                                 NotConfiguredError, PynqUartTransport, RSP_HEADER_BYTES,
-                                 SWC_FRAME_BYTES, _need_finite, parse_service_frame)
+    from src.pynq.ascon_host_api import BackendProtocolError, BackendTimeoutError
+    from src.pynq.mailbox_protocol import VERSION
+    from src.pynq.pynq_transport import (BridgeRegs, CTL_ID, CTL_VERSION, FrameDecoder, MB_ID, MB_ID_VALUE, NotConfiguredError, PynqUartTransport, RSP_HEADER_BYTES, SWC_FRAME_BYTES, _need_finite, parse_service_frame)
 else:
     from ascon_host_api import BackendProtocolError, BackendTimeoutError
     from mailbox_protocol import VERSION
-    from pynq_transport import (BridgeRegs, CTL_ID, CTL_VERSION, FrameDecoder, MB_ID, MB_ID_VALUE,
-                                NotConfiguredError, PynqUartTransport, RSP_HEADER_BYTES,
-                                SWC_FRAME_BYTES, _need_finite, parse_service_frame)
+    from pynq_transport import (BridgeRegs, CTL_ID, CTL_VERSION, FrameDecoder, MB_ID, MB_ID_VALUE, NotConfiguredError, PynqUartTransport, RSP_HEADER_BYTES, SWC_FRAME_BYTES, _need_finite, parse_service_frame)
 
 CTL_ID_PQF3 = 0x33465150
 FIRMWARE_ID = 'pynq-svc-puf3'
 PUF_RSP_BYTES = 112
 
 CMD = {'status': 0, 'enroll': 1, 'reconstruct': 2, 'hwkey_on': 3, 'hwkey_off': 4}
-RESULT = {0: 'OK', 1: 'TIMEOUT', 2: 'NOT_ACCEPTED', 3: 'BAD_CMD', 4: 'BAD_VERSION',
-          5: 'NO_PUF_KEY', 6: 'BUSY_STUCK'}
+RESULT = {0: 'OK', 1: 'TIMEOUT', 2: 'NOT_ACCEPTED', 3: 'BAD_CMD', 4: 'BAD_VERSION', 5: 'NO_PUF_KEY', 6: 'BUSY_STUCK'}
 STATUS_BITS = ('busy', 'key_ready', 'enrolled', 'mismatch', 'fallback', 'done', 'key_hw_sel', 'hwkey_on')
 
 
@@ -202,10 +197,7 @@ def from_overlay(overlay, control_name='pynq_ctl_0', mailbox_name='pynq_mbox_0',
     for name in (control_name, mailbox_name):
         if name not in ip_dict:
             raise NotConfiguredError('NOT_CONFIGURED: %r missing from overlay ip_dict' % name)
-    return PynqPuf3Transport(
-        Puf3BridgeRegs(getattr(overlay, control_name).mmio, getattr(overlay, mailbox_name).mmio), **kwargs)
+    return PynqPuf3Transport(Puf3BridgeRegs(getattr(overlay, control_name).mmio, getattr(overlay, mailbox_name).mmio), **kwargs)
 
 
-__all__ = ['CTL_ID_PQF3', 'FIRMWARE_ID', 'CMD', 'RESULT', 'Puf3BridgeRegs', 'Puf3FrameDecoder',
-           'PynqPuf3Transport', 'parse_puf_frame', 'puf_request', 'from_overlay',
-           'RSP_HEADER_BYTES', 'SWC_FRAME_BYTES']
+__all__ = ['CTL_ID_PQF3', 'FIRMWARE_ID', 'CMD', 'RESULT', 'Puf3BridgeRegs', 'Puf3FrameDecoder', 'PynqPuf3Transport', 'parse_puf_frame', 'puf_request', 'from_overlay', 'RSP_HEADER_BYTES', 'SWC_FRAME_BYTES']

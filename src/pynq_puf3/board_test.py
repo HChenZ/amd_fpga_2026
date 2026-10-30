@@ -1,7 +1,7 @@
 """Board test of the pynq_puf3 overlay: three-mode KAT + warm benchmark + PUF v1 on one bitstream.
 
 Run on the PYNQ board from a repository copy (candidate files present):
-  sudo -E python3 board/vivado_zynq7000_xc7z020_pynq_puf3/board_test.py \
+  sudo -E python3 src/pynq_puf3/board_test.py \
       --candidate board/vivado_zynq7000_xc7z020_pynq_puf3/candidate \
       --out data/pynq_puf3/board_<date>_run1
 Sections (all must pass for exit code 0; evidence is written even on failure):
@@ -24,6 +24,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'src/pynq'))
+sys.path.insert(0, str(ROOT / 'src/pynq_puf3'))
 from ascon_host_api import AsconHost, AuthenticationError  # noqa: E402
 from board_benchmark import _run_once, select_kat_case, summarize  # noqa: E402
 from golden_checker import parse_kat  # noqa: E402

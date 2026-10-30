@@ -22,7 +22,7 @@
     "src/firmware/pynq_svc_puf/main.c": "98043a77245707eead5345275f697132947d8d5405ae7b6848180de0e5d57513",
     "src/firmware/pynq_svc_puf/puf_svc.c": "9bfd96d8d4be389ef7ada8cb1e3314d8a7a83d359af94d8d3966c45a9ca6c6ca",
     "src/firmware/pynq_svc_puf/puf_svc.h": "b9aa930223e7f3a24d51e06c4e96bc698bdba8faba8ce83d595e4ea75c730bbf",
-    "src/pynq/pynq_puf3.py": "f0a183169e1dc0e36bbe5acc77ca1861aa46fda2c51ae06e0aa909a44ce77c3c",
+    "src/pynq_puf3/pynq_puf3.py": "0c3fc9d55266852e33649b29d59038547ec7567c3f41218d726aa8886bdaede4",
     "src/rtl/ascon/ascon_aead_2.v": "8ea360514428ce7408927246c0d16b7c95c90b0da655cfe48d074b77f3353c0c",
     "src/rtl/ascon/ascon_aead_2_tb.v": "cfbfe00bd4a31e9d32386cbf50abe7b86fe8f58eb5e7b657f4252a93d83b586b",
     "src/rtl/ascon/ascon_aead_core.v": "1124bd29b8dcece597d0c413d68a40672a16ee4e82af886ad2e703108208f0f7",

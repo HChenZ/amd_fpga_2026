@@ -24,7 +24,7 @@ mask 只有 `0x05`，HW 模式丢失（`reports/cosim_mutant_autolock.log`）。
 | RTL | `rtl/soc_top.v`（复制自 `src/rtl/soc_top.v`） | `key_hw_sel = hwkey_on & key_have`，不再在 `key_valid` 时自动锁定 |
 | RTL | `rtl/key_mmio.v`（复制自 `src/rtl/keys/key_mmio.v`） | CTRL[3] HWKEY_ON、CTRL[4] HWKEY_OFF（OFF 优先，复位为关）；STATUS[6] key_hw_sel、STATUS[7] hwkey_on |
 | 固件 | `src/firmware/pynq_svc_puf/` | 由 pynq_svc 加上 Y01P/Y01K 帧；固件 ID `pynq-svc-puf3`；开机自检和 Y01E 前先关 HWKEY |
-| PS | `src/pynq/pynq_puf3.py` | `Puf3BridgeRegs`（只认 PQF3）、`PynqPuf3Transport.puf_command()`；发布版 `pynq_transport.py` 未改 |
+| PS | `src/pynq_puf3/pynq_puf3.py` | `Puf3BridgeRegs`（只认 PQF3）、`PynqPuf3Transport.puf_command()`；发布版 `pynq_transport.py` 未改 |
 | BD | `build.tcl` | 与 pynq_puf 相同（FIXED_IO/DDR 外接、RO pblock、门禁），只换 COE、变体 RTL 和 ID `0x33465150` |
 
 `puf_opt_pre.tcl` 是 `../vivado_zynq7000_xc7z020_pynq_puf/puf_opt_pre.tcl`（56929b0）的快照；
@@ -52,7 +52,7 @@ key_ready=1、enrolled=1、mismatch=0、fallback=0、busy=0 时执行，否则�
 ```sh
 python -X utf8 src/firmware/pynq_svc_puf/build.py
 python -X utf8 sim/pynq_puf3/run.py
-python -X utf8 src/pynq/test_pynq_puf3.py
+python -X utf8 src/pynq_puf3/test_pynq_puf3.py
 vivado -mode batch -source board/vivado_zynq7000_xc7z020_pynq_puf3/build.tcl -notrace -tclargs Performance_ExtraTimingOpt 4
 vivado -mode batch -source board/vivado_zynq7000_xc7z020_pynq_puf3/ro_corner_sta.tcl -notrace -tclargs build/local/pynq_puf3/vivado/pynq_puf3.runs/impl_1/pynq_puf3_wrapper_postroute_physopt.dcp build/local/pynq_puf3/ro_sta
 python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py
@@ -119,7 +119,7 @@ cosim 用例：
 ## 上板
 
 ```sh
-sudo -E python3 board/vivado_zynq7000_xc7z020_pynq_puf3/board_test.py \
+sudo -E python3 src/pynq_puf3/board_test.py \
   --candidate board/vivado_zynq7000_xc7z020_pynq_puf3/candidate \
   --out data/pynq_puf3/board_<date>_run1
 ```

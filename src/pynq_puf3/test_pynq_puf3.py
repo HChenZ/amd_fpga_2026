@@ -4,28 +4,28 @@
 src/firmware/pynq_svc_puf/puf_svc.c 语义实现的 Y01P/Y01K 模型。真实固件/RTL 的
 同一协议由 sim/pynq_puf3/run.py（Icarus，真实 RV32）验证。
 
-运行：python -X utf8 src/pynq/test_pynq_puf3.py
+运行：python -X utf8 src/pynq_puf3/test_pynq_puf3.py
 """
 import struct
 import sys
 import time
+from pathlib import Path
 
 if __package__:
-    from .ascon_host_api import AsconHost, BackendProtocolError
-    from .mailbox_backend import MailboxBackend
-    from .mailbox_protocol import Mode
-    from .pynq_transport import NotConfiguredError
-    from .pynq_puf3 import (CTL_ID_PQF3, Puf3BridgeRegs, Puf3FrameDecoder, PynqPuf3Transport,
-                            parse_puf_frame, puf_request)
-    from . import test_pynq_transport as base
+    from src.pynq.ascon_host_api import AsconHost, BackendProtocolError
+    from src.pynq.mailbox_backend import MailboxBackend
+    from src.pynq.mailbox_protocol import Mode
+    from src.pynq.pynq_transport import NotConfiguredError
+    from src.pynq import test_pynq_transport as base
+    from .pynq_puf3 import (CTL_ID_PQF3, Puf3BridgeRegs, Puf3FrameDecoder, PynqPuf3Transport, parse_puf_frame, puf_request)
 else:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'pynq'))
     from ascon_host_api import AsconHost, BackendProtocolError
     from mailbox_backend import MailboxBackend
     from mailbox_protocol import Mode
     from pynq_transport import NotConfiguredError
-    from pynq_puf3 import (CTL_ID_PQF3, Puf3BridgeRegs, Puf3FrameDecoder, PynqPuf3Transport,
-                           parse_puf_frame, puf_request)
     import test_pynq_transport as base
+    from pynq_puf3 import (CTL_ID_PQF3, Puf3BridgeRegs, Puf3FrameDecoder, PynqPuf3Transport, parse_puf_frame, puf_request)
 
 
 class PufFirmwareModel(base.FirmwareModel):
@@ -212,7 +212,7 @@ def t_parse_rejects():
 def _board_test_module():
     import importlib.util
     from pathlib import Path
-    path = Path(__file__).resolve().parents[2] / 'board/vivado_zynq7000_xc7z020_pynq_puf3/board_test.py'
+    path = Path(__file__).resolve().parents[0] / 'board_test.py'
     spec = importlib.util.spec_from_file_location('pynq_puf3_board_test', path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)

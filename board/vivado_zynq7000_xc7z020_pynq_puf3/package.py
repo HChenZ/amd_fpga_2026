@@ -89,7 +89,7 @@ sources = (list((root / 'src/rtl').glob('*.v')) + list((root / 'src/rtl/ascon').
            + list((root / 'src/rtl/pynq').glob('*.v')) + list((board / 'rtl').glob('*.v'))
            + list((root / 'src/firmware/pynq_svc_puf').glob('*.*')) + list((root / 'src/firmware/pynq_svc').glob('*.*'))
            + [board / 'build.tcl', board / 'explore_impl.tcl', board / 'finalize_run.tcl', board / 'ro_corner_sta.tcl', board / 'puf_opt_pre.tcl', board / 'pynq_puf3_timing.xdc',
-              root / 'build/keys_ro_allow_loops.tcl', root / 'src/pynq/pynq_puf3.py'])
+              root / 'build/keys_ro_allow_loops.tcl', root / 'src/pynq_puf3/pynq_puf3.py'])
 excluded = ['src/rtl/soc_top.v', 'src/rtl/keys/key_mmio.v', 'src/rtl/top_pl_bram.v']
 git = lambda *a: subprocess.check_output(['git', *a], cwd=root, text=True).strip()
 manifest = {
