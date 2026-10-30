@@ -101,7 +101,8 @@ cosim 两个用例、固件 bin 哈希、变体 RTL 哈希，以及生成的 `.m
 
 ## 离线结果
 
-候选（2026-10-30，离线门禁 PASS，board NOT_RUN），完整信息见 `candidate/manifest.json`：
+候选（2026-10-30，离线门禁 PASS；首次板上功能测试 PASS），完整信息见 `candidate/manifest.json`；
+板测原始证据见 `data/pynq_puf3/notebook_20261030_131920/`：
 
 | 项 | 结果 |
 |---|---|
@@ -151,6 +152,13 @@ cosim 用例：
 `src/pynq_puf3/pynq_puf3_board_test.ipynb`。
 ```
 
+最近一次板测（2026-10-30）：
+
+- Notebook 状态 `PASS`、exit code `0`；FCLK0 寄存器推算 `99.999999 MHz`，mcycle 实测 `99.9882 MHz`。
+- SW/HW/ISE 各 6 个代表性 KAT 通过，错误 Tag 各 6 次拒绝；HW encrypt/decrypt 相对 SW 中位数加速比分别为 `15.969x` / `18.6x`，ISE 为 `5.613x` / `5.262x`。
+- PUF quality `127`，5 次 reconstruct 稳定，HWKEY 隔离和关闭后 KAT 恢复均通过。
+- 结论仅为 `in-session functional pass`；完整 529 KAT、跨电源周期、温度/BER/熵/唯一性和 RO 振荡环计数器时序签核仍未完成。
+
 测试分四段，全部通过才 exit 0：
 1. 身份与时钟：哈希、ID、固件 ID；下载前 IO PLL FBDIV = 30，下载后 SLCR 推算 FCLK0 = 100 ± 0.5 MHz，
    mcycle 实测 100 MHz ± 1 %（见上文"FCLK0 时钟配置"；原版 `pynq.Clocks` 显示 150 属正常）；
@@ -167,4 +175,4 @@ cosim 用例：
   正的 WNS 只覆盖 clk_fpga_0 和 ro_clk 两个已声明的时钟。
 - REF/RAW/MASK/DITHER/DNA 可经 MMIO 读出，不能宣称保密；HWKEY 是固件策略，
   CPU 软件可以随时打开或关闭。
-- 板测结果在 Notebook 的 `result.json` 和 `mailbox_log.txt` 输出存在之前一律为 NOT_RUN。
+- 板测结果在 Notebook 的 `result.json` 和 `mailbox_log.txt` 输出存在之前一律为 NOT_RUN；当前已有一次 `in-session functional pass`，不等同于完整 PUF 验收通过。

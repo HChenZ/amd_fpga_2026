@@ -1,5 +1,13 @@
 # 实际进度
 
+## 2026-10-30 — pynq_puf3 首次板上功能测试通过（in-session，owner TBD）
+
+- 证据：`data/pynq_puf3/notebook_20261030_131920/result.json`、同目录 `mailbox_log.txt`；Notebook 总状态 `PASS`、exit code `0`。candidate bit/hwh 与 manifest 一致：bit `769ed24c…`、hwh `4a0e7b95…`。
+- 时钟与身份：SLCR 推算 FCLK0 `99.999999 MHz`，mcycle 实测 `99.9882 MHz`；PQF3 控制 ID 正确；固件 `pynq-svc-puf3`，启动自检 mask `0x7`，SW/HW/ISE 均为真实硬件路径。
+- KAT 与基准：SW/HW/ISE 各通过 6 个代表性 KAT，错误 Tag 各正确拒绝 6 次；KAT #529 预热 5 次、重复 30 次。相对 SW 的中位数加速比为 HW encrypt `15.969x`、decrypt `18.6x`，ISE encrypt `5.613x`、decrypt `5.262x`。
+- PUF：enroll quality `127`；5 次 reconstruct 稳定且 helper 一致；HWKEY 打开后 caller key 被拒绝、PUF key 往返成功；reconstruct 后密文一致；HWKEY 关闭后标准 KAT 恢复。
+- 边界：这是单次上电会话内的功能通过，不是完整 PUF 验收。完整 529 KAT、跨电源周期重建、温度/BER/熵/唯一性仍为 `not_measured`；RO 振荡环计数器域仍未完成时序签核（`timing_signoff_ro_domain=false`）。不得据此宣称安全启动完成。
+
 ## 2026-10-30 — pynq_puf3 板测 'unexpected PUF frame' 定位与修复（board 待复测，owner TBD）
 
 - 证据 `data/pynq_puf3/notebook_20261030_123118/`（队友 27f24bb）：bit/hwh 哈希一致，FCLK0 寄存器推算 99.999999 MHz（FBDIV 30、分频 10×1，PYNQ 读数 150 按 50 MHz 参考），ID PQF3；失败 `BackendProtocolError('unexpected PUF frame')`，`final_snapshot.tx_bytes=0`、`service=null`、`rx_bytes=296`，`mailbox_log.txt` 恰好截止于 banner "puf: Y01P/"。
