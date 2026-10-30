@@ -1,0 +1,21 @@
+{
+  "contract_version": 1,
+  "name": "axi_gpio",
+  "vlnv": "xilinx.com:ip:axi_gpio:2.0",
+  "addr_range": "0x10000",
+  "source": "AMD PG144 AXI GPIO v2.0 register space (verify against the PG version used in your design)",
+  "registers": [
+    {"name": "GPIO_DATA",  "offset": "0x000", "access": "rw", "doc": "channel 1 data"},
+    {"name": "GPIO_TRI",   "offset": "0x004", "access": "rw", "doc": "channel 1 direction, 1 = input"},
+    {"name": "GPIO2_DATA", "offset": "0x008", "access": "rw"},
+    {"name": "GPIO2_TRI",  "offset": "0x00C", "access": "rw"},
+    {"name": "GIER",       "offset": "0x11C", "access": "rw",
+     "fields": [{"name": "GIE", "lsb": 31, "width": 1, "access": "rw"}]},
+    {"name": "IP_ISR",     "offset": "0x120", "access": "w1c",
+     "fields": [{"name": "CH1", "lsb": 0, "width": 1, "access": "w1c"},
+                {"name": "CH2", "lsb": 1, "width": 1, "access": "w1c"}]},
+    {"name": "IP_IER",     "offset": "0x128", "access": "rw",
+     "fields": [{"name": "CH1", "lsb": 0, "width": 1, "access": "rw"},
+                {"name": "CH2", "lsb": 1, "width": 1, "access": "rw"}]}
+  ]
+}

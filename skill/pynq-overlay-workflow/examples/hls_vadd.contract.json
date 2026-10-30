@@ -1,0 +1,28 @@
+{
+  "contract_version": 1,
+  "name": "vadd",
+  "vlnv": "xilinx.com:hls:vadd:1.0",
+  "addr_range": "0x10000",
+  "source": "illustrative Vitis HLS s_axilite layout for vadd(int *a, int *b, int *c, int n); regenerate from the real x<kernel>_hw.h",
+  "registers": [
+    {"name": "CTRL", "offset": "0x00", "access": "rw",
+     "fields": [{"name": "AP_START", "lsb": 0, "width": 1, "access": "rw"},
+                {"name": "AP_DONE", "lsb": 1, "width": 1, "access": "rc"},
+                {"name": "AP_IDLE", "lsb": 2, "width": 1, "access": "ro"},
+                {"name": "AP_READY", "lsb": 3, "width": 1, "access": "rc"},
+                {"name": "AUTO_RESTART", "lsb": 7, "width": 1, "access": "rw"}]},
+    {"name": "GIE", "offset": "0x04", "access": "rw"},
+    {"name": "IER", "offset": "0x08", "access": "rw"},
+    {"name": "ISR", "offset": "0x0C", "access": "w1c"},
+    {"name": "A_LO", "offset": "0x10", "access": "wo"},
+    {"name": "A_HI", "offset": "0x14", "access": "wo"},
+    {"name": "B_LO", "offset": "0x1C", "access": "wo"},
+    {"name": "B_HI", "offset": "0x20", "access": "wo"},
+    {"name": "C_LO", "offset": "0x28", "access": "wo"},
+    {"name": "C_HI", "offset": "0x2C", "access": "wo"},
+    {"name": "N", "offset": "0x34", "access": "wo"}
+  ],
+  "pairs": [{"name": "A", "lo": "A_LO", "hi": "A_HI"},
+            {"name": "B", "lo": "B_LO", "hi": "B_HI"},
+            {"name": "C", "lo": "C_LO", "hi": "C_HI"}]
+}
