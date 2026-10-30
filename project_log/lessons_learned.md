@@ -1,9 +1,22 @@
 # 经验与踩坑
 
+## 2026-10-30 — 完整 KAT 通过不等于 PUF 验收完成
+
+- `FULL_KAT=True` 的第二次板测已将 PUF3 的 SW/HW/ISE KAT 从代表性样本扩展到项目定义的
+  全部 289 组，并保留 30 次 benchmark 和 PUF 流程证据；结果应引用
+  `data/pynq_puf3/notebook_20261030_144328/`，不要继续引用早先的 6 组结果作为最新值。
+- 这仍是单次上电会话内证据。helper 为会话内数据，跨电源周期、温度/BER/熵/唯一性
+  和 RO 域 timing signoff 未测；文档必须把 PUF3 标为功能通过/其余门禁 pending，
+  不能写成安全启动或 PUF 完成。
+- 时钟记录应使用 HWH/SLCR 推算和 mcycle 实测（约 100 MHz）；PYNQ 2.7 在本板上
+  显示 150 MHz 是参考时钟假设造成的派生显示，不应进入 benchmark 的平台频率结论。
+
 ## 2026-10-30 — pynq_puf3 首次板测通过但验收边界必须保留
 
 - `notebook_20261030_131920` 已在真实板上完成一次完整 Notebook 流程并以 exit code 0 结束：时钟、身份、SW/HW/ISE 代表性 KAT、benchmark、enroll/reconstruct/HWKEY 流程均通过。
-- 该结果只证明单次上电会话内的功能行为。helper 每次复位都重新 enroll，跨电源周期、温度/BER/熵/唯一性和完整 529 KAT 仍不能从这次结果推断；RO 振荡环计数器域的负 slack 也仍未签核。
+- 该结果只证明单次上电会话内的功能行为。helper 每次复位都重新 enroll，跨电源周期、
+  温度/BER/熵/唯一性仍不能从这次结果推断；`529` 是 benchmark KAT 编号，不是 PUF3
+  的完整 KAT 数量；RO 振荡环计数器域的负 slack 也仍未签核。
 - 报告中 `pynq.Clocks.fclk0_mhz=150` 不代表板上实际频率；应以 SLCR 推算 `99.999999 MHz` 和 mcycle 实测 `99.9882 MHz` 为时钟证据。
 
 ## 2026-10-30 — 按魔数分帧时，文本日志里不能出现魔数

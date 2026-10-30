@@ -1,6 +1,6 @@
 # 项目概览
 
-更新：2026-10-29。比赛与目标时间按用户本轮要求建档；未独立确认的官方规则不作推断。
+更新：2026-10-30。比赛与目标时间按用户本轮要求建档；未独立确认的官方规则不作推断。
 
 ## 当前状态摘要
 
@@ -11,7 +11,7 @@
 - P0/P1 仍未全部关闭：B03 实物证据、原 CICC baseline、完整 RV32/RV64/异常矩阵和
   P1 通用 Skill 仍未完成。
 - D01-D06 材料、clean-clone 和最终包尚未完成。
-- P2/PUF 不进入当前提交主线。
+- P2/PUF 仍不进入当前提交主线；独立 PUF3 变体已有单次上电功能证据，但不等于 PUF 稳定性或安全启动验收。
 
 当前任务明细见 [current_status_20261029](current_status_20261029.md) 与
 [task_board](../tasks/task_board.md)。
@@ -36,6 +36,12 @@ P2 不影响核心交付日期。任何 P0/P1 回归或 10-21 节点未达到，
 窗口和 AXI-Lite FIFO ↔ RV32 UART mailbox。2026-10-29 完成三模式 smoke、KAT #529
 30 次 warm benchmark 和 9/9 错误/恢复门禁，证据见
 [validation_20261029](../board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)。
+
+2026-10-30 的独立 `pynq_puf3` 变体在同一目标板完成 289/289 容量内 KAT 和坏 Tag
+拒绝（SW/HW/ISE 各一套）、30 次 benchmark 以及单次上电 PUF enroll/reconstruct/HWKEY
+流程；原始结果见
+[result.json](../data/pynq_puf3/notebook_20261030_144328/result.json)。跨电源周期、
+温度/BER/熵/唯一性和 RO 域时序签核仍为 `not_measured`。
 
 原始 CICC XC7Z020 baseline 仍与 PYNQ release 分开。B04 仍缺准确 FreeRTOS
 kernel/bootloader 来源；RV32/RV64 完整回归、板上 ISA 抽样和 800 组超 16B 容量 KAT

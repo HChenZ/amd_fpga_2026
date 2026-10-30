@@ -1,6 +1,6 @@
 # RISC-V Lightweight Cryptography SoC with ASCON ISE
 
-2026-10-29 当前状态入口：[状态总表](docs/current_status_20261029.md)、[PYNQ 实板验证](board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)。AXI-Lite/UART 服务链已在正点原子领航者 ZYNQ7020 实板运行；SW/HW/ISE 各 289 组容量内 KAT、坏 Tag 拒绝、Notebook、30 次 warm benchmark 和 V03 错误/恢复门禁均通过。P1 通用 Skill 与最终材料仍未完成。
+2026-10-30 当前状态入口：[状态总表](docs/current_status_20261029.md)、[PYNQ 实板验证](board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)、[PUF3 完整 KAT 结果](data/pynq_puf3/notebook_20261030_144328/result.json)。AXI-Lite/UART 服务链与独立 PUF3 变体已在正点原子领航者 ZYNQ7020 实板运行；PUF3 的 SW/HW/ISE 各 289 组容量内 KAT、各 289 次坏 Tag 拒绝、30 次 mcycle benchmark 和单次上电 PUF enroll/reconstruct/HWKEY 流程均通过。跨电源周期、RO 时序签核和温度/BER/熵/唯一性仍未测，P1 通用 Skill 与最终材料仍未完成。
 
 在 CICC1000023「基于 RISC-V 的高性能 CPU 设计及 FPGA 验证」基础上扩展轻量级密码学：在自研 RISC-V CPU 上运行 **NIST SP 800-232 Ascon-AEAD128**，加入 custom instruction set extension（ISE），通过 FPGA 实测比较软件与 ISE，再用 PYNQ/Jupyter 完成控制、黄金参考比对和展示。
 
@@ -62,7 +62,7 @@ UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
 | `sim/cicc1000023/` | 恢复的模块/ISA/formal 验证源；适配与完整 CPU 回归待完成 |
 | `build/` | 资产哈希/原名还原脚本、精选历史报告、本轮验证元数据 |
 | `data/ascon/` | 锁定来源与许可、完整 Final KAT、固定 golden vectors、host/RTL 与失败证据 |
-| `data/pynq/` | 2026-10-28/29 容量内 KAT、Notebook、warm benchmark 与 V03 错误恢复原始证据 |
+| `data/pynq/` | 2026-10-28/29 PYNQ release 与 2026-10-30 PUF3 完整容量内 KAT、Notebook、warm benchmark 原始证据 |
 | `data/recovery/` | CICC1000023 recovery 清单、哈希、差异与小测试输入 |
 | `skill/` | 不绑定 Ascon 的通用 PYNQ Skill 预留 |
 | `report/` | 报告、图表、视频索引与 LLM 协作记录预留 |
@@ -76,7 +76,7 @@ UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
 
 已验证：
 
-- NIST SP 800-232 Final / Ascon-AEAD128 是唯一主线。Final PDF、ascon-c/pyascon 固定提交、CC0 许可、逐文件 SHA-256 和 1,089 组官方上游 KAT 已锁定，见 [标准基准](docs/ascon_standard_baseline.md)。
+- NIST SP 800-232 Final / Ascon-AEAD128 是唯一主线。Final PDF、ascon-c/pyascon 固定提交、CC0 许可、逐文件 SHA-256 和本项目使用的 289 组接口 KAT 已锁定，见 [标准基准](docs/ascon_standard_baseline.md)。
 - 仓库 C/Python host 实现与锁定 KAT 逐字节一致；完整四 backend host validation 为 28,661 PASS / 0 FAIL。C decrypt 的项目安全契约已修复并通过 23,965 项 raw-buffer 检查：认证失败返回 `-1`、`mlen=0`，并清除已知长度的候选明文。
 - 独立 golden regression 已验证 round、P8、P12；`ascon_aead_2.v` encryption 已用锁定 Final reference 验证长度边界、尾零、reset 和连续请求。队友 testbench 的五组 ciphertext/tag 也由独立 reference 证实。
 - RTL加密/独立解密均通过接口内全部289组官方Final KAT及11组补充输入；decrypt通过2,579次篡改拒绝，认证前/失败不发布明文；加解密各735组超长参数明确拒绝。全部生产Ascon源码编译、加解密仿真exit0，10个module无重复，详见[本轮验证](docs/ascon_rtl_decrypt_validation.md)。
@@ -85,7 +85,7 @@ UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
 部分完成：
 
 - 当前 `ascon_aead_2.v` encryption 接口最多容纳 plaintext 16 bytes、AD 16 bytes；这是当前接口能力上限，不代表 Final 算法长度上限。
-- 当前128-bit接口不支持超过16-byte消息/AD；剩余800组官方KAT没有宣称RTL通过。完整算法长度在host软件验证；多块硬件、Vivado综合与CPU接口集成仍待完成。
+- 当前 128-bit 接口覆盖 PT/AD 各 0..16 bytes 的全部 289 组 KAT；不把超出当前接口的多块算法能力写入板端 KAT 结论。完整算法长度在 host 软件验证；多块硬件、Vivado 综合与 CPU 接口集成仍待完成。
 - XC7Z020 baseline 源已恢复，但 Vivado 重新生成 IP、综合、实现、固件加载和实板复现尚未完成。
 
 尚未完成：

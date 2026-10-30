@@ -1,6 +1,6 @@
 # 接口契约与待定项
 
-## 2026-10-29 当前实现状态
+## 2026-10-30 当前实现状态
 
 当前 P0/P1 演示主链已经有实板接口证据：
 
@@ -16,6 +16,16 @@
 
 本条更新 Y01 当前实现；下文 2026-09/10 内容保留历史边界。CPU ISE 的完整 RV64、
 异常/中断矩阵和 baseline 全回归仍未全部关闭。
+
+### PUF3 独立变体（非 PYNQ release ABI）
+
+`pynq_puf3` 使用独立 overlay、`pynq-svc-puf3` 固件和 PQF3 control ID
+`0x33465150`，不改变现有 PYNQ release 的 mailbox v1。服务能力仍为 SW/HW/ISE，
+`max_msg=16`、`max_ad=16`；Y01P/Y01K 提供 STATUS、ENROLL、RECONSTRUCT、
+HWKEY_ON/HWKEY_OFF 操作。实板结果已完成单次上电的 289 组容量内 KAT、坏 Tag
+拒绝、5 次 reconstruct 和 HWKEY 开关恢复；PUF key 不可读，诊断量 REF/MASK/RAW/DNA
+可读，不能据此宣称保密。跨电源周期、温度/BER/熵/唯一性和 RO timing signoff
+仍为 `not_measured`，不得作为安全启动接口或最终 P2 验收。
 
 ## 2026-10-18 V09 时序修复接口增量（owner TBD）
 

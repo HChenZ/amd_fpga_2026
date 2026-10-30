@@ -1,12 +1,33 @@
 # 实际进度
 
+## 2026-10-30 — pynq_puf3 完整容量内 KAT 实板通过（提交 7544921，owner TBD）
+
+- 证据：[result.json](../data/pynq_puf3/notebook_20261030_144328/result.json)、
+  [mailbox_log.txt](../data/pynq_puf3/notebook_20261030_144328/mailbox_log.txt)、
+  [Notebook](../src/pynq_puf3/pynq_puf3_board_test.ipynb)。Notebook `FULL_KAT=True`，
+  status `PASS`、exit code `0`；环境为 PYNQ 2.7.0 / Python 3.8.2。
+- 三模式均通过 289/289 容量内 KAT，并各拒绝 289/289 个坏 Tag。30 次 firmware
+  `mcycle` benchmark（预热 5 次，排除 PS/UART）中位数为 SW enc/dec
+  `21862/22562`、HW `1369/1213`、ISE `3895/4288` cycles；相对 SW 的中位数
+  加速比为 HW `15.969x/18.600x`、ISE `5.613x/5.262x`。
+- FCLK0 由 HWH/SLCR 推算 `99.999999 MHz`，mcycle 独立实测 `99.9971 MHz`；
+  PYNQ 2.7 的 `150 MHz` 显示值使用错误的 50 MHz 参考假设，不作为实际频率证据。
+- PUF v1 单次上电流程通过：enroll quality `127`，5 次 reconstruct 稳定，caller key
+  在 PUF key 下被拒绝，reconstruct 后密文一致，关闭 HWKEY 后标准 KAT 恢复。
+  该证据不覆盖跨电源周期、温度/BER/熵/唯一性；项目 KAT 总数为 289 组，
+  `timing_signoff_ro_domain=false`，
+  不宣称 PUF 稳定性、安全启动或最终 P2 验收。
+
 ## 2026-10-30 — pynq_puf3 首次板上功能测试通过（in-session，owner TBD）
 
 - 证据：`data/pynq_puf3/notebook_20261030_131920/result.json`、同目录 `mailbox_log.txt`；Notebook 总状态 `PASS`、exit code `0`。candidate bit/hwh 与 manifest 一致：bit `769ed24c…`、hwh `4a0e7b95…`。
 - 时钟与身份：SLCR 推算 FCLK0 `99.999999 MHz`，mcycle 实测 `99.9882 MHz`；PQF3 控制 ID 正确；固件 `pynq-svc-puf3`，启动自检 mask `0x7`，SW/HW/ISE 均为真实硬件路径。
 - KAT 与基准：SW/HW/ISE 各通过 6 个代表性 KAT，错误 Tag 各正确拒绝 6 次；KAT #529 预热 5 次、重复 30 次。相对 SW 的中位数加速比为 HW encrypt `15.969x`、decrypt `18.6x`，ISE encrypt `5.613x`、decrypt `5.262x`。
 - PUF：enroll quality `127`；5 次 reconstruct 稳定且 helper 一致；HWKEY 打开后 caller key 被拒绝、PUF key 往返成功；reconstruct 后密文一致；HWKEY 关闭后标准 KAT 恢复。
-- 边界：这是单次上电会话内的功能通过，不是完整 PUF 验收。完整 529 KAT、跨电源周期重建、温度/BER/熵/唯一性仍为 `not_measured`；RO 振荡环计数器域仍未完成时序签核（`timing_signoff_ro_domain=false`）。不得据此宣称安全启动完成。
+- 边界：这是单次上电会话内的功能通过，不是完整 PUF 验收。benchmark 使用编号 #529
+  的测试向量，不代表 KAT 总数；PUF3 已覆盖项目定义的全部 289 个 KAT 用例。
+  跨电源周期重建、温度/BER/熵/唯一性仍为 `not_measured`；RO 振荡环计数器域仍未完成时序签核
+  （`timing_signoff_ro_domain=false`）。不得据此宣称安全启动完成。
 
 ## 2026-10-30 — pynq_puf3 板测 'unexpected PUF frame' 定位与修复（board 待复测，owner TBD）
 
@@ -162,9 +183,9 @@ hwh SHA-256 `3ebd26408504ed6181a1eac1f31a79ab0e5449c0f0d4d8f76f53fa6332067581`�
 | HW | 289/289 | 289/289 | 每次调用前后读取 64-bit `mcycle` |
 | ISE | 289/289 | 289/289 | 每次调用前后读取 64-bit `mcycle` |
 
-该结果证明真实 PYNQ → AXI-Lite → RV32 服务固件 → SW/HW/ISE → Ascon 输出链路在当前
-16-byte message/AD 容量内通过。Host reference 的 1,089 组与 4,290 次拒绝仍需和板端
-结果分开表述；超过当前接口容量的 800 组板端不执行，标记为 `NOT_RUN`。当前证据尚不
+该结果证明真实 PYNQ → AXI-Lite → RV32 服务固件 → SW/HW/ISE → Ascon 输出链路的
+289 组项目 KAT 已通过。Host reference 的其他扩展/负向统计若单独保留，必须与项目
+KAT 总数分开标注；不能把它们写成额外的板端 KAT。当前证据尚不
 覆盖 Notebook 从头执行、长时间连续请求、重复断电上电稳定性、真实 FCLK 独立测量及完整
 错误/超时/缓存一致性门禁。PYNQ 实板结果不能替代 baseline FreeRTOS 固件验收或 PUF
 跨上电稳定性验收。

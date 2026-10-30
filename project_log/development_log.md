@@ -1,5 +1,14 @@
 # 开发记录
 
+## 2026-10-30 — pynq_puf3 完整容量内 KAT 实板复验（提交 7544921，owner TBD）
+
+- Notebook 切换 `FULL_KAT=True` 并保存 `data/pynq_puf3/notebook_20261030_144328/`：
+  PUF3 在真实板上 SW/HW/ISE 各 289/289 KAT 与坏 Tag 拒绝，30 次 mcycle benchmark，
+  PUF enroll/reconstruct/HWKEY 流程通过，status PASS、exit code 0。
+- 结果仍限定为单次上电功能证据；跨电源周期、温度/BER/熵/唯一性和 RO timing signoff
+  未测。PYNQ 2.7 的 150 MHz 派生显示不作为频率证据，采用 SLCR 99.999999 MHz
+  与 mcycle 99.9971 MHz。
+
 ## 2026-10-30 — pynq_puf3 板测协议问题修复（owner TBD）
 
 - 板测时钟已正确（99.999999 MHz）；失败为固件 banner 文本 "Y01K" 被主机当作 PUF 帧。Notebook 解码器改为只在 PUF 命令待响应时、且帧头匹配时识别 Y01K；离线复现与修复验证 8/8，板上待复测。
