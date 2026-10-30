@@ -1,5 +1,12 @@
 # 经验与踩坑
 
+## 2026-10-30 — pynq_puf3 集成
+
+- 不能把"换一份 COE"当作功能集成：PUF RTL 的 `key_hw_sel` 自动锁定会悄悄改变 MMIO 模式的密钥来源。反例 cosim 要用同一份固件配原 RTL，确认开机 mask 变成 0x05，才能证明修复确实来自 RTL 改动。
+- 同一套 SoC+PUF，换了固件/HWKEY 后网表略有变化，旧的最佳策略（RefinePlacement +0.208）在新网表上变成 −0.123。策略结论不能跨网表沿用，每个新网表都要单独过门禁和策略探索。
+- `explore_impl.tcl` 在 `open_checkpoint` 之后再调用 `get_runs` 会报错（工程已关闭）：汇总循环崩溃，但各 run 已经完成。数值改从每个 run 自己的 post-route 报告读取，并在 explore 记录中写明；脚本已改成先缓存策略名。
+- PowerShell 5 的 `Set-Content -Encoding utf8` 会给文件加 BOM，替换文本没有匹配时也会重写文件；Python 源文件要用编辑工具或 Python 按字节写入。
+
 ## 2026-10-25（二）— 扇出复制：候选、别名、只读属性、钩子断链
 
 - **`-force_replication_on_nets` 只是"塞进候选清单"，不是"一定复制"。**

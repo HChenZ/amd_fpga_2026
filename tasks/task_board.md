@@ -73,6 +73,7 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 | P01 | RO PUF prototype | TBD | B02/B03/C04/I04/I07/I08/Y05/V03、S01-S05 与 P0/P1 门禁通过 | 独立 RO PUF RTL/约束/观测记录 | 综合/实现后结构保留，有真实响应，异常与限制记录完整 | 2026-10-23（条件节点） | gated |
 | P02 | stability measurement | TBD | P01 | 多次上电/温度/电压响应与统计 | 预先声明采样和阈值，报告 BER/失败率，不能只选成功样本 | 2026-10-24（条件节点） | gated |
 | P03 | key reconstruction | TBD | P02 | enrollment/reconstruction 与 helper data 方案 | 多次重建/失败处理实测，密钥不入日志；可靠性阈值达标 | 2026-10-26（条件节点） | gated |
+| P05 | pynq_puf3：三模式 SW/MMIO/ISE + PUF v1 单一 overlay | TBD | PYNQ release、pynq_puf v1、用户 10-30 授权方案2 | `board/vivado_zynq7000_xc7z020_pynq_puf3/`（变体 RTL、pynq_svc_puf 固件、`pynq_puf3.py`、candidate） | cosim normal 与 autolock 反例、模型测试、时序/DRC/RO 门禁通过；板上 `board_test.py` 四段（身份/KAT/基准/PUF）全部 PASS 后才可报加速比 | 2026-11-01 | offline_pass / board NOT_RUN |
 | P04 | authenticated boot prototype | TBD | P03、C03、V02 | Ascon 镜像认证/完整性原型 | 正确镜像允许、修改镜像拒绝；说明信任边界和回滚限制；冻结前未验收即延期 | 2026-10-27（条件节点） | gated |
 
 ## 文档与发布

@@ -1,5 +1,17 @@
 # 实际进度
 
+## 2026-10-30 — pynq_puf3：三模式 SW/MMIO/ISE + PUF v1 单一 bitstream（离线门禁通过，board NOT_RUN，owner TBD）
+
+- 用户授权方案2。根因：`src/rtl/soc_top.v` 在 `key_valid` 时无条件锁存 `key_hw_sel`，导致 MMIO 改用 PUF 密钥、官方 KAT 失败（这正是 PYNQ release 钉住 `rtl_p0` 的原因）。在独立目录 `board/vivado_zynq7000_xc7z020_pynq_puf3/` 修复，共享 `src/rtl`、release、pynq_puf、JTAG 工程均未改。
+- RTL 变体（只在 `board/.../pynq_puf3/rtl/`）：`soc_top.v` 改为 `key_hw_sel = hwkey_on & key_have`；`key_mmio.v` 增加 CTRL[3] HWKEY_ON / CTRL[4] HWKEY_OFF（复位关闭，OFF 优先）以及 STATUS[6] key_hw_sel / STATUS[7] hwkey_on。固件 `src/firmware/pynq_svc_puf/`：复制 pynq_svc main.c，增加 Y01P/Y01K（STATUS/ENROLL/RECONSTRUCT/HWKEY_ON/HWKEY_OFF）；固件 ID `pynq-svc-puf3`；开机自检和 Y01E 前先关 HWKEY；HWKEY_ON 遇到 fallback、mismatch 或未 enroll 时拒绝。PS 驱动 `src/pynq/pynq_puf3.py`（PQF3 身份、Y01K 分帧、`puf_command`），发布版 `pynq_transport.py` 未改。
+- 验证（Icarus 14、riscv-none-elf-gcc 15.2.0、Python 3.14、Vivado 2025.2）：
+  - `src/firmware/pynq_svc_puf/build.py` exit 0：text 47376 B，custom-0 共 22 条（p12×1、p8×4），`puf_handle_request` 已链接。
+  - `sim/pynq_puf3/run.py` exit 0：normal 用例 54 步全部 PASS，覆盖开机/Y01E 自检 mask=7、36 个三模式 KAT、PUF 降级拒绝 HWKEY → enroll → reconstruct → HWKEY 打开后 HW 对官方密文返回 AUTH_FAILED、SW/ISE 不受影响 → HWKEY 关闭后 HW KAT 恢复 → BAD_CMD → 重新握手后 HWKEY 自动关闭。mutant_autolock 用例（原 `src/rtl` 自动锁定）开机 mask=0x05、TB 非零退出，证明是 RTL 改动修复了问题。
+  - `src/pynq/test_pynq_puf3.py` 12/12 PASS（含 board_test 判定逻辑在模型上的正反例）；`test_pynq_transport.py` 回归 14/14 PASS。
+  - Vivado：第一次 `build.tcl`（RefinePlacement，未开布线后 phys_opt）WNS −0.123，被门禁拦下、未出 bit。同一网表 4 个策略（均开布线后 phys_opt）：ExtraTimingOpt +0.104/WHS +0.041（选用）、RefinePlacement +0.025、Explore +0.016、NetDelay_low −0.244。违例都在 CPU 前递路径。`finalize_run.tcl impl_2` 结果 DRC 0、无 Netlist 29-160、1280 个 RO LUT 全部分配到 pblock（soft，物理在区域内 440 个）；资源 18674 LUT / 32002 FF / 34.5 BRAM / 4 DSP；HWH ID 0x33465150、地址 0x40000000/0x40001000、FCLK0 100 MHz。`package.py` 复查门禁、cosim、固件哈希、`.mif`=COE 后写出 `candidate/`。
+- 按 pynq_puf 提交 5eb64a5 迁移时序签核：`pynq_puf3_timing.xdc` 与该提交逐字节一致，候选实现中已经生效，bit 不变（sha256 56b3bc45…）；迁入 `ro_corner_sta.tcl`（逐字节快照），在 impl_2 post-route dcp 上运行 exit 0；`build.tcl` 改为打开 post-route dcp 后 write_bitstream；`package.py` 增加 ro_sta checkpoint 一致性检查、签核分块与 pblock 说明，重新打包 PASS。三块签核状态：clk_fpga_0 WNS +0.104/WHS +0.041 已签核；ro_clk WNS +24.822/WHS +0.115、ro_clk→clk +3.742/+0.216、clk→ro_clk +6.994/+0.428 已签核；振荡环计数器未签核（Slow 角环周期 3.473 ns/288 MHz，setup −0.478、hold −0.552；Fast 角 1.194 ns/837 MHz，setup −0.598、hold −0.427），需要改 PUF RTL。
+- 未完成/边界：板测 NOT_RUN（`board_test.py` 分四段：身份、KAT、基准、PUF）。三模式加速比必须在本 bit 上重测，不能沿用 release 的 16.2×/5.8×。RO 计数器域未签核（5120 个无时钟引脚、15360 个无约束引脚、256 个组合环、TIMING-17 共 1000 条）。helper 易失、仅证明会话内可重复，DNA/REF 可读，HWKEY 只是固件策略。`build.tcl` 新默认配方未从头重跑。
+
 ## 2026-10-29 21:40 — V03 实板错误/恢复门禁 9/9 PASS
 
 owner TBD。用户在 PYNQ 2.7.0 / Python 3.8.2 上从头执行

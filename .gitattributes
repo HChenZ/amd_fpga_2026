@@ -39,3 +39,6 @@ board/vivado_zynq7000_xc7z020_pynq/release/*.json -text whitespace=blank-at-eol,
 
 # PYNQ + PUF v1 candidate: bytes are pinned by candidate/sha256sums.txt and manifest.json.
 board/vivado_zynq7000_xc7z020_pynq_puf/candidate/** -text -diff
+
+# pynq_puf3 candidate (three-mode + PUF v1): bytes pinned by candidate/sha256sums.txt and manifest.json.
+board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/** -text -diff

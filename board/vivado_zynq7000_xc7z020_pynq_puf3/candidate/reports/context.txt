@@ -1,0 +1,19 @@
+Vivado v2025.2 (64-bit)
+SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+Tool Version Limit: 2025.11
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+
+part=xc7z020clg400-1 top=pynq_puf3_wrapper FCLK0=100MHz ro_clk=clk/4 (inside soc_top) coe=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_svc_puf/pynq_svc_puf.coe strategy=Performance_RefinePlacement
+source_head=56929b00a7ad7db8a80e40b13fb9b4a0c69b119d
+axi_bram_ctrl_0 xilinx.com:ip:axi_bram_ctrl:4.1
+blk_mem_gen_0 xilinx.com:ip:blk_mem_gen:8.4
+pynq_puf3_axi_0 xilinx.com:ip:axi_interconnect:2.1
+pynq_puf3_one_0 xilinx.com:ip:xlconstant:1.1
+pynq_puf3_ps7_0 xilinx.com:ip:processing_system7:5.5
+pynq_puf3_pynq_ctl_0_0 xilinx.com:module_ref:pynq_ctl:1.0
+pynq_puf3_pynq_mbox_0_0 xilinx.com:module_ref:pynq_mbox:1.0
+pynq_puf3_pynq_soc_0_0 xilinx.com:module_ref:pynq_soc:1.0
+pynq_puf3_reset_0 xilinx.com:ip:proc_sys_reset:5.0

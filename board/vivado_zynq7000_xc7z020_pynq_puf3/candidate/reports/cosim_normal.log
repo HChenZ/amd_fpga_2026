@@ -1,0 +1,74 @@
+[BRAM] loaded C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\local\pynq_svc_puf\pynq_svc_puf.hex (32768 words max)
+WARNING: C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v:186: $readmemh(build/local/pynq_puf3/sim/requests.hex): Not enough words in the file for the requested range [0:65535].
+WARNING: C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v:187: $readmemh(build/local/pynq_puf3/sim/expected.hex): Not enough words in the file for the requested range [0:65535].
+WARNING: C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v:188: $readmemh(build/local/pynq_puf3/sim/mask.hex): Not enough words in the file for the requested range [0:65535].
+WARNING: C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v:189: $readmemh(build/local/pynq_puf3/sim/sizes.hex): Not enough words in the file for the requested range [0:1023].
+WARNING: C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v:190: $readmemh(build/local/pynq_puf3/sim/counts.hex): Not enough words in the file for the requested range [0:1023].
+step 0 Y01S selftest_mask=07
+step 0 PASS (real RV32 firmware/AXI-Lite/UART) t=2353590000
+step 1 Y01S selftest_mask=07
+step 1 PASS (real RV32 firmware/AXI-Lite/UART) t=4322240000
+step 2 PASS (real RV32 firmware/AXI-Lite/UART) t=4704580000
+step 3 PASS (real RV32 firmware/AXI-Lite/UART) t=5090110000
+step 4 PASS (real RV32 firmware/AXI-Lite/UART) t=5476540000
+step 5 PASS (real RV32 firmware/AXI-Lite/UART) t=5864350000
+step 6 PASS (real RV32 firmware/AXI-Lite/UART) t=6255860000
+step 7 PASS (real RV32 firmware/AXI-Lite/UART) t=6646920000
+step 8 PASS (real RV32 firmware/AXI-Lite/UART) t=7127040000
+step 9 PASS (real RV32 firmware/AXI-Lite/UART) t=7612150000
+step 10 PASS (real RV32 firmware/AXI-Lite/UART) t=8071760000
+step 11 PASS (real RV32 firmware/AXI-Lite/UART) t=8656470000
+step 12 PASS (real RV32 firmware/AXI-Lite/UART) t=9246680000
+step 13 PASS (real RV32 firmware/AXI-Lite/UART) t=9811330000
+step 14 PASS (real RV32 firmware/AXI-Lite/UART) t=10064940000
+step 15 PASS (real RV32 firmware/AXI-Lite/UART) t=10313370000
+step 16 PASS (real RV32 firmware/AXI-Lite/UART) t=10560540000
+step 17 PASS (real RV32 firmware/AXI-Lite/UART) t=10816650000
+step 18 PASS (real RV32 firmware/AXI-Lite/UART) t=11069740000
+step 19 PASS (real RV32 firmware/AXI-Lite/UART) t=11319260000
+step 20 PASS (real RV32 firmware/AXI-Lite/UART) t=11627510000
+step 21 PASS (real RV32 firmware/AXI-Lite/UART) t=11932590000
+step 22 PASS (real RV32 firmware/AXI-Lite/UART) t=12208630000
+step 23 PASS (real RV32 firmware/AXI-Lite/UART) t=12544940000
+step 24 PASS (real RV32 firmware/AXI-Lite/UART) t=12878380000
+step 25 PASS (real RV32 firmware/AXI-Lite/UART) t=13182690000
+step 26 PASS (real RV32 firmware/AXI-Lite/UART) t=13452140000
+step 27 PASS (real RV32 firmware/AXI-Lite/UART) t=13721870000
+step 28 PASS (real RV32 firmware/AXI-Lite/UART) t=13989590000
+step 29 PASS (real RV32 firmware/AXI-Lite/UART) t=14263970000
+step 30 PASS (real RV32 firmware/AXI-Lite/UART) t=14538240000
+step 31 PASS (real RV32 firmware/AXI-Lite/UART) t=14809390000
+step 32 PASS (real RV32 firmware/AXI-Lite/UART) t=15141550000
+step 33 PASS (real RV32 firmware/AXI-Lite/UART) t=15475520000
+step 34 PASS (real RV32 firmware/AXI-Lite/UART) t=15781140000
+step 35 PASS (real RV32 firmware/AXI-Lite/UART) t=16150480000
+step 36 PASS (real RV32 firmware/AXI-Lite/UART) t=16520010000
+step 37 PASS (real RV32 firmware/AXI-Lite/UART) t=16862990000
+step 38 Y01K status=3a
+step 38 PASS (real RV32 firmware/AXI-Lite/UART) t=17090820000
+step 39 Y01K status=3a
+step 39 PASS (real RV32 firmware/AXI-Lite/UART) t=17317720000
+step 40 Y01K status=26
+step 40 PASS (real RV32 firmware/AXI-Lite/UART) t=17665250000
+step 41 Y01K status=26
+step 41 PASS (real RV32 firmware/AXI-Lite/UART) t=18011490000
+step 42 Y01K status=e6
+step 42 PASS (real RV32 firmware/AXI-Lite/UART) t=18238390000
+step 43 PASS (real RV32 firmware/AXI-Lite/UART) t=18549850000
+step 44 PASS (real RV32 firmware/AXI-Lite/UART) t=18827360000
+step 45 PASS (real RV32 firmware/AXI-Lite/UART) t=19312020000
+step 46 PASS (real RV32 firmware/AXI-Lite/UART) t=19645020000
+step 47 Y01K status=26
+step 47 PASS (real RV32 firmware/AXI-Lite/UART) t=19872910000
+step 48 PASS (real RV32 firmware/AXI-Lite/UART) t=20183530000
+step 49 Y01K status=26
+step 49 PASS (real RV32 firmware/AXI-Lite/UART) t=20411090000
+step 50 Y01K status=e6
+step 50 PASS (real RV32 firmware/AXI-Lite/UART) t=20638470000
+step 51 Y01S selftest_mask=07
+step 51 PASS (real RV32 firmware/AXI-Lite/UART) t=22608980000
+step 52 Y01K status=26
+step 52 PASS (real RV32 firmware/AXI-Lite/UART) t=22836810000
+step 53 PASS (real RV32 firmware/AXI-Lite/UART) t=23148210000
+TB_PYNQ_PUF3: PASS steps=54 t=23148210000
+C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v:230: $finish called at 23148210000 (1ps)
