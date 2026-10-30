@@ -1,11 +1,13 @@
 {
   "schema": "pynq_puf_v1_candidate",
-  "source_commit": "36095232727913cbf0b37e6cec96dd1d2b08cccf",
+  "source_commit": "4d3128a8babf82e0523bc9b5488eedbf961defdc",
   "source_dirty": true,
   "source_sha256": {
-    "board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl": "a718fc96ebf1a5c0fa1f3ffdf3c82b5d484f568f30a21b019bbde306b6c338d0",
-    "board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl": "28f7c4f1957a7107d794270016ef77968d094b799102b563f4173c914a7f1fdf",
+    "board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl": "b9e602368d24d3ded5910c05f35084c15173ee36126517053ff629ac87acb7b2",
+    "board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl": "4d144c1fea4e5d2f8537eab21c824c465d3ea64f5a0441909998d97f114a23d8",
     "board/vivado_zynq7000_xc7z020_pynq_puf/puf_opt_pre.tcl": "37221a4a0c44a35e87276fadbb16b51cd940d562a6dd90f70ba7bc6cdc8c33cd",
+    "board/vivado_zynq7000_xc7z020_pynq_puf/pynq_puf_timing.xdc": "cf528d6b244163f4254a94e6cd43d6bbbe2839d67879dd77b0acc76ffcfc25d8",
+    "board/vivado_zynq7000_xc7z020_pynq_puf/ro_corner_sta.tcl": "b4d4754ad11c7dca648fc1bdb11351147ffd1f56e1e4433fbed131c6eddd781f",
     "build/keys_ro_allow_loops.tcl": "de872fb0d7297266d4919925dee597ade3b9dfa56391ce6fa4ae787f66bd48f6",
     "src/firmware/keys_rv32/bin2vhex.py": "48e66b5fdfa498d23ee5ce0f3a485be9f4f3afb1546d385ef9489d5ae1c7d468",
     "src/firmware/keys_rv32/build.sh": "b89e6ed45bb5d66d7785a49ae2f8a8189a312a239eefc8132765ce2e86a21f89",
@@ -69,21 +71,24 @@
   "part": "xc7z020clg400-1",
   "top": "pynq_puf_wrapper",
   "vivado": "2025.2",
-  "strategy": "Vivado Synthesis Defaults + Performance_RefinePlacement",
-  "timing_history": "Performance_ExploreWithRemap WNS -0.135 (post-route phys_opt/reroute -0.117, not used); Performance_Explore +0.031, Performance_NetDelay_high -0.097, Performance_ExtraTimingOpt +0.154, Performance_RefinePlacement +0.208 (selected). Same synthesized netlist, clocks and constraints.",
+  "strategy": "Vivado Synthesis Defaults + Performance_ExtraTimingOpt",
+  "timing_history": "see reports/explore_impl.txt (every strategy tried, same netlist and constraints; only implementation strategy differs)",
+  "constraints": "PS7 generated + pynq_puf_timing.xdc (ro_clk = FCLK0/4 generated clock); RO oscillator clocks undeclared (analysis in reports/ro_corner_sta.txt)",
   "source_set": "src/rtl soc_top.v + ascon/ascon_mmio.v with PUF v1 (src/rtl/keys); not rtl_p0",
   "firmware": "keys_rv32 v3 (commit a4ae769), same COE as the 2026-10-27 JTAG board PASS",
   "control_id": "0x31554650",
   "control_version": 1,
   "fclk0_mhz": 100,
   "gate": {
-    "run": "impl_5",
-    "strategy": "Performance_RefinePlacement",
-    "wns": "0.208",
-    "whs": "0.016",
+    "run": "impl_3",
+    "strategy": "Performance_ExtraTimingOpt",
+    "wns": "0.062",
+    "whs": "0.009",
     "drc_error_or_critical": "0",
     "ro_luts": "1280",
-    "ro_luts_in_pblock": "1280",
+    "ro_luts_assigned_pblock": "1280",
+    "ro_luts_placed_in_pblock_region": "585",
+    "pblock_soft": "1",
     "netlist_29_160": "0"
   },
   "cosimulation": {
@@ -250,7 +255,8 @@
       }
     ]
   },
-  "not_signed_off": "RO sampling domain has unclocked/unconstrained endpoints (see check_timing.rpt)",
+  "not_signed_off": "RO sampling domain has unclocked/unconstrained endpoints (see check_timing_counts.txt)",
+  "pblock_note": "pb_ro_puf became soft (Place 30-640, CARRY4 demand 1687 > 1470 sites); only ro_luts_placed_in_pblock_region of the 1280 ring LUTs are physically inside it. Corrected 2026-10-30: the first package counted pblock assignment as placement.",
   "hardware_validation": "NOT_RUN",
   "artifacts": {
     "ascon_keys.coe": {
@@ -259,11 +265,11 @@
     },
     "pynq_puf.bit": {
       "bytes": 4045692,
-      "sha256": "59e23742b19ae0929abcb0df480d745278e880e2676db2500fc42ab4acb0523b"
+      "sha256": "47da0494d41c240d5fd2d289ab21b12fcad9ed405d5364927e74933d45dacabd"
     },
     "pynq_puf.hwh": {
       "bytes": 158451,
-      "sha256": "8f3fe00e56651ade3cb778c49624edcd312a479b4dd1c5c55f6971dec13c385d"
+      "sha256": "a9a9e3842bd6ff3c5f46b743a3a6a6fb4a835aeff9173472dc06c168bfee5aee"
     }
   }
 }

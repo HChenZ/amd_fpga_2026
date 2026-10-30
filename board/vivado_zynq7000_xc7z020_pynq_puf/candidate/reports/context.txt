@@ -7,7 +7,7 @@ Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
 
 part=xc7z020clg400-1 top=pynq_puf_wrapper FCLK0=100MHz ro_clk=clk/4 (inside soc_top) coe=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.srcs/sources_1/imports/bin_file/ascon_keys.coe
-source_head=36095232727913cbf0b37e6cec96dd1d2b08cccf
+source_head=56929b00a7ad7db8a80e40b13fb9b4a0c69b119d
 axi_bram_ctrl_0 xilinx.com:ip:axi_bram_ctrl:4.1
 blk_mem_gen_0 xilinx.com:ip:blk_mem_gen:8.4
 pynq_puf_axi_0 xilinx.com:ip:axi_interconnect:2.1

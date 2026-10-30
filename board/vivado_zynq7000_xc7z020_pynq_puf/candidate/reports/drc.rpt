@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Fri Oct 30 11:58:18 2026
+| Date         : Fri Oct 30 14:10:50 2026
 | Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
 | Command      : report_drc -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf/vivado/reports/drc.rpt
 | Design       : pynq_puf_wrapper
@@ -20,16 +20,16 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: checkpoint_pynq_puf_wrapper_routed
+          Floorplan: checkpoint_pynq_puf_wrapper_postroute_physopt
       Design limits: <entire design considered>
            Ruledeck: default
              Max checks: <unlimited>
-             Checks found: 824
+             Checks found: 825
 +-------------+----------+-------------------------------------------------------------+--------+
 | Rule        | Severity | Description                                                 | Checks |
 +-------------+----------+-------------------------------------------------------------+--------+
 | CHECK-3     | Warning  | Report rule limit reached                                   | 2      |
-| DPOP-1      | Warning  | PREG Output pipelining                                      | 2      |
+| DPOP-1      | Warning  | PREG Output pipelining                                      | 3      |
 | DPOP-2      | Warning  | MREG Output pipelining                                      | 4      |
 | LUTLP-2     | Warning  | Combinatorial Loop Allowed                                  | 256    |
 | PDRC-153    | Warning  | Gated clock check                                           | 256    |
@@ -61,6 +61,11 @@ Related violations: <none>
 DPOP-1#2 Warning
 PREG Output pipelining  
 DSP pynq_puf_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_multiplier/p_reg0__0 output pynq_puf_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_multiplier/p_reg0__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#3 Warning
+PREG Output pipelining  
+DSP pynq_puf_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_multiplier/p_reg_reg__0 output pynq_puf_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_multiplier/p_reg_reg__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-2#1 Warning
@@ -9290,7 +9295,7 @@ Related violations: <none>
 
 UTLZ-3#3 Warning
 Resource utilization  - PBlock:pb_ro_puf
-Slice over-utilized in Pblock pb_ro_puf (This design requires more Slice cells than are available in Pblock 'pb_ro_puf'. This design requires 2649 of such cell types but only 1470 compatible sites are available in Pblock 'pb_ro_puf'. Please consider increasing the span of Pblock 'pb_ro_puf' or removing cells from it.)
+Slice over-utilized in Pblock pb_ro_puf (This design requires more Slice cells than are available in Pblock 'pb_ro_puf'. This design requires 2641 of such cell types but only 1470 compatible sites are available in Pblock 'pb_ro_puf'. Please consider increasing the span of Pblock 'pb_ro_puf' or removing cells from it.)
 Related violations: <none>
 
 UTLZ-3#4 Warning

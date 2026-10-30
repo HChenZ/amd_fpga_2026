@@ -1,8 +1,7 @@
- There are 5824 register/latch pins with no clock driven by root clock pin: pynq_puf_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/ro_clk_div_reg[1]/Q (HIGH)
  There are 5120 register/latch pins with no clock driven by root clock pin: pynq_puf_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/ro_en_reg/Q (HIGH)
  There are 0 register/latch pins with constant_clock.
  There are 0 register/latch pins which need pulse_width check
- There are 27312 pins that are not constrained for maximum delay. (HIGH)
+ There are 15360 pins that are not constrained for maximum delay. (HIGH)
  There are 0 pins that are not constrained for maximum delay due to constant clock.
  There are 0 input ports with no input delay specified.
  There are 0 input ports with no input delay but user has a false path constraint.

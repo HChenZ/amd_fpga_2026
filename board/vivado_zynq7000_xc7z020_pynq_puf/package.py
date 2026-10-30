@@ -19,7 +19,7 @@ gate = (rep / 'gate.txt').read_text()
 g = dict(kv.split('=') for kv in gate.split())
 assert float(g['wns']) >= 0 and float(g['whs']) >= 0, 'timing gate'
 assert g['drc_error_or_critical'] == '0' and g['netlist_29_160'] == '0', 'DRC / PS pin gate'
-assert g['ro_luts'] == '1280' and g['ro_luts_in_pblock'] == '1280', 'RO structure gate'
+assert g['ro_luts'] == '1280' and g['ro_luts_assigned_pblock'] == '1280', 'RO structure gate'
 assert not re.search(r'\|\s*(?:Error|Critical Warning)\s*\|', (rep / 'drc.rpt').read_text()), 'DRC report'
 sim = json.loads((root / 'build/local/pynq_puf/sim/summary.json').read_text())
 assert sim['result'] == 'PASS' and sim['normal_pass'] and sim['mutant_detected'], 'cosimulation gate'
@@ -39,6 +39,17 @@ for name in ('gate.txt', 'timing_summary.rpt', 'drc.rpt', 'methodology.rpt',
              'utilization.rpt', 'pblock_utilization.rpt', 'clock_interaction.rpt', 'route_status.rpt'):
     shutil.copy2(rep / name, cand / 'reports' / name)
 shutil.copy2(work / 'context.txt', cand / 'reports/context.txt')
+# RO-domain corner analysis must belong to the routed design that produced this bit.
+ro_sta = root / 'build/local/pynq_puf/ro_sta/ro_corner_sta.txt'
+first = ro_sta.read_text().splitlines()[0]
+run_dir = work / 'pynq_puf.runs' / g['run']
+final_dcp = run_dir / 'pynq_puf_wrapper_postroute_physopt.dcp'
+if not final_dcp.exists():
+    final_dcp = run_dir / 'pynq_puf_wrapper_routed.dcp'
+expected_dcp = final_dcp.resolve().as_posix()
+assert first.startswith('dcp=') and Path(first[4:].split(' tool=')[0]).resolve().as_posix() == expected_dcp, \
+    'ro_corner_sta.txt was produced from a different checkpoint'
+shutil.copy2(ro_sta, cand / 'reports/ro_corner_sta.txt')
 shutil.copy2(root / 'build/local/pynq_puf/sim/normal_step1.log', cand / 'reports/cosim_normal.log')
 shutil.copy2(root / 'build/local/pynq_puf/sim/mutant_no_puf_step1.log', cand / 'reports/cosim_mutant_no_puf.log')
 shutil.copy2(root / 'build/local/pynq_puf/vivado/reports/explore_impl.txt', cand / 'reports/explore_impl.txt')
@@ -49,6 +60,7 @@ sources = (list((root / 'src/rtl').glob('*.v')) + list((root / 'src/rtl/ascon').
            + list((root / 'src/rtl/ascon').glob('*.vh')) + list((root / 'src/rtl/keys').glob('*.v'))
            + list((root / 'src/rtl/pynq').glob('*.v')) + list((root / 'src/firmware/keys_rv32').glob('*.*'))
            + [board / 'build.tcl', board / 'puf_opt_pre.tcl', board / 'finalize_run.tcl',
+              board / 'pynq_puf_timing.xdc', board / 'ro_corner_sta.tcl',
               root / 'build/keys_ro_allow_loops.tcl'])
 git = lambda *a: subprocess.check_output(['git', *a], cwd=root, text=True).strip()
 manifest = {
@@ -58,15 +70,18 @@ manifest = {
     'source_sha256': {p.relative_to(root).as_posix(): sha(p) for p in sorted(sources) if p.is_file()},
     'part': 'xc7z020clg400-1', 'top': 'pynq_puf_wrapper', 'vivado': '2025.2',
     'strategy': 'Vivado Synthesis Defaults + ' + g.get('strategy', 'unknown'),
-    'timing_history': 'Performance_ExploreWithRemap WNS -0.135 (post-route phys_opt/reroute -0.117, not used); '
-                      'Performance_Explore +0.031, Performance_NetDelay_high -0.097, '
-                      'Performance_ExtraTimingOpt +0.154, Performance_RefinePlacement +0.208 (selected). '
-                      'Same synthesized netlist, clocks and constraints.',
+    'timing_history': 'see reports/explore_impl.txt (every strategy tried, same netlist and constraints; '
+                      'only implementation strategy differs)',
+    'constraints': 'PS7 generated + pynq_puf_timing.xdc (ro_clk = FCLK0/4 generated clock); '
+                   'RO oscillator clocks undeclared (analysis in reports/ro_corner_sta.txt)',
     'source_set': 'src/rtl soc_top.v + ascon/ascon_mmio.v with PUF v1 (src/rtl/keys); not rtl_p0',
     'firmware': 'keys_rv32 v3 (commit a4ae769), same COE as the 2026-10-27 JTAG board PASS',
     'control_id': '0x31554650', 'control_version': 1, 'fclk0_mhz': 100,
     'gate': g, 'cosimulation': sim,
-    'not_signed_off': 'RO sampling domain has unclocked/unconstrained endpoints (see check_timing.rpt)',
+    'not_signed_off': 'RO sampling domain has unclocked/unconstrained endpoints (see check_timing_counts.txt)',
+    'pblock_note': 'pb_ro_puf became soft (Place 30-640, CARRY4 demand 1687 > 1470 sites); '
+                   'only ro_luts_placed_in_pblock_region of the 1280 ring LUTs are physically inside it. '
+                   'Corrected 2026-10-30: the first package counted pblock assignment as placement.',
     'hardware_validation': 'NOT_RUN',
     'artifacts': artifacts,
 }
