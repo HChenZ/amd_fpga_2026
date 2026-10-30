@@ -1,5 +1,45 @@
 # 实际进度
 
+## 2026-10-30 — RTL Skill 验证停止，历史样例保留
+
+owner TBD。`rtl-design-discipline` 的非 Ascon counter 样例虽然完成了独立生成、
+功能仿真和故障注入，但复核发现验证设计存在方法问题，决定停止后续 Skill 验证：
+
+- G0 记录的模型身份与实际 G3/G6 会话不一致；原始会话为
+  `deepseek-flash / deepseek / reasoning=max`。
+- 无 Skill 对照组仍收到提及 RTL design discipline 的提示词，A/B 存在暗示混杂。
+- 冻结 TB 与参考模型由同一主会话编写，仅做到生成时不可见，未做到作者独立。
+- prompt v1/v2 的冻结链、原始会话轨迹和自动 Skill discovery 证据仍不完整。
+- 单个简单 counter 未覆盖 Skill 重点针对的复杂嵌套、补丁式修改和多优先级任务。
+- 未进行综合，资源/时序为 `NOT_MEASURED`；单次 A/B 不能证明 Skill 效果。
+
+历史 G0-G8 证据保留但不升级为“Skill 已验证”；正式结论为
+`STOPPED_INCONCLUSIVE`，说明见 `data/skill/results/20261030_validation_stop.md`。
+仓库外隔离工作区、未脱敏原始副本和临时 validator 虚拟环境已清理。
+
+## 2026-10-30 — RTL design discipline Skill 非 Ascon 最小验证
+
+owner TBD。完成 `rtl-design-discipline` 的显式内容验证，执行对象固定为
+`skill/rtl-design-discipline/SKILL.md`，输入与 oracle 均冻结。
+
+- G0/G1：Skill SHA-256 `ca5413cd…`；`quick_validate.py` 在 Python 3.14.0 +
+  PyYAML 6.0.3 + UTF-8 模式下 PASS。首次缺 PyYAML、第二次 GBK 解码失败均作为历史失败保留。
+- G2：冻结 1,046-cycle 独立 TB，seed `20261030`；参考实现 PASS；将 load/clear
+  优先级调换的错误实现由同一 TB 拒绝（exit 1）。
+- G3：通过 `codex exec --ephemeral --no-daemon` 启动无历史生成会话，只提供 Skill 和
+  prompt rev2；生成 `counter8`，独立语法检查 exit 0。
+- G4：生成 RTL 通过冻结 TB，编译/仿真 exit 0，1,046 cycles，最终 count=`0x48`。
+- G5：在私有副本中将 load 提到 clear 之前，TB 报 353 个错误、仿真 exit 1；
+  恢复原始 RTL 后 hash 不变且重新 PASS。
+- G6：同一提示词、同模型/CLI 设置的无 Skill 对照组也通过同一 TB，1,046 cycles。
+  两组均只有一个 `count[7:0]` 状态；单次对照未观察到功能差异。
+- G7/G8：规范审查与交接完成。未运行综合，资源改善 `NOT_MEASURED`；未测试自动
+  Skill discovery，不能推广为广泛 RTL 质量提升。
+
+证据位于 `data/skill/results/20261030_rtl_discipline_g0/`、
+`..._g2/`、`..._g3/`、`..._g4_g5/`、`..._g6_g8/`，公共证据均使用相对路径并带
+SHA-256 清单。S01-S05 通用 PYNQ Skill 仍未实现，本结果不能替代它们。
+
 ## 2026-10-29 21:40 — V03 实板错误/恢复门禁 9/9 PASS
 
 owner TBD。用户在 PYNQ 2.7.0 / Python 3.8.2 上从头执行

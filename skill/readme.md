@@ -3,15 +3,16 @@
 本目录存放可复用 Skill 的**受控副本**（不是本工程的运行时依赖，也不绑定具体 agent 平台）。
 下表的状态栏只写已验证的事实；没有验证证据的一律写 `not_validated`。
 
-2026-10-29 状态：P0/P1 实板主链已完成，但 S01-S05 的通用 PYNQ Skill 仍未实现，
-S05 尚无验收版说明。当前仅 `rtl-design-discipline` 内容成形，且非 Ascon 对照效果
-仍为 `not_validated`。
+2026-10-30 状态：P0/P1 实板主链已完成，但 S01-S05 的通用 PYNQ Skill 仍未实现，
+S05 尚无验收版说明。`rtl-design-discipline` 只保留一次非 Ascon 8-bit counter 的
+受限功能样例；复核发现模型身份、A/B 提示词和 oracle 独立性等问题，验证已停止，
+状态为 `STOPPED_INCONCLUSIVE`。不得据此宣传资源或广泛质量提升。
 
 ## 已交付
 
 | Skill | 来源 | 状态 |
 |---|---|---|
-| `rtl-design-discipline/` | 队友提出的通病观察（AI 写 Verilog 时对同一逻辑写出一堆等价废话、用打补丁的方式改代码、不关心综合出什么硬件、生成无必要的组合逻辑），2026-10-17 按此要求成形，2026-10-24 收入本目录 | 内容已成形、可直接安装；**在非 Ascon 示例上的对照效果尚未验证（not_validated）** |
+| `rtl-design-discipline/` | 队友提出的通病观察（AI 写 Verilog 时对同一逻辑写出一堆等价废话、用打补丁的方式改代码、不关心综合出什么硬件、生成无必要的组合逻辑），2026-10-17 按此要求成形，2026-10-24 收入本目录 | **单次非 Ascon counter 功能样例保留；验证已停止；Skill 效果 inconclusive；资源 not_measured；广泛通用性 not_proven** |
 
 ### `rtl-design-discipline/`（Hardware-First RTL）
 
@@ -22,7 +23,12 @@ S05 尚无验收版说明。当前仅 `rtl-design-discipline` 内容成形，且
 - **成功判据**（可判定，不靠感觉）：同一语义的表达式在文件内只出现一次；无 `always_comb` 未赋值路径；无「为绕过一个特例而新增的嵌套层」；综合前后 LUT/FF 数量不因"重写"而上升（等价重写应持平或下降）。
 - **失效条件**：需要跨模块做**时序**收敛（pblock、复制寄存器、流水级重构）时本 skill 不提供方法，走 Vivado/时序类 skill；需要 SPEC 与验证流程时走 Verilog Design Flow；HLS 具体 pragma 语法走 hls-* 系列。
 - **来源案例**：RISC-V 取指单元里 `Mux(redirectNow, redirectNowTarget, …)` 被同义重写三次（不同嵌套层），属于典型漂移风险点。
-- **已验证效果**：无。没有做过「同一需求，用/不用本 skill 写两版，比较 LUT/FF/时序」的对照实验，因此不得对外声称它能提升电路质量。要做的话最小实验是：取一个已收敛模块（如 `ascon_round.v` 或 `bypass.v`），让两个 agent 分别按/不按本 skill 实现，比较 LUT/FF 与最差路径——这一步 `not_measured`。
+- **验证结论（2026-10-30）**：历史记录中，显式提供 Skill 生成的非 Ascon
+  `counter8` 通过冻结 TB（1,046 cycles）和一次故障注入；无 Skill 对照组也通过。
+  复核发现模型身份记录不一致、A/B 提示词存在方法暗示、oracle 作者不独立等问题，
+  因此验证停止，整体结论 `inconclusive`。未做综合，LUT/FF/时序为 `not_measured`；
+  Skill discovery 和广泛通用性均未验证。停止说明见
+  `data/skill/results/20261030_validation_stop.md`。
 
 ## 预留（尚未实现）
 

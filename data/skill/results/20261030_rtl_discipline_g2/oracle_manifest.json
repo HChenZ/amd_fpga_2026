@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "stage": "G2_oracle_freeze",
+  "owner": "TBD",
+  "module_contract": "counter8",
+  "prompt_revision": 2,
+  "prompt_file": "input_prompt_v2.txt",
+  "prompt_sha256": "663dc7f528ff54a41d3c06adc8bd0459f91af12a892313bd15d605353554302c",
+  "seed": 20261030,
+  "oracle_storage": "isolated workspace outside repository; source withheld from generation session",
+  "testbench_sha256": "79fdaa35c2aa0a3792cf153bedad022b7acfd4d58ef2f0c19925cd3a98048c5b",
+  "reference_model_sha256": "9adc44eddb8494597eebaad62339ddd64dbc4f2560c3b696c94980f997946438",
+  "mutation_model_sha256": "bb39f562d077085ce465de21189b106bd621136402f5d150e37c04955d653510",
+  "reference_pretest": {
+    "compile_exit_code": 0,
+    "simulation_exit_code": 0,
+    "cycles": 1046,
+    "result": "PASS"
+  },
+  "mutation_pretest": {
+    "compile_exit_code": 0,
+    "simulation_exit_code": 1,
+    "first_failure": "tag=214 cycle=33 expected=00 actual=a5",
+    "result": "PASS_TB_DETECTED_MUTATION"
+  },
+  "generated_rtl": "NOT_RUN",
+  "testbench_exposed_to_generator": false
+}

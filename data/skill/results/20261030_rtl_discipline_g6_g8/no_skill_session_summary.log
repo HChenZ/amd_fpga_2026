@@ -1,0 +1,13 @@
+stage: G6_no_skill_control
+session: Codex CLI ephemeral, no prior conversation history
+model: deepseek-flash
+provider: deepseek
+reasoning_effort: max
+skill_loaded: false
+codex_exec_exit_code: 0
+allowed_input: input/input_prompt_v2.txt only
+forbidden_artifact_access_scan: PASS
+scanned_terms: SKILL.md, tb_counter, reference_counter, mutated_counter, data/skill/results
+forbidden_path_matches: 0
+testbench_created: false
+simulation_run_during_generation: false

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "study_type": "single_pair_exploratory",
+  "model": "deepseek-flash",
+  "provider": "deepseek",
+  "reasoning_effort": "max",
+  "prompt_revision": 2,
+  "seed": 20261030,
+  "same_model_and_cli_settings": true,
+  "groups": {
+    "skill": {
+      "skill_loaded": true,
+      "generation_exit_code": 0,
+      "compile_exit_code": 0,
+      "simulation_exit_code": 0,
+      "cycles": 1046,
+      "generated_bytes": 589,
+      "generated_lines": 25,
+      "always_blocks": 1,
+      "state_registers": 1,
+      "count_assignments": 5
+    },
+    "no_skill": {
+      "skill_loaded": false,
+      "generation_exit_code": 0,
+      "compile_exit_code": 0,
+      "simulation_exit_code": 0,
+      "cycles": 1046,
+      "generated_bytes": 541,
+      "generated_lines": 23,
+      "always_blocks": 1,
+      "state_registers": 1,
+      "count_assignments": 4
+    }
+  },
+  "functional_difference": "none_observed",
+  "constraint_compliance": "both_pass",
+  "resource_comparison": "NOT_MEASURED",
+  "synthesis_tool_available": false,
+  "conclusion": "No functional or resource advantage can be claimed from a single pair."
+}

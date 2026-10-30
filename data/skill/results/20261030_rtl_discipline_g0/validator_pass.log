@@ -1,0 +1,5 @@
+redacted_from_original: true
+command: python -X utf8 -B <skill-creator>/scripts/quick_validate.py skill/rtl-design-discipline
+exit_code: 0
+result: PASS
+stdout: Skill is valid!

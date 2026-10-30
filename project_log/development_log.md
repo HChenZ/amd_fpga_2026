@@ -450,3 +450,20 @@
 - 同步 README、项目概览、架构、接口、PYNQ 协议/说明、任务板、里程碑、风险、交接、
   上板计划、报告目录与 Skill 目录；旧计划保留历史边界。
 - 未修改 RTL、固件、测试结果或 release 产物。
+
+## 2026-10-30 — RTL design discipline Skill 验证收口
+
+- 完成 G0-G8：结构校验、oracle 冻结、独立生成、功能测试、故障注入、恢复核对和
+  单次无 Skill 对照。Skill 组与对照组均通过同一冻结 TB。
+- 为排除历史上下文污染，G3/G6 使用 `codex exec --ephemeral --no-daemon` 和隔离工作区；
+  Testbench 在生成完成后才进入可提交证据。
+- 结果只支持“一个非密码 8-bit counter 示例通过”；LUT/FF/时序和广泛通用性未验证。
+- G0/G2/G3/G4-G5/G6-G8 均保存 manifest、原始日志和 SHA-256；未修改比赛 RTL/固件/release。
+
+## 2026-10-30 — Skill 验证复核后停止
+
+- 原始会话确认实际模型为 `deepseek-flash/deepseek/reasoning=max`，与 G0 身份记录不一致。
+- A/B 对照提示词存在方法暗示，TB/参考模型未达到作者独立，且 prompt v1/v2 和原始
+  会话轨迹的 provenance 不完整，因此 G0-G8 整体降级为 `STOPPED_INCONCLUSIVE`。
+- 历史功能样例和失败证据保留；新增停止说明。删除隔离 oracle/G3/G6 工作区、
+  build/local 未脱敏原始副本和临时 validator 虚拟环境。未修改 Skill 内容或比赛 RTL。

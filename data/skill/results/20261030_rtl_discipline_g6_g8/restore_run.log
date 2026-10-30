@@ -1,0 +1,9 @@
+command: iverilog -g2012 -s tb_counter -o restore.vvp generated_counter.v tb_counter.v
+compile_exit_code: 0
+command: vvp restore.vvp
+simulation_exit_code: 0
+dut_sha256_before: e9fb9b382f21b2c1f349f289e185b8e8183a5d899178dcfadfa44082d17323de
+dut_sha256_after: e9fb9b382f21b2c1f349f289e185b8e8183a5d899178dcfadfa44082d17323de
+output:
+PASS tb_counter cycles=1046 seed=20261030 final_count=48
+tb_counter.v:152: $finish called at 10466000 (1ps)

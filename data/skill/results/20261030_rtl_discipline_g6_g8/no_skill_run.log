@@ -1,0 +1,7 @@
+command: iverilog -g2012 -s tb_counter -o a.vvp generated_counter.v tb_counter.v
+compile_exit_code: 0
+command: vvp a.vvp
+simulation_exit_code: 0
+output:
+PASS tb_counter cycles=1046 seed=20261030 final_count=48
+tb_counter.v:152: $finish called at 10466000 (1ps)

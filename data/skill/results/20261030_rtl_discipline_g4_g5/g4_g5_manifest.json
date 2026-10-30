@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "stage": "G4_G5_functional_and_mutation",
+  "owner": "TBD",
+  "seed": 20261030,
+  "testbench_sha256": "79fdaa35c2aa0a3792cf153bedad022b7acfd4d58ef2f0c19925cd3a98048c5b",
+  "generated_counter_sha256": "e9fb9b382f21b2c1f349f289e185b8e8183a5d899178dcfadfa44082d17323de",
+  "mutation_counter_sha256": "1777095d37c41a8545d193066ec0391005d1a2f7aaea50f8e4c6f41d520cfd67",
+  "functional_run": {
+    "compile_exit_code": 0,
+    "simulation_exit_code": 0,
+    "cycles": 1046,
+    "final_count": "0x48",
+    "stdout_marker": "PASS tb_counter",
+    "watchdog_enabled": true,
+    "result": "PASS"
+  },
+  "mutation_run": {
+    "mutation": "load priority raised above clear",
+    "compile_exit_code": 0,
+    "simulation_exit_code": 1,
+    "detected_errors": 353,
+    "first_failure": "tag=214 cycle=33 expected=00 actual=a5",
+    "result": "PASS_MUTATION_REJECTED"
+  },
+  "functional_result": "PASS",
+  "mutation_result": "PASS",
+  "resource_result": "NOT_MEASURED",
+  "next_stage": "G6_optional_AB_or_G7_handoff"
+}

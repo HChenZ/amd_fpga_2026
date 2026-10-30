@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "stage": "G3_independent_generation",
+  "owner": "TBD",
+  "session_mode": "ephemeral_new_session",
+  "model_agent": "Codex CLI 0.164.0-alpha.11.1; model=deepseek-flash; provider=deepseek; reasoning=max",
+  "input_skill_sha256": "ca5413cdc9f1298532e435a69913b4ea33740b9a63fb9a4dadb270e73badc7ed",
+  "input_prompt_sha256": "663dc7f528ff54a41d3c06adc8bd0459f91af12a892313bd15d605353554302c",
+  "generated_counter_sha256": "e9fb9b382f21b2c1f349f289e185b8e8183a5d899178dcfadfa44082d17323de",
+  "response_sha256": "7b2ad8657598a4cdf7ecc719afa87b0bf176c9c5b135c8725016a859ab65b0bc",
+  "codex_exec_exit_code": 0,
+  "syntax_check": "iverilog -g2005 -tnull",
+  "syntax_exit_code": 0,
+  "testbench_exposed_to_generator": false,
+  "forbidden_artifact_access": "PASS",
+  "generated_rtl": "READY_FOR_G4",
+  "functional_result": "NOT_RUN",
+  "mutation_result": "NOT_RUN",
+  "resource_result": "NOT_MEASURED",
+  "notes": [
+    "Fresh ephemeral CLI session used",
+    "No testbench or reference model provided",
+    "Raw session log retained outside repository",
+    "MCP shutdown warning did not affect generation exit code"
+  ]
+}

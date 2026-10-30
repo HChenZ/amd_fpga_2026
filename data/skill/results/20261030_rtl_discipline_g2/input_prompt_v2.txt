@@ -1,0 +1,20 @@
+请按加载的 RTL design discipline 设计 Verilog 模块 counter8。
+
+端口：
+input clk;
+input rst_n;
+input clear;
+input enable;
+input load;
+input [7:0] load_data;
+output reg [7:0] count。
+
+所有输入和状态变化均在 clk 上升沿解释；rst_n 为同步低有效复位。
+优先级：rst_n=0 > clear > load > enable 递增 > 保持。
+255 再加 1 回绕为 0。
+不增加额外流水级或状态寄存器，count[7:0] 是本模块唯一状态。
+
+先列寄存器和下一值选择，再输出可编译 Verilog 和验证计划。
+验证计划必须包括所有控制组合、load 与 enable 同时为 1、
+clear 与 load 同时为 1、复位优先级、回绕、保持和连续 load。
+不要修改比赛或其他工程文件。

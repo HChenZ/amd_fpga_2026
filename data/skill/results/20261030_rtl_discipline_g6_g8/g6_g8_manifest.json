@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "stage": "G6_G7_G8",
+  "owner": "TBD",
+  "overall_status": "STOPPED_INCONCLUSIVE",
+  "status_note": "Stage results retained; overall Skill validation stopped after audit. See data/skill/results/20261030_validation_stop.md.",
+  "study_type": "single_pair_exploratory",
+  "model": "deepseek-flash",
+  "provider": "deepseek",
+  "reasoning_effort": "max",
+  "skill_sha256": "ca5413cdc9f1298532e435a69913b4ea33740b9a63fb9a4dadb270e73badc7ed",
+  "prompt_sha256": "663dc7f528ff54a41d3c06adc8bd0459f91af12a892313bd15d605353554302c",
+  "skill_group": {
+    "generated_sha256": "e9fb9b382f21b2c1f349f289e185b8e8183a5d899178dcfadfa44082d17323de",
+    "compile_exit_code": 0,
+    "simulation_exit_code": 0,
+    "cycles": 1046,
+    "functional_result": "PASS",
+    "mutation_result": "PASS"
+  },
+  "no_skill_group": {
+    "generated_sha256": "6c1217329610eaacb22a54847fcc875dc8e964c4e69c78708476f45d6a6f4959",
+    "generation_exit_code": 0,
+    "compile_exit_code": 0,
+    "simulation_exit_code": 0,
+    "cycles": 1046,
+    "functional_result": "PASS"
+  },
+  "comparison": {
+    "functional_difference": "none_observed",
+    "state_registers": "1 in both",
+    "always_blocks": "1 in both",
+    "skill_source_bytes": 589,
+    "no_skill_source_bytes": 541,
+    "resource_comparison": "NOT_MEASURED",
+    "synthesis_tool_available": false,
+    "conclusion": "Single-pair exploratory result; no resource or broad quality advantage claimed"
+  },
+  "restoration": {
+    "original_sha256_unchanged": true,
+    "restore_simulation_exit_code": 0
+  },
+  "scope": {
+    "validation_mode": "explicit_content",
+    "automatic_discovery_tested": false,
+    "task": "non-cryptographic 8-bit counter",
+    "broad_generalization": "not_proven",
+    "pynq_s01_s05_tools": "not_tested"
+  }
+}

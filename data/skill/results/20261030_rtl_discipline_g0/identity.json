@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "owner": "TBD",
+  "validation_mode": "explicit_content",
+  "skill_path": "skill/rtl-design-discipline/SKILL.md",
+  "skill_sha256": "ca5413cdc9f1298532e435a69913b4ea33740b9a63fb9a4dadb270e73badc7ed",
+  "skill_snapshot_sha256": "ca5413cdc9f1298532e435a69913b4ea33740b9a63fb9a4dadb270e73badc7ed",
+  "git_head": "36095232727913cbf0b37e6cec96dd1d2b08cccf",
+  "git_status": [
+    "?? data/skill/"
+  ],
+  "host": "redacted_local_host",
+  "os": "Microsoft Windows NT 10.0.26300.0",
+  "powershell": "7.6.9",
+  "model_agent": "Validation orchestration by Codex/GPT-5; G3/G6 generation sessions used deepseek-flash via provider deepseek with reasoning=max",
+  "python": "Python 3.14.0",
+  "pyyaml": "6.0.3",
+  "iverilog": "Icarus Verilog version 13.0 (stable) (v13_0)",
+  "validator_path": "skill-creator/scripts/quick_validate.py",
+  "validator_sha256": "6068513d924ed3559e186dfcdead7439129828dcf402167fd925c06dffbf2806",
+  "validator_exit_code": 0,
+  "validator_status": "PASS",
+  "validator_utf8_mode": true,
+  "test_task": "8bit_synchronous_counter",
+  "seed": 20261030,
+  "input_prompt_sha256": "4868b32ff2a7ea3f76003f377e8af8f0c8dff156a496bb136df289a5ae01f405",
+  "functional_result": "NOT_RUN",
+  "mutation_result": "NOT_RUN",
+  "resource_result": "NOT_MEASURED",
+  "supported_scope": "Explicit RTL-design-discipline content on a single non-cryptographic 8-bit counter task",
+  "known_failures": [
+    "initial MSYS2 Python lacked PyYAML",
+    "Python 3.14 default GBK mode could not read UTF-8 SKILL.md"
+  ],
+  "evidence_sanitized": true,
+  "redaction_manifest": "redaction_manifest.json"
+}

@@ -1,0 +1,22 @@
+{
+  "sanitized": true,
+  "raw_archive_relative_to_repo": "build/local/skill_validation_private/20261030_rtl_discipline_g0",
+  "sanitized_files": [
+    "identity.json",
+    "validator_attempt1.log",
+    "validator_attempt2.log",
+    "validator_pass.log"
+  ],
+  "replacements": [
+    "absolute repository path -> skill-relative path",
+    "absolute external validator path -> skill-creator/scripts/quick_validate.py",
+    "absolute Python path -> python",
+    "host/user identifiers -> redacted_local_host"
+  ],
+  "raw_sha256": {
+    "identity.json": "7c2edf04a204c9826dea1829dc92f25f35a5243adb321317feb752d435448353",
+    "validator_attempt1.log": "7303b76835b6a0924ac50a4315bdbcff1fded5dfe33262dd87df6c468a62ca1c",
+    "validator_attempt2.log": "944e9dcf2d04f82e6c7d6b05a35aaddcb5cd0aa347a26b65ab4093c8c94a3da0",
+    "validator_pass.log": "b37aab5a5031d06123c43ef83cb846c6dac3aed24781d4e4b860c3360dc60fbf"
+  }
+}
