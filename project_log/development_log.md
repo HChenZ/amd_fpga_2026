@@ -1,5 +1,9 @@
 # 开发记录
 
+## 2026-10-30 — pynq_puf3 板测协议问题修复（owner TBD）
+
+- 板测时钟已正确（99.999999 MHz）；失败为固件 banner 文本 "Y01K" 被主机当作 PUF 帧。Notebook 解码器改为只在 PUF 命令待响应时、且帧头匹配时识别 Y01K；离线复现与修复验证 8/8，板上待复测。
+
 ## 2026-10-30 — pynq_puf3 FCLK0 修正（owner TBD）
 
 - 板测显示 93.75 MHz；定位为 hwh 的 IO PLL 假设（1600 MHz）与启动镜像（1000 MHz）不符、PYNQ 读数又按 50 MHz 参考计算，真实 62.5 MHz。固定 IOPLL FBDIV 30 + 分频 10×1 重建；板测加入 SLCR 推算与 mcycle 实测双重时钟门禁。板测 NOT_RUN。

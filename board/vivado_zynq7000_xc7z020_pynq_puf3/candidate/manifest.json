@@ -1,6 +1,6 @@
 {
   "schema": "pynq_puf3_candidate",
-  "source_commit": "ff7360d240b9c3c8230d28d63f661e29cbde14a9",
+  "source_commit": "27f24bb072f53c3eb109a805ed1ecba3869c0a97",
   "source_dirty": true,
   "source_sha256": {
     "board/vivado_zynq7000_xc7z020_pynq_puf3/build.tcl": "fc93a37523f5a07efe653e970cd21592bb8408dab87ee53fecf687b59a9fd30b",
@@ -22,7 +22,7 @@
     "src/firmware/pynq_svc_puf/main.c": "98043a77245707eead5345275f697132947d8d5405ae7b6848180de0e5d57513",
     "src/firmware/pynq_svc_puf/puf_svc.c": "a047987f9d8a78d92f0b19ecb7b629ebbb6ea0e82bc98146fece38ef9a6c9a91",
     "src/firmware/pynq_svc_puf/puf_svc.h": "16f9be2801fe0dadfb295ffda5a8c13bd61d5ca13687f33fbbe0a9d9a2300b0f",
-    "src/pynq_puf3/pynq_puf3_board_test.ipynb": "de00f1056d66740e184e6aaf43e40e167df481931e6b01273774eb5895710d42",
+    "src/pynq_puf3/pynq_puf3_board_test.ipynb": "5d1ed1e93220d90c887c6b92ab6f90f236566ed9c67940176d5b25f0010b8fab",
     "src/rtl/ascon/ascon_aead_2.v": "8ea360514428ce7408927246c0d16b7c95c90b0da655cfe48d074b77f3353c0c",
     "src/rtl/ascon/ascon_aead_2_tb.v": "cfbfe00bd4a31e9d32386cbf50abe7b86fe8f58eb5e7b657f4252a93d83b586b",
     "src/rtl/ascon/ascon_aead_core.v": "1124bd29b8dcece597d0c413d68a40672a16ee4e82af886ad2e703108208f0f7",

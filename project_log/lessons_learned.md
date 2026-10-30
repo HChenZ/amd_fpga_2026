@@ -1,5 +1,11 @@
 # 经验与踩坑
 
+## 2026-10-30 — 按魔数分帧时，文本日志里不能出现魔数
+
+- 固件 banner 写了 "puf: Y01P/Y01K"，主机按魔数分帧把这段文本当成 Y01K 帧，吞掉了 Y01S。文本与二进制帧共用同一字节流时：日志里不能出现帧魔数；同时解码器只在确实有请求待响应时识别对应帧，并校验帧头里的 cmd/seq。
+- 仿真 TB 按"期望的魔数"跳过文本，模型测试的 banner 也是另写的，所以都没覆盖到真实固件的文本。模型的 banner 要与固件逐字一致，或者直接回放真实板上日志。
+- 定位时先看 `tx_bytes`/`service`：tx_bytes=0、service=null 说明失败发生在握手阶段，与 PUF 命令本身无关。
+
 ## 2026-10-30 — PYNQ overlay 的 FCLK 不等于 hwh 里写的频率
 
 - PYNQ 加载 overlay 只写 FCLK 分频，不改 PLL；Vivado PS7 IP 在只开 GP0+FCLK0 时自选 IO PLL 1600 MHz，而这块板的启动镜像是 1000 MHz，结果 hwh "100 MHz" 实际只有 62.5 MHz。overlay 的 PS7 时钟必须按启动镜像的 PLL 固定（或改用 PYNQ 按频率设置），并在板上读 SLCR 核对 PLL。

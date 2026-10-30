@@ -1,5 +1,12 @@
 # 实际进度
 
+## 2026-10-30 — pynq_puf3 板测 'unexpected PUF frame' 定位与修复（board 待复测，owner TBD）
+
+- 证据 `data/pynq_puf3/notebook_20261030_123118/`（队友 27f24bb）：bit/hwh 哈希一致，FCLK0 寄存器推算 99.999999 MHz（FBDIV 30、分频 10×1，PYNQ 读数 150 按 50 MHz 参考），ID PQF3；失败 `BackendProtocolError('unexpected PUF frame')`，`final_snapshot.tx_bytes=0`、`service=null`、`rx_bytes=296`，`mailbox_log.txt` 恰好截止于 banner "puf: Y01P/"。
+- 根因：失败发生在 `hello()`，PS 一个字节都还没发出（tx_bytes=0），也没有收到 Y01S；固件开机 banner 文本 `puf: Y01P/Y01K`（`src/firmware/pynq_svc_puf/main.c`）里的 "Y01K" 被 `Puf3FrameDecoder` 当成 112B Y01K 帧，吞掉其后文本和 Y01S，等待 S 时收到 K → 报错。不是 PLL/时钟、bit/hwh 或固件 PUF 处理问题；KAT/基准/PUF 未执行，不能据此判定功能失败。cosim 未发现是因为 TB 按期望魔数跳过文本；模型测试的 banner 不含 "Y01K"。
+- 修复（只改 Notebook 驱动单元，bit/固件不变）：Y01K 只在有未完成 PUF 命令时识别（`expect_k=(cmd,seq)`），且帧头 version/flags/cmd/seq 须与命令一致，否则按文本跳过 1 字节；`puf_command` 设置并在 finally 清除 `expect_k`。清空 Notebook 中上次失败运行的输出（证据保留在 data 目录）。重新打包（bit `769ed24c…`、hwh `4a0e7b95…` 不变，manifest 源哈希更新）。
+- 验证：临时离线脚本执行 Notebook 第 2–4 单元，模型 banner 改为与固件一致后，修复前复现同一错误（3/6，`unexpected PUF frame`）；修复后 8/8：含 banner 回放 hello 通过、待命中文本 "Y01K" 被跳过、错 seq 不被接受、完整流程 PASS（推算 100.000/实测 ≈99.99 MHz）、错 PLL 拒绝下载、分频 4×4 与实测 62.5 判失败、HWKEY 未生效判失败。板上复测 NOT_RUN。
+
 ## 2026-10-30 — pynq_puf3 FCLK0 修正（板上 93.75 MHz 问题；离线门禁通过，board NOT_RUN，owner TBD）
 
 - 队友板测：`pynq.Clocks.fclk0_mhz` = 93.75，身份检查失败，未产生 KAT/基准/PUF 结果。根因：PYNQ 只按 hwh 写 FCLK0 分频（4×4），IO PLL 沿用启动镜像（33.333333×30 = 1000 MHz，与厂家 base BD FCLK1 142.857=1000/7、FCLK3 200=1000/5 一致），真实 FCLK0 = 62.5 MHz；原版 PYNQ 2.7 `_ClocksZynq.DEFAULT_SRC_CLK_MHZ = 50.0`（v2.7.0 `pynq/ps.py`），所以显示 50×30/16 = 93.75。PYNQ 发布版和 pynq_puf 的 hwh 同为 FBDIV 48、4×4，同样受影响（未改，属其他目录）。
