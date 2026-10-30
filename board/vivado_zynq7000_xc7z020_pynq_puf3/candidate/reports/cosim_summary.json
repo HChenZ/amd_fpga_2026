@@ -4,7 +4,7 @@
   "steps": 54,
   "normal_pass": true,
   "mutant_autolock_detected": true,
-  "firmware_bin_sha256": "6ccdfcb35b82b995ea826759ffdff14341594267651415968da6106cb441f460",
+  "firmware_bin_sha256": "857df29c4310cd483e92730d81f333a68e6970658d5cb81344faf29ec50dd9b7",
   "variant_sha256": {
     "key_mmio.v": "f4100141b778fda9aac851885eb1108d92a95ea5edfc94cb1a1b79cc1b363d3d",
     "soc_top.v": "462cdbc88c638071daadbc0dada114bcd21bca4e7d7c108c26f49aa318dde6f1"

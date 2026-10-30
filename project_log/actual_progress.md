@@ -1,5 +1,12 @@
 # 实际进度
 
+## 2026-10-30 — pynq_puf3 FCLK0 修正（板上 93.75 MHz 问题；离线门禁通过，board NOT_RUN，owner TBD）
+
+- 队友板测：`pynq.Clocks.fclk0_mhz` = 93.75，身份检查失败，未产生 KAT/基准/PUF 结果。根因：PYNQ 只按 hwh 写 FCLK0 分频（4×4），IO PLL 沿用启动镜像（33.333333×30 = 1000 MHz，与厂家 base BD FCLK1 142.857=1000/7、FCLK3 200=1000/5 一致），真实 FCLK0 = 62.5 MHz；原版 PYNQ 2.7 `_ClocksZynq.DEFAULT_SRC_CLK_MHZ = 50.0`（v2.7.0 `pynq/ps.py`），所以显示 50×30/16 = 93.75。PYNQ 发布版和 pynq_puf 的 hwh 同为 FBDIV 48、4×4，同样受影响（未改，属其他目录）。
+- 修正：`build.tcl` 固定 `PCW_OVERRIDE_BASIC_CLOCK=1`、IOPLL FBDIV 30、FCLK0 10×1（Vivado 读回 ACT 99.999999），门禁目标仍为 100 MHz；固件 Y01K 末 8B 改为发帧时刻 mcycle。队友已在 e92e782/ff7360d 把 PS 驱动与板测合并为单文件 `src/pynq_puf3/pynq_puf3_board_test.ipynb`（删除了 `src/pynq/pynq_puf3.py`、`test_pynq_puf3.py` 与 `board_test.py`）；本次先快进到 ff7360d，再把修正移植进该 Notebook：驱动单元增加 `now_mcycle`/`host_monotonic`、`measure_cpu_clock_mhz`、SLCR 推算 `fclk0_from_registers`、`hwh_ps_clock`；`run_board_test` 下载前核对 IO PLL FBDIV=30（不符则拒绝下载），下载后用 hwh 晶振推算 FCLK0 须为 100±0.5，并用 mcycle 对 PS 单调时钟实测（`CLOCK_INTERVAL_S`=3 s）须为 100±1 %；原版 PYNQ 读数（修正后将显示 150）只记录。
+- 验证：固件重编 exit 0；cosim normal 54 步 PASS + autolock 反例检出；修正前在原模块上的模型测试 15/15（含 62.5/93.75 复现、旧 hwh 被新测试判失败）；移植后用临时离线脚本直接执行 Notebook 第 2–4 单元（伪 pynq + SLCR/邮箱/固件模型，未提交）6/6：正常路径 PASS（推算 100.000、实测 99.997、PYNQ 读数 150），IO PLL FBDIV 48 拒绝下载、分频 4×4 判 62.5 失败、实测 62.5 失败、HWKEY 未生效失败；`test_pynq_transport.py` 14/14。Vivado 从头构建 `build.tcl`（impl_1 ExtraTimingOpt+布线后 phys_opt）一次通过：WNS +0.104/WHS +0.041，ro_clk +24.822/+0.115，DRC 0，RO 1280；PL 结果与第一版相同；ro_corner_sta 数值不变（计数器仍未签核）。重新打包：bit `769ed24c…`，hwh FBDIV 30/分频 10×1。会话汇总里 18 条 Critical Warning 是工程解析 `ascon_word.v` 时的 HDL 9-1206（文件类型改为 SystemVerilog 之前）和 methodology 汇总，综合 0 critical、DRC 门禁 0。
+- 第一版候选 `56b3bc45…` 作废（板上实际 62.5 MHz）。
+
 ## 2026-10-30 — pynq_puf3：三模式 SW/MMIO/ISE + PUF v1 单一 bitstream（离线门禁通过，board NOT_RUN，owner TBD）
 
 - 用户授权方案2。根因：`src/rtl/soc_top.v` 在 `key_valid` 时无条件锁存 `key_hw_sel`，导致 MMIO 改用 PUF 密钥、官方 KAT 失败（这正是 PYNQ release 钉住 `rtl_p0` 的原因）。在独立目录 `board/vivado_zynq7000_xc7z020_pynq_puf3/` 修复，共享 `src/rtl`、release、pynq_puf、JTAG 工程均未改。

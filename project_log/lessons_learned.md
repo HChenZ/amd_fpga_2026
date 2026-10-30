@@ -1,5 +1,11 @@
 # 经验与踩坑
 
+## 2026-10-30 — PYNQ overlay 的 FCLK 不等于 hwh 里写的频率
+
+- PYNQ 加载 overlay 只写 FCLK 分频，不改 PLL；Vivado PS7 IP 在只开 GP0+FCLK0 时自选 IO PLL 1600 MHz，而这块板的启动镜像是 1000 MHz，结果 hwh "100 MHz" 实际只有 62.5 MHz。overlay 的 PS7 时钟必须按启动镜像的 PLL 固定（或改用 PYNQ 按频率设置），并在板上读 SLCR 核对 PLL。
+- 原版 PYNQ 2.7 `Clocks.fclk0_mhz` 固定按 50 MHz 参考计算，晶振 33.333333 MHz 的板子读数会偏 1.5 倍；它既不是测量也不是正确的推算。可靠的做法是用 hwh 晶振值重算，并用 CPU 周期计数对 PS 时间独立实测。
+- 之前"发布版上板通过、100 MHz"只验证了功能和 cycles，频率本身一直是 not_measured；配置值不能写成实际运行频率。
+
 ## 2026-10-30 — pynq_puf3 集成
 
 - 不能把"换一份 COE"当作功能集成：PUF RTL 的 `key_hw_sel` 自动锁定会悄悄改变 MMIO 模式的密钥来源。反例 cosim 要用同一份固件配原 RTL，确认开机 mask 变成 0x05，才能证明修复确实来自 RTL 改动。

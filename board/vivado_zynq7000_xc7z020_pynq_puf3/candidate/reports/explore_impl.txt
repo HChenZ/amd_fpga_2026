@@ -1,6 +1,2 @@
-impl_1 Performance_RefinePlacement routed (no post-route phys_opt) wns=-0.123 whs=0.027 (build.tcl gate stopped; CPU id_ex forwarding paths)
-impl_2 Performance_ExtraTimingOpt post-route-physopt wns=0.104 whs=0.041 (from runs/impl_2 timing_summary_postroute_physopted.rpt)
-impl_3 Performance_Explore post-route-physopt wns=0.016 whs=0.026
-impl_4 Performance_RefinePlacement post-route-physopt wns=0.025 whs=0.027
-impl_5 Performance_NetDelay_low post-route-physopt wns=-0.244 whs=0.056 (30 failing endpoints)
-note: explore_impl.tcl first version crashed in its summary loop (get_runs after open_checkpoint); values above read from each run's own post-route report; script fixed afterwards
+2026-10-30 rebuild with PS7 IO PLL pinned to the board (FBDIV 30, FCLK0 10x1): fresh build.tcl run impl_1 Performance_ExtraTimingOpt + post-route phys_opt wns=0.104 whs=0.041 (passed first try)
+history (previous netlist, IO PLL assumption 1600 MHz, superseded bit 56b3bc45): impl_1 RefinePlacement no post-route phys_opt -0.123; ExtraTimingOpt +0.104; RefinePlacement +0.025; Explore +0.016; NetDelay_low -0.244 (all with post-route phys_opt)

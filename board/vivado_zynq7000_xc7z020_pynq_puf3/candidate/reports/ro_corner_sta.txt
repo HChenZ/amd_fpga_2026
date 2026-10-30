@@ -1,4 +1,4 @@
-dcp=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf3/vivado/pynq_puf3.runs/impl_2/pynq_puf3_wrapper_postroute_physopt.dcp tool=2025.2
+dcp=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf3/vivado/pynq_puf3.runs/impl_1/pynq_puf3_wrapper_postroute_physopt.dcp tool=2025.2
 rings=256
 FAST_MIN ring period ns: min 1.194 max 7.849 -> fastest RO 837 MHz
 SLOW_MAX ring period ns: min 3.473 max 18.613 -> fastest RO 288 MHz

@@ -17,6 +17,34 @@ pynq_puf 不能直接换成三模式固件，原因是 `src/rtl/soc_top.v` 会�
 HW 模式就过不了官方 KAT。仿真反例证明了这一点：同一份固件配原 RTL，开机自检
 mask 只有 `0x05`，HW 模式丢失（`reports/cosim_mutant_autolock.log`）。
 
+## FCLK0 时钟配置（2026-10-30 板测发现后修正）
+
+第一版候选（bit `56b3bc45…`）在板上读回 `pynq.Clocks.fclk0_mhz = 93.75`，身份检查阶段即失败。
+根因：PYNQ 加载 overlay 时只把 hwh 里的 FCLK0 **分频值**写进 SLCR，IO PLL 保持启动镜像的配置。
+
+| 项 | 第一版 hwh | 板上启动镜像 | 结果 |
+|---|---|---|---|
+| PS 晶振 | 33.333333 MHz | 33.333333 MHz（厂家 base BD） | — |
+| IO PLL | FBDIV 48 → 1600 MHz（IP 自选） | FBDIV 30 → 1000 MHz | 不一致 |
+| FCLK0 分频 | 4 × 4 | 由 PYNQ 照 hwh 写入 | 实际 1000/16 = **62.5 MHz** |
+| PYNQ 读回 | — | 原版 PYNQ 2.7 `_ClocksZynq` 固定假设 50 MHz 参考 | 50 × 30 / 16 = **93.75 MHz** |
+
+厂家 base BD 的 FCLK1 142.857 = 1000/7、FCLK3 200 = 1000/5，与 IO PLL 1000 MHz 吻合。
+修正后的 `build.tcl` 固定 `PCW_OVERRIDE_BASIC_CLOCK=1`、`PCW_IOPLL_CTRL_FBDIV=30`、
+分频 10 × 1，得到 1000/10 = 100 MHz；时序约束仍按 10 ns 签核。门禁目标没有放宽。
+
+注意：修正后原版 `pynq.Clocks.fclk0_mhz` 会显示 **150 MHz**（50 × 30 / 10），这是它的参考时钟
+假设造成的，不是真实频率。板测 Notebook `src/pynq_puf3/pynq_puf3_board_test.ipynb` 因此改为：
+1. 下载前读 SLCR，IO PLL FBDIV 必须等于 hwh 的 30，否则拒绝下载；
+2. 下载后用 hwh 的晶振值（33.333333）由 SLCR 推算 FCLK0，必须为 100 ± 0.5 MHz；
+3. 用 RV32 `mcycle`（Y01K 帧末 8 字节为发帧时刻 mcycle）对 PS 单调时钟做独立测量，
+   间隔 3 s，必须为 100 MHz ± 1 %；
+4. 原版 PYNQ 读数和它假设的参考时钟只记录，不参与判定。
+
+PYNQ 发布版和 pynq_puf 的 hwh 同样是 FBDIV 48、分频 4 × 4，在这块板上实际同样是 62.5 MHz。
+cycles 与加速比不受影响（都按 mcycle 计），但"板上 100 MHz"的说法对它们不成立。
+这两个工程不属于本目录，本次未改。
+
 ## 改了什么
 
 | 层 | 文件 | 变化 |
@@ -60,11 +88,11 @@ python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py
 `ro_corner_sta.tcl` 是 `../vivado_zynq7000_xc7z020_pynq_puf/ro_corner_sta.tcl`（5eb64a5）的逐字节快照。
 `package.py` 会检查 `ro_corner_sta.txt` 第一行记录的 dcp，必须就是出 bit 的那个 checkpoint。
 
-当前候选的实际流程：第一次 `build.tcl` 使用 RefinePlacement，未开布线后 phys_opt，WNS −0.123，
-被门禁拦下、没有生成 bit。之后 `explore_impl.tcl -tclargs 2 Performance_ExtraTimingOpt
-Performance_Explore Performance_RefinePlacement Performance_NetDelay_low` 在同一综合网表上
-跑了 4 个实现，最后由 `finalize_run.tcl -tclargs impl_2 Performance_ExtraTimingOpt` 复查门禁并写 bit。
-`build.tcl` 的默认值已改成同一配方（ExtraTimingOpt + 布线后 phys_opt），但还没有从头重跑验证。
+当前候选（bit `769ed24c…`）由修正时钟后的 `build.tcl` 从头一次构建得到（impl_1，
+ExtraTimingOpt + 布线后 phys_opt），没有再挑选策略。策略来历：第一版网表上 RefinePlacement
+（未开布线后 phys_opt）为 −0.123；`explore_impl.tcl` 在同一网表上试了 4 个策略，ExtraTimingOpt
++0.104 最好，第一版 bit 由 `finalize_run.tcl impl_2` 写出（已作废）。修正版的 PL 布局布线结果与
+第一版相同（WNS/WHS、RO 布局、ro_corner_sta 数值完全一致），变化的只有 PS7 时钟配置与固件。
 
 `build.tcl` 拒绝复用已存在的 `build/local/pynq_puf3/vivado`。以下任一条件不满足就停止，
 不复制 bit：setup/hold ≥ 0、没有 DRC Error/Critical Warning、没有 `Netlist 29-160`、
@@ -77,7 +105,8 @@ cosim 两个用例、固件 bin 哈希、变体 RTL 哈希，以及生成的 `.m
 
 | 项 | 结果 |
 |---|---|
-| 实现 | 综合使用 Vivado Synthesis Defaults；实现使用 Performance_ExtraTimingOpt，并开启布线后 phys_opt（impl_2），FCLK0 10.000 ns |
+| 实现 | 综合使用 Vivado Synthesis Defaults；实现使用 Performance_ExtraTimingOpt，并开启布线后 phys_opt（`build.tcl` impl_1，从头构建），FCLK0 10.000 ns |
+| PS 时钟（hwh） | 晶振 33.333333 MHz，IO PLL FBDIV 30（1000 MHz，与板上启动镜像一致），FCLK0 分频 10 × 1 → 99.999999 MHz |
 | Setup / hold | WNS +0.104 ns、TNS 0；WHS +0.041 ns、THS 0（73907 个端点） |
 | 策略对比 | impl_1 RefinePlacement −0.123（未开布线后 phys_opt）；ExtraTimingOpt +0.104；RefinePlacement +0.025；Explore +0.016；NetDelay_low −0.244。违例路径都在 CPU 的 id_ex 前递 → dcache/id_ex CE，不在 PUF/HWKEY 逻辑 |
 | DRC / PS 引脚 | 0 个 Error 或 Critical Warning；没有 `Netlist 29-160` |
@@ -123,7 +152,8 @@ cosim 用例：
 ```
 
 测试分四段，全部通过才 exit 0：
-1. 身份检查：哈希、ID、FCLK 和固件 ID；
+1. 身份与时钟：哈希、ID、固件 ID；下载前 IO PLL FBDIV = 30，下载后 SLCR 推算 FCLK0 = 100 ± 0.5 MHz，
+   mcycle 实测 100 MHz ± 1 %（见上文"FCLK0 时钟配置"；原版 `pynq.Clocks` 显示 150 属正常）；
 2. 三模式 KAT：6 个官方用例，加 `--full-kat` 则跑 289 个；
 3. 基准：KAT #529，预热 5 次、采集 30 次，输出中位 mcycle 和相对 SW 的加速比；
 4. PUF：enroll，5 次 reconstruct 稳定且 helper 不变；HWKEY 打开后 HW 拒绝官方密文；

@@ -1,9 +1,9 @@
 {
   "schema": "pynq_puf3_candidate",
-  "source_commit": "5eb64a552de55169c7d0a3d8946a0ef24847a203",
+  "source_commit": "ff7360d240b9c3c8230d28d63f661e29cbde14a9",
   "source_dirty": true,
   "source_sha256": {
-    "board/vivado_zynq7000_xc7z020_pynq_puf3/build.tcl": "1014001ee39ad7774d1d5458efdc0c41d5e39af13cdf20c32a796b4289abd311",
+    "board/vivado_zynq7000_xc7z020_pynq_puf3/build.tcl": "fc93a37523f5a07efe653e970cd21592bb8408dab87ee53fecf687b59a9fd30b",
     "board/vivado_zynq7000_xc7z020_pynq_puf3/explore_impl.tcl": "f06e218396d8adeec1fdaaff5a6a32c0363738eaa289aafe629dbfff74e27584",
     "board/vivado_zynq7000_xc7z020_pynq_puf3/finalize_run.tcl": "790e3e0954b1e43208ebf28f0efaeefc14d087977d79d0ea34844945abdfe4b0",
     "board/vivado_zynq7000_xc7z020_pynq_puf3/puf_opt_pre.tcl": "37221a4a0c44a35e87276fadbb16b51cd940d562a6dd90f70ba7bc6cdc8c33cd",
@@ -20,9 +20,9 @@
     "src/firmware/pynq_svc/svc_io.c": "a8196011c4ec5269c596284ee1f590ae59dabd71282060ec58f6e479bfbfcb1d",
     "src/firmware/pynq_svc_puf/build.py": "423553a219a2cac0bf519d86765d40632c6eb769977d21868c87f60aff0f2032",
     "src/firmware/pynq_svc_puf/main.c": "98043a77245707eead5345275f697132947d8d5405ae7b6848180de0e5d57513",
-    "src/firmware/pynq_svc_puf/puf_svc.c": "9bfd96d8d4be389ef7ada8cb1e3314d8a7a83d359af94d8d3966c45a9ca6c6ca",
-    "src/firmware/pynq_svc_puf/puf_svc.h": "b9aa930223e7f3a24d51e06c4e96bc698bdba8faba8ce83d595e4ea75c730bbf",
-    "src/pynq_puf3/pynq_puf3.py": "0c3fc9d55266852e33649b29d59038547ec7567c3f41218d726aa8886bdaede4",
+    "src/firmware/pynq_svc_puf/puf_svc.c": "a047987f9d8a78d92f0b19ecb7b629ebbb6ea0e82bc98146fece38ef9a6c9a91",
+    "src/firmware/pynq_svc_puf/puf_svc.h": "16f9be2801fe0dadfb295ffda5a8c13bd61d5ca13687f33fbbe0a9d9a2300b0f",
+    "src/pynq_puf3/pynq_puf3_board_test.ipynb": "de00f1056d66740e184e6aaf43e40e167df481931e6b01273774eb5895710d42",
     "src/rtl/ascon/ascon_aead_2.v": "8ea360514428ce7408927246c0d16b7c95c90b0da655cfe48d074b77f3353c0c",
     "src/rtl/ascon/ascon_aead_2_tb.v": "cfbfe00bd4a31e9d32386cbf50abe7b86fe8f58eb5e7b657f4252a93d83b586b",
     "src/rtl/ascon/ascon_aead_core.v": "1124bd29b8dcece597d0c413d68a40672a16ee4e82af886ad2e703108208f0f7",
@@ -88,19 +88,24 @@
   "control_id": "0x33465150",
   "control_version": 1,
   "fclk0_mhz": 100,
+  "ps_clock": {
+    "PCW_CRYSTAL_PERIPHERAL_FREQMHZ": "33.333333",
+    "PCW_IOPLL_CTRL_FBDIV": "30",
+    "PCW_FCLK0_PERIPHERAL_CLKSRC": "IO PLL",
+    "PCW_FCLK0_PERIPHERAL_DIVISOR0": "10",
+    "PCW_FCLK0_PERIPHERAL_DIVISOR1": "1",
+    "PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ": "99.999999",
+    "note": "IO PLL pinned to the board boot image (33.333333 MHz x 30 = 1000 MHz); stock PYNQ 2.7 Clocks.fclk0_mhz assumes a 50 MHz reference and will show 150 MHz; board_test.py derives FCLK0 from SLCR with the hwh crystal and measures it via mcycle"
+  },
+  "superseded": "first candidate (IO PLL assumption 1600 MHz, divisors 4x4, bit 56b3bc45...) ran at 62.5 MHz on the board (PYNQ showed 93.75 MHz); kept only in git history",
   "timing_history": [
-    "impl_1 Performance_RefinePlacement routed (no post-route phys_opt) wns=-0.123 whs=0.027 (build.tcl gate stopped; CPU id_ex forwarding paths)",
-    "impl_2 Performance_ExtraTimingOpt post-route-physopt wns=0.104 whs=0.041 (from runs/impl_2 timing_summary_postroute_physopted.rpt)",
-    "impl_3 Performance_Explore post-route-physopt wns=0.016 whs=0.026",
-    "impl_4 Performance_RefinePlacement post-route-physopt wns=0.025 whs=0.027",
-    "impl_5 Performance_NetDelay_low post-route-physopt wns=-0.244 whs=0.056 (30 failing endpoints)",
-    "note: explore_impl.tcl first version crashed in its summary loop (get_runs after open_checkpoint); values above read from each run's own post-route report; script fixed afterwards"
+    "2026-10-30 rebuild with PS7 IO PLL pinned to the board (FBDIV 30, FCLK0 10x1): fresh build.tcl run impl_1 Performance_ExtraTimingOpt + post-route phys_opt wns=0.104 whs=0.041 (passed first try)",
+    "history (previous netlist, IO PLL assumption 1600 MHz, superseded bit 56b3bc45): impl_1 RefinePlacement no post-route phys_opt -0.123; ExtraTimingOpt +0.104; RefinePlacement +0.025; Explore +0.016; NetDelay_low -0.244 (all with post-route phys_opt)"
   ],
   "bram_init_check": "1 generated .mif file(s) equal pynq_svc_puf.coe word for word (32768 words)",
   "gate": {
-    "run": "impl_2",
+    "run": "impl_1",
     "strategy": "Performance_ExtraTimingOpt",
-    "dcp": "pynq_puf3_wrapper_postroute_physopt.dcp",
     "wns": "0.104",
     "whs": "0.041",
     "drc_error_or_critical": "0",
@@ -115,7 +120,7 @@
     "steps": 54,
     "normal_pass": true,
     "mutant_autolock_detected": true,
-    "firmware_bin_sha256": "6ccdfcb35b82b995ea826759ffdff14341594267651415968da6106cb441f460",
+    "firmware_bin_sha256": "857df29c4310cd483e92730d81f333a68e6970658d5cb81344faf29ec50dd9b7",
     "variant_sha256": {
       "key_mmio.v": "f4100141b778fda9aac851885eb1108d92a95ea5edfc94cb1a1b79cc1b363d3d",
       "soc_top.v": "462cdbc88c638071daadbc0dada114bcd21bca4e7d7c108c26f49aa318dde6f1"
@@ -134,23 +139,23 @@
   "artifacts": {
     "pynq_puf3.bit": {
       "bytes": 4045693,
-      "sha256": "56b3bc456503fabc4cba0d35b7ad0b0f8a6cc0d2e5a2033dd3e65ac97441a11d"
+      "sha256": "769ed24c4ef4b155eccf5b92569a94d00315f7f6913b68c7eaffe65a96fa4654"
     },
     "pynq_puf3.hwh": {
-      "bytes": 158483,
-      "sha256": "e6ad2a22be9c78d1db484f9d5349aad145a3e0f7f4f3c47551f12daa1aa5c7bb"
+      "bytes": 158472,
+      "sha256": "4a0e7b95b6cb2d25c0a387e3a193aae56e937f0e2201346c67320dbc973a9675"
     },
     "pynq_svc_puf.bin": {
-      "bytes": 47384,
-      "sha256": "6ccdfcb35b82b995ea826759ffdff14341594267651415968da6106cb441f460"
+      "bytes": 47432,
+      "sha256": "857df29c4310cd483e92730d81f333a68e6970658d5cb81344faf29ec50dd9b7"
     },
     "pynq_svc_puf.coe": {
       "bytes": 327742,
-      "sha256": "d36969de26b1c75ac75537a807117af21a683652cc17b1dd572fba2ae211a51e"
+      "sha256": "bf3b0591afb251695d81846e6f844b2c5087b6ed38047242dcdde3fea05c6a9e"
     },
     "pynq_svc_puf.elf": {
-      "bytes": 53820,
-      "sha256": "42984a4d27a70b45079c02b24a136b3f03fe13b04a8996191ebaae3da90998ae"
+      "bytes": 53868,
+      "sha256": "d7ceb168daba6de16e67f8ef753b373ee0b87e2797ab2746297a45b5d3f3ff28"
     }
   }
 }

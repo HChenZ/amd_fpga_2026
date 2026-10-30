@@ -6,8 +6,8 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
 
-part=xc7z020clg400-1 top=pynq_puf3_wrapper FCLK0=100MHz ro_clk=clk/4 (inside soc_top) coe=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_svc_puf/pynq_svc_puf.coe strategy=Performance_RefinePlacement
-source_head=56929b00a7ad7db8a80e40b13fb9b4a0c69b119d
+part=xc7z020clg400-1 top=pynq_puf3_wrapper FCLK0=100MHz ro_clk=clk/4 (inside soc_top) coe=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_svc_puf/pynq_svc_puf.coe strategy=Performance_ExtraTimingOpt
+source_head=b2f035b1b177a4fa18d5ad1237011721f1132d12
 axi_bram_ctrl_0 xilinx.com:ip:axi_bram_ctrl:4.1
 blk_mem_gen_0 xilinx.com:ip:blk_mem_gen:8.4
 pynq_puf3_axi_0 xilinx.com:ip:axi_interconnect:2.1

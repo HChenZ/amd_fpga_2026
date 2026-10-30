@@ -37,9 +37,19 @@ generate_target all [get_ips]
 
 create_bd_design pynq_puf3
 create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 ps7
-set psconfig [list CONFIG.PCW_USE_M_AXI_GP0 1 CONFIG.PCW_EN_CLK0_PORT 1 CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ 100]
+# FCLK0 on the board = IO PLL of the boot image / divisors from this hwh (PYNQ writes only the
+# divisors). The vendor boot image runs the IO PLL at 33.333333 MHz x 30 = 1000 MHz (vendor base BD:
+# FCLK1 142.857 = 1000/7, FCLK3 200 = 1000/5; board readback 2026-10-30: PYNQ showed 93.75 MHz =
+# 50 MHz assumed ref x 30 / (4 x 4)). The IP's own choice (FBDIV 48, 1600 MHz, 4 x 4) therefore gave
+# 62.5 MHz on the board. Pin the IO PLL to the board value and divide by 10 x 1 -> 100 MHz.
+set psconfig [list CONFIG.PCW_USE_M_AXI_GP0 1 CONFIG.PCW_EN_CLK0_PORT 1 \
+    CONFIG.PCW_OVERRIDE_BASIC_CLOCK 1 CONFIG.PCW_IOPLL_CTRL_FBDIV 30 \
+    CONFIG.PCW_FCLK0_PERIPHERAL_CLKSRC {IO PLL} CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0 10 \
+    CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1 1 CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ 100]
 set_property -dict $psconfig [get_bd_cells ps7]
 foreach {p v} $psconfig {if {[get_property $p [get_bd_cells ps7]] != $v} {error "PS readback mismatch $p"}}
+if {[get_property CONFIG.PCW_CRYSTAL_PERIPHERAL_FREQMHZ [get_bd_cells ps7]] != 33.333333} {error "PS crystal is not 33.333333 MHz"}
+if {abs([get_property CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ [get_bd_cells ps7]] - 100.0) > 0.01} {error "FCLK0 actual is not 100 MHz"}
 # Dedicated PS pins must be top ports, otherwise PS pin constraints hit internal pins (Netlist 29-160).
 make_bd_intf_pins_external [get_bd_intf_pins ps7/FIXED_IO]
 make_bd_intf_pins_external [get_bd_intf_pins ps7/DDR]

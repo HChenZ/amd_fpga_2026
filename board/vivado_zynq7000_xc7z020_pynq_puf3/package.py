@@ -37,6 +37,14 @@ sim = json.loads((root / 'build/local/pynq_puf3/sim/summary.json').read_text())
 assert sim['result'] == 'PASS' and sim['normal_pass'] and sim['mutant_autolock_detected'], 'cosimulation gate'
 assert sim['firmware_bin_sha256'] == sha(fw / 'pynq_svc_puf.bin'), 'cosimulation used a different firmware'
 assert sim['variant_sha256'] == {p.name: sha(p) for p in sorted((board / 'rtl').glob('*.v'))}, 'variant RTL changed after cosim'
+hwh_text = (work / 'pynq_puf3.hwh').read_text(encoding='utf-8', errors='replace')
+ps_param = lambda n: re.search(r'NAME="%s" VALUE="([^"]*)"' % n, hwh_text).group(1)
+ps_clock = {n: ps_param(n) for n in ('PCW_CRYSTAL_PERIPHERAL_FREQMHZ', 'PCW_IOPLL_CTRL_FBDIV',
+                                     'PCW_FCLK0_PERIPHERAL_CLKSRC', 'PCW_FCLK0_PERIPHERAL_DIVISOR0',
+                                     'PCW_FCLK0_PERIPHERAL_DIVISOR1', 'PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ')}
+# Board boot image IO PLL = 33.333333 x 30 = 1000 MHz; hwh must divide that by 10 x 1.
+assert (ps_clock['PCW_IOPLL_CTRL_FBDIV'], ps_clock['PCW_FCLK0_PERIPHERAL_DIVISOR0'],
+        ps_clock['PCW_FCLK0_PERIPHERAL_DIVISOR1']) == ('30', '10', '1'), 'hwh FCLK0 config %s' % ps_clock
 context = (work / 'context.txt').read_text()
 assert 'pynq_svc_puf.coe' in context, 'bitstream was not built with pynq_svc_puf.coe'
 # The BRAM init that Vivado consumed must be the same image as the cosimulated binary.
@@ -105,6 +113,11 @@ manifest = {
                   '(no automatic hardware-key latch; HWKEY via key CTRL[3]/[4], reset off)',
     'firmware': 'pynq_svc_puf (pynq_svc three-mode service + Y01P/Y01K PUF frames), id pynq-svc-puf3',
     'control_id': '0x33465150', 'control_version': 1, 'fclk0_mhz': 100,
+    'ps_clock': dict(ps_clock, note='IO PLL pinned to the board boot image (33.333333 MHz x 30 = 1000 MHz); '
+                     'stock PYNQ 2.7 Clocks.fclk0_mhz assumes a 50 MHz reference and will show 150 MHz; '
+                     'board_test.py derives FCLK0 from SLCR with the hwh crystal and measures it via mcycle'),
+    'superseded': 'first candidate (IO PLL assumption 1600 MHz, divisors 4x4, bit 56b3bc45...) ran at '
+                  '62.5 MHz on the board (PYNQ showed 93.75 MHz); kept only in git history',
     'timing_history': timing_history,
     'bram_init_check': mif_check,
     'gate': g, 'cosimulation': {k: sim[k] for k in ('result', 'steps', 'normal_pass', 'mutant_autolock_detected',

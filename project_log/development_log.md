@@ -1,5 +1,9 @@
 # 开发记录
 
+## 2026-10-30 — pynq_puf3 FCLK0 修正（owner TBD）
+
+- 板测显示 93.75 MHz；定位为 hwh 的 IO PLL 假设（1600 MHz）与启动镜像（1000 MHz）不符、PYNQ 读数又按 50 MHz 参考计算，真实 62.5 MHz。固定 IOPLL FBDIV 30 + 分频 10×1 重建；板测加入 SLCR 推算与 mcycle 实测双重时钟门禁。板测 NOT_RUN。
+
 ## 2026-10-30 — pynq_puf3 三模式 + PUF 单一 overlay（owner TBD）
 
 - 分析得出 PUF overlay 无法运行三模式的根因是 RTL 自动锁定硬件密钥；在独立目录完成变体 RTL、pynq_svc_puf 固件、PS 驱动、Icarus cosim（含自动锁定反例）、模型测试、Vivado 实现与打包。第一次实现时序失败后改策略收敛到 +0.104 ns；板测 NOT_RUN。

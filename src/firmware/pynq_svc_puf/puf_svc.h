@@ -6,7 +6,7 @@
  *   CTRL   0x84: [0]START [1]ENROLL [2]CLEAR [3]HWKEY_ON [4]HWKEY_OFF
  *
  * Y01P（PS -> RV32，16B）：magic | u32 version | u32 cmd | u32 seq
- * Y01K（RV32 -> PS，112B）：见 puf_svc.c 的 send_puf_frame()
+ * Y01K（RV32 -> PS，112B）：见 puf_svc.c 的 send_puf_frame()（末 8B 为发帧时刻 mcycle）
  */
 #ifndef PUF_SVC_H
 #define PUF_SVC_H

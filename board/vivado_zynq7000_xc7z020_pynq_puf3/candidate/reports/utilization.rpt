@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Fri Oct 30 14:33:40 2026
+| Date         : Fri Oct 30 19:33:12 2026
 | Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
 | Command      : report_utilization -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf3/vivado/reports/utilization.rpt
 | Design       : pynq_puf3_wrapper

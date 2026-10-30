@@ -94,11 +94,13 @@ static void put_block(uint8_t *dst, uint32_t off)
  *   0 magic "Y01K" | 4 u16 version | 6 u16 flags(bit1 SIMULATED 恒 0)
  *   8 u32 cmd | 12 u32 seq | 16 u32 result | 20 u32 STATUS
  *  24 u32 DNA_LO | 28 u32 DNA_HI | 32 u64 op mcycle
- *  40 REF[16] | 56 MASK[16] | 72 RAW[16] | 88 DITHER[16] | 104 8B 保留(0) */
+ *  40 REF[16] | 56 MASK[16] | 72 RAW[16] | 88 DITHER[16] | 104 u64 发帧时刻 mcycle
+ * 发帧时刻 mcycle 让 PS 用两帧的 Δmcycle/Δwall 直接测出 CPU 实际时钟（FCLK0）。 */
 static void send_puf_frame(uint32_t cmd, uint32_t seq, uint32_t result, uint64_t cycles)
 {
     uint8_t f[PUF_RSP_BYTES];
     uint32_t i;
+    uint64_t now;
 
     for (i = 0; i < PUF_RSP_BYTES; i++) f[i] = 0;
     f[0] = 'Y'; f[1] = '0'; f[2] = '1'; f[3] = 'K';
@@ -115,6 +117,9 @@ static void send_puf_frame(uint32_t cmd, uint32_t seq, uint32_t result, uint64_t
     put_block(f + 56, KEY_MASK0);
     put_block(f + 72, KEY_RAW0);
     put_block(f + 88, KEY_DITH0);
+    now = svc_mcycle();
+    wr_u32le(f + 104, (uint32_t)now);
+    wr_u32le(f + 108, (uint32_t)(now >> 32));
     for (i = 0; i < PUF_RSP_BYTES; i++) svc_putc(f[i]);
 }
 
