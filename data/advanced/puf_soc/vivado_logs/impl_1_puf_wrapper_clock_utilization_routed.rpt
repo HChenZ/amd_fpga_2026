@@ -1,0 +1,522 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct 30 03:50:01 2026
+| Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
+| Command      : report_clock_utilization -file puf_wrapper_clock_utilization_routed.rpt
+| Design       : puf_wrapper
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Clock Utilization Report
+
+Table of Contents
+-----------------
+1. Clock Primitive Utilization
+2. Global Clock Resources
+3. Global Clock Source Details
+4. Local Clock Details
+5. Clock Regions: Key Resource Utilization
+6. Clock Regions : Global Clock Summary
+7. Device Cell Placement Summary for Global Clock g0
+8. Device Cell Placement Summary for Global Clock g1
+9. Clock Region Cell Placement per Global Clock: Region X0Y0
+10. Clock Region Cell Placement per Global Clock: Region X1Y0
+11. Clock Region Cell Placement per Global Clock: Region X0Y1
+12. Clock Region Cell Placement per Global Clock: Region X1Y1
+13. Clock Region Cell Placement per Global Clock: Region X0Y2
+14. Clock Region Cell Placement per Global Clock: Region X1Y2
+
+1. Clock Primitive Utilization
+------------------------------
+
++----------+------+-----------+-----+--------------+--------+
+| Type     | Used | Available | LOC | Clock Region | Pblock |
++----------+------+-----------+-----+--------------+--------+
+| BUFGCTRL |    2 |        32 |   0 |            0 |      0 |
+| BUFH     |    0 |        72 |   0 |            0 |      0 |
+| BUFIO    |    0 |        16 |   0 |            0 |      0 |
+| BUFMR    |    0 |         8 |   0 |            0 |      0 |
+| BUFR     |    0 |        16 |   0 |            0 |      0 |
+| MMCM     |    0 |         4 |   0 |            0 |      0 |
+| PLL      |    0 |         4 |   0 |            0 |      0 |
++----------+------+-----------+-----+--------------+--------+
+
+
+2. Global Clock Resources
+-------------------------
+
++-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------+----------------------------------------------------+--------------------------+
+| Global Id | Source Id | Driver Type/Pin | Constraint | Site           | Clock Region | Load Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock      | Driver Pin                                         | Net                      |
++-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------+----------------------------------------------------+--------------------------+
+| g0        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y16 | n/a          |                 6 |       26369 |               0 |       10.000 | clk_fpga_0 | puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O | puf_i/ps7/inst/FCLK_CLK0 |
+| g1        | src1      | BUFG/O          | None       | BUFGCTRL_X0Y17 | n/a          |                 4 |        6609 |               0 |       40.000 | clk_fpga_1 | puf_i/ps7/inst/buffer_fclk_clk_1.FCLK_CLK_1_BUFG/O | puf_i/ps7/inst/FCLK_CLK1 |
++-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------+----------------------------------------------------+--------------------------+
+* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+** Non-Clock Loads column represents cell count of non-clock pin loads
+
+
+3. Global Clock Source Details
+------------------------------
+
++-----------+-----------+-----------------+------------+----------+--------------+-------------+-----------------+---------------------+--------------+---------------------------------+---------------------------------------+
+| Source Id | Global Id | Driver Type/Pin | Constraint | Site     | Clock Region | Clock Loads | Non-Clock Loads | Source Clock Period | Source Clock | Driver Pin                      | Net                                   |
++-----------+-----------+-----------------+------------+----------+--------------+-------------+-----------------+---------------------+--------------+---------------------------------+---------------------------------------+
+| src0      | g0        | PS7/FCLKCLK[0]  | None       | PS7_X0Y0 | X0Y2         |           1 |               0 |              10.000 | clk_fpga_0   | puf_i/ps7/inst/PS7_i/FCLKCLK[0] | puf_i/ps7/inst/FCLK_CLK_unbuffered[0] |
+| src1      | g1        | PS7/FCLKCLK[1]  | None       | PS7_X0Y0 | X0Y2         |           1 |               0 |              40.000 | clk_fpga_1   | puf_i/ps7/inst/PS7_i/FCLKCLK[1] | puf_i/ps7/inst/FCLK_CLK_unbuffered[1] |
++-----------+-----------+-----------------+------------+----------+--------------+-------------+-----------------+---------------------+--------------+---------------------------------+---------------------------------------+
+* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+** Non-Clock Loads column represents cell count of non-clock pin loads
+
+
+4. Local Clock Details
+----------------------
+
++----------+-----------------+------------+---------------------+--------------+-------------+-----------------+--------------+-------+-------------------------------------------------------------------------------+-------------------------------------------------------------------+
+| Local Id | Driver Type/Pin | Constraint | Site/BEL            | Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin                                                                    | Net                                                               |
++----------+-----------------+------------+---------------------+--------------+-------------+-----------------+--------------+-------+-------------------------------------------------------------------------------+-------------------------------------------------------------------+
+| 0        | LUT1/O          | None       | SLICE_X102Y25/A6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[0].stages[4].inv0/O   | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[0].n[4]   |
+| 1        | LUT1/O          | None       | SLICE_X17Y26/A5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[100].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[100].n[4] |
+| 2        | LUT1/O          | None       | SLICE_X24Y0/C6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[101].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[101].n[4] |
+| 3        | LUT1/O          | None       | SLICE_X19Y31/A5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[102].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[102].n[4] |
+| 4        | LUT1/O          | None       | SLICE_X27Y9/C6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[103].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[103].n[4] |
+| 5        | LUT1/O          | None       | SLICE_X22Y22/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[104].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[104].n[4] |
+| 6        | LUT1/O          | None       | SLICE_X26Y0/B5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[105].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[105].n[4] |
+| 7        | LUT1/O          | None       | SLICE_X23Y18/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[106].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[106].n[4] |
+| 8        | LUT1/O          | None       | SLICE_X12Y15/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[107].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[107].n[4] |
+| 9        | LUT1/O          | None       | SLICE_X0Y19/C5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[108].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[108].n[4] |
+| 10       | LUT1/O          | None       | SLICE_X0Y22/B6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[109].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[109].n[4] |
+| 11       | LUT1/O          | None       | SLICE_X81Y18/C6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[10].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[10].n[4]  |
+| 12       | LUT1/O          | None       | SLICE_X0Y22/C6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[110].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[110].n[4] |
+| 13       | LUT1/O          | None       | SLICE_X29Y71/C6LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[111].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[111].n[4] |
+| 14       | LUT1/O          | None       | SLICE_X26Y7/D6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[112].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[112].n[4] |
+| 15       | LUT1/O          | None       | SLICE_X27Y19/B6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[113].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[113].n[4] |
+| 16       | LUT1/O          | None       | SLICE_X43Y73/D5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[114].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[114].n[4] |
+| 17       | LUT1/O          | None       | SLICE_X44Y50/C5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[115].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[115].n[4] |
+| 18       | LUT1/O          | None       | SLICE_X66Y3/D6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[116].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[116].n[4] |
+| 19       | LUT1/O          | None       | SLICE_X84Y54/B6LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[117].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[117].n[4] |
+| 20       | LUT1/O          | None       | SLICE_X98Y26/A5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[118].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[118].n[4] |
+| 21       | LUT1/O          | None       | SLICE_X108Y33/B6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[119].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[119].n[4] |
+| 22       | LUT1/O          | None       | SLICE_X76Y11/A5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[11].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[11].n[4]  |
+| 23       | LUT1/O          | None       | SLICE_X107Y35/B5LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[120].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[120].n[4] |
+| 24       | LUT1/O          | None       | SLICE_X111Y24/D5LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[121].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[121].n[4] |
+| 25       | LUT1/O          | None       | SLICE_X111Y39/D6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[122].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[122].n[4] |
+| 26       | LUT1/O          | None       | SLICE_X113Y7/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[123].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[123].n[4] |
+| 27       | LUT1/O          | None       | SLICE_X108Y31/D6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[124].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[124].n[4] |
+| 28       | LUT1/O          | None       | SLICE_X96Y37/C5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[125].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[125].n[4] |
+| 29       | LUT1/O          | None       | SLICE_X81Y18/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[126].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[126].n[4] |
+| 30       | LUT1/O          | None       | SLICE_X97Y15/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[127].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[127].n[4] |
+| 31       | LUT1/O          | None       | SLICE_X103Y33/A5LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[128].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[128].n[4] |
+| 32       | LUT1/O          | None       | SLICE_X93Y36/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[129].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[129].n[4] |
+| 33       | LUT1/O          | None       | SLICE_X89Y56/A5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[12].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[12].n[4]  |
+| 34       | LUT1/O          | None       | SLICE_X60Y15/B6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[130].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[130].n[4] |
+| 35       | LUT1/O          | None       | SLICE_X87Y2/C6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[131].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[131].n[4] |
+| 36       | LUT1/O          | None       | SLICE_X104Y38/B6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[132].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[132].n[4] |
+| 37       | LUT1/O          | None       | SLICE_X113Y0/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[133].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[133].n[4] |
+| 38       | LUT1/O          | None       | SLICE_X108Y0/A5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[134].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[134].n[4] |
+| 39       | LUT1/O          | None       | SLICE_X103Y1/C5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[135].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[135].n[4] |
+| 40       | LUT1/O          | None       | SLICE_X97Y2/D6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[136].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[136].n[4] |
+| 41       | LUT1/O          | None       | SLICE_X61Y30/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[137].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[137].n[4] |
+| 42       | LUT1/O          | None       | SLICE_X87Y9/D6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[138].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[138].n[4] |
+| 43       | LUT1/O          | None       | SLICE_X85Y9/D6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[139].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[139].n[4] |
+| 44       | LUT1/O          | None       | SLICE_X45Y40/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[13].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[13].n[4]  |
+| 45       | LUT1/O          | None       | SLICE_X90Y43/C6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[140].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[140].n[4] |
+| 46       | LUT1/O          | None       | SLICE_X64Y48/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[141].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[141].n[4] |
+| 47       | LUT1/O          | None       | SLICE_X77Y28/B5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[142].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[142].n[4] |
+| 48       | LUT1/O          | None       | SLICE_X84Y36/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[143].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[143].n[4] |
+| 49       | LUT1/O          | None       | SLICE_X38Y39/A5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[144].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[144].n[4] |
+| 50       | LUT1/O          | None       | SLICE_X61Y48/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[145].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[145].n[4] |
+| 51       | LUT1/O          | None       | SLICE_X79Y30/C5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[146].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[146].n[4] |
+| 52       | LUT1/O          | None       | SLICE_X62Y43/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[147].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[147].n[4] |
+| 53       | LUT1/O          | None       | SLICE_X31Y30/A5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[148].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[148].n[4] |
+| 54       | LUT1/O          | None       | SLICE_X40Y29/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[149].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[149].n[4] |
+| 55       | LUT1/O          | None       | SLICE_X88Y31/C6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[14].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[14].n[4]  |
+| 56       | LUT1/O          | None       | SLICE_X46Y38/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[150].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[150].n[4] |
+| 57       | LUT1/O          | None       | SLICE_X73Y36/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[151].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[151].n[4] |
+| 58       | LUT1/O          | None       | SLICE_X65Y36/C6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[152].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[152].n[4] |
+| 59       | LUT1/O          | None       | SLICE_X52Y12/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[153].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[153].n[4] |
+| 60       | LUT1/O          | None       | SLICE_X42Y6/A5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[154].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[154].n[4] |
+| 61       | LUT1/O          | None       | SLICE_X60Y3/A5LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[155].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[155].n[4] |
+| 62       | LUT1/O          | None       | SLICE_X77Y26/A5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[156].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[156].n[4] |
+| 63       | LUT1/O          | None       | SLICE_X49Y17/C6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[157].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[157].n[4] |
+| 64       | LUT1/O          | None       | SLICE_X80Y7/D6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[158].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[158].n[4] |
+| 65       | LUT1/O          | None       | SLICE_X52Y27/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[159].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[159].n[4] |
+| 66       | LUT1/O          | None       | SLICE_X84Y43/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[15].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[15].n[4]  |
+| 67       | LUT1/O          | None       | SLICE_X82Y43/B6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[160].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[160].n[4] |
+| 68       | LUT1/O          | None       | SLICE_X75Y16/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[161].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[161].n[4] |
+| 69       | LUT1/O          | None       | SLICE_X91Y3/D5LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[162].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[162].n[4] |
+| 70       | LUT1/O          | None       | SLICE_X83Y35/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[163].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[163].n[4] |
+| 71       | LUT1/O          | None       | SLICE_X84Y40/B5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[164].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[164].n[4] |
+| 72       | LUT1/O          | None       | SLICE_X74Y9/B5LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[165].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[165].n[4] |
+| 73       | LUT1/O          | None       | SLICE_X38Y16/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[166].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[166].n[4] |
+| 74       | LUT1/O          | None       | SLICE_X74Y0/D6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[167].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[167].n[4] |
+| 75       | LUT1/O          | None       | SLICE_X42Y32/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[168].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[168].n[4] |
+| 76       | LUT1/O          | None       | SLICE_X74Y3/A5LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[169].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[169].n[4] |
+| 77       | LUT1/O          | None       | SLICE_X38Y39/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[16].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[16].n[4]  |
+| 78       | LUT1/O          | None       | SLICE_X40Y16/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[170].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[170].n[4] |
+| 79       | LUT1/O          | None       | SLICE_X32Y24/C5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[171].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[171].n[4] |
+| 80       | LUT1/O          | None       | SLICE_X49Y17/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[172].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[172].n[4] |
+| 81       | LUT1/O          | None       | SLICE_X30Y30/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[173].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[173].n[4] |
+| 82       | LUT1/O          | None       | SLICE_X37Y71/B5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[174].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[174].n[4] |
+| 83       | LUT1/O          | None       | SLICE_X29Y69/D6LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[175].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[175].n[4] |
+| 84       | LUT1/O          | None       | SLICE_X29Y69/D5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[176].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[176].n[4] |
+| 85       | LUT1/O          | None       | SLICE_X39Y68/C5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[177].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[177].n[4] |
+| 86       | LUT1/O          | None       | SLICE_X28Y74/B5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[178].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[178].n[4] |
+| 87       | LUT1/O          | None       | SLICE_X34Y4/C6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[179].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[179].n[4] |
+| 88       | LUT1/O          | None       | SLICE_X61Y48/C5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[17].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[17].n[4]  |
+| 89       | LUT1/O          | None       | SLICE_X49Y7/C6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[180].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[180].n[4] |
+| 90       | LUT1/O          | None       | SLICE_X27Y19/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[181].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[181].n[4] |
+| 91       | LUT1/O          | None       | SLICE_X60Y15/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[182].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[182].n[4] |
+| 92       | LUT1/O          | None       | SLICE_X50Y9/D6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[183].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[183].n[4] |
+| 93       | LUT1/O          | None       | SLICE_X33Y25/C6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[184].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[184].n[4] |
+| 94       | LUT1/O          | None       | SLICE_X38Y21/C6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[185].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[185].n[4] |
+| 95       | LUT1/O          | None       | SLICE_X32Y34/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[186].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[186].n[4] |
+| 96       | LUT1/O          | None       | SLICE_X49Y37/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[187].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[187].n[4] |
+| 97       | LUT1/O          | None       | SLICE_X31Y43/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[188].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[188].n[4] |
+| 98       | LUT1/O          | None       | SLICE_X41Y72/B6LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[189].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[189].n[4] |
+| 99       | LUT1/O          | None       | SLICE_X77Y22/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[18].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[18].n[4]  |
+| 100      | LUT1/O          | None       | SLICE_X50Y57/B5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[190].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[190].n[4] |
+| 101      | LUT1/O          | None       | SLICE_X88Y55/D5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[191].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[191].n[4] |
+| 102      | LUT1/O          | None       | SLICE_X90Y38/B5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[192].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[192].n[4] |
+| 103      | LUT1/O          | None       | SLICE_X92Y38/B6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[193].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[193].n[4] |
+| 104      | LUT1/O          | None       | SLICE_X84Y54/D5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[194].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[194].n[4] |
+| 105      | LUT1/O          | None       | SLICE_X90Y41/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[195].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[195].n[4] |
+| 106      | LUT1/O          | None       | SLICE_X51Y73/D6LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[196].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[196].n[4] |
+| 107      | LUT1/O          | None       | SLICE_X111Y39/B5LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[197].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[197].n[4] |
+| 108      | LUT1/O          | None       | SLICE_X82Y50/D5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[198].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[198].n[4] |
+| 109      | LUT1/O          | None       | SLICE_X109Y40/C6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[199].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[199].n[4] |
+| 110      | LUT1/O          | None       | SLICE_X59Y35/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[19].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[19].n[4]  |
+| 111      | LUT1/O          | None       | SLICE_X90Y38/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[1].stages[4].inv0/O   | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[1].n[4]   |
+| 112      | LUT1/O          | None       | SLICE_X113Y52/D6LUT | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[200].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[200].n[4] |
+| 113      | LUT1/O          | None       | SLICE_X107Y38/C6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[201].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[201].n[4] |
+| 114      | LUT1/O          | None       | SLICE_X53Y59/D5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[202].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[202].n[4] |
+| 115      | LUT1/O          | None       | SLICE_X102Y30/D6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[203].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[203].n[4] |
+| 116      | LUT1/O          | None       | SLICE_X92Y37/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[204].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[204].n[4] |
+| 117      | LUT1/O          | None       | SLICE_X79Y44/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[205].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[205].n[4] |
+| 118      | LUT1/O          | None       | SLICE_X50Y74/D6LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[206].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[206].n[4] |
+| 119      | LUT1/O          | None       | SLICE_X41Y72/B5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[207].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[207].n[4] |
+| 120      | LUT1/O          | None       | SLICE_X34Y8/D5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[208].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[208].n[4] |
+| 121      | LUT1/O          | None       | SLICE_X50Y74/B5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[209].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[209].n[4] |
+| 122      | LUT1/O          | None       | SLICE_X30Y30/D5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[20].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[20].n[4]  |
+| 123      | LUT1/O          | None       | SLICE_X21Y42/A5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[210].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[210].n[4] |
+| 124      | LUT1/O          | None       | SLICE_X15Y40/A5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[211].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[211].n[4] |
+| 125      | LUT1/O          | None       | SLICE_X15Y7/D6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[212].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[212].n[4] |
+| 126      | LUT1/O          | None       | SLICE_X24Y22/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[213].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[213].n[4] |
+| 127      | LUT1/O          | None       | SLICE_X1Y30/D6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[214].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[214].n[4] |
+| 128      | LUT1/O          | None       | SLICE_X26Y71/B6LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[215].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[215].n[4] |
+| 129      | LUT1/O          | None       | SLICE_X4Y31/D6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[216].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[216].n[4] |
+| 130      | LUT1/O          | None       | SLICE_X0Y13/D6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[217].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[217].n[4] |
+| 131      | LUT1/O          | None       | SLICE_X12Y17/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[218].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[218].n[4] |
+| 132      | LUT1/O          | None       | SLICE_X15Y3/C6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[219].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[219].n[4] |
+| 133      | LUT1/O          | None       | SLICE_X40Y32/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[21].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[21].n[4]  |
+| 134      | LUT1/O          | None       | SLICE_X20Y0/D6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[220].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[220].n[4] |
+| 135      | LUT1/O          | None       | SLICE_X11Y3/B5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[221].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[221].n[4] |
+| 136      | LUT1/O          | None       | SLICE_X26Y71/B5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[222].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[222].n[4] |
+| 137      | LUT1/O          | None       | SLICE_X27Y67/D6LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[223].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[223].n[4] |
+| 138      | LUT1/O          | None       | SLICE_X28Y69/D6LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[224].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[224].n[4] |
+| 139      | LUT1/O          | None       | SLICE_X8Y43/B5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[225].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[225].n[4] |
+| 140      | LUT1/O          | None       | SLICE_X14Y25/A5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[226].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[226].n[4] |
+| 141      | LUT1/O          | None       | SLICE_X26Y32/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[227].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[227].n[4] |
+| 142      | LUT1/O          | None       | SLICE_X19Y18/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[228].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[228].n[4] |
+| 143      | LUT1/O          | None       | SLICE_X24Y1/A5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[229].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[229].n[4] |
+| 144      | LUT1/O          | None       | SLICE_X39Y35/A5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[22].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[22].n[4]  |
+| 145      | LUT1/O          | None       | SLICE_X18Y30/C5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[230].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[230].n[4] |
+| 146      | LUT1/O          | None       | SLICE_X24Y11/C6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[231].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[231].n[4] |
+| 147      | LUT1/O          | None       | SLICE_X18Y31/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[232].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[232].n[4] |
+| 148      | LUT1/O          | None       | SLICE_X29Y0/D6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[233].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[233].n[4] |
+| 149      | LUT1/O          | None       | SLICE_X18Y23/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[234].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[234].n[4] |
+| 150      | LUT1/O          | None       | SLICE_X6Y20/B5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[235].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[235].n[4] |
+| 151      | LUT1/O          | None       | SLICE_X3Y10/C5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[236].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[236].n[4] |
+| 152      | LUT1/O          | None       | SLICE_X11Y29/C6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[237].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[237].n[4] |
+| 153      | LUT1/O          | None       | SLICE_X2Y21/D5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[238].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[238].n[4] |
+| 154      | LUT1/O          | None       | SLICE_X27Y67/D5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[239].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[239].n[4] |
+| 155      | LUT1/O          | None       | SLICE_X81Y51/C5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[23].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[23].n[4]  |
+| 156      | LUT1/O          | None       | SLICE_X26Y7/C5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[240].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[240].n[4] |
+| 157      | LUT1/O          | None       | SLICE_X27Y19/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[241].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[241].n[4] |
+| 158      | LUT1/O          | None       | SLICE_X39Y70/D5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[242].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[242].n[4] |
+| 159      | LUT1/O          | None       | SLICE_X60Y46/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[243].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[243].n[4] |
+| 160      | LUT1/O          | None       | SLICE_X70Y25/C6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[244].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[244].n[4] |
+| 161      | LUT1/O          | None       | SLICE_X82Y43/B5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[245].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[245].n[4] |
+| 162      | LUT1/O          | None       | SLICE_X96Y19/B5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[246].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[246].n[4] |
+| 163      | LUT1/O          | None       | SLICE_X108Y33/D5LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[247].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[247].n[4] |
+| 164      | LUT1/O          | None       | SLICE_X105Y33/C6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[248].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[248].n[4] |
+| 165      | LUT1/O          | None       | SLICE_X102Y19/D6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[249].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[249].n[4] |
+| 166      | LUT1/O          | None       | SLICE_X42Y33/A5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[24].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[24].n[4]  |
+| 167      | LUT1/O          | None       | SLICE_X90Y43/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[250].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[250].n[4] |
+| 168      | LUT1/O          | None       | SLICE_X112Y14/B6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[251].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[251].n[4] |
+| 169      | LUT1/O          | None       | SLICE_X112Y14/C6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[252].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[252].n[4] |
+| 170      | LUT1/O          | None       | SLICE_X92Y37/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[253].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[253].n[4] |
+| 171      | LUT1/O          | None       | SLICE_X88Y30/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[254].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[254].n[4] |
+| 172      | LUT1/O          | None       | SLICE_X99Y18/C5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[255].stages[4].inv0/O | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[255].n[4] |
+| 173      | LUT1/O          | None       | SLICE_X49Y13/D5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[25].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[25].n[4]  |
+| 174      | LUT1/O          | None       | SLICE_X50Y7/D6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[26].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[26].n[4]  |
+| 175      | LUT1/O          | None       | SLICE_X60Y1/A5LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[27].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[27].n[4]  |
+| 176      | LUT1/O          | None       | SLICE_X73Y24/A5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[28].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[28].n[4]  |
+| 177      | LUT1/O          | None       | SLICE_X60Y23/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[29].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[29].n[4]  |
+| 178      | LUT1/O          | None       | SLICE_X50Y0/C6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[2].stages[4].inv0/O   | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[2].n[4]   |
+| 179      | LUT1/O          | None       | SLICE_X85Y4/A5LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[30].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[30].n[4]  |
+| 180      | LUT1/O          | None       | SLICE_X63Y36/A5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[31].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[31].n[4]  |
+| 181      | LUT1/O          | None       | SLICE_X82Y43/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[32].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[32].n[4]  |
+| 182      | LUT1/O          | None       | SLICE_X75Y19/C5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[33].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[33].n[4]  |
+| 183      | LUT1/O          | None       | SLICE_X78Y0/D5LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[34].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[34].n[4]  |
+| 184      | LUT1/O          | None       | SLICE_X86Y30/D6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[35].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[35].n[4]  |
+| 185      | LUT1/O          | None       | SLICE_X83Y29/B5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[36].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[36].n[4]  |
+| 186      | LUT1/O          | None       | SLICE_X73Y8/D6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[37].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[37].n[4]  |
+| 187      | LUT1/O          | None       | SLICE_X56Y25/C5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[38].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[38].n[4]  |
+| 188      | LUT1/O          | None       | SLICE_X67Y3/A5LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[39].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[39].n[4]  |
+| 189      | LUT1/O          | None       | SLICE_X100Y14/C6LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[3].stages[4].inv0/O   | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[3].n[4]   |
+| 190      | LUT1/O          | None       | SLICE_X41Y25/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[40].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[40].n[4]  |
+| 191      | LUT1/O          | None       | SLICE_X73Y6/D6LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[41].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[41].n[4]  |
+| 192      | LUT1/O          | None       | SLICE_X46Y18/C5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[42].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[42].n[4]  |
+| 193      | LUT1/O          | None       | SLICE_X35Y23/B5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[43].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[43].n[4]  |
+| 194      | LUT1/O          | None       | SLICE_X53Y19/A5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[44].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[44].n[4]  |
+| 195      | LUT1/O          | None       | SLICE_X30Y48/C5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[45].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[45].n[4]  |
+| 196      | LUT1/O          | None       | SLICE_X40Y69/D5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[46].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[46].n[4]  |
+| 197      | LUT1/O          | None       | SLICE_X31Y64/C5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[47].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[47].n[4]  |
+| 198      | LUT1/O          | None       | SLICE_X28Y74/D5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[48].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[48].n[4]  |
+| 199      | LUT1/O          | None       | SLICE_X45Y69/D6LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[49].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[49].n[4]  |
+| 200      | LUT1/O          | None       | SLICE_X101Y36/D5LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[4].stages[4].inv0/O   | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[4].n[4]   |
+| 201      | LUT1/O          | None       | SLICE_X44Y69/C5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[50].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[50].n[4]  |
+| 202      | LUT1/O          | None       | SLICE_X31Y3/D6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[51].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[51].n[4]  |
+| 203      | LUT1/O          | None       | SLICE_X52Y12/C5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[52].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[52].n[4]  |
+| 204      | LUT1/O          | None       | SLICE_X27Y22/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[53].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[53].n[4]  |
+| 205      | LUT1/O          | None       | SLICE_X59Y13/C6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[54].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[54].n[4]  |
+| 206      | LUT1/O          | None       | SLICE_X38Y3/D6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[55].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[55].n[4]  |
+| 207      | LUT1/O          | None       | SLICE_X58Y12/C6LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[56].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[56].n[4]  |
+| 208      | LUT1/O          | None       | SLICE_X38Y20/A5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[57].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[57].n[4]  |
+| 209      | LUT1/O          | None       | SLICE_X41Y31/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[58].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[58].n[4]  |
+| 210      | LUT1/O          | None       | SLICE_X63Y37/C5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[59].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[59].n[4]  |
+| 211      | LUT1/O          | None       | SLICE_X103Y0/B5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[5].stages[4].inv0/O   | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[5].n[4]   |
+| 212      | LUT1/O          | None       | SLICE_X26Y54/B5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[60].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[60].n[4]  |
+| 213      | LUT1/O          | None       | SLICE_X38Y57/B5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[61].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[61].n[4]  |
+| 214      | LUT1/O          | None       | SLICE_X41Y58/D6LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[62].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[62].n[4]  |
+| 215      | LUT1/O          | None       | SLICE_X80Y43/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[63].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[63].n[4]  |
+| 216      | LUT1/O          | None       | SLICE_X90Y56/B5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[64].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[64].n[4]  |
+| 217      | LUT1/O          | None       | SLICE_X92Y38/B5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[65].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[65].n[4]  |
+| 218      | LUT1/O          | None       | SLICE_X89Y42/B5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[66].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[66].n[4]  |
+| 219      | LUT1/O          | None       | SLICE_X89Y42/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[67].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[67].n[4]  |
+| 220      | LUT1/O          | None       | SLICE_X39Y68/D5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[68].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[68].n[4]  |
+| 221      | LUT1/O          | None       | SLICE_X109Y40/D5LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[69].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[69].n[4]  |
+| 222      | LUT1/O          | None       | SLICE_X100Y0/B5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[6].stages[4].inv0/O   | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[6].n[4]   |
+| 223      | LUT1/O          | None       | SLICE_X63Y51/D5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[70].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[70].n[4]  |
+| 224      | LUT1/O          | None       | SLICE_X111Y39/C5LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[71].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[71].n[4]  |
+| 225      | LUT1/O          | None       | SLICE_X113Y47/D5LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[72].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[72].n[4]  |
+| 226      | LUT1/O          | None       | SLICE_X105Y33/B5LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[73].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[73].n[4]  |
+| 227      | LUT1/O          | None       | SLICE_X50Y57/D5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[74].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[74].n[4]  |
+| 228      | LUT1/O          | None       | SLICE_X104Y38/C5LUT | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[75].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[75].n[4]  |
+| 229      | LUT1/O          | None       | SLICE_X90Y56/D5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[76].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[76].n[4]  |
+| 230      | LUT1/O          | None       | SLICE_X84Y56/C5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[77].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[77].n[4]  |
+| 231      | LUT1/O          | None       | SLICE_X51Y71/D5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[78].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[78].n[4]  |
+| 232      | LUT1/O          | None       | SLICE_X51Y73/D5LUT  | X1Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[79].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[79].n[4]  |
+| 233      | LUT1/O          | None       | SLICE_X98Y1/B5LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[7].stages[4].inv0/O   | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[7].n[4]   |
+| 234      | LUT1/O          | None       | SLICE_X27Y9/B5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[80].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[80].n[4]  |
+| 235      | LUT1/O          | None       | SLICE_X41Y72/D5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[81].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[81].n[4]  |
+| 236      | LUT1/O          | None       | SLICE_X28Y69/D5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[82].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[82].n[4]  |
+| 237      | LUT1/O          | None       | SLICE_X7Y46/C5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[83].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[83].n[4]  |
+| 238      | LUT1/O          | None       | SLICE_X18Y6/D5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[84].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[84].n[4]  |
+| 239      | LUT1/O          | None       | SLICE_X12Y32/C5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[85].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[85].n[4]  |
+| 240      | LUT1/O          | None       | SLICE_X1Y30/B5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[86].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[86].n[4]  |
+| 241      | LUT1/O          | None       | SLICE_X2Y48/C5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[87].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[87].n[4]  |
+| 242      | LUT1/O          | None       | SLICE_X2Y33/B5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[88].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[88].n[4]  |
+| 243      | LUT1/O          | None       | SLICE_X10Y5/C6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[89].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[89].n[4]  |
+| 244      | LUT1/O          | None       | SLICE_X93Y2/C5LUT   | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[8].stages[4].inv0/O   | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[8].n[4]   |
+| 245      | LUT1/O          | None       | SLICE_X0Y13/B5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[90].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[90].n[4]  |
+| 246      | LUT1/O          | None       | SLICE_X17Y5/C5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[91].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[91].n[4]  |
+| 247      | LUT1/O          | None       | SLICE_X22Y6/A5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[92].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[92].n[4]  |
+| 248      | LUT1/O          | None       | SLICE_X15Y3/D6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[93].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[93].n[4]  |
+| 249      | LUT1/O          | None       | SLICE_X27Y52/C5LUT  | X0Y1         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[94].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[94].n[4]  |
+| 250      | LUT1/O          | None       | SLICE_X18Y39/C5LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[95].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[95].n[4]  |
+| 251      | LUT1/O          | None       | SLICE_X0Y49/A5LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[96].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[96].n[4]  |
+| 252      | LUT1/O          | None       | SLICE_X11Y39/B6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[97].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[97].n[4]  |
+| 253      | LUT1/O          | None       | SLICE_X9Y32/A6LUT   | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[98].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[98].n[4]  |
+| 254      | LUT1/O          | None       | SLICE_X25Y21/D6LUT  | X0Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[99].stages[4].inv0/O  | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[99].n[4]  |
+| 255      | LUT1/O          | None       | SLICE_X58Y30/D5LUT  | X1Y0         |          29 |               1 |              |       | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[9].stages[4].inv0/O   | puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/bank/rings[9].n[4]   |
++----------+-----------------+------------+---------------------+--------------+-------------+-----------------+--------------+-------+-------------------------------------------------------------------------------+-------------------------------------------------------------------+
+* Local Clocks in this context represents only clocks driven by non-global buffers
+** Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+*** Non-Clock Loads column represents cell count of non-clock pin loads
+
+
+5. Clock Regions: Key Resource Utilization
+------------------------------------------
+
++-------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+---------------+--------------+--------------+--------------+--------------+
+|                   | Global Clock |     BUFRs    |    BUFMRs    |    BUFIOs    |     MMCM     |      PLL     |      GT      |      PCI     |    ILOGIC    |    OLOGIC    |       FF      |     LUTM     |    RAMB18    |    RAMB36    |    DSP48E2   |
++-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+-------+-------+------+-------+------+-------+------+-------+------+-------+
+| Clock Region Name | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used  | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail |
++-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+-------+-------+------+-------+------+-------+------+-------+------+-------+
+| X0Y0              |    2 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  6256 |  2500 | 2477 |  1000 |    0 |    60 |   25 |    30 |    0 |    60 |
+| X1Y0              |    2 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  9160 |  3200 | 2266 |   850 |    0 |    60 |    7 |    30 |    0 |    40 |
+| X0Y1              |    2 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |  3057 |  1200 |  712 |   400 |    1 |    20 |    0 |    10 |    2 |    20 |
+| X1Y1              |    2 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  7244 |  2600 | 2258 |   850 |    0 |    60 |    0 |    30 |    0 |    40 |
+| X0Y2              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |  3717 |  1200 | 1278 |   400 |    0 |    20 |    0 |    10 |    2 |    20 |
+| X1Y2              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 | 10617 |  2600 | 3450 |   850 |    0 |    60 |    0 |    30 |    0 |    40 |
++-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+-------+-------+------+-------+------+-------+------+-------+------+-------+
+* Global Clock column represents track count; while other columns represents cell counts
+
+
+6. Clock Regions : Global Clock Summary
+---------------------------------------
+
+All Modules
++----+----+----+
+|    | X0 | X1 |
++----+----+----+
+| Y2 |  0 |  0 |
+| Y1 |  0 |  0 |
+| Y0 |  0 |  0 |
++----+----+----+
+
+
+7. Device Cell Placement Summary for Global Clock g0
+----------------------------------------------------
+
++-----------+-----------------+-------------------+------------+-------------+---------------+-------------+----------+----------------+----------+--------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock      | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                      |
++-----------+-----------------+-------------------+------------+-------------+---------------+-------------+----------+----------------+----------+--------------------------+
+| g0        | BUFG/O          | n/a               | clk_fpga_0 |      10.000 | {0.000 5.000} |       26128 |        0 |              0 |        0 | puf_i/ps7/inst/FCLK_CLK0 |
++-----------+-----------------+-------------------+------------+-------------+---------------+-------------+----------+----------------+----------+--------------------------+
+* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
+** IO Loads column represents load cell count of IO types
+*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
+**** GT Loads column represents load cell count of GT types
+
+
++----+-------+--------+-----------------------+
+|    | X0    | X1     | HORIZONTAL PROG DELAY |
++----+-------+--------+-----------------------+
+| Y2 |  3745 |  10617 |                     0 |
+| Y1 |  2273 |   7070 |                     0 |
+| Y0 |    58 |   2365 |                     0 |
++----+-------+--------+-----------------------+
+
+
+8. Device Cell Placement Summary for Global Clock g1
+----------------------------------------------------
+
++-----------+-----------------+-------------------+------------+-------------+----------------+-------------+----------+----------------+----------+--------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock      | Period (ns) | Waveform (ns)  | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                      |
++-----------+-----------------+-------------------+------------+-------------+----------------+-------------+----------+----------------+----------+--------------------------+
+| g1        | BUFG/O          | n/a               | clk_fpga_1 |      40.000 | {0.000 20.000} |        6609 |        0 |              0 |        0 | puf_i/ps7/inst/FCLK_CLK1 |
++-----------+-----------------+-------------------+------------+-------------+----------------+-------------+----------+----------------+----------+--------------------------+
+* Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
+** IO Loads column represents load cell count of IO types
+*** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
+**** GT Loads column represents load cell count of GT types
+
+
++----+-------+-------+-----------------------+
+|    | X0    | X1    | HORIZONTAL PROG DELAY |
++----+-------+-------+-----------------------+
+| Y2 |     0 |     0 |                     - |
+| Y1 |   382 |   127 |                     0 |
+| Y0 |  2882 |  3218 |                     0 |
++----+-------+-------+-----------------------+
+
+
+9. Clock Region Cell Placement per Global Clock: Region X0Y0
+------------------------------------------------------------
+
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                      |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| g0        | n/a   | BUFG/O          | None       |          58 |               0 |   32 |           1 |   25 |   0 |  0 |    0 |   0 |       0 | puf_i/ps7/inst/FCLK_CLK0 |
+| g1        | n/a   | BUFG/O          | None       |        2882 |               0 | 2882 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | puf_i/ps7/inst/FCLK_CLK1 |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+** Non-Clock Loads column represents cell count of non-clock pin loads
+*** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
+
+
+10. Clock Region Cell Placement per Global Clock: Region X1Y0
+-------------------------------------------------------------
+
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                      |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| g0        | n/a   | BUFG/O          | None       |        2365 |               0 | 2358 |           0 |    7 |   0 |  0 |    0 |   0 |       0 | puf_i/ps7/inst/FCLK_CLK0 |
+| g1        | n/a   | BUFG/O          | None       |        3218 |               0 | 3218 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | puf_i/ps7/inst/FCLK_CLK1 |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+** Non-Clock Loads column represents cell count of non-clock pin loads
+*** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
+
+
+11. Clock Region Cell Placement per Global Clock: Region X0Y1
+-------------------------------------------------------------
+
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                      |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| g0        | n/a   | BUFG/O          | None       |        2273 |               0 | 2227 |          41 |    1 |   2 |  0 |    0 |   0 |       0 | puf_i/ps7/inst/FCLK_CLK0 |
+| g1        | n/a   | BUFG/O          | None       |         382 |               0 |  382 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | puf_i/ps7/inst/FCLK_CLK1 |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+** Non-Clock Loads column represents cell count of non-clock pin loads
+*** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
+
+
+12. Clock Region Cell Placement per Global Clock: Region X1Y1
+-------------------------------------------------------------
+
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                      |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| g0        | n/a   | BUFG/O          | None       |        7070 |               0 | 7067 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | puf_i/ps7/inst/FCLK_CLK0 |
+| g1        | n/a   | BUFG/O          | None       |         127 |               0 |  127 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | puf_i/ps7/inst/FCLK_CLK1 |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+** Non-Clock Loads column represents cell count of non-clock pin loads
+*** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
+
+
+13. Clock Region Cell Placement per Global Clock: Region X0Y2
+-------------------------------------------------------------
+
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                      |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| g0        | n/a   | BUFG/O          | None       |        3745 |               0 | 3717 |          25 |    0 |   2 |  0 |    0 |   0 |       0 | puf_i/ps7/inst/FCLK_CLK0 |
++-----------+-------+-----------------+------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+--------------------------+
+* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+** Non-Clock Loads column represents cell count of non-clock pin loads
+*** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
+
+
+14. Clock Region Cell Placement per Global Clock: Region X1Y2
+-------------------------------------------------------------
+
++-----------+-------+-----------------+------------+-------------+-----------------+-------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF    | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                      |
++-----------+-------+-----------------+------------+-------------+-----------------+-------+-------------+------+-----+----+------+-----+---------+--------------------------+
+| g0        | n/a   | BUFG/O          | None       |       10617 |               0 | 10617 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | puf_i/ps7/inst/FCLK_CLK0 |
++-----------+-------+-----------------+------------+-------------+-----------------+-------+-------------+------+-----+----+------+-----+---------+--------------------------+
+* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+** Non-Clock Loads column represents cell count of non-clock pin loads
+*** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
+
+
+
+# Location of BUFG Primitives 
+set_property LOC BUFGCTRL_X0Y17 [get_cells puf_i/ps7/inst/buffer_fclk_clk_1.FCLK_CLK_1_BUFG]
+set_property LOC BUFGCTRL_X0Y16 [get_cells puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG]
+
+# Location of IO Primitives which is load of clock spine
+
+# Location of clock ports
+
+# Clock net "puf_i/ps7/inst/FCLK_CLK1" driven by instance "puf_i/ps7/inst/buffer_fclk_clk_1.FCLK_CLK_1_BUFG" located at site "BUFGCTRL_X0Y17"
+#startgroup
+create_pblock {CLKAG_puf_i/ps7/inst/FCLK_CLK1}
+add_cells_to_pblock [get_pblocks  {CLKAG_puf_i/ps7/inst/FCLK_CLK1}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="puf_i/ps7/inst/FCLK_CLK1"}]]]
+resize_pblock [get_pblocks {CLKAG_puf_i/ps7/inst/FCLK_CLK1}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0 CLOCKREGION_X0Y1:CLOCKREGION_X0Y1 CLOCKREGION_X1Y0:CLOCKREGION_X1Y0 CLOCKREGION_X1Y1:CLOCKREGION_X1Y1}
+#endgroup
+
+# Clock net "puf_i/ps7/inst/FCLK_CLK0" driven by instance "puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG" located at site "BUFGCTRL_X0Y16"
+#startgroup
+create_pblock {CLKAG_puf_i/ps7/inst/FCLK_CLK0}
+add_cells_to_pblock [get_pblocks  {CLKAG_puf_i/ps7/inst/FCLK_CLK0}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="puf_i/ps7/inst/FCLK_CLK0"}]]]
+resize_pblock [get_pblocks {CLKAG_puf_i/ps7/inst/FCLK_CLK0}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0 CLOCKREGION_X0Y1:CLOCKREGION_X0Y1 CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X1Y0:CLOCKREGION_X1Y0 CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2}
+#endgroup

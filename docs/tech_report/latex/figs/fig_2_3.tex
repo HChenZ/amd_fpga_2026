@@ -1,0 +1,38 @@
+% 图 2-3 IF 级数据通路与分支冲刷（坐标单位 cm）
+\begin{tikzpicture}[font=\footnotesize,
+  b/.style={draw=softline, rounded corners=1.5pt, fill=macblue!55, align=center, inner sep=2pt, font=\scriptsize},
+  w/.style={draw=softline, rounded corners=1.5pt, fill=white, align=center, inner sep=1.6pt, font=\scriptsize},
+  ar/.style={-{Stealth[length=1.4mm]}, thick}]
+
+\node[w, minimum width=2.9cm, fill=maclav!80] (pc) at (-6.0,0) {PC 选择\\trap / 重定向 / 预测};
+\node[b, minimum width=3.2cm] (ic) at (-2.4,0) {I-cache\\1 KiB，64 组 $\times$ 4 字};
+\node[w, minimum width=1.3cm] (ifid) at (0.8,0) {IF/ID};
+\node[w, minimum width=1.3cm] (id) at (2.9,0) {ID};
+\node[b, minimum width=1.7cm, minimum height=0.9cm, fill=macgreen] (ex) at (5.4,0) {EX\\分支判定};
+
+\node[b, minimum width=3.4cm, fill=macamber] (btb) at (-6.0,-1.9) {分支预测器\\64 项 BTB + BHT};
+\node[b, minimum width=3.4cm, fill=macblue!40] (mem) at (-6.0,-3.5) {存储器 128 KiB（BRAM）};
+\node[b, minimum width=3.5cm, fill=macrose!70] (ctrl) at (4.0,-2.1) {stall\_ctrl\\stall / flush 生成};
+
+\draw[ar] (pc) -- (ic);
+\draw[ar] (ic) -- (ifid);
+\draw[ar] (ifid) -- (id);
+\draw[ar] (id) -- (ex);
+
+\draw[ar] (btb.north) -- (-6.0,-1.0) -- (-4.05,-1.0) -- (-4.05,-0.45);
+\draw[ar] (mem.north) -- (-6.0,-2.6) -- (-3.35,-2.6) -- (-3.35,-0.45);
+\node[font=\scriptsize, anchor=west] at (-3.25,-2.62) {fill};
+
+\draw[ar] (id.south) -- (2.9,-1.15) -- (4.0,-1.15) -- (ctrl.north);
+\node[font=\scriptsize, anchor=west] at (4.35,-1.2) {flush / stall};
+
+\draw[ar] (ctrl.west) -- (1.5,-2.1) -- (1.5,-0.55) -- (ifid.south);
+
+\draw[ar] (ex.north) -- (5.4,1.0) -- (-6.0,1.0) -- (pc.north);
+\node[font=\scriptsize, anchor=south] at (0.0,1.02) {EX 级判定分支后重定向（\texttt{jump\_en}）};
+
+\node[draw=softline, fill=macgray, align=left, text width=13.8cm, font=\scriptsize]
+  at (0,-5.0) {分支重定向：\texttt{jump\_en} 选目标 PC；\texttt{flush[3:2]} 清 IF/ID 与 ID/EX，作废较年轻指令。\\
+  trap / 中断 / mret 对应 \texttt{flush[3:1]}；Cache / EX 停顿按控制器优先级处理。\\
+  此图为结构与控制语义示意，不表示已测量的固定分支惩罚拍数。};
+\end{tikzpicture}

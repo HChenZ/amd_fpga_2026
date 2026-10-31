@@ -1,0 +1,21 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/crypto_aead.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ror
+INFO: [VRFC 10-311] analyzing module round
+INFO: [VRFC 10-311] analyzing module p12
+INFO: [VRFC 10-311] analyzing module p8
+INFO: [VRFC 10-311] analyzing module pad
+INFO: [VRFC 10-311] analyzing module load_bytes
+INFO: [VRFC 10-311] analyzing module store_bytes
+INFO: [VRFC 10-311] analyzing module crypto_aead
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys/device_dna.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module device_dna
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys_v2/puf_key_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module puf_key_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys_v2/puf_mmio_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module puf_mmio_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys_v2/ro_counter_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ro_counter_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys_v2/ro_puf_core_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ro_puf_core_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/keys_v2/tb_puf_mmio_v2.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_puf_mmio_v2

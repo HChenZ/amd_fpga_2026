@@ -1,0 +1,24 @@
+% 图 5-2 板级串口输出摘录（实机日志 data/ascon/results/board/uart_20261026_sw_and_ise.txt）
+\begin{tikzpicture}
+\node[draw=softline, rounded corners=2pt, fill=macgray, inner sep=4pt, align=left,
+      font=\ttfamily\scriptsize, text width=146mm] {
+=== ASCON-AEAD128 software on RV32IM ===\\
+KAT empty : PASS\\
+KAT 1B : PASS\\
+KAT 16B : PASS\\
+KAT 16B+AD : PASS\\
+KAT 17B : PASS\\
+KAT 32B : PASS\\
+tamper reject : PASS\\
+KAT: 6/6 PASS\\
+--- benchmark (warm) ---\\
+enc 16B : 20806 cycles, 4495 inst, CPI 462 (x100)\\
+dec 16B : 21360 cycles, 4722 inst, CPI 452 (x100)\\[3pt]
+=== ASCON-AEAD128 ISE (permutation in hardware) ===\\
+KAT empty : PASS\quad KAT 1B : PASS\quad KAT 16B : PASS\\
+KAT 16B+AD : PASS\quad dec round : PASS\quad tamper : PASS\\
+--- benchmark (warm) 16B encrypt ---\\
+ISE cycles : 2570\\[3pt]
+===DONE===
+};
+\end{tikzpicture}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title><!--TITLE--></title>
+<link rel="stylesheet" href="assets/katex/katex.min.css" />
+<link rel="stylesheet" href="style.css" />
+<script defer src="assets/katex/katex.min.js"></script>
+<script defer src="assets/katex/contrib/auto-render.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>技术报告 · 审阅稿</span>
+    </div>
+    <div class="meta">
+      <span class="chip">结构：模板五部分 + 附录</span>
+      <span class="chip" id="stat-words">字数统计中…</span>
+      <span class="chip" id="stat-evid">证据锚点 0</span>
+      <span class="chip warn" id="stat-todo">待补/未验证 0</span>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">目录</div>
+    <nav id="toc"></nav>
+    <div class="sidebar-foot">
+      <div class="legend">
+        <div><span class="tag evid-legend">证据</span> 指向仓库内可追溯文件</div>
+        <div><span class="tag todo-legend">待补</span> 内容或数据尚未齐备</div>
+        <div><span class="tag fig-legend">图</span> 需绘制（转 LaTeX 时出 TikZ）</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content-wrap">
+    <article class="content">
+<!--BODY-->
+    </article>
+  </main>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const content = document.querySelector(".content");
+  const heads = [...content.querySelectorAll("h1, h2, h3, h4")];
+  const counters = [0, 0, 0, 0];
+  const toc = document.getElementById("toc");
+  const navItems = [];
+
+  let parentUnnumbered = false;
+  heads.forEach((h) => {
+    const level = parseInt(h.tagName.slice(1), 10);
+    const text = h.textContent.trim();
+    const m = text.match(/^(\d+(?:\.\d+)*)\s+([\s\S]*)$/);
+    let num = "";
+    let title = text;
+    if (m) { num = m[1]; title = m[2]; }
+
+    if (level === 2) parentUnnumbered = h.classList.contains("unnumbered");
+    const unnumbered = h.classList.contains("unnumbered") || (level > 2 && parentUnnumbered);
+
+    if (!num && !unnumbered) {
+      if (level === 2) { counters[1]++; counters[2] = 0; num = "" + counters[1]; }
+      else if (level === 3) { counters[2]++; num = counters[1] + "." + counters[2]; }
+      else if (level === 4) { counters[3]++; num = counters[1] + "." + counters[2] + "." + counters[3]; }
+    }
+    if (level === 2 && num) counters[1] = parseInt(num, 10);
+    if (level === 3 && num) { const p = num.split("."); counters[1] = parseInt(p[0], 10); counters[2] = parseInt(p[1], 10); }
+
+    const id = "h-" + heads.indexOf(h);
+    h.id = id;
+    h.dataset.num = num;
+
+    if (level <= 3) {
+      const a = document.createElement("a");
+      a.href = "#" + id;
+      a.className = "toc-l" + level;
+      a.innerHTML = '<span class="n">' + num + "</span><span>" + title + "</span>";
+      a.dataset.id = id;
+      toc.appendChild(a);
+      navItems.push(a);
+    }
+  });
+
+  // 滚动高亮
+  const map = new Map(navItems.map((a) => [a.dataset.id, a]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        navItems.forEach((a) => a.classList.remove("active"));
+        const a = map.get(e.target.id);
+        if (a) a.classList.add("active");
+      }
+    });
+  }, { rootMargin: "-10% 0px -75% 0px", threshold: 0 });
+  heads.forEach((h) => obs.observe(h));
+
+  // 统计
+  const text = content.textContent || "";
+  const han = (text.match(/[\u4e00-\u9fff]/g) || []).length;
+  document.getElementById("stat-words").textContent = "汉字约 " + han.toLocaleString();
+  document.getElementById("stat-evid").textContent =
+    "证据锚点 " + content.querySelectorAll(".evid").length;
+  document.getElementById("stat-todo").textContent =
+    "待补/未验证 " + content.querySelectorAll(".todo, .blocked").length;
+
+  // 表格横向滚动外壳
+  content.querySelectorAll("table").forEach((t) => {
+    if (!t.parentElement.classList.contains("table-wrap")) {
+      const w = document.createElement("div");
+      w.className = "table-wrap";
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    }
+  });
+
+  // 返回顶部
+  const up = document.createElement("button");
+  up.className = "to-top";
+  up.textContent = "↑";
+  up.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  document.body.appendChild(up);
+
+  // KaTeX
+  if (window.renderMathInElement) {
+    renderMathInElement(content, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "\\[", right: "\\]", display: true },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "$", right: "$", display: false },
+      ],
+      throwOnError: false,
+    });
+  }
+});
+</script>
+</body>
+</html>

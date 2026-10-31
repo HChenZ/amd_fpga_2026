@@ -1,0 +1,1227 @@
+
+*** Running vivado
+    with args -log cpu_dma_mem_imp_xbar_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source cpu_dma_mem_imp_xbar_0.tcl
+
+
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Fri Oct 30 03:20:53 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source cpu_dma_mem_imp_xbar_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 539.562 ; gain = 220.297
+Command: synth_design -top cpu_dma_mem_imp_xbar_0 -part xc7z020clg400-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 44140
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1334.301 ; gain = 537.125
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'cpu_dma_mem_imp_xbar_0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ip/cpu_dma_mem_imp_xbar_0/synth/cpu_dma_mem_imp_xbar_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_axi_crossbar' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4871]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_crossbar' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:2232]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_si_transactor' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:3791]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_addr_decoder' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:790]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_2_comparator_static' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2119]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_2_carry_and' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:60]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_2_carry_and' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:60]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_2_comparator_static' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2119]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_addr_decoder' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:790]
+INFO: [Synth 8-6157] synthesizing module 'axi_data_fifo_v2_1_36_axic_srl_fifo' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:694]
+INFO: [Synth 8-6157] synthesizing module 'axi_data_fifo_v2_1_36_ndeep_srl' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:1129]
+INFO: [Synth 8-6157] synthesizing module 'SRLC32E' [C:/ruanjian/2025.2/Vivado/scripts/rt/data/unisim_comp.v:165484]
+INFO: [Synth 8-6155] done synthesizing module 'SRLC32E' (0#1) [C:/ruanjian/2025.2/Vivado/scripts/rt/data/unisim_comp.v:165484]
+INFO: [Synth 8-6155] done synthesizing module 'axi_data_fifo_v2_1_36_ndeep_srl' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:1129]
+INFO: [Synth 8-6155] done synthesizing module 'axi_data_fifo_v2_1_36_axic_srl_fifo' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:694]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_2_mux_enc' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2436]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_2_mux_enc' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2436]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_si_transactor' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:3791]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_si_transactor__parameterized0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:3791]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_2_mux_enc__parameterized0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2436]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_2_mux_enc__parameterized0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2436]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_si_transactor__parameterized0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:3791]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_splitter' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4451]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_splitter' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4451]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_wdata_router' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4724]
+INFO: [Synth 8-6157] synthesizing module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:884]
+INFO: [Synth 8-6157] synthesizing module 'axi_data_fifo_v2_1_36_ndeep_srl__parameterized0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:1129]
+INFO: [Synth 8-6155] done synthesizing module 'axi_data_fifo_v2_1_36_ndeep_srl__parameterized0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:1129]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:982]
+INFO: [Synth 8-6155] done synthesizing module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:884]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_wdata_router' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4724]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_addr_decoder__parameterized0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:790]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_addr_decoder__parameterized0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:790]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_addr_decoder__parameterized1' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:790]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_addr_decoder__parameterized1' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:790]
+INFO: [Synth 8-6157] synthesizing module 'axi_data_fifo_v2_1_36_axic_srl_fifo__parameterized0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:694]
+INFO: [Synth 8-6155] done synthesizing module 'axi_data_fifo_v2_1_36_axic_srl_fifo__parameterized0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:694]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_wdata_mux' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4550]
+INFO: [Synth 8-6157] synthesizing module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo__parameterized0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:884]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:982]
+INFO: [Synth 8-6155] done synthesizing module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo__parameterized0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:884]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_2_mux_enc__parameterized1' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2436]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_2_mux_enc__parameterized1' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2436]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_wdata_mux' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4550]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_36_axi_register_slice' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/bc4b/hdl/axi_register_slice_v2_1_vl_rfs.v:3721]
+INFO: [Synth 8-6157] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:59]
+INFO: [Synth 8-6155] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:59]
+INFO: [Synth 8-6157] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:473]
+INFO: [Synth 8-6155] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:473]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_36_axic_register_slice' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/bc4b/hdl/axi_register_slice_v2_1_vl_rfs.v:1492]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_36_axic_register_slice' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/bc4b/hdl/axi_register_slice_v2_1_vl_rfs.v:1492]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_36_axic_register_slice__parameterized0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/bc4b/hdl/axi_register_slice_v2_1_vl_rfs.v:1492]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_36_axic_register_slice__parameterized0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/bc4b/hdl/axi_register_slice_v2_1_vl_rfs.v:1492]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_36_axic_register_slice__parameterized1' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/bc4b/hdl/axi_register_slice_v2_1_vl_rfs.v:1492]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_36_axic_register_slice__parameterized1' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/bc4b/hdl/axi_register_slice_v2_1_vl_rfs.v:1492]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_36_axic_register_slice__parameterized2' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/bc4b/hdl/axi_register_slice_v2_1_vl_rfs.v:1492]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_36_axic_register_slice__parameterized2' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/bc4b/hdl/axi_register_slice_v2_1_vl_rfs.v:1492]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_36_axi_register_slice' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/bc4b/hdl/axi_register_slice_v2_1_vl_rfs.v:3721]
+INFO: [Synth 8-7071] port 'aclk2x' of module 'axi_register_slice_v2_1_36_axi_register_slice' is unconnected for instance 'reg_slice_mi' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:3116]
+INFO: [Synth 8-7023] instance 'reg_slice_mi' of module 'axi_register_slice_v2_1_36_axi_register_slice' has 93 connections declared, but only 92 given [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:3116]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_addr_decoder__parameterized2' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:790]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_addr_decoder__parameterized2' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:790]
+INFO: [Synth 8-6157] synthesizing module 'axi_data_fifo_v2_1_36_axic_srl_fifo__parameterized1' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:694]
+INFO: [Synth 8-6157] synthesizing module 'axi_data_fifo_v2_1_36_ndeep_srl__parameterized1' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:1129]
+INFO: [Synth 8-6155] done synthesizing module 'axi_data_fifo_v2_1_36_ndeep_srl__parameterized1' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:1129]
+INFO: [Synth 8-6155] done synthesizing module 'axi_data_fifo_v2_1_36_axic_srl_fifo__parameterized1' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:694]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_wdata_mux__parameterized0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4550]
+INFO: [Synth 8-6157] synthesizing module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo__parameterized1' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:884]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:982]
+INFO: [Synth 8-6155] done synthesizing module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo__parameterized1' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:884]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_wdata_mux__parameterized0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4550]
+INFO: [Synth 8-7071] port 'aclk2x' of module 'axi_register_slice_v2_1_36_axi_register_slice' is unconnected for instance 'reg_slice_mi' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:3116]
+INFO: [Synth 8-7023] instance 'reg_slice_mi' of module 'axi_register_slice_v2_1_36_axi_register_slice' has 93 connections declared, but only 92 given [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:3116]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_decerr_slave' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:3493]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:3626]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_decerr_slave' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:3493]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_38_addr_arbiter' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:420]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_2_mux_enc__parameterized2' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2436]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_2_mux_enc__parameterized2' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2436]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_2_mux_enc__parameterized3' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2436]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_2_mux_enc__parameterized3' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/0c28/hdl/generic_baseblocks_v2_1_vl_rfs.v:2436]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_addr_arbiter' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:420]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_crossbar' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:2232]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_38_axi_crossbar' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4871]
+INFO: [Synth 8-6155] done synthesizing module 'cpu_dma_mem_imp_xbar_0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ip/cpu_dma_mem_imp_xbar_0/synth/cpu_dma_mem_imp_xbar_0.v:53]
+INFO: [Synth 8-6014] Unused sequential element areset_d1_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:747]
+INFO: [Synth 8-6014] Unused sequential element S_READY_i_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:786]
+INFO: [Synth 8-6014] Unused sequential element gen_single_thread.gen_debug_r_single_thread.debug_r_beat_cnt_i_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4184]
+INFO: [Synth 8-6014] Unused sequential element gen_single_thread.active_id_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4142]
+INFO: [Synth 8-6014] Unused sequential element gen_single_thread.gen_debug_r_single_thread.debug_r_beat_cnt_i_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4184]
+INFO: [Synth 8-6014] Unused sequential element gen_single_thread.active_id_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:4142]
+INFO: [Synth 8-6014] Unused sequential element areset_d1_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:747]
+INFO: [Synth 8-6014] Unused sequential element S_READY_i_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:786]
+INFO: [Synth 8-6014] Unused sequential element s_ready_i_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:1034]
+INFO: [Synth 8-6014] Unused sequential element areset_d1_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:747]
+INFO: [Synth 8-6014] Unused sequential element S_READY_i_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:786]
+INFO: [Synth 8-6014] Unused sequential element s_ready_i_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/fb46/hdl/axi_data_fifo_v2_1_vl_rfs.v:1034]
+INFO: [Synth 8-6014] Unused sequential element gen_master_slots[0].gen_mi_write.gen_debug_w.debug_w_beat_cnt_i_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:2991]
+INFO: [Synth 8-6014] Unused sequential element gen_master_slots[1].gen_mi_write.gen_debug_w.debug_w_beat_cnt_i_reg was removed.  [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ipshared/f084/hdl/axi_crossbar_v2_1_vl_rfs.v:2991]
+INFO: [Synth 8-7129] Port ACLK in module axi_register_slice_v2_1_36_axic_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port ARESET in module axi_register_slice_v2_1_36_axic_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port ACLK in module axi_register_slice_v2_1_36_axic_register_slice__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ARESET in module axi_register_slice_v2_1_36_axic_register_slice__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_axi_buser[0] in module axi_infrastructure_v1_1_0_vector2axi is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_axi_ruser[0] in module axi_infrastructure_v1_1_0_vector2axi is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awregion[3] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awregion[2] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awregion[1] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awregion[0] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awuser[0] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wuser[0] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arregion[3] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arregion[2] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arregion[1] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arregion[0] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_aruser[0] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Synth 8-7129] Port aclk2x in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR[1] in module axi_crossbar_v2_1_38_addr_decoder is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR[0] in module axi_crossbar_v2_1_38_addr_decoder is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_ABURST[1] in module axi_crossbar_v2_1_38_si_transactor__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_ABURST[0] in module axi_crossbar_v2_1_38_si_transactor__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_ABURST[1] in module axi_crossbar_v2_1_38_si_transactor is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_ABURST[0] in module axi_crossbar_v2_1_38_si_transactor is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWID[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWID[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[31] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[30] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[29] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[28] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[27] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[26] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[25] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[24] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[23] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[22] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[21] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[20] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[19] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[18] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[17] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[16] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[15] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[14] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[13] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[12] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[11] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[10] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[9] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[8] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWSIZE[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWSIZE[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWSIZE[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWBURST[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWBURST[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLOCK[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLOCK[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWCACHE[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWCACHE[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWCACHE[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWCACHE[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWPROT[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWPROT[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWPROT[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWQOS[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWQOS[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWQOS[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWQOS[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWUSER[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWVALID[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WID[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WID[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[63] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[62] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[61] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[60] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[59] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[58] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[57] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[56] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[55] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[54] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[53] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[52] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[51] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[50] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[49] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[48] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[47] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[46] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[45] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[44] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[43] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[42] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[41] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[40] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[39] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[38] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[37] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[36] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[35] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[34] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[33] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[32] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[31] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[30] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[29] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[28] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[27] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[26] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[25] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[24] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[23] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[22] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[21] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[20] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[19] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[18] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[17] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[16] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[15] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[14] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[13] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[12] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[11] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[10] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[9] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[8] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WLAST[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WUSER[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WVALID[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_BREADY[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARID[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARID[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[63] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[62] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[61] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[60] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[59] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[58] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[57] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[56] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[55] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[54] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[53] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[52] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[51] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[50] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[49] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[48] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[47] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[46] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[45] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[44] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[43] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[42] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[41] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[40] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[39] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[38] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[37] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[36] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[35] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[34] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[33] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[32] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[15] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[14] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[13] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[12] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[11] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[10] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[9] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[8] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARSIZE[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARSIZE[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARSIZE[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARBURST[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARBURST[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLOCK[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLOCK[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARCACHE[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARCACHE[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARCACHE[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARCACHE[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARPROT[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARPROT[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARPROT[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARQOS[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARQOS[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARQOS[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARQOS[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARUSER[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARVALID[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_RREADY[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awid[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awid[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[31] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[30] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[29] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[28] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[27] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[26] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[25] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[24] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[23] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[22] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[21] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[20] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[19] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[18] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[17] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[16] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[15] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[14] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[13] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[12] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[11] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[10] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[9] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[8] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlen[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlen[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlen[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlen[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awsize[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awsize[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awsize[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awburst[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awburst[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlock[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlock[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlock[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awcache[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awcache[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awcache[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awcache[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awprot[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awprot[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awprot[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awqos[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awqos[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awqos[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awqos[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awuser[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awuser[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awvalid[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wid[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wid[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[63] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[62] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[61] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[60] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[59] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[58] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[57] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[56] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[55] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[54] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[53] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[52] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[51] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[50] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[49] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[48] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[47] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[46] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[45] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[44] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[43] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[42] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[41] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[40] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[39] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[38] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[37] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[36] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[35] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[34] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[33] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[32] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[31] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[30] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[29] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[28] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[27] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[26] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[25] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[24] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[23] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[22] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[21] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[20] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[19] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[18] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[17] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[16] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[15] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[14] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[13] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[12] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[11] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[10] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[9] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[8] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wlast[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wuser[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wuser[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wvalid[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_bready[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arid[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arid[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[63] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[62] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[61] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[60] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[59] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[58] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[57] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[56] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[55] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[54] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[53] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[52] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[51] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[50] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[49] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[48] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[47] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[46] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[45] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[44] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[43] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[42] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[41] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[40] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[39] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[38] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[37] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[36] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[35] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[34] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[33] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[32] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlen[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlen[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlen[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlen[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arsize[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arsize[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arsize[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arburst[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arburst[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlock[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlock[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlock[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arcache[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arcache[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arcache[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arcache[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arqos[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arqos[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arqos[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arqos[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_aruser[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_aruser[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arvalid[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_rready[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_axi_buser[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_axi_ruser[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1603.461 ; gain = 806.285
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1603.461 ; gain = 806.285
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1603.461 ; gain = 806.285
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.108 . Memory (MB): peak = 1603.461 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ip/cpu_dma_mem_imp_xbar_0/cpu_dma_mem_imp_xbar_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.gen/sources_1/bd/cpu_dma/ip/cpu_dma_mem_imp_xbar_0/cpu_dma_mem_imp_xbar_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.runs/cpu_dma_mem_imp_xbar_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.runs/cpu_dma_mem_imp_xbar_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1603.461 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.091 . Memory (MB): peak = 1603.461 ; gain = 0.000
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1603.461 ; gain = 806.285
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1603.461 ; gain = 806.285
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1603.461 ; gain = 806.285
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo__parameterized0'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo__parameterized1'
+INFO: [Synth 8-802] inferred FSM for state register 'gen_axi.write_cs_reg' in module 'axi_crossbar_v2_1_38_decerr_slave'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    ZERO |                              100 |                               10
+                     ONE |                              010 |                               11
+                     TWO |                              001 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    ZERO |                              100 |                               10
+                     ONE |                              010 |                               11
+                     TWO |                              001 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo__parameterized0'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    ZERO |                              100 |                               10
+                     ONE |                              010 |                               11
+                     TWO |                              001 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'axi_data_fifo_v2_1_36_axic_reg_srl_fifo__parameterized1'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+            P_WRITE_IDLE |                              001 |                               00
+            P_WRITE_DATA |                              010 |                               01
+            P_WRITE_RESP |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'gen_axi.write_cs_reg' using encoding 'one-hot' in module 'axi_crossbar_v2_1_38_decerr_slave'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1603.461 ; gain = 806.285
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    8 Bit       Adders := 3     
+	   2 Input    4 Bit       Adders := 6     
+	   2 Input    3 Bit       Adders := 5     
+	   2 Input    2 Bit       Adders := 3     
+	   2 Input    1 Bit       Adders := 2     
++---XORs : 
+	   2 Input      1 Bit         XORs := 7     
++---Registers : 
+	               68 Bit    Registers := 4     
+	               64 Bit    Registers := 2     
+	                8 Bit    Registers := 7     
+	                4 Bit    Registers := 6     
+	                3 Bit    Registers := 5     
+	                2 Bit    Registers := 20    
+	                1 Bit    Registers := 39    
++---Muxes : 
+	   2 Input   68 Bit        Muxes := 4     
+	   2 Input    8 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 2     
+	   3 Input    3 Bit        Muxes := 3     
+	   2 Input    3 Bit        Muxes := 11    
+	   2 Input    2 Bit        Muxes := 16    
+	   2 Input    1 Bit        Muxes := 48    
+	   3 Input    1 Bit        Muxes := 17    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7129] Port aclk2x in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awregion[3] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awregion[2] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awregion[1] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awregion[0] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awuser[0] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wuser[0] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arregion[3] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arregion[2] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arregion[1] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arregion[0] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_aruser[0] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_axi_buser[0] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_axi_ruser[0] in module axi_register_slice_v2_1_36_axi_register_slice is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_ABURST[1] in module axi_crossbar_v2_1_38_si_transactor__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_ABURST[0] in module axi_crossbar_v2_1_38_si_transactor__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_ABURST[1] in module axi_crossbar_v2_1_38_si_transactor is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_ABURST[0] in module axi_crossbar_v2_1_38_si_transactor is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWID[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWID[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[31] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[30] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[29] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[28] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[27] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[26] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[25] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[24] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[23] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[22] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[21] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[20] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[19] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[18] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[17] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[16] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[15] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[14] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[13] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[12] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[11] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[10] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[9] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[8] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWADDR[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLEN[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWSIZE[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWSIZE[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWSIZE[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWBURST[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWBURST[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLOCK[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWLOCK[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWCACHE[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWCACHE[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWCACHE[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWCACHE[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWPROT[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWPROT[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWPROT[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWQOS[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWQOS[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWQOS[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWQOS[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWUSER[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_AWVALID[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WID[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WID[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[63] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[62] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[61] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[60] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[59] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[58] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[57] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[56] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[55] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[54] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[53] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[52] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[51] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[50] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[49] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[48] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[47] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[46] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[45] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[44] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[43] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[42] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[41] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[40] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[39] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[38] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[37] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[36] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[35] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[34] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[33] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[32] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[31] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[30] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[29] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[28] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[27] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[26] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[25] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[24] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[23] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[22] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[21] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[20] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[19] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[18] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[17] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[16] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[15] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[14] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[13] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[12] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[11] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[10] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[9] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[8] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WDATA[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WSTRB[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WLAST[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WUSER[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_WVALID[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_BREADY[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARID[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARID[0] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[63] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[62] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[61] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[60] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[59] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[58] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[57] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[56] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[55] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[54] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[53] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[52] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[51] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[50] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[49] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[48] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[47] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[46] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[45] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[44] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[43] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[42] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[41] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[40] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[39] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[38] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[37] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[36] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[35] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[34] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[33] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARADDR[32] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[15] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[14] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[13] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[12] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[11] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[10] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[9] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLEN[8] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARSIZE[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARSIZE[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARSIZE[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARBURST[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARBURST[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLOCK[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARLOCK[2] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARCACHE[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARCACHE[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARCACHE[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARCACHE[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARPROT[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARPROT[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARPROT[3] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARQOS[7] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARQOS[6] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARQOS[5] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARQOS[4] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARUSER[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_ARVALID[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port S_AXI_RREADY[1] in module axi_crossbar_v2_1_38_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awid[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awid[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[31] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[30] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[29] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[28] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[27] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[26] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[25] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[24] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[23] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[22] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[21] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[20] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[19] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[18] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[17] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[16] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[15] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[14] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[13] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[12] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[11] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[10] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[9] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[8] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlen[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlen[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlen[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlen[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awsize[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awsize[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awsize[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awburst[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awburst[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlock[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlock[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awlock[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awcache[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awcache[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awcache[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awcache[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awprot[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awprot[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awprot[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awqos[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awqos[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awqos[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awqos[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awuser[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awuser[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awvalid[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wid[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wid[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[63] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[62] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[61] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[60] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[59] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[58] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[57] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[56] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[55] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[54] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[53] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[52] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[51] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[50] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[49] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[48] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[47] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[46] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[45] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[44] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[43] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[42] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[41] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[40] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[39] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[38] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[37] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[36] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[35] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[34] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[33] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[32] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[31] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[30] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[29] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[28] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[27] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[26] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[25] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[24] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[23] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[22] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[21] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[20] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[19] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[18] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[17] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[16] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[15] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[14] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[13] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[12] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[11] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[10] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[9] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[8] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wdata[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wstrb[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wlast[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wuser[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wuser[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_wvalid[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_bready[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arid[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arid[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[63] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[62] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[61] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[60] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[59] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[58] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[57] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[56] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[55] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[54] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[53] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[52] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[51] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[50] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[49] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[48] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[47] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[46] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[45] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[44] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[43] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[42] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[41] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[40] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[39] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[38] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[37] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[36] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[35] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[34] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[33] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[32] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlen[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlen[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlen[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlen[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arsize[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arsize[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arsize[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arburst[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arburst[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlock[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlock[2] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arlock[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arcache[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arcache[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arcache[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arcache[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[3] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arqos[7] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arqos[6] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arqos[5] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arqos[4] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_aruser[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_aruser[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arvalid[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_rready[1] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_axi_buser[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_axi_ruser[0] in module axi_crossbar_v2_1_38_axi_crossbar is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:37 ; elapsed = 00:00:40 . Memory (MB): peak = 1603.461 ; gain = 806.285
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:44 ; elapsed = 00:00:48 . Memory (MB): peak = 1674.789 ; gain = 877.613
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:45 ; elapsed = 00:00:49 . Memory (MB): peak = 1724.477 ; gain = 927.301
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:46 ; elapsed = 00:00:50 . Memory (MB): peak = 1725.023 ; gain = 927.848
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:50 ; elapsed = 00:00:55 . Memory (MB): peak = 1945.223 ; gain = 1148.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:50 ; elapsed = 00:00:55 . Memory (MB): peak = 1945.223 ; gain = 1148.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:50 ; elapsed = 00:00:55 . Memory (MB): peak = 1945.223 ; gain = 1148.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:50 ; elapsed = 00:00:55 . Memory (MB): peak = 1945.223 ; gain = 1148.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:50 ; elapsed = 00:00:55 . Memory (MB): peak = 1945.223 ; gain = 1148.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:50 ; elapsed = 00:00:55 . Memory (MB): peak = 1945.223 ; gain = 1148.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |LUT1    |     7|
+|2     |LUT2    |   203|
+|3     |LUT3    |   105|
+|4     |LUT4    |    28|
+|5     |LUT5    |    48|
+|6     |LUT6    |    53|
+|7     |SRLC32E |     3|
+|8     |FDRE    |   329|
+|9     |FDSE    |    16|
++------+--------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:50 ; elapsed = 00:00:55 . Memory (MB): peak = 1945.223 ; gain = 1148.047
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:28 ; elapsed = 00:00:51 . Memory (MB): peak = 1945.223 ; gain = 1148.047
+Synthesis Optimization Complete : Time (s): cpu = 00:00:51 ; elapsed = 00:00:55 . Memory (MB): peak = 1945.223 ; gain = 1148.047
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1945.223 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1958.039 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: ab959d26
+INFO: [Common 17-83] Releasing license: Synthesis
+973 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:57 ; elapsed = 00:01:03 . Memory (MB): peak = 1958.039 ; gain = 1399.289
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1958.039 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.runs/cpu_dma_mem_imp_xbar_0_synth_1/cpu_dma_mem_imp_xbar_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP cpu_dma_mem_imp_xbar_0, cache-ID = e3999de7edeab709
+INFO: [Coretcl 2-1174] Renamed 24 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1958.039 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/fclk80/cpu_dma.runs/cpu_dma_mem_imp_xbar_0_synth_1/cpu_dma_mem_imp_xbar_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file cpu_dma_mem_imp_xbar_0_utilization_synth.rpt -pb cpu_dma_mem_imp_xbar_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Oct 30 03:22:10 2026...

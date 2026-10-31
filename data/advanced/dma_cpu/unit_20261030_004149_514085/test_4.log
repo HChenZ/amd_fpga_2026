@@ -1,0 +1,32 @@
+test_backend_host_api (__main__.Tests.test_backend_host_api) ... ok
+test_capability_identity (__main__.Tests.test_capability_identity) ... ok
+test_close_releases_only_after_halted_proof (__main__.Tests.test_close_releases_only_after_halted_proof) ... ok
+test_codec_invalid_inputs (__main__.Tests.test_codec_invalid_inputs) ... ok
+test_codec_roundtrip_layout (__main__.Tests.test_codec_roundtrip_layout) ... ok
+test_deadlines_finite (__main__.Tests.test_deadlines_finite) ... ok
+test_epoch_must_change (__main__.Tests.test_epoch_must_change) ... ok
+test_failed_quiescence_retains_and_blocks (__main__.Tests.test_failed_quiescence_retains_and_blocks) ... ok
+test_failure_has_no_payload_flags_cycles (__main__.Tests.test_failure_has_no_payload_flags_cycles) ... ok
+test_failure_payload_rejected (__main__.Tests.test_failure_payload_rejected) ... ok
+test_hwh_configuration_limits_and_alignment (__main__.Tests.test_hwh_configuration_limits_and_alignment) ... ok
+test_identity_mismatch_quarantine (__main__.Tests.test_identity_mismatch_quarantine) ... ok
+test_modes_and_capacity (__main__.Tests.test_modes_and_capacity) ... ok
+test_no_implicit_recovery (__main__.Tests.test_no_implicit_recovery) ... ok
+test_order_visibility_release (__main__.Tests.test_order_visibility_release) ... ok
+test_pynq_register_order_and_bounded_reset (__main__.Tests.test_pynq_register_order_and_bounded_reset) ... ok
+test_raw_dma_completed_events_and_actual_length (__main__.Tests.test_raw_dma_completed_events_and_actual_length) ... ok
+test_remote_failure_also_waits_for_scrub (__main__.Tests.test_remote_failure_also_waits_for_scrub) ... ok
+test_request_id_exhaustion (__main__.Tests.test_request_id_exhaustion) ... ok
+test_response_cycles64 (__main__.Tests.test_response_cycles64) ... ok
+test_scrub_deadline_aborts_cpu_then_quiesces (__main__.Tests.test_scrub_deadline_aborts_cpu_then_quiesces) ... ok
+test_scrub_waits_before_return_and_release (__main__.Tests.test_scrub_waits_before_return_and_release) ... ok
+test_simulated_flag_rejected (__main__.Tests.test_simulated_flag_rejected) ... ok
+test_single_client (__main__.Tests.test_single_client) ... ok
+test_start_failure_quiesces (__main__.Tests.test_start_failure_quiesces) ... ok
+test_timeout_quiesces (__main__.Tests.test_timeout_quiesces) ... ok
+test_transient_busy_before_submit (__main__.Tests.test_transient_busy_before_submit) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.005s
+
+OK

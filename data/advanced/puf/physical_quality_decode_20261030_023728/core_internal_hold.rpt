@@ -1,0 +1,447 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct 30 02:48:22 2026
+| Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
+| Command      : report_timing -from [all_registers -clock core_clk] -to [all_registers -clock core_clk] -delay_type min -max_paths 10 -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/advanced/puf/physical_quality_decode_20261030_023728/core_internal_hold.rpt
+| Design       : puf_mmio_physical_v2
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.098ns  (arrival time - required time)
+  Source:                 peripheral/cipher/p8_inst/s_out_reg[113]/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/cipher/s1_reg[49]/D
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        0.240ns  (logic 0.186ns (77.466%)  route 0.054ns (22.534%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.410     0.410    peripheral/cipher/p8_inst/clk
+    SLICE_X101Y119       FDRE                                         r  peripheral/cipher/p8_inst/s_out_reg[113]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X101Y119       FDRE (Prop_fdre_C_Q)         0.141     0.551 r  peripheral/cipher/p8_inst/s_out_reg[113]/Q
+                         net (fo=1, routed)           0.054     0.605    peripheral/cipher/p12_inst/s4_reg[63]_0[113]
+    SLICE_X100Y119       LUT6 (Prop_lut6_I3_O)        0.045     0.650 r  peripheral/cipher/p12_inst/s1[49]_i_1/O
+                         net (fo=1, routed)           0.000     0.650    peripheral/cipher/p12_inst_n_16
+    SLICE_X100Y119       FDRE                                         r  peripheral/cipher/s1_reg[49]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.432     0.432    peripheral/cipher/clk
+    SLICE_X100Y119       FDRE                                         r  peripheral/cipher/s1_reg[49]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X100Y119       FDRE (Hold_fdre_C_D)         0.121     0.553    peripheral/cipher/s1_reg[49]
+  -------------------------------------------------------------------
+                         required time                         -0.553    
+                         arrival time                           0.650    
+  -------------------------------------------------------------------
+                         slack                                  0.098    
+
+Slack (MET) :             0.098ns  (arrival time - required time)
+  Source:                 peripheral/cipher/p12_inst/s_out_reg[250]/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/cipher/s3_reg[58]/D
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        0.240ns  (logic 0.186ns (77.466%)  route 0.054ns (22.534%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.410     0.410    peripheral/cipher/p12_inst/clk
+    SLICE_X97Y124        FDRE                                         r  peripheral/cipher/p12_inst/s_out_reg[250]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X97Y124        FDRE (Prop_fdre_C_Q)         0.141     0.551 r  peripheral/cipher/p12_inst/s_out_reg[250]/Q
+                         net (fo=1, routed)           0.054     0.605    peripheral/cipher/p12_inst/p12_out[250]
+    SLICE_X96Y124        LUT6 (Prop_lut6_I3_O)        0.045     0.650 r  peripheral/cipher/p12_inst/s3[58]_i_1/O
+                         net (fo=1, routed)           0.000     0.650    peripheral/cipher/s3[58]
+    SLICE_X96Y124        FDRE                                         r  peripheral/cipher/s3_reg[58]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.432     0.432    peripheral/cipher/clk
+    SLICE_X96Y124        FDRE                                         r  peripheral/cipher/s3_reg[58]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X96Y124        FDRE (Hold_fdre_C_D)         0.121     0.553    peripheral/cipher/s3_reg[58]
+  -------------------------------------------------------------------
+                         required time                         -0.553    
+                         arrival time                           0.650    
+  -------------------------------------------------------------------
+                         slack                                  0.098    
+
+Slack (MET) :             0.098ns  (arrival time - required time)
+  Source:                 peripheral/cipher/p12_inst/s_out_reg[199]/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/cipher/s3_reg[7]/D
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        0.240ns  (logic 0.186ns (77.466%)  route 0.054ns (22.534%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.410     0.410    peripheral/cipher/p12_inst/clk
+    SLICE_X99Y121        FDRE                                         r  peripheral/cipher/p12_inst/s_out_reg[199]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X99Y121        FDRE (Prop_fdre_C_Q)         0.141     0.551 r  peripheral/cipher/p12_inst/s_out_reg[199]/Q
+                         net (fo=1, routed)           0.054     0.605    peripheral/cipher/p12_inst/p12_out[199]
+    SLICE_X98Y121        LUT6 (Prop_lut6_I3_O)        0.045     0.650 r  peripheral/cipher/p12_inst/s3[7]_i_1/O
+                         net (fo=1, routed)           0.000     0.650    peripheral/cipher/s3[7]
+    SLICE_X98Y121        FDRE                                         r  peripheral/cipher/s3_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.432     0.432    peripheral/cipher/clk
+    SLICE_X98Y121        FDRE                                         r  peripheral/cipher/s3_reg[7]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X98Y121        FDRE (Hold_fdre_C_D)         0.121     0.553    peripheral/cipher/s3_reg[7]
+  -------------------------------------------------------------------
+                         required time                         -0.553    
+                         arrival time                           0.650    
+  -------------------------------------------------------------------
+                         slack                                  0.098    
+
+Slack (MET) :             0.124ns  (arrival time - required time)
+  Source:                 peripheral/cipher/p12_inst/s_out_reg[253]/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/cipher/s3_reg[61]/D
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        0.266ns  (logic 0.186ns (69.897%)  route 0.080ns (30.103%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.410     0.410    peripheral/cipher/p12_inst/clk
+    SLICE_X97Y124        FDRE                                         r  peripheral/cipher/p12_inst/s_out_reg[253]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X97Y124        FDRE (Prop_fdre_C_Q)         0.141     0.551 r  peripheral/cipher/p12_inst/s_out_reg[253]/Q
+                         net (fo=1, routed)           0.080     0.631    peripheral/cipher/p12_inst/p12_out[253]
+    SLICE_X96Y124        LUT6 (Prop_lut6_I3_O)        0.045     0.676 r  peripheral/cipher/p12_inst/s3[61]_i_1/O
+                         net (fo=1, routed)           0.000     0.676    peripheral/cipher/s3[61]
+    SLICE_X96Y124        FDRE                                         r  peripheral/cipher/s3_reg[61]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.432     0.432    peripheral/cipher/clk
+    SLICE_X96Y124        FDRE                                         r  peripheral/cipher/s3_reg[61]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X96Y124        FDRE (Hold_fdre_C_D)         0.121     0.553    peripheral/cipher/s3_reg[61]
+  -------------------------------------------------------------------
+                         required time                         -0.553    
+                         arrival time                           0.676    
+  -------------------------------------------------------------------
+                         slack                                  0.124    
+
+Slack (MET) :             0.127ns  (arrival time - required time)
+  Source:                 peripheral/cipher/p12_in_reg[111]/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/cipher/p12_inst/s_reg_reg[111]/D
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        0.240ns  (logic 0.186ns (77.515%)  route 0.054ns (22.485%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.410     0.410    peripheral/cipher/clk
+    SLICE_X88Y125        FDRE                                         r  peripheral/cipher/p12_in_reg[111]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X88Y125        FDRE (Prop_fdre_C_Q)         0.141     0.551 r  peripheral/cipher/p12_in_reg[111]/Q
+                         net (fo=1, routed)           0.054     0.605    peripheral/cipher/p12_inst/Q[111]
+    SLICE_X89Y125        LUT5 (Prop_lut5_I0_O)        0.045     0.650 r  peripheral/cipher/p12_inst/s_reg[111]_i_1__0/O
+                         net (fo=1, routed)           0.000     0.650    peripheral/cipher/p12_inst/p_2_in[111]
+    SLICE_X89Y125        FDRE                                         r  peripheral/cipher/p12_inst/s_reg_reg[111]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.432     0.432    peripheral/cipher/p12_inst/clk
+    SLICE_X89Y125        FDRE                                         r  peripheral/cipher/p12_inst/s_reg_reg[111]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X89Y125        FDRE (Hold_fdre_C_D)         0.091     0.523    peripheral/cipher/p12_inst/s_reg_reg[111]
+  -------------------------------------------------------------------
+                         required time                         -0.523    
+                         arrival time                           0.650    
+  -------------------------------------------------------------------
+                         slack                                  0.127    
+
+Slack (MET) :             0.127ns  (arrival time - required time)
+  Source:                 peripheral/dna_reg[19]/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/keys/dna_latched_reg[19]/D
+                            (rising edge-triggered cell FDCE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        0.240ns  (logic 0.186ns (77.515%)  route 0.054ns (22.485%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.410     0.410    peripheral/clk
+    SLICE_X48Y145        FDRE                                         r  peripheral/dna_reg[19]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X48Y145        FDRE (Prop_fdre_C_Q)         0.141     0.551 r  peripheral/dna_reg[19]/Q
+                         net (fo=1, routed)           0.054     0.605    peripheral/keys/sampler/dna_latched_reg[56][19]
+    SLICE_X49Y145        LUT6 (Prop_lut6_I5_O)        0.045     0.650 r  peripheral/keys/sampler/dna_latched[19]_i_1/O
+                         net (fo=1, routed)           0.000     0.650    peripheral/keys/dna_latched[19]
+    SLICE_X49Y145        FDCE                                         r  peripheral/keys/dna_latched_reg[19]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.432     0.432    peripheral/keys/clk
+    SLICE_X49Y145        FDCE                                         r  peripheral/keys/dna_latched_reg[19]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X49Y145        FDCE (Hold_fdce_C_D)         0.091     0.523    peripheral/keys/dna_latched_reg[19]
+  -------------------------------------------------------------------
+                         required time                         -0.523    
+                         arrival time                           0.650    
+  -------------------------------------------------------------------
+                         slack                                  0.127    
+
+Slack (MET) :             0.130ns  (arrival time - required time)
+  Source:                 peripheral/cipher/p8_inst/s_out_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/cipher/s0_reg[3]/D
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        0.243ns  (logic 0.186ns (76.391%)  route 0.057ns (23.609%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.410     0.410    peripheral/cipher/p8_inst/clk
+    SLICE_X107Y108       FDRE                                         r  peripheral/cipher/p8_inst/s_out_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y108       FDRE (Prop_fdre_C_Q)         0.141     0.551 r  peripheral/cipher/p8_inst/s_out_reg[3]/Q
+                         net (fo=1, routed)           0.057     0.609    peripheral/cipher/p12_inst/s4_reg[63]_0[3]
+    SLICE_X106Y108       LUT6 (Prop_lut6_I3_O)        0.045     0.654 r  peripheral/cipher/p12_inst/s0[3]_i_1/O
+                         net (fo=1, routed)           0.000     0.654    peripheral/cipher/p12_inst_n_126
+    SLICE_X106Y108       FDRE                                         r  peripheral/cipher/s0_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.432     0.432    peripheral/cipher/clk
+    SLICE_X106Y108       FDRE                                         r  peripheral/cipher/s0_reg[3]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X106Y108       FDRE (Hold_fdre_C_D)         0.092     0.524    peripheral/cipher/s0_reg[3]
+  -------------------------------------------------------------------
+                         required time                         -0.524    
+                         arrival time                           0.654    
+  -------------------------------------------------------------------
+                         slack                                  0.130    
+
+Slack (MET) :             0.130ns  (arrival time - required time)
+  Source:                 peripheral/cipher/p12_inst/s_out_reg[233]/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/cipher/s3_reg[41]/D
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        0.243ns  (logic 0.186ns (76.391%)  route 0.057ns (23.609%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.410     0.410    peripheral/cipher/p12_inst/clk
+    SLICE_X89Y128        FDRE                                         r  peripheral/cipher/p12_inst/s_out_reg[233]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X89Y128        FDRE (Prop_fdre_C_Q)         0.141     0.551 r  peripheral/cipher/p12_inst/s_out_reg[233]/Q
+                         net (fo=1, routed)           0.057     0.609    peripheral/cipher/p12_inst/p12_out[233]
+    SLICE_X88Y128        LUT6 (Prop_lut6_I3_O)        0.045     0.654 r  peripheral/cipher/p12_inst/s3[41]_i_1/O
+                         net (fo=1, routed)           0.000     0.654    peripheral/cipher/s3[41]
+    SLICE_X88Y128        FDRE                                         r  peripheral/cipher/s3_reg[41]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.432     0.432    peripheral/cipher/clk
+    SLICE_X88Y128        FDRE                                         r  peripheral/cipher/s3_reg[41]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X88Y128        FDRE (Hold_fdre_C_D)         0.092     0.524    peripheral/cipher/s3_reg[41]
+  -------------------------------------------------------------------
+                         required time                         -0.524    
+                         arrival time                           0.654    
+  -------------------------------------------------------------------
+                         slack                                  0.130    
+
+Slack (MET) :             0.132ns  (arrival time - required time)
+  Source:                 peripheral/cipher/out_reg_reg[32]/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/cipher/data_out_reg[32]/D
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        0.273ns  (logic 0.186ns (68.106%)  route 0.087ns (31.894%))
+  Logic Levels:           1  (LUT4=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.410     0.410    peripheral/cipher/clk
+    SLICE_X101Y102       FDRE                                         r  peripheral/cipher/out_reg_reg[32]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X101Y102       FDRE (Prop_fdre_C_Q)         0.141     0.551 r  peripheral/cipher/out_reg_reg[32]/Q
+                         net (fo=1, routed)           0.087     0.638    peripheral/cipher/out_reg_reg_n_0_[32]
+    SLICE_X100Y102       LUT4 (Prop_lut4_I3_O)        0.045     0.683 r  peripheral/cipher/data_out[32]_i_1/O
+                         net (fo=1, routed)           0.000     0.683    peripheral/cipher/data_out1_in[32]
+    SLICE_X100Y102       FDRE                                         r  peripheral/cipher/data_out_reg[32]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.432     0.432    peripheral/cipher/clk
+    SLICE_X100Y102       FDRE                                         r  peripheral/cipher/data_out_reg[32]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X100Y102       FDRE (Hold_fdre_C_D)         0.120     0.552    peripheral/cipher/data_out_reg[32]
+  -------------------------------------------------------------------
+                         required time                         -0.552    
+                         arrival time                           0.683    
+  -------------------------------------------------------------------
+                         slack                                  0.132    
+
+Slack (MET) :             0.132ns  (arrival time - required time)
+  Source:                 peripheral/cipher/out_reg_reg[48]/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/cipher/data_out_reg[48]/D
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        0.273ns  (logic 0.186ns (68.106%)  route 0.087ns (31.894%))
+  Logic Levels:           1  (LUT4=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.410     0.410    peripheral/cipher/clk
+    SLICE_X103Y106       FDRE                                         r  peripheral/cipher/out_reg_reg[48]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X103Y106       FDRE (Prop_fdre_C_Q)         0.141     0.551 r  peripheral/cipher/out_reg_reg[48]/Q
+                         net (fo=1, routed)           0.087     0.638    peripheral/cipher/out_reg_reg_n_0_[48]
+    SLICE_X102Y106       LUT4 (Prop_lut4_I3_O)        0.045     0.683 r  peripheral/cipher/data_out[48]_i_1/O
+                         net (fo=1, routed)           0.000     0.683    peripheral/cipher/data_out1_in[48]
+    SLICE_X102Y106       FDRE                                         r  peripheral/cipher/data_out_reg[48]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6295, unset)         0.432     0.432    peripheral/cipher/clk
+    SLICE_X102Y106       FDRE                                         r  peripheral/cipher/data_out_reg[48]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X102Y106       FDRE (Hold_fdre_C_D)         0.120     0.552    peripheral/cipher/data_out_reg[48]
+  -------------------------------------------------------------------
+                         required time                         -0.552    
+                         arrival time                           0.683    
+  -------------------------------------------------------------------
+                         slack                                  0.132    
+
+
+
+

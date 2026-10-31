@@ -1,0 +1,169 @@
+% 导言区（由 build_latex.py 生成）
+\usepackage{geometry}
+\geometry{left=2.6cm,right=2.6cm,top=3.0cm,bottom=2.7cm,headheight=1.45cm,headsep=0.45cm}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{fvextra}
+\definecolor{macblue}{HTML}{DCE7F3}
+\definecolor{macgreen}{HTML}{DCF0E3}
+\definecolor{macamber}{HTML}{FBF0D5}
+\definecolor{macrose}{HTML}{F8DFE2}
+\definecolor{maclav}{HTML}{E8E3F3}
+\definecolor{macgray}{HTML}{F2F4F7}
+\definecolor{macpeach}{HTML}{FCE4D2}
+\definecolor{macline}{HTML}{8FA2B8}
+\definecolor{baryellow}{HTML}{FBE7A8}
+\definecolor{baryedge}{HTML}{C9B57E}
+\definecolor{softline}{HTML}{5F6B7A}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{needspace}
+\usepackage{textcomp}
+% 浮动体：不单独成页（除非图几乎占满一页），允许页顶/页底放大图
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.7}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.85}
+\setcounter{topnumber}{3}
+\setcounter{totalnumber}{4}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+
+% 等宽字体：优先 DejaVu Sans Mono（覆盖框线字符），否则退回默认
+\IfFontExistsTF{DejaVu Sans Mono}{\setmonofont{DejaVu Sans Mono}[Scale=0.92]}{}
+
+\ctexset{chapter={name={},number=\arabic{chapter},format=\Large\bfseries\raggedright},section={format=\large\bfseries\raggedright}}
+\sloppy
+\setlength{\emergencystretch}{2em}
+\definecolor{evidc}{HTML}{0B6B53}
+\definecolor{todoc}{HTML}{A2521B}
+\definecolor{blockc}{HTML}{9B2C2C}
+\definecolor{figc}{HTML}{4B5A8A}
+\definecolor{codebg}{HTML}{F7F7F4}
+
+% 标记宏：证据锚点 / 待补 / 未验证 / 图引用
+\newcommand{\evid}[1]{{\footnotesize\color{evidc}\texttt{#1}}}
+\newcommand{\todoflag}[1]{{\footnotesize\color{todoc}[#1]}}
+\newcommand{\blockedflag}[1]{{\footnotesize\color{blockc}[#1]}}
+\newcommand{\figref}[1]{{\footnotesize\color{figc}[#1]}}
+
+% 图占位：{编号}{标题}{说明}
+\newcommand{\partchapter}[2]{%
+  \chapter*{#2}%
+  \setcounter{chapter}{#1}%
+  \addcontentsline{toc}{chapter}{#2}%
+  \markboth{#2}{}%
+  \setcounter{section}{0}\setcounter{subsection}{0}%
+  \setcounter{subsubsection}{0}\setcounter{table}{0}%
+}
+\newsavebox{\figbox}
+\newcommand{\figbody}[1]{%
+  \IfFileExists{figs/#1.pdf}{%
+    \sbox{\figbox}{\includegraphics{figs/#1.pdf}}%
+    \ifdim\wd\figbox>\linewidth
+      \resizebox{\linewidth}{!}{\usebox{\figbox}}%
+    \else\usebox{\figbox}\fi
+  }{\input{figs/#1}}}
+\newcommand{\figpdf}[4]{%
+  \begin{figure}[!htb]\centering
+  \sbox{\figbox}{\includegraphics{figs/#2.pdf}}%
+  \ifdim\wd\figbox>\linewidth
+    \resizebox{\linewidth}{!}{\usebox{\figbox}}%
+  \else\usebox{\figbox}\fi\par\vspace{1mm}
+  \renewcommand{\thefigure}{#1}%
+  \caption{#3}\label{fig:#1}\par\vspace{0.5mm}
+  \begin{minipage}{0.96\textwidth}{\footnotesize\color{black!70}#4}\end{minipage}
+  \end{figure}}
+\newcommand{\figtex}[4]{%
+  \begin{figure}[!htb]\centering
+  \figbody{#2}\par\vspace{1mm}
+  \renewcommand{\thefigure}{#1}%
+  \caption{#3}\label{fig:#1}\par\vspace{0.5mm}
+  \begin{minipage}{0.96\textwidth}{\footnotesize\color{black!70}#4}\end{minipage}
+  \end{figure}}
+\newcommand{\fignone}[3]{%
+  \begin{figure}[!htb]\centering
+  \fbox{\parbox[c][26mm][c]{\textwidth}{\centering\color{black!45}\small 图 #1 待补：需实拍照片或工程截图}}%\par\vspace{1mm}
+  \renewcommand{\thefigure}{#1}%
+  \caption{#2}\label{fig:#1}\par\vspace{0.5mm}
+  \begin{minipage}{0.96\textwidth}{\footnotesize\color{black!70}#3}\end{minipage}
+  \end{figure}}
+\newcommand{\figplaceholder}[3]{%
+  \begin{figure}[!htb]\centering
+    \fbox{\parbox[c][3.4cm][c]{0.88\textwidth}{\centering\color{figc}%
+      \textbf{图 #1 占位}\\[1mm]\footnotesize 待绘制（TikZ / pgfplots 或实拍）}}
+    \caption{#2}\label{fig:#1}
+  \end{figure}
+  \vspace{-2mm}
+  {\footnotesize\noindent\color{black!70}#3\par}\vspace{2mm}}
+
+% 代码块（保留原始空白与中文）
+\DefineVerbatimEnvironment{codeblock}{Verbatim}%
+   {fontsize=\scriptsize,breaklines=true,breakanywhere=true,frame=single,framesep=1.2mm,rulecolor=\color{black!30},%
+   framerule=0.4pt, xleftmargin=2mm,xrightmargin=2mm}
+
+% ---- 图：PDF 与 TikZ 源码互为备份，缺哪个都能编（避免"删了 tex 就报错"）----
+% 图按当前页剩余版面就地排放：放得下则原位；差一点则等比缩小（不小于 58%）塞进本页；
+% 都不行才作为浮动体放到下一页顶部，让后文补满本页，避免大片空白。
+\newsavebox{\figdescbox}
+\newlength{\figrem}\newlength{\fignat}\newlength{\figcap}\newlength{\figfit}
+\newcommand{\figload}[1]{%
+  \IfFileExists{figs/#1.pdf}{\sbox{\figbox}{\includegraphics{figs/#1.pdf}}}{%
+    \IfFileExists{figs/#1.tex}{\sbox{\figbox}{\input{figs/#1}}}{\sbox{\figbox}{\fbox{\color{black!45}缺少图 #1}}}}%
+  \ifdim\wd\figbox>\linewidth \sbox{\figbox}{\resizebox{\linewidth}{!}{\usebox{\figbox}}}\fi}
+\newcommand{\figcaptionpart}[3]{%
+  \par\vspace{1mm}%
+  \renewcommand{\thefigure}{#1}%
+  \captionof{figure}{#2}\label{fig:#1}\par\vspace{0.5mm}%
+  \usebox{\figdescbox}}
+\renewcommand{\figpdf}[4]{%
+  \par
+  \figload{#2}%
+  \sbox{\figdescbox}{\begin{minipage}{0.96\textwidth}{\footnotesize\color{black!70}#4}\end{minipage}}%
+  \setlength{\fignat}{\dimexpr\ht\figbox+\dp\figbox\relax}%
+  \setlength{\figcap}{\dimexpr\ht\figdescbox+\dp\figdescbox+3.2\baselineskip\relax}%
+  \ifdim\pagegoal=\maxdimen \setlength{\figrem}{\textheight}%
+  \else \setlength{\figrem}{\dimexpr\pagegoal-\pagetotal-\baselineskip\relax}\fi
+  \setlength{\figfit}{\dimexpr\figrem-\figcap\relax}%
+  \typeout{FIGPLACE #1: rem=\the\figrem\space nat=\the\fignat\space cap=\the\figcap}%
+  \ifdim\dimexpr\fignat+\figcap\relax<\figrem
+    \fighere{#1}{#3}%
+  \else\ifdim\figfit>0.58\fignat
+    \sbox{\figbox}{\resizebox*{!}{\figfit}{\usebox{\figbox}}}\fighere{#1}{#3}%
+  \else
+    \begin{figure}[!tbp]\centering\usebox{\figbox}\figcaptionpart{#1}{#3}{}\end{figure}%
+  \fi\fi}
+\newcommand{\fighere}[2]{%
+  \par\addvspace{\intextsep}\noindent
+  \begin{minipage}{\linewidth}\centering\usebox{\figbox}\figcaptionpart{#1}{#2}{}\end{minipage}%
+  \par\addvspace{\intextsep}}
+\renewcommand{\figbody}[1]{%
+  \IfFileExists{figs/#1.tex}{\input{figs/#1}}{%
+    \IfFileExists{figs/#1.pdf}{%
+      \sbox{\figbox}{\includegraphics{figs/#1.pdf}}%
+      \ifdim\wd\figbox>\linewidth \resizebox{\linewidth}{!}{\usebox{\figbox}}\else\usebox{\figbox}\fi
+    }{\fbox{\color{black!45}缺少图 #1}}}}
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\captionsetup{font=small,labelsep=quad}
+\renewcommand{\arraystretch}{1.15}
+\setlist{itemsep=2pt,topsep=3pt}
+% 页眉按《技术报告模板》：居中赛题标志 + 下划线；页脚居中页码；章首页同样处理
+\newcommand{\reportheadfoot}{%
+  \fancyhf{}%
+  \fancyhead[C]{\IfFileExists{header_logo.png}{\includegraphics[width=6.5cm]{header_logo.png}}{}}%
+  \fancyfoot[C]{\small\thepage}%
+  \renewcommand{\headrulewidth}{0.4pt}}
+\pagestyle{fancy}
+\reportheadfoot
+\fancypagestyle{plain}{\reportheadfoot}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\renewcommand{\headrulewidth}{0.4pt}

@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "kind": "static_hwh_driver_contract",
+  "board": "NOT_RUN",
+  "hwh_sha256": "f3731a00255ea729beca9ce79aa54789b7b59542f6383f02700f21d81d360c41",
+  "dma_configuration": {
+    "max_transfer": 16383,
+    "tx_alignment": 4,
+    "rx_alignment": 4
+  },
+  "max_ad_bytes": 1024,
+  "max_message_bytes": 1024,
+  "address_ranges": {
+    "engine": {
+      "ADDRESSBLOCK": "reg0",
+      "BASENAME": "C_BASEADDR",
+      "BASEVALUE": "0x40000000",
+      "HIGHNAME": "C_HIGHADDR",
+      "HIGHVALUE": "0x40000FFF",
+      "INSTANCE": "engine",
+      "IS_DATA": "TRUE",
+      "IS_INSTRUCTION": "TRUE",
+      "MASTERBUSINTERFACE": "M_AXI_GP0",
+      "MEMTYPE": "REGISTER",
+      "SLAVEBUSINTERFACE": "S_AXI"
+    },
+    "dma": {
+      "ADDRESSBLOCK": "Reg",
+      "BASENAME": "C_BASEADDR",
+      "BASEVALUE": "0x40400000",
+      "HIGHNAME": "C_HIGHADDR",
+      "HIGHVALUE": "0x4040FFFF",
+      "INSTANCE": "dma",
+      "IS_DATA": "TRUE",
+      "IS_INSTRUCTION": "TRUE",
+      "MASTERBUSINTERFACE": "M_AXI_GP0",
+      "MEMTYPE": "REGISTER",
+      "SLAVEBUSINTERFACE": "S_AXI_LITE"
+    }
+  },
+  "hp0_width": 64,
+  "fclk_config_mhz": 100,
+  "external_reset_active_low": true
+}

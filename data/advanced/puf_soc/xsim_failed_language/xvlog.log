@@ -1,0 +1,42 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/keys/DNA_PORT_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module DNA_PORT
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_aead_core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ascon_aead_core
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_ise.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ascon_ise
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq/rtl_p0/ascon_mmio.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ascon_mmio
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_permutation.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ror
+INFO: [VRFC 10-311] analyzing module round
+INFO: [VRFC 10-311] analyzing module p12
+INFO: [VRFC 10-311] analyzing module p8
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/axi_full_master.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_master
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/ascon/axi_slave_bram.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_slave_bram
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/branch_predictor.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module predictor
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/puf_soc_v2/bus_interconnect_puf_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bus_interconnect_puf_v2
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/bypass.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bypass
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/clint.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clint
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpi_cnt.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cpi_cnt
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpu_axi_bridge.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cpu_axi_bridge
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpu_core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cpu_core
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/crypto_aead.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pad
+INFO: [VRFC 10-311] analyzing module load_bytes
+ERROR: [VRFC 10-4982] syntax error near '+' [../../../../../../../src/rtl/ascon/ascon_word.v:23]
+ERROR: [VRFC 10-8530] module 'load_bytes' is ignored due to previous errors [../../../../../../../src/rtl/ascon/ascon_word.v:14]
+INFO: [VRFC 10-311] analyzing module store_bytes
+ERROR: [VRFC 10-4982] syntax error near '+' [../../../../../../../src/rtl/ascon/ascon_word.v:40]
+ERROR: [VRFC 10-8530] module 'store_bytes' is ignored due to previous errors [../../../../../../../src/rtl/ascon/ascon_word.v:31]
+INFO: [VRFC 10-311] analyzing module crypto_aead
+ERROR: [VRFC 10-8530] module 'crypto_aead' is ignored due to previous errors [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/crypto_aead.v:27]

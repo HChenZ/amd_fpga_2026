@@ -1,0 +1,1 @@
+part=xc7z020clg400-1 top=puf_mmio_physical_v2 ro_luts=1280 expected=1280 core_clock=100MHz management_clock=25MHz oscillator_clock_model=NOT_MEASURED board=NOT_RUN

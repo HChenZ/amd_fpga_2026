@@ -1,0 +1,4 @@
+sim/puf_soc_v2/tb_puf_soc_v2.sv:59: warning: Extra digits given for sized hex constant.
+sim/puf_soc_v2/tb_puf_soc_v2.sv:59: warning: Numeric constant truncated to 128 bits.
+sim/puf_soc_v2/tb_puf_soc_v2.sv:59: warning: Extra digits given for sized hex constant.
+sim/puf_soc_v2/tb_puf_soc_v2.sv:59: warning: Numeric constant truncated to 120 bits.

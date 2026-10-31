@@ -1,0 +1,66 @@
+\chapter{研制历程、证据分级与统计口径}
+\renewcommand{\thesubsection}{\thechapter.\arabic{subsection}}
+
+\Needspace{85pt}
+
+\subsection{研制历程}
+
+{\small
+\renewcommand{\thetable}{D-1}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.2355\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.1952\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.5693\linewidth-2\tabcolsep\relax}@{}}
+\caption{研制历程}\label{tab:D-1}\\
+\toprule
+\textbf{阶段} & \textbf{时间} & \textbf{已发生结果} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\footnotesize 续表 D-1}\\
+\toprule
+\textbf{阶段} & \textbf{时间} & \textbf{已发生结果} \\
+\midrule
+\endhead
+资产恢复 & 2026-09 & 从原始 ZIP 恢复真实 XC7Z020 baseline，与 Kintex legacy 分开保存 \\
+标准锁定 & 2026-10-07 & 固定 Final 规范、参考实现提交、许可、KAT 与 SHA-256 \\
+三方案集成 & 2026-10-09--16 & AEAD RTL、MMIO、ISE 接入，目标固件仿真与安全契约验证 \\
+时序收敛 & 2026-10-17--20 & 33 组策略及结构改造；双策略芯片内部时序通过 \\
+历史 PL-only 板测 & 2026-10-26--27 & SW/ISE/MMIO 三镜像代表 KAT 与 warm 周期记录 \\
+PYNQ 发布 & 2026-10-28 & 独立 BD、bit/hwh/固件对应；三模式各 289 组容量内 KAT 与坏 Tag 拒绝 \\
+PYNQ 验证收口 & 2026-10-29 & Notebook 顺序执行、30 次 warm benchmark、9/9 错误门禁与每模式 50 次往返 \\
+\bottomrule
+\end{longtable}
+}
+
+\Needspace{85pt}
+
+\subsection{设计准则与证据分级}
+
+接口先于实现；未测量项不填零、不计为通过。分别记录 hardware\_measured、simulation、 implementation\_report 与 not\_measured。正 WNS 只说明该 run 在给定约束下通过，不等于最大频率或跨温压稳定性。相同模块源文件不等于共享一个硬件实例；全 SoC 资源不充作某一加速通路的独立面积。
+
+当前 release 的 bit/hwh/固件由 manifest 与逐文件哈希对应。板端 Git、release source commit 和历史仿真 source\_head 分别记录，不能视为同一个身份。构建记录 source\_dirty=true，因此重建须结合 source\_sha256、源集选择与构建输入，不能只 checkout 单个 commit 即宣称可复现。
+
+\Needspace{85pt}
+
+\subsection{术语与统计口径}
+
+{\small
+\renewcommand{\thetable}{D-2}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.2926\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.7074\linewidth-2\tabcolsep\relax}@{}}
+\caption{术语与统计口径}\label{tab:D-2}\\
+\toprule
+\textbf{术语} & \textbf{定义} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{@{}l}{\footnotesize 续表 D-2}\\
+\toprule
+\textbf{术语} & \textbf{定义} \\
+\midrule
+\endhead
+三方案 & SW 为软件 AEAD；HW/MMIO 为 CPU 读写寄存器的 AEAD 外设；ISE 为状态读写与 P8/P12 定制指令 \\
+周期加速比 & 同次运行、相同输入与操作下 SW cycles / 目标 cycles；不是 PS 响应时间加速比 \\
+固件调用周期 & RV32 svc\_\allowbreak{}aead\_\allowbreak{}encrypt/\allowbreak{}decrypt 边界 mcycle 差值，不含 PS/UART \\
+PS 调用墙钟 & PS 侧一次 mailbox 调用时间，含 Python、MMIO、串口及等待 \\
+历史 P0/PL-only & 三套独立基准固件对应的 bitstream，仅为历史对照 \\
+当前 PYNQ release & 一个 overlay 内按 mode 切换三方案；服务 pynq-svc-v1；PT/AD 各 $\leq$16 B \\
+配置频率 & 当前设置 100 MHz，不等于独立实测频率或 Fmax \\
+\bottomrule
+\end{longtable}
+}

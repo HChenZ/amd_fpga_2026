@@ -1,0 +1,127 @@
+{
+  "records": [
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc",
+        "--version"
+      ],
+      "exit_code": 0,
+      "log": "compiler_version.log"
+    },
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-objdump",
+        "--version"
+      ],
+      "exit_code": 0,
+      "log": "binutils_version.log"
+    },
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc",
+        "-march=rv32im_zicsr",
+        "-mabi=ilp32",
+        "-O2",
+        "-ffreestanding",
+        "-nostdlib",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-msmall-data-limit=0",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Isrc/firmware/keys_rv32/",
+        "-T",
+        "src/firmware/keys_rv32/riscv.ld",
+        "src/firmware/keys_rv32/crt0.S",
+        "src/firmware/keys_rv32/uart.c",
+        "src/firmware/keys_rv32/libc_min.c",
+        "src/firmware/keys_v2/main.c",
+        "src/firmware/keys_v2/puf_mmio_v2.c",
+        "-lgcc",
+        "-o",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_soc\\firmware\\puf_v2.elf"
+      ],
+      "exit_code": 0,
+      "log": "compile.log"
+    },
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-objcopy",
+        "-O",
+        "binary",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_soc\\firmware\\puf_v2.elf",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_soc\\firmware\\puf_v2.bin"
+      ],
+      "exit_code": 0,
+      "log": "objcopy.log"
+    },
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-objdump",
+        "-d",
+        "-S",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_soc\\firmware\\puf_v2.elf"
+      ],
+      "exit_code": 0,
+      "log": "disassembly.log"
+    },
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-readelf",
+        "-h",
+        "-A",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_soc\\firmware\\puf_v2.elf"
+      ],
+      "exit_code": 0,
+      "log": "headers.log"
+    },
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-size",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_soc\\firmware\\puf_v2.elf"
+      ],
+      "exit_code": 0,
+      "log": "size.log"
+    },
+    {
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "src/firmware/keys_rv32/bin2vhex.py",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_soc\\firmware\\puf_v2.bin",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_soc\\firmware\\puf_v2.hex",
+        "32",
+        "32768"
+      ],
+      "exit_code": 0,
+      "log": "hex.log"
+    }
+  ],
+  "execution": "not_measured_by_build",
+  "base": "0x30010000 independent fixture",
+  "source_sha256": {
+    "src/firmware/keys_rv32/crt0.S": "ba4a7568cc165ca2b7198c25d2d4a8159547c67b338e283d4abfa66d42128914",
+    "src/firmware/keys_rv32/uart.c": "1c0e9d08c8e8e4a9379600874dfc7d10791afcc02743a2648d8d99dcca272a07",
+    "src/firmware/keys_rv32/libc_min.c": "b2ddf7b7fb9237ecaa26191168e8c22370751b428f6b0b005e99ad4f4b50c042",
+    "src/firmware/keys_v2/main.c": "27a15a6ec1c240504d64e8398c799ffdf1ff099dbcf9f24c14cec961b232d25f",
+    "src/firmware/keys_v2/puf_mmio_v2.c": "c71e17d722942f32e42c267104e8c0ad428eec720ee17e76f531246abd478e3d",
+    "src/firmware/keys_rv32/riscv.ld": "27324abf10d8a733bf159d208e2a2c0e00b211f571f384ab5e2cd8d0b80b7e83",
+    "src/firmware/keys_rv32/uart.h": "5eb620edbe6ffb9ec993f26a41b0017f7f6435218fc9f4b53fe07afec05c84e8",
+    "src/firmware/keys_rv32/bin2vhex.py": "48e66b5fdfa498d23ee5ce0f3a485be9f4f3afb1546d385ef9489d5ae1c7d468",
+    "src/firmware/keys_v2/puf_mmio_v2.h": "3337f8d5ba42539688cae3cf9837802f60ec7257d36ba6e21a903387d6b6d8cf",
+    "src/firmware/keys_v2/build.py": "c14c625d061d648c87d0f754a9edbbca4d9537830ab0baf426d278496e15c34e"
+  },
+  "artifact_sha256": {
+    "binutils_version.log": "6cf83ffb10e4d6325422167bd34419a5eb0a979cdb8695fc6e61e8de5de222f9",
+    "compile.log": "2f2e1c680e597ef5bbbd47580c71af1e366412d7cbb6003264f7afa2ee91a8ce",
+    "compiler_version.log": "c96b19f6a1f5c861a29847b4befd86509d84a62b56f175d71353eb8cc237743f",
+    "disassembly.log": "68a9505daee33c3ba69b0bff2cd04f65906e5798e230d8645c9923c5aacb78af",
+    "headers.log": "9be886261f66dbb8395808d3eaaf19e717038c215551007edb060014ed04a178",
+    "hex.log": "fb0eba50d0bc349dafa5284d212bb4c458090e91a874bf50db63c060e151b162",
+    "objcopy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "puf_v2.bin": "ae59a94e494038c313df37e2f99e03fe206563a830a5a8cf9363776a09a971bf",
+    "puf_v2.elf": "d9194fe495cb7c7c1e4fb0222ae454a3cb19cef4e5bea6866ed9057c1e24facc",
+    "puf_v2.hex": "423ec98dc808d2f0b0fa29590c8e2b31eb962b8405d0dded18d8cc8a46064851",
+    "size.log": "a6a357f97378331af2e3a8cb388196e35d731ce19ea4974b44f7a280e289ff14"
+  }
+}

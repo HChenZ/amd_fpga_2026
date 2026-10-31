@@ -1,5 +1,10 @@
 # 开发记录
 
+## 2026-10-31 — 协作记录入库与未跟踪文件清理（owner TBD）
+
+- 核实 llm_collab 的统计（21/13/76/2635），省略 1 条与工程无关的提示后在本地 commit `cc39c9d`；报告 2.5.4 同步修改并重新构建，结果 PASS。
+- 新增 Ross 使用心得文档；按引用扫描删除 95 个未跟踪的冗余路径（191.7 MB），误删的 puf_min OOC 证据已从 work 目录重新收集。
+
 ## 2026-10-31 — Skill L3 用 AXI DMA 回环 overlay（owner TBD）
 
 - 新建独立 Vivado 工程：PS7 GP0 控制、HP0 内存、simple 模式 AXI DMA、MM2S→S2MM 回环含 TLAST、FCLK0 100 MHz（板卡 PLL 修正）、HP0 窗口 1 GiB；门禁通过并生成同名 bit/hwh 与同次实现的 manifest。板测 NOT_RUN。

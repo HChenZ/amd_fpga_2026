@@ -1,0 +1,32 @@
+"xsim tb_dma_control_behav -key {Behavioral:sim_dma_control:Functional:tb_dma_control} -tclbatch tb_dma_control.tcl -protoinst "protoinst_files/cpu_dma.protoinst" -log simulate.log"
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Fri Oct 30 02:05:29 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_dma_control_behav/xsim_script.tcl
+# xsim {tb_dma_control_behav} -autoloadwcfg -tclbatch {tb_dma_control.tcl} -key {Behavioral:sim_dma_control:Functional:tb_dma_control} -protoinst {protoinst_files/cpu_dma.protoinst}
+INFO: [Wavedata 42-565] Reading protoinst file protoinst_files/cpu_dma.protoinst
+WARNING: [Wavedata 42-558] Couldn't load one or more protocol instances from protoinst file protoinst_files/cpu_dma.protoinst for the following reason(s):
+There are no instances of module "cpu_dma" in the design.
+
+Time resolution is 1 ps
+source tb_dma_control.tcl
+## set curr_wave [current_wave_config]
+## if { [string length $curr_wave] == 0 } {
+##   if { [llength [get_objects]] > 0} {
+##     add_wave /
+##     set_property needs_save false [current_wave_config]
+##   } else {
+##      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+##   }
+## }
+## run 1ms
+DMA_CONTROL_TEST_PASS AW_W_order WSTRB backpressure identity capabilities reset epoch
+$finish called at time : 2200 ns : File "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/pynq_dma_cpu/tb_dma_control.v" Line 58
+## quit
+INFO: [Common 17-206] Exiting xsim at Fri Oct 30 02:05:31 2026...

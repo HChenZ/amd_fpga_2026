@@ -1,0 +1,1 @@
+session=sweep_impl run3 (property reads guarded; tsv appended per combo)

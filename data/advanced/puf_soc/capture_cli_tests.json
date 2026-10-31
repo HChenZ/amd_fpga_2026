@@ -1,0 +1,8 @@
+{
+  "command": [
+    "C:\\Users\\HXZ\\anaconda3\\python.exe",
+    "sim/puf_soc_v2/test_capture.py"
+  ],
+  "exit_code": 0,
+  "kind": "host_mock_tests_not_board"
+}

@@ -1,0 +1,51 @@
+% 图 2-4 EX 级功能单元与多周期握手（坐标单位 cm）
+\begin{tikzpicture}[font=\footnotesize,
+  b/.style={draw=softline, rounded corners=1.5pt, fill=macblue!55, align=center, inner sep=1.8pt,
+            font=\scriptsize, minimum width=3.5cm, minimum height=0.78cm},
+  w/.style={draw=softline, rounded corners=1.5pt, fill=white, align=center, inner sep=1.8pt,
+            font=\scriptsize},
+  ar/.style={-{Stealth[length=1.4mm]}, thick}]
+
+% 左：ID/EX 入口
+\node[w, minimum width=2.4cm, minimum height=1.1cm, fill=macgray] (in) at (-6.6,0) {ID/EX\\payload + valid};
+
+% 中：五个功能单元（同一列，等间距）
+\node[b, fill=macgreen] (alu) at (-2.4,2.2) {ALU / 移位 / 比较};
+\node[b, fill=macgreen!60] (br)  at (-2.4,1.1) {分支条件与目标};
+\node[b, fill=maclav] (csr) at (-2.4,0.0) {CSR 读写};
+\node[b, fill=macblue!60] (mul) at (-2.4,-1.1) {\texttt{mult.v}（推断 4 DSP）};
+\node[b, fill=macblue!60] (div) at (-2.4,-2.2) {\texttt{divider.v}（迭代）};
+
+% 下：ISE 私有状态（单独一行，避免被输出走线穿过）
+\node[b, minimum width=3.9cm, minimum height=0.85cm, fill=macamber] (ise) at (-0.5,-3.9)
+  {\texttt{ascon\_ise}：320-bit 私有状态};
+
+% 右：写回与握手
+\node[w, minimum width=2.1cm, minimum height=0.95cm] (out) at (6.5,0.6) {EX/MEM};
+\node[w, minimum width=2.2cm, minimum height=0.9cm, fill=macrose!60] (hold) at (6.5,-3.9) {hold / ack\\（stall\_ctrl）};
+
+% 入口扇出
+\foreach \n in {alu,br,csr,mul,div} {\draw[ar] (in.east) -- (\n.west);}
+\draw[ar] (in.south) -- (-6.6,-3.9) -- (ise.west);
+
+% 结果汇聚竖线（唯一一条，不穿任何框）
+\draw[thick] (4.2,-3.9) -- (4.2,2.75);
+\foreach \y in {2.2,1.1,0.0,-1.1,-2.2} {\draw[ar] (-0.55,\y) -- (4.2,\y);}
+\draw[ar] (ise.east) -- (4.2,-3.9);
+\draw[ar] (4.2,0.6) -- (out.west);
+
+% ISE → 握手：走最下方，绕开汇聚线
+\draw[ar, dashed] (ise.south) -- (-0.5,-4.6) -- (6.5,-4.6) -- (hold.south);
+\draw[ar, dashed] (hold.north) -- (6.5,0.15);
+
+% 状态机（与上方五列居中）
+\node[draw, circle, inner sep=1.6pt, font=\scriptsize] (s1) at (-3.6,-6.4) {Idle};
+\node[draw, circle, inner sep=1.6pt, font=\scriptsize] (s2) at (0,-6.4) {Busy};
+\node[draw, circle, inner sep=1.6pt, font=\scriptsize] (s3) at (3.6,-6.4) {Done};
+\draw[ar] (s1) -- node[above, font=\scriptsize] {接受置换请求} (s2);
+\draw[ar] (s2) -- node[above, font=\scriptsize] {置换完成} (s3);
+\draw[ar] (s2.south) to[bend left=26] (s1.south);
+\node[font=\scriptsize, fill=white, inner sep=1.5pt] at (-1.8,-7.06) {trap / 中断取消};
+\draw[ar] (s3.south) -- (3.6,-7.62) -- (-3.6,-7.62) -- (s1.south);
+\node[font=\scriptsize, anchor=north] at (0,-7.68) {ack：指令推进、释放 stall};
+\end{tikzpicture}

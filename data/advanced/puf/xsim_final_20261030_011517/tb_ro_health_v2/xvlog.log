@@ -1,0 +1,6 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys_v2/ro_counter_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ro_counter_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys_v2/ro_puf_core_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ro_puf_core_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/keys_v2/tb_ro_health_v2.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_ro_health_v2

@@ -1,0 +1,110 @@
+[
+  {
+    "command": [
+      "C:/wenjian/.vscode/iverilog/bin/iverilog.exe",
+      "-g2012",
+      "-s",
+      "tb_dma_endpoint",
+      "-o",
+      "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_cpu\\unit_20261030_002131_789567\\endpoint.vvp",
+      "src/rtl/pynq_dma_cpu/dma_cpu_endpoint.v",
+      "sim/pynq_dma_cpu/tb_dma_endpoint.v"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "C:/wenjian/.vscode/iverilog/bin/vvp.exe",
+      "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_cpu\\unit_20261030_002131_789567\\endpoint.vvp"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "C:/wenjian/.vscode/iverilog/bin/iverilog.exe",
+      "-g2012",
+      "-s",
+      "tb_dma_control",
+      "-o",
+      "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_cpu\\unit_20261030_002131_789567\\control.vvp",
+      "src/rtl/pynq_dma_cpu/dma_control.v",
+      "sim/pynq_dma_cpu/tb_dma_control.v"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "C:/wenjian/.vscode/iverilog/bin/vvp.exe",
+      "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_cpu\\unit_20261030_002131_789567\\control.vvp"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "C:\\Users\\HXZ\\anaconda3\\python.exe",
+      "src/pynq/test_dma_transport.py"
+    ],
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "command": [
+      "C:/wenjian/.vscode/iverilog/bin/iverilog.exe",
+      "-g2012",
+      "-I",
+      "src/rtl",
+      "-I",
+      "src/rtl/ascon",
+      "-s",
+      "pynq_dma_cpu",
+      "-t",
+      "null",
+      "src/rtl/axi_full_master.v",
+      "src/rtl/branch_predictor.v",
+      "src/rtl/bypass.v",
+      "src/rtl/clint.v",
+      "src/rtl/cpi_cnt.v",
+      "src/rtl/cpu_axi_bridge.v",
+      "src/rtl/cpu_core.v",
+      "src/rtl/csr_file.v",
+      "src/rtl/ctrl.v",
+      "src/rtl/dcache.v",
+      "src/rtl/defines.v",
+      "src/rtl/divider.v",
+      "src/rtl/ex_mem.v",
+      "src/rtl/ex_stage.v",
+      "src/rtl/gpio.v",
+      "src/rtl/icache.v",
+      "src/rtl/id_ex.v",
+      "src/rtl/id_stage.v",
+      "src/rtl/if_id.v",
+      "src/rtl/if_stage.v",
+      "src/rtl/mem_stage.v",
+      "src/rtl/mem_wb.v",
+      "src/rtl/mult.v",
+      "src/rtl/regfile.v",
+      "src/rtl/uart_ctrl.v",
+      "src/rtl/uart_rx.v",
+      "src/rtl/uart_tx.v",
+      "src/rtl/ascon/ascon_aead_2.v",
+      "src/rtl/ascon/ascon_aead_core.v",
+      "src/rtl/ascon/ascon_ise.v",
+      "src/rtl/ascon/ascon_permutation.v",
+      "src/rtl/ascon/ascon_round.v",
+      "src/rtl/ascon/ascon_word.v",
+      "src/rtl/ascon/crypto_aead.v",
+      "board/vivado_zynq7000_xc7z020_pynq/rtl_p0/ascon_mmio.v",
+      "src/rtl/pynq_dma_cpu/bus_interconnect_dma.v",
+      "src/rtl/pynq_dma_cpu/soc_top_dma.v",
+      "src/rtl/pynq_dma_cpu/dma_cpu_endpoint.v",
+      "src/rtl/pynq_dma_cpu/dma_control.v",
+      "board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq_dma_cpu.v"
+    ],
+    "exit_code": 0,
+    "passed": true
+  }
+]

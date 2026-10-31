@@ -1,0 +1,10 @@
+task=A0
+date=2026-10-30
+invalidated_bit_sha256=05c955cdc8ca5d7c019eed1194e4f2403ef1d415e582750fa04c7a1b5cf3dc62
+impl_1_29_160=301
+synth_1_29_160=0
+impl_log=data/advanced/puf_soc/vivado_logs/impl_1.log
+python_test=sim/puf_soc_v2/test_capture.py
+capture_cli_tests_exit=0
+capture_cli_tests_count=7
+note=host-only mock; not board evidence

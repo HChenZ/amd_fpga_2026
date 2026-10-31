@@ -1,0 +1,67 @@
+compiler_version 0 riscv-none-elf-gcc (xPack GNU RISC-V Embedded GCC x86_64) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+binutils_version 0 GNU objdump (xPack GNU RISC-V Embedded GCC x86_64) 2.45
+Copyright (C) 2025 Free Software Foundation, Inc.
+This program is free software; you may redistribute it under the terms of
+the GNU General Public License version 3 or (at your option) any later version.
+This program has absolutely no warranty.
+
+compile 0 C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/../../../../riscv-none-elf/bin/ld.exe: warning: C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\puf\cpu_v2_20261030_003054_911062\firmware\puf_v2.elf has a LOAD segment with RWX permissions
+
+objcopy 0 
+disassembly 0 
+C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\puf\cpu_v2_20261030_003054_911062\firmware\puf_v2.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+10000000 <_start>:
+10000000:	00020117          	auipc	sp,0x20
+10000004:	ff010113          	addi	sp,sp,-16 # 1001fff0 <_stack_top>
+10000008:	00001197          	auipc	gp,0x1
+1000000c:	50818193          	addi	gp,gp,1288 # 10001510 <__global_pointer$>
+10000010:	00001297          	auipc	t0,0x1
+10000014:	d0028293          	addi	t0,t0,-768 # 10000d10 <puf_v2_selftest_result>
+10000018:	00001317          	auipc	t1,0x1
+1000001c:	cfc30313          	addi	t1,t1,-772 # 10000d14 <_ebss>
+10000020:	0062f863          	bgeu	t0,t1,10000030 <_start+0x30>
+10000024:	0002a023          	sw	zero,0(t0)
+10000028:	00428293          	addi	t0,t0,4
+1000002c:	ff5ff06f          	j	10000020 <_start+0x20>
+10000030:	604000ef          	jal	10000634 <main>
+10000034:	0000006f          	j	10000034 <_start+0x34>
+
+10000038 <uart
+headers 0 ELF Header:
+  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF32
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           RISC-V
+  Version:                           0x1
+  Entry point address:               0x10000000
+  Start of program headers:          52 (bytes into file)
+  Start of section headers:          8584 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               52 (bytes)
+  Size of program headers:           32 (bytes)
+  Number of program headers:         3
+  Size of section headers:           40 (bytes)
+  Number of section headers:         10
+  Section header string table index: 9
+Attribute Section: riscv
+File Attributes
+
+size 0    text	   data	    bss	    dec	    hex	filename
+   3338	      6	      4	   3348	    d14	C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\puf\cpu_v2_20261030_003054_911062\firmware\puf_v2.elf
+
+hex 0 Done! 836 words -> C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\puf\cpu_v2_20261030_003054_911062\firmware\puf_v2.hex (padded to 32768)
+
+EVIDENCE C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\puf\cpu_v2_20261030_003054_911062\firmware

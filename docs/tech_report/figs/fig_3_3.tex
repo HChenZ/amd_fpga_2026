@@ -1,0 +1,48 @@
+% 图 4-3 板级 IO 约束四种写法的实测 slack
+\begin{tikzpicture}
+\begin{axis}[
+  width=150mm, height=52mm,
+  xbar, bar width=2.6mm,
+  xmin=-30, xmax=3,
+  ymin=0.4, ymax=5.6,
+  ytick={1,2,3,4,5},
+  yticklabels={F 交付版,E LED 10 $\mu$s,D 取整 8680 ns,B 虚拟位时钟,A 端口时钟 20 ns},
+  yticklabel style={font=\footnotesize},
+  xticklabel style={font=\scriptsize},
+  xlabel={最差 slack / ns（负值为违反）}, xlabel style={font=\footnotesize},
+  xmajorgrids, grid style={macline!25},
+  axis lines*=left,
+  enlarge y limits=0.15,
+  nodes near coords, every node near coord/.append style={font=\scriptsize},
+  point meta=explicit symbolic,
+]
+\addplot[fill=baryellow, draw=baryedge] coordinates {
+  (-18.481,1) [$-18.481$]
+  (-27.105,2) [$-27.105$]
+  (-17.661,3) [$-17.661$]
+  (-18.452,4) [$-18.452$]
+  (0,5)       [PASS]
+};
+\draw[thick] (axis cs:0,0.4) -- (axis cs:0,5.6);
+\end{axis}
+\end{tikzpicture}
+
+\vspace{1mm}
+{\scriptsize
+\begin{tabular}{@{}p{0.32\textwidth}p{0.20\textwidth}p{0.42\textwidth}@{}}
+\toprule
+写法 & 覆盖计数（in/out） & 结果 \\
+\midrule
+A：端口时钟 + 20 ns delay & 3 / 0（未归零） & WNS $-18.481$ ns，失败端点 7\,972 \\
+B：虚拟位时钟 8680.556 ns & 0 / 0 & \texttt{uart\_rxd} $-17.623$、\texttt{uart\_txd} $-27.105$ \\
+D：虚拟时钟取整 8680 ns & 0 / 0 & $-17.067$ / $-17.661$，仍违反 \\
+E：LED 用 10 $\mu$s 虚拟时钟 & 0 / 0 & \texttt{led} setup $-13.888$、hold $-18.452$ \\
+F：全部 \texttt{false\_path} + 形式 delay & \textbf{0 / 0} & 7 端口 untimed，最差路径回到内部 CPU 路径 \\
+\bottomrule
+\end{tabular}}
+
+\vspace{0.8mm}
+{\scriptsize 机理：input/output delay 大于捕获时钟周期（10 ns）时，requirement 塌缩为一个 \texttt{clk\_100m}
+周期甚至为负——Vivado 判为违反而非恒满足；\texttt{false\_path} 只使路径退出判定，不移除
+\texttt{no\_input\_delay} / \texttt{no\_output\_delay} 计数，故交付版两类约束并用。机检脚本
+\texttt{build/check\_io\_signoff.py} 实测 PASS（7/7）。}

@@ -1,0 +1,5 @@
+[BRAM] loaded C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\puf_soc\firmware\puf_v2.hex (32768 words max)
+PUF_V2_OFFLINE_SELFTEST
+PUF_V2_TEST_PASS
+TEST_PASS tb_puf_soc_v2 diagnostic=0 commands=11 reads=4321 cycles=34646 core=100MHz management=25MHz
+sim/puf_soc_v2/tb_puf_soc_v2.sv:62: $finish called at 346655000 (1ps)

@@ -1,0 +1,2 @@
+ro_luts=1280 feedback_acks=256 ro_luts_in_pblock=1280
+RO_TIMING=NOT_MEASURED; no oscillator clock defined; NOT a timing signoff

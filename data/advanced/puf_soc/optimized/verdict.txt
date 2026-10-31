@@ -1,0 +1,4 @@
+STRUCTURAL_DIAGNOSTIC_ONLY; NOT TIMING SIGNOFF; RO minimum period NOT_MEASURED; no RO clocks invented.
+setup_slack=0.009
+hold_slack=0.019
+part=xc7z020clg400-1 top=puf_wrapper version=2025.2

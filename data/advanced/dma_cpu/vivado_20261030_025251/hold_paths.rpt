@@ -1,0 +1,940 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct 30 02:53:08 2026
+| Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type min -max_paths 20 -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/advanced/dma_cpu/vivado_20261030_025251/hold_paths.rpt
+| Design       : cpu_dma_wrapper
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Physopt postRoute
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.020ns  (arrival time - required time)
+  Source:                 cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[245]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s3_reg[53]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.387ns  (logic 0.186ns (48.012%)  route 0.201ns (51.988%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.275ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.225ns
+    Source Clock Delay      (SCD):    0.920ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.584     0.920    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/clk
+    SLICE_X83Y50         FDRE                                         r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[245]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X83Y50         FDRE (Prop_fdre_C_Q)         0.141     1.061 r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[245]/Q
+                         net (fo=1, routed)           0.201     1.262    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/p12_out[245]
+    SLICE_X88Y49         LUT6 (Prop_lut6_I3_O)        0.045     1.307 r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s3[53]_i_1/O
+                         net (fo=1, routed)           0.000     1.307    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s3[53]
+    SLICE_X88Y49         FDRE                                         r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s3_reg[53]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.859     1.225    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk
+    SLICE_X88Y49         FDRE                                         r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s3_reg[53]/C
+                         clock pessimism             -0.030     1.195    
+    SLICE_X88Y49         FDRE (Hold_fdre_C_D)         0.092     1.287    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s3_reg[53]
+  -------------------------------------------------------------------
+                         required time                         -1.287    
+                         arrival time                           1.307    
+  -------------------------------------------------------------------
+                         slack                                  0.020    
+
+Slack (MET) :             0.024ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.347ns  (logic 0.141ns (40.606%)  route 0.206ns (59.394%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.185ns
+    Source Clock Delay      (SCD):    0.890ns
+    Clock Pessimism Removal (CPR):    0.282ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.554     0.890    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X35Y65         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y65         FDCE (Prop_fdce_C_Q)         0.141     1.031 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.206     1.237    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.819     1.185    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.282     0.903    
+    SLICE_X34Y65         RAMD32 (Hold_ramd32_CLK_WADR0)
+                                                      0.310     1.213    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.213    
+                         arrival time                           1.237    
+  -------------------------------------------------------------------
+                         slack                                  0.024    
+
+Slack (MET) :             0.024ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.347ns  (logic 0.141ns (40.606%)  route 0.206ns (59.394%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.185ns
+    Source Clock Delay      (SCD):    0.890ns
+    Clock Pessimism Removal (CPR):    0.282ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.554     0.890    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X35Y65         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y65         FDCE (Prop_fdce_C_Q)         0.141     1.031 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.206     1.237    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.819     1.185    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.282     0.903    
+    SLICE_X34Y65         RAMD32 (Hold_ramd32_CLK_WADR0)
+                                                      0.310     1.213    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.213    
+                         arrival time                           1.237    
+  -------------------------------------------------------------------
+                         slack                                  0.024    
+
+Slack (MET) :             0.024ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.347ns  (logic 0.141ns (40.606%)  route 0.206ns (59.394%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.185ns
+    Source Clock Delay      (SCD):    0.890ns
+    Clock Pessimism Removal (CPR):    0.282ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.554     0.890    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X35Y65         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y65         FDCE (Prop_fdce_C_Q)         0.141     1.031 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.206     1.237    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.819     1.185    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.282     0.903    
+    SLICE_X34Y65         RAMD32 (Hold_ramd32_CLK_WADR0)
+                                                      0.310     1.213    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.213    
+                         arrival time                           1.237    
+  -------------------------------------------------------------------
+                         slack                                  0.024    
+
+Slack (MET) :             0.024ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.347ns  (logic 0.141ns (40.606%)  route 0.206ns (59.394%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.185ns
+    Source Clock Delay      (SCD):    0.890ns
+    Clock Pessimism Removal (CPR):    0.282ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.554     0.890    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X35Y65         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y65         FDCE (Prop_fdce_C_Q)         0.141     1.031 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.206     1.237    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.819     1.185    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.282     0.903    
+    SLICE_X34Y65         RAMD32 (Hold_ramd32_CLK_WADR0)
+                                                      0.310     1.213    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.213    
+                         arrival time                           1.237    
+  -------------------------------------------------------------------
+                         slack                                  0.024    
+
+Slack (MET) :             0.024ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.347ns  (logic 0.141ns (40.606%)  route 0.206ns (59.394%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.185ns
+    Source Clock Delay      (SCD):    0.890ns
+    Clock Pessimism Removal (CPR):    0.282ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.554     0.890    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X35Y65         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y65         FDCE (Prop_fdce_C_Q)         0.141     1.031 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.206     1.237    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.819     1.185    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.282     0.903    
+    SLICE_X34Y65         RAMD32 (Hold_ramd32_CLK_WADR0)
+                                                      0.310     1.213    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.213    
+                         arrival time                           1.237    
+  -------------------------------------------------------------------
+                         slack                                  0.024    
+
+Slack (MET) :             0.024ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.347ns  (logic 0.141ns (40.606%)  route 0.206ns (59.394%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.185ns
+    Source Clock Delay      (SCD):    0.890ns
+    Clock Pessimism Removal (CPR):    0.282ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.554     0.890    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X35Y65         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y65         FDCE (Prop_fdce_C_Q)         0.141     1.031 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.206     1.237    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.819     1.185    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.282     0.903    
+    SLICE_X34Y65         RAMD32 (Hold_ramd32_CLK_WADR0)
+                                                      0.310     1.213    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.213    
+                         arrival time                           1.237    
+  -------------------------------------------------------------------
+                         slack                                  0.024    
+
+Slack (MET) :             0.024ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMS32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.347ns  (logic 0.141ns (40.606%)  route 0.206ns (59.394%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.185ns
+    Source Clock Delay      (SCD):    0.890ns
+    Clock Pessimism Removal (CPR):    0.282ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.554     0.890    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X35Y65         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y65         FDCE (Prop_fdce_C_Q)         0.141     1.031 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.206     1.237    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMS32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.819     1.185    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMS32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.282     0.903    
+    SLICE_X34Y65         RAMS32 (Hold_rams32_CLK_ADR0)
+                                                      0.310     1.213    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.213    
+                         arrival time                           1.237    
+  -------------------------------------------------------------------
+                         slack                                  0.024    
+
+Slack (MET) :             0.024ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMS32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.347ns  (logic 0.141ns (40.606%)  route 0.206ns (59.394%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.185ns
+    Source Clock Delay      (SCD):    0.890ns
+    Clock Pessimism Removal (CPR):    0.282ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.554     0.890    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X35Y65         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y65         FDCE (Prop_fdce_C_Q)         0.141     1.031 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.206     1.237    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMS32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.819     1.185    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X34Y65         RAMS32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.282     0.903    
+    SLICE_X34Y65         RAMS32 (Hold_rams32_CLK_ADR0)
+                                                      0.310     1.213    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen_1/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.213    
+                         arrival time                           1.237    
+  -------------------------------------------------------------------
+                         slack                                  0.024    
+
+Slack (MET) :             0.032ns  (arrival time - required time)
+  Source:                 cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[157]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s2_reg[29]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.387ns  (logic 0.186ns (48.104%)  route 0.201ns (51.896%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.263ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.220ns
+    Source Clock Delay      (SCD):    0.927ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.591     0.927    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/clk
+    SLICE_X87Y49         FDRE                                         r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[157]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X87Y49         FDRE (Prop_fdre_C_Q)         0.141     1.068 r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s_out_reg[157]/Q
+                         net (fo=1, routed)           0.201     1.268    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/p12_out[157]
+    SLICE_X87Y50         LUT5 (Prop_lut5_I2_O)        0.045     1.313 r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_inst/s2[29]_i_1/O
+                         net (fo=1, routed)           0.000     1.313    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s2[29]
+    SLICE_X87Y50         FDRE                                         r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s2_reg[29]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.854     1.220    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk
+    SLICE_X87Y50         FDRE                                         r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s2_reg[29]/C
+                         clock pessimism             -0.030     1.190    
+    SLICE_X87Y50         FDRE (Hold_fdre_C_D)         0.091     1.281    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/s2_reg[29]
+  -------------------------------------------------------------------
+                         required time                         -1.281    
+                         arrival time                           1.313    
+  -------------------------------------------------------------------
+                         slack                                  0.032    
+
+Slack (MET) :             0.032ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.245ns  (logic 0.141ns (57.463%)  route 0.104ns (42.537%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.186ns
+    Source Clock Delay      (SCD):    0.889ns
+    Clock Pessimism Removal (CPR):    0.284ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.553     0.889    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X47Y62         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y62         FDCE (Prop_fdce_C_Q)         0.141     1.030 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.104     1.134    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.820     1.186    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.284     0.902    
+    SLICE_X46Y62         RAMD32 (Hold_ramd32_CLK_WADR4)
+                                                      0.200     1.102    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.102    
+                         arrival time                           1.134    
+  -------------------------------------------------------------------
+                         slack                                  0.032    
+
+Slack (MET) :             0.032ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.245ns  (logic 0.141ns (57.463%)  route 0.104ns (42.537%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.186ns
+    Source Clock Delay      (SCD):    0.889ns
+    Clock Pessimism Removal (CPR):    0.284ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.553     0.889    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X47Y62         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y62         FDCE (Prop_fdce_C_Q)         0.141     1.030 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.104     1.134    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.820     1.186    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.284     0.902    
+    SLICE_X46Y62         RAMD32 (Hold_ramd32_CLK_WADR4)
+                                                      0.200     1.102    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.102    
+                         arrival time                           1.134    
+  -------------------------------------------------------------------
+                         slack                                  0.032    
+
+Slack (MET) :             0.032ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.245ns  (logic 0.141ns (57.463%)  route 0.104ns (42.537%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.186ns
+    Source Clock Delay      (SCD):    0.889ns
+    Clock Pessimism Removal (CPR):    0.284ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.553     0.889    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X47Y62         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y62         FDCE (Prop_fdce_C_Q)         0.141     1.030 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.104     1.134    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.820     1.186    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.284     0.902    
+    SLICE_X46Y62         RAMD32 (Hold_ramd32_CLK_WADR4)
+                                                      0.200     1.102    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.102    
+                         arrival time                           1.134    
+  -------------------------------------------------------------------
+                         slack                                  0.032    
+
+Slack (MET) :             0.032ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.245ns  (logic 0.141ns (57.463%)  route 0.104ns (42.537%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.186ns
+    Source Clock Delay      (SCD):    0.889ns
+    Clock Pessimism Removal (CPR):    0.284ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.553     0.889    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X47Y62         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y62         FDCE (Prop_fdce_C_Q)         0.141     1.030 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.104     1.134    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.820     1.186    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.284     0.902    
+    SLICE_X46Y62         RAMD32 (Hold_ramd32_CLK_WADR4)
+                                                      0.200     1.102    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.102    
+                         arrival time                           1.134    
+  -------------------------------------------------------------------
+                         slack                                  0.032    
+
+Slack (MET) :             0.032ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.245ns  (logic 0.141ns (57.463%)  route 0.104ns (42.537%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.186ns
+    Source Clock Delay      (SCD):    0.889ns
+    Clock Pessimism Removal (CPR):    0.284ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.553     0.889    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X47Y62         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y62         FDCE (Prop_fdce_C_Q)         0.141     1.030 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.104     1.134    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.820     1.186    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.284     0.902    
+    SLICE_X46Y62         RAMD32 (Hold_ramd32_CLK_WADR4)
+                                                      0.200     1.102    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.102    
+                         arrival time                           1.134    
+  -------------------------------------------------------------------
+                         slack                                  0.032    
+
+Slack (MET) :             0.032ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.245ns  (logic 0.141ns (57.463%)  route 0.104ns (42.537%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.186ns
+    Source Clock Delay      (SCD):    0.889ns
+    Clock Pessimism Removal (CPR):    0.284ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.553     0.889    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X47Y62         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y62         FDCE (Prop_fdce_C_Q)         0.141     1.030 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.104     1.134    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.820     1.186    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.284     0.902    
+    SLICE_X46Y62         RAMD32 (Hold_ramd32_CLK_WADR4)
+                                                      0.200     1.102    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.102    
+                         arrival time                           1.134    
+  -------------------------------------------------------------------
+                         slack                                  0.032    
+
+Slack (MET) :             0.032ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMS32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.245ns  (logic 0.141ns (57.463%)  route 0.104ns (42.537%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.186ns
+    Source Clock Delay      (SCD):    0.889ns
+    Clock Pessimism Removal (CPR):    0.284ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.553     0.889    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X47Y62         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y62         FDCE (Prop_fdce_C_Q)         0.141     1.030 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.104     1.134    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMS32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.820     1.186    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMS32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.284     0.902    
+    SLICE_X46Y62         RAMS32 (Hold_rams32_CLK_ADR4)
+                                                      0.200     1.102    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.102    
+                         arrival time                           1.134    
+  -------------------------------------------------------------------
+                         slack                                  0.032    
+
+Slack (MET) :             0.032ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMS32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.245ns  (logic 0.141ns (57.463%)  route 0.104ns (42.537%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.186ns
+    Source Clock Delay      (SCD):    0.889ns
+    Clock Pessimism Removal (CPR):    0.284ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.553     0.889    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X47Y62         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y62         FDCE (Prop_fdce_C_Q)         0.141     1.030 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.104     1.134    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMS32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.820     1.186    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMS32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.284     0.902    
+    SLICE_X46Y62         RAMS32 (Hold_rams32_CLK_ADR4)
+                                                      0.200     1.102    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.102    
+                         arrival time                           1.134    
+  -------------------------------------------------------------------
+                         slack                                  0.032    
+
+Slack (MET) :             0.033ns  (arrival time - required time)
+  Source:                 cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/data_reg_reg[74]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in_reg[74]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.402ns  (logic 0.227ns (56.490%)  route 0.175ns (43.510%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.277ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.280ns
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.637     0.973    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk
+    SLICE_X110Y50        FDRE                                         r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/data_reg_reg[74]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X110Y50        FDRE (Prop_fdre_C_Q)         0.128     1.101 r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/data_reg_reg[74]/Q
+                         net (fo=3, routed)           0.175     1.275    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p_0_in3_in[10]
+    SLICE_X110Y49        LUT6 (Prop_lut6_I4_O)        0.099     1.374 r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in[74]_i_1/O
+                         net (fo=1, routed)           0.000     1.374    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in1_in[74]
+    SLICE_X110Y49        FDRE                                         r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in_reg[74]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.914     1.280    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/clk
+    SLICE_X110Y49        FDRE                                         r  cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in_reg[74]/C
+                         clock pessimism             -0.030     1.250    
+    SLICE_X110Y49        FDRE (Hold_fdre_C_D)         0.092     1.342    cpu_dma_i/engine/inst/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p8_in_reg[74]
+  -------------------------------------------------------------------
+                         required time                         -1.342    
+                         arrival time                           1.374    
+  -------------------------------------------------------------------
+                         slack                                  0.033    
+
+Slack (MET) :             0.034ns  (arrival time - required time)
+  Source:                 cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                            (rising edge-triggered cell RAMD32 clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.287ns  (logic 0.141ns (49.065%)  route 0.146ns (50.935%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.186ns
+    Source Clock Delay      (SCD):    0.889ns
+    Clock Pessimism Removal (CPR):    0.284ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.553     0.889    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X47Y62         FDCE                                         r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y62         FDCE (Prop_fdce_C_Q)         0.141     1.030 r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         net (fo=10, routed)          0.146     1.176    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  cpu_dma_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    cpu_dma_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  cpu_dma_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=23302, routed)       0.820     1.186    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+    SLICE_X46Y62         RAMD32                                       r  cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+                         clock pessimism             -0.284     0.902    
+    SLICE_X46Y62         RAMD32 (Hold_ramd32_CLK_WADR3)
+                                                      0.240     1.142    cpu_dma_wrapper/cpu_dma/cpu_dma_mem_0/s01_couplers_imp_1XWCLXG/cpu_dma_mem_imp_auto_pc_1/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi_protocol_converter/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_protocol_converter_v2_1_37_a_axi3_conv/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_axic_fifo_0/cpu_dma_mem_imp_auto_pc_1_axi_data_fifo_v2_1_36_fifo_gen/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>/<hidden>
+  -------------------------------------------------------------------
+                         required time                         -1.142    
+                         arrival time                           1.176    
+  -------------------------------------------------------------------
+                         slack                                  0.034    
+
+
+
+

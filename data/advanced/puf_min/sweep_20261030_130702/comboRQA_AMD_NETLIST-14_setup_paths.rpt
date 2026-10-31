@@ -1,0 +1,1497 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct 30 13:12:08 2026
+| Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
+| Command      : report_timing -max_paths 20 -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/advanced/puf_min/sweep_20261030_130702/comboRQA_AMD_NETLIST-14_setup_paths.rpt
+| Design       : puf_wrapper
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.078ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[33]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.374ns  (logic 2.777ns (29.625%)  route 6.597ns (70.375%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.425ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.718ns = ( 12.718 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.889    12.522    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X61Y91         LUT5 (Prop_lut5_I2_O)        0.124    12.646 r  puf_i/puf_core/inst/u_regs/sampler/result[33]_i_1/O
+                         net (fo=1, routed)           0.000    12.646    puf_i/puf_core/inst/u_regs/sampler/result[33]_i_1_n_0
+    SLICE_X61Y91         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[33]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.539    12.718    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X61Y91         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[33]/C
+                         clock pessimism              0.129    12.847    
+                         clock uncertainty           -0.154    12.693    
+    SLICE_X61Y91         FDCE (Setup_fdce_C_D)        0.031    12.724    puf_i/puf_core/inst/u_regs/sampler/result_reg[33]
+  -------------------------------------------------------------------
+                         required time                         12.724    
+                         arrival time                         -12.646    
+  -------------------------------------------------------------------
+                         slack                                  0.078    
+
+Slack (MET) :             0.081ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[111]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.363ns  (logic 2.777ns (29.660%)  route 6.586ns (70.340%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.431ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.712ns = ( 12.712 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.877    12.511    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X59Y87         LUT5 (Prop_lut5_I2_O)        0.124    12.635 r  puf_i/puf_core/inst/u_regs/sampler/result[111]_i_1/O
+                         net (fo=1, routed)           0.000    12.635    puf_i/puf_core/inst/u_regs/sampler/result[111]_i_1_n_0
+    SLICE_X59Y87         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[111]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.533    12.712    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X59Y87         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[111]/C
+                         clock pessimism              0.129    12.841    
+                         clock uncertainty           -0.154    12.687    
+    SLICE_X59Y87         FDCE (Setup_fdce_C_D)        0.029    12.716    puf_i/puf_core/inst/u_regs/sampler/result_reg[111]
+  -------------------------------------------------------------------
+                         required time                         12.716    
+                         arrival time                         -12.635    
+  -------------------------------------------------------------------
+                         slack                                  0.081    
+
+Slack (MET) :             0.084ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[77]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.364ns  (logic 2.777ns (29.656%)  route 6.587ns (70.344%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.428ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.715ns = ( 12.715 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.879    12.512    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X65Y86         LUT5 (Prop_lut5_I2_O)        0.124    12.636 r  puf_i/puf_core/inst/u_regs/sampler/result[77]_i_1/O
+                         net (fo=1, routed)           0.000    12.636    puf_i/puf_core/inst/u_regs/sampler/result[77]_i_1_n_0
+    SLICE_X65Y86         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[77]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.536    12.715    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X65Y86         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[77]/C
+                         clock pessimism              0.129    12.844    
+                         clock uncertainty           -0.154    12.690    
+    SLICE_X65Y86         FDCE (Setup_fdce_C_D)        0.031    12.721    puf_i/puf_core/inst/u_regs/sampler/result_reg[77]
+  -------------------------------------------------------------------
+                         required time                         12.721    
+                         arrival time                         -12.636    
+  -------------------------------------------------------------------
+                         slack                                  0.084    
+
+Slack (MET) :             0.091ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[114]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.360ns  (logic 2.777ns (29.668%)  route 6.583ns (70.332%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.425ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.718ns = ( 12.718 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.875    12.508    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X61Y91         LUT5 (Prop_lut5_I2_O)        0.124    12.632 r  puf_i/puf_core/inst/u_regs/sampler/result[114]_i_1/O
+                         net (fo=1, routed)           0.000    12.632    puf_i/puf_core/inst/u_regs/sampler/result[114]_i_1_n_0
+    SLICE_X61Y91         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[114]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.539    12.718    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X61Y91         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[114]/C
+                         clock pessimism              0.129    12.847    
+                         clock uncertainty           -0.154    12.693    
+    SLICE_X61Y91         FDCE (Setup_fdce_C_D)        0.031    12.724    puf_i/puf_core/inst/u_regs/sampler/result_reg[114]
+  -------------------------------------------------------------------
+                         required time                         12.724    
+                         arrival time                         -12.632    
+  -------------------------------------------------------------------
+                         slack                                  0.091    
+
+Slack (MET) :             0.115ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[92]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.333ns  (logic 2.777ns (29.756%)  route 6.556ns (70.244%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.430ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.713ns = ( 12.713 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.847    12.481    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X61Y84         LUT5 (Prop_lut5_I2_O)        0.124    12.605 r  puf_i/puf_core/inst/u_regs/sampler/result[92]_i_1/O
+                         net (fo=1, routed)           0.000    12.605    puf_i/puf_core/inst/u_regs/sampler/result[92]_i_1_n_0
+    SLICE_X61Y84         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[92]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.534    12.713    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X61Y84         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[92]/C
+                         clock pessimism              0.129    12.842    
+                         clock uncertainty           -0.154    12.688    
+    SLICE_X61Y84         FDCE (Setup_fdce_C_D)        0.032    12.720    puf_i/puf_core/inst/u_regs/sampler/result_reg[92]
+  -------------------------------------------------------------------
+                         required time                         12.720    
+                         arrival time                         -12.605    
+  -------------------------------------------------------------------
+                         slack                                  0.115    
+
+Slack (MET) :             0.119ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[41]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.328ns  (logic 2.777ns (29.772%)  route 6.551ns (70.228%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.430ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.713ns = ( 12.713 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.842    12.476    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X61Y84         LUT5 (Prop_lut5_I2_O)        0.124    12.600 r  puf_i/puf_core/inst/u_regs/sampler/result[41]_i_1/O
+                         net (fo=1, routed)           0.000    12.600    puf_i/puf_core/inst/u_regs/sampler/result[41]_i_1_n_0
+    SLICE_X61Y84         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[41]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.534    12.713    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X61Y84         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[41]/C
+                         clock pessimism              0.129    12.842    
+                         clock uncertainty           -0.154    12.688    
+    SLICE_X61Y84         FDCE (Setup_fdce_C_D)        0.031    12.719    puf_i/puf_core/inst/u_regs/sampler/result_reg[41]
+  -------------------------------------------------------------------
+                         required time                         12.719    
+                         arrival time                         -12.600    
+  -------------------------------------------------------------------
+                         slack                                  0.119    
+
+Slack (MET) :             0.124ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[27]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.324ns  (logic 2.777ns (29.783%)  route 6.547ns (70.217%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.428ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.715ns = ( 12.715 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.839    12.472    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X64Y85         LUT5 (Prop_lut5_I2_O)        0.124    12.596 r  puf_i/puf_core/inst/u_regs/sampler/result[27]_i_1/O
+                         net (fo=1, routed)           0.000    12.596    puf_i/puf_core/inst/u_regs/sampler/result[27]_i_1_n_0
+    SLICE_X64Y85         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[27]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.536    12.715    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X64Y85         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[27]/C
+                         clock pessimism              0.129    12.844    
+                         clock uncertainty           -0.154    12.690    
+    SLICE_X64Y85         FDCE (Setup_fdce_C_D)        0.031    12.721    puf_i/puf_core/inst/u_regs/sampler/result_reg[27]
+  -------------------------------------------------------------------
+                         required time                         12.721    
+                         arrival time                         -12.596    
+  -------------------------------------------------------------------
+                         slack                                  0.124    
+
+Slack (MET) :             0.154ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[43]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.292ns  (logic 2.777ns (29.887%)  route 6.515ns (70.113%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.431ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.712ns = ( 12.712 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.807    12.440    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X61Y83         LUT5 (Prop_lut5_I2_O)        0.124    12.564 r  puf_i/puf_core/inst/u_regs/sampler/result[43]_i_1/O
+                         net (fo=1, routed)           0.000    12.564    puf_i/puf_core/inst/u_regs/sampler/result[43]_i_1_n_0
+    SLICE_X61Y83         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[43]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.533    12.712    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X61Y83         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[43]/C
+                         clock pessimism              0.129    12.841    
+                         clock uncertainty           -0.154    12.687    
+    SLICE_X61Y83         FDCE (Setup_fdce_C_D)        0.031    12.718    puf_i/puf_core/inst/u_regs/sampler/result_reg[43]
+  -------------------------------------------------------------------
+                         required time                         12.718    
+                         arrival time                         -12.564    
+  -------------------------------------------------------------------
+                         slack                                  0.154    
+
+Slack (MET) :             0.179ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[7]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.267ns  (logic 2.777ns (29.966%)  route 6.490ns (70.034%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.431ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.712ns = ( 12.712 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.782    12.415    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X59Y87         LUT5 (Prop_lut5_I2_O)        0.124    12.539 r  puf_i/puf_core/inst/u_regs/sampler/result[7]_i_1/O
+                         net (fo=1, routed)           0.000    12.539    puf_i/puf_core/inst/u_regs/sampler/result[7]_i_1_n_0
+    SLICE_X59Y87         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.533    12.712    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X59Y87         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[7]/C
+                         clock pessimism              0.129    12.841    
+                         clock uncertainty           -0.154    12.687    
+    SLICE_X59Y87         FDCE (Setup_fdce_C_D)        0.032    12.719    puf_i/puf_core/inst/u_regs/sampler/result_reg[7]
+  -------------------------------------------------------------------
+                         required time                         12.719    
+                         arrival time                         -12.539    
+  -------------------------------------------------------------------
+                         slack                                  0.179    
+
+Slack (MET) :             0.183ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[31]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.262ns  (logic 2.777ns (29.982%)  route 6.485ns (70.018%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.431ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.712ns = ( 12.712 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.777    12.410    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X59Y87         LUT5 (Prop_lut5_I2_O)        0.124    12.534 r  puf_i/puf_core/inst/u_regs/sampler/result[31]_i_1/O
+                         net (fo=1, routed)           0.000    12.534    puf_i/puf_core/inst/u_regs/sampler/result[31]_i_1_n_0
+    SLICE_X59Y87         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[31]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.533    12.712    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X59Y87         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[31]/C
+                         clock pessimism              0.129    12.841    
+                         clock uncertainty           -0.154    12.687    
+    SLICE_X59Y87         FDCE (Setup_fdce_C_D)        0.031    12.718    puf_i/puf_core/inst/u_regs/sampler/result_reg[31]
+  -------------------------------------------------------------------
+                         required time                         12.718    
+                         arrival time                         -12.534    
+  -------------------------------------------------------------------
+                         slack                                  0.183    
+
+Slack (MET) :             0.184ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[75]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.313ns  (logic 2.777ns (29.818%)  route 6.536ns (70.182%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.427ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.716ns = ( 12.716 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.828    12.461    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X62Y88         LUT5 (Prop_lut5_I2_O)        0.124    12.585 r  puf_i/puf_core/inst/u_regs/sampler/result[75]_i_1/O
+                         net (fo=1, routed)           0.000    12.585    puf_i/puf_core/inst/u_regs/sampler/result[75]_i_1_n_0
+    SLICE_X62Y88         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[75]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.537    12.716    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X62Y88         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[75]/C
+                         clock pessimism              0.129    12.845    
+                         clock uncertainty           -0.154    12.691    
+    SLICE_X62Y88         FDCE (Setup_fdce_C_D)        0.079    12.770    puf_i/puf_core/inst/u_regs/sampler/result_reg[75]
+  -------------------------------------------------------------------
+                         required time                         12.770    
+                         arrival time                         -12.585    
+  -------------------------------------------------------------------
+                         slack                                  0.184    
+
+Slack (MET) :             0.185ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[11]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.261ns  (logic 2.777ns (29.987%)  route 6.484ns (70.013%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.431ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.712ns = ( 12.712 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.775    12.409    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X59Y87         LUT5 (Prop_lut5_I2_O)        0.124    12.533 r  puf_i/puf_core/inst/u_regs/sampler/result[11]_i_1/O
+                         net (fo=1, routed)           0.000    12.533    puf_i/puf_core/inst/u_regs/sampler/result[11]_i_1_n_0
+    SLICE_X59Y87         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[11]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.533    12.712    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X59Y87         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[11]/C
+                         clock pessimism              0.129    12.841    
+                         clock uncertainty           -0.154    12.687    
+    SLICE_X59Y87         FDCE (Setup_fdce_C_D)        0.031    12.718    puf_i/puf_core/inst/u_regs/sampler/result_reg[11]
+  -------------------------------------------------------------------
+                         required time                         12.718    
+                         arrival time                         -12.533    
+  -------------------------------------------------------------------
+                         slack                                  0.185    
+
+Slack (MET) :             0.192ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[110]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.253ns  (logic 2.777ns (30.013%)  route 6.476ns (69.987%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.432ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.711ns = ( 12.711 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.767    12.401    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X59Y86         LUT5 (Prop_lut5_I2_O)        0.124    12.525 r  puf_i/puf_core/inst/u_regs/sampler/result[110]_i_1/O
+                         net (fo=1, routed)           0.000    12.525    puf_i/puf_core/inst/u_regs/sampler/result[110]_i_1_n_0
+    SLICE_X59Y86         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[110]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.532    12.711    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X59Y86         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[110]/C
+                         clock pessimism              0.129    12.840    
+                         clock uncertainty           -0.154    12.686    
+    SLICE_X59Y86         FDCE (Setup_fdce_C_D)        0.031    12.717    puf_i/puf_core/inst/u_regs/sampler/result_reg[110]
+  -------------------------------------------------------------------
+                         required time                         12.717    
+                         arrival time                         -12.525    
+  -------------------------------------------------------------------
+                         slack                                  0.192    
+
+Slack (MET) :             0.194ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[69]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.303ns  (logic 2.777ns (29.850%)  route 6.526ns (70.150%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.427ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.716ns = ( 12.716 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.818    12.451    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X62Y88         LUT5 (Prop_lut5_I2_O)        0.124    12.575 r  puf_i/puf_core/inst/u_regs/sampler/result[69]_i_1/O
+                         net (fo=1, routed)           0.000    12.575    puf_i/puf_core/inst/u_regs/sampler/result[69]_i_1_n_0
+    SLICE_X62Y88         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[69]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.537    12.716    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X62Y88         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[69]/C
+                         clock pessimism              0.129    12.845    
+                         clock uncertainty           -0.154    12.691    
+    SLICE_X62Y88         FDCE (Setup_fdce_C_D)        0.079    12.770    puf_i/puf_core/inst/u_regs/sampler/result_reg[69]
+  -------------------------------------------------------------------
+                         required time                         12.770    
+                         arrival time                         -12.575    
+  -------------------------------------------------------------------
+                         slack                                  0.194    
+
+Slack (MET) :             0.199ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[121]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.250ns  (logic 2.777ns (30.022%)  route 6.473ns (69.978%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.426ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.717ns = ( 12.717 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.765    12.398    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X60Y89         LUT5 (Prop_lut5_I2_O)        0.124    12.522 r  puf_i/puf_core/inst/u_regs/sampler/result[121]_i_1/O
+                         net (fo=1, routed)           0.000    12.522    puf_i/puf_core/inst/u_regs/sampler/result[121]_i_1_n_0
+    SLICE_X60Y89         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[121]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.538    12.717    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X60Y89         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[121]/C
+                         clock pessimism              0.129    12.846    
+                         clock uncertainty           -0.154    12.692    
+    SLICE_X60Y89         FDCE (Setup_fdce_C_D)        0.029    12.721    puf_i/puf_core/inst/u_regs/sampler/result_reg[121]
+  -------------------------------------------------------------------
+                         required time                         12.721    
+                         arrival time                         -12.522    
+  -------------------------------------------------------------------
+                         slack                                  0.199    
+
+Slack (MET) :             0.204ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[78]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.247ns  (logic 2.777ns (30.032%)  route 6.470ns (69.968%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.426ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.717ns = ( 12.717 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.762    12.395    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X60Y89         LUT5 (Prop_lut5_I2_O)        0.124    12.519 r  puf_i/puf_core/inst/u_regs/sampler/result[78]_i_1/O
+                         net (fo=1, routed)           0.000    12.519    puf_i/puf_core/inst/u_regs/sampler/result[78]_i_1_n_0
+    SLICE_X60Y89         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[78]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.538    12.717    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X60Y89         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[78]/C
+                         clock pessimism              0.129    12.846    
+                         clock uncertainty           -0.154    12.692    
+    SLICE_X60Y89         FDCE (Setup_fdce_C_D)        0.031    12.723    puf_i/puf_core/inst/u_regs/sampler/result_reg[78]
+  -------------------------------------------------------------------
+                         required time                         12.723    
+                         arrival time                         -12.519    
+  -------------------------------------------------------------------
+                         slack                                  0.204    
+
+Slack (MET) :             0.206ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[117]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.242ns  (logic 2.777ns (30.046%)  route 6.465ns (69.954%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.426ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.717ns = ( 12.717 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.757    12.390    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X61Y89         LUT5 (Prop_lut5_I2_O)        0.124    12.514 r  puf_i/puf_core/inst/u_regs/sampler/result[117]_i_1/O
+                         net (fo=1, routed)           0.000    12.514    puf_i/puf_core/inst/u_regs/sampler/result[117]_i_1_n_0
+    SLICE_X61Y89         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[117]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.538    12.717    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X61Y89         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[117]/C
+                         clock pessimism              0.129    12.846    
+                         clock uncertainty           -0.154    12.692    
+    SLICE_X61Y89         FDCE (Setup_fdce_C_D)        0.029    12.721    puf_i/puf_core/inst/u_regs/sampler/result_reg[117]
+  -------------------------------------------------------------------
+                         required time                         12.721    
+                         arrival time                         -12.514    
+  -------------------------------------------------------------------
+                         slack                                  0.206    
+
+Slack (MET) :             0.210ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[22]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.236ns  (logic 2.777ns (30.066%)  route 6.459ns (69.934%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.431ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.712ns = ( 12.712 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.751    12.384    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X57Y87         LUT5 (Prop_lut5_I2_O)        0.124    12.508 r  puf_i/puf_core/inst/u_regs/sampler/result[22]_i_1/O
+                         net (fo=1, routed)           0.000    12.508    puf_i/puf_core/inst/u_regs/sampler/result[22]_i_1_n_0
+    SLICE_X57Y87         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[22]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.533    12.712    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X57Y87         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[22]/C
+                         clock pessimism              0.129    12.841    
+                         clock uncertainty           -0.154    12.687    
+    SLICE_X57Y87         FDCE (Setup_fdce_C_D)        0.032    12.719    puf_i/puf_core/inst/u_regs/sampler/result_reg[22]
+  -------------------------------------------------------------------
+                         required time                         12.719    
+                         arrival time                         -12.508    
+  -------------------------------------------------------------------
+                         slack                                  0.210    
+
+Slack (MET) :             0.211ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[19]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.239ns  (logic 2.777ns (30.056%)  route 6.462ns (69.944%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.426ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.717ns = ( 12.717 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.754    12.387    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X61Y89         LUT5 (Prop_lut5_I2_O)        0.124    12.511 r  puf_i/puf_core/inst/u_regs/sampler/result[19]_i_1/O
+                         net (fo=1, routed)           0.000    12.511    puf_i/puf_core/inst/u_regs/sampler/result[19]_i_1_n_0
+    SLICE_X61Y89         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[19]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.538    12.717    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X61Y89         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[19]/C
+                         clock pessimism              0.129    12.846    
+                         clock uncertainty           -0.154    12.692    
+    SLICE_X61Y89         FDCE (Setup_fdce_C_D)        0.031    12.723    puf_i/puf_core/inst/u_regs/sampler/result_reg[19]
+  -------------------------------------------------------------------
+                         required time                         12.723    
+                         arrival time                         -12.511    
+  -------------------------------------------------------------------
+                         slack                                  0.211    
+
+Slack (MET) :             0.212ns  (required time - arrival time)
+  Source:                 puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/puf_core/inst/u_regs/sampler/result_reg[63]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.237ns  (logic 2.777ns (30.065%)  route 6.460ns (69.935%))
+  Logic Levels:           10  (CARRY4=3 LUT4=3 LUT5=2 LUT6=2)
+  Clock Path Skew:        -0.426ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.717ns = ( 12.717 - 10.000 ) 
+    Source Clock Delay      (SCD):    3.272ns
+    Clock Pessimism Removal (CPR):    0.129ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.978     3.272    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X100Y101       FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X100Y101       FDCE (Prop_fdce_C_Q)         0.478     3.750 r  puf_i/puf_core/inst/u_regs/sampler/snapshot_reg[3583]/Q
+                         net (fo=6, routed)           1.300     5.050    puf_i/puf_core/inst/u_regs/sampler/core_counts[3583]
+    SLICE_X91Y100        LUT4 (Prop_lut4_I0_O)        0.295     5.345 r  puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23/O
+                         net (fo=1, routed)           0.000     5.345    puf_i/puf_core/inst/u_regs/sampler/result[51]_i_23_n_0
+    SLICE_X91Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.895 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8/CO[3]
+                         net (fo=1, routed)           0.000     5.895    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_8_n_0
+    SLICE_X91Y101        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.009 r  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3/CO[3]
+                         net (fo=1, routed)           0.000     6.009    puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_3_n_0
+    SLICE_X91Y102        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     6.166 f  puf_i/puf_core/inst/u_regs/sampler/result_reg[51]_i_2/CO[1]
+                         net (fo=3, routed)           1.372     7.538    puf_i/puf_core/inst/u_regs/sampler/comparison[51]
+    SLICE_X80Y88         LUT4 (Prop_lut4_I2_O)        0.355     7.893 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58/O
+                         net (fo=1, routed)           0.573     8.465    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_58_n_0
+    SLICE_X66Y88         LUT5 (Prop_lut5_I4_O)        0.332     8.797 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26/O
+                         net (fo=1, routed)           0.956     9.753    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_26_n_0
+    SLICE_X66Y86         LUT6 (Prop_lut6_I2_O)        0.124     9.877 r  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7/O
+                         net (fo=1, routed)           0.939    10.816    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_7_n_0
+    SLICE_X65Y87         LUT6 (Prop_lut6_I3_O)        0.124    10.940 f  puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3/O
+                         net (fo=2, routed)           0.569    11.509    puf_i/puf_core/inst/u_regs/sampler/sample_error[5]_i_3_n_0
+    SLICE_X61Y86         LUT4 (Prop_lut4_I2_O)        0.124    11.633 r  puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2/O
+                         net (fo=128, routed)         0.752    12.385    puf_i/puf_core/inst/u_regs/sampler/result[127]_i_2_n_0
+    SLICE_X61Y90         LUT5 (Prop_lut5_I2_O)        0.124    12.509 r  puf_i/puf_core/inst/u_regs/sampler/result[63]_i_1/O
+                         net (fo=1, routed)           0.000    12.509    puf_i/puf_core/inst/u_regs/sampler/result[63]_i_1_n_0
+    SLICE_X61Y90         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[63]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=7898, routed)        1.538    12.717    puf_i/puf_core/inst/u_regs/sampler/clk
+    SLICE_X61Y90         FDCE                                         r  puf_i/puf_core/inst/u_regs/sampler/result_reg[63]/C
+                         clock pessimism              0.129    12.846    
+                         clock uncertainty           -0.154    12.692    
+    SLICE_X61Y90         FDCE (Setup_fdce_C_D)        0.029    12.721    puf_i/puf_core/inst/u_regs/sampler/result_reg[63]
+  -------------------------------------------------------------------
+                         required time                         12.721    
+                         arrival time                         -12.509    
+  -------------------------------------------------------------------
+                         slack                                  0.212    
+
+
+
+

@@ -1,0 +1,261 @@
+note: "version 2" Tectonic command-line interface activated
+note: Running TeX ...
+Fontconfig error: Cannot load default config file: No such file: (null)
+warning: lineno.sty:296: Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+warning: accessing absolute path `C:/Windows/fonts\DejaVuSansMono-Bold_0.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/Windows/fonts\DejaVuSansMono-BoldOblique_0.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/Windows/fonts\DejaVuSansMono-Oblique_0.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/Windows/fonts\DejaVuSansMono_0.ttf`; build may not be reproducible in other environments
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:258: Overfull \hbox (6.39441pt too wide) in paragraph at lines 258--258
+warning: chapters/ch03.tex:259: Overfull \hbox (3.3444pt too wide) in paragraph at lines 259--259
+warning: chapters/ch03.tex:260: Overfull \hbox (0.64441pt too wide) in paragraph at lines 260--260
+warning: chapters/ch03.tex:261: Overfull \hbox (10.1544pt too wide) in paragraph at lines 261--261
+warning: chapters/ch03.tex:343: Underfull \hbox (badness 10000) in paragraph at lines 342--343
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:463: Underfull \hbox (badness 10000) in paragraph at lines 461--463
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:603: Underfull \hbox (badness 10000) in paragraph at lines 602--603
+warning: chapters/ch03.tex:603: Underfull \hbox (badness 10000) in paragraph at lines 602--603
+warning: chapters/ch03.tex:737: Overfull \hbox (2.68341pt too wide) in paragraph at lines 737--737
+warning: chapters/ch03.tex:738: Overfull \hbox (2.68341pt too wide) in paragraph at lines 738--738
+warning: chapters/ch03.tex:739: Overfull \hbox (2.68341pt too wide) in paragraph at lines 739--739
+warning: chapters/ch03.tex:740: Overfull \hbox (2.68341pt too wide) in paragraph at lines 740--740
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:834: Underfull \hbox (badness 7030) in paragraph at lines 833--834
+warning: chapters/ch03.tex:834: Underfull \hbox (badness 10000) in paragraph at lines 833--834
+warning: chapters/ch03.tex:834: Underfull \hbox (badness 10000) in paragraph at lines 833--834
+warning: chapters/ch03.tex:860: Underfull \hbox (badness 10000) in paragraph at lines 859--860
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:896: Underfull \hbox (badness 10000) in paragraph at lines 895--896
+warning: chapters/ch03.tex:896: Underfull \hbox (badness 10000) in paragraph at lines 895--896
+warning: chapters/ch03.tex:908: Underfull \hbox (badness 2384) in paragraph at lines 907--908
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:918: Underfull \hbox (badness 6141) in paragraph at lines 917--918
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:995: Underfull \hbox (badness 10000) in paragraph at lines 994--995
+warning: chapters/ch03.tex:1005: Underfull \hbox (badness 10000) in paragraph at lines 1004--1005
+warning: chapters/ch03.tex:1013: Underfull \hbox (badness 10000) in paragraph at lines 1012--1013
+warning: chapters/ch03.tex:1013: Underfull \hbox (badness 10000) in paragraph at lines 1012--1013
+warning: chapters/ch03.tex:1013: Underfull \hbox (badness 7433) in paragraph at lines 1012--1013
+warning: chapters/ch03.tex:1021: Underfull \hbox (badness 2073) in paragraph at lines 1020--1021
+warning: chapters/ch03.tex:1031: Underfull \hbox (badness 3536) in paragraph at lines 1030--1031
+warning: chapters/ch03.tex:1031: Underfull \hbox (badness 2990) in paragraph at lines 1030--1031
+warning: chapters/ch03.tex:1178: Overfull \hbox (5.43918pt too wide) in paragraph at lines 1178--1178
+warning: chapters/ch03.tex:1193: Underfull \hbox (badness 1048) in paragraph at lines 1192--1193
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:38: Underfull \hbox (badness 10000) in paragraph at lines 37--38
+warning: chapters/ch04.tex:38: Underfull \hbox (badness 2103) in paragraph at lines 37--38
+warning: chapters/ch04.tex:70: Underfull \hbox (badness 4660) in paragraph at lines 69--70
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:133: Underfull \hbox (badness 10000) in paragraph at lines 132--133
+warning: chapters/ch04.tex:133: Underfull \hbox (badness 10000) in paragraph at lines 132--133
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:178: Underfull \hbox (badness 7064) in paragraph at lines 177--178
+warning: chapters/ch04.tex:178: Underfull \hbox (badness 6268) in paragraph at lines 177--178
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:280: Overfull \hbox (5.58073pt too wide) in paragraph at lines 279--280
+warning: chapters/ch04.tex:281: Overfull \hbox (5.58073pt too wide) in paragraph at lines 280--281
+warning: chapters/ch04.tex:282: Overfull \hbox (5.58073pt too wide) in paragraph at lines 281--282
+warning: chapters/ch04.tex:283: Overfull \hbox (5.58073pt too wide) in paragraph at lines 282--283
+warning: chapters/ch04.tex:284: Overfull \hbox (5.58073pt too wide) in paragraph at lines 283--284
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:313: Overfull \hbox (0.54199pt too wide) in paragraph at lines 312--313
+warning: chapters/ch04.tex:342: Overfull \hbox (5.58658pt too wide) in paragraph at lines 342--342
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:417: Underfull \hbox (badness 10000) in paragraph at lines 416--417
+warning: chapters/ch04.tex:417: Underfull \hbox (badness 10000) in paragraph at lines 416--417
+warning: chapters/ch04.tex:442: Overfull \hbox (18.70436pt too wide) in paragraph at lines 442--442
+warning: chapters/ch04.tex:512: Underfull \hbox (badness 2142) in paragraph at lines 511--512
+warning: chapters/ch04.tex:634: Underfull \hbox (badness 6910) in paragraph at lines 633--634
+warning: chapters/app02.tex:36: Underfull \hbox (badness 10000) in paragraph at lines 35--36
+warning: chapters/app02.tex:36: Underfull \hbox (badness 1112) in paragraph at lines 35--36
+warning: chapters/app02.tex:42: Underfull \hbox (badness 10000) in paragraph at lines 41--42
+note: Rerunning TeX because "main.lof" changed ...
+warning: lineno.sty:296: Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:258: Overfull \hbox (6.39441pt too wide) in paragraph at lines 258--258
+warning: chapters/ch03.tex:259: Overfull \hbox (3.3444pt too wide) in paragraph at lines 259--259
+warning: chapters/ch03.tex:260: Overfull \hbox (0.64441pt too wide) in paragraph at lines 260--260
+warning: chapters/ch03.tex:261: Overfull \hbox (10.1544pt too wide) in paragraph at lines 261--261
+warning: chapters/ch03.tex:343: Underfull \hbox (badness 10000) in paragraph at lines 342--343
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:463: Underfull \hbox (badness 10000) in paragraph at lines 461--463
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:603: Underfull \hbox (badness 10000) in paragraph at lines 602--603
+warning: chapters/ch03.tex:603: Underfull \hbox (badness 10000) in paragraph at lines 602--603
+warning: chapters/ch03.tex:737: Overfull \hbox (2.68341pt too wide) in paragraph at lines 737--737
+warning: chapters/ch03.tex:738: Overfull \hbox (2.68341pt too wide) in paragraph at lines 738--738
+warning: chapters/ch03.tex:739: Overfull \hbox (2.68341pt too wide) in paragraph at lines 739--739
+warning: chapters/ch03.tex:740: Overfull \hbox (2.68341pt too wide) in paragraph at lines 740--740
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:834: Underfull \hbox (badness 7030) in paragraph at lines 833--834
+warning: chapters/ch03.tex:834: Underfull \hbox (badness 10000) in paragraph at lines 833--834
+warning: chapters/ch03.tex:834: Underfull \hbox (badness 10000) in paragraph at lines 833--834
+warning: chapters/ch03.tex:860: Underfull \hbox (badness 10000) in paragraph at lines 859--860
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:896: Underfull \hbox (badness 10000) in paragraph at lines 895--896
+warning: chapters/ch03.tex:896: Underfull \hbox (badness 10000) in paragraph at lines 895--896
+warning: chapters/ch03.tex:908: Underfull \hbox (badness 2384) in paragraph at lines 907--908
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:918: Underfull \hbox (badness 6141) in paragraph at lines 917--918
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:995: Underfull \hbox (badness 10000) in paragraph at lines 994--995
+warning: chapters/ch03.tex:1005: Underfull \hbox (badness 10000) in paragraph at lines 1004--1005
+warning: chapters/ch03.tex:1013: Underfull \hbox (badness 10000) in paragraph at lines 1012--1013
+warning: chapters/ch03.tex:1013: Underfull \hbox (badness 10000) in paragraph at lines 1012--1013
+warning: chapters/ch03.tex:1013: Underfull \hbox (badness 7433) in paragraph at lines 1012--1013
+warning: chapters/ch03.tex:1021: Underfull \hbox (badness 2073) in paragraph at lines 1020--1021
+warning: chapters/ch03.tex:1031: Underfull \hbox (badness 3536) in paragraph at lines 1030--1031
+warning: chapters/ch03.tex:1031: Underfull \hbox (badness 2990) in paragraph at lines 1030--1031
+warning: chapters/ch03.tex:1178: Overfull \hbox (5.43918pt too wide) in paragraph at lines 1178--1178
+warning: chapters/ch03.tex:1193: Underfull \hbox (badness 1048) in paragraph at lines 1192--1193
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:38: Underfull \hbox (badness 10000) in paragraph at lines 37--38
+warning: chapters/ch04.tex:38: Underfull \hbox (badness 2103) in paragraph at lines 37--38
+warning: chapters/ch04.tex:70: Underfull \hbox (badness 4660) in paragraph at lines 69--70
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:133: Underfull \hbox (badness 10000) in paragraph at lines 132--133
+warning: chapters/ch04.tex:133: Underfull \hbox (badness 10000) in paragraph at lines 132--133
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:178: Underfull \hbox (badness 7064) in paragraph at lines 177--178
+warning: chapters/ch04.tex:178: Underfull \hbox (badness 6268) in paragraph at lines 177--178
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:280: Overfull \hbox (5.58073pt too wide) in paragraph at lines 279--280
+warning: chapters/ch04.tex:281: Overfull \hbox (5.58073pt too wide) in paragraph at lines 280--281
+warning: chapters/ch04.tex:282: Overfull \hbox (5.58073pt too wide) in paragraph at lines 281--282
+warning: chapters/ch04.tex:283: Overfull \hbox (5.58073pt too wide) in paragraph at lines 282--283
+warning: chapters/ch04.tex:284: Overfull \hbox (5.58073pt too wide) in paragraph at lines 283--284
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:313: Overfull \hbox (0.54199pt too wide) in paragraph at lines 312--313
+warning: chapters/ch04.tex:342: Overfull \hbox (5.58658pt too wide) in paragraph at lines 342--342
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:417: Underfull \hbox (badness 10000) in paragraph at lines 416--417
+warning: chapters/ch04.tex:417: Underfull \hbox (badness 10000) in paragraph at lines 416--417
+warning: chapters/ch04.tex:442: Overfull \hbox (18.70436pt too wide) in paragraph at lines 442--442
+warning: chapters/ch04.tex:512: Underfull \hbox (badness 2142) in paragraph at lines 511--512
+warning: chapters/ch04.tex:634: Underfull \hbox (badness 6910) in paragraph at lines 633--634
+warning: chapters/app02.tex:36: Underfull \hbox (badness 10000) in paragraph at lines 35--36
+warning: chapters/app02.tex:36: Underfull \hbox (badness 1112) in paragraph at lines 35--36
+warning: chapters/app02.tex:42: Underfull \hbox (badness 10000) in paragraph at lines 41--42
+note: Rerunning TeX because "main.aux" changed ...
+warning: lineno.sty:296: Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:258: Overfull \hbox (6.39441pt too wide) in paragraph at lines 258--258
+warning: chapters/ch03.tex:259: Overfull \hbox (3.3444pt too wide) in paragraph at lines 259--259
+warning: chapters/ch03.tex:260: Overfull \hbox (0.64441pt too wide) in paragraph at lines 260--260
+warning: chapters/ch03.tex:261: Overfull \hbox (10.1544pt too wide) in paragraph at lines 261--261
+warning: chapters/ch03.tex:343: Underfull \hbox (badness 10000) in paragraph at lines 342--343
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:463: Underfull \hbox (badness 10000) in paragraph at lines 461--463
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:603: Underfull \hbox (badness 10000) in paragraph at lines 602--603
+warning: chapters/ch03.tex:603: Underfull \hbox (badness 10000) in paragraph at lines 602--603
+warning: chapters/ch03.tex:737: Overfull \hbox (2.68341pt too wide) in paragraph at lines 737--737
+warning: chapters/ch03.tex:738: Overfull \hbox (2.68341pt too wide) in paragraph at lines 738--738
+warning: chapters/ch03.tex:739: Overfull \hbox (2.68341pt too wide) in paragraph at lines 739--739
+warning: chapters/ch03.tex:740: Overfull \hbox (2.68341pt too wide) in paragraph at lines 740--740
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:834: Underfull \hbox (badness 7030) in paragraph at lines 833--834
+warning: chapters/ch03.tex:834: Underfull \hbox (badness 10000) in paragraph at lines 833--834
+warning: chapters/ch03.tex:834: Underfull \hbox (badness 10000) in paragraph at lines 833--834
+warning: chapters/ch03.tex:860: Underfull \hbox (badness 10000) in paragraph at lines 859--860
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:896: Underfull \hbox (badness 10000) in paragraph at lines 895--896
+warning: chapters/ch03.tex:896: Underfull \hbox (badness 10000) in paragraph at lines 895--896
+warning: chapters/ch03.tex:908: Underfull \hbox (badness 2384) in paragraph at lines 907--908
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:918: Underfull \hbox (badness 6141) in paragraph at lines 917--918
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch03.tex:995: Underfull \hbox (badness 10000) in paragraph at lines 994--995
+warning: chapters/ch03.tex:1005: Underfull \hbox (badness 10000) in paragraph at lines 1004--1005
+warning: chapters/ch03.tex:1013: Underfull \hbox (badness 10000) in paragraph at lines 1012--1013
+warning: chapters/ch03.tex:1013: Underfull \hbox (badness 10000) in paragraph at lines 1012--1013
+warning: chapters/ch03.tex:1013: Underfull \hbox (badness 7433) in paragraph at lines 1012--1013
+warning: chapters/ch03.tex:1021: Underfull \hbox (badness 2073) in paragraph at lines 1020--1021
+warning: chapters/ch03.tex:1031: Underfull \hbox (badness 3536) in paragraph at lines 1030--1031
+warning: chapters/ch03.tex:1031: Underfull \hbox (badness 2990) in paragraph at lines 1030--1031
+warning: chapters/ch03.tex:1178: Overfull \hbox (5.43918pt too wide) in paragraph at lines 1178--1178
+warning: chapters/ch03.tex:1193: Underfull \hbox (badness 1048) in paragraph at lines 1192--1193
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:38: Underfull \hbox (badness 10000) in paragraph at lines 37--38
+warning: chapters/ch04.tex:38: Underfull \hbox (badness 2103) in paragraph at lines 37--38
+warning: chapters/ch04.tex:70: Underfull \hbox (badness 4660) in paragraph at lines 69--70
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:133: Underfull \hbox (badness 10000) in paragraph at lines 132--133
+warning: chapters/ch04.tex:133: Underfull \hbox (badness 10000) in paragraph at lines 132--133
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:178: Underfull \hbox (badness 7064) in paragraph at lines 177--178
+warning: chapters/ch04.tex:178: Underfull \hbox (badness 6268) in paragraph at lines 177--178
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:280: Overfull \hbox (5.58073pt too wide) in paragraph at lines 279--280
+warning: chapters/ch04.tex:281: Overfull \hbox (5.58073pt too wide) in paragraph at lines 280--281
+warning: chapters/ch04.tex:282: Overfull \hbox (5.58073pt too wide) in paragraph at lines 281--282
+warning: chapters/ch04.tex:283: Overfull \hbox (5.58073pt too wide) in paragraph at lines 282--283
+warning: chapters/ch04.tex:284: Overfull \hbox (5.58073pt too wide) in paragraph at lines 283--284
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:313: Overfull \hbox (0.54199pt too wide) in paragraph at lines 312--313
+warning: chapters/ch04.tex:342: Overfull \hbox (5.58658pt too wide) in paragraph at lines 342--342
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:417: Underfull \hbox (badness 10000) in paragraph at lines 416--417
+warning: chapters/ch04.tex:417: Underfull \hbox (badness 10000) in paragraph at lines 416--417
+warning: chapters/ch04.tex:442: Overfull \hbox (18.70436pt too wide) in paragraph at lines 442--442
+warning: chapters/ch04.tex:512: Underfull \hbox (badness 2142) in paragraph at lines 511--512
+warning: chapters/ch04.tex:634: Underfull \hbox (badness 6910) in paragraph at lines 633--634
+warning: chapters/app02.tex:36: Underfull \hbox (badness 10000) in paragraph at lines 35--36
+warning: chapters/app02.tex:36: Underfull \hbox (badness 1112) in paragraph at lines 35--36
+warning: chapters/app02.tex:42: Underfull \hbox (badness 10000) in paragraph at lines 41--42
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.
+note: Running xdvipdfmx ...
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+note: Writing `main.log` (56.11 KiB)
+note: Writing `main.pdf` (10.65 MiB)
+note: Skipped writing 15 intermediate files (use --keep-intermediates to keep them)

@@ -1,0 +1,9 @@
+Time resolution is 1 ps
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_puf_soc_diag_v2.test.socwrapper.u_blk_mem_gen_0.inst.native_mem_module.blk_mem_gen_v8_4_12_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+PUF_V2_OFFLINE_SELFTEST
+
+PUF_V2_TEST_PASS
+TEST_PASS tb_puf_soc_v2 diagnostic=1 commands=14 reads=6426 cycles=48005 core=100MHz management=25MHz
+$finish called at time : 480245 ns : File "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/puf_soc_v2/tb_puf_soc_v2.sv" Line 107

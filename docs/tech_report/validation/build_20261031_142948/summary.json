@@ -1,0 +1,183 @@
+{
+  "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+  "inputs": {
+    "build_latex.py": "37b220696a9d6d7edd1c3af7be065e88d94a2af94a7d40733d126c736c610394",
+    "build_report.py": "7e1203a8cb0d793c6f6e0bf678c60dc0d306b577ceb48c687f256ce72f938a7c",
+    "build_site.py": "e3863004de62933cb258ccc402170cb945fabd1a81d3b8ec5c1f7f699ff5427d",
+    "build_template_src.py": "ae866adc39a04e45975c178471e49d49663bf474f9ceb651264fa663ef712ac6",
+    "evidence/build_evidence.py": "ed48c75febbd12fb8eca0d6b1ffdd7a39109f190a1a4c440159a4fef5a3cf386",
+    "figs/board_photo.jpg": "8b6ca1b0f26e9069c2f8b7968401046b36ad7a040e1a8e9d28b0ebfc8fe6d142",
+    "figs/fig_1_1.tex": "c454b90604e6e0ff5093f72853a99766657186e8a24f782f94343c0175976eeb",
+    "figs/fig_2_1.tex": "31da543f272c51f159243ba3d947c83fb3dac685a406ee224b42605119940eaa",
+    "figs/fig_2_10.tex": "9c30c258c51aed8fece50c37b0edb00d47ad889b92b6004007eb32c1cd7c9379",
+    "figs/fig_2_11.tex": "3f114e27ed55b65c9b7f8ec2a101c98c65f90461a235a97b8fd3fec7df3e48f0",
+    "figs/fig_2_12.tex": "60ee367d0c87fa2fc7f2f4e00fbd3287fcbd323730076bd1bc3cc86862478932",
+    "figs/fig_2_13.tex": "be35434f6d9ba332fb85e8dd90ebefd388f7b80ba3828c0b9d90d1c8974d53d4",
+    "figs/fig_2_14.tex": "6351be29d50acd105c7ffb5d7de00d83c3aee4b1f571b4c91ac80af67e2242fa",
+    "figs/fig_2_2.tex": "528c09a6dba96d9bdaef2469ae8b4943e9afb1bc0523c2aea9bba5e2f0272144",
+    "figs/fig_2_3.tex": "37d1c49027990f94f195a937d791cea89ee8e05524c9364fd53f4952f64ddb6a",
+    "figs/fig_2_4.tex": "fd834e545f127d44fc1223700553f1b1825a58aa76c578a447abe8304bb2e5a2",
+    "figs/fig_2_5.tex": "672e3116079dfb339acfd3f7face6108aef110b1445adaa4f302d6e5212e38f3",
+    "figs/fig_2_6.tex": "abebf3ba8099f2341ce415834a65927ea075e6b969c914ddb1d0e7dac1774593",
+    "figs/fig_2_7.tex": "5c9b8569f5df995a3bcc69fe913efb25a20752b4ed04ad1bff7c250c31b0f9b2",
+    "figs/fig_2_8.tex": "74b5a06fd5058ace86bc189f0993b45cfc6bda12587481136b77802a2b88eb26",
+    "figs/fig_2_9.tex": "e33fb39174fc8898e1aff4c9cb8be90b9aa86063be537a075182c50ddd84a49d",
+    "figs/fig_3_1.tex": "83885378fa5cf03dffc3f640e6db90af13e107ff39db04e2bc803b630f5dce7c",
+    "figs/fig_3_2.tex": "392374eb33ddd2019c0c76206f858fc4298970435f4e92dd562690d888750829",
+    "figs/fig_3_3.tex": "0c864a5776e8d0937c58d4615022f90ba2bf2a3e3f66ae3e748556a80d64603e",
+    "figs/fig_3_4.tex": "86322f92781d1c02225e5205fb5106df539c13d50818351fc4cf37fbd9202fa7",
+    "figs/fig_3_5.tex": "b71002134ab51a01a05bde773df7efbc38437d76d48bb3fcf2323f98622c32b3",
+    "figs/fig_3_6.tex": "79812100e1e8a3faa47611b79400c06d60b2e337f8a1cab924781afdf74099b4",
+    "figs/fig_3_7.tex": "ae7071fcf67743af85540fee53ff9a598a2b04f9dbb7e87f6b8e592ecd8d21ad",
+    "figs/fig_3_8.tex": "9989f19ae8c6060f73739945facb2d57f42e3b0eeef6da4b562a9f1e4c080d2d",
+    "figs/header_logo.png": "787db8fa20de80a88e406e5eb8bc8c3076d71592635851045bb8a8cbfb4aaadc",
+    "make_overleaf_zip.py": "a11c5e0875532933b8cf9c7662a1e7132476b832083853b2831505deb94bb5d8",
+    "prerender_figs.py": "7c5cf9901d63d497e880d229e9b676a3c7ad2fb36d707023dcabda657d05af36",
+    "src/01_front.md": "0517f689764ccf164f86ff23b086032c94f3cb7471afedea6d96f2dc77407b88",
+    "src/02_cpu.md": "fe4d6858856e11de7edad7314b1c17728c290c9c2ba15b55a689535af9a40ccb",
+    "src/03_ascon.md": "34f3caac989f0958f1c71468cc5fe04d49a25c080aa7c66abd01b2bdcbe1f270",
+    "src/04_impl.md": "eab4feeaa49a3574872e161cee1c491add03f1f65bfdc492076cff97685b6d2d",
+    "src/05_verify.md": "3e941ea3570405b121645b4306f1db6252dc55a25ab501314fde524f28c9d0cf",
+    "src/06_perf.md": "2aadc4d95ffe94ee71b6f8537c667c0c2206e1117df356c975921174af52c44e",
+    "src/075_pynq.md": "b094035f6d3558a7fd2b991315df2c9cb23fa022ff9225a74cc2fff9efa7b192",
+    "src/07_extension.md": "35228cc0077c1fb183fff91d6f50d982b5688cd3aedfffa297814290112b1a96",
+    "src/08_summary.md": "46e26a18d8e328eecd131e7a8b992bd49b58c05a493ca976e74f4f2e11c7b067",
+    "src/09_review.md": "295939f8e97f2f81f3d6261dd161c4bcfb3d1d6515b953356fce3ab145954d0c",
+    "src_template/new/p1_1.md": "972be1466852a516926644fef31dfbfe66786485ca5c1010230a74756c898389",
+    "src_template/new/p1_2.md": "4b09cd69ad57d2cf945027689736b9e5d296465aaaa9ef4d1240171b97031682",
+    "src_template/new/p1_3.md": "f7013f0dca3546c01312d2519546c173249c9f8d17d4af9918da4a44f3eb9ebc",
+    "src_template/new/p1_4.md": "71dab2ae1dcef5156cc6c0a46bd77643b889fa3e50616ed981548f7c723b111e",
+    "src_template/new/p1_5.md": "bf8b32de057bb075d7b4acf155aa775529a9be73ee85c09d7f037a06bf483b68",
+    "src_template/new/p1_6.md": "079859db114a290a08f650714af2c290bbbb6800f2eb503fb398dab6c5e5c299",
+    "src_template/new/p2_2.md": "d9f5a8a4ec62b3b787e9eda67b2d94c9b6c58a667570b37959176ac0c833bcca",
+    "src_template/new/p2_2_1.md": "841cf14133b7a57481374b844b48cc62254b3e9007a639181b9f6a9e701b0a62",
+    "src_template/new/p2_2_2.md": "cd5443439b1883da40425b4c10e540b665f848d71ada47d38c03b9d091487a1d",
+    "src_template/new/p2_3_1.md": "365e2dbc0be0f997448a535acb9d6efdbe04102daf534af6e64859b805edecff",
+    "src_template/new/p2_3_2_1.md": "ef72db0bc1d34f662d8fd49fc322cf3f44c79be5f90229de3ef4c1846bec6612",
+    "src_template/new/p2_3_2_2.md": "58d8e16388b9495dd5294e40d6c0151dbda4767ad53fe47806d21f5c5b0b5172",
+    "src_template/new/p2_3_2_3.md": "6940fb57a3383375276a56f32a7999bc7ad9727469800f0a17d75454402f1a87",
+    "src_template/new/p2_3_2_4.md": "0e0db61c0c00bab22823f90d6805f1715bd1377b942ee191ae0e342077e178ef",
+    "src_template/new/p2_3_2_5.md": "e1981160d45bc76b3ba3e9a74cdd90f7eb41ab508cc5d8f0ab10ecd6859647b7",
+    "src_template/new/p2_3_intro.md": "99dd5d9bb5cc2a8c0c78370f14d39069f9072b92eacb99f59d434ba421cf5aaa",
+    "src_template/new/p2_4_1.md": "4325ec703b82f8c5647d4fcd534fc48d91085234114a1b1265cc40c090201dee",
+    "src_template/new/p2_4_2.md": "4bbface1b27860ffd3b1df8b978196f30fc10111b1194c3502dbc804a18b0490",
+    "src_template/new/p2_4_3.md": "faee7b83bf8d95e01c1090c426fd7b2c1be04f154d402a8b31ee5246eb5b40b6",
+    "src_template/new/p2_4_4.md": "23ffd55d14c52a9fe13a860fd29d5f37f6ca63b7062bb369655343c2aa40773f",
+    "src_template/new/p3_1.md": "50a603ed6b9d6db58d19ab9f5791f4664fe858ac2ef846a744054e5326efb520",
+    "src_template/new/p3_2.md": "9dcb84282fa10a79aa23f010eeeae0887b9a2eb7a7d5936d745f679db7689418",
+    "src_template/new/p3_3_intro.md": "8777e400bd11b6d52d6d325c9fdbdddb56a6253ebb77ce390358803ed8078ef7",
+    "src_template/new/p3_4_1.md": "d5ac28bd48d2fd5971d80d231b86beb4c67a6a9ce6ac52f7bdc5b649160c352e",
+    "src_template/new/p3_4_2.md": "3e25aca3fc8fcc3eb6fcafd2e50ba3ca541e25b947259e02eee8c0728f1bf383",
+    "src_template/new/p3_4_3.md": "0f14b0b1a74b0a59fd6412d2275c79b57f2e8f26fe6a036a490297f431d3120a",
+    "src_template/new/p3_4_4.md": "e5d0dea988f52f66b9078ae9d12190b2a77af2a315d2e4b16d826ee6ea304771",
+    "src_template/new/p3_4_5.md": "7dbc26dd99a16197902a98ca346b445fa65b07b702779c31b6c46bb935dc5e21",
+    "src_template/new/p4_1.md": "f2f3839d5d3eb005ed2a27c982d6dbbfe201462bf0c5183f2699c4d8e148d865"
+  },
+  "steps": [
+    {
+      "label": "tool_version",
+      "command": [
+        "C:\\wenjian\\toolchain\\tectonic\\tectonic.exe",
+        "--version"
+      ],
+      "cwd": "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report",
+      "exit_code": 0
+    },
+    {
+      "label": "evidence",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report\\evidence\\build_evidence.py"
+      ],
+      "cwd": "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report",
+      "exit_code": 0
+    },
+    {
+      "label": "template",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report\\build_template_src.py"
+      ],
+      "cwd": "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report",
+      "exit_code": 0
+    },
+    {
+      "label": "html",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report\\build_site.py"
+      ],
+      "cwd": "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report",
+      "exit_code": 0
+    },
+    {
+      "label": "figures",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report\\prerender_figs.py"
+      ],
+      "cwd": "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report",
+      "exit_code": 0
+    },
+    {
+      "label": "latex",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report\\build_latex.py"
+      ],
+      "cwd": "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report",
+      "exit_code": 0
+    },
+    {
+      "label": "pdf",
+      "command": [
+        "C:\\wenjian\\toolchain\\tectonic\\tectonic.exe",
+        "-X",
+        "compile",
+        "main.tex",
+        "--keep-logs"
+      ],
+      "cwd": "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report\\latex",
+      "exit_code": 0
+    },
+    {
+      "label": "overleaf_zip",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report\\make_overleaf_zip.py"
+      ],
+      "cwd": "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report",
+      "exit_code": 0
+    },
+    {
+      "label": "audit",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report\\verify_report.py"
+      ],
+      "cwd": "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\docs\\tech_report",
+      "exit_code": 0
+    }
+  ],
+  "status": "PASS",
+  "outputs": {
+    "report.md": "75ce9cc14ea82c45bfa86507aac64f5c3261d73bb5878d3e83940a5f7374cf7c",
+    "index.html": "80477bbb09983b3f4c7cc395ec3396333b4d2485b1792307448f7aa1c7b43d91",
+    "latex/main.pdf": "4ecf9dc7bb4050fe2d3f34a7035f7706049754f683f6a089a64faa63aca6d6f8",
+    "latex_project.zip": "81cace70cc7cd2cde69a3797596cdb0adf38fb2ccbd8e1dee9715d86c79c3eae"
+  }
+}

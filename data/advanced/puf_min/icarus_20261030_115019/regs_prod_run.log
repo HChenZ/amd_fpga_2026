@@ -1,0 +1,4 @@
+PUF_MIN_TB_MODE=PROD WINDOW=1024 CW=20
+CNT: c0=2560 c1=1280 c128=1280 c129=2560
+TEST_PASS tb_puf_min
+sim/puf_min/tb_puf_min.sv:248: $finish called at 23930000 (1ps)

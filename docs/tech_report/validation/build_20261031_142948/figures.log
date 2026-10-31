@@ -1,0 +1,26 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+ok  fig_1_1.pdf        56.3 KB
+ok  fig_2_1.pdf        28.1 KB
+ok  fig_2_10.pdf        8.3 KB
+ok  fig_2_11.pdf       43.5 KB
+ok  fig_2_12.pdf       83.4 KB
+ok  fig_2_13.pdf     (截图占位：待放入 figs/vivado_block_design.png)
+ok  fig_2_14.pdf     (截图占位：待放入 figs/vivado_timing_summary.png)
+ok  fig_2_2.pdf        39.1 KB
+ok  fig_2_3.pdf        34.8 KB
+ok  fig_2_4.pdf        26.3 KB
+ok  fig_2_5.pdf        21.6 KB
+ok  fig_2_6.pdf        40.4 KB
+ok  fig_2_7.pdf        50.2 KB
+ok  fig_2_8.pdf        56.9 KB
+ok  fig_2_9.pdf        46.7 KB
+ok  fig_3_1.pdf      (图片转 PDF)
+ok  fig_3_2.pdf        46.6 KB
+ok  fig_3_3.pdf        50.8 KB
+ok  fig_3_4.pdf        59.8 KB
+ok  fig_3_5.pdf         7.5 KB
+ok  fig_3_6.pdf      (截图占位：待放入 figs/vivado_device_view.png)
+ok  fig_3_7.pdf      (截图占位：待放入 figs/vivado_utilization.png)
+ok  fig_3_8.pdf      (截图占位：待放入 figs/vivado_xsim_ise_wave.png)
+
+完成 23 张，跳过 0 张（非 TikZ）：无

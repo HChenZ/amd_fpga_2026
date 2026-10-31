@@ -1,0 +1,85 @@
+% 图 2-12 RV32 处理器流水线微架构（坐标单位 cm；版式参考按级分列的架构图）
+\begin{tikzpicture}[font=\scriptsize, node distance=2.6mm,
+  u/.style={draw=softline, rounded corners=1.5pt, fill=white, align=center, inner sep=2pt, text width=#1},
+  u/.default=2.9cm,
+  st/.style={draw=softline, fill=macgray, font=\scriptsize\bfseries, minimum height=0.5cm, align=center},
+  reg/.style={draw=macline, fill=macblue!70, minimum width=0.34cm, rounded corners=1pt},
+  ar/.style={-{Stealth[length=1.3mm]}, thick, draw=softline},
+  fb/.style={-{Stealth[length=1.3mm]}, thick, draw=softline, rounded corners=2pt},
+  lab/.style={fill=white, inner sep=1pt, font=\tiny}]
+
+% ---------------- 级名表头（与各列对齐）
+\foreach \x/\w/\n in {-6.35/3.3/IF 取指, -2.5/3.3/ID 译码, 1.4/3.5/EX 执行, 5.0/2.8/MEM 访存, 7.75/1.9/WB 写回}
+  {\node[st, minimum width=\w cm] at (\x,6.35) {\n};}
+
+% ---------------- 集中冒险控制
+\node[draw=maclav!60!black, fill=maclav, rounded corners=1.5pt, text width=16.4cm, align=center, inner sep=2pt]
+  at (0.35,5.5) {\texttt{ctrl.v} 集中冒险控制：输出 \texttt{stall[4:0]} 与 \texttt{flush[4:0]}，位序 \{IF, IF/ID, ID/EX, EX/MEM, MEM/WB\}\\
+  判定顺序：陷入 / 中断 $>$ Cache 与总线停顿 $>$ 多周期（乘除、ISE）$>$ 分支重定向 $>$ load-use};
+
+% ---------------- 流水寄存器
+\foreach \x/\n in {-4.45/{IF/ID}, -0.6/{ID/EX}, 3.42/{EX/MEM}, 6.6/{MEM/WB}} {
+  \node[reg, minimum height=7.7cm, anchor=north] at (\x,4.2) {};
+  \node[font=\tiny, rotate=90, fill=macblue!70, inner sep=1pt] at (\x,0.35) {\n};
+}
+
+% ---------------- IF 列
+\node[u, anchor=north] (pc) at (-6.35,3.9) {\textbf{PC 选择}\\陷入 $>$ 重定向 $>$\\预测 $>$ PC+4};
+\node[u, below=of pc] (bp) {\textbf{分支预测}\\64 项 BTB\\2-bit BHT，零延迟读};
+\node[u, below=of bp, fill=macblue!40] (ic) {\textbf{I-cache 1 KiB}\\直接映射，64 组$\times$4 字\\IDLE / FILL};
+\draw[ar] (pc) -- (bp);
+\draw[ar] (bp) -- (ic);
+\draw[ar] (ic.east) -- (ic.east -| -4.62,0);
+
+% ---------------- ID 列
+\node[u, anchor=north] (dec) at (-2.5,3.9) {\textbf{译码 / 立即数}\\I/S/B/U/J 并行生成};
+\node[u, below=of dec] (rk) {\textbf{结果类型标注}\\ResultKind 随流水传递};
+\node[u, below=of rk, fill=macrose!60] (lu) {\textbf{load-use 检测}\\停顿并插入气泡};
+\node[u, below=of lu, fill=macblue!40] (rf) {\textbf{寄存器堆 32$\times$32}\\双读一写，写读直通};
+\draw[ar] (dec.west -| -4.28,0) -- (dec.west);
+\draw[ar] (dec) -- (rk);
+\draw[ar] (rf.east) -- (rf.east -| -0.77,0);
+
+% ---------------- EX 列
+\node[u=2.2cm, anchor=north west, fill=maclav!70] (byp) at (-0.2,3.9) {\textbf{旁路选择}\\EX/MEM $>$ MEM/WB};
+\path (byp.south) ++(0,-0.26) coordinate (altop);
+\node[u=3.1cm, anchor=north] (alu) at (1.4,0 |- altop) {\textbf{ALU / 分支判定}};
+\node[u=3.1cm, below=of alu] (mul) {\textbf{乘法} \texttt{mult}\\4 DSP，ack / cancel};
+\node[u=3.1cm, below=of mul] (div) {\textbf{除法} \texttt{divider}\\迭代多周期};
+\node[u=3.1cm, below=of div] (csr) {\textbf{CSR / 陷入}\\mepc、mcause、mcycle};
+\node[u=3.1cm, below=of csr, fill=macamber] (ise) {\textbf{Ascon ISE}（custom-0）\\320-bit 私有状态\\P8 / P12，hold 跨多拍};
+\begin{scope}[on background layer]
+  \node[draw=macgreen!60!black, fill=macgreen!35, rounded corners=2pt, fit=(byp)(alu)(ise), inner sep=4pt] {};
+\end{scope}
+\draw[ar] (alu.west -| -0.43,0) -- (alu.west);
+\draw[ar] (alu.east) -- (alu.east -| 3.25,0);
+
+% ---------------- MEM 列
+\node[u=2.5cm, anchor=north] (lsu) at (5.0,3.9) {\textbf{load / store}\\地址与字节对齐};
+\node[u=2.5cm, below=of lsu, fill=macblue!40] (dc) {\textbf{D-cache 2 KiB}\\两路组相联，写直达\\IDLE / MISS\_CAPTURE\\/ FILL};
+\node[u=1.75cm, anchor=north east, fill=macrose!60] (mm) at ([yshift=-6mm]dc.south east) {\textbf{MMIO 绕行}\\不进 Cache\\单拍注册请求};
+\draw[ar] (lsu.west -| 3.59,0) -- (lsu.west);
+\draw[ar] (lsu) -- (dc);
+\draw[ar] (dc.east) -- (dc.east -| 6.43,0);
+
+% ---------------- WB 列
+\node[u=1.65cm, anchor=north] (wb) at (7.75,2.6) {\textbf{结果选择}\\ALU / load\\PC+4 / CSR};
+\draw[ar] (wb.west -| 6.77,0) -- (wb.west);
+
+% ---------------- 反馈通路（均走框外空白）
+\draw[fb] (2.85,0 |- alu.north) -- (2.85,4.78) -| (pc.north);
+\node[lab, font=\scriptsize] at (-2.3,4.78) {分支重定向 / 陷入与 mret 向量（冲刷较年轻指令）};
+\draw[fb, dashed] (2.55,0 |- alu.north) -- (2.55,4.38) -- (-8.3,4.38) |- (bp.west);
+\node[lab] at (-5.2,4.38) {EX 级训练 BTB / BHT};
+\draw[fb, dashed] (wb.north) |- (1.0,4.08) -- (1.0,0 |- byp.north);
+\node[lab] at (5.0,4.08) {后级结果旁路回送};
+\draw[fb] (wb.south) |- (-2.5,-3.75) -- (rf.south);
+\node[lab] at (1.4,-3.75) {写回 GPR（x0 写屏蔽）};
+
+% ---------------- 总线与 SoC
+\node[draw=softline, fill=macgreen, rounded corners=1.5pt, text width=16.4cm, align=center, inner sep=3pt]
+  (bus) at (0.35,-4.45) {\texttt{bus\_interconnect} $\rightarrow$ \texttt{cpu\_axi\_bridge} $\rightarrow$ AXI4 master $\rightarrow$ 128 KiB BRAM（统一编址）/ CLINT / UART / GPIO / Ascon MMIO / CPI};
+\draw[ar] (ic.south) -- (ic.south |- bus.north);
+\draw[ar] (mm.south) -- (mm.south |- bus.north);
+\draw[ar] (3.95,0 |- dc.south) -- node[right, font=\tiny, pos=0.12] {miss} (3.95,0 |- bus.north);
+\end{tikzpicture}

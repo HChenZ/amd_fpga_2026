@@ -1,0 +1,1292 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct 30 01:42:33 2026
+| Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
+| Command      : report_timing_summary -report_unconstrained -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/advanced/puf/physical_final_20261030_0121/timing_routed.rpt
+| Design       : puf_mmio_physical_v2
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+  Merge Timing Exceptions                    :  Yes
+  Inter-SLR Compensation                     :  Conservative
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+------------------------------------------------------------------------------------------------
+| Report Methodology
+| ------------------
+------------------------------------------------------------------------------------------------
+
+No report available as report_methodology has not been run prior. Run report_methodology on the current design for the summary of methodology violations.
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock (7424)
+2. checking constant_clock (0)
+3. checking pulse_width_clock (0)
+4. checking unconstrained_internal_endpoints (18688)
+5. checking no_input_delay (0)
+6. checking no_output_delay (0)
+7. checking multiple_clock (0)
+8. checking generated_clocks (0)
+9. checking loops (256)
+10. checking partial_input_delay (0)
+11. checking partial_output_delay (0)
+12. checking latch_loops (0)
+
+1. checking no_clock (7424)
+---------------------------
+ There are 7424 register/latch pins with no clock driven by root clock pin: rst_n (HIGH)
+
+
+2. checking constant_clock (0)
+------------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock (0)
+---------------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints (18688)
+----------------------------------------------------
+ There are 18688 pins that are not constrained for maximum delay. (HIGH)
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay (0)
+------------------------------
+ There are 0 input ports with no input delay specified.
+
+ There are 0 input ports with no input delay but user has a false path constraint.
+
+
+6. checking no_output_delay (0)
+-------------------------------
+ There are 0 ports with no output delay specified.
+
+ There are 0 ports with no output delay but user has a false path constraint
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock (0)
+------------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks (0)
+--------------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops (256)
+-----------------------
+ There are 256 combinational loops in the design. (HIGH)
+
+
+10. checking partial_input_delay (0)
+------------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay (0)
+-------------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops (0)
+----------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+     -1.082     -370.555                    713                37837       -0.502     -232.850                    831                36555        0.000        0.000                       0                 12764  
+
+
+Timing constraints are not met.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+Clock           Waveform(ns)       Period(ns)      Frequency(MHz)
+-----           ------------       ----------      --------------
+core_clk        {0.000 5.000}      10.000          100.000         
+management_clk  {0.000 20.000}     40.000          25.000          
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock               WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----               -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+core_clk             -1.082     -370.555                    713                17237       -0.502     -232.850                    831                17237        0.000        0.000                       0                  6155  
+management_clk       12.117        0.000                      0                11415        0.097        0.000                      0                11415       19.500        0.000                       0                  6609  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock      To Clock            WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------      --------            -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+management_clk  core_clk              9.001        0.000                      0                  134                                                                        
+                management_clk       37.337        0.000                      0                 5888                                                                        
+core_clk        management_clk       38.441        0.000                      0                    1                                                                        
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group         From Clock         To Clock               WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------         ----------         --------               -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+**async_default**  core_clk           core_clk                 0.453        0.000                      0                 1296        0.829        0.000                      0                 1296  
+**async_default**  management_clk     management_clk           4.637        0.000                      0                 6607        0.841        0.000                      0                 6607  
+**default**        management_clk                              3.227        0.000                      0                  512                                                                        
+
+
+------------------------------------------------------------------------------------------------
+| User Ignored Path Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group      From Clock      To Clock      
+----------      ----------      --------      
+(none)          core_clk                        
+(none)          management_clk                  
+(none)          management_clk  core_clk        
+(none)                          management_clk  
+(none)          core_clk        management_clk  
+
+
+------------------------------------------------------------------------------------------------
+| Unconstrained Path Table
+| ------------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+(none)                                    
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  core_clk
+  To Clock:  core_clk
+
+Setup :          713  Failing Endpoints,  Worst Slack       -1.082ns,  Total Violation     -370.555ns
+Hold  :          831  Failing Endpoints,  Worst Slack       -0.502ns,  Total Violation     -232.850ns
+PW    :            0  Failing Endpoints,  Worst Slack        0.000ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (VIOLATED) :        -1.082ns  (required time - arrival time)
+  Source:                 peripheral/keys/mode_reg_rep__1/C
+                            (rising edge-triggered cell FDCE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/keys/mask_reg[35]/CE
+                            (rising edge-triggered cell FDCE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        10.793ns  (logic 2.216ns (20.532%)  route 8.577ns (79.468%))
+  Logic Levels:           11  (CARRY4=1 LUT2=1 LUT3=3 LUT5=1 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6154, unset)         0.973     0.973    peripheral/keys/clk
+    SLICE_X41Y111        FDCE                                         r  peripheral/keys/mode_reg_rep__1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y111        FDCE (Prop_fdce_C_Q)         0.456     1.429 r  peripheral/keys/mode_reg_rep__1/Q
+                         net (fo=120, routed)         1.336     2.765    peripheral/keys/mode_reg_rep__1_n_0
+    SLICE_X44Y98         LUT3 (Prop_lut3_I1_O)        0.124     2.889 r  peripheral/keys/quality[3]_i_166/O
+                         net (fo=2, routed)           0.651     3.540    peripheral/keys/quality[3]_i_166_n_0
+    SLICE_X42Y100        LUT6 (Prop_lut6_I5_O)        0.124     3.664 r  peripheral/keys/quality[7]_i_58/O
+                         net (fo=4, routed)           0.628     4.292    peripheral/keys/quality[7]_i_58_n_0
+    SLICE_X42Y102        LUT3 (Prop_lut3_I0_O)        0.124     4.416 r  peripheral/keys/quality[7]_i_30/O
+                         net (fo=2, routed)           0.823     5.239    peripheral/keys/quality[7]_i_30_n_0
+    SLICE_X43Y104        LUT6 (Prop_lut6_I0_O)        0.124     5.363 r  peripheral/keys/quality[7]_i_42/O
+                         net (fo=2, routed)           0.598     5.961    peripheral/keys/quality[7]_i_42_n_0
+    SLICE_X42Y108        LUT5 (Prop_lut5_I1_O)        0.124     6.085 r  peripheral/keys/quality[7]_i_29/O
+                         net (fo=2, routed)           0.784     6.869    peripheral/keys/quality[7]_i_29_n_0
+    SLICE_X44Y104        LUT6 (Prop_lut6_I5_O)        0.124     6.993 r  peripheral/keys/quality[7]_i_11/O
+                         net (fo=3, routed)           0.587     7.580    peripheral/keys/quality[7]_i_11_n_0
+    SLICE_X45Y107        LUT3 (Prop_lut3_I2_O)        0.124     7.704 r  peripheral/keys/quality[7]_i_4/O
+                         net (fo=1, routed)           0.324     8.028    peripheral/keys/quality[7]_i_4_n_0
+    SLICE_X46Y107        CARRY4 (Prop_carry4_DI[1]_CO[3])
+                                                      0.520     8.548 r  peripheral/keys/quality_reg[7]_i_3/CO[3]
+                         net (fo=3, routed)           0.988     9.536    peripheral/keys/quality_reg[7]_i_3_n_0
+    SLICE_X48Y107        LUT6 (Prop_lut6_I2_O)        0.124     9.660 f  peripheral/keys/reference[127]_i_5/O
+                         net (fo=4, routed)           0.494    10.154    peripheral/keys/reference[127]_i_5_n_0
+    SLICE_X46Y109        LUT2 (Prop_lut2_I1_O)        0.124    10.278 r  peripheral/keys/state[1]_i_3/O
+                         net (fo=2, routed)           0.175    10.453    peripheral/keys/sampler/state_reg[1]_1
+    SLICE_X46Y109        LUT6 (Prop_lut6_I3_O)        0.124    10.577 r  peripheral/keys/sampler/mask[127]_i_1/O
+                         net (fo=128, routed)         1.189    11.766    peripheral/keys/sampler_n_341
+    SLICE_X44Y98         FDCE                                         r  peripheral/keys/mask_reg[35]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=6154, unset)         0.924    10.924    peripheral/keys/clk
+    SLICE_X44Y98         FDCE                                         r  peripheral/keys/mask_reg[35]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+    SLICE_X44Y98         FDCE (Setup_fdce_C_CE)      -0.205    10.684    peripheral/keys/mask_reg[35]
+  -------------------------------------------------------------------
+                         required time                         10.684    
+                         arrival time                         -11.766    
+  -------------------------------------------------------------------
+                         slack                                 -1.082    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (VIOLATED) :        -0.502ns  (arrival time - required time)
+  Source:                 wdata[0]
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/data_length_reg[0]/D
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Hold (Min at Slow Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        0.924ns  (logic 0.000ns (0.000%)  route 0.924ns (100.000%))
+  Logic Levels:           0  
+  Input Delay:            0.000ns
+  Clock Path Skew:        0.973ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.973ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  0.000     0.000    
+                                                      0.000     0.000 r  wdata[0] (IN)
+                         net (fo=113, unset)          0.924     0.924    peripheral/wdata[0]
+    SLICE_X54Y123        FDRE                                         r  peripheral/data_length_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6154, unset)         0.973     0.973    peripheral/clk
+    SLICE_X54Y123        FDRE                                         r  peripheral/data_length_reg[0]/C
+                         clock pessimism              0.000     0.973    
+                         clock uncertainty            0.035     1.008    
+    SLICE_X54Y123        FDRE (Hold_fdre_C_D)         0.418     1.426    peripheral/data_length_reg[0]
+  -------------------------------------------------------------------
+                         required time                         -1.426    
+                         arrival time                           0.924    
+  -------------------------------------------------------------------
+                         slack                                 -0.502    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         core_clk
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { clk }
+
+Check Type        Corner  Lib Pin       Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     DNA_PORT/CLK  n/a            10.000        10.000      0.000      DNA_PORT_X0Y0  peripheral/dna_reader/u_dna_port/CLK
+Low Pulse Width   Slow    FDRE/C        n/a            0.500         5.000       4.500      SLICE_X53Y123  peripheral/ad_length_reg[0]/C
+High Pulse Width  Slow    FDRE/C        n/a            0.500         5.000       4.500      SLICE_X53Y123  peripheral/ad_length_reg[0]/C
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  management_clk
+  To Clock:  management_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack       12.117ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.097ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack       19.500ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             12.117ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/FSM_sequential_state_reg[2]/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/snapshot_reg[1860]/D
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             management_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            40.000ns  (management_clk rise@40.000ns - management_clk rise@0.000ns)
+  Data Path Delay:        27.831ns  (logic 0.715ns (2.569%)  route 27.116ns (97.431%))
+  Logic Levels:           1  (LUT3=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 40.924 - 40.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.973     0.973    peripheral/keys/sampler/ro_clk
+    SLICE_X63Y95         FDCE                                         r  peripheral/keys/sampler/FSM_sequential_state_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y95         FDCE (Prop_fdce_C_Q)         0.419     1.392 r  peripheral/keys/sampler/FSM_sequential_state_reg[2]/Q
+                         net (fo=5300, routed)       27.116    28.508    peripheral/keys/sampler/counters[93].u_counter/Q[1]
+    SLICE_X33Y85         LUT3 (Prop_lut3_I0_O)        0.296    28.804 r  peripheral/keys/sampler/counters[93].u_counter/snapshot[1860]_i_1/O
+                         net (fo=1, routed)           0.000    28.804    peripheral/keys/sampler/snapshot[1860]
+    SLICE_X33Y85         FDCE                                         r  peripheral/keys/sampler/snapshot_reg[1860]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock management_clk rise edge)
+                                                     40.000    40.000 r  
+                                                      0.000    40.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.924    40.924    peripheral/keys/sampler/ro_clk
+    SLICE_X33Y85         FDCE                                         r  peripheral/keys/sampler/snapshot_reg[1860]/C
+                         clock pessimism              0.000    40.924    
+                         clock uncertainty           -0.035    40.889    
+    SLICE_X33Y85         FDCE (Setup_fdce_C_D)        0.032    40.921    peripheral/keys/sampler/snapshot_reg[1860]
+  -------------------------------------------------------------------
+                         required time                         40.921    
+                         arrival time                         -28.804    
+  -------------------------------------------------------------------
+                         slack                                 12.117    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.097ns  (arrival time - required time)
+  Source:                 peripheral/keys/sampler/counters[15].a0_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/counters[15].a1_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             management_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (management_clk rise@0.000ns - management_clk rise@0.000ns)
+  Data Path Delay:        0.197ns  (logic 0.141ns (71.611%)  route 0.056ns (28.389%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.410     0.410    peripheral/keys/sampler/ro_clk
+    SLICE_X73Y42         FDCE                                         r  peripheral/keys/sampler/counters[15].a0_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X73Y42         FDCE (Prop_fdce_C_Q)         0.141     0.551 r  peripheral/keys/sampler/counters[15].a0_reg[0]/Q
+                         net (fo=1, routed)           0.056     0.607    peripheral/keys/sampler/counters[15].a0[0]
+    SLICE_X73Y42         FDCE                                         r  peripheral/keys/sampler/counters[15].a1_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.432     0.432    peripheral/keys/sampler/ro_clk
+    SLICE_X73Y42         FDCE                                         r  peripheral/keys/sampler/counters[15].a1_reg[0]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X73Y42         FDCE (Hold_fdce_C_D)         0.078     0.510    peripheral/keys/sampler/counters[15].a1_reg[0]
+  -------------------------------------------------------------------
+                         required time                         -0.510    
+                         arrival time                           0.607    
+  -------------------------------------------------------------------
+                         slack                                  0.097    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         management_clk
+Waveform(ns):       { 0.000 20.000 }
+Period(ns):         40.000
+Sources:            { ro_clk }
+
+Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period        n/a     FDCE/C   n/a            1.000         40.000      39.000     SLICE_X63Y95  peripheral/keys/sampler/FSM_sequential_state_reg[0]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         20.000      19.500     SLICE_X63Y95  peripheral/keys/sampler/FSM_sequential_state_reg[0]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         20.000      19.500     SLICE_X63Y95  peripheral/keys/sampler/FSM_sequential_state_reg[0]/C
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  management_clk
+  To Clock:  core_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        9.001ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             9.001ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/complete_reg/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/cp_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (MaxDelay Path 10.000ns)
+  Data Path Delay:        0.904ns  (logic 0.456ns (50.445%)  route 0.448ns (49.555%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 10.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y100                                     0.000     0.000 r  peripheral/keys/sampler/complete_reg/C
+    SLICE_X63Y100        FDCE (Prop_fdce_C_Q)         0.456     0.456 r  peripheral/keys/sampler/complete_reg/Q
+                         net (fo=2, routed)           0.448     0.904    peripheral/keys/sampler/p_0_in__0[0]
+    SLICE_X63Y101        FDCE                                         r  peripheral/keys/sampler/cp_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                   10.000    10.000    
+    SLICE_X63Y101        FDCE (Setup_fdce_C_D)       -0.095     9.905    peripheral/keys/sampler/cp_reg[0]
+  -------------------------------------------------------------------
+                         required time                          9.905    
+                         arrival time                          -0.904    
+  -------------------------------------------------------------------
+                         slack                                  9.001    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  
+  To Clock:  management_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack       37.337ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             37.337ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/counters[53].u_counter/overflow_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            peripheral/keys/sampler/overflow_snapshot_reg[53]/D
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             management_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            40.000ns  (MaxDelay Path 40.000ns)
+  Data Path Delay:        2.560ns  (logic 0.664ns (25.941%)  route 1.896ns (74.059%))
+  Logic Levels:           1  (FDCE=1)
+  Timing Exception:       MaxDelay Path 40.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X67Y54         FDCE                         0.000     0.000 r  peripheral/keys/sampler/counters[53].u_counter/overflow_reg/C
+    SLICE_X67Y54         FDCE (Prop_fdce_C_Q)         0.664     0.664 r  peripheral/keys/sampler/counters[53].u_counter/overflow_reg/Q
+                         net (fo=2, routed)           1.896     2.560    peripheral/keys/sampler/over[53]
+    SLICE_X40Y33         FDCE                                         r  peripheral/keys/sampler/overflow_snapshot_reg[53]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                   40.000    40.000    
+    SLICE_X40Y33         FDCE (Setup_fdce_C_D)       -0.103    39.897    peripheral/keys/sampler/overflow_snapshot_reg[53]
+  -------------------------------------------------------------------
+                         required time                         39.897    
+                         arrival time                          -2.560    
+  -------------------------------------------------------------------
+                         slack                                 37.337    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  core_clk
+  To Clock:  management_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack       38.441ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             38.441ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/request_reg/C
+                            (rising edge-triggered cell FDCE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/keys/sampler/rq_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             management_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            40.000ns  (MaxDelay Path 40.000ns)
+  Data Path Delay:        1.454ns  (logic 0.456ns (31.370%)  route 0.998ns (68.630%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 40.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X57Y102                                     0.000     0.000 r  peripheral/keys/sampler/request_reg/C
+    SLICE_X57Y102        FDCE (Prop_fdce_C_Q)         0.456     0.456 r  peripheral/keys/sampler/request_reg/Q
+                         net (fo=2, routed)           0.998     1.454    peripheral/keys/sampler/request_reg_n_0
+    SLICE_X63Y98         FDCE                                         r  peripheral/keys/sampler/rq_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                   40.000    40.000    
+    SLICE_X63Y98         FDCE (Setup_fdce_C_D)       -0.105    39.895    peripheral/keys/sampler/rq_reg[0]
+  -------------------------------------------------------------------
+                         required time                         39.895    
+                         arrival time                          -1.454    
+  -------------------------------------------------------------------
+                         slack                                 38.441    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+Path Group:  **async_default**
+From Clock:  core_clk
+  To Clock:  core_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        0.453ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.829ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.453ns  (required time - arrival time)
+  Source:                 rst_n
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/keys/material_reg[29]/CLR
+                            (recovery check against rising-edge clock core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        7.823ns  (logic 0.149ns (1.905%)  route 7.674ns (98.095%))
+  Logic Levels:           1  (LUT1=1)
+  Input Delay:            2.000ns
+  Clock Path Skew:        0.924ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  2.000     2.000    
+                                                      0.000     2.000 r  rst_n (IN)
+                         net (fo=266, unset)          0.973     2.973    peripheral/keys/rst_n
+    SLICE_X35Y121        LUT1 (Prop_lut1_I0_O)        0.149     3.122 f  peripheral/keys/done_i_1__2/O
+                         net (fo=2073, routed)        6.701     9.823    peripheral/keys/rst_n_0
+    SLICE_X52Y100        FDCE                                         f  peripheral/keys/material_reg[29]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=6154, unset)         0.924    10.924    peripheral/keys/clk
+    SLICE_X52Y100        FDCE                                         r  peripheral/keys/material_reg[29]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+    SLICE_X52Y100        FDCE (Recov_fdce_C_CLR)     -0.613    10.276    peripheral/keys/material_reg[29]
+  -------------------------------------------------------------------
+                         required time                         10.276    
+                         arrival time                          -9.823    
+  -------------------------------------------------------------------
+                         slack                                  0.453    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.829ns  (arrival time - required time)
+  Source:                 rst_n
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/keys/key_reg[34]/CLR
+                            (removal check against rising-edge clock core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Fast Process Corner)
+  Requirement:            0.000ns  (core_clk rise@0.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        1.137ns  (logic 0.042ns (3.693%)  route 1.095ns (96.307%))
+  Logic Levels:           1  (LUT1=1)
+  Input Delay:            0.000ns
+  Clock Path Skew:        0.432ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  0.000     0.000    
+                                                      0.000     0.000 r  rst_n (IN)
+                         net (fo=266, unset)          0.410     0.410    peripheral/keys/rst_n
+    SLICE_X35Y121        LUT1 (Prop_lut1_I0_O)        0.042     0.452 f  peripheral/keys/done_i_1__2/O
+                         net (fo=2073, routed)        0.685     1.137    peripheral/keys/rst_n_0
+    SLICE_X64Y119        FDCE                                         f  peripheral/keys/key_reg[34]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6154, unset)         0.432     0.432    peripheral/keys/clk
+    SLICE_X64Y119        FDCE                                         r  peripheral/keys/key_reg[34]/C
+                         clock pessimism              0.000     0.432    
+                         clock uncertainty            0.035     0.467    
+    SLICE_X64Y119        FDCE (Remov_fdce_C_CLR)     -0.159     0.308    peripheral/keys/key_reg[34]
+  -------------------------------------------------------------------
+                         required time                         -0.308    
+                         arrival time                           1.137    
+  -------------------------------------------------------------------
+                         slack                                  0.829    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+Path Group:  **async_default**
+From Clock:  management_clk
+  To Clock:  management_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        4.637ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.841ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             4.637ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/ro_reset_release_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/snapshot_reg[2278]/CLR
+                            (recovery check against rising-edge clock management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            40.000ns  (management_clk rise@40.000ns - management_clk rise@0.000ns)
+  Data Path Delay:        34.874ns  (logic 0.773ns (2.217%)  route 34.101ns (97.783%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 40.924 - 40.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.973     0.973    peripheral/keys/sampler/ro_clk
+    SLICE_X26Y102        FDCE                                         r  peripheral/keys/sampler/ro_reset_release_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X26Y102        FDCE (Prop_fdce_C_Q)         0.478     1.451 r  peripheral/keys/sampler/ro_reset_release_reg[1]/Q
+                         net (fo=1, routed)           0.853     2.304    peripheral/keys/sampler/ro_reset_release[1]
+    SLICE_X26Y102        LUT1 (Prop_lut1_I0_O)        0.295     2.599 f  peripheral/keys/sampler/snapshot[5119]_i_3/O
+                         net (fo=6607, routed)       33.248    35.847    peripheral/keys/sampler/snapshot[5119]_i_3_n_0
+    SLICE_X91Y74         FDCE                                         f  peripheral/keys/sampler/snapshot_reg[2278]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock management_clk rise edge)
+                                                     40.000    40.000 r  
+                                                      0.000    40.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.924    40.924    peripheral/keys/sampler/ro_clk
+    SLICE_X91Y74         FDCE                                         r  peripheral/keys/sampler/snapshot_reg[2278]/C
+                         clock pessimism              0.000    40.924    
+                         clock uncertainty           -0.035    40.889    
+    SLICE_X91Y74         FDCE (Recov_fdce_C_CLR)     -0.405    40.484    peripheral/keys/sampler/snapshot_reg[2278]
+  -------------------------------------------------------------------
+                         required time                         40.484    
+                         arrival time                         -35.847    
+  -------------------------------------------------------------------
+                         slack                                  4.637    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.841ns  (arrival time - required time)
+  Source:                 peripheral/keys/sampler/ro_reset_release_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/snapshot_reg[1688]/CLR
+                            (removal check against rising-edge clock management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Fast Process Corner)
+  Requirement:            0.000ns  (management_clk rise@0.000ns - management_clk rise@0.000ns)
+  Data Path Delay:        0.795ns  (logic 0.246ns (30.927%)  route 0.549ns (69.073%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.410     0.410    peripheral/keys/sampler/ro_clk
+    SLICE_X26Y102        FDCE                                         r  peripheral/keys/sampler/ro_reset_release_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X26Y102        FDCE (Prop_fdce_C_Q)         0.148     0.558 r  peripheral/keys/sampler/ro_reset_release_reg[1]/Q
+                         net (fo=1, routed)           0.286     0.845    peripheral/keys/sampler/ro_reset_release[1]
+    SLICE_X26Y102        LUT1 (Prop_lut1_I0_O)        0.098     0.943 f  peripheral/keys/sampler/snapshot[5119]_i_3/O
+                         net (fo=6607, routed)        0.263     1.206    peripheral/keys/sampler/snapshot[5119]_i_3_n_0
+    SLICE_X30Y100        FDCE                                         f  peripheral/keys/sampler/snapshot_reg[1688]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.432     0.432    peripheral/keys/sampler/ro_clk
+    SLICE_X30Y100        FDCE                                         r  peripheral/keys/sampler/snapshot_reg[1688]/C
+                         clock pessimism              0.000     0.432    
+    SLICE_X30Y100        FDCE (Remov_fdce_C_CLR)     -0.067     0.365    peripheral/keys/sampler/snapshot_reg[1688]
+  -------------------------------------------------------------------
+                         required time                         -0.365    
+                         arrival time                           1.206    
+  -------------------------------------------------------------------
+                         slack                                  0.841    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+Path Group:  **default**
+From Clock:  management_clk
+  To Clock:  
+
+Setup :            0  Failing Endpoints,  Worst Slack        3.227ns,  Total Violation        0.000ns
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             3.227ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/phase_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/counters[236].u_counter/p0_reg[1]/D
+  Path Group:             **default**
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (MaxDelay Path 20.000ns)
+  Data Path Delay:        16.668ns  (logic 0.456ns (2.736%)  route 16.212ns (97.264%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 20.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X61Y95                                      0.000     0.000 r  peripheral/keys/sampler/phase_reg[1]/C
+    SLICE_X61Y95         FDPE (Prop_fdpe_C_Q)         0.456     0.456 r  peripheral/keys/sampler/phase_reg[1]/Q
+                         net (fo=257, routed)        16.212    16.668    peripheral/keys/sampler/counters[236].u_counter/phase[1]
+    SLICE_X80Y90         FDCE                                         r  peripheral/keys/sampler/counters[236].u_counter/p0_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                   20.000    20.000    
+    SLICE_X80Y90         FDCE (Setup_fdce_C_D)       -0.105    19.895    peripheral/keys/sampler/counters[236].u_counter/p0_reg[1]
+  -------------------------------------------------------------------
+                         required time                         19.895    
+                         arrival time                         -16.668    
+  -------------------------------------------------------------------
+                         slack                                  3.227    
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  core_clk
+  To Clock:  
+
+Max Delay           512 Endpoints
+Min Delay           512 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 peripheral/clear_reg/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/keys/sampler/counters[217].u_counter/reset_release_reg[0]/CLR
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        16.544ns  (logic 0.580ns (3.506%)  route 15.964ns (96.494%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6154, unset)         0.973     0.973    peripheral/clk
+    SLICE_X56Y114        FDRE                                         r  peripheral/clear_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X56Y114        FDRE (Prop_fdre_C_Q)         0.456     1.429 f  peripheral/clear_reg/Q
+                         net (fo=94, routed)          2.395     3.824    peripheral/keys/sampler/counters[148].u_counter/clear
+    SLICE_X82Y104        LUT2 (Prop_lut2_I1_O)        0.124     3.948 f  peripheral/keys/sampler/counters[148].u_counter/reset_release[1]_i_1/O
+                         net (fo=824, routed)        13.569    17.517    peripheral/keys/sampler/counters[217].u_counter/reset_release_reg[1]_0
+    SLICE_X62Y72         FDCE                                         f  peripheral/keys/sampler/counters[217].u_counter/reset_release_reg[0]/CLR
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 rst_n
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/keys/sampler/counters[235].u_counter/reset_release_reg[0]/CLR
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.775ns  (logic 0.045ns (5.805%)  route 0.730ns (94.195%))
+  Logic Levels:           1  (LUT2=1)
+  Input Delay:            0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  0.000     0.000    
+                                                      0.000     0.000 r  rst_n (IN)
+                         net (fo=266, unset)          0.410     0.410    peripheral/keys/sampler/counters[148].u_counter/rst_n
+    SLICE_X82Y104        LUT2 (Prop_lut2_I0_O)        0.045     0.455 f  peripheral/keys/sampler/counters[148].u_counter/reset_release[1]_i_1/O
+                         net (fo=824, routed)         0.320     0.775    peripheral/keys/sampler/counters[235].u_counter/reset_release_reg[1]_0
+    SLICE_X88Y102        FDCE                                         f  peripheral/keys/sampler/counters[235].u_counter/reset_release_reg[0]/CLR
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  management_clk
+  To Clock:  
+
+Max Delay             0 Endpoints
+Min Delay           512 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 peripheral/keys/sampler/phase_reg[1]/C
+                            (rising edge-triggered cell FDPE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/counters[237].u_counter/p0_reg[1]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.439ns  (logic 0.141ns (32.130%)  route 0.298ns (67.870%))
+  Logic Levels:           0  
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.410     0.410    peripheral/keys/sampler/ro_clk
+    SLICE_X61Y95         FDPE                                         r  peripheral/keys/sampler/phase_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X61Y95         FDPE (Prop_fdpe_C_Q)         0.141     0.551 r  peripheral/keys/sampler/phase_reg[1]/Q
+                         net (fo=257, routed)         0.298     0.849    peripheral/keys/sampler/counters[237].u_counter/phase[1]
+    SLICE_X61Y89         FDCE                                         r  peripheral/keys/sampler/counters[237].u_counter/p0_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  management_clk
+  To Clock:  core_clk
+
+Max Delay             0 Endpoints
+Min Delay           134 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 peripheral/keys/sampler/complete_reg/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/cp_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Hold (Min at Fast Process Corner)
+  Data Path Delay:        0.313ns  (logic 0.141ns (45.056%)  route 0.172ns (54.944%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.410     0.410    peripheral/keys/sampler/ro_clk
+    SLICE_X63Y100        FDCE                                         r  peripheral/keys/sampler/complete_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y100        FDCE (Prop_fdce_C_Q)         0.141     0.551 r  peripheral/keys/sampler/complete_reg/Q
+                         net (fo=2, routed)           0.172     0.723    peripheral/keys/sampler/p_0_in__0[0]
+    SLICE_X63Y101        FDCE                                         r  peripheral/keys/sampler/cp_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6154, unset)         0.432     0.432    peripheral/keys/sampler/clk
+    SLICE_X63Y101        FDCE                                         r  peripheral/keys/sampler/cp_reg[0]/C
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  management_clk
+
+Max Delay             0 Endpoints
+Min Delay          5888 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 peripheral/keys/sampler/counters[17].u_counter/ack_reg[0]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            peripheral/keys/sampler/counters[17].a0_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             (none)
+  Path Type:              Hold (Min at Fast Process Corner)
+  Data Path Delay:        0.215ns  (logic 0.164ns (76.242%)  route 0.051ns (23.758%))
+  Logic Levels:           1  (FDCE=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X66Y37         FDCE                         0.000     0.000 r  peripheral/keys/sampler/counters[17].u_counter/ack_reg[0]/C
+    SLICE_X66Y37         FDCE (Prop_fdce_C_Q)         0.164     0.164 r  peripheral/keys/sampler/counters[17].u_counter/ack_reg[0]/Q
+                         net (fo=1, routed)           0.051     0.215    peripheral/keys/sampler/counters[17].ack[0]
+    SLICE_X67Y37         FDCE                                         r  peripheral/keys/sampler/counters[17].a0_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.432     0.432    peripheral/keys/sampler/ro_clk
+    SLICE_X67Y37         FDCE                                         r  peripheral/keys/sampler/counters[17].a0_reg[0]/C
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  core_clk
+  To Clock:  management_clk
+
+Max Delay             2 Endpoints
+Min Delay             3 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 peripheral/clear_reg/C
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/keys/sampler/ro_reset_release_reg[0]/CLR
+                            (recovery check against rising-edge clock management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        6.590ns  (logic 0.580ns (8.801%)  route 6.010ns (91.199%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6154, unset)         0.973     0.973    peripheral/clk
+    SLICE_X56Y114        FDRE                                         r  peripheral/clear_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X56Y114        FDRE (Prop_fdre_C_Q)         0.456     1.429 f  peripheral/clear_reg/Q
+                         net (fo=94, routed)          2.395     3.824    peripheral/keys/sampler/counters[148].u_counter/clear
+    SLICE_X82Y104        LUT2 (Prop_lut2_I1_O)        0.124     3.948 f  peripheral/keys/sampler/counters[148].u_counter/reset_release[1]_i_1/O
+                         net (fo=824, routed)         3.615     7.563    peripheral/keys/sampler/counters[148].u_counter_n_0
+    SLICE_X26Y102        FDCE                                         f  peripheral/keys/sampler/ro_reset_release_reg[0]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.924     0.924    peripheral/keys/sampler/ro_clk
+    SLICE_X26Y102        FDCE                                         r  peripheral/keys/sampler/ro_reset_release_reg[0]/C
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 peripheral/keys/sampler/request_reg/C
+                            (rising edge-triggered cell FDCE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            peripheral/keys/sampler/rq_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             (none)
+  Path Type:              Hold (Min at Fast Process Corner)
+  Data Path Delay:        0.498ns  (logic 0.141ns (28.336%)  route 0.357ns (71.664%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.022ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.432ns
+    Source Clock Delay      (SCD):    0.410ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6154, unset)         0.410     0.410    peripheral/keys/sampler/clk
+    SLICE_X57Y102        FDCE                                         r  peripheral/keys/sampler/request_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X57Y102        FDCE (Prop_fdce_C_Q)         0.141     0.551 r  peripheral/keys/sampler/request_reg/Q
+                         net (fo=2, routed)           0.357     0.908    peripheral/keys/sampler/request_reg_n_0
+    SLICE_X63Y98         FDCE                                         r  peripheral/keys/sampler/rq_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.432     0.432    peripheral/keys/sampler/ro_clk
+    SLICE_X63Y98         FDCE                                         r  peripheral/keys/sampler/rq_reg[0]/C
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  
+
+Max Delay         18688 Endpoints
+Min Delay         18688 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 peripheral/keys/sampler/counters[67].u_counter/count_reg[18]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            peripheral/keys/sampler/counters[67].u_counter/count_reg[17]/CE
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.420ns  (logic 1.160ns (18.068%)  route 5.260ns (81.932%))
+  Logic Levels:           5  (FDCE=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X52Y56         FDCE                         0.000     0.000 r  peripheral/keys/sampler/counters[67].u_counter/count_reg[18]/C
+    SLICE_X52Y56         FDCE (Prop_fdce_C_Q)         0.664     0.664 f  peripheral/keys/sampler/counters[67].u_counter/count_reg[18]/Q
+                         net (fo=3, routed)           1.069     1.733    peripheral/keys/sampler/counters[67].u_counter/counts__0[1358]
+    SLICE_X54Y57         LUT4 (Prop_lut4_I3_O)        0.124     1.857 r  peripheral/keys/sampler/counters[67].u_counter/count[19]_i_7__187/O
+                         net (fo=1, routed)           1.074     2.932    peripheral/keys/sampler/counters[67].u_counter/count[19]_i_7__187_n_0
+    SLICE_X51Y57         LUT5 (Prop_lut5_I4_O)        0.124     3.056 r  peripheral/keys/sampler/counters[67].u_counter/count[19]_i_5__187/O
+                         net (fo=1, routed)           0.654     3.709    peripheral/keys/sampler/counters[67].u_counter/count[19]_i_5__187_n_0
+    SLICE_X51Y55         LUT6 (Prop_lut6_I4_O)        0.124     3.833 f  peripheral/keys/sampler/counters[67].u_counter/count[19]_i_3__187/O
+                         net (fo=2, routed)           0.961     4.795    peripheral/keys/sampler/counters[67].u_counter/count[19]_i_3__187_n_0
+    SLICE_X49Y56         LUT3 (Prop_lut3_I1_O)        0.124     4.919 r  peripheral/keys/sampler/counters[67].u_counter/count[19]_i_1__187/O
+                         net (fo=20, routed)          1.501     6.420    peripheral/keys/sampler/counters[67].u_counter/count[19]_i_1__187_n_0
+    SLICE_X55Y56         FDCE                                         r  peripheral/keys/sampler/counters[67].u_counter/count_reg[17]/CE
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 peripheral/keys/sampler/counters[0].u_counter/p0_reg[0]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            peripheral/keys/sampler/counters[0].u_counter/p1_reg[0]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.197ns  (logic 0.141ns (71.611%)  route 0.056ns (28.389%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X87Y47         FDCE                         0.000     0.000 r  peripheral/keys/sampler/counters[0].u_counter/p0_reg[0]/C
+    SLICE_X87Y47         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  peripheral/keys/sampler/counters[0].u_counter/p0_reg[0]/Q
+                         net (fo=1, routed)           0.056     0.197    peripheral/keys/sampler/counters[0].u_counter/p0[0]
+    SLICE_X87Y47         FDCE                                         r  peripheral/keys/sampler/counters[0].u_counter/p1_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+

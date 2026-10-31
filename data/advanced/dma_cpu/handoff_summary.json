@@ -1,0 +1,55 @@
+{
+  "task": "advanced_dma_cpu",
+  "owner": "TBD",
+  "non_board_complete": true,
+  "board": "NOT_RUN",
+  "vivado_session": "vivado-20261030-010908-1cbde35d",
+  "project": "build/local/dma_cpu/fclk80/cpu_dma.xpr",
+  "top": "cpu_dma_wrapper",
+  "part": "xc7z020clg400-1",
+  "configured_clock_mhz": 80,
+  "sta_period_ns": 12.5,
+  "setup_slack_ns": 0.601,
+  "hold_slack_ns": 0.024,
+  "error_critical_drc": 0,
+  "netlist29_160": 0,
+  "remaining_methodology": "5 LUTAR-1 warnings; no waivers",
+  "artifacts": {
+    "dma_cpu.bit": "0985b762abdf686d830b5340be7058ad77a79ab5fb28d27b24fd7caecab99a2a",
+    "dma_cpu.hwh": "fcf4d0582a4b423c9b21d56a717ef4207f3137f1ce35bce70bd2d7c50ef3f0cc",
+    "dma_svc.bin": "8d2d48fa404daaadb9bd0f717fa0e33c1b89aa1e44b959f194ee08eb1b37238d",
+    "firmware_build.json": "39f54bc5663214018d614150ecb559dc3fd5cfd8db680172f77758435dee5770"
+  },
+  "candidate_directory": "data\\advanced\\dma_cpu\\vivado_20261030_040257\\candidate",
+  "icarus_official_vectors": {
+    "sw": 1089,
+    "hw_supported": 289,
+    "ise": 1089
+  },
+  "icarus_crypto_transactions": 7401,
+  "xsim_unsharded_packets": 7418,
+  "xsim_vendor_dma_cpu_packets": 95,
+  "xsim_units": [
+    "endpoint",
+    "control",
+    "reset"
+  ],
+  "host_tests": 32,
+  "cli_tests": 10,
+  "xsim_full_evidence": "data\\advanced\\dma_cpu\\xsim_20261030_014606_238543",
+  "xsim_full_runtime_s": 10070.437710600003,
+  "native_dma_ddr_model": "32-bit aligned INCR, single outstanding read/write BFM; not PS/DDR silicon or HP upsizer",
+  "failures_preserved": [
+    "vivado_20261030_015408",
+    "vivado_20261030_025251",
+    "physopt_20261030_030502",
+    "xsim_20261030_013758_403545",
+    "xsim_20261030_025656_039012"
+  ],
+  "not_claimed": [
+    "physical board validation",
+    "Fmax",
+    "post-route SDF simulation",
+    "board stability/performance"
+  ]
+}

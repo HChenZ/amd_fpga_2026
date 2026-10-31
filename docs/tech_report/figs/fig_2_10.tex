@@ -1,0 +1,18 @@
+% PYNQ 原始 JSON 的数据重排；不是终端截图或可执行 API 示例
+\begin{tikzpicture}
+\node[draw=softline, rounded corners=2pt, fill=macgray, inner sep=4pt, align=left,
+      font=\ttfamily\scriptsize, text width=146mm] {
+PYNQ release: pynq-svc-v1, simulated=false, selftest\_mask=7\\
+PT/AD capacity: 16 B each\\
+Official capacity KAT: SW / HW / ISE = 289 / 289 / 289 PASS\\
+Bad Tag rejection: SW / HW / ISE = 289 / 289 / 289 PASS\\[3pt]
+KAT \#529, PT16 B / AD0, warmup=5, samples=30 each\\
+encrypt cycles (median): SW=23342, HW=1439, ISE=3995\\
+decrypt cycles (median): SW=24005, HW=1388, ISE=4385\\
+encrypt PS wall ms: SW=5.216, HW=4.479, ISE=5.154\\[3pt]
+Error gate: 9/9 PASS; reset recovery: 7/7\\
+Each mode: 50 encrypt + 50 decrypt requests PASS\\
+Sources: data/pynq/board\_20261028/; notebook\_20261029\_130920/;\\
+error\_gate\_20261029\_134023/ (JSON summaries, not a screenshot)
+};
+\end{tikzpicture}

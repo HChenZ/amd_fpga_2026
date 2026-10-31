@@ -1,6 +1,14 @@
 # Agent 项目入口
 
-项目：RISC-V Lightweight Cryptography SoC with ASCON ISE。复用 CICC1000023 CPU，目标 XC7Z020CLG400-1；P0 是标准 Ascon-AEAD128 软件与 ISE 的真实加速验证，P1 是 PYNQ 展示与通用 Skill，P2 才是 PUF/启动认证。截止日期 2026-11-04。
+## 当前交付安排（2026-10-29 用户最新授权，优先于下文历史计划）
+
+- **2026-11-01 提交并冻结**，取代原 10-27/10-28 冻结与 11-04 提交安排；这是项目方安排，不推断官方赛期。
+- 主线为当前 RV32/PYNQ 短消息 SW/MMIO/ISE；独立 RO-PUF/DNA 原型保留为扩展展示，不混入当前 overlay。
+- 10-30 队友先验证实际交付 Skill；小时级稳定性、完整通用性/跨平台与独立核/大消息实验不阻塞本次提交。
+- 原始失败与未测边界保留；不能因缩减交付范围把未完成任务改为通过。现有代码/证据不删除，不自动 commit/push。
+- 当前顺序见 `tasks/release_plan_20261101.md`，Skill 执行表见 `docs/skill_test_guide_20261030.md`。
+
+项目：RISC-V Lightweight Cryptography SoC with ASCON ISE。复用 CICC1000023 CPU，目标 XC7Z020CLG400-1；主线是标准 Ascon-AEAD128 软件、ISE 与 MMIO 加速及 PYNQ 展示，独立 PUF 原型另列。当前提交/冻结日期 2026-11-01。
 
 ## 必读顺序
 
@@ -37,7 +45,7 @@
 10. 不自行 commit/push、force push、丢弃改动或强制同步。推荐分支和验收流程见开发流程；本轮停在可审查的工作区改动。
 11. 完成任务必须更新 `project_log/actual_progress.md`，同步任务状态；失败、返工与踩坑记入 `project_log/lessons_learned.md`，有效活动记入 development_log。
 12. 比赛新增普通目录/文件名用英文小写、数字、下划线或连字符，扩展名可用点；用户指定的 README.md、AGENTS.md 和 Git 配置文件名是例外。保留已有工程名称。
-13. P0/P1 稳定且 10-21 门禁通过才评估 PUF；10-27 功能冻结、10-28 code freeze，11-04 只提交。
+13. 当前按上方 2026-10-29 授权执行：11-01 提交并冻结；独立 PUF 展示不替换已验证 PYNQ 主线；新增实验不阻塞已定义交付。
 
 ## 交付最小格式
 

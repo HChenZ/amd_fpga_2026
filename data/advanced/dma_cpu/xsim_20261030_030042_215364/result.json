@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "functional_pass": true,
+  "stages": [
+    {
+      "stage": "compile",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "call",
+        "compile.bat"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_s": 2.7020073999956367
+    },
+    {
+      "stage": "elaborate",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "call",
+        "elaborate.bat"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_s": 16.466754000000947
+    },
+    {
+      "stage": "simulate",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "call",
+        "simulate.bat"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_s": 298.61668780000036
+    }
+  ],
+  "sources_unchanged": true,
+  "cases": 95,
+  "memory_model": "vendor_axi_bram_ctrl_and_blk_mem_gen",
+  "dma_model": "actual_axi_dma_7_1_config_copied_from_bd",
+  "ps_ddr_model": "bfm_32bit_incr_single_outstanding",
+  "board": "NOT_RUN",
+  "windows_plusarg_quoting": false
+}

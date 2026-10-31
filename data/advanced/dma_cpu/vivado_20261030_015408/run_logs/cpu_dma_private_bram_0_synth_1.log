@@ -1,0 +1,256 @@
+
+*** Running vivado
+    with args -log cpu_dma_private_bram_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source cpu_dma_private_bram_0.tcl
+
+
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Fri Oct 30 01:30:21 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source cpu_dma_private_bram_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:09 . Memory (MB): peak = 538.766 ; gain = 221.043
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/ruanjian/2025.2/Vivado/data/ip'.
+Command: synth_design -top cpu_dma_private_bram_0 -part xc7z020clg400-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 48712
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1326.297 ; gain = 539.148
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'cpu_dma_private_bram_0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/bd/cpu_dma/ip/cpu_dma_private_bram_0/synth/cpu_dma_private_bram_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'dma_private_bram' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq_dma_cpu/dma_private_bram.v:4]
+INFO: [Synth 8-6157] synthesizing module 'axi_bram_ctrl_0' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.runs/cpu_dma_private_bram_0_synth_1/.Xil/Vivado-46472-DESKTOP-5H4M0DR/realtime/axi_bram_ctrl_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'axi_bram_ctrl_0' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.runs/cpu_dma_private_bram_0_synth_1/.Xil/Vivado-46472-DESKTOP-5H4M0DR/realtime/axi_bram_ctrl_0_stub.v:6]
+WARNING: [Synth 8-689] width (32) of port connection 's_axi_awaddr' does not match port width (17) of module 'axi_bram_ctrl_0' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq_dma_cpu/dma_private_bram.v:51]
+WARNING: [Synth 8-689] width (32) of port connection 's_axi_araddr' does not match port width (17) of module 'axi_bram_ctrl_0' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq_dma_cpu/dma_private_bram.v:56]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.runs/cpu_dma_private_bram_0_synth_1/.Xil/Vivado-46472-DESKTOP-5H4M0DR/realtime/blk_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.runs/cpu_dma_private_bram_0_synth_1/.Xil/Vivado-46472-DESKTOP-5H4M0DR/realtime/blk_mem_gen_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'rsta_busy' of module 'blk_mem_gen_0' is unconnected for instance 'memory' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq_dma_cpu/dma_private_bram.v:63]
+WARNING: [Synth 8-7023] instance 'memory' of module 'blk_mem_gen_0' has 8 connections declared, but only 7 given [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq_dma_cpu/dma_private_bram.v:63]
+INFO: [Synth 8-6155] done synthesizing module 'dma_private_bram' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq_dma_cpu/dma_private_bram.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'cpu_dma_private_bram_0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/bd/cpu_dma/ip/cpu_dma_private_bram_0/synth/cpu_dma_private_bram_0.v:53]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1449.746 ; gain = 662.598
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1449.746 ; gain = 662.598
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1449.746 ; gain = 662.598
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1449.746 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0/blk_mem_gen_0_in_context.xdc] for cell 'inst/memory'
+Finished Parsing XDC File [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0/blk_mem_gen_0_in_context.xdc] for cell 'inst/memory'
+Parsing XDC File [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/ip/axi_bram_ctrl_0/axi_bram_ctrl_0/axi_bram_ctrl_0_in_context.xdc] for cell 'inst/controller'
+Finished Parsing XDC File [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/ip/axi_bram_ctrl_0/axi_bram_ctrl_0/axi_bram_ctrl_0_in_context.xdc] for cell 'inst/controller'
+Parsing XDC File [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/bd/cpu_dma/ip/cpu_dma_private_bram_0/cpu_dma_private_bram_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/bd/cpu_dma/ip/cpu_dma_private_bram_0/cpu_dma_private_bram_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.runs/cpu_dma_private_bram_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.runs/cpu_dma_private_bram_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1455.230 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 1455.230 ; gain = 0.000
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1455.230 ; gain = 668.082
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1455.230 ; gain = 668.082
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1455.230 ; gain = 668.082
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1455.230 ; gain = 668.082
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7129] Port s_axi_awaddr[31] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[30] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[29] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[28] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[27] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[26] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[25] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[24] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[23] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[22] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[21] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[20] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[19] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[18] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awaddr[17] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[31] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[30] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[29] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[28] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[27] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[26] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[25] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[24] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[23] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[22] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[21] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[20] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[19] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[18] in module dma_private_bram is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[17] in module dma_private_bram is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1455.629 ; gain = 668.480
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:36 . Memory (MB): peak = 1629.191 ; gain = 842.043
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:36 . Memory (MB): peak = 1629.191 ; gain = 842.043
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1638.871 ; gain = 851.723
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1888.125 ; gain = 1100.977
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1888.125 ; gain = 1100.977
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1888.125 ; gain = 1100.977
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1888.125 ; gain = 1100.977
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1888.125 ; gain = 1100.977
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1888.125 ; gain = 1100.977
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+----------------+----------+
+|      |BlackBox name   |Instances |
++------+----------------+----------+
+|1     |axi_bram_ctrl_0 |         1|
+|2     |blk_mem_gen_0   |         1|
++------+----------------+----------+
+
+Report Cell Usage: 
++------+--------------+------+
+|      |Cell          |Count |
++------+--------------+------+
+|1     |axi_bram_ctrl |     1|
+|2     |blk_mem_gen   |     1|
++------+--------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1888.125 ; gain = 1100.977
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:38 . Memory (MB): peak = 1888.125 ; gain = 1095.492
+Synthesis Optimization Complete : Time (s): cpu = 00:00:39 ; elapsed = 00:00:42 . Memory (MB): peak = 1888.125 ; gain = 1100.977
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1888.125 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1890.098 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 1f8f8552
+INFO: [Common 17-83] Releasing license: Synthesis
+54 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:51 . Memory (MB): peak = 1894.070 ; gain = 1343.418
+INFO: [Coretcl 2-1174] Renamed 3 cell refs.
+INFO: [Common 17-1381] The checkpoint 'C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.runs/cpu_dma_private_bram_0_synth_1/cpu_dma_private_bram_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file cpu_dma_private_bram_0_utilization_synth.rpt -pb cpu_dma_private_bram_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Oct 30 01:31:25 2026...

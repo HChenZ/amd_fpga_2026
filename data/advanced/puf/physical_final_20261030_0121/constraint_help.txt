@@ -1,0 +1,458 @@
+set_max_delay
+
+Description: 
+Specify maximum delay for timing paths
+
+Syntax: 
+set_max_delay  [-rise] [-fall] [-reset_path] [-from <args>] [-rise_from <args>]
+               [-fall_from <args>] [-to <args>] [-rise_to <args>]
+               [-fall_to <args>] [-through <args>] [-rise_through <args>]
+               [-fall_through <args>] [-datapath_only] [-quiet] [-verbose]
+               <delay>
+
+Usage: 
+  Name              Description
+  -----------------------------
+  [-rise]           Delay value applies to rising path delays
+  [-fall]           Delay value applies to falling path delays
+  [-reset_path]     Reset this path before setting max delay
+  [-from]           List of path startpoints or clocks
+  [-rise_from]      Apply to paths rising from the list of startpoints or 
+                    clocks
+  [-fall_from]      Apply to paths falling from the list of startpoints or 
+                    clocks
+  [-to]             List of path endpoints or clocks
+  [-rise_to]        Apply to paths with rise transition at the list of 
+                    endpoints or clocks
+  [-fall_to]        Apply to paths with fall transition at the list of 
+                    endpoints or clocks
+  [-through]        List of through pins, cells or nets
+  [-rise_through]   Apply to paths rising through pins, cells or nets
+  [-fall_through]   Apply to paths falling through pins, cells or nets
+  [-datapath_only]  Remove clock skew and jitter from calculation
+  [-quiet]          Ignore command errors
+  [-verbose]        Suspend message limits during command execution
+  <delay>           Delay value
+
+Categories: 
+SDC, XDC
+
+Description:
+
+  Note: The XDC > Timing Constraints language templates and the Timing
+  Constraints Wizard in the Vivado IDE offer timing diagrams and additional
+  details around defining specific timing constraints. You can refer to these
+  sources for additional information.
+
+  Sets the maximum delay allowed on a timing path, specified in nanoseconds
+  (ns). The specified delay value is assigned to both the rising and falling
+  edges of the defined timing paths unless the -rise or -fall arguments are
+  specified.
+
+  The maximum rising and falling delay cannot be less than the minimum rising
+  and falling delay on the same path, as defined by the set_min_delay
+  command. If this happens, the first assigned constraint is removed from the
+  timing path as a conflict, and the delay value specified by the removed
+  constraint is set to 0.
+
+  The delay value must be assigned to a timing path as defined by at least
+  one -from, -through, or -to argument. A general path delay such as -to
+  endpoint will be over written by a more specific path definition such as
+  -from/-to, or -from/-through/-to path definition.
+
+  Note: When assigned to a primary input or output port, any system-level
+  delay consumes a portion of the max delay on the timing path that includes
+  the input or output port. That is, the delay specified by set_input_delay
+  or set_output_delay is considered part of the maximum delay.
+
+  This command returns nothing if successful, or returns an error if it fails.
+
+Arguments:
+
+  -rise - (Optional) Apply the delay value to the rising edge of the timing
+  path.
+
+  -fall - (Optional) Apply the delay value to the falling edge of the timing
+  path.
+
+  Note: If neither -rise nor -fall is specified, the delay is applied as both
+  rising and falling edge path delay.
+
+  -reset_path - (Optional) Indicates that existing rising or falling edge false path
+  or max delays should be cleared before applying the new specified path delay. If
+  only -to is specified all paths leading to the specified endpoints are
+  cleared. If only -from is specified, all paths leading from the specified
+  start points are cleared. When -from/-to or -from/-through/-to are
+  specified, the defined paths are reset.
+
+  -from <value> - (Optional) A list of path start points or clocks. A valid
+  startpoint is a primary input or inout port, or the clock pin of a
+  sequential element. If a clock is specified then all the primary input and
+  inout ports related to that clock as well as all the clock pin of the
+  registers connected to that clock are used as startpoints.
+
+  -rise_from <element_name> - (Optional) The max delay applied to paths
+  rising from the list of origins or clocks.
+
+  -fall_from <element_name> - (Optional) The max delay applied to paths
+  falling from the list of origins or clocks.
+
+  -to <element_name> - (Optional) A list of path endpoints or clocks. A valid
+  endpoint is a primary output or inout port, or the data pin of a sequential
+  element. If a clock is specified then all the primary output and inout
+  ports related to that clock as well as all the data pins of the registers
+  connected to that clock are used as endpoints.
+
+  -rise_to <element_name> - (Optional) The max delay applied to paths with
+  rise transition at the list of endpoints or clocks.
+
+  -fall_to <element_name> - (Optional) The max delay applied to paths with
+  fall transition at the list of endpoints or clocks.
+
+  -through <element_name> - (Optional) A list of through pins, cells, or nets.
+
+  -rise_through <element_name> - (Optional) The max delay applied to paths
+  rising through pins, cells or nets.
+
+  -fall_through <element_name> - (Optional) The max delay applied to paths
+  falling through pins, cells or nets.
+
+  -datapath_only - (Optional) Exclude clock skew and jitter from the delay
+  calculation for the specified path. This option is used to constrain the
+  delay between sequential elements that have different clocks, where you do
+  not want to consider clock skew and jitter in the delay calculation. Only
+  the Clock-to-Q delay of the first flop, the wire delay between the flops,
+  and the setup time of the second flop should be considered.
+
+  Note: The specification of the data path for -datapath_only must use the
+  -from option to define the startpoint for the path. The hold check for the
+  specified path is automatically defined as a false path when using the
+  -datapath_only option.
+
+  -quiet - (Optional) Execute the command quietly, returning no messages from
+  the command. The command also returns TCL_OK regardless of any errors
+  encountered during execution.
+
+  Note: Any errors encountered on the command-line, while launching the
+  command, will be returned. Only errors occurring inside the command will be
+  trapped.
+
+  -verbose - (Optional) Temporarily override any message limits and return
+  all messages from this command.
+
+  Note: Message limits can be defined with the set_msg_config command.
+
+  <delay> - (Required) Specifies the maximum delay value specified in
+  nanoseconds. The <delay> is specified in nanoseconds (ns) as a positive or
+  negative floating point number, with a default value of 0.
+
+Examples:
+
+  The following example defines a maximum delay of 60 ns between all the
+  input and output ports (feedthrough paths):
+
+    set_max_delay 60 -from [all_inputs] -to [all_outputs] 
+    
+
+  The following example clears the existing max delay and specifies a new >
+  maximum delay for paths to endpoints clocked by the specified clock:
+
+    set_max_delay -reset_path 50 -to [get_clocks spi_clk] 
+    
+
+  The set_max_delay command is often used with -datapath_only to constrain
+  asynchronous clock domains crossing when a simple synchronizer is used on
+  the destination clock domain. In the following example, two flops (FF1 and
+  FF2) are clocked by different clocks, and FF1/Q connects directly to FF2/D
+  through net1. To limit the delay on this connection to 4.0 ns use the
+  following constraints:
+
+    set_max_delay -from FF1/C -to FF2/D -datapath_only 4.0 
+    
+
+See Also:
+
+   *  get_clocks
+   *  get_nets
+   *  get_ports
+   *  report_timing
+   *  set_input_delay
+   *  set_min_delay
+   *  set_output_delay
+   *  set_units
+
+set_bus_skew
+
+Description: 
+Define bus skew
+
+Syntax: 
+set_bus_skew  [-from <args>] [-rise_from <args>] [-fall_from <args>]
+              [-to <args>] [-rise_to <args>] [-fall_to <args>]
+              [-through <args>] [-rise_through <args>] [-fall_through <args>]
+              [-quiet] [-verbose] <value>
+
+Usage: 
+  Name             Description
+  ----------------------------
+  [-from]          List of path startpoints
+  [-rise_from]     Apply to paths rising from the list of startpoints
+  [-fall_from]     Apply to paths falling from the list of startpoints
+  [-to]            List of path endpoints
+  [-rise_to]       Apply to paths with rise transition at the list of 
+                   endpoints
+  [-fall_to]       Apply to paths with fall transition at the list of 
+                   endpoints
+  [-through]       List of through pins, cells or nets
+  [-rise_through]  Apply to paths rising through pins, cells or nets
+  [-fall_through]  Apply to paths falling through pins, cells or nets
+  [-quiet]         Ignore command errors
+  [-verbose]       Suspend message limits during command execution
+  <value>          Constraint value
+
+Categories: 
+XDC
+
+Description:
+
+  Set the bus skew requirement on bus signals that cross clock domains. The
+  bus skew constraint defines the maximum skew spread between the fastest and
+  slowest signals of the bus, and does not consider the overall datapath
+  delay. The Vivado router will try to satisfy the set_bus_skew constraints.
+  Example uses of the bus skew constraint include clock domain crossing for
+  gray-coded pointers, MUX-controlled and MUX-data holding CDC buses.
+
+  Note: Bus skew constraints are not overridden by clock groups, max delay,
+  or false path, because set_bus_skew is a constraint between the signals of
+  a bus, rather than on a particular path.
+
+  The set_bus_skew constraint can be combined with the set_max_delay
+  constraint for good results. The set_bus_skew constraint does not care
+  about the absolute datapath delay, but only about the relative arrival
+  times of data at the destination, taking into account source and
+  destination clock skew. You can help set_bus_skew by also using
+  set_max_delay -datapath_only <SRC_CLK>. This constraint helps the Vivado
+  placer to ensure that the source and destination registers are not placed
+  too far apart, so that the router can more easily satisfy the set_bus_skew
+  constraint. Refer to the Vivado Design Suite User Guide: Using Constraints
+  (UG903) for more information.
+
+  In order to not over constrain the skew requirement, the bus skew value
+  should be approximately the smallest period of the two clock domains. This
+  will prevent multiple data captures by the destination clock domain.
+
+  The set_bus_skew command requires a timing path defined by both -from and
+  -to, or some form such as -fall_from or -rise_to. You can optionally
+  specify -through values to further refine the path. You should specify
+  explicit signal paths with -from/-to instead of specifying entire clock
+  domains:
+
+   *  set_bus_skew -from [get_pins <hierarchy/C>] -to [get_pins
+      <hierarchy/D>] <value>
+
+  Note: Do not set bus skew constraints between timed synchronous paths.
+
+  You can use the report_bus_skew command to report the calculated skew on
+  paths in the current design.
+
+  The set_bus_skew command returns nothing if successful, or an error if it
+  fails.
+
+Arguments:
+
+  -from <args> - (Optional) The starting points of the timing paths to set
+  bus skew on. Pins or cells can be specified as timing path startpoints.
+
+  Note: Although the various -from, -to, and -through arguments are listed as
+  optional, a path must be defined using a form of the -from and -to
+  arguments.
+
+  -rise_from <args> - (Optional) Set bus skew on the timing paths with rising
+  edge transitions at the specified startpoints.
+
+  -fall_from <args> - (Optional) Set bus skew on the timing paths with
+  falling edge transitions at the specified startpoints.
+
+  -to <args> - (Optional) The endpoints, or destination objects of timing
+  paths to define the bus skew on. Pins or cells can be specified as
+  endpoints.
+
+  -rise_to <args> - (Optional) Set bus skew on the timing paths with rising
+  edge transitions at the specified endpoints.
+
+  -fall_to <args> - (Optional) Set bus skew on the timing paths with falling
+  edge transitions at the specified endpoints.
+
+  -through <args> - (Optional) Set bus skew only on paths through the
+  specified pins, cell instance, or nets. You can specify individual -through
+  (or -rise_through and -fall_through) points in sequence to define a
+  specific path through the design. The order of the through points is
+  important to define a path. You can also specify through points with
+  multiple objects, in which case the timing path can pass through any of the
+  specified through objects.
+
+  -rise_through <args> - (Optional) Set bus skew on the timing paths with
+  rising edge transitions at the specified through points.
+
+  -fall_through <args> - (Optional) Set bus skew on the timing paths with
+  falling edge transitions at the specified through points.
+
+  -quiet - (Optional) Execute the command quietly, returning no messages from
+  the command. The command also returns TCL_OK regardless of any errors
+  encountered during execution.
+
+  Note: Any errors encountered on the command-line, while launching the
+  command, will be returned. Only errors occurring inside the command will be
+  trapped.
+
+  -verbose - (Optional) Temporarily override any message limits and return
+  all messages from this command.
+
+  Note: Message limits can be defined with the set_msg_config command.
+
+  <value> - Specifies the value of the acceptable bus skew in nanoseconds.
+
+Examples:
+
+  The following example defines the bus skew between the gray-coded Read and
+  Write pointers:
+
+    set_bus_skew -from [get_pins gray_coded_read_ptr[*]/C] \  
+       -to [get_pins gray_coded_write_ptr[*]/D] 2.5  
+    
+
+See Also:
+
+   *  report_bus_skew
+   *  report_cdc
+   *  report_datasheet
+   *  set_data_check
+   *  set_max_delay
+
+set_false_path
+
+Description: 
+Define false path
+
+Syntax: 
+set_false_path  [-setup] [-hold] [-rise] [-fall] [-reset_path] [-from <args>]
+                [-rise_from <args>] [-fall_from <args>] [-to <args>]
+                [-rise_to <args>] [-fall_to <args>] [-through <args>]
+                [-rise_through <args>] [-fall_through <args>] [-quiet]
+                [-verbose]
+
+Usage: 
+  Name             Description
+  ----------------------------
+  [-setup]         Eliminate setup timing analysis for paths
+  [-hold]          Eliminate hold timing analysis for paths
+  [-rise]          Eliminate only rising delays for the defined paths
+  [-fall]          Eliminate only falling delays for the defined paths
+  [-reset_path]    Reset this path before setting false path
+  [-from]          List of path startpoints or clocks
+  [-rise_from]     Apply to paths rising from the list of startpoints or 
+                   clocks
+  [-fall_from]     Apply to paths falling from the list of startpoints or 
+                   clocks
+  [-to]            List of path endpoints or clocks
+  [-rise_to]       Apply to paths with rise transition at the list of 
+                   endpoints or clocks
+  [-fall_to]       Apply to paths with fall transition at the list of 
+                   endpoints or clocks
+  [-through]       List of through pins, cells or nets
+  [-rise_through]  Apply to paths rising through pins, cells or nets
+  [-fall_through]  Apply to paths falling through pins, cells or nets
+  [-quiet]         Ignore command errors
+  [-verbose]       Suspend message limits during command execution
+
+Categories: 
+SDC, XDC
+
+Description:
+
+  Note: The XDC > Timing Constraints language templates and the Timing
+  Constraints Wizard in the Vivado IDE offer timing diagrams and additional
+  details around defining specific timing constraints. You can refer to these
+  sources for additional information.
+
+  Sets false timing paths in the design that are ignored during timing
+  analysis.
+
+  Note: This command operates silently and does not return direct feedback of
+  its operation
+
+Arguments:
+
+  -setup - (Optional) Eliminate setup timing analysis for specified timing
+  paths.
+
+  -hold - (Optional) Eliminate hold timing analysis for specified timing paths.
+
+  -rise - (Optional) Eliminate rising delays for the specified timing paths.
+
+  -fall - (Optional) Eliminate falling delays for the specified timing paths.
+
+  -reset_path - (Optional) Reset the timing path before setting false path.
+  This clears all exception-based timing constraints from the defined timing
+  path.
+
+  -from <element_name> - (Optional) List of path origins or clocks. A valid
+  startpoint is a clock object, the clock pin of sequential logic, or an
+  input or bidirectional port.
+
+  -rise_from <element_name> - (Optional) Apply to paths rising from the list
+  of origins or clocks
+
+  -fall_from <element_name> - (Optional) Apply to paths falling from the list
+  of origins or clocks
+
+  -to <element_name> - (Optional) List of path endpoints or clocks
+
+  -rise_to <element_name> - (Optional) Apply to paths with rise transition at
+  the list of endpoints or clocks
+
+  -fall_to <element_name> - (Optional) Apply to paths with fall transition at
+  the list of endpoints or clocks
+
+  -through <element_name> - (Optional) List of through pins, cells or nets
+
+  -rise_through <element_name> - (Optional) Apply to paths rising through
+  pins, cells or nets
+
+  -fall_through <element_name> - (Optional) Apply to paths falling through
+  pins, cells or nets
+
+  -quiet - (Optional) Execute the command quietly, returning no messages from
+  the command. The command also returns TCL_OK regardless of any errors
+  encountered during execution.
+
+  Note: Any errors encountered on the command-line, while launching the
+  command, will be returned. Only errors occurring inside the command will be
+  trapped.
+
+  -verbose - (Optional) Temporarily override any message limits and return
+  all messages from this command.
+
+  Note: Message limits can be defined with the set_msg_config command.
+
+Examples:
+
+  The following example eliminates the setup timing for paths from the bftClk:
+
+    set_false_path -setup -from bftClk 
+    
+
+  The following example excludes paths between the two clocks from timing
+  analysis:
+
+    set_false_path -from [get_clocks GT0_RXUSRCLK2_OUT] \  
+       -to [get_clocks DRPCLK_OUT] 
+    
+
+See Also:
+
+   *  get_clocks
+   *  get_pins
+   *  get_ports
+   *  report_timing
+

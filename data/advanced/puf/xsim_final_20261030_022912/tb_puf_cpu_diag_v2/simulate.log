@@ -1,0 +1,6 @@
+Time resolution is 1 ps
+PUF_V2_OFFLINE_SELFTEST
+
+PUF_V2_TEST_PASS
+TEST_PASS tb_puf_cpu_v2 diagnostic=1 commands=14 cycles=4513
+$finish called at time : 45205 ns : File "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/keys_v2/tb_puf_cpu_v2.sv" Line 68
