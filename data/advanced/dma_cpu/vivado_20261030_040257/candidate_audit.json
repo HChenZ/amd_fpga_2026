@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "clock_mhz_configured": 80.0,
+  "clock_mhz_actual_ip": 80.0,
+  "sta_period_ns": 12.5,
+  "dma": {
+    "c_include_sg": "0",
+    "c_micro_dma": "0",
+    "c_include_mm2s": "1",
+    "c_include_s2mm": "1",
+    "c_m_axi_mm2s_data_width": "32",
+    "c_m_axi_s2mm_data_width": "32",
+    "c_m_axis_mm2s_tdata_width": "32",
+    "c_s_axis_s2mm_tdata_width": "32",
+    "c_sg_length_width": "14"
+  },
+  "ps_ranges": {
+    "engine": {
+      "ADDRESSBLOCK": "reg0",
+      "BASENAME": "C_BASEADDR",
+      "BASEVALUE": "0x40000000",
+      "HIGHNAME": "C_HIGHADDR",
+      "HIGHVALUE": "0x40000FFF",
+      "INSTANCE": "engine",
+      "IS_DATA": "TRUE",
+      "IS_INSTRUCTION": "TRUE",
+      "MASTERBUSINTERFACE": "M_AXI_GP0",
+      "MEMTYPE": "REGISTER",
+      "SLAVEBUSINTERFACE": "S_AXI"
+    },
+    "dma": {
+      "ADDRESSBLOCK": "Reg",
+      "BASENAME": "C_BASEADDR",
+      "BASEVALUE": "0x40400000",
+      "HIGHNAME": "C_HIGHADDR",
+      "HIGHVALUE": "0x4040FFFF",
+      "INSTANCE": "dma",
+      "IS_DATA": "TRUE",
+      "IS_INSTRUCTION": "TRUE",
+      "MASTERBUSINTERFACE": "M_AXI_GP0",
+      "MEMTYPE": "REGISTER",
+      "SLAVEBUSINTERFACE": "S_AXI_LITE"
+    }
+  },
+  "cpu_ranges": {
+    "private_bram": {
+      "ADDRESSBLOCK": "reg0",
+      "BASENAME": "C_BASEADDR",
+      "BASEVALUE": "0x10000000",
+      "HIGHNAME": "C_HIGHADDR",
+      "HIGHVALUE": "0x1001FFFF",
+      "INSTANCE": "private_bram",
+      "IS_DATA": "TRUE",
+      "IS_INSTRUCTION": "TRUE",
+      "MASTERBUSINTERFACE": "M_AXI",
+      "MEMTYPE": "REGISTER",
+      "SLAVEBUSINTERFACE": "S_AXI"
+    }
+  },
+  "external_ports": [
+    "DDR_0_addr",
+    "DDR_0_ba",
+    "DDR_0_cas_n",
+    "DDR_0_ck_n",
+    "DDR_0_ck_p",
+    "DDR_0_cke",
+    "DDR_0_cs_n",
+    "DDR_0_dm",
+    "DDR_0_dq",
+    "DDR_0_dqs_n",
+    "DDR_0_dqs_p",
+    "DDR_0_odt",
+    "DDR_0_ras_n",
+    "DDR_0_reset_n",
+    "DDR_0_we_n",
+    "FIXED_IO_0_ddr_vrn",
+    "FIXED_IO_0_ddr_vrp",
+    "FIXED_IO_0_mio",
+    "FIXED_IO_0_ps_clk",
+    "FIXED_IO_0_ps_porb",
+    "FIXED_IO_0_ps_srstb"
+  ],
+  "board": "NOT_RUN",
+  "artifacts": {
+    "dma_cpu.bit": "0985b762abdf686d830b5340be7058ad77a79ab5fb28d27b24fd7caecab99a2a",
+    "dma_cpu.hwh": "fcf4d0582a4b423c9b21d56a717ef4207f3137f1ce35bce70bd2d7c50ef3f0cc",
+    "dma_svc.bin": "8d2d48fa404daaadb9bd0f717fa0e33c1b89aa1e44b959f194ee08eb1b37238d",
+    "firmware_build.json": "39f54bc5663214018d614150ecb559dc3fd5cfd8db680172f77758435dee5770"
+  }
+}

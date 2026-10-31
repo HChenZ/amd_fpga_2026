@@ -1,0 +1,5 @@
+work/
+.vivado-ai/
+.Xil/
+vivado*.jou
+vivado*.log

@@ -3,6 +3,10 @@
 - 2026-10-31：最新 L3 session `l3_20261031_063709` 四段与汇总 PASS。DMA 全部
   正常长度/奇长度/连续/超限/golden/recover 检查通过；59 PASS、1 N/A、0 FAIL。
   S01–S03 收口，S04/S05 仍待非 Ascon report 示例及证据/独立复现。
+## 2026-10-31 — 协作记录入库与未跟踪文件清理（owner TBD）
+
+- 核实 llm_collab 的统计（21/13/76/2635），省略 1 条与工程无关的提示后在本地 commit `cc39c9d`；报告 2.5.4 同步修改并重新构建，结果 PASS。
+- 新增 Ross 使用心得文档；按引用扫描删除 95 个未跟踪的冗余路径（191.7 MB），误删的 puf_min OOC 证据已从 work 目录重新收集。
 
 ## 2026-10-31 — Skill L3 用 AXI DMA 回环 overlay（owner TBD）
 

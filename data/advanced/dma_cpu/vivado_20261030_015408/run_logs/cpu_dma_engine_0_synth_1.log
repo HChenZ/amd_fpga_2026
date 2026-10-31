@@ -1,0 +1,905 @@
+
+*** Running vivado
+    with args -log cpu_dma_engine_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source cpu_dma_engine_0.tcl
+
+
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Fri Oct 30 01:24:30 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source cpu_dma_engine_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:10 . Memory (MB): peak = 539.582 ; gain = 221.273
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/ruanjian/2025.2/Vivado/data/ip'.
+Command: synth_design -top cpu_dma_engine_0 -part xc7z020clg400-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 34864
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1325.543 ; gain = 538.496
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-11065] parameter 'PC_PLUS_4' becomes localparam in 'if_stage' with formal parameter declaration list [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/if_stage.v:30]
+WARNING: [Synth 8-11065] parameter 'BRANCH' becomes localparam in 'if_stage' with formal parameter declaration list [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/if_stage.v:31]
+WARNING: [Synth 8-11065] parameter 'TRAP' becomes localparam in 'if_stage' with formal parameter declaration list [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/if_stage.v:32]
+WARNING: [Synth 8-11065] parameter 'MSET' becomes localparam in 'if_stage' with formal parameter declaration list [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/if_stage.v:33]
+INFO: [Synth 8-11241] undeclared symbol 'rd_ready', assumed default net type 'wire' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/soc_top_dma.v:385]
+INFO: [Synth 8-6157] synthesizing module 'cpu_dma_engine_0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/bd/cpu_dma/ip/cpu_dma_engine_0/synth/cpu_dma_engine_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'pynq_dma_cpu' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq_dma_cpu.v:4]
+	Parameter XLEN bound to: 32 - type: integer 
+	Parameter RAM_DEPTH bound to: 32768 - type: integer 
+	Parameter INDEX_WIDTH bound to: 6 - type: integer 
+	Parameter RAM_INIT_FILE bound to: (null) - type: string 
+	Parameter UART_CLK_FREQ bound to: 100000000 - type: integer 
+	Parameter UART_BPS bound to: 115200 - type: integer 
+	Parameter UART_BAUD_CNT_MAX bound to: 868 - type: integer 
+	Parameter UART_RX_FIFO_DEPTH bound to: 16 - type: integer 
+	Parameter UART_TX_FIFO_DEPTH bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'dma_control' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/dma_control.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'dma_control' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/dma_control.v:3]
+INFO: [Synth 8-6157] synthesizing module 'dma_cpu_reset_sync' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq_dma_cpu.v:205]
+INFO: [Synth 8-6155] done synthesizing module 'dma_cpu_reset_sync' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq_dma_cpu.v:205]
+INFO: [Synth 8-6157] synthesizing module 'dma_cpu_endpoint' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/dma_cpu_endpoint.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'dma_cpu_endpoint' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/dma_cpu_endpoint.v:3]
+INFO: [Synth 8-6157] synthesizing module 'soc_top_dma' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/soc_top_dma.v:3]
+	Parameter XLEN bound to: 32 - type: integer 
+	Parameter RAM_DEPTH bound to: 32768 - type: integer 
+	Parameter INDEX_WIDTH bound to: 6 - type: integer 
+	Parameter UART_CLK_FREQ bound to: 100000000 - type: integer 
+	Parameter UART_BPS bound to: 115200 - type: integer 
+	Parameter UART_BAUD_CNT_MAX bound to: 868 - type: integer 
+	Parameter UART_RX_FIFO_DEPTH bound to: 16 - type: integer 
+	Parameter UART_TX_FIFO_DEPTH bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cpu_core' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpu_core.v:3]
+	Parameter XLEN bound to: 32 - type: integer 
+	Parameter INDEX_WIDTH bound to: 6 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'predictor' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/branch_predictor.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+	Parameter INDEX_WIDTH bound to: 6 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'predictor' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/branch_predictor.v:2]
+INFO: [Synth 8-6157] synthesizing module 'icache' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/icache.v:3]
+	Parameter XLEN bound to: 32 - type: integer 
+	Parameter ICACHE_SET_SIZE bound to: 64 - type: integer 
+	Parameter ICACHE_LINE_WORDS bound to: 4 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/icache.v:194]
+INFO: [Synth 8-6155] done synthesizing module 'icache' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/icache.v:3]
+INFO: [Synth 8-6157] synthesizing module 'dcache' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/dcache.v:3]
+	Parameter XLEN bound to: 32 - type: integer 
+	Parameter DCACHE_SET_SIZE bound to: 64 - type: integer 
+	Parameter DCACHE_LINE_WORDS bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'dcache' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/dcache.v:3]
+INFO: [Synth 8-6157] synthesizing module 'if_stage' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/if_stage.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'if_stage' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/if_stage.v:2]
+INFO: [Synth 8-6157] synthesizing module 'if_id' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/if_id.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'if_id' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/if_id.v:2]
+INFO: [Synth 8-6157] synthesizing module 'id_stage' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/id_stage.v:3]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/id_stage.v:415]
+INFO: [Synth 8-226] default block is never used [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/id_stage.v:504]
+INFO: [Synth 8-226] default block is never used [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/id_stage.v:620]
+INFO: [Synth 8-6155] done synthesizing module 'id_stage' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/id_stage.v:3]
+INFO: [Synth 8-6157] synthesizing module 'id_ex' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/id_ex.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'id_ex' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/id_ex.v:2]
+INFO: [Synth 8-6157] synthesizing module 'bypass' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/bypass.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'bypass' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/bypass.v:2]
+INFO: [Synth 8-6157] synthesizing module 'regfile' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/regfile.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'regfile' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/regfile.v:2]
+INFO: [Synth 8-6157] synthesizing module 'ex_stage' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ex_stage.v:4]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'multiplier' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/mult.v:6]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'multiplier' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/mult.v:6]
+INFO: [Synth 8-6157] synthesizing module 'divider' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/divider.v:4]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'divider' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/divider.v:4]
+INFO: [Synth 8-6157] synthesizing module 'ascon_ise' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_ise.v:17]
+INFO: [Synth 8-6157] synthesizing module 'p12' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_permutation.v:8]
+INFO: [Synth 8-6157] synthesizing module 'round' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:21]
+INFO: [Synth 8-6157] synthesizing module 'ror' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+	Parameter n bound to: 19 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ror' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ror__parameterized0' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+	Parameter n bound to: 28 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ror__parameterized0' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ror__parameterized1' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+	Parameter n bound to: 61 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ror__parameterized1' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ror__parameterized2' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+	Parameter n bound to: 39 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ror__parameterized2' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ror__parameterized3' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+	Parameter n bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ror__parameterized3' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ror__parameterized4' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+	Parameter n bound to: 6 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ror__parameterized4' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ror__parameterized5' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+	Parameter n bound to: 10 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ror__parameterized5' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ror__parameterized6' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+	Parameter n bound to: 17 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ror__parameterized6' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ror__parameterized7' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+	Parameter n bound to: 7 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ror__parameterized7' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ror__parameterized8' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+	Parameter n bound to: 41 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ror__parameterized8' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'round' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'p12' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_permutation.v:8]
+INFO: [Synth 8-6157] synthesizing module 'p8' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_permutation.v:74]
+INFO: [Synth 8-6155] done synthesizing module 'p8' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_permutation.v:74]
+INFO: [Synth 8-6155] done synthesizing module 'ascon_ise' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_ise.v:17]
+WARNING: [Synth 8-693] zero replication count - replication ignored [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ex_stage.v:279]
+WARNING: [Synth 8-693] zero replication count - replication ignored [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ex_stage.v:305]
+WARNING: [Synth 8-693] zero replication count - replication ignored [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ex_stage.v:471]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ex_stage.v:517]
+INFO: [Synth 8-6155] done synthesizing module 'ex_stage' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ex_stage.v:4]
+INFO: [Synth 8-6157] synthesizing module 'csr_file' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/csr_file.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'csr_file' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/csr_file.v:2]
+INFO: [Synth 8-6157] synthesizing module 'ex_mem' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ex_mem.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ex_mem' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ex_mem.v:2]
+INFO: [Synth 8-6157] synthesizing module 'mem_stage' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/mem_stage.v:3]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/mem_stage.v:67]
+INFO: [Synth 8-6155] done synthesizing module 'mem_stage' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/mem_stage.v:3]
+INFO: [Synth 8-6157] synthesizing module 'mem_wb' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/mem_wb.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mem_wb' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/mem_wb.v:2]
+INFO: [Synth 8-6157] synthesizing module 'stall_ctrl' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ctrl.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'stall_ctrl' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ctrl.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'cpu_core' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpu_core.v:3]
+INFO: [Synth 8-6157] synthesizing module 'bus_interconnect_dma' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/bus_interconnect_dma.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/bus_interconnect_dma.v:176]
+INFO: [Synth 8-6155] done synthesizing module 'bus_interconnect_dma' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/bus_interconnect_dma.v:2]
+INFO: [Synth 8-6157] synthesizing module 'cpu_axi_bridge' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpu_axi_bridge.v:3]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpu_axi_bridge.v:115]
+INFO: [Synth 8-226] default block is never used [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpu_axi_bridge.v:144]
+INFO: [Synth 8-6155] done synthesizing module 'cpu_axi_bridge' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpu_axi_bridge.v:3]
+INFO: [Synth 8-6157] synthesizing module 'axi_master' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/axi_full_master.v:3]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'axi_master' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/axi_full_master.v:3]
+INFO: [Synth 8-6157] synthesizing module 'uart_ctrl' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/uart_ctrl.v:3]
+	Parameter CLK_FREQ bound to: 100000000 - type: integer 
+	Parameter UART_BPS bound to: 115200 - type: integer 
+	Parameter BAUD_CNT_MAX bound to: 868 - type: integer 
+	Parameter RX_FIFO_DEPTH bound to: 16 - type: integer 
+	Parameter TX_FIFO_DEPTH bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'uart_rx' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/uart_rx.v:2]
+	Parameter CLK_FREQ bound to: 100000000 - type: integer 
+	Parameter UART_BPS bound to: 115200 - type: integer 
+	Parameter BAUD_CNT_MAX bound to: 868 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'uart_rx' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/uart_rx.v:2]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/uart_tx.v:2]
+	Parameter CLK_FREQ bound to: 100000000 - type: integer 
+	Parameter UART_BPS bound to: 115200 - type: integer 
+	Parameter BAUD_CNT_MAX bound to: 868 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/uart_tx.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'uart_ctrl' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/uart_ctrl.v:3]
+INFO: [Synth 8-6157] synthesizing module 'clint' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/clint.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'clint' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/clint.v:2]
+INFO: [Synth 8-6157] synthesizing module 'gpio_ctrl' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/gpio.v:3]
+INFO: [Synth 8-226] default block is never used [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/gpio.v:114]
+INFO: [Synth 8-6155] done synthesizing module 'gpio_ctrl' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/gpio.v:3]
+INFO: [Synth 8-6157] synthesizing module 'cpi_cnt' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpi_cnt.v:2]
+	Parameter XLEN bound to: 32 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpi_cnt.v:54]
+INFO: [Synth 8-6155] done synthesizing module 'cpi_cnt' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpi_cnt.v:2]
+INFO: [Synth 8-6157] synthesizing module 'ascon_mmio' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq/rtl_p0/ascon_mmio.v:27]
+	Parameter MAX_AD_BYTES bound to: 256 - type: integer 
+	Parameter MAX_MSG_BYTES bound to: 256 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'ascon_aead_core' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_aead_core.v:19]
+	Parameter MAX_AD_BYTES bound to: 256 - type: integer 
+	Parameter MAX_MSG_BYTES bound to: 256 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'crypto_aead' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/crypto_aead.v:27]
+INFO: [Synth 8-6157] synthesizing module 'load_bytes' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_word.v:14]
+INFO: [Synth 8-6155] done synthesizing module 'load_bytes' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_word.v:14]
+WARNING: [Synth 8-7071] port 'busy' of module 'p12' is unconnected for instance 'p12_inst' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/crypto_aead.v:71]
+WARNING: [Synth 8-7023] instance 'p12_inst' of module 'p12' has 7 connections declared, but only 6 given [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/crypto_aead.v:71]
+WARNING: [Synth 8-7071] port 'busy' of module 'p8' is unconnected for instance 'p8_inst' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/crypto_aead.v:72]
+WARNING: [Synth 8-7023] instance 'p8_inst' of module 'p8' has 7 connections declared, but only 6 given [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/crypto_aead.v:72]
+INFO: [Synth 8-6155] done synthesizing module 'crypto_aead' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/crypto_aead.v:27]
+INFO: [Synth 8-6155] done synthesizing module 'ascon_aead_core' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_aead_core.v:19]
+INFO: [Synth 8-6155] done synthesizing module 'ascon_mmio' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq/rtl_p0/ascon_mmio.v:27]
+INFO: [Synth 8-6155] done synthesizing module 'soc_top_dma' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/soc_top_dma.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'pynq_dma_cpu' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq_dma_cpu.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'cpu_dma_engine_0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/bd/cpu_dma/ip/cpu_dma_engine_0/synth/cpu_dma_engine_0.v:53]
+WARNING: [Synth 8-6014] Unused sequential element hit_way1_r_reg was removed.  [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/icache.v:177]
+WARNING: [Synth 8-6014] Unused sequential element hit_way1_r_reg was removed.  [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/dcache.v:430]
+WARNING: [Synth 8-6014] Unused sequential element icache_resp_cnt_reg was removed.  [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/bus_interconnect_dma.v:272]
+WARNING: [Synth 8-6014] Unused sequential element wsize_buf_reg was removed.  [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/axi_full_master.v:163]
+WARNING: [Synth 8-6014] Unused sequential element wburst_buf_reg was removed.  [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/axi_full_master.v:164]
+WARNING: [Synth 8-6014] Unused sequential element rlen_buf_reg was removed.  [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/axi_full_master.v:178]
+WARNING: [Synth 8-6014] Unused sequential element rsize_buf_reg was removed.  [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/axi_full_master.v:179]
+WARNING: [Synth 8-6014] Unused sequential element rburst_buf_reg was removed.  [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/axi_full_master.v:180]
+WARNING: [Synth 8-6014] Unused sequential element rdata_cnt_reg was removed.  [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/axi_full_master.v:509]
+WARNING: [Synth 8-7137] Register rx_fifo_reg in module uart_ctrl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-7137] Register tx_fifo_reg in module uart_ctrl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-4767] Trying to implement RAM 'tx_fifo_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/uart_ctrl.v:165]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'rx_fifo_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/uart_ctrl.v:118]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+INFO: [Synth 8-7129] Port in_last in module ascon_aead_core is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[31] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[30] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[29] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[28] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[27] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[26] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[25] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[24] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[23] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[22] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[21] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[20] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[19] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[18] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[17] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[16] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[15] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[14] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[13] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[12] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[11] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[10] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[9] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_w_data[8] in module uart_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_bid in module axi_master is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_buser in module axi_master is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_rresp[1] in module axi_master is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_rresp[0] in module axi_master is either unconnected or has no load
+INFO: [Synth 8-7129] Port m_ruser in module axi_master is either unconnected or has no load
+INFO: [Synth 8-7129] Port cpu_rdata_ready in module axi_master is either unconnected or has no load
+INFO: [Synth 8-7129] Port resp[1] in module cpu_axi_bridge is either unconnected or has no load
+INFO: [Synth 8-7129] Port resp[0] in module cpu_axi_bridge is either unconnected or has no load
+INFO: [Synth 8-7129] Port load_miss_i in module bus_interconnect_dma is either unconnected or has no load
+INFO: [Synth 8-7129] Port store_miss_i in module bus_interconnect_dma is either unconnected or has no load
+INFO: [Synth 8-7129] Port write_empty_i in module bus_interconnect_dma is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_mem_reg_addr[4] in module stall_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_mem_reg_addr[3] in module stall_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_mem_reg_addr[2] in module stall_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_mem_reg_addr[1] in module stall_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_mem_reg_addr[0] in module stall_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_mem_r_en in module stall_ctrl is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[31] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[30] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[29] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[28] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[27] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[26] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[25] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[24] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[23] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[22] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[21] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[20] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[19] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[18] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[17] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[16] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[15] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[14] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[13] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[12] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[11] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[10] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[9] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[8] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[7] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[6] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[5] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[4] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[3] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port ex_mem_addr[2] in module mem_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[11] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[10] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[9] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[8] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[7] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[6] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[5] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[4] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[3] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[2] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[1] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port id_csr_addr[0] in module ex_stage is either unconnected or has no load
+INFO: [Synth 8-7129] Port rst_n in module regfile is either unconnected or has no load
+INFO: [Synth 8-7129] Port pc_if[1] in module predictor is either unconnected or has no load
+INFO: [Synth 8-7129] Port pc_if[0] in module predictor is either unconnected or has no load
+INFO: [Synth 8-7129] Port pc_ex[1] in module predictor is either unconnected or has no load
+INFO: [Synth 8-7129] Port pc_ex[0] in module predictor is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1613.445 ; gain = 826.398
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1613.445 ; gain = 826.398
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1613.445 ; gain = 826.398
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.665 . Memory (MB): peak = 1613.445 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 1672.102 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.935 . Memory (MB): peak = 1672.102 ; gain = 0.000
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1672.102 ; gain = 885.055
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1672.102 ; gain = 885.055
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1672.102 ; gain = 885.055
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3936] Found unconnected internal register 'p_reg_reg' and it is trimmed from '66' to '64' bits. [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/mult.v:46]
+INFO: [Synth 8-802] inferred FSM for state register 'count_reg' in module 'multiplier'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'divider'
+INFO: [Synth 8-802] inferred FSM for state register 'rd_state_reg' in module 'bus_interconnect_dma'
+INFO: [Synth 8-802] inferred FSM for state register 'w_state_reg' in module 'axi_master'
+INFO: [Synth 8-802] inferred FSM for state register 'r_state_reg' in module 'axi_master'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'crypto_aead'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'ascon_aead_core'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              001 |                               00
+                 PRODUCT |                              010 |                               01
+                COMPLETE |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'count_reg' using encoding 'one-hot' in module 'multiplier'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              001 |                               00
+                    CALC |                              010 |                               01
+                    DONE |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'divider'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 RD_IDLE |                               11 |                               00
+       RD_ICACHE_WAIT_HS |                               10 |                               10
+                 RD_BUSY |                               00 |                               11
+       RD_DCACHE_WAIT_HS |                               01 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rd_state_reg' using encoding 'sequential' in module 'bus_interconnect_dma'
+INFO: [Synth 8-7082] The signal wdata_fifo_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (2 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal waddr_fifo_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (2 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal mask_fifo_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (2 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  W_IDLE |                              001 |                               00
+                 W_WRITE |                              100 |                               01
+                  W_RESP |                              010 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'w_state_reg' using encoding 'one-hot' in module 'axi_master'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  R_IDLE |                              001 |                               00
+                  R_ADDR |                              100 |                               01
+                  R_DATA |                              010 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'r_state_reg' using encoding 'one-hot' in module 'axi_master'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                             0000 |                             0000
+                  INIT_W |                             0001 |                             0001
+         FULL_ASSOCIATED |                             0010 |                             0010
+       FULL_ASSOCIATED_W |                             0011 |                             0011
+        FINAL_ASSOCIATED |                             0100 |                             0100
+      FINAL_ASSOCIATED_W |                             0101 |                             0101
+       DOMAIN_SEPARATION |                             0110 |                             0110
+          FULL_PLAINTEXT |                             0111 |                             0111
+        FULL_PLAINTEXT_W |                             1000 |                             1000
+         FINAL_PLAINTEXT |                             1001 |                             1001
+                FINALIZE |                             1010 |                             1010
+              FINALIZE_W |                             1011 |                             1011
+                 GET_TAG |                             1100 |                             1100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'crypto_aead'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                            00001 |                              000
+                    FEED |                            00010 |                              001
+                     RUN |                            00100 |                              010
+                    WAIT |                            01000 |                              011
+                    PUSH |                            10000 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'ascon_aead_core'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:52 ; elapsed = 00:00:55 . Memory (MB): peak = 1672.102 ; gain = 885.055
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input   33 Bit       Adders := 1     
+	   2 Input   32 Bit       Adders := 10    
+	   3 Input   32 Bit       Adders := 1     
+	   2 Input   21 Bit       Adders := 2     
+	   2 Input   16 Bit       Adders := 8     
+	   2 Input   15 Bit       Adders := 1     
+	   2 Input   10 Bit       Adders := 2     
+	   2 Input    9 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 9     
+	   2 Input    7 Bit       Adders := 5     
+	   3 Input    6 Bit       Adders := 1     
+	   2 Input    6 Bit       Adders := 3     
+	   2 Input    5 Bit       Adders := 5     
+	   2 Input    4 Bit       Adders := 10    
+	   2 Input    3 Bit       Adders := 4     
+	   3 Input    2 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 5     
++---XORs : 
+	   2 Input    128 Bit         XORs := 1     
+	   2 Input     64 Bit         XORs := 33    
+	   3 Input     64 Bit         XORs := 32    
+	   2 Input     32 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	              320 Bit    Registers := 11    
+	              128 Bit    Registers := 20    
+	               64 Bit    Registers := 17    
+	               33 Bit    Registers := 2     
+	               32 Bit    Registers := 312   
+	               21 Bit    Registers := 2     
+	               16 Bit    Registers := 12    
+	               12 Bit    Registers := 1     
+	                8 Bit    Registers := 50    
+	                7 Bit    Registers := 4     
+	                6 Bit    Registers := 7     
+	                5 Bit    Registers := 8     
+	                4 Bit    Registers := 20    
+	                3 Bit    Registers := 12    
+	                2 Bit    Registers := 80    
+	                1 Bit    Registers := 136   
++---Multipliers : 
+	              33x33  Multipliers := 1     
++---RAMs : 
+	               8K Bit	(256 X 32 bit)          RAMs := 4     
+	              128 Bit	(4 X 32 bit)          RAMs := 2     
+	               16 Bit	(4 X 4 bit)          RAMs := 1     
++---Muxes : 
+	   2 Input  320 Bit        Muxes := 11    
+	  13 Input  320 Bit        Muxes := 2     
+	   2 Input  128 Bit        Muxes := 16    
+	  13 Input  128 Bit        Muxes := 3     
+	   4 Input  128 Bit        Muxes := 1     
+	   5 Input  128 Bit        Muxes := 6     
+	   2 Input   64 Bit        Muxes := 45    
+	  13 Input   64 Bit        Muxes := 5     
+	   4 Input   64 Bit        Muxes := 2     
+	   3 Input   64 Bit        Muxes := 1     
+	   5 Input   64 Bit        Muxes := 1     
+	   4 Input   32 Bit        Muxes := 10    
+	   2 Input   32 Bit        Muxes := 223   
+	   8 Input   32 Bit        Muxes := 1     
+	   2 Input   21 Bit        Muxes := 4     
+	   2 Input   16 Bit        Muxes := 4     
+	   2 Input   10 Bit        Muxes := 4     
+	   2 Input    8 Bit        Muxes := 78    
+	   8 Input    8 Bit        Muxes := 2     
+	   5 Input    8 Bit        Muxes := 2     
+	   4 Input    8 Bit        Muxes := 2     
+	   2 Input    7 Bit        Muxes := 14    
+	   9 Input    7 Bit        Muxes := 1     
+	  17 Input    7 Bit        Muxes := 2     
+	   3 Input    7 Bit        Muxes := 1     
+	   8 Input    6 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 4     
+	   4 Input    6 Bit        Muxes := 1     
+	  13 Input    5 Bit        Muxes := 2     
+	   5 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 13    
+	   8 Input    5 Bit        Muxes := 1     
+	   4 Input    5 Bit        Muxes := 1     
+	   7 Input    5 Bit        Muxes := 1     
+	  13 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 21    
+	   8 Input    4 Bit        Muxes := 1     
+	   5 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 17    
+	   8 Input    3 Bit        Muxes := 2     
+	   4 Input    3 Bit        Muxes := 3     
+	   7 Input    3 Bit        Muxes := 1     
+	   3 Input    3 Bit        Muxes := 4     
+	   6 Input    2 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 20    
+	   4 Input    2 Bit        Muxes := 4     
+	   3 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 1049  
+	  13 Input    1 Bit        Muxes := 19    
+	   5 Input    1 Bit        Muxes := 12    
+	  17 Input    1 Bit        Muxes := 130   
+	   4 Input    1 Bit        Muxes := 41    
+	   8 Input    1 Bit        Muxes := 5     
+	   7 Input    1 Bit        Muxes := 2     
+	   3 Input    1 Bit        Muxes := 13    
+	   6 Input    1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+DSP Report: Generating DSP p_reg0, operation Mode is: A2*B.
+DSP Report: register p_reg0 is absorbed into DSP p_reg0.
+DSP Report: operator p_reg0 is absorbed into DSP p_reg0.
+DSP Report: operator p_reg0 is absorbed into DSP p_reg0.
+DSP Report: Generating DSP p_reg_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register p_reg_reg is absorbed into DSP p_reg_reg.
+DSP Report: operator p_reg0 is absorbed into DSP p_reg_reg.
+DSP Report: operator p_reg0 is absorbed into DSP p_reg_reg.
+DSP Report: Generating DSP p_reg0, operation Mode is: A2*B2.
+DSP Report: register p_reg0 is absorbed into DSP p_reg0.
+DSP Report: register p_reg0 is absorbed into DSP p_reg0.
+DSP Report: operator p_reg0 is absorbed into DSP p_reg0.
+DSP Report: operator p_reg0 is absorbed into DSP p_reg0.
+DSP Report: Generating DSP p_reg_reg, operation Mode is: (PCIN>>17)+A2*B.
+DSP Report: register p_reg_reg is absorbed into DSP p_reg_reg.
+DSP Report: register p_reg_reg is absorbed into DSP p_reg_reg.
+DSP Report: operator p_reg0 is absorbed into DSP p_reg_reg.
+DSP Report: operator p_reg0 is absorbed into DSP p_reg_reg.
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way1_reg",trying to implement using LUTRAM
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way1_reg",trying to implement using LUTRAM
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way1_reg",trying to implement using LUTRAM
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way1_reg",trying to implement using LUTRAM
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way1_reg",trying to implement using LUTRAM
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way1_reg",trying to implement using LUTRAM
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way0_reg",trying to implement using LUTRAM
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way0_reg",trying to implement using LUTRAM
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way0_reg",trying to implement using LUTRAM
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way0_reg",trying to implement using LUTRAM
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way0_reg",trying to implement using LUTRAM
+WARNING: [Synth 8-6849] Infeasible attribute ram_style = "block" set for RAM "u_soc_topi_2/u_cpu_core/u_dcache/data_way0_reg",trying to implement using LUTRAM
+INFO: [Synth 8-7082] The signal u_cpu_axi_bridge/wdata_fifo_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (2 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal u_cpu_axi_bridge/waddr_fifo_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (2 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+INFO: [Synth 8-7082] The signal u_cpu_axi_bridge/mask_fifo_reg is implemented as Block RAM but is better mapped onto distributed LUT RAM for the following reason(s): The depth (2 address bits) is shallow. Please use attribute (* ram_style = "distributed" *) to instruct Vivado to infer distributed LUT RAM.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[47]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[46]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[45]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[44]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[43]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[42]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[41]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[40]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[39]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[38]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[37]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[36]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[35]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[34]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[33]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[32]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[31]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[30]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[29]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[28]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[27]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[26]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[25]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[24]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[23]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[22]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[21]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[20]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[19]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[18]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[17]) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[47]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[46]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[45]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[44]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[43]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[42]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[41]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[40]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[39]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[38]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[37]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[36]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[35]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[34]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[33]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[32]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[31]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[30]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[29]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[28]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[27]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[26]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[25]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[24]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[23]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[22]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[21]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[20]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[19]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[18]__0) is unused and will be removed from module ex_stage.
+WARNING: [Synth 8-3332] Sequential element (u_multiplier/p_reg_reg[17]__0) is unused and will be removed from module ex_stage.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:03:22 ; elapsed = 00:03:31 . Memory (MB): peak = 2039.109 ; gain = 1252.062
+---------------------------------------------------------------------------------
+ Sort Area is soc_top_dma__GC0 p_reg0_0 : 0 0 : 2737 5113 : Used 1 time 0
+ Sort Area is soc_top_dma__GC0 p_reg0_0 : 0 1 : 2376 5113 : Used 1 time 0
+ Sort Area is soc_top_dma__GC0 p_reg0_3 : 0 0 : 2322 4453 : Used 1 time 0
+ Sort Area is soc_top_dma__GC0 p_reg0_3 : 0 1 : 2131 4453 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++---------------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                      | RTL Object                      | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++---------------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|u_soc_topi_2/u_cpu_core/u_icache | data_way1_reg                   | 256 x 32(READ_FIRST)   | W |   | 256 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|u_soc_topi_2/u_cpu_core/u_icache | data_way0_reg                   | 256 x 32(READ_FIRST)   | W |   | 256 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|cpu_dma_engine_0                 | u_cpu_axi_bridge/wdata_fifo_reg | 4 x 32(READ_FIRST)     | W |   | 4 x 32(WRITE_FIRST)    |   | R | Port A and B     | 1      | 0      | 
+|cpu_dma_engine_0                 | u_cpu_axi_bridge/waddr_fifo_reg | 4 x 32(READ_FIRST)     | W |   | 4 x 32(WRITE_FIRST)    |   | R | Port A and B     | 1      | 0      | 
+|cpu_dma_engine_0                 | u_cpu_axi_bridge/mask_fifo_reg  | 4 x 4(READ_FIRST)      | W |   | 4 x 4(WRITE_FIRST)     |   | R | Port A and B     | 1      | 0      | 
++---------------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++------------------------------------+---------------+----------------+----------------------+--------------+
+|Module Name                         | RTL Object    | Inference      | Size (Depth x Width) | Primitives   | 
++------------------------------------+---------------+----------------+----------------------+--------------+
+|u_soc_topi_2/u_cpu_core/u_predictor | tag_table_reg | User Attribute | 64 x 24              | RAM64M x 8   | 
+|u_soc_topi_2/u_cpu_core/u_predictor | btb_table_reg | User Attribute | 64 x 32              | RAM64M x 11  | 
+|u_soc_topi_2/u_cpu_core/u_icache    | tag_way1_reg  | User Attribute | 64 x 22              | RAM64M x 8   | 
+|u_soc_topi_2/u_cpu_core/u_icache    | tag_way0_reg  | User Attribute | 64 x 22              | RAM64M x 8   | 
+|u_soc_topi_2/u_cpu_core/u_dcache    | tag_way1_reg  | User Attribute | 64 x 22              | RAM64M x 8   | 
+|u_soc_topi_2/u_cpu_core/u_dcache    | tag_way0_reg  | User Attribute | 64 x 22              | RAM64M x 8   | 
+|u_soc_topi_2/u_cpu_core/u_dcache    | data_way1_reg | Implied        | 256 x 32             | RAM64M x 88  | 
+|u_soc_topi_2/u_cpu_core/u_dcache    | data_way0_reg | Implied        | 256 x 32             | RAM64M x 88  | 
+|u_soc_topi_2/u_cpu_core/regfile_u   | registers_reg | User Attribute | 32 x 32              | RAM32M x 12  | 
++------------------------------------+---------------+----------------+----------------------+--------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|multiplier  | A2*B            | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|multiplier  | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|multiplier  | A2*B2           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|multiplier  | (PCIN>>17)+A2*B | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
++------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:03:23 ; elapsed = 00:03:32 . Memory (MB): peak = 2039.109 ; gain = 1252.062
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++---------------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                      | RTL Object                      | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++---------------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|u_soc_topi_2/u_cpu_core/u_icache | data_way1_reg                   | 256 x 32(READ_FIRST)   | W |   | 256 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|u_soc_topi_2/u_cpu_core/u_icache | data_way0_reg                   | 256 x 32(READ_FIRST)   | W |   | 256 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|cpu_dma_engine_0                 | u_cpu_axi_bridge/wdata_fifo_reg | 4 x 32(READ_FIRST)     | W |   | 4 x 32(WRITE_FIRST)    |   | R | Port A and B     | 1      | 0      | 
+|cpu_dma_engine_0                 | u_cpu_axi_bridge/waddr_fifo_reg | 4 x 32(READ_FIRST)     | W |   | 4 x 32(WRITE_FIRST)    |   | R | Port A and B     | 1      | 0      | 
+|cpu_dma_engine_0                 | u_cpu_axi_bridge/mask_fifo_reg  | 4 x 4(READ_FIRST)      | W |   | 4 x 4(WRITE_FIRST)     |   | R | Port A and B     | 1      | 0      | 
++---------------------------------+---------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+
+Distributed RAM: Final Mapping Report
++------------------------------------+---------------+----------------+----------------------+--------------+
+|Module Name                         | RTL Object    | Inference      | Size (Depth x Width) | Primitives   | 
++------------------------------------+---------------+----------------+----------------------+--------------+
+|u_soc_topi_2/u_cpu_core/u_predictor | tag_table_reg | User Attribute | 64 x 24              | RAM64M x 8   | 
+|u_soc_topi_2/u_cpu_core/u_predictor | btb_table_reg | User Attribute | 64 x 32              | RAM64M x 11  | 
+|u_soc_topi_2/u_cpu_core/u_icache    | tag_way1_reg  | User Attribute | 64 x 22              | RAM64M x 8   | 
+|u_soc_topi_2/u_cpu_core/u_icache    | tag_way0_reg  | User Attribute | 64 x 22              | RAM64M x 8   | 
+|u_soc_topi_2/u_cpu_core/u_dcache    | tag_way1_reg  | User Attribute | 64 x 22              | RAM64M x 8   | 
+|u_soc_topi_2/u_cpu_core/u_dcache    | tag_way0_reg  | User Attribute | 64 x 22              | RAM64M x 8   | 
+|u_soc_topi_2/u_cpu_core/u_dcache    | data_way1_reg | Implied        | 256 x 32             | RAM64M x 88  | 
+|u_soc_topi_2/u_cpu_core/u_dcache    | data_way0_reg | Implied        | 256 x 32             | RAM64M x 88  | 
+|u_soc_topi_2/u_cpu_core/regfile_u   | registers_reg | User Attribute | 32 x 32              | RAM32M x 12  | 
++------------------------------------+---------------+----------------+----------------------+--------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance inst/u_soc_top/u_cpu_core/u_icache/data_way1_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_soc_top/u_cpu_core/u_icache/data_way0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_soc_top/u_cpu_axi_bridge/wdata_fifo_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_soc_top/u_cpu_axi_bridge/waddr_fifo_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/u_soc_top/u_cpu_axi_bridge/mask_fifo_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:03:33 ; elapsed = 00:03:42 . Memory (MB): peak = 2039.109 ; gain = 1252.062
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:03:40 ; elapsed = 00:03:50 . Memory (MB): peak = 2039.109 ; gain = 1252.062
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:03:40 ; elapsed = 00:03:50 . Memory (MB): peak = 2039.109 ; gain = 1252.062
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:03:43 ; elapsed = 00:03:52 . Memory (MB): peak = 2039.109 ; gain = 1252.062
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:03:43 ; elapsed = 00:03:53 . Memory (MB): peak = 2039.109 ; gain = 1252.062
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:03:47 ; elapsed = 00:03:57 . Memory (MB): peak = 2039.109 ; gain = 1252.062
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:03:47 ; elapsed = 00:03:57 . Memory (MB): peak = 2039.109 ; gain = 1252.062
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping       | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|multiplier  | A'*B'             | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|multiplier  | (PCIN>>17+A'*B')' | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|multiplier  | A'*B'             | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|multiplier  | (PCIN>>17+A'*B')' | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
++------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY4   |   317|
+|2     |DSP48E1  |     4|
+|3     |LUT1     |   141|
+|4     |LUT2     |  1541|
+|5     |LUT3     |   791|
+|6     |LUT4     |  2094|
+|7     |LUT5     |  3379|
+|8     |LUT6     |  7823|
+|9     |MUXF7    |  1013|
+|10    |MUXF8    |   319|
+|11    |RAM32M   |    10|
+|12    |RAM32X1D |     4|
+|13    |RAM64M   |   223|
+|14    |RAM64X1D |     4|
+|15    |RAMB18E1 |     5|
+|16    |FDCE     | 11129|
+|17    |FDPE     |   151|
+|18    |FDRE     |  7093|
+|19    |FDSE     |     1|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:03:47 ; elapsed = 00:03:57 . Memory (MB): peak = 2039.109 ; gain = 1252.062
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 75 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:03:19 ; elapsed = 00:03:45 . Memory (MB): peak = 2039.109 ; gain = 1193.406
+Synthesis Optimization Complete : Time (s): cpu = 00:03:47 ; elapsed = 00:03:57 . Memory (MB): peak = 2039.109 ; gain = 1252.062
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.427 . Memory (MB): peak = 2039.109 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1899 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 2043.469 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 241 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 10 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 4 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 223 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 4 instances
+
+Synth Design complete | Checksum: 15e0d72b
+INFO: [Common 17-83] Releasing license: Synthesis
+246 Infos, 99 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:04:03 ; elapsed = 00:04:16 . Memory (MB): peak = 2043.469 ; gain = 1486.434
+INFO: [Coretcl 2-1174] Renamed 36 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.045 . Memory (MB): peak = 2043.469 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.runs/cpu_dma_engine_0_synth_1/cpu_dma_engine_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file cpu_dma_engine_0_utilization_synth.rpt -pb cpu_dma_engine_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Oct 30 01:29:07 2026...

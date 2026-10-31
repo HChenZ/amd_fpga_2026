@@ -1,0 +1,32 @@
+{
+  "kind": "implementation_report",
+  "part": "xc7z020clg400-1",
+  "top": "d_wrapper",
+  "vivado": "2025.2",
+  "clock_mhz_configured": 100,
+  "mode": "HW_DIRECT",
+  "max_message_bytes": 1024,
+  "max_ad_bytes": 1024,
+  "board_validation": "NOT_RUN",
+  "implementation_result": "vivado=2025.2 part=xc7z020clg400-1 top=d_wrapper setup=0.242 hold=0.029 critical_drc=0 board=NOT_RUN",
+  "git_head": "36095232727913cbf0b37e6cec96dd1d2b08cccf",
+  "source_dirty": true,
+  "source_sha256": {
+    "src/rtl/ascon/ascon_round.v": "64dac0220152e1f0fc6b65a8d3adceaedcbad4516251a3b136a39a0521854016",
+    "src/rtl/ascon_dma/ascon_aead_multiblock.v": "48a6f3188a87b719b45894e019548d9d88128dd42acc957b1b660c70bc8d3331",
+    "src/rtl/ascon_dma/ascon_axis_direct.v": "db46bd00d1858d8617c607bcd10c1eddfbf9cc416eacf712551dcee76270dbea",
+    "src/rtl/ascon_dma/dma_direct_top.v": "7a2a2865fc31be0fe982b663f8d1546e2f7998fe146080e4ee1c8c94436cb889",
+    "board/vivado_zynq7000_xc7z020_dma_direct/setup.tcl": "7db6e5a58a26b539dff7fca79f20a652a0f12f80bfd6a081880e458e3fddbced",
+    "board/vivado_zynq7000_xc7z020_dma_direct/collect.tcl": "e7625353dd79a41580c2e44aba21877040ce279d405c85a1541a34872b377252"
+  },
+  "artifacts": {
+    "dma_direct.bit": {
+      "bytes": 4045685,
+      "sha256": "7a6f86283a9c074a607a6bc8b2c9880ad8e0a03d4c3d546f4e4b17830d7d8f53"
+    },
+    "dma_direct.hwh": {
+      "bytes": 307573,
+      "sha256": "f3731a00255ea729beca9ce79aa54789b7b59542f6383f02700f21d81d360c41"
+    }
+  }
+}

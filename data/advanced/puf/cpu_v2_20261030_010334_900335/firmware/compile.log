@@ -1,0 +1,1 @@
+C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/../../../../riscv-none-elf/bin/ld.exe: warning: C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\puf\cpu_v2_20261030_010334_900335\firmware\puf_v2.elf has a LOAD segment with RWX permissions

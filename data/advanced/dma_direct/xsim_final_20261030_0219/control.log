@@ -1,0 +1,3 @@
+Time resolution is 1 ps
+TEST_PASS dma_control checks=18 AW/W reorder, WSTRB, read/write backpressure, epoch/reset
+$finish called at time : 18 us : File "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/ascon_dma/tb_dma_control.sv" Line 45

@@ -1,0 +1,42 @@
+{
+  "kind": "rtl_simulation",
+  "board": "not_measured",
+  "backend": "iverilog",
+  "top": "tb_core_lifecycle",
+  "watchdog_ns": 200000000,
+  "source_sha256": {
+    "src/rtl/ascon/ascon_round.v": "64dac0220152e1f0fc6b65a8d3adceaedcbad4516251a3b136a39a0521854016",
+    "src/rtl/ascon_dma/ascon_aead_multiblock.v": "cf7e413314fb24a4ac52eb62d97ebe9c17d16daa6136c9751a0535f39d2098e4",
+    "sim/ascon_dma/tb_core_lifecycle.sv": "0ebba1213d22dba1a91db0433f45bc6dcde6e89ac306f359ff5ab6983d4dcd0c"
+  },
+  "reviewed_source_sha256": {
+    "src/rtl/ascon_dma/ascon_axis_direct.v": "63f4d13bd0fac388c067f4ae9c6b260e418a51d026e73b51cc45df22671c7c6a",
+    "src/rtl/ascon_dma/dma_direct_top.v": "7a2a2865fc31be0fe982b663f8d1546e2f7998fe146080e4ee1c8c94436cb889",
+    "docs/advanced_dma_contract.md": "72436dc1ac97e5d4a40b7bd3ccee1e79943124f1cf25ca86b7d896a5ce993ad1",
+    "src/pynq/dma_transport.py": "18241fa08c7ba1f10862fc7cbcd7af84c18120a0c6d48f326c7d306c9cf76456"
+  },
+  "runner_sha256": "606a319d663a2893c41ef3d1e8847eb3aafe59ba9ed7b30d4dfdeb4d503819a9",
+  "sources": [
+    "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_direct\\lifecycle_20261030_012755_701862\\ascon_round.v",
+    "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_direct\\lifecycle_20261030_012755_701862\\ascon_aead_multiblock.v",
+    "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_direct\\lifecycle_20261030_012755_701862\\tb_core_lifecycle.sv"
+  ],
+  "vector": "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_direct\\lifecycle_20261030_012755_701862\\vectors.txt",
+  "vector_sha256": "06104f0334c3b254285bd3537c486d72554ac37f1643730dfd3ddfcfeb2fc2c8",
+  "kat_sha256": "bbbc34692fe05e5fda0a3b025585622ab3e3747495e5e3655b29aae8c2a4bd33",
+  "official_kat_ids": [
+    "kat_0001",
+    "kat_0545",
+    "kat_0579",
+    "kat_1089"
+  ],
+  "maximum_length_oracle": {
+    "path": "sim\\ascon\\reference\\pyascon\\ascon.py",
+    "sha256": "b799653fc09e56fc4eb72c90b3574b967b3ead4c337b2402123148d5b1873eda"
+  },
+  "seed": 471736358,
+  "plusargs": [
+    "+VECTORS=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/advanced/dma_direct/lifecycle_20261030_012755_701862/vectors.txt"
+  ],
+  "commands": []
+}

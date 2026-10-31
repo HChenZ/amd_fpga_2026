@@ -1,0 +1,164 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct 30 02:48:22 2026
+| Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
+| Command      : report_timing -from [all_registers -clock management_clk] -to [all_registers -clock management_clk] -delay_type max -max_paths 3 -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/advanced/puf/physical_quality_decode_20261030_023728/management_internal_setup.rpt
+| Design       : puf_mmio_physical_v2
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             5.070ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/ro_reset_release_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/snapshot_reg[624]/CLR
+                            (recovery check against rising-edge clock management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            40.000ns  (management_clk rise@40.000ns - management_clk rise@0.000ns)
+  Data Path Delay:        34.441ns  (logic 0.718ns (2.085%)  route 33.723ns (97.915%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 40.924 - 40.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.973     0.973    peripheral/keys/sampler/ro_clk
+    SLICE_X29Y108        FDCE                                         r  peripheral/keys/sampler/ro_reset_release_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X29Y108        FDCE (Prop_fdce_C_Q)         0.419     1.392 r  peripheral/keys/sampler/ro_reset_release_reg[1]/Q
+                         net (fo=1, routed)           0.433     1.825    peripheral/keys/sampler/ro_reset_release[1]
+    SLICE_X29Y108        LUT1 (Prop_lut1_I0_O)        0.299     2.124 f  peripheral/keys/sampler/snapshot[5119]_i_3/O
+                         net (fo=6607, routed)       33.290    35.414    peripheral/keys/sampler/snapshot[5119]_i_3_n_0
+    SLICE_X35Y23         FDCE                                         f  peripheral/keys/sampler/snapshot_reg[624]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock management_clk rise edge)
+                                                     40.000    40.000 r  
+                                                      0.000    40.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.924    40.924    peripheral/keys/sampler/ro_clk
+    SLICE_X35Y23         FDCE                                         r  peripheral/keys/sampler/snapshot_reg[624]/C
+                         clock pessimism              0.000    40.924    
+                         clock uncertainty           -0.035    40.889    
+    SLICE_X35Y23         FDCE (Recov_fdce_C_CLR)     -0.405    40.484    peripheral/keys/sampler/snapshot_reg[624]
+  -------------------------------------------------------------------
+                         required time                         40.484    
+                         arrival time                         -35.414    
+  -------------------------------------------------------------------
+                         slack                                  5.070    
+
+Slack (MET) :             5.070ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/ro_reset_release_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/snapshot_reg[625]/CLR
+                            (recovery check against rising-edge clock management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            40.000ns  (management_clk rise@40.000ns - management_clk rise@0.000ns)
+  Data Path Delay:        34.441ns  (logic 0.718ns (2.085%)  route 33.723ns (97.915%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 40.924 - 40.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.973     0.973    peripheral/keys/sampler/ro_clk
+    SLICE_X29Y108        FDCE                                         r  peripheral/keys/sampler/ro_reset_release_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X29Y108        FDCE (Prop_fdce_C_Q)         0.419     1.392 r  peripheral/keys/sampler/ro_reset_release_reg[1]/Q
+                         net (fo=1, routed)           0.433     1.825    peripheral/keys/sampler/ro_reset_release[1]
+    SLICE_X29Y108        LUT1 (Prop_lut1_I0_O)        0.299     2.124 f  peripheral/keys/sampler/snapshot[5119]_i_3/O
+                         net (fo=6607, routed)       33.290    35.414    peripheral/keys/sampler/snapshot[5119]_i_3_n_0
+    SLICE_X35Y23         FDCE                                         f  peripheral/keys/sampler/snapshot_reg[625]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock management_clk rise edge)
+                                                     40.000    40.000 r  
+                                                      0.000    40.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.924    40.924    peripheral/keys/sampler/ro_clk
+    SLICE_X35Y23         FDCE                                         r  peripheral/keys/sampler/snapshot_reg[625]/C
+                         clock pessimism              0.000    40.924    
+                         clock uncertainty           -0.035    40.889    
+    SLICE_X35Y23         FDCE (Recov_fdce_C_CLR)     -0.405    40.484    peripheral/keys/sampler/snapshot_reg[625]
+  -------------------------------------------------------------------
+                         required time                         40.484    
+                         arrival time                         -35.414    
+  -------------------------------------------------------------------
+                         slack                                  5.070    
+
+Slack (MET) :             5.219ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/ro_reset_release_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/counters[15].a0_reg[0]/CLR
+                            (recovery check against rising-edge clock management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            40.000ns  (management_clk rise@40.000ns - management_clk rise@0.000ns)
+  Data Path Delay:        34.292ns  (logic 0.718ns (2.094%)  route 33.574ns (97.906%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 40.924 - 40.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock management_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.973     0.973    peripheral/keys/sampler/ro_clk
+    SLICE_X29Y108        FDCE                                         r  peripheral/keys/sampler/ro_reset_release_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X29Y108        FDCE (Prop_fdce_C_Q)         0.419     1.392 r  peripheral/keys/sampler/ro_reset_release_reg[1]/Q
+                         net (fo=1, routed)           0.433     1.825    peripheral/keys/sampler/ro_reset_release[1]
+    SLICE_X29Y108        LUT1 (Prop_lut1_I0_O)        0.299     2.124 f  peripheral/keys/sampler/snapshot[5119]_i_3/O
+                         net (fo=6607, routed)       33.141    35.265    peripheral/keys/sampler/snapshot[5119]_i_3_n_0
+    SLICE_X33Y24         FDCE                                         f  peripheral/keys/sampler/counters[15].a0_reg[0]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock management_clk rise edge)
+                                                     40.000    40.000 r  
+                                                      0.000    40.000 r  ro_clk (IN)
+                         net (fo=6608, unset)         0.924    40.924    peripheral/keys/sampler/ro_clk
+    SLICE_X33Y24         FDCE                                         r  peripheral/keys/sampler/counters[15].a0_reg[0]/C
+                         clock pessimism              0.000    40.924    
+                         clock uncertainty           -0.035    40.889    
+    SLICE_X33Y24         FDCE (Recov_fdce_C_CLR)     -0.405    40.484    peripheral/keys/sampler/counters[15].a0_reg[0]
+  -------------------------------------------------------------------
+                         required time                         40.484    
+                         arrival time                         -35.265    
+  -------------------------------------------------------------------
+                         slack                                  5.219    
+
+
+
+

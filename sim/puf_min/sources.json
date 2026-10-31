@@ -1,0 +1,24 @@
+{
+  "note": "PUF-MIN 单一源清单真源：sim/puf_min/run.py 与 board/vivado_zynq7000_xc7z020_puf_min/setup.tcl 都从这里取值。",
+  "rtl": [
+    "src/rtl/puf_min/puf_min_axil.v",
+    "src/rtl/puf_min/puf_min_top.v",
+    "src/rtl/keys_v2/ro_array_v2.v",
+    "src/rtl/keys_v2/ro_counter_v2.v",
+    "src/rtl/keys_v2/ro_puf_core_v2.v",
+    "src/rtl/keys/device_dna.v"
+  ],
+  "simulation_only": [
+    "sim/puf_soc_v2/ro_array_model.sv",
+    "sim/keys/DNA_PORT_sim.v"
+  ],
+  "testbenches": [
+    "sim/puf_min/axi_lite_bfm.sv",
+    "sim/puf_min/tb_puf_min.sv",
+    "sim/puf_min/tb_ro_core_single_clock.sv"
+  ],
+  "synthesis_top": "puf_min_top",
+  "physical_part": "xc7z020clg400-1",
+  "clock": "single 100 MHz clock in this design; the RO rings are asynchronous physical loops",
+  "reference_model": "sim/puf_soc_v2/ro_array_model.sv replaces ro_array_v2 only during simulation and is NOT physical PUF evidence"
+}

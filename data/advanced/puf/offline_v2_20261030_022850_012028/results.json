@@ -1,0 +1,232 @@
+{
+  "evidence_kind": "behavioral_simulation_and_host_unit_test",
+  "backend": "Icarus extra fast regression",
+  "passed": true,
+  "board": "not_measured",
+  "xsim": "parent_owned_not_run_by_this_script",
+  "records": [
+    {
+      "name": "iverilog_version",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\iverilog.EXE",
+        "-V"
+      ],
+      "exit_code": 0,
+      "log": "iverilog_version.log"
+    },
+    {
+      "name": "vvp_version",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\vvp.EXE",
+        "-V"
+      ],
+      "exit_code": 0,
+      "log": "vvp_version.log"
+    },
+    {
+      "name": "python_version",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "--version"
+      ],
+      "exit_code": 0,
+      "log": "python_version.log"
+    },
+    {
+      "name": "tb_ro_health_v2_compile",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-I",
+        "src/rtl/ascon",
+        "-s",
+        "tb_ro_health_v2",
+        "-o",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf\\offline_v2_20261030_022850_012028\\tb_ro_health_v2.vvp",
+        "src/rtl/keys_v2/ro_counter_v2.v",
+        "src/rtl/keys_v2/ro_puf_core_v2.v",
+        "src/rtl/keys_v2/puf_key_v2.v",
+        "src/rtl/keys_v2/puf_aead_v2.v",
+        "src/rtl/ascon/crypto_aead.v",
+        "src/rtl/keys/device_dna.v",
+        "src/rtl/keys_v2/puf_mmio_v2.v",
+        "sim/keys/DNA_PORT_sim.v",
+        "sim/keys_v2/tb_ro_health_v2.sv"
+      ],
+      "exit_code": 0,
+      "log": "tb_ro_health_v2_compile.log"
+    },
+    {
+      "name": "tb_ro_health_v2_run",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\vvp.EXE",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf\\offline_v2_20261030_022850_012028\\tb_ro_health_v2.vvp"
+      ],
+      "exit_code": 0,
+      "log": "tb_ro_health_v2_run.log"
+    },
+    {
+      "name": "tb_puf_aead_v2_compile",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-I",
+        "src/rtl/ascon",
+        "-s",
+        "tb_puf_aead_v2",
+        "-o",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf\\offline_v2_20261030_022850_012028\\tb_puf_aead_v2.vvp",
+        "src/rtl/keys_v2/ro_counter_v2.v",
+        "src/rtl/keys_v2/ro_puf_core_v2.v",
+        "src/rtl/keys_v2/puf_key_v2.v",
+        "src/rtl/keys_v2/puf_aead_v2.v",
+        "src/rtl/ascon/crypto_aead.v",
+        "src/rtl/keys/device_dna.v",
+        "src/rtl/keys_v2/puf_mmio_v2.v",
+        "sim/keys/DNA_PORT_sim.v",
+        "sim/keys_v2/tb_puf_aead_v2.sv"
+      ],
+      "exit_code": 0,
+      "log": "tb_puf_aead_v2_compile.log"
+    },
+    {
+      "name": "tb_puf_aead_v2_run",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\vvp.EXE",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf\\offline_v2_20261030_022850_012028\\tb_puf_aead_v2.vvp"
+      ],
+      "exit_code": 0,
+      "log": "tb_puf_aead_v2_run.log"
+    },
+    {
+      "name": "tb_puf_mmio_v2_compile",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-I",
+        "src/rtl/ascon",
+        "-s",
+        "tb_puf_mmio_v2",
+        "-o",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf\\offline_v2_20261030_022850_012028\\tb_puf_mmio_v2.vvp",
+        "src/rtl/keys_v2/ro_counter_v2.v",
+        "src/rtl/keys_v2/ro_puf_core_v2.v",
+        "src/rtl/keys_v2/puf_key_v2.v",
+        "src/rtl/keys_v2/puf_aead_v2.v",
+        "src/rtl/ascon/crypto_aead.v",
+        "src/rtl/keys/device_dna.v",
+        "src/rtl/keys_v2/puf_mmio_v2.v",
+        "sim/keys/DNA_PORT_sim.v",
+        "sim/keys_v2/tb_puf_mmio_v2.sv"
+      ],
+      "exit_code": 0,
+      "log": "tb_puf_mmio_v2_compile.log"
+    },
+    {
+      "name": "tb_puf_mmio_v2_run",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\vvp.EXE",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf\\offline_v2_20261030_022850_012028\\tb_puf_mmio_v2.vvp"
+      ],
+      "exit_code": 0,
+      "log": "tb_puf_mmio_v2_run.log"
+    },
+    {
+      "name": "helper",
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "sim/keys_v2/test_helper_v2.py"
+      ],
+      "exit_code": 0,
+      "log": "helper.log"
+    },
+    {
+      "name": "gcc_version",
+      "command": [
+        "C:\\ruanjian\\Visual Studio Code\\mingw64\\bin\\gcc.EXE",
+        "--version"
+      ],
+      "exit_code": 0,
+      "log": "gcc_version.log"
+    },
+    {
+      "name": "firmware_compile",
+      "command": [
+        "C:\\ruanjian\\Visual Studio Code\\mingw64\\bin\\gcc.EXE",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "src/firmware/keys_v2",
+        "src/firmware/keys_v2/puf_v2.c",
+        "sim/keys_v2/test_firmware_v2.c",
+        "-o",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf\\offline_v2_20261030_022850_012028\\test_firmware_v2.exe"
+      ],
+      "exit_code": 0,
+      "log": "firmware_compile.log"
+    },
+    {
+      "name": "firmware_run",
+      "command": [
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf\\offline_v2_20261030_022850_012028\\test_firmware_v2.exe"
+      ],
+      "exit_code": 0,
+      "log": "firmware_run.log"
+    }
+  ],
+  "source_sha256": {
+    "sim/keys/DNA_PORT_sim.v": "0f9bf726bfc99ab59b5f88f04363d9e8fb27215d0105951b8cd3be4343362d8f",
+    "sim/keys_v2/cpu_sources.json": "b59f2356fc979cebbf559eb3f3c8a0eed86abd37deef0de4e3ada67a4a4b4fba",
+    "sim/keys_v2/inspect_physical.tcl": "4cc04710bb8692df51c1cf0d7ad4db9c2f4f52306972bf9f91822430e17566fe",
+    "sim/keys_v2/readme.md": "1694805fe7835ef61bb0f85458f62735e05e6efea9065aaae835689bcc3ff509",
+    "sim/keys_v2/rerun_xsim.tcl": "6ba774cd8dac28843c655d823fb5b96048e4aa8acc1099ddde6abbf2c21bc4e8",
+    "sim/keys_v2/run_cpu.py": "a39868ee86366398eb90264b237c494faabc4be524e88c81a8bf582e00ac8fe5",
+    "sim/keys_v2/run_regression.py": "adc8f90b4172023b102699b48ad321bf75c530efac4a2f6d55cfb877ce26e882",
+    "sim/keys_v2/seal_vivado_evidence.py": "c6d2e475a4f37fd10ae9f2b2f9a0452de6ef1e95d1bb4de1c74b35c219e0c4cd",
+    "sim/keys_v2/sources.json": "0d9b2ff0ba5635a2722e2407bda5c4523cc68dfb0d8f0288cf6b8b93eb0f5af4",
+    "sim/keys_v2/tb_puf_aead_v2.sv": "3fa3a34f9fc49f6b23ad468e697cc7612668d46fbedbaae8cf856aef0ff20ea0",
+    "sim/keys_v2/tb_puf_cpu_v2.sv": "bf3c67604fba37433f1968939a25afac387fcb68c3a3075c8713d08f09f1923e",
+    "sim/keys_v2/tb_puf_mmio_v2.sv": "e717abc58fc674a93188a1e1f44fb1f8be072a23b969dc1291705675778578bb",
+    "sim/keys_v2/tb_ro_health_v2.sv": "219a8fa844e27869dcafcd31bc54f2ad54513ba7727477430ccd76544defb802",
+    "sim/keys_v2/test_firmware_v2.c": "dd2758f42f734286311ba334bca309d6328beb3dda22bd578c4e71b0907c5491",
+    "sim/keys_v2/test_helper_v2.py": "a63102440ca79dd75a0a58348fcdd593f6bb974eb7df0e2c59606f93427a8910",
+    "src/firmware/keys_v2/build.py": "c14c625d061d648c87d0f754a9edbbca4d9537830ab0baf426d278496e15c34e",
+    "src/firmware/keys_v2/main.c": "27a15a6ec1c240504d64e8398c799ffdf1ff099dbcf9f24c14cec961b232d25f",
+    "src/firmware/keys_v2/puf_mmio_v2.c": "c71e17d722942f32e42c267104e8c0ad428eec720ee17e76f531246abd478e3d",
+    "src/firmware/keys_v2/puf_mmio_v2.h": "3337f8d5ba42539688cae3cf9837802f60ec7257d36ba6e21a903387d6b6d8cf",
+    "src/firmware/keys_v2/puf_v2.c": "2f108ffba06819fb3d74724a852d5e8048203a63988e7ad459a3e5ee547ab644",
+    "src/firmware/keys_v2/puf_v2.h": "9e5a1f62059c9c50306624a377fe9eaf2b120bacd9eb0fcf0dba63198e1d8e5e",
+    "src/firmware/keys_v2/readme.md": "46efef9dc668354f3754a36ae2304c0e7ac6da60db049fbba8a8daeae25412b3",
+    "src/pynq/puf_helper_v2.py": "55f30cd67662d068f44ae4902f017cf3dd54a4599f6ad5495f938425f9dc513c",
+    "src/rtl/ascon/ascon_aead_2.v": "8ea360514428ce7408927246c0d16b7c95c90b0da655cfe48d074b77f3353c0c",
+    "src/rtl/ascon/ascon_aead_2_tb.v": "cfbfe00bd4a31e9d32386cbf50abe7b86fe8f58eb5e7b657f4252a93d83b586b",
+    "src/rtl/ascon/ascon_aead_core.v": "1124bd29b8dcece597d0c413d68a40672a16ee4e82af886ad2e703108208f0f7",
+    "src/rtl/ascon/ascon_constants.vh": "3e67b9c988046a81de75c95c35869c7cbfd96a9ba46829de3f3153b86630f2ee",
+    "src/rtl/ascon/ascon_ise.v": "a69979d93f7d7b247a9b3c3d721813a434f3376ecf8b8d9ffcad1a3c3aa8ba31",
+    "src/rtl/ascon/ascon_mmio.v": "4ef1e7abb8c0ed4d98f69da349f32a4a167b62901104b98a0a3a4de1e2113f81",
+    "src/rtl/ascon/ascon_permutation.v": "9cf94935c45d7719a5975254c4e076f99a8f89e0922e8cc03759bd8e3bbdf1c4",
+    "src/rtl/ascon/ascon_round.v": "64dac0220152e1f0fc6b65a8d3adceaedcbad4516251a3b136a39a0521854016",
+    "src/rtl/ascon/ascon_word.v": "0b3f72c2c2cb5613c3785998409080c87ffa6bd7c0dcf891db99137ff3549ec1",
+    "src/rtl/ascon/crypto_aead.v": "722bf1e3e02574aa7cc530e6aec6d3f6abeaae900be99e6a1c8046ac8d3ec0a4",
+    "src/rtl/ascon/readme.md": "7b2ea2e2ba8da125c3d36ff526762d81a0a13d1c781a058ad8d410d1168e697d",
+    "src/rtl/keys/device_dna.v": "4b6323bcf0b672153601c6778ac7844c2d474aebe3e8a8949a2a40cb4ce486f8",
+    "src/rtl/keys_v2/cdc_review_20261030.md": "d9e50857ce31d7a11cd10726a0e30b1de57978ed6e96d710e6832de7a34eae9a",
+    "src/rtl/keys_v2/mmio_abi.md": "36620f8c87e49f6a4ae37f30e00c0140c7ba7105276276a54c4ccbe2969c4d63",
+    "src/rtl/keys_v2/physical_constraints.tcl": "fa2eafe98125fd99b5b5e7e25c9fc1b4ff130fd40ac197cc29db01f321720a19",
+    "src/rtl/keys_v2/physical_readme.md": "9e12bbc808cd81422e57b655b81a78718fe604c79f7a2f6a904ffb70f508afcc",
+    "src/rtl/keys_v2/puf_aead_v2.v": "45e1cf9a7231ca963fa1bc971d379599421bbd42237c80c064ce83ec9a4a5510",
+    "src/rtl/keys_v2/puf_key_v2.v": "43fa88e926d08def5187f8af6bd5ce358e86a0c9764af7773d7d13a070ec9e1b",
+    "src/rtl/keys_v2/puf_mmio_physical_v2.v": "e9ddb2ec3bb6e7c3d46e8558ea39974f2c0bd8f0ff64f62ed930ac1bb6006727",
+    "src/rtl/keys_v2/puf_mmio_v2.v": "6bd2df0a75c783a91d60d674d45224eadd4028811c973f15e8e374f811a87a2a",
+    "src/rtl/keys_v2/puf_physical_v2.v": "fbf69b9626bc558172e0a19560cb8060e78c96b74fbbe888bf8b92076ccae2e5",
+    "src/rtl/keys_v2/readme.md": "245bec7bd249a601ef6894bdf9c9e2b6d5073172e4cd2d2f31d0ee2ce28657ac",
+    "src/rtl/keys_v2/ro_array_v2.v": "de55d8c27db397145103ba8c3077e7bb4feb9728a44f127aef56c0920d4c96b7",
+    "src/rtl/keys_v2/ro_counter_v2.v": "69076ca750bfd52763c586725d26a516de8aef0560b83d71771805153d67b29e",
+    "src/rtl/keys_v2/ro_puf_core_v2.v": "719b13c934221a4f746eda5ac05311ec72b840fa92e9904c0375cb4f6f226d67"
+  }
+}

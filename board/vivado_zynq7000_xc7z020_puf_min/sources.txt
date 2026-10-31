@@ -1,0 +1,6 @@
+src/rtl/puf_min/puf_min_axil.v
+src/rtl/puf_min/puf_min_top.v
+src/rtl/keys_v2/ro_array_v2.v
+src/rtl/keys_v2/ro_counter_v2.v
+src/rtl/keys_v2/ro_puf_core_v2.v
+src/rtl/keys/device_dna.v

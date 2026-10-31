@@ -1,0 +1,39 @@
+% 图 4-2 时序收敛过程（WNS 分阶段）
+\begin{tikzpicture}
+\begin{axis}[
+  width=150mm, height=56mm,
+  ybar, bar width=13mm,
+  ymin=-1.05, ymax=0.22, xmin=0.4, xmax=4.6,
+  xtick={1,2,3,4}, xticklabels={基线,策略扫掠,结构改造,板级签核},
+  xticklabel style={font=\footnotesize},
+  yticklabel style={font=\footnotesize},
+  ylabel={WNS / ns}, ylabel style={font=\footnotesize},
+  ymajorgrids, grid style={macline!25},
+  axis lines*=left,
+  enlarge x limits=0.12,
+  nodes near coords, nodes near coords align={vertical},
+  every node near coord/.append style={font=\scriptsize},
+  point meta=explicit symbolic,
+]
+\addplot[fill=baryellow, draw=baryedge] coordinates {
+  (1,-0.942) [$-0.942$]
+  (2,-0.118) [$-0.118$]
+  (3,0.007)  [$+0.007$]
+  (4,0.087)  [$+0.087$]
+};
+\draw[black!55, thick, dashed] (axis cs:0.4,0) -- (axis cs:4.6,0);
+\end{axis}
+\end{tikzpicture}
+
+\vspace{1mm}
+{\scriptsize
+\begin{tabular}{@{}p{0.16\textwidth}p{0.36\textwidth}p{0.42\textwidth}@{}}
+\toprule
+阶段 & 动作 & 关键读数 \\
+\midrule
+基线 & HEAD 默认实现策略 & TNS $-433.585$ ns，失败端点 1\,579 \\
+策略扫掠 & 33 组内置策略逐一运行（并行），最优 \texttt{Performance\_ExploreWithRemap} & TNS $-1.008$ ns，失败端点 22；合计回收 $0.824$ ns（87\%） \\
+结构改造 & 三处归因改造：\texttt{ascon\_ise} 复位局部化（93 端点）、\texttt{mult.v} 输入输出寄存与握手（48 端点）、\texttt{dcache} 增 \texttt{MISS\_CAPTURE}（11 端点） & 双策略 STA：$+0.001$ / $+0.007$ ns，失败端点 0；资源代价 $+118\sim+190$ LUT、$+43\sim+91$ FF \\
+板级签核 & 三镜像最终实现 & TNS 0、失败端点 0（共 55\,572）、WHS $+0.021$ ns、DRC 0 Error \\
+\bottomrule
+\end{tabular}}

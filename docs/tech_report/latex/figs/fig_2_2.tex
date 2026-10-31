@@ -1,0 +1,26 @@
+% 图 4-1 工程层次与源集构成（坐标单位 cm）
+\begin{tikzpicture}[font=\footnotesize,
+  b/.style={draw=softline, rounded corners=1.5pt, fill=macblue!55, align=center, inner sep=2.2pt, font=\scriptsize},
+  w/.style={draw=softline, rounded corners=1.5pt, fill=white, align=center, inner sep=1.8pt, font=\scriptsize},
+  ar/.style={-{Stealth[length=1.5mm]}, thick}]
+
+\node[b, minimum width=14.6cm, fill=maclav] (top) at (0,0) {\textbf{top\_pl\_bram}（板级顶层）：时钟与复位、异步 IO 同步化、端口绑定};
+\node[b, minimum width=14.6cm, fill=macgreen!80] (soc) at (0,-1.5) {\textbf{soc\_top}（片上顶层）：CPU、总线、外设与加速器实例化};
+\node[w, minimum width=3.0cm, fill=macgreen!45] (cpu) at (-5.0,-3.1) {cpu\_core\\五级流水线};
+\node[w, minimum width=2.6cm, fill=macamber] (acc) at (-1.4,-3.1) {\texttt{ascon\_mmio}\\\texttt{ascon\_ise}};
+\node[w, minimum width=2.4cm, fill=macblue!50] (mem) at (2.0,-3.1) {AXI bridge\\BRAM 通路};
+\node[w, minimum width=3.6cm, fill=macgray] (io) at (5.5,-3.1) {UART / GPIO / CLINT\\\texttt{cpi\_cnt}};
+\node[b, minimum width=14.6cm] (ip) at (0,-4.5) {Xilinx IP：\texttt{clk\_wiz\_0}、\texttt{axi\_bram\_ctrl}、\texttt{blk\_mem\_gen\_0}（128 KiB）};
+\node[b, minimum width=14.6cm, fill=macrose!70] (con) at (0,-5.8) {历史 PL-only：\texttt{const.xdc}，50 MHz 输入与板外 IO；不作为当前 PYNQ 的约束};
+
+\draw[ar] (top) -- (soc);
+\foreach \n in {cpu,acc,mem,io} {\draw[ar] (soc.south -| \n.north) -- (\n.north);}
+\draw[ar] (ip.north -| cpu.south) -- (cpu.south);
+\draw[ar] (ip.north -| acc.south) -- (acc.south);
+\draw[ar] (ip.north -| mem.south) -- (mem.south);
+
+\node[draw=softline, rounded corners=2pt, fill=white, align=left, font=\scriptsize, text width=14.4cm, anchor=north west] at (-7.3,-6.4) {%
+此图仅说明历史纯 PL 基准工程；三份 bitstream 各 4\,045\,687 B。\\
+当前入口：\texttt{board/vivado\_zynq7000\_xc7z020\_pynq/build.tcl}，顶层 \texttt{pynq\_wrapper}，
+PS7 FCLK0 配置 100 MHz，源集与工件身份以发布 manifest 为准。};
+\end{tikzpicture}

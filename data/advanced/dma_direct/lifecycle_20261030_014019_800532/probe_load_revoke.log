@@ -1,0 +1,4 @@
+REQUIRED_SYNC_GATE_PASS
+REQUIRED_LOAD_REVOKE_PASS
+TEST_PASS lifecycle probe=LOAD_REVOKE
+C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\dma_direct\lifecycle_20261030_014019_800532\tb_core_lifecycle.sv:165: $finish called at 23360000 (1ps)

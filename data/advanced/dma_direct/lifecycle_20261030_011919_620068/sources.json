@@ -1,0 +1,36 @@
+{
+  "kind": "rtl_simulation",
+  "board": "not_measured",
+  "backend": "iverilog",
+  "top": "tb_core_lifecycle",
+  "watchdog_ns": 200000000,
+  "source_sha256": {
+    "src/rtl/ascon/ascon_round.v": "64dac0220152e1f0fc6b65a8d3adceaedcbad4516251a3b136a39a0521854016",
+    "src/rtl/ascon_dma/ascon_aead_multiblock.v": "7d0c9d2096f81460fad348c9904135f8833edd4bab779e629523cead628724cb",
+    "sim/ascon_dma/tb_core_lifecycle.sv": "563561f009cf32ebe5455276973c0afd2ab129cc1cd22b932d40861d4f9c7d25"
+  },
+  "runner_sha256": "0de212cf1e43a3c5522219800229741f5c70dda4f4c1b3eeea441119e184853d",
+  "sources": [
+    "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_direct\\lifecycle_20261030_011919_620068\\ascon_round.v",
+    "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_direct\\lifecycle_20261030_011919_620068\\ascon_aead_multiblock.v",
+    "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_direct\\lifecycle_20261030_011919_620068\\tb_core_lifecycle.sv"
+  ],
+  "vector": "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\dma_direct\\lifecycle_20261030_011919_620068\\vectors.txt",
+  "vector_sha256": "06104f0334c3b254285bd3537c486d72554ac37f1643730dfd3ddfcfeb2fc2c8",
+  "kat_sha256": "bbbc34692fe05e5fda0a3b025585622ab3e3747495e5e3655b29aae8c2a4bd33",
+  "official_kat_ids": [
+    "kat_0001",
+    "kat_0545",
+    "kat_0579",
+    "kat_1089"
+  ],
+  "maximum_length_oracle": {
+    "path": "sim\\ascon\\reference\\pyascon\\ascon.py",
+    "sha256": "b799653fc09e56fc4eb72c90b3574b967b3ead4c337b2402123148d5b1873eda"
+  },
+  "seed": 471736358,
+  "plusargs": [
+    "+VECTORS=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/advanced/dma_direct/lifecycle_20261030_011919_620068/vectors.txt"
+  ],
+  "commands": []
+}

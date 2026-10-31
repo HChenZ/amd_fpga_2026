@@ -1,0 +1,3 @@
+PASS reconstruct consistency and 128 bad tag bits
+TEST_PASS tb_puf_aead_v2
+sim/keys_v2/tb_puf_aead_v2.sv:144: $finish called at 748636000 (1ps)

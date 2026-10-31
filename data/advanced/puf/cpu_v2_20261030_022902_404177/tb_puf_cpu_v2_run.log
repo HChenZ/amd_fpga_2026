@@ -1,0 +1,4 @@
+PUF_V2_OFFLINE_SELFTEST
+PUF_V2_TEST_PASS
+TEST_PASS tb_puf_cpu_v2 diagnostic=0 commands=11 cycles=3676
+sim/keys_v2/tb_puf_cpu_v2.sv:68: $finish called at 36835000 (1ps)

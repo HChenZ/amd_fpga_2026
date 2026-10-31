@@ -1,0 +1,1 @@
+vivado=2025.2 part=xc7z020clg400-1 top=d_wrapper setup=0.242 hold=0.029 critical_drc=0 board=NOT_RUN

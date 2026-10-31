@@ -1,0 +1,107 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct 30 01:52:42 2026
+| Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
+| Command      : report_timing -from [get_cells -hier -filter {NAME =~ peripheral/keys/sampler/result_reg* && IS_SEQUENTIAL}] -to [get_pins -of_objects [get_cells -hier -filter {NAME =~ peripheral/keys/sampler/captured_result_reg* && IS_SEQUENTIAL}] -filter {REF_PIN_NAME == D}] -max_paths 3 -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/advanced/puf/physical_final_20261030_0121/completion_data_bound.rpt
+| Design       : puf_mmio_physical_v2
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             18.246ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/result_reg[113]/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/captured_result_reg[113]/D
+                            (rising edge-triggered cell FDCE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (MaxDelay Path 20.000ns)
+  Data Path Delay:        1.783ns  (logic 0.642ns (36.014%)  route 1.141ns (63.986%))
+  Logic Levels:           1  (LUT4=1)
+  Timing Exception:       MaxDelay Path 20.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X66Y98                                      0.000     0.000 r  peripheral/keys/sampler/result_reg[113]/C
+    SLICE_X66Y98         FDCE (Prop_fdce_C_Q)         0.518     0.518 r  peripheral/keys/sampler/result_reg[113]/Q
+                         net (fo=1, routed)           1.141     1.659    peripheral/keys/sampler/result_reg_n_0_[113]
+    SLICE_X61Y98         LUT4 (Prop_lut4_I1_O)        0.124     1.783 r  peripheral/keys/sampler/captured_result[113]_i_1/O
+                         net (fo=1, routed)           0.000     1.783    peripheral/keys/sampler/captured_result[113]_i_1_n_0
+    SLICE_X61Y98         FDCE                                         r  peripheral/keys/sampler/captured_result_reg[113]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                   20.000    20.000    
+    SLICE_X61Y98         FDCE (Setup_fdce_C_D)        0.029    20.029    peripheral/keys/sampler/captured_result_reg[113]
+  -------------------------------------------------------------------
+                         required time                         20.029    
+                         arrival time                          -1.783    
+  -------------------------------------------------------------------
+                         slack                                 18.246    
+
+Slack (MET) :             18.266ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/result_reg[103]/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/captured_result_reg[103]/D
+                            (rising edge-triggered cell FDCE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (MaxDelay Path 20.000ns)
+  Data Path Delay:        1.765ns  (logic 0.580ns (32.870%)  route 1.185ns (67.130%))
+  Logic Levels:           1  (LUT4=1)
+  Timing Exception:       MaxDelay Path 20.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X65Y99                                      0.000     0.000 r  peripheral/keys/sampler/result_reg[103]/C
+    SLICE_X65Y99         FDCE (Prop_fdce_C_Q)         0.456     0.456 r  peripheral/keys/sampler/result_reg[103]/Q
+                         net (fo=1, routed)           1.185     1.641    peripheral/keys/sampler/result_reg_n_0_[103]
+    SLICE_X61Y100        LUT4 (Prop_lut4_I1_O)        0.124     1.765 r  peripheral/keys/sampler/captured_result[103]_i_1/O
+                         net (fo=1, routed)           0.000     1.765    peripheral/keys/sampler/captured_result[103]_i_1_n_0
+    SLICE_X61Y100        FDCE                                         r  peripheral/keys/sampler/captured_result_reg[103]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                   20.000    20.000    
+    SLICE_X61Y100        FDCE (Setup_fdce_C_D)        0.031    20.031    peripheral/keys/sampler/captured_result_reg[103]
+  -------------------------------------------------------------------
+                         required time                         20.031    
+                         arrival time                          -1.765    
+  -------------------------------------------------------------------
+                         slack                                 18.266    
+
+Slack (MET) :             18.300ns  (required time - arrival time)
+  Source:                 peripheral/keys/sampler/result_reg[86]/C
+                            (rising edge-triggered cell FDCE clocked by management_clk  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            peripheral/keys/sampler/captured_result_reg[86]/D
+                            (rising edge-triggered cell FDCE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (MaxDelay Path 20.000ns)
+  Data Path Delay:        1.775ns  (logic 0.668ns (37.641%)  route 1.107ns (62.359%))
+  Logic Levels:           1  (LUT4=1)
+  Timing Exception:       MaxDelay Path 20.000ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X46Y95                                      0.000     0.000 r  peripheral/keys/sampler/result_reg[86]/C
+    SLICE_X46Y95         FDCE (Prop_fdce_C_Q)         0.518     0.518 r  peripheral/keys/sampler/result_reg[86]/Q
+                         net (fo=1, routed)           1.107     1.625    peripheral/keys/sampler/result_reg_n_0_[86]
+    SLICE_X48Y97         LUT4 (Prop_lut4_I1_O)        0.150     1.775 r  peripheral/keys/sampler/captured_result[86]_i_1/O
+                         net (fo=1, routed)           0.000     1.775    peripheral/keys/sampler/captured_result[86]_i_1_n_0
+    SLICE_X48Y97         FDCE                                         r  peripheral/keys/sampler/captured_result_reg[86]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                   20.000    20.000    
+    SLICE_X48Y97         FDCE (Setup_fdce_C_D)        0.075    20.075    peripheral/keys/sampler/captured_result_reg[86]
+  -------------------------------------------------------------------
+                         required time                         20.075    
+                         arrival time                          -1.775    
+  -------------------------------------------------------------------
+                         slack                                 18.300    
+
+
+
+

@@ -1,0 +1,103 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_puf_v2/work/puf_soc.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module blk_mem_gen_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/keys/DNA_PORT_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module DNA_PORT
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_pynq/rtl_p0/ascon_mmio.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ascon_mmio
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/axi_full_master.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_master
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/branch_predictor.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module predictor
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/puf_soc_v2/bus_interconnect_puf_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bus_interconnect_puf_v2
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/bypass.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bypass
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/clint.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clint
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpi_cnt.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cpi_cnt
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpu_axi_bridge.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cpu_axi_bridge
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/cpu_core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cpu_core
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/csr_file.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module csr_file
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ctrl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module stall_ctrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/dcache.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dcache
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys/device_dna.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module device_dna
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/divider.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module divider
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ex_mem.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ex_mem
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ex_stage.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ex_stage
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/gpio.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module gpio_ctrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/icache.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module icache
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/id_ex.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module id_ex
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/id_stage.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module id_stage
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/if_id.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module if_id
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/if_stage.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module if_stage
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/mem_stage.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mem_stage
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/mem_wb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mem_wb
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/mult.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module multiplier
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq/pynq_mbox.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pynq_mbox
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/puf_soc_v2/pynq_puf_soc_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pynq_puf_soc_v2
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/regfile.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module regfile
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/puf_soc_v2/soc_top_puf_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module soc_top_puf_v2
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/puf_soc_v2/top_puf_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top_puf_v2
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/uart_ctrl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module uart_ctrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/uart_rx.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module uart_rx
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/uart_tx.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module uart_tx
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_aead_core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ascon_aead_core
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_ise.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ascon_ise
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_permutation.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ror
+INFO: [VRFC 10-311] analyzing module round
+INFO: [VRFC 10-311] analyzing module p12
+INFO: [VRFC 10-311] analyzing module p8
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_round.v" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/ascon_word.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pad
+INFO: [VRFC 10-311] analyzing module load_bytes
+INFO: [VRFC 10-311] analyzing module store_bytes
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/ascon/crypto_aead.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module crypto_aead
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys_v2/puf_key_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module puf_key_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys_v2/puf_mmio_physical_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module puf_mmio_physical_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys_v2/puf_mmio_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module puf_mmio_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/puf_soc_v2/ro_array_model.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ro_array_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys_v2/ro_counter_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ro_counter_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/keys_v2/ro_puf_core_v2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ro_puf_core_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/puf_soc_v2/tb_puf_soc_v2.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_puf_soc_v2
+INFO: [VRFC 10-311] analyzing module tb_puf_soc_diag_v2
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_puf_v2/work/puf_soc.gen/sources_1/ip/axi_bram_ctrl_0/sim/axi_bram_ctrl_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'axi_bram_ctrl_0'

@@ -1,0 +1,8 @@
+{
+  "status": "PASS_ARTIFACT_VERIFICATION",
+  "artifacts_checked": 4,
+  "rtl_firmware_sources_checked": 42,
+  "clock_mhz_configured": 80,
+  "board": "NOT_RUN",
+  "audit_sha256": "07a6e4d6b86894af3d8936b385ecdb443672e454c2c4b6a643f3b7018874783f"
+}

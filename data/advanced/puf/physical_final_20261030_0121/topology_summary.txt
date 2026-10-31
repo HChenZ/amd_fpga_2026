@@ -1,0 +1,3 @@
+ring_luts=1280 rings=256 lut_per_ring=5 verified_arcs=1280 async_reg=2568 core_payload_capture=133
+clock_objects=core_clk management_clk RO_PERIOD_BOUND_NOT_SUPPLIED
+fixed_package_pins=0

@@ -1,0 +1,16 @@
+class=STRUCTURAL_ONLY_NO_RO_TIMING_SIGNOFF
+board=NOT_RUN
+part=xc7z020clg400-1 top=puf_wrapper version=2025.2
+post_route_phys_opt_design=NOT_RUN (flow stops at route_design; no manual phys_opt_design)
+post_place_phys_opt_design=ENABLED (Vivado é»˜è?¤å®ç°æ?¥é?¤ï¼Œä¸æ˜¯äº‹å AggressiveExplore è¡¥æ•‘)
+wns_ns=0.078
+whs_ns=0.017
+tns_ths_zero_implied_by_wns_whs=1
+drc_error=0
+drc_critical_warning=0
+netlist_29_160_impl=0
+netlist_29_160_synth=0
+ddr_top_ports=71
+fixed_io_top_ports=59
+ro_luts=1280
+ro_luts_in_pblock=1280

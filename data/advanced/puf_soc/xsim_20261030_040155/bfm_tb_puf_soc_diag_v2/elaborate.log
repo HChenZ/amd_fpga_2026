@@ -1,0 +1,71 @@
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/ruanjian/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_puf_soc_diag_v2_behav xil_defaultlib.tb_puf_soc_diag_v2 xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.ro_array_v2_default
+Compiling module xil_defaultlib.DNA_PORT(SIM_DNA_VALUE=57'b01001...
+Compiling module xil_defaultlib.device_dna(SIM_DNA=57'b010010001...
+Compiling module xil_defaultlib.ro_counter_v2
+Compiling module xil_defaultlib.ro_puf_core_v2_default
+Compiling module xil_defaultlib.ror(n=19)
+Compiling module xil_defaultlib.ror(n=28)
+Compiling module xil_defaultlib.ror(n=61)
+Compiling module xil_defaultlib.ror(n=39)
+Compiling module xil_defaultlib.ror(n=1)
+Compiling module xil_defaultlib.ror(n=6)
+Compiling module xil_defaultlib.ror(n=10)
+Compiling module xil_defaultlib.ror(n=17)
+Compiling module xil_defaultlib.ror(n=7)
+Compiling module xil_defaultlib.ror(n=41)
+Compiling module xil_defaultlib.round
+Compiling module xil_defaultlib.p12
+Compiling module xil_defaultlib.puf_key_v2
+Compiling module xil_defaultlib.load_bytes
+Compiling module xil_defaultlib.p8
+Compiling module xil_defaultlib.crypto_aead
+Compiling module xil_defaultlib.puf_mmio_v2(DIAGNOSTIC=1)
+Compiling module xil_defaultlib.puf_mmio_physical_v2(DIAGNOSTIC=...
+Compiling module xil_defaultlib.predictor_default
+Compiling module xil_defaultlib.icache_default
+Compiling module xil_defaultlib.dcache_default
+Compiling module xil_defaultlib.if_stage
+Compiling module xil_defaultlib.if_id
+Compiling module xil_defaultlib.id_stage_default
+Compiling module xil_defaultlib.id_ex
+Compiling module xil_defaultlib.bypass
+Compiling module xil_defaultlib.regfile
+Compiling module xil_defaultlib.multiplier
+Compiling module xil_defaultlib.divider
+Compiling module xil_defaultlib.ascon_ise
+Compiling module xil_defaultlib.ex_stage_default
+Compiling module xil_defaultlib.csr_file_default
+Compiling module xil_defaultlib.ex_mem
+Compiling module xil_defaultlib.mem_stage_default
+Compiling module xil_defaultlib.mem_wb
+Compiling module xil_defaultlib.stall_ctrl
+Compiling module xil_defaultlib.cpu_core_default
+Compiling module xil_defaultlib.bus_interconnect_puf_v2_default
+Compiling module xil_defaultlib.cpu_axi_bridge
+Compiling module xil_defaultlib.axi_master
+Compiling module xil_defaultlib.uart_rx
+Compiling module xil_defaultlib.uart_tx
+Compiling module xil_defaultlib.uart_ctrl(CLK_FREQ=100000000,BAU...
+Compiling module xil_defaultlib.clint_default
+Compiling module xil_defaultlib.gpio_ctrl
+Compiling module xil_defaultlib.cpi_cnt
+Compiling module xil_defaultlib.ascon_aead_core
+Compiling module xil_defaultlib.ascon_mmio_default
+Compiling module xil_defaultlib.soc_top_puf_v2(DIAGNOSTIC=1,UART...
+Compiling module xil_defaultlib.axi_slave_bram
+Compiling module xil_defaultlib.pynq_mbox_default
+Compiling module xil_defaultlib.tb_puf_soc_v2(DIAGNOSTIC=1)
+Compiling module xil_defaultlib.tb_puf_soc_diag_v2
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_puf_soc_diag_v2_behav

@@ -1,0 +1,4 @@
+vivado=2025.2 part=xc7z020clg400-1 top=cpu_dma_wrapper work=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu setup=-0.046 hold=0.020 critical_drc=0 board=NOT_RUN
+clock=clk_fpga_0 period_ns=10.000
+synth_status=synth_design Complete! impl_status=write_bitstream Complete!
+ps_external_ports=1 invalid_pin_constraints=0

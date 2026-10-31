@@ -1,0 +1,12 @@
+{
+  "schema": "puf_min_ascon_vector_v1",
+  "note": "由 ascon/pyascon/ascon.py 生成的回归钉子；不是重新认证的标准 KAT",
+  "variant": "Ascon-AEAD128",
+  "key": "000102030405060708090a0b0c0d0e0f",
+  "nonce": "101112131415161718191a1b1c1d1e1f",
+  "ad": "",
+  "plaintext": "00000000000000000000000000000000",
+  "ciphertext_and_tag": "c8e2fccd0049e3cdcbc1581a14ba8c94b6c4a89eb177add5755601ba1be8d342",
+  "ciphertext": "c8e2fccd0049e3cdcbc1581a14ba8c94",
+  "tag": "b6c4a89eb177add5755601ba1be8d342"
+}

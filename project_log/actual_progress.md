@@ -14,6 +14,17 @@
 
 ## 2026-10-31 — 非 Ascon AXI DMA 回环 overlay（离线门禁通过；后续板测见顶部）
 
+## 2026-10-31 — LLM 协作记录入库、Ross 心得、未跟踪文件清理（owner TBD）
+
+- 核实技术报告 2.5.4 的统计：`report/llm_collab/index.md` 与 `sessions/` 下的 21 个文件一致，其中 13 个是工程会话，共 76 条提示、2635 次工具调用；此前整个目录都未纳入 git。按用户决定省略 1 条与工程无关的用户提示原文，保留轮次与计数，并在 `export_sessions.py` 中用 `OMIT_PROMPTS` 记录这条规则；报告 2.5.4 改为“四项处理”。报告重新构建通过（`docs/tech_report/validation/build_20261031_142948/`，verify_report PASS，76 页）。本地 commit `cc39c9d`（llm_collab、report/readme、`docs/ross_usage_experience.md`），未 push；报告源改动随 `docs/tech_report/` 保持未跟踪。
+- 新增 `docs/ross_usage_experience.md`：依据 project_log 与已有验证文档整理，不含新测量。
+- 标准清理删除 95 个未跟踪路径（831 个文件，191.7 MB）：0 字节的 `ps_clock_registers.log`、已被 `current_evidence.json` 取代的 `submission/evidence_..._233348` 及其 zip、30 次旧报告构建记录（只保留最新一次）、`figbuild/`、过期的 `latex.zip`、`latex/main.log`，以及 `data/advanced` 中没有被 readme、清单或脚本引用的中间重跑目录、10 个重复的 `ring_ack_*` 和 puf_min 扫掠的 DCP（`sweep*.tsv` 与 rpt 保留）。`current_candidates.json` 列出的路径和当前证据包都还在。未跟踪文件从 2621 个降到约 1820 个。
+- 误删一项后已补救：`data/advanced/puf_min/impl_20261030_115206/` 被 `src/rtl/puf_min/readme.md` 引用，原目录里只有 context.txt，已无法恢复。已从 `board/.../puf_min/work/` 中原样复制同一次 OOC 综合的 utilization 报告和 runme.log，并写入说明与 SHA-256。
+- `.gitignore` 新增报告构建的临时文件 `figbuild/`、`latex/main.log`。
+- 按用户要求，把扩展实验的源码、文本证据、技术报告源、当前证据包目录以及 10-29 的规则文档改动提交并推送。以下不入库，只留在本机：`data/advanced` 的 DCP、exe、xsim.ini；除两个当前候选以外的 bit，以及已作废的 PUF v2 bit（其哈希保留在 manifest 中）；`latex/main.pdf`、`latex_project.zip`；`submission/*.zip` 和旧的 `submission/evidence/`。规则写在 `.gitignore` 中，ZIP 的重新生成方法写在 `submission/README.md`。提交前已做密钥扫描，命中 0 条。
+
+## 2026-10-31 — 非 Ascon AXI DMA 回环 overlay（Skill L3 工件；离线门禁通过，board NOT_RUN，owner TBD）
+
 - 按用户要求只做 DMA、不做 GPIO：新增 `board/vivado_zynq7000_xc7z020_axi_dma_loopback/`（build.tcl、package.py、readme、candidate）。PS7 GP0→互连→`axi_dma_0/S_AXI_LITE`（0x40400000/64K）；MM2S/S2MM→互连→HP0（64 位）；AXI DMA 7.1 simple 模式（SG=0、32 位、无 DRE、length width 14）；`M_AXIS_MM2S` 直连 `S_AXIS_S2MM`（hwh 证实 TLAST 同网）；全部 FCLK0，`proc_sys_reset` 分 interconnect/peripheral 复位；无中断。
 - 板卡相关：FCLK0 按 pynq_puf3 已验证的修正固定 IOPLL FBDIV 30、分频 10×1（ACT 99.999999）；PS7 DDR 参数按厂家 base（MT41J256M16 RE-125、32 位，1 GiB），使 DMA 的 HP0 窗口为 0x0–0x3FFFFFFF。第一次构建用 IP 默认 512 MiB 窗口，打包前 hwh 检查发现，作废未发布（`build/local/axi_dma_loopback/vivado_ddr512m`）；build.tcl 已加两个 DMA 地址空间的窗口回读门禁。
 - 结果（Vivado 2025.2，Performance_ExploreWithRemap + 布线后 phys_opt）：WNS +1.736/WHS +0.025，无无时钟/无约束端点，DRC 0，无 Netlist 29-160，全部布通；2436 LUT/3333 FF/2 BRAM。bit `890add35…`、hwh `27bcceca…` 同名，`manifest.json` 由 Skill 的 `artifacts.write_manifest` 生成并经 `check_artifacts` 复核；`package.py` 核对 hwh 参数、回环/TLAST、HP0 窗口、FCLK0，并用 Skill 的 `parse_hwh`/`config_from_hwh`（max 16383、对齐 4）确认 L1 兼容；`pynq_skill_cli.py hwh --contract axi_dma_simple` 显示契约与 hwh 寄存器一致。

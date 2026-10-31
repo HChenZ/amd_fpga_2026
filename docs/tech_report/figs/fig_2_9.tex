@@ -1,0 +1,43 @@
+% 图 2-9 PS/PL 协同通路（坐标单位 cm）
+\begin{tikzpicture}[font=\footnotesize,
+  p/.style={draw=softline, rounded corners=1.5pt, fill=macrose, align=center, inner sep=2.4pt,
+            font=\scriptsize, minimum width=3.4cm, minimum height=1.45cm, text width=3.1cm},
+  b/.style={draw=softline, rounded corners=1.5pt, fill=macblue!55, align=center, inner sep=2.4pt,
+            font=\scriptsize, minimum width=3.4cm, minimum height=1.45cm, text width=3.1cm},
+  ar/.style={-{Stealth[length=1.5mm]}, thick}]
+
+% 第一行：PS 侧 → PL 控制窗口
+\node[p, fill=macpeach] (jup)  at (-5.9,0) {Jupyter Notebook\\PYNQ 2.7.0\\Python 3.8.2};
+\node[p, fill=macpeach] (host) at (-1.95,0) {AsconHost\\Mailbox 后端};
+\node[p, fill=macpeach] (mmio) at (2.0,0) {\texttt{pynq.MMIO}\\GP0 两个窗口\\各 4 KiB};
+\node[b, fill=maclav] (ctl)  at (5.95,0) {\texttt{pynq\_ctl.v}\\CONTROL 窗口};
+
+% 第二行：PL 数据面 → SoC
+\node[b, fill=maclav] (mbox) at (-5.9,-2.7) {\texttt{pynq\_mbox.v}\\MAILBOX 窗口};
+\node[b, fill=macblue] (fifo) at (-1.95,-2.7) {TX FIFO 64\\RX FIFO 256};
+\node[b, fill=macgreen] (core) at (2.0,-2.7) {\texttt{cpu\_core}\\+ \texttt{uart\_ctrl}};
+\node[b, fill=macgreen!55] (svc)  at (5.95,-2.7) {服务固件\\帧解析与三模式调度};
+
+\node[draw=softline, rounded corners=1.5pt, fill=macgreen, align=center, inner sep=2.4pt,
+      font=\scriptsize, minimum width=7.4cm, minimum height=1.1cm, text width=7.2cm, fill=macamber] (acc) at (2.4,-4.35)
+      {Ascon 三模式：SW / MMIO / ISE；PT/AD 各 $\leq$16 B};
+
+\draw[ar] (jup) -- (host);
+\draw[ar] (host) -- (mmio);
+\draw[ar] (mmio) -- (ctl);
+\draw[ar] (ctl.south) -- (5.95,-1.35) -- (-5.9,-1.35) -- (mbox.north);
+\node[font=\scriptsize, anchor=north west] at (-5.85,-1.38) {SoC 复位后由 \texttt{link\_flush} 清空两侧 FIFO 与计数};
+\draw[ar] (mbox) -- (fifo);
+\draw[ar] (fifo) -- (core);
+\draw[ar] (core) -- (svc);
+\draw[ar] (svc.south) -- (svc.south |- 0,-3.6) -- (6.2,-3.6) -- (6.2,-4.35) -- (acc.east);
+
+\node[draw=softline, rounded corners=2pt, fill=macgray, align=left, font=\scriptsize,
+      text width=14.2cm, anchor=north west] at (-7.6,-5.25) {%
+帧格式（\texttt{src/pynq/mailbox\_protocol.py} 与服务固件共同实现）：\texttt{Y01Q} 请求、\texttt{Y01R} 响应、
+\texttt{Y01S} 自检与 boot \texttt{mcycle}（64 B）、\texttt{Y01E} 会话 epoch（20 B）。
+ID 寄存器：CONTROL \texttt{0x514E\_5950}（小端读出 “PYNQ”）；MAILBOX \texttt{0x4D42\_4F58}（小端读出 “XOBM”，
+按大端字节序为 “MBOX”，与 CONTROL 编码方向相反，按 RTL 现状记录）。
+板上官方容量内 KAT 与坏 Tag 拒绝各 289/289；固定 \#529 的 warm 加密中位 SW/HW/ISE 为
+23\,342 / 1\,439 / 3\,995 周期；9/9 错误门禁通过。};
+\end{tikzpicture}

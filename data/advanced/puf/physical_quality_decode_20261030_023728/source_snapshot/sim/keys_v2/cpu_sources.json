@@ -1,0 +1,16 @@
+{
+  "include_dirs": ["src/rtl", "src/rtl/ascon"],
+  "sources": [
+    "src/rtl/branch_predictor.v", "src/rtl/bypass.v", "src/rtl/cpu_core.v",
+    "src/rtl/csr_file.v", "src/rtl/ctrl.v", "src/rtl/dcache.v", "src/rtl/divider.v",
+    "src/rtl/ex_mem.v", "src/rtl/ex_stage.v", "src/rtl/icache.v", "src/rtl/id_ex.v",
+    "src/rtl/id_stage.v", "src/rtl/if_id.v", "src/rtl/if_stage.v", "src/rtl/mem_stage.v",
+    "src/rtl/mem_wb.v", "src/rtl/mult.v", "src/rtl/regfile.v", "src/rtl/ascon/ascon_ise.v"
+  ],
+  "append_manifest": "sim/keys_v2/sources.json",
+  "testbench": "sim/keys_v2/tb_puf_cpu_v2.sv",
+  "tops": ["tb_puf_cpu_v2", "tb_puf_cpu_diag_v2"],
+  "plusargs": ["HEX=<crosscompiled puf_v2.hex absolute path>"],
+  "maximum_runtime": "20 ms",
+  "memory_model": "4-beat wrapped icache/dcache fills, byte-masked write-through memory, UART register BFM"
+}

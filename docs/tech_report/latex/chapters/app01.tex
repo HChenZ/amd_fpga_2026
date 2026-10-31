@@ -1,0 +1,30 @@
+\chapter{术语与缩写}
+\renewcommand{\thesubsection}{\thechapter.\arabic{subsection}}
+
+{\small
+\renewcommand{\thetable}{A-1}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.2198\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.7802\linewidth-2\tabcolsep\relax}@{}}
+\caption{术语与缩写}\label{tab:A-1}\\
+\toprule
+\textbf{缩写} & \textbf{全称与含义} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{@{}l}{\footnotesize 续表 A-1}\\
+\toprule
+\textbf{缩写} & \textbf{全称与含义} \\
+\midrule
+\endhead
+AEAD & Authenticated Encryption with Associated Data，认证加密 \\
+AD & Associated Data，关联数据 \\
+ISE & Instruction Set Extension，本文的状态读写与置换定制指令 \\
+MMIO & Memory-Mapped I/O，存储器映射访问 \\
+KAT & Known-Answer Test，已知答案测试 \\
+WNS / TNS & Worst Negative Slack / Total Negative Slack \\
+WHS / THS & Worst Hold Slack / Total Hold Slack \\
+DRC & Design Rule Check \\
+COE & BRAM 初值文件 \\
+mcycle & RV32 的 64-bit 周期来源，CSR 0xB00/0xB80 \\
+warm & 经过预热的执行状态，不等于首次调用或长期平均 \\
+\bottomrule
+\end{longtable}
+}

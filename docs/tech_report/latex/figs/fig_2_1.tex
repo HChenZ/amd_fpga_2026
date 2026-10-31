@@ -1,0 +1,50 @@
+% 图 2-1 处理器与 SoC 总体框图（坐标单位 cm）
+\begin{tikzpicture}[font=\footnotesize,
+  blk/.style={draw=softline, rounded corners=1.5pt, fill=macblue!55},
+  w/.style={draw=softline, rounded corners=1.5pt, fill=white, align=center, inner sep=1.6pt, font=\scriptsize},
+  ar/.style={-{Stealth[length=1.5mm]}, thick}]
+
+% 板级层（顶部留出标题行，标题不压内部方框）
+\draw[rounded corners=1.5pt, draw=softline, fill=macpeach!60] (-7.4,-0.55) rectangle (7.4,1.2);
+\node[anchor=north west, font=\scriptsize\bfseries] at (-7.35,1.17) {当前发布（pynq\_wrapper）};
+\node[w, minimum width=2.6cm] (clk) at (-5.75,0.05) {PS7\\FCLK0 100 MHz};
+\node[w, minimum width=3.3cm, fill=macpeach!80] (pll) at (-2.5,0.05) {AXI-Lite\\CONTROL / MAILBOX};
+\node[w, minimum width=2.2cm] (rst) at (0.5,0.05) {复位同步\\SOC\_RESET};
+\node[w, minimum width=3.6cm, fill=macblue!60] (mem0) at (4.6,0.05) {blk\_mem\_gen\_0\\32 bit $\times$ 32768};
+
+% 片上层
+\draw[rounded corners=1.5pt, draw=softline, fill=macblue!35] (-7.4,-5.5) rectangle (7.4,-0.95);
+\node[anchor=north east, font=\scriptsize\bfseries] at (7.35,-0.98) {片上（soc\_top）};
+
+\node[w, minimum width=5.6cm, minimum height=1.2cm, fill=macgreen!70] (cpu) at (-4.6,-1.85)
+  {\textbf{cpu\_core}\\IF $\rightarrow$ ID $\rightarrow$ EX $\rightarrow$ MEM $\rightarrow$ WB\\I-cache 1 KiB；D-cache 2 KiB（两路）};
+\node[w, minimum width=4.4cm, minimum height=1.2cm, fill=maclav] (btb) at (2.8,-1.85)
+  {分支预测\\64 项 BTB\\bypass / stall\_ctrl};
+
+% 总线（文字放在右段，给 CPU→ISE 虚线留出无字区）
+\draw[fill=macgreen] (-7.2,-3.05) rectangle (7.2,-2.55);
+\node[font=\scriptsize] at (3.2,-2.8) {bus\_interconnect $\rightarrow$ cpu\_axi\_bridge $\rightarrow$ AXI4 master};
+
+% 外设
+\node[w, minimum width=2.6cm] (uart)  at (-5.9,-3.75) {UART\\0x2000\_0000};
+\node[w, minimum width=2.6cm] (gpio)  at (-2.95,-3.75) {GPIO\\0x2001\_0000};
+\node[w, minimum width=2.6cm] (clint) at (0.0,-3.75) {CLINT\\0x1200\_0000};
+\node[w, minimum width=2.6cm] (cpi)   at (2.95,-3.75) {CPI 计数\\0x6000\_0000};
+\node[w, minimum width=6.6cm, fill=macamber] (asc)   at (-2.4,-4.95) {Ascon MMIO：0x3000\_0000\\由调用者写 key，CPU 搬运与轮询};
+\node[w, minimum width=3.8cm, fill=macrose] (ise)   at (4.0,-4.95) {Ascon ISE：EX 级\\custom-0 状态 / P8 / P12};
+
+% 连线（竖线走外设之间的空隙，不穿过文字）
+\draw[ar] (clk) -- (pll);
+\draw[ar] (pll) -- (rst);
+\draw[ar, dashed] (pll.south) -- ++(0,-0.35) -| (cpu.north);
+\draw[ar, dashed] (rst.south) -- ++(0,-0.45) -| (btb.north);
+\draw[ar] (mem0.south) -- (mem0.south |- btb.north);
+\draw[ar] (cpu.south) -- (cpu.south |- 0,-2.55);
+\draw[ar] (btb.south) -- (btb.south |- 0,-2.55);
+\draw[ar] (uart.north)  -- (uart.north  |- 0,-3.05);
+\draw[ar] (gpio.north)  -- (gpio.north  |- 0,-3.05);
+\draw[ar] (clint.north) -- (clint.north |- 0,-3.05);
+\draw[ar] (cpi.north)   -- (cpi.north   |- 0,-3.05);
+\draw[ar] ([xshift=-2.02cm]asc.north) -- ([xshift=-2.02cm]asc.north |- 0,-3.05);
+\draw[ar, dashed] (cpu.east) -- (-1.47,-1.85) -- (-1.47,-4.35) -| (ise.north);
+\end{tikzpicture}

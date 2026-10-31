@@ -1,0 +1,144 @@
+{
+  "passed": true,
+  "kind": "icarus_puf_min_functional",
+  "tool": "iverilog",
+  "models": [
+    "behavioral RO array (deterministic, not physical)",
+    "DNA_PORT simulation model"
+  ],
+  "board": "not_measured",
+  "physical_entropy": "not_measured",
+  "secure_boot": false,
+  "key_extractor": "none (Python side, demo helper only)",
+  "source_sha256": {
+    "src/rtl/puf_min/puf_min_axil.v": "b5e1897e6c1aa6d8a9ce3ae1b35a9d528495c35768beba282a01eecba1da3316",
+    "src/rtl/puf_min/puf_min_top.v": "385c893bb2c1d177f7269cc892abc69bb0c901e4b495b6b1626e90b804e60097",
+    "src/rtl/keys_v2/ro_counter_v2.v": "69076ca750bfd52763c586725d26a516de8aef0560b83d71771805153d67b29e",
+    "src/rtl/keys_v2/ro_puf_core_v2.v": "719b13c934221a4f746eda5ac05311ec72b840fa92e9904c0375cb4f6f226d67",
+    "src/rtl/keys/device_dna.v": "4b6323bcf0b672153601c6778ac7844c2d474aebe3e8a8949a2a40cb4ce486f8",
+    "sim/puf_soc_v2/ro_array_model.sv": "651d08464e69c2ec0eb0417f210fb72e1be6f092e72ed07035ea7dc9ec006fd4",
+    "sim/keys/DNA_PORT_sim.v": "0f9bf726bfc99ab59b5f88f04363d9e8fb27215d0105951b8cd3be4343362d8f",
+    "sim/puf_min/axi_lite_bfm.sv": "e4dcb79a8d7ea2b339944f5417438047d41aaaa322cfdf691d2a06ff3732d3d1",
+    "sim/puf_min/tb_puf_min.sv": "8a3a09b01fc534fe4993546d172fc45da46cc709ea48f4dabe28a463bddf47c8",
+    "sim/puf_min/tb_ro_core_single_clock.sv": "d4ecc8a61b97016416caec57f022490c78a1e0e59378bfed58c2d9766be7b7a5"
+  },
+  "records": [
+    {
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\iverilog.EXE",
+        "-V"
+      ],
+      "exit_code": 0,
+      "log": "tool_version.log"
+    },
+    {
+      "case": "e1_single_clock",
+      "stage": "compile",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\iverilog.EXE",
+        "-g2012",
+        "-s",
+        "tb_ro_core_single_clock",
+        "-o",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_min\\icarus_20261030_115019\\e1_single_clock.vvp",
+        "src/rtl/puf_min/puf_min_axil.v",
+        "src/rtl/puf_min/puf_min_top.v",
+        "src/rtl/keys_v2/ro_counter_v2.v",
+        "src/rtl/keys_v2/ro_puf_core_v2.v",
+        "src/rtl/keys/device_dna.v",
+        "sim/puf_soc_v2/ro_array_model.sv",
+        "sim/keys/DNA_PORT_sim.v",
+        "sim/puf_min/axi_lite_bfm.sv",
+        "sim/puf_min/tb_puf_min.sv",
+        "sim/puf_min/tb_ro_core_single_clock.sv"
+      ],
+      "exit_code": 0,
+      "log": "e1_single_clock_compile.log"
+    },
+    {
+      "case": "e1_single_clock",
+      "stage": "run",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\vvp.EXE",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_min\\icarus_20261030_115019\\e1_single_clock.vvp"
+      ],
+      "exit_code": 0,
+      "log": "e1_single_clock_run.log",
+      "pass_marker": "TEST_PASS tb_ro_core_single_clock",
+      "passed": true
+    },
+    {
+      "case": "regs_fast",
+      "stage": "compile",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\iverilog.EXE",
+        "-g2012",
+        "-s",
+        "tb_puf_min",
+        "-o",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_min\\icarus_20261030_115019\\regs_fast.vvp",
+        "src/rtl/puf_min/puf_min_axil.v",
+        "src/rtl/puf_min/puf_min_top.v",
+        "src/rtl/keys_v2/ro_counter_v2.v",
+        "src/rtl/keys_v2/ro_puf_core_v2.v",
+        "src/rtl/keys/device_dna.v",
+        "sim/puf_soc_v2/ro_array_model.sv",
+        "sim/keys/DNA_PORT_sim.v",
+        "sim/puf_min/axi_lite_bfm.sv",
+        "sim/puf_min/tb_puf_min.sv",
+        "sim/puf_min/tb_ro_core_single_clock.sv"
+      ],
+      "exit_code": 0,
+      "log": "regs_fast_compile.log"
+    },
+    {
+      "case": "regs_fast",
+      "stage": "run",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\vvp.EXE",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_min\\icarus_20261030_115019\\regs_fast.vvp"
+      ],
+      "exit_code": 0,
+      "log": "regs_fast_run.log",
+      "pass_marker": "TEST_PASS tb_puf_min",
+      "passed": true
+    },
+    {
+      "case": "regs_prod",
+      "stage": "compile",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\iverilog.EXE",
+        "-g2012",
+        "-DPROD_PARAMS",
+        "-s",
+        "tb_puf_min",
+        "-o",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_min\\icarus_20261030_115019\\regs_prod.vvp",
+        "src/rtl/puf_min/puf_min_axil.v",
+        "src/rtl/puf_min/puf_min_top.v",
+        "src/rtl/keys_v2/ro_counter_v2.v",
+        "src/rtl/keys_v2/ro_puf_core_v2.v",
+        "src/rtl/keys/device_dna.v",
+        "sim/puf_soc_v2/ro_array_model.sv",
+        "sim/keys/DNA_PORT_sim.v",
+        "sim/puf_min/axi_lite_bfm.sv",
+        "sim/puf_min/tb_puf_min.sv",
+        "sim/puf_min/tb_ro_core_single_clock.sv"
+      ],
+      "exit_code": 0,
+      "log": "regs_prod_compile.log"
+    },
+    {
+      "case": "regs_prod",
+      "stage": "run",
+      "command": [
+        "C:\\wenjian\\.vscode\\iverilog\\bin\\vvp.EXE",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\data\\advanced\\puf_min\\icarus_20261030_115019\\regs_prod.vvp"
+      ],
+      "exit_code": 0,
+      "log": "regs_prod_run.log",
+      "pass_marker": "TEST_PASS tb_puf_min",
+      "passed": true
+    }
+  ]
+}

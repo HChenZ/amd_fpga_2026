@@ -1,0 +1,943 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Oct 30 03:52:36 2026
+| Host         : DESKTOP-5H4M0DR running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type min -max_paths 20 -file C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/advanced/puf_soc/implementation/hold_paths.rpt
+| Design       : puf_wrapper
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.019ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[40]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[40]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.388ns  (logic 0.186ns (47.967%)  route 0.202ns (52.033%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.276ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.279ns
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.637     0.973    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/clk
+    SLICE_X113Y50        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[40]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X113Y50        FDRE (Prop_fdre_C_Q)         0.141     1.114 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[40]/Q
+                         net (fo=1, routed)           0.202     1.315    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[319]_0[40]
+    SLICE_X113Y46        LUT5 (Prop_lut5_I0_O)        0.045     1.360 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg[40]_i_1__1/O
+                         net (fo=1, routed)           0.000     1.360    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/p_2_in[40]
+    SLICE_X113Y46        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[40]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.913     1.279    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/clk
+    SLICE_X113Y46        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[40]/C
+                         clock pessimism             -0.030     1.249    
+    SLICE_X113Y46        FDRE (Hold_fdre_C_D)         0.092     1.341    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[40]
+  -------------------------------------------------------------------
+                         required time                         -1.341    
+                         arrival time                           1.360    
+  -------------------------------------------------------------------
+                         slack                                  0.019    
+
+Slack (MET) :             0.030ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/s0_reg[5]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/out_reg_reg[5]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.385ns  (logic 0.209ns (54.285%)  route 0.176ns (45.715%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.264ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.272ns
+    Source Clock Delay      (SCD):    0.978ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.642     0.978    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/clk
+    SLICE_X108Y49        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/s0_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X108Y49        FDRE (Prop_fdre_C_Q)         0.164     1.142 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/s0_reg[5]/Q
+                         net (fo=5, routed)           0.176     1.318    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/s0_reg_n_0_[5]
+    SLICE_X106Y50        LUT5 (Prop_lut5_I4_O)        0.045     1.363 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/i___11/O
+                         net (fo=1, routed)           0.000     1.363    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/i___11_n_0
+    SLICE_X106Y50        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/out_reg_reg[5]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.906     1.272    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/clk
+    SLICE_X106Y50        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/out_reg_reg[5]/C
+                         clock pessimism             -0.030     1.242    
+    SLICE_X106Y50        FDRE (Hold_fdre_C_D)         0.091     1.333    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/out_reg_reg[5]
+  -------------------------------------------------------------------
+                         required time                         -1.333    
+                         arrival time                           1.363    
+  -------------------------------------------------------------------
+                         slack                                  0.030    
+
+Slack (MET) :             0.043ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/captured_result_reg[73]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw_reg[73]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.427ns  (logic 0.186ns (43.522%)  route 0.241ns (56.478%))
+  Logic Levels:           1  (LUT4=1)
+  Clock Path Skew:        0.263ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.215ns
+    Source Clock Delay      (SCD):    0.922ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.586     0.922    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/clk
+    SLICE_X61Y49         FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/captured_result_reg[73]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X61Y49         FDCE (Prop_fdce_C_Q)         0.141     1.063 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/captured_result_reg[73]/Q
+                         net (fo=1, routed)           0.241     1.304    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/captured_result__0[73]
+    SLICE_X62Y50         LUT4 (Prop_lut4_I1_O)        0.045     1.349 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw[73]_i_1/O
+                         net (fo=1, routed)           0.000     1.349    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw[73]_i_1_n_0
+    SLICE_X62Y50         FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw_reg[73]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.849     1.215    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/clk
+    SLICE_X62Y50         FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw_reg[73]/C
+                         clock pessimism             -0.030     1.185    
+    SLICE_X62Y50         FDCE (Hold_fdce_C_D)         0.121     1.306    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw_reg[73]
+  -------------------------------------------------------------------
+                         required time                         -1.306    
+                         arrival time                           1.349    
+  -------------------------------------------------------------------
+                         slack                                  0.043    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[229]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[229]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.376ns  (logic 0.141ns (37.480%)  route 0.235ns (62.520%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.265ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.270ns
+    Source Clock Delay      (SCD):    0.966ns
+    Clock Pessimism Removal (CPR):    0.039ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.630     0.966    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/clk
+    SLICE_X51Y114        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[229]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X51Y114        FDRE (Prop_fdre_C_Q)         0.141     1.107 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[229]/Q
+                         net (fo=6, routed)           0.235     1.342    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg_n_0_[229]
+    SLICE_X49Y115        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[229]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.904     1.270    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/clk
+    SLICE_X49Y115        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[229]/C
+                         clock pessimism             -0.039     1.231    
+    SLICE_X49Y115        FDRE (Hold_fdre_C_D)         0.066     1.297    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[229]
+  -------------------------------------------------------------------
+                         required time                         -1.297    
+                         arrival time                           1.342    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw_reg[6]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/stable_mask_reg[6]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.400ns  (logic 0.186ns (46.515%)  route 0.214ns (53.485%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.262ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.214ns
+    Source Clock Delay      (SCD):    0.922ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.586     0.922    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/clk
+    SLICE_X63Y49         FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y49         FDCE (Prop_fdce_C_Q)         0.141     1.063 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw_reg[6]/Q
+                         net (fo=2, routed)           0.214     1.276    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw[6]
+    SLICE_X63Y53         LUT6 (Prop_lut6_I2_O)        0.045     1.321 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/stable_mask[6]_i_1/O
+                         net (fo=1, routed)           0.000     1.321    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler_n_321
+    SLICE_X63Y53         FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/stable_mask_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.848     1.214    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/clk
+    SLICE_X63Y53         FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/stable_mask_reg[6]/C
+                         clock pessimism             -0.030     1.184    
+    SLICE_X63Y53         FDCE (Hold_fdce_C_D)         0.092     1.276    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/stable_mask_reg[6]
+  -------------------------------------------------------------------
+                         required time                         -1.276    
+                         arrival time                           1.321    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.047ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/material_reg[4]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/derive/s_reg_reg[68]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.412ns  (logic 0.186ns (45.091%)  route 0.226ns (54.909%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.273ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.219ns
+    Source Clock Delay      (SCD):    0.916ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.580     0.916    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/clk
+    SLICE_X63Y51         FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/material_reg[4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X63Y51         FDCE (Prop_fdce_C_Q)         0.141     1.057 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/material_reg[4]/Q
+                         net (fo=1, routed)           0.226     1.283    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/derive/s_reg_reg[191]_0[4]
+    SLICE_X63Y46         LUT5 (Prop_lut5_I0_O)        0.045     1.328 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/derive/s_reg[68]_i_1/O
+                         net (fo=1, routed)           0.000     1.328    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/derive/p_2_in[68]
+    SLICE_X63Y46         FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/derive/s_reg_reg[68]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.853     1.219    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/derive/clk
+    SLICE_X63Y46         FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/derive/s_reg_reg[68]/C
+                         clock pessimism             -0.030     1.189    
+    SLICE_X63Y46         FDRE (Hold_fdre_C_D)         0.092     1.281    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/derive/s_reg_reg[68]
+  -------------------------------------------------------------------
+                         required time                         -1.281    
+                         arrival time                           1.328    
+  -------------------------------------------------------------------
+                         slack                                  0.047    
+
+Slack (MET) :             0.048ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[260]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[260]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.393ns  (logic 0.141ns (35.854%)  route 0.252ns (64.146%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.269ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.266ns
+    Source Clock Delay      (SCD):    0.958ns
+    Clock Pessimism Removal (CPR):    0.039ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.622     0.958    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/clk
+    SLICE_X53Y123        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[260]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X53Y123        FDRE (Prop_fdre_C_Q)         0.141     1.099 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[260]/Q
+                         net (fo=6, routed)           0.252     1.351    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg_n_0_[260]
+    SLICE_X48Y119        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[260]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.900     1.266    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/clk
+    SLICE_X48Y119        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[260]/C
+                         clock pessimism             -0.039     1.227    
+    SLICE_X48Y119        FDRE (Hold_fdre_C_D)         0.076     1.303    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[260]
+  -------------------------------------------------------------------
+                         required time                         -1.303    
+                         arrival time                           1.351    
+  -------------------------------------------------------------------
+                         slack                                  0.048    
+
+Slack (MET) :             0.048ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[16]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[16]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.386ns  (logic 0.141ns (36.546%)  route 0.245ns (63.454%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.267ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.275ns
+    Source Clock Delay      (SCD):    0.978ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.642     0.978    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/clk
+    SLICE_X113Y46        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[16]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X113Y46        FDRE (Prop_fdre_C_Q)         0.141     1.119 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[16]/Q
+                         net (fo=5, routed)           0.245     1.363    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg_n_0_[16]
+    SLICE_X113Y51        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.909     1.275    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/clk
+    SLICE_X113Y51        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[16]/C
+                         clock pessimism             -0.030     1.245    
+    SLICE_X113Y51        FDRE (Hold_fdre_C_D)         0.070     1.315    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[16]
+  -------------------------------------------------------------------
+                         required time                         -1.315    
+                         arrival time                           1.363    
+  -------------------------------------------------------------------
+                         slack                                  0.048    
+
+Slack (MET) :             0.048ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[94]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[94]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.416ns  (logic 0.186ns (44.739%)  route 0.230ns (55.261%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.275ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.250ns
+    Source Clock Delay      (SCD):    0.945ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.609     0.945    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/clk
+    SLICE_X103Y52        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[94]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X103Y52        FDRE (Prop_fdre_C_Q)         0.141     1.086 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[94]/Q
+                         net (fo=1, routed)           0.230     1.315    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[319]_0[94]
+    SLICE_X103Y44        LUT5 (Prop_lut5_I0_O)        0.045     1.360 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg[94]_i_1__1/O
+                         net (fo=1, routed)           0.000     1.360    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/p_2_in[94]
+    SLICE_X103Y44        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[94]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.884     1.250    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/clk
+    SLICE_X103Y44        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[94]/C
+                         clock pessimism             -0.030     1.220    
+    SLICE_X103Y44        FDRE (Hold_fdre_C_D)         0.092     1.312    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[94]
+  -------------------------------------------------------------------
+                         required time                         -1.312    
+                         arrival time                           1.360    
+  -------------------------------------------------------------------
+                         slack                                  0.048    
+
+Slack (MET) :             0.050ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[13]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[13]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.381ns  (logic 0.164ns (43.051%)  route 0.217ns (56.949%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.265ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.272ns
+    Source Clock Delay      (SCD):    0.976ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.641     0.977    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/clk
+    SLICE_X108Y44        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[13]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X108Y44        FDRE (Prop_fdre_C_Q)         0.164     1.141 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[13]/Q
+                         net (fo=5, routed)           0.217     1.357    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg_n_0_[13]
+    SLICE_X109Y52        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.906     1.272    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/clk
+    SLICE_X109Y52        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[13]/C
+                         clock pessimism             -0.030     1.242    
+    SLICE_X109Y52        FDRE (Hold_fdre_C_D)         0.066     1.308    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[13]
+  -------------------------------------------------------------------
+                         required time                         -1.308    
+                         arrival time                           1.357    
+  -------------------------------------------------------------------
+                         slack                                  0.050    
+
+Slack (MET) :             0.050ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[124]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[124]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.446ns  (logic 0.186ns (41.694%)  route 0.260ns (58.306%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.275ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.278ns
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.637     0.973    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/clk
+    SLICE_X110Y52        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[124]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X110Y52        FDRE (Prop_fdre_C_Q)         0.141     1.114 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[124]/Q
+                         net (fo=1, routed)           0.260     1.374    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[319]_0[124]
+    SLICE_X108Y44        LUT5 (Prop_lut5_I0_O)        0.045     1.419 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg[124]_i_1__1/O
+                         net (fo=1, routed)           0.000     1.419    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/p_2_in[124]
+    SLICE_X108Y44        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[124]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.912     1.278    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/clk
+    SLICE_X108Y44        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[124]/C
+                         clock pessimism             -0.030     1.248    
+    SLICE_X108Y44        FDRE (Hold_fdre_C_D)         0.121     1.369    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[124]
+  -------------------------------------------------------------------
+                         required time                         -1.369    
+                         arrival time                           1.419    
+  -------------------------------------------------------------------
+                         slack                                  0.050    
+
+Slack (MET) :             0.051ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw_reg[19]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/first_reg[19]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.434ns  (logic 0.226ns (52.075%)  route 0.208ns (47.925%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.262ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.214ns
+    Source Clock Delay      (SCD):    0.922ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.586     0.922    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/clk
+    SLICE_X60Y48         FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw_reg[19]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X60Y48         FDCE (Prop_fdce_C_Q)         0.128     1.050 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw_reg[19]/Q
+                         net (fo=2, routed)           0.208     1.257    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/raw[19]
+    SLICE_X62Y54         LUT5 (Prop_lut5_I4_O)        0.098     1.355 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler/first[19]_i_1/O
+                         net (fo=1, routed)           0.000     1.355    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/sampler_n_110
+    SLICE_X62Y54         FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/first_reg[19]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.848     1.214    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/clk
+    SLICE_X62Y54         FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/first_reg[19]/C
+                         clock pessimism             -0.030     1.184    
+    SLICE_X62Y54         FDCE (Hold_fdce_C_D)         0.121     1.305    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/keys/first_reg[19]
+  -------------------------------------------------------------------
+                         required time                         -1.305    
+                         arrival time                           1.355    
+  -------------------------------------------------------------------
+                         slack                                  0.051    
+
+Slack (MET) :             0.056ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg[12]/C
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg[16]/D
+                            (rising edge-triggered cell FDCE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.510ns  (logic 0.392ns (76.853%)  route 0.118ns (23.147%))
+  Logic Levels:           2  (CARRY4=2)
+  Clock Path Skew:        0.349ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.297ns
+    Source Clock Delay      (SCD):    0.913ns
+    Clock Pessimism Removal (CPR):    0.035ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.577     0.913    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/clk
+    SLICE_X31Y99         FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg[12]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X31Y99         FDCE (Prop_fdce_C_Q)         0.141     1.054 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg[12]/Q
+                         net (fo=2, routed)           0.117     1.171    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg_n_0_[12]
+    SLICE_X31Y99         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.197     1.368 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.001     1.369    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg[12]_i_1_n_0
+    SLICE_X31Y100        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.054     1.423 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg[16]_i_1/O[0]
+                         net (fo=1, routed)           0.000     1.423    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg[16]_i_1_n_7
+    SLICE_X31Y100        FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg[16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.931     1.297    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/clk
+    SLICE_X31Y100        FDCE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg[16]/C
+                         clock pessimism             -0.035     1.262    
+    SLICE_X31Y100        FDCE (Hold_fdce_C_D)         0.105     1.367    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_csr_file/mcycle_reg[16]
+  -------------------------------------------------------------------
+                         required time                         -1.367    
+                         arrival time                           1.423    
+  -------------------------------------------------------------------
+                         slack                                  0.056    
+
+Slack (MET) :             0.057ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_reg_reg[266]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_out_reg[266]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.393ns  (logic 0.141ns (35.921%)  route 0.252ns (64.079%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.275ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.248ns
+    Source Clock Delay      (SCD):    0.943ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.607     0.943    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/clk
+    SLICE_X93Y51         FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_reg_reg[266]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X93Y51         FDRE (Prop_fdre_C_Q)         0.141     1.084 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_reg_reg[266]/Q
+                         net (fo=6, routed)           0.252     1.335    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_reg[266]
+    SLICE_X90Y47         FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_out_reg[266]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.882     1.248    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/clk
+    SLICE_X90Y47         FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_out_reg[266]/C
+                         clock pessimism             -0.030     1.218    
+    SLICE_X90Y47         FDRE (Hold_fdre_C_D)         0.060     1.278    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_out_reg[266]
+  -------------------------------------------------------------------
+                         required time                         -1.278    
+                         arrival time                           1.335    
+  -------------------------------------------------------------------
+                         slack                                  0.057    
+
+Slack (MET) :             0.057ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_reg_reg[281]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_out_reg[281]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.385ns  (logic 0.164ns (42.634%)  route 0.221ns (57.366%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.274ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.249ns
+    Source Clock Delay      (SCD):    0.945ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.609     0.945    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/clk
+    SLICE_X98Y52         FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_reg_reg[281]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X98Y52         FDRE (Prop_fdre_C_Q)         0.164     1.109 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_reg_reg[281]/Q
+                         net (fo=6, routed)           0.221     1.329    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_reg[281]
+    SLICE_X94Y46         FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_out_reg[281]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.883     1.249    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/clk
+    SLICE_X94Y46         FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_out_reg[281]/C
+                         clock pessimism             -0.030     1.219    
+    SLICE_X94Y46         FDRE (Hold_fdre_C_D)         0.053     1.272    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_inst/s_out_reg[281]
+  -------------------------------------------------------------------
+                         required time                         -1.272    
+                         arrival time                           1.329    
+  -------------------------------------------------------------------
+                         slack                                  0.057    
+
+Slack (MET) :             0.060ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[266]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[266]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.402ns  (logic 0.141ns (35.038%)  route 0.261ns (64.962%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.267ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.276ns
+    Source Clock Delay      (SCD):    0.970ns
+    Clock Pessimism Removal (CPR):    0.039ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.634     0.970    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/clk
+    SLICE_X51Y104        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[266]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X51Y104        FDRE (Prop_fdre_C_Q)         0.141     1.111 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[266]/Q
+                         net (fo=6, routed)           0.261     1.372    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg_n_0_[266]
+    SLICE_X43Y104        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[266]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.910     1.276    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/clk
+    SLICE_X43Y104        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[266]/C
+                         clock pessimism             -0.039     1.237    
+    SLICE_X43Y104        FDRE (Hold_fdre_C_D)         0.075     1.312    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[266]
+  -------------------------------------------------------------------
+                         required time                         -1.312    
+                         arrival time                           1.372    
+  -------------------------------------------------------------------
+                         slack                                  0.060    
+
+Slack (MET) :             0.061ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[37]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[37]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.431ns  (logic 0.186ns (43.172%)  route 0.245ns (56.828%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.278ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.280ns
+    Source Clock Delay      (SCD):    0.972ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.636     0.972    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/clk
+    SLICE_X113Y55        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[37]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X113Y55        FDRE (Prop_fdre_C_Q)         0.141     1.113 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_in_reg[37]/Q
+                         net (fo=1, routed)           0.245     1.357    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[319]_0[37]
+    SLICE_X110Y47        LUT5 (Prop_lut5_I0_O)        0.045     1.402 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg[37]_i_1__1/O
+                         net (fo=1, routed)           0.000     1.402    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/p_2_in[37]
+    SLICE_X110Y47        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[37]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.914     1.280    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/clk
+    SLICE_X110Y47        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[37]/C
+                         clock pessimism             -0.030     1.250    
+    SLICE_X110Y47        FDRE (Hold_fdre_C_D)         0.092     1.342    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[37]
+  -------------------------------------------------------------------
+                         required time                         -1.342    
+                         arrival time                           1.402    
+  -------------------------------------------------------------------
+                         slack                                  0.061    
+
+Slack (MET) :             0.061ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[11]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[11]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.382ns  (logic 0.141ns (36.900%)  route 0.241ns (63.100%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.264ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.271ns
+    Source Clock Delay      (SCD):    0.976ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.641     0.977    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/clk
+    SLICE_X109Y45        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[11]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X109Y45        FDRE (Prop_fdre_C_Q)         0.141     1.118 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg[11]/Q
+                         net (fo=5, routed)           0.241     1.359    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_reg_reg_n_0_[11]
+    SLICE_X109Y53        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[11]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.905     1.271    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/clk
+    SLICE_X109Y53        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[11]/C
+                         clock pessimism             -0.030     1.241    
+    SLICE_X109Y53        FDRE (Hold_fdre_C_D)         0.057     1.298    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p8_inst/s_out_reg[11]
+  -------------------------------------------------------------------
+                         required time                         -1.298    
+                         arrival time                           1.359    
+  -------------------------------------------------------------------
+                         slack                                  0.061    
+
+Slack (MET) :             0.062ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/s1_reg[10]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_in_reg[74]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.460ns  (logic 0.186ns (40.461%)  route 0.274ns (59.539%))
+  Logic Levels:           1  (LUT4=1)
+  Clock Path Skew:        0.276ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.225ns
+    Source Clock Delay      (SCD):    0.919ns
+    Clock Pessimism Removal (CPR):    0.030ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.583     0.919    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/clk
+    SLICE_X81Y53         FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/s1_reg[10]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X81Y53         FDRE (Prop_fdre_C_Q)         0.141     1.060 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/s1_reg[10]/Q
+                         net (fo=5, routed)           0.274     1.333    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/s1_reg_n_0_[10]
+    SLICE_X82Y48         LUT4 (Prop_lut4_I0_O)        0.045     1.378 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_in[74]_i_1/O
+                         net (fo=1, routed)           0.000     1.378    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_in1_in[74]
+    SLICE_X82Y48         FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_in_reg[74]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.859     1.225    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/clk
+    SLICE_X82Y48         FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_in_reg[74]/C
+                         clock pessimism             -0.030     1.195    
+    SLICE_X82Y48         FDRE (Hold_fdre_C_D)         0.121     1.316    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_puf/peripheral/cipher/p12_in_reg[74]
+  -------------------------------------------------------------------
+                         required time                         -1.316    
+                         arrival time                           1.378    
+  -------------------------------------------------------------------
+                         slack                                  0.062    
+
+Slack (MET) :             0.064ns  (arrival time - required time)
+  Source:                 puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[226]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[226]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.404ns  (logic 0.141ns (34.904%)  route 0.263ns (65.096%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.264ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.270ns
+    Source Clock Delay      (SCD):    0.967ns
+    Clock Pessimism Removal (CPR):    0.039ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.310     0.310    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.336 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.631     0.967    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/clk
+    SLICE_X51Y112        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[226]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X51Y112        FDRE (Prop_fdre_C_Q)         0.141     1.108 r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg[226]/Q
+                         net (fo=6, routed)           0.263     1.371    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_reg_reg_n_0_[226]
+    SLICE_X46Y115        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[226]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  puf_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           0.337     0.337    puf_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     0.366 r  puf_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=27153, routed)       0.904     1.270    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/clk
+    SLICE_X46Y115        FDRE                                         r  puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[226]/C
+                         clock pessimism             -0.039     1.231    
+    SLICE_X46Y115        FDRE (Hold_fdre_C_D)         0.076     1.307    puf_i/soc/inst/u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/u_p8/s_out_reg[226]
+  -------------------------------------------------------------------
+                         required time                         -1.307    
+                         arrival time                           1.371    
+  -------------------------------------------------------------------
+                         slack                                  0.064    
+
+
+
+

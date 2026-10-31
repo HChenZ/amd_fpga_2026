@@ -1,0 +1,1 @@
+PASS normal and diagnostic with AXI BRAM BFM AND vendor board BRAM wrapper; modeled RO/DNA; board NOT_MEASURED; 2025.2

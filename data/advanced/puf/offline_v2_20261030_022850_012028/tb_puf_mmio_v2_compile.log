@@ -1,0 +1,6 @@
+src/rtl/ascon/ascon_permutation.v:8: warning: timescale for p12 inherited from another file.
+src/rtl/ascon/ascon_round.v:1: ...: The inherited timescale is here.
+src/rtl/ascon/ascon_permutation.v:74: warning: timescale for p8 inherited from another file.
+src/rtl/ascon/ascon_round.v:1: ...: The inherited timescale is here.
+src/rtl/ascon/crypto_aead.v:27: warning: timescale for crypto_aead inherited from another file.
+src/rtl/ascon/ascon_word.v:1: ...: The inherited timescale is here.

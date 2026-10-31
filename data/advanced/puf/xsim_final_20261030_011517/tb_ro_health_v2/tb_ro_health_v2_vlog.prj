@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  -i "../../../../../../../src/rtl" -i "../../../../../../../src/rtl/ascon" --include "../../../../../../../../../../../../ruanjian/2025.2/Vivado/data/rsb/busdef" \
+"../../../../../../../src/rtl/keys_v2/ro_counter_v2.v" \
+"../../../../../../../src/rtl/keys_v2/ro_puf_core_v2.v" \
+"../../../../../../../sim/keys_v2/tb_ro_health_v2.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

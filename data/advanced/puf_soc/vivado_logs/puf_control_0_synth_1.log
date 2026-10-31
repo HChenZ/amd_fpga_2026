@@ -1,0 +1,260 @@
+
+*** Running vivado
+    with args -log puf_control_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source puf_control_0.tcl
+
+
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Fri Oct 30 03:20:33 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source puf_control_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 538.457 ; gain = 221.059
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/ruanjian/2025.2/Vivado/data/ip'.
+WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
+Current IP cache path is c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_puf_v2/work/puf_soc.cache/ip 
+Command: synth_design -top puf_control_0 -part xc7z020clg400-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 11520
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1322.391 ; gain = 539.715
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'puf_control_0' [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_puf_v2/work/puf_soc.gen/sources_1/bd/puf/ip/puf_control_0/synth/puf_control_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'pynq_ctl' [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq/pynq_ctl.v:19]
+	Parameter ID_VALUE bound to: 844449360 - type: integer 
+	Parameter VERSION_VALUE bound to: 2 - type: integer 
+	Parameter RESET_CTL_DEFAULT bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'pynq_ctl' (0#1) [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq/pynq_ctl.v:19]
+INFO: [Synth 8-6155] done synthesizing module 'puf_control_0' (0#1) [c:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_puf_v2/work/puf_soc.gen/sources_1/bd/puf/ip/puf_control_0/synth/puf_control_0.v:53]
+INFO: [Synth 8-7129] Port s_axi_awprot[2] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awprot[1] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awprot[0] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[11] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[10] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[9] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[8] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[7] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[6] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[5] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[4] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[1] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[0] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[2] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[1] in module pynq_ctl is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[0] in module pynq_ctl is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1444.516 ; gain = 661.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1444.516 ; gain = 661.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1444.516 ; gain = 661.840
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1444.516 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1513.078 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1513.078 ; gain = 0.000
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1513.078 ; gain = 730.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1513.078 ; gain = 730.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1513.078 ; gain = 730.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1513.078 ; gain = 730.402
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
+	               12 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   4 Input   32 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3917] design puf_control_0 has port s_axi_bresp[1] driven by constant 0
+INFO: [Synth 8-3917] design puf_control_0 has port s_axi_bresp[0] driven by constant 0
+INFO: [Synth 8-3917] design puf_control_0 has port s_axi_rresp[1] driven by constant 0
+INFO: [Synth 8-3917] design puf_control_0 has port s_axi_rresp[0] driven by constant 0
+INFO: [Synth 8-7129] Port s_axi_awprot[2] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awprot[1] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_awprot[0] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[11] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[10] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[9] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[8] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[7] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[6] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[5] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[4] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[1] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_araddr[0] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[2] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[1] in module puf_control_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port s_axi_arprot[0] in module puf_control_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1513.078 ; gain = 730.402
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1513.078 ; gain = 730.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1513.078 ; gain = 730.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1721.453 ; gain = 938.777
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1721.453 ; gain = 938.777
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1721.453 ; gain = 938.777
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1721.453 ; gain = 938.777
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1721.453 ; gain = 938.777
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1721.453 ; gain = 938.777
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |     3|
+|2     |LUT2 |     5|
+|3     |LUT3 |     5|
+|4     |LUT4 |     7|
+|5     |LUT5 |     3|
+|6     |LUT6 |     1|
+|7     |FDCE |    29|
+|8     |FDPE |     1|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1721.453 ; gain = 938.777
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:28 . Memory (MB): peak = 1721.453 ; gain = 870.215
+Synthesis Optimization Complete : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1721.453 ; gain = 938.777
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1733.535 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1833.793 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 3f90a225
+INFO: [Common 17-83] Releasing license: Synthesis
+56 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 1833.793 ; gain = 1278.844
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1833.793 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/board/vivado_zynq7000_xc7z020_puf_v2/work/puf_soc.runs/puf_control_0_synth_1/puf_control_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file puf_control_0_utilization_synth.rpt -pb puf_control_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Oct 30 03:21:25 2026...

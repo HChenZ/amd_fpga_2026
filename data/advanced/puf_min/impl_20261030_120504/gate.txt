@@ -1,0 +1,15 @@
+class=STRUCTURAL_ONLY_NO_RO_TIMING_SIGNOFF
+board=NOT_RUN
+part=xc7z020clg400-1 top=puf_wrapper version=2025.2
+phys_opt_design=NOT_RUN (gate deliberately does not rely on post-route optimization)
+wns_ns=0.121
+whs_ns=0.040
+tns_ths_zero_implied_by_wns_whs=1
+drc_error=0
+drc_critical_warning=0
+netlist_29_160_impl=0
+netlist_29_160_synth=0
+ddr_top_ports=71
+fixed_io_top_ports=59
+ro_luts=1280
+ro_luts_in_pblock=1280

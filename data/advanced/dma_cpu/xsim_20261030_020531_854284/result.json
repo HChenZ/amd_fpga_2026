@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "functional_pass": true,
+  "stages": [
+    {
+      "stage": "compile",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "call",
+        "compile.bat"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_s": 0.8032377000017732
+    },
+    {
+      "stage": "elaborate",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "call",
+        "elaborate.bat"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_s": 1.1501204000014695
+    },
+    {
+      "stage": "simulate",
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "call",
+        "simulate.bat"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_s": 2.6734111000005214
+    }
+  ],
+  "sources_unchanged": true,
+  "cases": 0,
+  "memory_model": "unit_rtl",
+  "dma_model": "not_instantiated_stream_BFM",
+  "ps_ddr_model": "not_instantiated",
+  "board": "NOT_RUN",
+  "windows_plusarg_quoting": false
+}
