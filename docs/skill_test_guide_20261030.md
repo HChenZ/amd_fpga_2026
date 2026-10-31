@@ -107,7 +107,7 @@ known_failures / limitations:
 | L1 工具层 | `done` | `pytest skill/pynq-overlay-workflow/tests` 47 passed；`skill_mutation_check.py` 13/13 killed；假 PYNQ API 用例 7 passed |
 | L2 受控对照（T1–T4） | `done`（`simulated`） | 60 次 `opencode run` + T1×placebo 复跑 5 次，全部 `exit=0`；模型 `deepseek/deepseek-flash` |
 | L2 留出任务 `t5_bram` | `done`，**未复现差异** | 15 次 `opencode run`；`with` 1.000 vs `without`/`placebo` 0.800，p=1.0 |
-| L3 实板 | **预检、Ascon A/B、GPIO C PASS；DMA D `NOT_RUN`** | session `l3_20261031_030131`：前三段 PASS；无 DMA 回环工件，D 段和汇总 FAIL |
+| L3 实板 | **PASS** | session `l3_20261031_063709`：preflight、Ascon、GPIO、DMA 全 PASS；59 checks PASS、1 NOT_APPLICABLE、0 FAIL |
 
 L2 主指标（预注册 = T1–T3 的场景通过率，n=15/组）：
 
@@ -122,7 +122,7 @@ L2 主指标（预注册 = T1–T3 的场景通过率，n=15/组）：
 - 可以写"在该任务集与该模型上，加载 Skill 的组全部通过，且显著优于无 Skill 组"。
 - **不可以**写"Skill 的技术内容被证明是提升来源"（`with` vs `placebo` 不显著），也不可以写
   "已证明可泛化到新任务"（留出任务未复现）。
-- 板级效果一律 `not_measured`，直到 L3 在真实 PYNQ 上跑完并留证据。
+- L3 真实硬件功能已在当前 session 通过；Skill 对硬件的统计效果仍未测。
 - L3 只做人工单组真实硬件功能验证。L2 的 `with vs placebo` 不显著且 T5 未复现，
   不能通过 L3 补写“Skill 技术内容导致提升”或“已泛化”。
 

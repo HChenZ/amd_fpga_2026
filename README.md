@@ -1,6 +1,6 @@
 # RISC-V Lightweight Cryptography SoC with ASCON ISE
 
-2026-10-30 当前状态入口：[状态总表](docs/current_status_20261029.md)、[PYNQ 实板验证](board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)、[PUF3 完整 KAT 结果](data/pynq_puf3/notebook_20261030_144328/result.json)。AXI-Lite/UART 服务链与独立 PUF3 变体已在正点原子领航者 ZYNQ7020 实板运行；PUF3 的 SW/HW/ISE 各 289 组容量内 KAT、各 289 次坏 Tag 拒绝、30 次 mcycle benchmark 和单次上电 PUF enroll/reconstruct/HWKEY 流程均通过。跨电源周期、RO 时序签核和温度/BER/熵/唯一性仍未测，P1 通用 Skill 与最终材料仍未完成。
+2026-10-31 当前状态入口：[状态总表](docs/current_status_20261029.md)、[PYNQ 实板验证](board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)、[Skill L3 汇总](data/skill/l3_20261031_063709/40_summary.json)。AXI-Lite/UART 服务链与独立 PUF3 变体已在正点原子领航者 ZYNQ7020 实板运行；`pynq-overlay-workflow` 已完成 L1、L2（`simulated`）和 L3 实板功能验证，L3 session 四段 PASS。S01–S03 已完成；S04 report/collector 非 Ascon 示例、S05 独立复现/证据包及 D01-D06 最终材料仍未完成。
 
 在 CICC1000023「基于 RISC-V 的高性能 CPU 设计及 FPGA 验证」基础上扩展轻量级密码学：在自研 RISC-V CPU 上运行 **NIST SP 800-232 Ascon-AEAD128**，加入 custom instruction set extension（ISE），通过 FPGA 实测比较软件与 ISE，再用 PYNQ/Jupyter 完成控制、黄金参考比对和展示。
 
@@ -9,7 +9,7 @@
 | 比赛 | 全国大学生嵌入式芯片与系统设计竞赛 2026，FPGA 创新设计赛道，AMD 自主选题初级组 |
 | 目标硬件 | 正点原子领航者 ZYNQ7020；part **xc7z020clg400-1**；完整丝印/速度等级、板卡 revision 和独立频率测量仍待 B03 取证 |
 | 最终提交 | **2026-11-04**（用户给定截止日期；11 月 4 日不安排开发） |
-| 当前阶段 | 核心 PYNQ 演示与 V03 已完成；继续完成 B03 实物证据、P1 通用 Skill 和 D01-D06 材料 |
+| 当前阶段 | 核心 PYNQ 演示、V03 与 Skill L3 已完成；继续完成 B03 实物证据、S04/S05 Skill 收口和 D01-D06 材料 |
 | 当前工程实际配置 | PYNQ release：`xc7z020clg400-1` / Vivado `2025.2` / `pynq_wrapper` / FCLK0 100 MHz；原 CICC baseline 与 Kintex legacy 独立保留 |
 | 开源协议 | [Apache-2.0](LICENSE)；引入第三方代码须单独核对来源与许可 |
 
@@ -132,8 +132,8 @@ UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
 6. B02 使用 Vivado 2025.2 重建真实 XC7Z020 baseline，B03 核对实物板，B04 补齐准确 FreeRTOS kernel/bootloader 来源并验证目标软件；完成 C04 真实 cycle 后再进入 CPU ISE 与 PYNQ 集成。
 
 **目前不能承诺 clean clone 即可完成全部 FPGA 端到端验收。** 当前 release overlay 已有
-容量内 KAT、benchmark、Notebook 和 V03 实板验证；B03 实物证据、通用 Skill 与
-clean-clone 复现尚未完成。
+容量内 KAT、benchmark、Notebook 和 V03 实板验证；B03 实物证据、Skill S04/S05、
+独立复现证据包与 clean-clone 尚未完成。
 
 ## 文档索引
 

@@ -24,7 +24,7 @@ owner TBD。本目录是**测量工具**，不是 Skill 本身；不要把它复
 ### L2 Agent 层：受控 A/B/安慰剂实验（本目录的 harness；2026-10-30~31 已跑完 T1–T4，结果见 6.1）
 回答的问题：**同一模型在只差 Skill 的条件下，写出的 PYNQ 主机代码是否更可靠？**
 
-### L3 实板层（预检 `PASS`；硬件 A/B/C/D 段 `not_run`）
+### L3 实板层（2026-10-31 `PASS`）
 在 PYNQ 板上按 Skill 流程走一遍：段 A/B 用本仓库 `board/vivado_zynq7000_xc7z020_pynq/release/`
 （已在 L1 离线验证过工件解析）；段 C/D 至少再用一个**非 Ascon** overlay（例如 PYNQ 自带 base overlay 的 AXI GPIO，或一个最小 AXI DMA 回环设计）。只有这一层能证明"在真实硬件上可用"。
 
@@ -32,6 +32,11 @@ L2 结果不改变 L3 的判定对象：L2 是 `simulated` Agent 对照，且 `w
 不显著、T5 留出未复现，因此 L3 仍采用人工单组功能验证，不做 L3 A/B，也不能用来补证
 Skill 的因果提升或泛化。L3 预检记录会增加实际执行 Notebook、`src/pynq` 依赖、Skill
 脚本树和 L2 归档的 SHA-256；因板端工作树可能 dirty，`git HEAD` 不再单独作为源码指纹。
+
+实际 L3 session `l3_20261031_063709` 的 preflight、Ascon release、非 Ascon GPIO、
+非 Ascon AXI DMA loopback 与汇总全部 PASS；59 项 PASS、1 项 NOT_APPLICABLE、
+0 FAIL/ERROR/MISSING。`short_output` 和 `missing_tlast` 仍需专用故障源，标为
+`not_tested`。
 
 ## 2. 实验设计（L2）
 
@@ -101,7 +106,7 @@ python skill/ab_eval_pynq/harness/stats.py D:\ab_trials\run1\results.csv
 
 - 只写实际测到的：模型名/版本、日期、n、任务、p 值与效应量、失败与未加载的试验。
 - 假 PYNQ 上的结果是 `simulated`，只能说明"代码在模拟的硬件行为下是否正确"，不能写成板级通过。
-- L3 未完成前，Skill 在真实硬件上的效果写 `not_measured`。
+- L3 真实硬件功能已经通过；Skill 对硬件任务的统计效果仍写 `not_measured`。
 
 ## 6. 本轮已完成的证据（2026-10-30，本机 Windows；L1 轮 Python 3.13.9 / pytest 8.4.2 / numpy 2.3.5，L2 轮 Python 3.14.0 / pytest 9.0.3 / numpy 2.5.4）
 
@@ -115,7 +120,7 @@ python skill/ab_eval_pynq/harness/stats.py D:\ab_trials\run1\results.csv
 | L2 真实 agent 实验 | `make_trials.py --tasks t1_overlay,t2_hls,t3_dma,t4_diagnose --reps 5` → `run_all.ps1` → `grade.py` → `stats.py` | `done`（4 题 60 次 + T1×placebo 复跑 5 次，65/65 exit=0），结果见 6.1 |
 | L2 冒烟（配置生效性） | 单次 `with` 试验 + 环境自检探针 | agent=`trial`、模型=deepseek-flash、shell 拒绝（模型报 `NO-SHELL`）、Skill 可列出并可加载、canary 写入成功 |
 | 留出任务（防过拟合） | `t5_bram`（AXI BRAM：字节读-改-写、窗口容量、连续调用）→ `run3` | `done`（15/15 exit=0）；`with` 1.000 vs `without`/`placebo` 0.800，p=1.0 → **未复现主实验差异**，见 6.2 |
-| L3 实板 | — | `not_run` |
+| L3 实板 | `test_board/` session `l3_20261031_063709` | **PASS**：Ascon、GPIO、DMA 全 PASS，`hardware_measured` |
 
 ### 6.1 L2 真实 agent 实验（2026-10-30 ~ 10-31，`simulated`）
 
@@ -182,7 +187,7 @@ Q6（ap_done 是 clear-on-read，轮询前打印过 CTRL 会吃掉完成位）�
 - 影响：用修复后的判分器重判旧批次，只有 `t1_overlay/placebo/rep04` 从 0.000 变为 1.000（其余
   29 个试验逐场景不变）；旧 placebo 合并均值因此 0.683 → 0.783，`with` vs `placebo` 的 p 从 0.0867
   升到 0.2105，差异比首轮更不显著。随后按用户要求重跑 T1 的 placebo 5 次（0.900）作为最终数据。
-- 仍未做：留出任务（防过拟合）、第二个模型、L3 实板；结果只对 `simulated` 有效，板级效果 `not_measured`。
+- L2 后已完成首个留出任务和 L3 实板功能验证；L2 数字仍是 `simulated` 且未泛化。
 
 每个场景的分组通过率（每组 5 次）：
 | 场景 | with | without | placebo |

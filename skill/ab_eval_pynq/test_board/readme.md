@@ -61,16 +61,24 @@ Vivado/HWH、已有 mcycle 实测或其他独立测量为准。
 ## 当前非 Ascon 工件状态
 
 - GPIO：使用板卡已有 PYNQ BaseOverlay 中名称含 `led` 的 AXI GPIO，不要求新建 bit/hwh。
-- DMA：当前不提供非 Ascon 回环 bit/hwh，因此 `l3_30_dma.ipynb` 初始状态应为
-  `NOT_RUN`。不得把 BaseOverlay 中未核实连接的 `axi_dma_0` 当作回环通过。
+- DMA：仓库已有非 Ascon 回环候选：
+  `board/vivado_zynq7000_xc7z020_axi_dma_loopback/candidate/`。`l3_30_dma.ipynb`
+  默认使用该目录，并校验 manifest 的 part、VLNV、simple mode、MM2S/S2MM、TLAST
+  和 HP0 地址窗口。
 
-将来具备独立回环工件后设置：
+只有需要测试另一份工件时才设置覆盖路径：
 
 ```bash
 export L3_DMA_DIR=/home/xilinx/l3_non_ascon_dma
 # 或
 export L3_DMA_BIT=/home/xilinx/l3_non_ascon_dma/design.bit
 export L3_DMA_MANIFEST=/home/xilinx/l3_non_ascon_dma/manifest.json
+```
+
+使用仓库默认候选前先清除可能残留的覆盖变量：
+
+```bash
+unset L3_DMA_DIR L3_DMA_BIT L3_DMA_MANIFEST L3_DMA_IP
 ```
 
 manifest 必须列出同一实现生成的 bit、hwh 和需要的附加文件。只有 bit 没有 manifest
@@ -100,19 +108,19 @@ export L3_RUN_DIR=/absolute/path/to/data/skill/l3_<timestamp>
 原始 JSON 不覆盖，也不能只保留截图。执行后的 Notebook 应另存到同一 session 目录，
 并计算 SHA-256。
 
-最新 session 为 `l3_20261031_030131`：
+最新完成 session 为 `l3_20261031_063709`：
 
 - `00_preflight.json` PASS：关键依赖与 L2 归档哈希齐全，但未触碰硬件。
 - `10_ascon_release.json` PASS：正式 release 加载、ID、服务能力、`simulated=false`
   和开机自检均通过。
-- GPIO C PASS：`leds_gpio` 为 3-bit、`C_ALL_OUTPUTS=1`；`GPIO_DATA`
+- GPIO PASS：`leds_gpio` 为 3-bit、`C_ALL_OUTPUTS=1`；`GPIO_DATA`
   写入 0/7/5/2 均读回一致，原始值 0 已恢复，错位 contract 被拒绝。
-- DMA D `NOT_RUN`：没有非 Ascon DMA 回环 bit/hwh/manifest。
-- 汇总 FAIL 且明确只有一项问题：`30_non_ascon_dma status=NOT_RUN`。
+- DMA PASS：8/9/16/64/256 B 与连续 16 B 回环、实际长度、golden、超限拒绝、
+  mutation 检测和 halted 恢复均通过。
+- `40_summary.json` PASS，claim 为 `hardware_measured`，0 个 problem。
 
-该 session 的预检哈希早于随后对 `l3_00`、`l3_30`、`l3_40` 的最新修改，不能与当前
-代码继续混用。最终完成 L3 时必须用当前仓库重新运行 `l3_00` 创建新 session，
-再执行 Ascon、GPIO、DMA 和汇总。
+`short_output` 与 `missing_tlast` 仍为 `not_tested`，按当前协议需要专用、可恢复的
+故障源，不影响本次功能 L3 PASS，但不得宣称这两项已覆盖。
 
 旧的 `l3_20261030_163953` 保留为历史 session，不进入新汇总。新汇总会拒绝缺少
 `l2_evidence` 的旧预检，避免把不同源码或 L2 结果混入同一 L3 结论。
@@ -130,8 +138,8 @@ sudo -E env PYTHONPATH="$PWD" PATH="$PATH" \
   --output-dir data/skill
 ```
 
-其余 Notebook 更换输入文件名和输出文件名。`l3_30_dma.ipynb` 在没有
-DMA 工件时预期非零退出；这是缺失证据，不是脚本故障。
+其余 Notebook 更换输入文件名和输出文件名。`l3_30_dma.ipynb` 默认使用仓库内
+`candidate/`，不再要求手工设置 DMA 路径。
 
 ## L3 判定
 

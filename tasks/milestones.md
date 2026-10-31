@@ -1,6 +1,6 @@
 # 内部里程碑与冻结门禁
 
-时间：Asia/Shanghai，2026 年。日期严格按用户本轮规划，属于内部执行安排；11-04 为用户指定最终提交日，不额外推断官方规则。负责人统一 TBD。状态更新至 2026-10-30。
+时间：Asia/Shanghai，2026 年。日期严格按用户本轮规划，属于内部执行安排；11-04 为用户指定最终提交日，不额外推断官方规则。负责人统一 TBD。状态更新至 2026-10-31。
 
 | ID | 日期 | 交付与验收门槛 | 关联任务 | 当前状态 |
 |---|---|---|---|---|
@@ -8,7 +8,7 @@
 | M02 | 2026-09-30 | Ascon-AEAD128 software + 可信最终标准 KAT；自研 RISC-V baseline 取得真实 cycle 数据 | B02-B04、V01、C01-C04 | blocked：标准/软件已有证据；原 baseline、板卡物理证据与 FreeRTOS 来源未闭环 |
 | M03 | 2026-10-07 | custom ISE spec/encoding/semantics、RTL、unit test 完成 | I01-I04 | in_progress：实现与主要测试已有；I02-I04 完整矩阵未收口 |
 | M04 | 2026-10-14 | ISE 接入 CPU，两套程序都能运行且 KAT 通过，第一版真实加速数据 | I05-I07、V02 | in_progress：CPU/board 功能和 benchmark 已有；I05/V01 完整回归未收口 |
-| M05 | 2026-10-21 | PYNQ 控制、Jupyter、自动 KAT 与 benchmark 全链路；PPA 有据；通用 Skill 验收版 | I08、Y01-Y05、V03、S01-S05 | in_progress：Y01-Y05/V03 已验收；S01-S05 未实现 |
+| M05 | 2026-10-21 | PYNQ 控制、Jupyter、自动 KAT 与 benchmark 全链路；PPA 有据；通用 Skill 验收版 | I08、Y01-Y05、V03、S01-S05 | in_progress：Y01-Y05/V03 已验收；Skill L1/L2/L3 完成，S01–S03 done，S04/S05 待收口 |
 | G01 | M01-M05 达标后 | 仅在 P0/P1 全部稳定、无主线阻断、Skill 核心稳定且仍有时间时开启 PUF | P01-P04 | gated |
 | M06 | 2026-10-27 | 所有核心功能冻结；主线回归与 Skill 功能验证完成，可选 P2 不达标则移出 | V04、S01-S04；Pxx 条件交付 | todo |
 | M07 | 2026-10-28 | 内部 code freeze；记录源版本、依赖、构建/测量元数据，停止功能开发 | 所有代码任务 | todo |

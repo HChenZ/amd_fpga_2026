@@ -1,6 +1,6 @@
 # 项目概览
 
-更新：2026-10-30。比赛与目标时间按用户本轮要求建档；未独立确认的官方规则不作推断。
+更新：2026-10-31。比赛与目标时间按用户本轮要求建档；未独立确认的官方规则不作推断。
 
 ## 当前状态摘要
 
@@ -8,8 +8,8 @@
   mcycle benchmark、PPA/时序报告。
 - P1 主链已有实板证据：overlay、AXI-Lite/UART mailbox、Python API、Notebook、
   benchmark、V03 错误/恢复门禁。
-- P0/P1 仍未全部关闭：B03 实物证据、原 CICC baseline、完整 RV32/RV64/异常矩阵和
-  P1 通用 Skill 仍未完成。
+- P0/P1 仍未全部关闭：B03 实物证据、原 CICC baseline、完整 RV32/RV64/异常矩阵；
+  通用 Skill 的 L1/L2/L3 已通过，S04 report/collector 与 S05 独立复现/证据包仍待收口。
 - D01-D06 材料、clean-clone 和最终包尚未完成。
 - P2/PUF 仍不进入当前提交主线；独立 PUF3 变体已有单次上电功能证据，但不等于 PUF 稳定性或安全启动验收。
 
@@ -47,7 +47,7 @@ P2 不影响核心交付日期。任何 P0/P1 回归或 10-21 节点未达到，
 kernel/bootloader 来源；RV32/RV64 完整回归、板上 ISA 抽样和 800 组超 16B 容量 KAT
 仍不能宣称通过。
 
-待定/未完成：B03 完整实物证据、S01-S05 通用 Skill、D01-D06 材料与 clean-clone。
+待定/未完成：B03 完整实物证据、Skill S04/S05、D01-D06 材料与 clean-clone。
 全部人员 owner 仍为 TBD。
 
 ## 工程交付边界

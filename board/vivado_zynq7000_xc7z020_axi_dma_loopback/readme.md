@@ -43,7 +43,7 @@ MM2S→S2MM 回环与 TLAST、HP0 窗口 1 GiB、FCLK0 配置。还会用 Skill 
 `hwh.parse_hwh` 得到 `axi_dma_0 @0x40400000 +0x10000`，`dma.config_from_hwh` 得到最大传输 16383、对齐 4。
 最后用 `artifacts.write_manifest` 生成 `candidate/manifest.json`（同一次实现的 bit/hwh 哈希）。
 
-## 当前候选（2026-10-31，离线门禁 PASS，board NOT_RUN）
+## 当前候选（2026-10-31，离线门禁与 L3 板测 PASS）
 
 | 项 | 结果 |
 |---|---|
@@ -53,20 +53,17 @@ MM2S→S2MM 回环与 TLAST、HP0 窗口 1 GiB、FCLK0 配置。还会用 Skill 
 | 资源 | 2436 LUT / 3333 FF / 2 BRAM tile |
 | 工件 | `axi_dma_loopback.bit` sha256 `890add35…`，`axi_dma_loopback.hwh` sha256 `27bcceca…`（以 `candidate/sha256sums.txt` 为准） |
 | Skill L1 工具 | `pynq_skill_cli.py artifacts … --manifest` exit 0；`hwh … --contract examples/axi_dma_simple.contract.json --ip axi_dma_0` 显示契约与 hwh 寄存器一致 |
+| L3 实板 | session `l3_20261031_063709` PASS：8/9/16/64/256 B 与连续 16 B 回环数据一致，超限启动前拒绝、mutation 检出、DMA 恢复 halted |
 
 第一次构建用的是 IP 默认 DDR 大小（512 MiB 窗口），在打包前的 hwh 检查中发现，已作废，没有发布
 （工作目录留在 `build/local/axi_dma_loopback/vivado_ddr512m`）。
 
 ## 上板（L3）
 
-队友已有的 `skill/ab_eval_pynq/test_board/l3_30_dma.ipynb` 可以直接使用本工件：`candidate/` 目录里
-正好有一个 `.bit` 和一个 `manifest.json`，同名 `.hwh` 也在同一目录。在板上：
+`skill/ab_eval_pynq/test_board/l3_30_dma.ipynb` 默认直接使用本工件：
+`candidate/` 目录里正好有一个 `.bit` 和一个 `manifest.json`，同名 `.hwh` 也在同一目录。
 
-```sh
-export L3_DMA_DIR=<仓库路径>/board/vivado_zynq7000_xc7z020_axi_dma_loopback/candidate
-```
-
-然后按 `skill/ab_eval_pynq/test_board/readme.md` 的顺序执行 `l3_30_dma.ipynb`。它会自动选中唯一的
+按 `skill/ab_eval_pynq/test_board/readme.md` 的顺序执行 `l3_30_dma.ipynb`。它会自动选中唯一的
 `axi_dma_0`，测试长度 8/9/16/64/256 以及 16 字节连续两次，检查超长请求在启动前被拒绝。
 该 Notebook 记录的 `fclk0_pynq_register_derived_mhz` 来自原版 `Clocks`，会显示 150，
 这不影响判定（它不做时钟门禁），写结论时不要当作实际频率。
@@ -82,6 +79,6 @@ export L3_DMA_DIR=<仓库路径>/board/vivado_zynq7000_xc7z020_axi_dma_loopback/
 
 ## 限制
 
-- 板测 NOT_RUN。这是测试工件，不属于项目交付功能，也没有 Ascon 内容。
-- 没有接中断；没有 SG；没有 DRE，所以奇数或未对齐的物理地址会被 Skill 拒绝。这是设计选择，不是缺陷。
+- 这是测试工件，不属于项目交付功能，也没有 Ascon 内容。
+- 没有接中断；没有 SG；没有 DRE。奇数长度可以传输，但物理地址必须按 4 字节对齐。
 - DMA 吞吐率未测，不能用本 overlay 宣称带宽。

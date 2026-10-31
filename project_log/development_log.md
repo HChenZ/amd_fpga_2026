@@ -1,8 +1,17 @@
 # 开发记录
 
+- 2026-10-31：最新 L3 session `l3_20261031_063709` 四段与汇总 PASS。DMA 全部
+  正常长度/奇长度/连续/超限/golden/recover 检查通过；59 PASS、1 N/A、0 FAIL。
+  S01–S03 收口，S04/S05 仍待非 Ascon report 示例及证据/独立复现。
+
 ## 2026-10-31 — Skill L3 用 AXI DMA 回环 overlay（owner TBD）
 
-- 新建独立 Vivado 工程：PS7 GP0 控制、HP0 内存、simple 模式 AXI DMA、MM2S→S2MM 回环含 TLAST、FCLK0 100 MHz（板卡 PLL 修正）、HP0 窗口 1 GiB；门禁通过并生成同名 bit/hwh 与同次实现的 manifest。板测 NOT_RUN。
+- 新建独立 Vivado 工程：PS7 GP0 控制、HP0 内存、simple 模式 AXI DMA、MM2S→S2MM 回环含 TLAST、FCLK0 100 MHz（板卡 PLL 修正）、HP0 窗口 1 GiB；门禁通过并生成同名 bit/hwh 与同次实现的 manifest。
+- 后续 L3 session `l3_20261031_063709` 已用该工件完成实板回环 PASS；DMA 吞吐和
+  `short_output`/`missing_tlast` 故障场景仍未测。
+- `l3_30` 默认指向该 candidate，并交叉核对 manifest/HWH/运行时基址、DMA 配置、
+  manifest 哈希和 HP0 缓冲窗口；`l3_00` 纳入 DMA 工件指纹。离线 artifact/HWH/
+  DMA-config 与 Notebook AST 通过，板上待新 session。
 
 - 2026-10-31：最新 L3 session `l3_20261031_030131` 完成 preflight、Ascon A/B 和
   GPIO C，三段 PASS。all-output `leds_gpio` 的 DATA 0/7/5/2 写回与恢复通过。

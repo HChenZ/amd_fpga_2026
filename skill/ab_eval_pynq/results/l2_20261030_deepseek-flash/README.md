@@ -54,7 +54,8 @@ python skill/ab_eval_pynq/harness/stats.py <仓库外目录>\results.csv
   p=0.0079、δ=+1.00（区分点是 Q6 clear-on-read）。T4 规则为概念正则，存在误判风险，不作为主结论。
 - T2（HLS）是天花板：三组都是 30/30 场景全通过，对该模型无区分度。
 - 操作检查：`with` canary 20/20、`placebo` 20/20、`without` 0/20 → 三组只差 Skill。
-- 板级效果：`not_measured`（L3 未执行）。
+- 本 L2 归档本身仍为 `simulated`。后续 L3 session `l3_20261031_063709` 已完成
+  真实硬件功能验证，但不改变本文件的 L2 统计含义。
 
 ## 留出任务（`t5_bram`，一次性）
 
