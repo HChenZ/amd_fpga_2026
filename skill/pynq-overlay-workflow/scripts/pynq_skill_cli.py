@@ -58,10 +58,28 @@ def cmd_report(a):
         results, timings = raw.get('golden', []), raw.get('timings', [])
     util = report.parse_utilization(a.utilization) if a.utilization else None
     timing = report.parse_timing_summary(a.timing) if a.timing else None
-    data, md = report.build_report(title=a.title, results=results, timings=timings, utilization=util, timing=timing)
+    metrics, problems = [], []
+    title = a.title
+    if a.schema:
+        schema = report.load_schema(a.schema)
+        sources = {}
+        for item in a.source:
+            name, sep, path = item.partition('=')
+            if not sep:
+                raise report.SchemaError('--source must be NAME=PATH, got %r' % item)
+            sources[name] = path
+        unknown = set(sources) - set(schema.get('sources', {}))
+        if unknown:
+            raise report.SchemaError('--source names not declared in schema: %s' % sorted(unknown))
+        metrics, problems = report.collect_metrics(schema, sources)
+        title = schema.get('title') or title
+    data, md = report.build_report(title=title, results=results, timings=timings, utilization=util, timing=timing,
+                                   metrics=metrics, problems=problems)
     report.write_report(a.out, data, md)
     print('wrote %s (+ .json)' % a.out)
-    return 0 if all(r['ok'] for r in results) else 1
+    for p in problems:
+        print('FAIL: %s' % p, file=sys.stderr)
+    return 0 if all(r['ok'] for r in results) and not problems else 1
 
 
 def main(argv=None):
@@ -86,6 +104,9 @@ def main(argv=None):
     s.add_argument('--results')
     s.add_argument('--utilization')
     s.add_argument('--timing')
+    s.add_argument('--schema', help='metric schema JSON (references/report_schema.md)')
+    s.add_argument('--source', action='append', default=[], metavar='NAME=PATH',
+                   help='bind a schema source to a file; repeatable')
     s.add_argument('--title', default='PYNQ overlay report')
     s.add_argument('-o', '--out', required=True)
     s.set_defaults(fn=cmd_report)

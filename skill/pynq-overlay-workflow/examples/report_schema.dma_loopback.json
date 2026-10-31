@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "title": "AXI DMA loopback overlay: resources, timing and board transfer evidence",
+  "sources": {
+    "util":   {"kind": "utilization", "evidence": "tool_report", "description": "Vivado report_utilization (post-route)"},
+    "timing": {"kind": "timing",      "evidence": "tool_report", "description": "Vivado report_timing_summary (post-route)"},
+    "board":  {"kind": "json",        "evidence": "measured",    "description": "board run result JSON (e.g. L3 30_non_ascon_dma.json)"}
+  },
+  "metrics": [
+    {"name": "LUT",            "unit": "cells", "source": "util",   "path": "all.Slice LUTs.used",       "required": true},
+    {"name": "FF",             "unit": "cells", "source": "util",   "path": "all.Slice Registers.used",  "required": true},
+    {"name": "BRAM tiles",     "unit": "tiles", "source": "util",   "path": "all.Block RAM Tile.used"},
+    {"name": "DSP",            "unit": "cells", "source": "util",   "path": "all.DSPs.used"},
+    {"name": "latches",        "unit": "cells", "source": "util",   "path": "all.Register as Latch.used", "required": true},
+    {"name": "design state",   "unit": "",      "source": "util",   "path": "header.design_state"},
+    {"name": "WNS",            "unit": "ns",    "source": "timing", "path": "wns_ns",     "required": true},
+    {"name": "WHS",            "unit": "ns",    "source": "timing", "path": "whs_ns",     "required": true},
+    {"name": "timing met",     "unit": "",      "source": "timing", "path": "timing_met"},
+    {"name": "board transfers",        "unit": "count", "source": "board", "path": "transfers.*.received", "agg": "count", "required": true},
+    {"name": "bytes received (total)", "unit": "B",     "source": "board", "path": "transfers.*.received", "agg": "sum"},
+    {"name": "largest transfer",       "unit": "B",     "source": "board", "path": "transfers.*.received", "agg": "max"},
+    {"name": "all comparisons passed", "unit": "",      "source": "board", "path": "transfers.*.comparison.ok", "agg": "all_true", "required": true},
+    {"name": "max transfer (from hwh)", "unit": "B",    "source": "board", "path": "dma_config.max_transfer", "evidence": "tool_report"},
+    {"name": "loopback throughput",    "unit": "MB/s",  "source": "board", "path": "transfers.*.throughput_mbps", "agg": "mean"},
+    {"name": "stream peak (theoretical)", "unit": "MB/s", "value": 400, "evidence": "estimated",
+     "basis": "FCLK0 100 MHz x 32-bit AXI-Stream (c_m_axis_mm2s_tdata_width=32), one beat per cycle, no DMA/AXI overhead"}
+  ]
+}

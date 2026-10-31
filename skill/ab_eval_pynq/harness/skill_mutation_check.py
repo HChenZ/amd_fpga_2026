@@ -28,6 +28,14 @@ MUTATIONS = [
     ('artifacts: skip sibling rule', 'scripts/pynq_skill/artifacts.py', 'if os.path.normcase(hwh_path) != os.path.normcase(sibling):', 'if False:'),
     ('overlay: skip hwh address compare', 'scripts/pynq_skill/overlay_check.py', "if ip.get('phys_addr') != ref['phys_addr']", "if False and ip.get('phys_addr') != ref['phys_addr']"),
     ('golden: no sentinel hint', 'scripts/pynq_skill/golden.py', "        return 'all_sentinel'", "        return 'scattered'"),
+    # S04 report collector (added 2026-10-31)
+    ('report: missing metric labelled measured', 'scripts/pynq_skill/report.py',
+     "'value': None, 'evidence': 'not_measured', 'status': 'missing'",
+     "'value': None, 'evidence': 'measured', 'status': 'missing'"),
+    ('report: required-missing not flagged', 'scripts/pynq_skill/report.py',
+     "        if rec['status'] != 'ok' and rec['required']:", "        if False:"),
+    ('report: estimate without basis accepted', 'scripts/pynq_skill/report.py',
+     "        if ev == 'estimated' and not m.get('basis'):", "        if False:"),
 ]
 
 

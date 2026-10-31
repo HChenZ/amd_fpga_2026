@@ -1,5 +1,9 @@
 # 开发记录
 
+## 2026-10-31 — S04 可配置报告与 S05 文档（owner TBD）
+
+- report schema + 非 Ascon DMA 回环示例；63 单元测试、16/16 变异；skill/readme.md S05 内容补齐。未改 loader/regmap/DMA/golden、RTL 与 release。
+
 - 2026-10-31：最新 L3 session `l3_20261031_063709` 四段与汇总 PASS。DMA 全部
   正常长度/奇长度/连续/超限/golden/recover 检查通过；59 PASS、1 N/A、0 FAIL。
   S01–S03 收口，S04/S05 仍待非 Ascon report 示例及证据/独立复现。

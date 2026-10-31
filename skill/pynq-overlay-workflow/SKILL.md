@@ -113,8 +113,11 @@ PetaLinux/设备树定制、Versal/RFSoC 专有 IP、Scatter-Gather DMA 的完�
   记录 N 与 `time.perf_counter_ns`。
 - **P3 资源/时序来自报告文件**：`report.parse_utilization()` 读 Vivado `report_utilization`，
   WNS 从 `report_timing_summary` 读；同时记录报告路径和哈希、Design State（Routed/Synthesized）。
-- **P4 证据分级**：每个数字带 `measured` / `simulated` / `estimated` / `not_measured`；
-  在模拟/假后端上得到的时间**永远不是**板级性能。
+- **P4 证据分级**：每个数字带 `measured`（板上实测）/ `tool_report`（Vivado 报告数值，非板上测量）/
+  `simulated` / `estimated`（必须写明依据）/ `not_measured`；在模拟/假后端上得到的时间**永远不是**板级性能。
+- **P5 指标用 schema 配置，不写死**：用 `references/report_schema.md` 的 JSON 声明数据源（Vivado 资源/时序报告、
+  任意结果 JSON）和每个指标的路径、汇总方式、是否必需；取不到的指标记 `not_measured` 并写明原因，必需指标缺失时
+  报告失败。换题目/换板卡只换 schema 与数据文件（示例：`examples/report_schema.dma_loopback.json`）。
 
 ## 6. 常见错误 → 首查位置（完整表见 `references/failure_signatures.md`）
 
@@ -146,7 +149,8 @@ regs = regmap.RegisterMap(pynq.MMIO(ol.ip_dict['my_ip_0']['phys_addr'], 0x1000),
 
 命令行：`python scripts/pynq_skill_cli.py hwh <file.hwh>`（列 IP/基址/FCLK）、
 `... artifacts <bit> [--manifest m.json]`、`... gen <contract.json> -o out/`（生成驱动+pytest 骨架）、
-`... report --utilization u.rpt --results r.json -o report.md`。
+`... report --utilization u.rpt --results r.json -o report.md`；可配置指标：
+`... report --schema s.json --source util=u.rpt --source board=run.json -o report.md`（必需指标缺失时 exit 1）。
 
 离线自测：`python -m pytest <skill_dir>/tests -q`（使用 `fakes.py` 的 MMIO/DMA/非一致缓存模型）。
 
@@ -159,7 +163,8 @@ regs = regmap.RegisterMap(pynq.MMIO(ol.ip_dict['my_ip_0']['phys_addr'], 0x1000),
 - [ ] DMA：flush/invalidate、物理地址、对齐/上限、先收后发、实际长度、失败后先停再释放
 - [ ] 黄金比对：独立参考、边界+随机(seed)+背靠背、哨兵、至少一个变异用例 FAIL
 - [ ] 性能：cold/warm 分开、N/统计量、硬件周期与墙钟分列；资源/时序附报告路径
-- [ ] 所有数值标注 measured/simulated/estimated/not_measured；失败与未测项保留
+- [ ] 所有数值标注 measured/tool_report/simulated/estimated/not_measured；估算写明依据；失败与未测项保留
+- [ ] 报告指标由 schema 声明，必需指标齐全；缺失项以 not_measured 出现而不是被省略
 
 参考：`references/failure_signatures.md`（错误定位表与 AXI DMA 状态位）、
-`references/contract_format.md`（接口契约格式与示例）、`examples/`（AXI GPIO、HLS 向量加、AXI DMA 回环三份与 Ascon 无关的契约）。
+`references/contract_format.md`（接口契约格式与示例）、`references/report_schema.md`（报告指标 schema）、`examples/`（AXI GPIO、HLS 向量加、AXI DMA 回环三份与 Ascon 无关的契约）。

@@ -1,5 +1,12 @@
 # 实际进度
 
+## 2026-10-31 — S04 报告采集收口；S05 README 补齐（owner TBD）
+
+- S04：`pynq_skill/report.py` 新增可配置指标 schema（`load_schema`/`collect_metrics`/`resolve_path`，来源 utilization/timing/json，汇总 count/sum/min/max/mean/all_true）、`tool_report` 证据级别、估算必须写 basis、缺失一律 `not_measured`、必需缺失 CLI exit 1；`references/report_schema.md`、`examples/report_schema.dma_loopback.json`。
+- 非 Ascon 数据示例：AXI DMA 回环 Vivado 报告 + L3 `30_non_ascon_dma.json` → `data/skill/s04_report_dma_loopback/`（16 指标，1 个 not_measured：板上吞吐量未采集）。
+- 验证：`python -m pytest skill/pynq-overlay-workflow/tests -q` 63 passed/0 skipped；`skill_mutation_check.py` 16/16 exit0；`skill/ab_eval_pynq/harness/tests` 7 passed。L2/L3 验证对象仍为 `7bc1abf`；S04 新增部分仅离线验证，未重跑 L2/L3。
+- S05：`skill/readme.md` 补依赖/输入输出/步骤/判据/失效条件/平台/来源、L1–L3 验证案例表、陌生使用者复现（HChenZ 未参与编写，git 作者记录佐证）。看板 S04→done；S05 经用户确认→done。
+
 ## 2026-10-31 — L3 四段实板 PASS；S01–S03 收口（owner TBD）
 
 - 最新 session `data/skill/l3_20261031_063709/`：preflight、Ascon、GPIO、DMA 和
