@@ -12,7 +12,12 @@
   15:40 的包已入库，按规则保留，作为上一版；15:32 的作废包（未入库）已删除。
 - V04：新增 `freeze_manifest.py`，要求工作区已提交且干净；用 git archive 生成本机源码包，核对三套工件
   sha256sums、主线 benchmark/错误门禁与 release 绑定、pynq_puf3 板测绑定、L3/DMA 绑定、D02、证据包 ZIP，
-  然后写出 `submission/freeze_manifest.{md,json}`。P0 尚有未验收项，V04 保持 in_progress。结果见下一次提交。
+  然后写出 `submission/freeze_manifest.{md,json}`。P0 尚有未验收项，V04 保持 in_progress。
+- 第一次运行 exit 1：主线 release 的 sha256sums 用的是仓库相对路径。修好后提交为 `af34e65`，在干净工作区重跑 exit 0。
+  冻结源码提交 `af34e65895cebf24f066b0a7b6abe9cd14a785cb`；源码包 `submission/source_af34e65.zip`
+  （4356 文件，112.3 MB，SHA-256 `d00fa6697aa4c96553393996c3a4d74a8afd2ce00c8f6b49fe6211f25458e31c`，不入库）。
+  解压到仓库外后，在包内运行 Skill pytest 64 passed，D02 核对 15/15，均 exit 0。这不等于 D05 完整复现：没有重新构建 Vivado/固件，也没有上板。
+  冻结时未推送（`pushed=false`）。
 
 ## 2026-10-31 — Skill 独立下载复核与 gen 文档漏洞修复（owner TBD）
 
