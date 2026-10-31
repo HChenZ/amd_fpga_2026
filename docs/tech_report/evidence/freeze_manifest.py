@@ -57,10 +57,12 @@ def load(path):
 
 
 def sums(folder):
+    """sha256sums 条目可能是目录内文件名或仓库相对路径；返回 {文件名: (路径, digest)}。"""
     out = {}
     for line in (folder / 'sha256sums.txt').read_text(encoding='utf-8').splitlines():
         digest, name = line.split('  ', 1)
-        out[name] = digest
+        path = folder / name if (folder / name).is_file() else ROOT / name
+        out[Path(name).name] = (path, digest)
     return out
 
 
@@ -79,10 +81,10 @@ def main():
                                 ('非 Ascon AXI DMA 回环 candidate（Skill L3）', DMA, [L3 / '30_non_ascon_dma.json'])):
         m = load(folder / 'manifest.json')
         files = {}
-        for fname, digest in sums(folder).items():
-            actual = sha(folder / fname)
+        for fname, (path, digest) in sums(folder).items():
+            actual = sha(path) if path.is_file() else 'MISSING'
             if actual != digest:
-                fail.append(f'{rel(folder / fname)} hash mismatch')
+                fail.append(f'{rel(path)} hash mismatch or missing')
             files[fname] = actual
         artefacts.append({'name': name, 'dir': rel(folder), 'part': m.get('part'), 'top': m.get('top'),
                           'vivado': m.get('vivado'), 'build_source_commit': m.get('source_commit'),
