@@ -4,6 +4,16 @@
 
 - 修复独立下载复核中发现的生成骨架 ImportError；64 passed、16/16，仓库外复现通过。
 
+## 2026-10-31 — D04 演示视频脚本（owner TBD）
+
+- 读取当前状态、PYNQ validation、warm benchmark/error-gate JSON、项目简介与实现
+  报告，新增 `report/demo_video_script.md`，将视频组织为“需求→架构→三实现→
+  实板 KAT→性能→错误恢复→边界”的可录制时间轴。
+- 脚本锁定最新 PYNQ run 的性能表和 `mcycle` 口径，排除历史 PL-only 数字；
+  增加 3 分钟剪法、PUF 独立原型选段和录前/录后事实核验清单。
+- 同步 D04 为 `in_progress`、`report/readme.md` 和 actual progress；尚未录制
+  实机视频，未改 RTL/固件/release，未 commit/push。
+
 ## 2026-10-31 — S04 可配置报告与 S05 文档（owner TBD）
 
 - report schema + 非 Ascon DMA 回环示例；63 单元测试、16/16 变异；skill/readme.md S05 内容补齐。未改 loader/regmap/DMA/golden、RTL 与 release。
