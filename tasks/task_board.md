@@ -34,7 +34,7 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 | V01 | baseline regression/counter sanity | TBD | 完整验收需 B02、B03、B04；模块测试可先行 | 修订dcache TB/独立事务/故障注入/6中断场景及完整smoke、regression均PASS；ISA/SoC/板级完整门禁待验 | 保存可重跑程序/TB/日志；mcycle 读取与溢出、计数开销已检查；支持范围明确 | 2026-09-29 | in_progress |
 | V02 | software/ISE differential verification | TBD | I05、I06、C03 | ACB 套件（sw/hw/ise 同 KAT + 篡改拒绝 + stall/reset 注入）证据 data/ascon/results/key_lifecycle/*_timing_acb*.json | 两套固件均通过可信 KAT，篡改拒绝；流水 hazard/flush 场景无回归 | 2026-10-13 | done |
 | V03 | PS/PL end-to-end regression | TBD | Y02、Y03、V02 | 自动板级测试/错误场景日志 | 软件/ISE 输入到输出可复现；错误 tag、超时、长度边界、重复命令、缓存可见性可检查 | 2026-10-20 | done |
-| V04 | core freeze regression | TBD | Y05、I08、V03 | 冻结回归清单与证据索引 | P0/P1 验收齐全、无未关闭阻断缺陷；冻结哈希与环境留档；不以 P2 拖延 | 2026-10-27 | todo |
+| V04 | core freeze regression | TBD | Y05、I08、V03 | 冻结回归清单与证据索引 | P0/P1 验收齐全、无未关闭阻断缺陷；冻结哈希与环境留档；不以 P2 拖延 | 2026-10-27 | in_progress（冻结哈希/环境/证据索引已留档 `submission/freeze_manifest.md`；P0 中 B02/B04/I02/I04/I05/V01 未验收，按 10-29 授权不阻塞提交，故不标 done） |
 | V05 | standalone Ascon AEAD RTL verification and main integration | TBD | C01；独立于CPU ISE | sim/ascon TB/runner、data/ascon/results/rtl_integration_regression.*、docs/ascon_rtl_decrypt_validation.md | 最新main上整合、远端Decrypt接口兼容；289官方KAT、篡改/超长/reset、round/P8/P12、全生产编译仿真PASS；旧工作区保留 | 2026-10-09 | done |
 
 V06（2026-10-17复核）：安全修复/最终源码仿真PASS，两轮实现后100 MHz timing not met：WNS=-0.177ns/TNS=-2.968ns，31个setup端点失败；已停止优化。阶段性收尾可提交，板型/DRC/IO门禁仍未过。
@@ -82,7 +82,7 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 |---|---|---|---|---|---|---|---|
 | D00 | repository collaboration skeleton | TBD | B01 | README/AGENTS/docs/tasks/project_log/目录说明/.gitignore | 请求的入口齐全、任务字段完整、链接可用、原工程未变、忽略规则保留证据 | 2026-09-23 | done |
 | D01 | architecture figure | TBD | B01；定稿需 I02/Y01 | 架构图与版本说明 | 当前/计划分开；最终图与 CPU/PS/PL 实现一致，报告可引用 | 2026-10-29 | in_progress |
-| D02 | benchmark tables | TBD | I07、I08、Y05、V04 | 对比表与数据来源索引 | 每个数值追溯原始结果，测试条件一致，未测项明确 | 2026-10-30 | todo |
+| D02 | benchmark tables | TBD | I07、I08、Y05、V04 | 对比表与数据来源索引 | 每个数值追溯原始结果，测试条件一致，未测项明确 | 2026-10-30 | done（10-31：`check_benchmark_tables.py` 15/15，范围为主线表 3-13/3-14/摘要/资源/时序） |
 | D03 | report | TBD | D01、D02、V04、S01-S04 | 报告、PPT、LLM 协作记录 | 原理/创新/对比/失败与复现材料齐全，规则/来源可追溯，无虚构成果 | 2026-11-01 | in_progress |
 | D04 | demo video | TBD | Y04、Y05、V04 | 演示视频与脚本/文件 hash 索引 | 真实目标板上输入输出、KAT 和两模式指标一致，关键过程可辨识 | 2026-11-01 | in_progress：`report/demo_video_script.md` 已完成 5 分 20 秒主版与 3 分钟压缩版；实机视频未录 |
 | D05 | clean-clone reproduction | TBD | B02、B03、B04、V04、D03、D04、S05 | 干净机器/clone 的端到端日志 | 无开发机缓存/IP/绝对路径依赖，重新构建并运行 KAT/benchmark/demo；材料引用有效 | 2026-11-02 | todo |
@@ -191,5 +191,10 @@ owner TBD。
   当前包路径与 ZIP 哈希以 `submission/current_evidence.json` 为准。报告仍由队友更新，
   报告终稿后须重建 PDF 并重新装配。10-31 15:32 的包含 Skill 中间版本，已作废；Skill gen 文档修复
   （64 passed、变异 16/16）完成后重新装配为最终候选包，报告 PDF 为 10-31 14:30 构建版。
-- D03、D06 改为 in_progress；D04 已有视频脚本（`report/demo_video_script.md`），实机视频与 PPT 未见；V04、D02、D05 未开展，
-  保持 todo（D05 按 10-29 授权不阻塞提交）。
+- D03、D06 改为 in_progress；D04 已有视频脚本（`report/demo_video_script.md`），实机视频与 PPT 未见；
+  D05 未开展，保持 todo（按 10-29 授权不阻塞提交）。
+- D02 done：`docs/tech_report/evidence/check_benchmark_tables.py` 从原始 JSON/rpt 重算并核对报告 15/15
+  （故意改报告副本 1439→1440 时 exit 1）；结果 `docs/tech_report/validation/benchmark_tables_check.json`。
+  报告改动后需重跑，assemble.py 会拒绝过期结果。
+- V04 in_progress：`freeze_manifest.py` 在干净提交上生成 `submission/freeze_manifest.{md,json}`
+  与本机 `git archive` 源码包；P0 未验收项见上表。15:32 作废证据包已删除。

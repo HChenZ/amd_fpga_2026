@@ -53,7 +53,11 @@ EXTRA = [
      [DMA / 'candidate/reports' / n for n in ('context.txt', 'gate.txt', 'timing_summary.rpt', 'utilization.rpt',
       'drc.rpt', 'route_status.rpt', 'check_timing_counts.txt')] +
      [ROOT / 'data/skill/s04_report_dma_loopback' / n for n in ('report.json', 'report.md')]),
+    ('X-7', 'D02 报告性能/资源/时序数值与原始数据核对',
+     [EV / 'check_benchmark_tables.py', ROOT / 'docs/tech_report/validation/benchmark_tables_check.json']),
+    ('X-8', 'D04 演示视频脚本（实机视频未录）', [ROOT / 'report/demo_video_script.md']),
 ]
+D02 = ROOT / 'docs/tech_report/validation/benchmark_tables_check.json'
 
 
 def check_extra():
@@ -90,6 +94,12 @@ def check_extra():
     for name in ('axi_dma_loopback.bit', 'axi_dma_loopback.hwh', 'manifest.json'):
         if sha(DMA / 'candidate' / name) not in dma:
             fail.append('Skill L3 DMA not bound to candidate: ' + name)
+    d02 = json.loads(D02.read_text(encoding='utf-8'))
+    if d02.get('status') != 'PASS' or d02.get('failures'):
+        fail.append('D02 benchmark table check not PASS')
+    for name, digest in d02['inputs'].items():
+        if sha(ROOT / name) != digest:
+            fail.append('D02 check stale (rerun check_benchmark_tables.py): ' + name)
     if fail:
         raise SystemExit('\n'.join(fail))
 
@@ -151,13 +161,14 @@ def main():
               '主线为当前PYNQ三模式，历史PL-only与独立PUF原型分别标注。\n'
               '根目录sha256sums.txt覆盖所有随包文件；原始目录结构保持为仓库相对路径。\n'
               '硬件/长时/Skill结果未在装配时重测；团队信息、PPT、视频与上传动作由项目方完成。\n'
-              '报告附录 C 只覆盖 C-1～C-12；10-30/10-31 新增的 pynq_puf3 与 Skill 实测见 extra_manifest.md（X-1～X-6），\n'
+              '报告附录 C 只覆盖 C-1～C-12；10-30/10-31 新增的 pynq_puf3、Skill 实测、D02 数值核对与视频脚本见 extra_manifest.md（X-1～X-8），\n'
+              '冻结哈希与源码包见仓库 submission/freeze_manifest.md（装配后生成，不在本包内）。\n'
               '装配时已校验候选哈希、板测结果与候选/L2 文件绑定及 PASS 状态。\n'
               '限制：pynq_puf3 跨上电与 RO 时序未闭合，PUF 原始数据可读；Skill L2 为 simulated 且对安慰剂不显著，\n'
               'L3 验证的 Skill 版本为 7bc1abf，其后 S04 新增仅离线验证；DMA 吞吐与 short_output/missing_tlast 未测。\n')
     (out / 'README.md').write_text(readme, encoding='utf-8')
     expected['README.md'] = sha(out / 'README.md')
-    rows = ['# 新增证据清单（X-1～X-6，装配时校验）\n', '| 项目 | 内容 | 文件 |', '|---|---|---|']
+    rows = ['# 新增证据清单（X-1～X-8，装配时校验）\n', '| 项目 | 内容 | 文件 |', '|---|---|---|']
     for eid, desc, paths in EXTRA:
         rows.append(f'| {eid} | {desc} | ' + '<br>'.join(f'`{rel_posix(p)}`' for p in paths) + ' |')
     if NOTES:

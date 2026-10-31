@@ -1,5 +1,19 @@
 # 实际进度
 
+## 2026-10-31 — D02 数值核对、V04 冻结留档、源码包、证据包再装配（owner TBD）
+
+- D02：新增 `docs/tech_report/evidence/check_benchmark_tables.py`（只读报告），从 warm benchmark JSON、
+  `utilization.rpt`、`timing.rpt` 重算并核对 report.md 中表 3-13/3-14 的 6 行、摘要两组 SW/HW/ISE 中位、
+  JSON 加速比 4 项、资源与 WNS/TNS/WHS，15/15 PASS，exit 0；故意改报告副本 1439→1440 后 exit 1。
+  结果 `docs/tech_report/validation/benchmark_tables_check.json` 记录输入哈希；范围不含历史 PL-only/PUF。D02→done。
+- assemble.py 新增 X-7（D02 核对）、X-8（视频脚本），并在 D02 不是 PASS 或输入已过期时拒绝装配。新包
+  `submission/evidence_20261101_20261031_163056/`，122 文件，ZIP SHA-256
+  `3452e05cd68d182ef5c368b10a997421173e3d444fb291ae6cf9c9f10c01a314`；独立解包 122/122 一致、0 个清单外文件。
+  15:40 的包已入库，按规则保留，作为上一版；15:32 的作废包（未入库）已删除。
+- V04：新增 `freeze_manifest.py`，要求工作区已提交且干净；用 git archive 生成本机源码包，核对三套工件
+  sha256sums、主线 benchmark/错误门禁与 release 绑定、pynq_puf3 板测绑定、L3/DMA 绑定、D02、证据包 ZIP，
+  然后写出 `submission/freeze_manifest.{md,json}`。P0 尚有未验收项，V04 保持 in_progress。结果见下一次提交。
+
 ## 2026-10-31 — Skill 独立下载复核与 gen 文档漏洞修复（owner TBD）
 
 - 复核：`git archive` 导出 `skill/pynq-overlay-workflow` 到仓库外，60 passed/3 skipped（仅依赖本仓库板卡文件的用例按设计跳过），Skill 内无仓库路径。发现：照 SKILL.md 运行 `gen` 生成的测试骨架报 ImportError（生成代码导入 `pynq_skill`，文档未说明路径；板上同样缺包）。

@@ -1,0 +1,186 @@
+{
+  "case": "non_ascon_gpio",
+  "status": "PASS",
+  "claim_level": "hardware_measured",
+  "timestamp_local": "2026-10-31T06:37:33",
+  "timestamp_utc": "2026-10-31T06:37:33+00:00",
+  "run_id": "l3_20261031_063709",
+  "run_dir": "/home/xilinx/jupyter_notebooks/amd_fpga_2026/data/skill/l3_20261031_063709",
+  "hostname": "pynq",
+  "python_version": "3.8.2",
+  "pynq_version": "2.7.0",
+  "kernel": "Linux-5.4.0-xilinx-v2020.2-armv7l-with-glibc2.29",
+  "git_commit": "ac9143d5c6acc9e7ac61f907a7e802eb6b35cddd",
+  "checks": [
+    {
+      "name": "overlay_loaded",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "gpio_present",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "gpio_value_00",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "gpio_value_07",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "gpio_value_05",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "gpio_value_02",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "gpio_data_restored",
+      "status": "PASS",
+      "detail": 0
+    },
+    {
+      "name": "misaligned_contract_rejected",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "simulated": false,
+  "overlay_kind": "PYNQ BaseOverlay",
+  "selected_ip": "leds_gpio",
+  "gpio_width": 3,
+  "register_trace": [
+    {
+      "register": "GPIO_DATA",
+      "write": 0,
+      "read": 0
+    },
+    {
+      "register": "GPIO_DATA",
+      "write": 7,
+      "read": 7
+    },
+    {
+      "register": "GPIO_DATA",
+      "write": 5,
+      "read": 5
+    },
+    {
+      "register": "GPIO_DATA",
+      "write": 2,
+      "read": 2
+    }
+  ],
+  "hwh_cross_check": [],
+  "gpio_candidates": [
+    {
+      "name": "beep_gpio",
+      "type": "xilinx.com:ip:axi_gpio:2.0",
+      "phys_addr": 1092878336,
+      "addr_range": 65536,
+      "gpio_width": "1",
+      "all_inputs": false,
+      "all_inputs_2": false,
+      "all_outputs": true,
+      "all_outputs_2": false
+    },
+    {
+      "name": "btns_gpio",
+      "type": "xilinx.com:ip:axi_gpio:2.0",
+      "phys_addr": 1092747264,
+      "addr_range": 65536,
+      "gpio_width": "2",
+      "all_inputs": true,
+      "all_inputs_2": false,
+      "all_outputs": false,
+      "all_outputs_2": false
+    },
+    {
+      "name": "leds_gpio",
+      "type": "xilinx.com:ip:axi_gpio:2.0",
+      "phys_addr": 1092812800,
+      "addr_range": 65536,
+      "gpio_width": "3",
+      "all_inputs": false,
+      "all_inputs_2": false,
+      "all_outputs": true,
+      "all_outputs_2": false
+    },
+    {
+      "name": "touch_gpio",
+      "type": "xilinx.com:ip:axi_gpio:2.0",
+      "phys_addr": 1092681728,
+      "addr_range": 65536,
+      "gpio_width": "1",
+      "all_inputs": true,
+      "all_inputs_2": false,
+      "all_outputs": false,
+      "all_outputs_2": false
+    },
+    {
+      "name": "video/hdmi_out/frontend/hdmi_out_hpd_video",
+      "type": "xilinx.com:ip:axi_gpio:2.0",
+      "phys_addr": 1092616192,
+      "addr_range": 65536,
+      "gpio_width": "1",
+      "all_inputs": false,
+      "all_inputs_2": false,
+      "all_outputs": false,
+      "all_outputs_2": false
+    }
+  ],
+  "fclk0_hwh_mhz": 100.0,
+  "fclk0_pynq_register_derived_mhz": null,
+  "original_tri": 4294967295,
+  "original_data": 0,
+  "selected_gpio_parameters": {
+    "C_FAMILY": "zynq",
+    "C_S_AXI_ADDR_WIDTH": "9",
+    "C_S_AXI_DATA_WIDTH": "32",
+    "C_GPIO_WIDTH": "3",
+    "C_GPIO2_WIDTH": "32",
+    "C_ALL_INPUTS": "0",
+    "C_ALL_INPUTS_2": "0",
+    "C_ALL_OUTPUTS": "1",
+    "C_ALL_OUTPUTS_2": "0",
+    "C_INTERRUPT_PRESENT": "0",
+    "C_DOUT_DEFAULT": "0x00000000",
+    "C_TRI_DEFAULT": "0xFFFFFFFF",
+    "C_IS_DUAL": "0",
+    "C_DOUT_DEFAULT_2": "0x00000000",
+    "C_TRI_DEFAULT_2": "0xFFFFFFFF",
+    "Component_Name": "base_leds_gpio_0",
+    "USE_BOARD_FLOW": "false",
+    "GPIO_BOARD_INTERFACE": "Custom",
+    "GPIO2_BOARD_INTERFACE": "Custom",
+    "EDK_IPTYPE": "PERIPHERAL",
+    "C_BASEADDR": "0x41230000",
+    "C_HIGHADDR": "0x4123FFFF"
+  },
+  "direction_mode": "all_outputs",
+  "verification": {
+    "ips": {
+      "leds_gpio": {
+        "phys_addr": 1092812800,
+        "addr_range": 65536,
+        "type": "xilinx.com:ip:axi_gpio:2.0"
+      }
+    },
+    "identity": [],
+    "clocks": {}
+  },
+  "direction_check": {
+    "status": "NOT_APPLICABLE",
+    "reason": "C_ALL_OUTPUTS=1"
+  },
+  "restored_data": 0,
+  "restored_tri": 4294967295
+}

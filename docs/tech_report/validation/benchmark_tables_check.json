@@ -1,0 +1,118 @@
+{
+  "task": "D02",
+  "status": "PASS",
+  "timestamp": "2026-10-31T16:30:56+08:00",
+  "scope": "当前 PYNQ 主线：KAT #529 warm benchmark（表 3-13/3-14、摘要）、pynq_wrapper 实现资源与时序；历史 PL-only、PUF 原型与 pynq_puf3 数值不在本检查范围（报告未引用 pynq_puf3 数值）",
+  "conditions": {
+    "kat": 529,
+    "plaintext_bytes": 16,
+    "ad_bytes": 0,
+    "warmup": 5,
+    "repetitions": 30,
+    "measurement_scope": "firmware AEAD mcycle; excludes PS/UART",
+    "wall_time_scope": "PS call around mailbox transaction; descriptive only"
+  },
+  "inputs": {
+    "docs/tech_report/report.md": "75ce9cc14ea82c45bfa86507aac64f5c3261d73bb5878d3e83940a5f7374cf7c",
+    "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json": "751b1bf8ff610a0290915f091035f43ecf1e28c4901a5f1f8279de296dfff1ad",
+    "build/reports/pynq_final_20261028/utilization.rpt": "3d6fcbdbd26130e897b1e2a85f8b710ebe14b413633d974815c7af3a7d8f364d",
+    "build/reports/pynq_final_20261028/timing.rpt": "782220ebaed3ad5fa459417d9453e808f7918fdb735435ebcf38cd4f085d2cc9"
+  },
+  "checks": [
+    {
+      "check": "表 3-13 SW cycles/cpb/加速比",
+      "expected_row": "| SW | 23342 | 1458.875 | 1.000× | 24005 | 1500.312 | 1.000× |",
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "表 3-14 SW PS 墙钟中位",
+      "expected_row": "| SW | 5.216 | 4.957 |",
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "表 3-13 HW/MMIO cycles/cpb/加速比",
+      "expected_row": "| HW/MMIO | 1439 | 89.938 | 16.221× | 1388 | 86.750 | 17.295× |",
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "表 3-14 HW/MMIO PS 墙钟中位",
+      "expected_row": "| HW/MMIO | 4.479 | 4.262 |",
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "表 3-13 ISE cycles/cpb/加速比",
+      "expected_row": "| ISE | 3995 | 249.688 | 5.843× | 4385 | 274.062 | 5.474× |",
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "表 3-14 ISE PS 墙钟中位",
+      "expected_row": "| ISE | 5.154 | 4.986 |",
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "JSON 加速比 hw/encrypt 与重算一致",
+      "recomputed": 16.221,
+      "stored": 16.221,
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "JSON 加速比 hw/decrypt 与重算一致",
+      "recomputed": 17.295,
+      "stored": 17.295,
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "JSON 加速比 ise/encrypt 与重算一致",
+      "recomputed": 5.843,
+      "stored": 5.843,
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "JSON 加速比 ise/decrypt 与重算一致",
+      "recomputed": 5.474,
+      "stored": 5.474,
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "摘要加密中位 SW/HW/ISE",
+      "expected_text": "23342/1439/3995",
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "摘要解密中位 SW/HW/ISE",
+      "expected_text": "24005/1388/4385",
+      "source": "data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json",
+      "status": "PASS"
+    },
+    {
+      "check": "实现资源 LUT/FF/BRAM/DSP",
+      "expected_text": "LUT 14269、FF 19691、BRAM 34.5、DSP 4",
+      "source": "build/reports/pynq_final_20261028/utilization.rpt",
+      "status": "PASS"
+    },
+    {
+      "check": "实现时序 WNS/TNS 行",
+      "expected_row": "| WNS / TNS | **+0.034 ns / 0** | setup 失败端点 0/62861 |",
+      "source": "build/reports/pynq_final_20261028/timing.rpt",
+      "status": "PASS"
+    },
+    {
+      "check": "实现时序 WHS",
+      "expected_text": "WHS +0.020 ns",
+      "source": "build/reports/pynq_final_20261028/timing.rpt",
+      "status": "PASS"
+    }
+  ],
+  "failures": 0
+}

@@ -25,7 +25,7 @@
 | 2 | 实际 Skill 最小测试 | 确认提交哪一个 Skill，至少一项完整任务运行与可复查结果 | 10-30 上午 | 完成：提交 `pynq-overlay-workflow`，L1–L3 证据见上表 |
 | 3 | 演示复验 | hash 配套，Notebook/CLI smoke 真实 PASS，保存 log/JSON | 10-30 | 完成：主线 10-29 Notebook/错误门禁；pynq_puf3 10-30 Notebook；Skill L3 10-31 |
 | 4 | 视频/PPT/照片 | 当前三模式演示；独立原型用单独日志/镜像，不假装同一 overlay | 10-30/31 | 部分：视频脚本 `report/demo_video_script.md` 已完成（主版+3 分钟版）；实机视频未录、PPT 未见 |
-| 5 | 交付包检查 | PDF/源码/图/证据/依赖/许可/操作入口齐，干净解包哈希正确 | 10-31 | 部分：证据包 10-31 重新装配（含 X-1～X-6 新增证据），见 `submission/current_evidence.json`；报告终稿后需再装配一次；源码包/平台要求待核 |
+| 5 | 交付包检查 | PDF/源码/图/证据/依赖/许可/操作入口齐，干净解包哈希正确 | 10-31 | 部分：证据包 10-31 重新装配（含 X-1～X-8），见 `submission/current_evidence.json`；D02 数值核对 15/15；冻结清单与本机源码包（git archive）见 `submission/freeze_manifest.md`；报告终稿后需重跑核对与装配；平台对源码/附件的要求待核 |
 | 6 | 人工确认与提交 | 团队信息、平台要求、文件大小/命名、上传成功回执 | 11-01 | 待办 |
 
 必要修复可在提交前进行，但不为宣传数字修改已测样本；代码变化须验证，新 bit/固件须重新绑定证据。
