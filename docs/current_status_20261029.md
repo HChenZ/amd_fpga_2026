@@ -41,14 +41,14 @@ owner TBD。本文件是当前状态索引；发生事实以 `project_log/actual
 | KAT | C03 | 项目板端/接口 KAT 总数为 289 组；PUF3 独立变体已通过全部 289 组，不将超出当前接口的多块能力混入板端 KAT 结论 |
 | PUF | P01-P04/P05 | PUF3 单次上电功能通过；跨电源周期、温度/BER/熵/唯一性、RO timing signoff 仍未测 |
 | 接口 | Y01 | 当前 UART mailbox v1 已实板验收；动态固件 loader 不在当前实现范围 |
-| Skill | S01-S05 | 通用 overlay/register/golden/collector Skill：工具层 47 用例 + 13/13 变异通过；受控 L2 对照（simulated，`deepseek/deepseek-flash`，T1–T3 n=15/组）`with` 1.000 vs `without` 0.833（p=0.0425），但 `with` vs `placebo` p=0.2248 不显著；留出任务 `t5_bram` 未复现差异（p=1.0）；L3 预检 PASS（未触碰硬件），Ascon/GPIO/DMA 功能段 `not_run` |
+| Skill | S01-S05 | 通用 overlay/register/golden/collector Skill：工具层 47 用例 + 13/13 变异通过；受控 L2 对照（simulated，`deepseek/deepseek-flash`，T1–T3 n=15/组）`with` 1.000 vs `without` 0.833（p=0.0425），但 `with` vs `placebo` p=0.2248 不显著；留出任务 `t5_bram` 未复现差异（p=1.0）；L3 预检、Ascon A/B、GPIO C PASS；DMA D `not_run`，汇总 FAIL |
 | 材料 | D01-D06 | 架构图、benchmark 表、报告/PPT、视频、clean-clone、最终包 |
 
 ## 当前优先顺序
 
 1. 完成 B03 实物照片、完整丝印/速度等级、SD 镜像与写卡、跳线和独立频率证据。
 2. 完成 S01-S05 通用 Skill，并用非 Ascon 示例验证。当前状态：工具层与受控 L2 对照已跑完
-   （simulated），L3 预检已 PASS 但未加载 overlay，A/B/C/D 功能段仍 `not_run`；对照结论见
+   （simulated），L3 预检、Ascon A/B 与 GPIO C 已 PASS，DMA D 仍 `not_run`；对照结论见
    `skill/ab_eval_pynq/README.md` 6.1/6.2，不要把 simulated 结果写成板级通过。
 3. 基于已有 JSON 完成 D02 benchmark 表和 D01 架构定稿。
 4. 完成 D03 报告/PPT/LLM 记录、D04 视频。

@@ -1,5 +1,13 @@
 # 开发记录
 
+- 2026-10-31：最新 L3 session `l3_20261031_030131` 完成 preflight、Ascon A/B 和
+  GPIO C，三段 PASS。all-output `leds_gpio` 的 DATA 0/7/5/2 写回与恢复通过。
+  汇总仅因 DMA D 缺回环工件 `NOT_RUN` 而 FAIL。
+- 2026-10-31：L3 新 session 的 preflight 与 Ascon A/B 实板 PASS。GPIO 首次失败后
+  根据 `20_non_ascon_gpio.json` 确认 `leds_gpio` 为 `C_ALL_OUTPUTS=1`，TRI 不适用；
+  已改为 all-output 直接验证 DATA、mixed/input-only 分别处理，待板上复测。DMA 仍
+  `not_run`。
+
 ## 2026-10-30 ~ 10-31 — pynq-overlay-workflow Skill L2 实验 + 留出任务（owner TBD）
 
 - L1 复核全绿（47 passed；变异 13/13 killed）；判分器 good/naive 区分度复核（T1/T3 6/6 vs 3/6、T2 6/6 vs 0/6、

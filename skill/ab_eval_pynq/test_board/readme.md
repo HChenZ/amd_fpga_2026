@@ -100,15 +100,22 @@ export L3_RUN_DIR=/absolute/path/to/data/skill/l3_<timestamp>
 原始 JSON 不覆盖，也不能只保留截图。执行后的 Notebook 应另存到同一 session 目录，
 并计算 SHA-256。
 
-当前仓库记录的 session `l3_20261030_163953` 只有
-[`00_preflight.json`](../../../data/skill/l3_20261030_163953/00_preflight.json)；
-其 `status` 为 `PASS`，但 `claim_level` 为 `environment` 且
-`hardware_touched` 为 `false`。因此它只证明环境、release 工件哈希、目标 part、
-100 MHz 设计值和篡改 manifest 拒绝检查通过，不代表 Ascon release、GPIO、DMA
-或完整 L3 已在实板运行。`l3_current_session.json` 仅保存 session 指针，不是汇总结果。
+最新 session 为 `l3_20261031_030131`：
 
-该旧预检早于关键依赖/L2 归档哈希字段。更新后的预检必须重新运行并创建新 session；
-新汇总会拒绝缺少 `l2_evidence` 的旧预检，避免把不同源码或 L2 结果混入同一 L3 结论。
+- `00_preflight.json` PASS：关键依赖与 L2 归档哈希齐全，但未触碰硬件。
+- `10_ascon_release.json` PASS：正式 release 加载、ID、服务能力、`simulated=false`
+  和开机自检均通过。
+- GPIO C PASS：`leds_gpio` 为 3-bit、`C_ALL_OUTPUTS=1`；`GPIO_DATA`
+  写入 0/7/5/2 均读回一致，原始值 0 已恢复，错位 contract 被拒绝。
+- DMA D `NOT_RUN`：没有非 Ascon DMA 回环 bit/hwh/manifest。
+- 汇总 FAIL 且明确只有一项问题：`30_non_ascon_dma status=NOT_RUN`。
+
+该 session 的预检哈希早于随后对 `l3_00`、`l3_30`、`l3_40` 的最新修改，不能与当前
+代码继续混用。最终完成 L3 时必须用当前仓库重新运行 `l3_00` 创建新 session，
+再执行 Ascon、GPIO、DMA 和汇总。
+
+旧的 `l3_20261030_163953` 保留为历史 session，不进入新汇总。新汇总会拒绝缺少
+`l2_evidence` 的旧预检，避免把不同源码或 L2 结果混入同一 L3 结论。
 
 ## 无界面执行
 

@@ -4,8 +4,8 @@
 见 `docs/skill_test_guide_20261030.md`。当前仅确认文本内容，实际效果仍待测试。
 2026-10-30 新增 `pynq-overlay-workflow`（通用 PYNQ Skill），工具层已离线验证，agent 对照与实板验证 not_run，见下表。
 2026-10-31 更新：`pynq-overlay-workflow` 的 L2 agent 对照已跑完（`simulated`，4 题 × 3 组 × 5 次 + 留出任务），
-实板 L3 预检已 `PASS`（未加载 overlay），A/B/C/D 功能段仍 `not_run`；结论与措辞边界见
-`ab_eval_pynq/README.md` 6.1/6.2。
+实板 L3 预检、Ascon A/B 与非 Ascon GPIO C 已 `PASS`；DMA D 因缺回环工件仍
+`NOT_RUN`；结论与措辞边界见 `ab_eval_pynq/README.md` 6.1/6.2。
 
 本目录存放可复用 Skill 的**受控副本**（不是本工程的运行时依赖，也不绑定具体 agent 平台）。
 下表的状态栏只写已验证的事实；没有验证证据的一律写 `not_validated`。
@@ -54,7 +54,7 @@ python skill/ab_eval_pynq/harness/skill_mutation_check.py         # 期望 kille
 - **来源案例**：RISC-V 取指单元里 `Mux(redirectNow, redirectNowTarget, …)` 被同义重写三次（不同嵌套层），属于典型漂移风险点。
 - **已验证效果**：无。没有做过「同一需求，用/不用本 skill 写两版，比较 LUT/FF/时序」的对照实验，因此不得对外声称它能提升电路质量。要做的话最小实验是：取一个已收敛模块（如 `ascon_round.v` 或 `bypass.v`），让两个 agent 分别按/不按本 skill 实现，比较 LUT/FF 与最差路径——这一步 `not_measured`。
 
-| `pynq-overlay-workflow/` | 2026-10-30 依据本项目 PYNQ 实板/DMA 审计中的真实踩坑（bit/hwh 不配套、COR ap_done、DMA 无界自旋、S2MM 实际长度、缓存一致性、参考时钟假设）与 PYNQ v2.7.0 源码提炼 | L1 工具层通过（47 单元测试、13/13 变异检出、7 假 PYNQ API 用例）；L2 agent 对照已跑完（`simulated`）；L3 预检 PASS，功能段 **not_run** |
+| `pynq-overlay-workflow/` | 2026-10-30 依据本项目 PYNQ 实板/DMA 审计中的真实踩坑（bit/hwh 不配套、COR ap_done、DMA 无界自旋、S2MM 实际长度、缓存一致性、参考时钟假设）与 PYNQ v2.7.0 源码提炼 | L1 工具层通过（47 单元测试、13/13 变异检出、7 假 PYNQ API 用例）；L2 agent 对照已跑完（`simulated`）；L3 预检、Ascon A/B、GPIO C PASS，DMA D **NOT_RUN** |
 
 ### `pynq-overlay-workflow/` 的 L2 结果（2026-10-31，`simulated`，不可当板级结论）
 

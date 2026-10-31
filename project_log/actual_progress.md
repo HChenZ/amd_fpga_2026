@@ -1,5 +1,30 @@
 # 实际进度
 
+## 2026-10-31 — L3 最新 session：preflight/Ascon/GPIO PASS，DMA 阻塞（owner TBD）
+
+- 最新 session `data/skill/l3_20261031_030131/`：`00_preflight.json`、`10_ascon_release.json`
+  和 `20_non_ascon_gpio.json` 均 PASS；Ascon 与 GPIO 的 claim 为 `hardware_measured`，
+  `simulated=false`。
+- GPIO 选择 `leds_gpio`，3-bit、`C_ALL_OUTPUTS=1`；DATA 写入/读回
+  `0/7/5/2` 全部一致，原 DATA 恢复为 0，错误 contract 被拒绝。TRI 按该配置
+  标为 `NOT_APPLICABLE`。
+- `30_non_ascon_dma.json` 为 `NOT_RUN`，原因是没有非 Ascon DMA 回环工件；
+  `40_summary.json` 为 FAIL，唯一 problem 是 `30_non_ascon_dma status=NOT_RUN`。
+  该 session 的预检哈希与随后更新的 `l3_00/l3_30/l3_40` 已不一致，因此当前 L3
+  不能标完成；最终取证必须用当前代码创建新 session 重跑。
+
+## 2026-10-31 — L3 实板 preflight/Ascon PASS，GPIO 方向读回失败（owner TBD）
+
+- 新 session `data/skill/l3_20261031_023742/`：`00_preflight.json` PASS，关键依赖和
+  L2 归档哈希齐全；`10_ascon_release.json` PASS，`claim_level=hardware_measured`，
+  正式 release、control/mailbox ID、服务握手、`simulated=false`、自检 mask 7 通过。
+- GPIO C 首次在写入 `GPIO_TRI` 后读回 `0xFFFFFFFF`，但原始参数确认
+  `leds_gpio` 是 `C_ALL_OUTPUTS=1`：方向由硬件固定为输出，TRI 不是该配置下的测试
+  oracle。测试的 `finally` 已恢复原值。Notebook 已改为对 all-output GPIO 跳过 TRI
+  编程、直接验证 `GPIO_DATA`，同时保留 all-input 过滤、候选参数和失败详情；
+  板上复测 NOT_RUN。
+- DMA D 仍缺非 Ascon 回环工件，未执行。L3 不能标完成。
+
 ## 2026-10-30 ~ 10-31 — pynq-overlay-workflow Skill L2 受控实验 + 留出任务（`simulated`，owner TBD）
 
 - 根据 L2 归档完成 L3 方案局部调整：预检新增五个 Notebook、`src/pynq` 实际依赖、

@@ -1,5 +1,14 @@
 # 经验与踩坑
 
+## 2026-10-31 — AXI GPIO 的方向测试必须服从 IP 配置
+
+- `leds_gpio` 的 `GPIO_TRI` 写入后仍读回 `0xFFFFFFFF`，不能据此判定 all-input：
+  实际参数是 `C_ALL_OUTPUTS=1`，方向由 IP 固定为输出，TRI 寄存器不是该配置下的
+  authoritative oracle。all-input（`C_ALL_INPUTS=1`）应拒绝写 DATA；all-output
+  应跳过 TRI 编程并直接验证 DATA；只有 tristate 配置才做 TRI 写回。
+- candidate 名称和参数都必须记录。方向配置不匹配时先恢复原 DATA/TRI，不能继续
+  写入或把软件测试假设误报成硬件故障。
+
 ## 2026-10-30 ~ 10-31 — Skill A/B 实验的四个坑
 
 - **Skill 注册成功 ≠ 被使用。** OpenCode V2 会把 Skill 的 `name`+`description` 放进可用列表，但

@@ -107,7 +107,7 @@ known_failures / limitations:
 | L1 工具层 | `done` | `pytest skill/pynq-overlay-workflow/tests` 47 passed；`skill_mutation_check.py` 13/13 killed；假 PYNQ API 用例 7 passed |
 | L2 受控对照（T1–T4） | `done`（`simulated`） | 60 次 `opencode run` + T1×placebo 复跑 5 次，全部 `exit=0`；模型 `deepseek/deepseek-flash` |
 | L2 留出任务 `t5_bram` | `done`，**未复现差异** | 15 次 `opencode run`；`with` 1.000 vs `without`/`placebo` 0.800，p=1.0 |
-| L3 实板 | **预检 `PASS`；功能段 `not_run`** | `data/skill/l3_20261030_163953/00_preflight.json`；该记录 `hardware_touched=false`，未加载 overlay |
+| L3 实板 | **预检、Ascon A/B、GPIO C PASS；DMA D `NOT_RUN`** | session `l3_20261031_030131`：前三段 PASS；无 DMA 回环工件，D 段和汇总 FAIL |
 
 L2 主指标（预注册 = T1–T3 的场景通过率，n=15/组）：
 

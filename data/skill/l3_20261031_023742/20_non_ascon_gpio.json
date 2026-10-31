@@ -1,0 +1,72 @@
+{
+  "case": "non_ascon_gpio",
+  "status": "FAIL",
+  "claim_level": "hardware_measured",
+  "timestamp_local": "2026-10-31T02:48:00",
+  "timestamp_utc": "2026-10-31T02:48:00+00:00",
+  "run_id": "l3_20261031_023742",
+  "run_dir": "/home/xilinx/jupyter_notebooks/amd_fpga_2026/data/skill/l3_20261031_023742",
+  "hostname": "pynq",
+  "python_version": "3.8.2",
+  "pynq_version": "2.7.0",
+  "kernel": "Linux-5.4.0-xilinx-v2020.2-armv7l-with-glibc2.29",
+  "git_commit": "ac9143d5c6acc9e7ac61f907a7e802eb6b35cddd",
+  "checks": [
+    {
+      "name": "overlay_loaded",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "gpio_present",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "gpio_direction_readback",
+      "status": "FAIL",
+      "detail": null
+    },
+    {
+      "name": "gpio_data_restored",
+      "status": "PASS",
+      "detail": 0
+    },
+    {
+      "name": "gpio_direction_restored",
+      "status": "PASS",
+      "detail": 4294967295
+    }
+  ],
+  "simulated": false,
+  "overlay_kind": "PYNQ BaseOverlay",
+  "selected_ip": "leds_gpio",
+  "gpio_width": 3,
+  "register_trace": [
+    {
+      "register": "GPIO_TRI",
+      "write": 4294967288,
+      "read": 4294967295
+    }
+  ],
+  "hwh_cross_check": [],
+  "fclk0_hwh_mhz": 100.0,
+  "fclk0_pynq_register_derived_mhz": null,
+  "original_tri": 4294967295,
+  "original_data": 0,
+  "verification": {
+    "ips": {
+      "leds_gpio": {
+        "phys_addr": 1092812800,
+        "addr_range": 65536,
+        "type": "xilinx.com:ip:axi_gpio:2.0"
+      }
+    },
+    "identity": [],
+    "clocks": {}
+  },
+  "restored_data": 0,
+  "restored_tri": 4294967295,
+  "error_type": "AssertionError",
+  "error": "{'name': 'gpio_direction_readback', 'status': 'FAIL', 'detail': None}"
+}

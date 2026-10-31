@@ -1,0 +1,55 @@
+{
+  "case": "summary",
+  "status": "FAIL",
+  "claim_level": "not_measured",
+  "timestamp_utc": "2026-10-31T03:02:59+00:00",
+  "run_id": "l3_20261031_030131",
+  "run_dir": "/home/xilinx/jupyter_notebooks/amd_fpga_2026/data/skill/l3_20261031_030131",
+  "rows": [
+    {
+      "case": "00_preflight",
+      "status": "PASS",
+      "claim_level": "environment",
+      "simulated": null,
+      "path": "/home/xilinx/jupyter_notebooks/amd_fpga_2026/data/skill/l3_20261031_030131/00_preflight.json"
+    },
+    {
+      "case": "10_ascon_release",
+      "status": "PASS",
+      "claim_level": "hardware_measured",
+      "simulated": false,
+      "path": "/home/xilinx/jupyter_notebooks/amd_fpga_2026/data/skill/l3_20261031_030131/10_ascon_release.json"
+    },
+    {
+      "case": "20_non_ascon_gpio",
+      "status": "PASS",
+      "claim_level": "hardware_measured",
+      "simulated": false,
+      "path": "/home/xilinx/jupyter_notebooks/amd_fpga_2026/data/skill/l3_20261031_030131/20_non_ascon_gpio.json"
+    },
+    {
+      "case": "30_non_ascon_dma",
+      "status": "NOT_RUN",
+      "claim_level": "not_measured",
+      "simulated": false,
+      "path": "/home/xilinx/jupyter_notebooks/amd_fpga_2026/data/skill/l3_20261031_030131/30_non_ascon_dma.json"
+    }
+  ],
+  "problems": [
+    "30_non_ascon_dma status=NOT_RUN"
+  ],
+  "l2_context": {
+    "claim_level": "simulated",
+    "effect_interpretation": "directional only; with-vs-placebo was not significant",
+    "generalization": "holdout t5_bram did not reproduce a significant difference",
+    "files": {
+      "skill/ab_eval_pynq/results/l2_20261030_deepseek-flash/README.md": "1f3ee91ed38a765dca7c9d78f31307584d5d9cdcaed418db57429fecf8eaac77",
+      "skill/ab_eval_pynq/results/l2_20261030_deepseek-flash/results_final.csv": "0ed07957ad24ffe87646236d75ff8358d3eea8dcfc29d667c91759a05ad1391d",
+      "skill/ab_eval_pynq/results/l2_20261030_deepseek-flash/results_holdout_t5.csv": "cf92358af59dff6877c99c89084a99330c0514e37f0c43f21880d8054cb79ac8",
+      "skill/ab_eval_pynq/results/l2_20261030_deepseek-flash/stats_final.txt": "7835471582b6df67d2da073f49ecfb4256c090c2d1ed77c34cf172051bf284ac",
+      "skill/ab_eval_pynq/results/l2_20261030_deepseek-flash/stats_holdout_t5.txt": "84804e562adf0a29696f3acef1194491525f0a5210ab46b2c6e78c4d82726f66"
+    }
+  },
+  "allow_partial": false,
+  "allowed_claim": "L3 failed or required evidence is unavailable; make no L3 pass claim."
+}
