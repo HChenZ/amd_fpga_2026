@@ -1,5 +1,12 @@
 # 实际进度
 
+## 2026-10-31 — 非 Ascon AXI DMA 回环 overlay（Skill L3 工件；离线门禁通过，board NOT_RUN，owner TBD）
+
+- 按用户要求只做 DMA、不做 GPIO：新增 `board/vivado_zynq7000_xc7z020_axi_dma_loopback/`（build.tcl、package.py、readme、candidate）。PS7 GP0→互连→`axi_dma_0/S_AXI_LITE`（0x40400000/64K）；MM2S/S2MM→互连→HP0（64 位）；AXI DMA 7.1 simple 模式（SG=0、32 位、无 DRE、length width 14）；`M_AXIS_MM2S` 直连 `S_AXIS_S2MM`（hwh 证实 TLAST 同网）；全部 FCLK0，`proc_sys_reset` 分 interconnect/peripheral 复位；无中断。
+- 板卡相关：FCLK0 按 pynq_puf3 已验证的修正固定 IOPLL FBDIV 30、分频 10×1（ACT 99.999999）；PS7 DDR 参数按厂家 base（MT41J256M16 RE-125、32 位，1 GiB），使 DMA 的 HP0 窗口为 0x0–0x3FFFFFFF。第一次构建用 IP 默认 512 MiB 窗口，打包前 hwh 检查发现，作废未发布（`build/local/axi_dma_loopback/vivado_ddr512m`）；build.tcl 已加两个 DMA 地址空间的窗口回读门禁。
+- 结果（Vivado 2025.2，Performance_ExploreWithRemap + 布线后 phys_opt）：WNS +1.736/WHS +0.025，无无时钟/无约束端点，DRC 0，无 Netlist 29-160，全部布通；2436 LUT/3333 FF/2 BRAM。bit `890add35…`、hwh `27bcceca…` 同名，`manifest.json` 由 Skill 的 `artifacts.write_manifest` 生成并经 `check_artifacts` 复核；`package.py` 核对 hwh 参数、回环/TLAST、HP0 窗口、FCLK0，并用 Skill 的 `parse_hwh`/`config_from_hwh`（max 16383、对齐 4）确认 L1 兼容；`pynq_skill_cli.py hwh --contract axi_dma_simple` 显示契约与 hwh 寄存器一致。
+- 未做：板测（Skill L3 段 A–D）NOT_RUN；DMA 吞吐未测；无行为仿真（Xilinx AXI DMA IP 未做 XSim），功能以板测为准。
+
 ## 2026-10-31 — L3 最新 session：preflight/Ascon/GPIO PASS，DMA 阻塞（owner TBD）
 
 - 最新 session `data/skill/l3_20261031_030131/`：`00_preflight.json`、`10_ascon_release.json`

@@ -1,5 +1,10 @@
 # 经验与踩坑
 
+## 2026-10-31 — DMA overlay 的 HP 窗口取决于 PS7 的 DDR 参数
+
+- PS7 IP 默认 DDR 为 512 MiB，DMA 通过 HP0 能访问的地址只到 0x1FFFFFFF；这块板实际有 1 GiB，`pynq.allocate` 的缓冲可能落在 512 MiB 以上，到时只会报 DMADecErr。做带 HP 口的 overlay 时要按板卡填 DDR 参数，并在构建脚本里回读 DMA 地址空间的窗口作为门禁。
+- 这个问题是在打包前检查 hwh 的 MEMRANGE 时发现的。只看时序和 DRC 都通过，看不出来。
+
 ## 2026-10-31 — AXI GPIO 的方向测试必须服从 IP 配置
 
 - `leds_gpio` 的 `GPIO_TRI` 写入后仍读回 `0xFFFFFFFF`，不能据此判定 all-input：

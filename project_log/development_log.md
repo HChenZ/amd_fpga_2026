@@ -1,5 +1,9 @@
 # 开发记录
 
+## 2026-10-31 — Skill L3 用 AXI DMA 回环 overlay（owner TBD）
+
+- 新建独立 Vivado 工程：PS7 GP0 控制、HP0 内存、simple 模式 AXI DMA、MM2S→S2MM 回环含 TLAST、FCLK0 100 MHz（板卡 PLL 修正）、HP0 窗口 1 GiB；门禁通过并生成同名 bit/hwh 与同次实现的 manifest。板测 NOT_RUN。
+
 - 2026-10-31：最新 L3 session `l3_20261031_030131` 完成 preflight、Ascon A/B 和
   GPIO C，三段 PASS。all-output `leds_gpio` 的 DATA 0/7/5/2 写回与恢复通过。
   汇总仅因 DMA D 缺回环工件 `NOT_RUN` 而 FAIL。
