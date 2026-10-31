@@ -73,7 +73,7 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 | P01 | RO PUF prototype | TBD | B02/B03/C04/I04/I07/I08/Y05/V03、S01-S05 与 P0/P1 门禁通过 | 独立 RO PUF RTL/约束/观测记录 | 综合/实现后结构保留，有真实响应，异常与限制记录完整 | 2026-10-23（条件节点） | gated |
 | P02 | stability measurement | TBD | P01 | 多次上电/温度/电压响应与统计 | 预先声明采样和阈值，报告 BER/失败率，不能只选成功样本 | 2026-10-24（条件节点） | gated |
 | P03 | key reconstruction | TBD | P02 | enrollment/reconstruction 与 helper data 方案 | 多次重建/失败处理实测，密钥不入日志；可靠性阈值达标 | 2026-10-26（条件节点） | gated |
-| P05 | pynq_puf3：三模式 SW/MMIO/ISE + PUF v1 单一 overlay | TBD | PYNQ release、pynq_puf v1、用户 10-30 授权方案2 | `board/vivado_zynq7000_xc7z020_pynq_puf3/`（变体 RTL、pynq_svc_puf 固件、单文件 Notebook、candidate） | cosim normal 与 autolock 反例、时序/DRC/RO 门禁通过；Notebook 四段（身份/KAT/基准/PUF）全部 PASS 后才可报加速比 | 2026-11-01 | full_kat_functional_pass / cross_power_cycle_pending / RO_timing_pending |
+| P05 | pynq_puf3：三模式 SW/MMIO/ISE + PUF v1 单一 overlay | TBD | PYNQ release、pynq_puf v1、用户 10-30 授权方案2 | `board/vivado_zynq7000_xc7z020_pynq_puf3/`（变体 RTL、pynq_svc_puf 固件、单文件 Notebook、candidate） | cosim normal 与 autolock 反例、时序/DRC/RO 门禁通过；Notebook 四段（身份/KAT/基准/PUF）全部 PASS 后才可报加速比 | 2026-11-01 | full_kat_functional_pass / cross_power_cycle_pending / RO_timing_pending（10-30 实板 Notebook PASS，见下方 10-31 注） |
 | P04 | authenticated boot prototype | TBD | P03、C03、V02 | Ascon 镜像认证/完整性原型 | 正确镜像允许、修改镜像拒绝；说明信任边界和回滚限制；冻结前未验收即延期 | 2026-10-27（条件节点） | gated |
 
 ## 文档与发布
@@ -83,10 +83,10 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 | D00 | repository collaboration skeleton | TBD | B01 | README/AGENTS/docs/tasks/project_log/目录说明/.gitignore | 请求的入口齐全、任务字段完整、链接可用、原工程未变、忽略规则保留证据 | 2026-09-23 | done |
 | D01 | architecture figure | TBD | B01；定稿需 I02/Y01 | 架构图与版本说明 | 当前/计划分开；最终图与 CPU/PS/PL 实现一致，报告可引用 | 2026-10-29 | in_progress |
 | D02 | benchmark tables | TBD | I07、I08、Y05、V04 | 对比表与数据来源索引 | 每个数值追溯原始结果，测试条件一致，未测项明确 | 2026-10-30 | todo |
-| D03 | report | TBD | D01、D02、V04、S01-S04 | 报告、PPT、LLM 协作记录 | 原理/创新/对比/失败与复现材料齐全，规则/来源可追溯，无虚构成果 | 2026-11-01 | todo |
+| D03 | report | TBD | D01、D02、V04、S01-S04 | 报告、PPT、LLM 协作记录 | 原理/创新/对比/失败与复现材料齐全，规则/来源可追溯，无虚构成果 | 2026-11-01 | in_progress |
 | D04 | demo video | TBD | Y04、Y05、V04 | 演示视频与脚本/文件 hash 索引 | 真实目标板上输入输出、KAT 和两模式指标一致，关键过程可辨识 | 2026-11-01 | in_progress：`report/demo_video_script.md` 已完成 5 分 20 秒主版与 3 分钟压缩版；实机视频未录 |
 | D05 | clean-clone reproduction | TBD | B02、B03、B04、V04、D03、D04、S05 | 干净机器/clone 的端到端日志 | 无开发机缓存/IP/绝对路径依赖，重新构建并运行 KAT/benchmark/demo；材料引用有效 | 2026-11-02 | todo |
-| D06 | final package | TBD | D05、D03、D04、S05 | 最终清单/许可证/哈希/材料包 | 11-03 只修材料并核对包；11-04 仅正式提交，由用户控制提交动作 | 2026-11-03 | todo |
+| D06 | final package | TBD | D03、D04、S05（D05 按 10-29 授权不阻塞本次提交） | 最终清单/许可证/哈希/材料包 | 按 10-29 授权改为 11-01 提交并冻结（原 11-03 核包/11-04 提交作废）；由用户控制提交动作 | 2026-11-01 | in_progress |
 
 2026-10-15：C02 目标编译/运行已在仿真层达成（done）；C04 CPU 级软件 benchmark 完成
 （done，仿真层，非上板）：自研 RV32IM CPU 运行锁定生产 Ascon-AEAD128，6 组官方 KAT +
@@ -179,3 +179,17 @@ owner TBD。
 2026-10-29 Y01 收口：UART mailbox v1 已完成实际地址、错误码、epoch、超时和恢复
 实板验收，Y01 改为 done。Y01 done 指当前 AXI-Lite/UART mailbox v1 与 COE 构建时
 固件装载；通用动态 firmware loader 不在当前 ABI，留待独立任务验证。
+
+2026-10-31 提交前收口（owner TBD）：
+- P05：`data/pynq_puf3/notebook_20261030_144328/result.json` 为 PASS、`simulated=false`，
+  bit/hwh/manifest 哈希与 candidate 一致；三模式各 289/289 KAT 与坏 Tag 拒绝，FCLK0 实测
+  99.997 MHz，enroll quality 127、会话内重建 5/5、HWKEY_OFF 后 KAT 恢复。验收所需 RO 域时序
+  （`timing_signoff_ro_domain=false`）与跨上电仍未闭合，故状态不改为 done。
+- S01–S05 已 done（见上）；L3 session `data/skill/l3_20261031_063709/` 四段 PASS。
+- 证据包按新清单重新装配：报告附录 C 的 C-1～C-12 不变，另加 X-1～X-6（pynq_puf3 候选/板测、
+  Skill 本体、L2、L3、DMA 候选与 S04 示例），装配时校验候选哈希、板测绑定与 PASS 状态；
+  当前包路径与 ZIP 哈希以 `submission/current_evidence.json` 为准。报告仍由队友更新，
+  报告终稿后须重建 PDF 并重新装配。10-31 15:32 的包含 Skill 中间版本，已作废；Skill gen 文档修复
+  （64 passed、变异 16/16）完成后重新装配为最终候选包，报告 PDF 为 10-31 14:30 构建版。
+- D03、D06 改为 in_progress；D04 已有视频脚本（`report/demo_video_script.md`），实机视频与 PPT 未见；V04、D02、D05 未开展，
+  保持 todo（D05 按 10-29 授权不阻塞提交）。

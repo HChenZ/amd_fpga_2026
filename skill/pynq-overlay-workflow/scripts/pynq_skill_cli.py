@@ -3,10 +3,12 @@
 import argparse
 import json
 import os
+import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import pynq_skill  # noqa: E402
 from pynq_skill import PynqSkillError, artifacts, hwh, regmap, report  # noqa: E402
 
 
@@ -46,6 +48,19 @@ def cmd_gen(a):
     with open(tst, 'w', encoding='utf-8') as f:
         f.write(regmap.generate_test_skeleton(c, mod))
     print('wrote %s\nwrote %s' % (drv, tst))
+    if a.no_vendor:
+        lib = os.path.dirname(os.path.abspath(__file__))
+        print('generated code imports pynq_skill; put BOTH directories on PYTHONPATH:\n'
+              '  PYTHONPATH=%s%s%s python -m pytest %s' % (lib, os.pathsep, os.path.abspath(a.out), a.out))
+    else:
+        # Vendor the helper package so the output directory is self-contained (tests run as-is,
+        # and the whole directory can be copied to the board).
+        src = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pynq_skill')
+        dst = os.path.join(a.out, 'pynq_skill')
+        shutil.copytree(src, dst, dirs_exist_ok=True, ignore=shutil.ignore_patterns('__pycache__'))
+        print('copied pynq_skill %s -> %s (output directory is self-contained)' % (pynq_skill.__version__, dst))
+        print('next: python -m pytest %s     # on the board: copy the whole directory, then import %s'
+              % (a.out, mod))
     return 0
 
 
@@ -99,6 +114,8 @@ def main(argv=None):
     s = sub.add_parser('gen', help='contract -> driver + pytest skeleton')
     s.add_argument('contract')
     s.add_argument('-o', '--out', required=True)
+    s.add_argument('--no-vendor', action='store_true',
+                   help='do not copy pynq_skill into the output (then PYTHONPATH must include scripts/)')
     s.set_defaults(fn=cmd_gen)
     s = sub.add_parser('report', help='golden/timing JSON + Vivado reports -> Markdown/JSON')
     s.add_argument('--results')

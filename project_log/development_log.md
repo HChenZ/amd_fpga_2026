@@ -6,6 +6,9 @@
   更新为三模式各 289 组的容量内全量 KAT，并同步末尾的快速回归/超容量边界说明。
 - 未改 `board_demo.run()`、benchmark、release、RTL、固件或接口；Notebook JSON、
   `test_board_benchmark` 5 项离线测试和 `git diff --check` 均通过。
+## 2026-10-31 — gen 输出自包含（owner TBD）
+
+- 修复独立下载复核中发现的生成骨架 ImportError；64 passed、16/16，仓库外复现通过。
 
 ## 2026-10-31 — D04 演示视频脚本（owner TBD）
 

@@ -1,3 +1,4 @@
+import os
 import subprocess
 import sys
 
@@ -66,15 +67,40 @@ def test_cross_check_with_hwh():
 
 @pytest.mark.parametrize('name', ['axi_gpio', 'hls_vadd', 'axi_dma_simple'])
 def test_generated_driver_and_skeleton_pass(tmp_path, name):
-    cli = SKILL / 'scripts' / 'pynq_skill_cli.py'
-    out = subprocess.run([sys.executable, str(cli), 'gen', str(EXAMPLES / ('%s.contract.json' % name)),
-                          '-o', str(tmp_path)], capture_output=True, text=True)
+    # Exactly what SKILL.md tells a user to do: gen, then `python -m pytest <out>` - no PYTHONPATH,
+    # run from an unrelated working directory.
+    out_dir = tmp_path / 'out'
+    out = subprocess.run([sys.executable, str(_CLI), 'gen', str(EXAMPLES / ('%s.contract.json' % name)),
+                          '-o', str(out_dir)], capture_output=True, text=True)
     assert out.returncode == 0, out.stderr
-    env = dict(__import__('os').environ, PYTHONPATH=str(SKILL / 'scripts') + __import__('os').pathsep + str(tmp_path))
-    res = subprocess.run([sys.executable, '-m', 'pytest', '-q', '-p', 'no:cacheprovider', str(tmp_path)],
-                         capture_output=True, text=True, env=env, cwd=str(tmp_path))
+    assert (out_dir / 'pynq_skill' / 'regmap.py').exists() and 'self-contained' in out.stdout
+    res = subprocess.run([sys.executable, '-m', 'pytest', '-q', '-p', 'no:cacheprovider', str(out_dir)],
+                         capture_output=True, text=True, env=_clean_env(), cwd=str(tmp_path))
     assert res.returncode == 0, res.stdout + res.stderr
     assert 'passed' in res.stdout
+
+
+_CLI = SKILL / 'scripts' / 'pynq_skill_cli.py'
+
+
+def _clean_env():
+    env = dict(os.environ)
+    env.pop('PYTHONPATH', None)
+    return env
+
+
+def test_gen_no_vendor_prints_working_pythonpath(tmp_path):
+    out_dir = tmp_path / 'out'
+    out = subprocess.run([sys.executable, str(_CLI), 'gen', str(EXAMPLES / 'axi_gpio.contract.json'), '-o', str(out_dir),
+                          '--no-vendor'], capture_output=True, text=True)
+    assert out.returncode == 0 and not (out_dir / 'pynq_skill').exists()
+    bare = subprocess.run([sys.executable, '-m', 'pytest', '-q', '-p', 'no:cacheprovider', str(out_dir)],
+                          capture_output=True, text=True, env=_clean_env(), cwd=str(tmp_path))
+    assert bare.returncode != 0                      # without the printed PYTHONPATH it cannot import
+    path = out.stdout.split('PYTHONPATH=')[1].split(' python')[0]
+    res = subprocess.run([sys.executable, '-m', 'pytest', '-q', '-p', 'no:cacheprovider', str(out_dir)],
+                         capture_output=True, text=True, env=dict(_clean_env(), PYTHONPATH=path), cwd=str(tmp_path))
+    assert res.returncode == 0, res.stdout + res.stderr
 
 
 class FakeKernel(FakeMMIO):

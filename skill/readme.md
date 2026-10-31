@@ -27,7 +27,7 @@ L1/L2/L3，结论边界见下文。
 
 ```powershell
 # 1. 工具层自检（无需板卡/agent；Python>=3.8 + pytest，判分器另需 numpy）
-python -m pytest skill/pynq-overlay-workflow/tests -q            # 期望 63 passed（10-30 版本为 47）
+python -m pytest skill/pynq-overlay-workflow/tests -q            # 期望 64 passed（10-30 版本为 47）
 python skill/ab_eval_pynq/harness/skill_mutation_check.py         # 期望 killed 16/16（10-30 版本为 13/13）
 
 # 2. 安装给 OpenCode 使用（项目级）
@@ -94,7 +94,7 @@ python skill/ab_eval_pynq/harness/skill_mutation_check.py         # 期望 kille
 
 | 层 | 案例 | 结果 | 证据 |
 |---|---|---|---|
-| L1 | 离线单元测试（含本仓库真实 release bit/hwh/manifest、真实 utilization 报告）；注入错误 | 10-30 版 47 passed、13/13；10-31 加 S04 后 63 passed、16/16 | `pynq-overlay-workflow/tests/`、`ab_eval_pynq/harness/skill_mutation_check.py` |
+| L1 | 离线单元测试（含本仓库真实 release bit/hwh/manifest、真实 utilization 报告）；注入错误 | 10-30 版 47 passed、13/13；10-31 加 S04 后 63 passed、16/16；修 gen 自包含后 64 passed、16/16（仓库外单独解压：61 passed/3 skipped） | `pynq-overlay-workflow/tests/`、`ab_eval_pynq/harness/skill_mutation_check.py` |
 | L2 | deepseek-flash，4 题 × 3 组 × 5 次 + 留出题 T5 | 见上节；`simulated` | `ab_eval_pynq/results/l2_20261030_deepseek-flash/` |
 | L3-0 | 实板预检：依赖、Skill 文件树哈希冻结、release 工件、篡改 manifest 被拒绝 | 7/7 PASS | `data/skill/l3_20261031_063709/00_preflight.json` |
 | L3-A/B | 本项目 Ascon release 的加载与身份校验（控制/邮箱 ID、非模拟服务、固件自检） | 9/9 PASS，`hardware_measured` | `.../10_ascon_release.json` |

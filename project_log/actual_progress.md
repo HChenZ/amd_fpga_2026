@@ -12,6 +12,41 @@
   5 tests / OK / exit 0；该 Notebook 的 `git diff --check` exit 0。超过 16-byte 的
   800 组仍为 `NOT_RUN`。下一接收：按需将板端 `notebook_20261031_110458` 证据目录
   归档回仓库，owner TBD。
+## 2026-10-31 — Skill 独立下载复核与 gen 文档漏洞修复（owner TBD）
+
+- 复核：`git archive` 导出 `skill/pynq-overlay-workflow` 到仓库外，60 passed/3 skipped（仅依赖本仓库板卡文件的用例按设计跳过），Skill 内无仓库路径。发现：照 SKILL.md 运行 `gen` 生成的测试骨架报 ImportError（生成代码导入 `pynq_skill`，文档未说明路径；板上同样缺包）。
+- 修复：`gen` 默认把 `pynq_skill` 复制进输出目录（自包含），`--no-vendor` 时打印可用的 PYTHONPATH；SKILL.md 第 7 节补生成/运行/上板步骤。测试改为不设 PYTHONPATH、在无关工作目录运行生成骨架，并新增 `--no-vendor` 用例。
+- 验证：仓库内 64 passed；仓库外复制 61 passed/3 skipped，生成 vadd 骨架 14 passed/1 skipped，板上式导入正常；变异 16/16。只改 CLI/文档/测试，未改 L3 实板验证过的 loader/regmap/DMA/golden。
+
+## 2026-10-31 — 最终候选证据包装配（owner TBD）
+
+- 用户确认 Skill gen 修复完成后复验（Python 3.13.9）：`pytest skill/pynq-overlay-workflow/tests -q` 64 passed，
+  exit 0；`skill_mutation_check.py` 16/16 killed，exit 0；`skill/ab_eval_pynq/harness/tests` 7 passed，exit 0。
+- `python -X utf8 docs/tech_report/evidence/assemble.py` exit 0：`submission/evidence_20261101_20261031_154020/`
+  与同名 ZIP，119 文件，26.0 MB，ZIP SHA-256 `c507447e86ca819f2c29e8fcec9146a5e915ba35a328a4c58d8ca78e9737b0fa`；
+  独立解包 119/119 哈希一致、0 个清单外文件，除包自带 README 外与工作区文件一致。`current_evidence.json` 已指向此包。
+- 15:32 的包含 Skill 中间版本，已作废但保留未删；10-29 包同样保留。
+- 包内报告 PDF/Overleaf ZIP 为 14:30 构建版；如果报告再改，需要重建 PDF 后再装配一次。Skill 修复与本次改动均未 commit/push。
+
+## 2026-10-31 — 证据包重新装配；看板与提交计划更新（owner TBD）
+
+- `docs/tech_report/evidence/assemble.py`：在原 C-1～C-12 外新增 X-1～X-6（pynq_puf3 候选/实现报告、
+  10-30 实板 Notebook 结果、`pynq-overlay-workflow` Skill 本体、L2 结果、L3 session、DMA 候选与 S04 示例），
+  另加 `tasks/task_board.md`；包内生成 `extra_manifest.md`。装配前门禁：两个 candidate 的 sha256sums、
+  pynq_puf3 结果 PASS/`simulated=false`/bit·hwh·manifest 绑定/三模式 289+289、L3 summary 全 PASS、
+  L3 DMA 绑定 candidate 哈希、L3 绑定的 L2 文件哈希。未改 `build_evidence.py`，报告附录 C 不变。
+- 首次运行 exit 1：L2 `README.md` 与 L3 绑定哈希不一致。查明 L3 绑定的是 `1a44b92` 版本，`63b39f9`
+  只把“板级效果 not_measured”改为 L3 状态说明。门禁改为：工作区不一致时须在 Git 历史中找到被绑定
+  版本才放行，并写入 `extra_manifest.md` 的“绑定说明”。
+- 结果：`submission/evidence_20261101_20261031_153258/` 与同名 ZIP，119 文件，ZIP SHA-256
+  `de445908f14b4e1f7301e0a1143eac27394a28bd913cdf45e8681e1c7e701c9d`，26.0 MB；独立解包后 119/119
+  哈希一致，0 个清单外文件。`current_evidence.json` 已指向新包；10-29 包保留未删。
+- 已知问题：装配时（15:31–15:33）`skill/pynq-overlay-workflow/` 下的 `SKILL.md`、`scripts/pynq_skill_cli.py`、
+  `tests/test_regmap.py` 正被他人修改，尚未提交；包内 `SKILL.md` 是中间版本，和当前文件哈希已经不一致。
+  我没有动这些改动。报告终稿和这几份 Skill 改动都定稿后，必须再运行一次 assemble.py，新包才能作为最终提交包。
+- `tasks/release_plan_20261101.md`：补 pynq_puf3 与 Skill 两行，执行表加 10-31 状态，Skill 决策改为
+  `pynq-overlay-workflow`。`tasks/task_board.md`：D03/D06→in_progress，D06 日期按 10-29 授权改 11-01；
+  P05 维持原状态（RO 域时序与跨上电未闭合），补 10-31 注。未硬件重测。
 
 ## 2026-10-31 — D04 演示视频脚本（脚本完成，实机未录，owner TBD）
 
