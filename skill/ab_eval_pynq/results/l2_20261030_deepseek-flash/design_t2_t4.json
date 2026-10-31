@@ -1,0 +1,47 @@
+{
+  "arms": [
+    "with",
+    "without",
+    "placebo"
+  ],
+  "tasks": [
+    "t2_hls",
+    "t4_diagnose"
+  ],
+  "reps": 5,
+  "model": "deepseek/deepseek-flash",
+  "seed": 20261030,
+  "allow_shell": false,
+  "order": [
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\without\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\without\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\with\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\with\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\without\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\placebo\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\without\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\placebo\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\with\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\with\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\without\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\placebo\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\placebo\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\placebo\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\with\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\placebo\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\without\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\placebo\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\with\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\without\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\without\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\with\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\with\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\without\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\with\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\placebo\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\placebo\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\placebo\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t2_hls\\without\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run2\\t4_diagnose\\with\\rep03"
+  ]
+}

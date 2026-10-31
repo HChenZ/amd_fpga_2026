@@ -3,6 +3,9 @@
 2026-10-29 最新交付选择：11-01提交；10-30优先测试已有 `rtl-design-discipline`，
 见 `docs/skill_test_guide_20261030.md`。当前仅确认文本内容，实际效果仍待测试。
 2026-10-30 新增 `pynq-overlay-workflow`（通用 PYNQ Skill），工具层已离线验证，agent 对照与实板验证 not_run，见下表。
+2026-10-31 更新：`pynq-overlay-workflow` 的 L2 agent 对照已跑完（`simulated`，4 题 × 3 组 × 5 次 + 留出任务），
+实板 L3 预检已 `PASS`（未加载 overlay），A/B/C/D 功能段仍 `not_run`；结论与措辞边界见
+`ab_eval_pynq/README.md` 6.1/6.2。
 
 本目录存放可复用 Skill 的**受控副本**（不是本工程的运行时依赖，也不绑定具体 agent 平台）。
 下表的状态栏只写已验证的事实；没有验证证据的一律写 `not_validated`。
@@ -51,7 +54,19 @@ python skill/ab_eval_pynq/harness/skill_mutation_check.py         # 期望 kille
 - **来源案例**：RISC-V 取指单元里 `Mux(redirectNow, redirectNowTarget, …)` 被同义重写三次（不同嵌套层），属于典型漂移风险点。
 - **已验证效果**：无。没有做过「同一需求，用/不用本 skill 写两版，比较 LUT/FF/时序」的对照实验，因此不得对外声称它能提升电路质量。要做的话最小实验是：取一个已收敛模块（如 `ascon_round.v` 或 `bypass.v`），让两个 agent 分别按/不按本 skill 实现，比较 LUT/FF 与最差路径——这一步 `not_measured`。
 
-| `pynq-overlay-workflow/` | 2026-10-30 依据本项目 PYNQ 实板/DMA 审计中的真实踩坑（bit/hwh 不配套、COR ap_done、DMA 无界自旋、S2MM 实际长度、缓存一致性、参考时钟假设）与 PYNQ v2.7.0 源码提炼 | L1 工具层通过（47 单元测试、13/13 变异检出）；L2 agent 对照与 L3 实板 **not_run** |
+| `pynq-overlay-workflow/` | 2026-10-30 依据本项目 PYNQ 实板/DMA 审计中的真实踩坑（bit/hwh 不配套、COR ap_done、DMA 无界自旋、S2MM 实际长度、缓存一致性、参考时钟假设）与 PYNQ v2.7.0 源码提炼 | L1 工具层通过（47 单元测试、13/13 变异检出、7 假 PYNQ API 用例）；L2 agent 对照已跑完（`simulated`）；L3 预检 PASS，功能段 **not_run** |
+
+### `pynq-overlay-workflow/` 的 L2 结果（2026-10-31，`simulated`，不可当板级结论）
+
+- 模型 `deepseek/deepseek-flash`，4 题（overlay 加载、HLS 核、AXI DMA、现象诊断）× 3 组 × 5 次 = 60 次
+  `opencode run`（另加 5 次复跑），全部 `exit=0`。canary 证明 `with` 20/20、`placebo` 20/20、`without` 0/20。
+- 主指标（预注册 = T1–T3 场景通过率，n=15/组）：`with` 1.000（15/15 全通过）、`without` 0.833、
+  `placebo` 0.844；`with` vs `without` p=0.0425、δ=+0.33；`with` vs `placebo` p=0.2248（不显著）。
+- 留出任务 `t5_bram`（15 次）：`with` 1.000 vs `without`/`placebo` 0.800，**p=1.0，未复现差异**。
+- 可以说"在该任务集与该模型上，加载 Skill 的组全部通过并显著优于无 Skill 组"；**不能**说
+  "技术内容被证明是提升来源"，也**不能**说"已证明可泛化"。实板效果 `not_measured`。
+- 明细：`ab_eval_pynq/README.md` 6.1/6.2、`ab_eval_pynq/holdout/t5_bram_design.md`、
+  `ab_eval_pynq/results/l2_20261030_deepseek-flash/`。
 
 ### `pynq-overlay-workflow/`（通用 PYNQ overlay 工作流）
 

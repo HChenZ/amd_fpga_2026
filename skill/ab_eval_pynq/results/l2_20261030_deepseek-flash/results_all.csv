@@ -1,0 +1,391 @@
+task,arm,rep,scenario,outcome,why,canary,uses_skill_lib,exit
+t1_overlay,with,rep01,good_flat,pass,,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep01,good_hierarchy,pass,,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep01,stale_hwh,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep01,bad_bit,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep01,wrong_id,pass,raised; downloads=1,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep01,hwh_not_sibling,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep02,good_flat,pass,,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep02,good_hierarchy,pass,,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep02,stale_hwh,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep02,bad_bit,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep02,wrong_id,pass,raised; downloads=1,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep02,hwh_not_sibling,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep03,good_flat,pass,,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep03,good_hierarchy,pass,,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep03,stale_hwh,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep03,bad_bit,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep03,wrong_id,pass,raised; downloads=1,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep03,hwh_not_sibling,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep04,good_flat,pass,,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep04,good_hierarchy,pass,,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep04,stale_hwh,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep04,bad_bit,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep04,wrong_id,pass,raised; downloads=1,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep04,hwh_not_sibling,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep05,good_flat,pass,,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep05,good_hierarchy,pass,,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep05,stale_hwh,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep05,bad_bit,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep05,wrong_id,pass,raised; downloads=1,pynq-overlay-workflow,False,exit=0
+t1_overlay,with,rep05,hwh_not_sibling,pass,raised; downloads=0,pynq-overlay-workflow,False,exit=0
+t1_overlay,without,rep01,good_flat,pass,,,False,exit=0
+t1_overlay,without,rep01,good_hierarchy,pass,,,False,exit=0
+t1_overlay,without,rep01,stale_hwh,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep01,bad_bit,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep01,wrong_id,pass,raised; downloads=1,,False,exit=0
+t1_overlay,without,rep01,hwh_not_sibling,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep02,good_flat,pass,,,False,exit=0
+t1_overlay,without,rep02,good_hierarchy,pass,,,False,exit=0
+t1_overlay,without,rep02,stale_hwh,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep02,bad_bit,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep02,wrong_id,pass,raised; downloads=1,,False,exit=0
+t1_overlay,without,rep02,hwh_not_sibling,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep03,good_flat,pass,,,False,exit=0
+t1_overlay,without,rep03,good_hierarchy,pass,,,False,exit=0
+t1_overlay,without,rep03,stale_hwh,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep03,bad_bit,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep03,wrong_id,pass,raised; downloads=1,,False,exit=0
+t1_overlay,without,rep03,hwh_not_sibling,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep04,good_flat,pass,,,False,exit=0
+t1_overlay,without,rep04,good_hierarchy,pass,,,False,exit=0
+t1_overlay,without,rep04,stale_hwh,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep04,bad_bit,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep04,wrong_id,pass,raised; downloads=1,,False,exit=0
+t1_overlay,without,rep04,hwh_not_sibling,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep05,good_flat,fail,TypeError: MMIO.write() takes 3 positional arguments but 4 were given,,False,exit=0
+t1_overlay,without,rep05,good_hierarchy,fail,TypeError: MMIO.write() takes 3 positional arguments but 4 were given,,False,exit=0
+t1_overlay,without,rep05,stale_hwh,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep05,bad_bit,pass,raised; downloads=0,,False,exit=0
+t1_overlay,without,rep05,wrong_id,pass,raised; downloads=1,,False,exit=0
+t1_overlay,without,rep05,hwh_not_sibling,pass,raised; downloads=0,,False,exit=0
+t3_dma,placebo,rep01,basic,fail,RuntimeError: S2MM DMA 传输失败：DMA channel not started,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep01,back_to_back,fail,RuntimeError: S2MM DMA 传输失败：DMA channel not started,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep01,odd_length,fail,RuntimeError: S2MM DMA 传输失败：DMA channel not started,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep01,short_output,fail,RuntimeError: S2MM DMA 传输失败：DMA channel not started,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep01,no_tlast,fail,RuntimeError: S2MM DMA 传输失败：DMA channel not started,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep01,larger_than_max_transfer,fail,"ValueError: Transfer size is 40064 bytes, which exceeds the maximum DMA buffer size 16383.",pynq-style-notes,False,exit=0
+t3_dma,placebo,rep02,basic,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep02,back_to_back,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep02,odd_length,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep02,short_output,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep02,no_tlast,pass,timeout raised,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep02,larger_than_max_transfer,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep03,basic,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep03,back_to_back,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep03,odd_length,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep03,short_output,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep03,no_tlast,pass,timeout raised,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep03,larger_than_max_transfer,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep04,basic,fail,TimeoutError: S2MM 通道未在 2.0s 内完成传输，IP 可能没有发出 TLAST,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep04,back_to_back,fail,TimeoutError: S2MM 通道未在 2.0s 内完成传输，IP 可能没有发出 TLAST,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep04,odd_length,fail,TimeoutError: S2MM 通道未在 2.0s 内完成传输，IP 可能没有发出 TLAST,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep04,short_output,fail,TimeoutError: S2MM 通道未在 2.0s 内完成传输，IP 可能没有发出 TLAST,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep04,no_tlast,pass,timeout raised,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep04,larger_than_max_transfer,fail,"ValueError: Transfer size is 16384 bytes, which exceeds the maximum DMA buffer size 16383.",pynq-style-notes,False,exit=0
+t3_dma,placebo,rep05,basic,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep05,back_to_back,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep05,odd_length,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep05,short_output,pass,,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep05,no_tlast,pass,timeout raised,pynq-style-notes,False,exit=0
+t3_dma,placebo,rep05,larger_than_max_transfer,pass,,pynq-style-notes,False,exit=0
+t3_dma,with,rep01,basic,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep01,back_to_back,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep01,odd_length,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep01,short_output,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep01,no_tlast,pass,timeout raised,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep01,larger_than_max_transfer,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep02,basic,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep02,back_to_back,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep02,odd_length,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep02,short_output,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep02,no_tlast,pass,timeout raised,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep02,larger_than_max_transfer,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep03,basic,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep03,back_to_back,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep03,odd_length,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep03,short_output,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep03,no_tlast,pass,timeout raised,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep03,larger_than_max_transfer,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep04,basic,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep04,back_to_back,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep04,odd_length,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep04,short_output,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep04,no_tlast,pass,timeout raised,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep04,larger_than_max_transfer,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep05,basic,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep05,back_to_back,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep05,odd_length,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep05,short_output,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep05,no_tlast,pass,timeout raised,pynq-overlay-workflow,False,exit=0
+t3_dma,with,rep05,larger_than_max_transfer,pass,,pynq-overlay-workflow,False,exit=0
+t3_dma,without,rep01,basic,pass,,,False,exit=0
+t3_dma,without,rep01,back_to_back,pass,,,False,exit=0
+t3_dma,without,rep01,odd_length,pass,,,False,exit=0
+t3_dma,without,rep01,short_output,pass,,,False,exit=0
+t3_dma,without,rep01,no_tlast,pass,timeout raised,,False,exit=0
+t3_dma,without,rep01,larger_than_max_transfer,fail,wrong output on call 0 (len 7232 vs 40000),,False,exit=0
+t3_dma,without,rep02,basic,fail,wrong output on call 0 (len 256 vs 256),,False,exit=0
+t3_dma,without,rep02,back_to_back,fail,wrong output on call 0 (len 1000 vs 1000),,False,exit=0
+t3_dma,without,rep02,odd_length,fail,RuntimeError: DMA does not support unaligned transfers,,False,exit=0
+t3_dma,without,rep02,short_output,fail,wrong output on call 0 (len 64 vs 64),,False,exit=0
+t3_dma,without,rep02,no_tlast,pass,timeout raised,,False,exit=0
+t3_dma,without,rep02,larger_than_max_transfer,fail,wrong output on call 0 (len 40000 vs 40000),,False,exit=0
+t3_dma,without,rep03,basic,pass,,,False,exit=0
+t3_dma,without,rep03,back_to_back,pass,,,False,exit=0
+t3_dma,without,rep03,odd_length,pass,,,False,exit=0
+t3_dma,without,rep03,short_output,fail,wrong output on call 0 (len 59 vs 64),,False,exit=0
+t3_dma,without,rep03,no_tlast,pass,timeout raised,,False,exit=0
+t3_dma,without,rep03,larger_than_max_transfer,pass,,,False,exit=0
+t3_dma,without,rep04,basic,pass,,,False,exit=0
+t3_dma,without,rep04,back_to_back,pass,,,False,exit=0
+t3_dma,without,rep04,odd_length,pass,,,False,exit=0
+t3_dma,without,rep04,short_output,pass,,,False,exit=0
+t3_dma,without,rep04,no_tlast,pass,timeout raised,,False,exit=0
+t3_dma,without,rep04,larger_than_max_transfer,pass,,,False,exit=0
+t3_dma,without,rep05,basic,fail,RuntimeError: DMA channel not started,,False,exit=0
+t3_dma,without,rep05,back_to_back,fail,RuntimeError: DMA channel not started,,False,exit=0
+t3_dma,without,rep05,odd_length,fail,RuntimeError: DMA channel not started,,False,exit=0
+t3_dma,without,rep05,short_output,fail,RuntimeError: DMA channel not started,,False,exit=0
+t3_dma,without,rep05,no_tlast,fail,RuntimeError: DMA channel not started,,False,exit=0
+t3_dma,without,rep05,larger_than_max_transfer,fail,RuntimeError: DMA channel not started,,False,exit=0
+t1_overlay,placebo,rep01,good_flat,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep01,good_hierarchy,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep01,stale_hwh,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep01,bad_bit,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep01,wrong_id,pass,raised; downloads=1,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep01,hwh_not_sibling,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,good_flat,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,good_hierarchy,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,stale_hwh,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,bad_bit,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,wrong_id,pass,raised; downloads=1,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,hwh_not_sibling,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,good_flat,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,good_hierarchy,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,stale_hwh,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,bad_bit,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,wrong_id,pass,raised; downloads=1,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,hwh_not_sibling,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,good_flat,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,good_hierarchy,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,stale_hwh,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,bad_bit,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,wrong_id,pass,raised; downloads=1,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,hwh_not_sibling,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,good_flat,fail,AttributeError: Could not find IP or hierarchy mem_dict in overlay,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,good_hierarchy,fail,AttributeError: Could not find IP or hierarchy mem_dict in overlay,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,stale_hwh,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,bad_bit,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,wrong_id,fail,AttributeError: Could not find IP or hierarchy mem_dict in overlay,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,hwh_not_sibling,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep01,basic,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep01,back_to_back,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep01,stale_done,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep01,addr_high_word_dirty,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep01,never_done,pass,timeout raised,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep01,single_element,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep02,basic,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep02,back_to_back,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep02,stale_done,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep02,addr_high_word_dirty,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep02,never_done,pass,timeout raised,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep02,single_element,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep03,basic,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep03,back_to_back,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep03,stale_done,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep03,addr_high_word_dirty,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep03,never_done,pass,timeout raised,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep03,single_element,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep04,basic,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep04,back_to_back,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep04,stale_done,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep04,addr_high_word_dirty,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep04,never_done,pass,timeout raised,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep04,single_element,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep05,basic,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep05,back_to_back,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep05,stale_done,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep05,addr_high_word_dirty,pass,,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep05,never_done,pass,timeout raised,pynq-style-notes,False,exit=0
+t2_hls,placebo,rep05,single_element,pass,,pynq-style-notes,False,exit=0
+t2_hls,with,rep01,basic,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep01,back_to_back,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep01,stale_done,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep01,addr_high_word_dirty,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep01,never_done,pass,timeout raised,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep01,single_element,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep02,basic,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep02,back_to_back,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep02,stale_done,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep02,addr_high_word_dirty,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep02,never_done,pass,timeout raised,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep02,single_element,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep03,basic,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep03,back_to_back,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep03,stale_done,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep03,addr_high_word_dirty,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep03,never_done,pass,timeout raised,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep03,single_element,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep04,basic,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep04,back_to_back,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep04,stale_done,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep04,addr_high_word_dirty,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep04,never_done,pass,timeout raised,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep04,single_element,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep05,basic,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep05,back_to_back,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep05,stale_done,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep05,addr_high_word_dirty,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep05,never_done,pass,timeout raised,pynq-overlay-workflow,False,exit=0
+t2_hls,with,rep05,single_element,pass,,pynq-overlay-workflow,False,exit=0
+t2_hls,without,rep01,basic,pass,,,False,exit=0
+t2_hls,without,rep01,back_to_back,pass,,,False,exit=0
+t2_hls,without,rep01,stale_done,pass,,,False,exit=0
+t2_hls,without,rep01,addr_high_word_dirty,pass,,,False,exit=0
+t2_hls,without,rep01,never_done,pass,timeout raised,,False,exit=0
+t2_hls,without,rep01,single_element,pass,,,False,exit=0
+t2_hls,without,rep02,basic,pass,,,False,exit=0
+t2_hls,without,rep02,back_to_back,pass,,,False,exit=0
+t2_hls,without,rep02,stale_done,pass,,,False,exit=0
+t2_hls,without,rep02,addr_high_word_dirty,pass,,,False,exit=0
+t2_hls,without,rep02,never_done,pass,timeout raised,,False,exit=0
+t2_hls,without,rep02,single_element,pass,,,False,exit=0
+t2_hls,without,rep03,basic,pass,,,False,exit=0
+t2_hls,without,rep03,back_to_back,pass,,,False,exit=0
+t2_hls,without,rep03,stale_done,pass,,,False,exit=0
+t2_hls,without,rep03,addr_high_word_dirty,pass,,,False,exit=0
+t2_hls,without,rep03,never_done,pass,timeout raised,,False,exit=0
+t2_hls,without,rep03,single_element,pass,,,False,exit=0
+t2_hls,without,rep04,basic,pass,,,False,exit=0
+t2_hls,without,rep04,back_to_back,pass,,,False,exit=0
+t2_hls,without,rep04,stale_done,pass,,,False,exit=0
+t2_hls,without,rep04,addr_high_word_dirty,pass,,,False,exit=0
+t2_hls,without,rep04,never_done,pass,timeout raised,,False,exit=0
+t2_hls,without,rep04,single_element,pass,,,False,exit=0
+t2_hls,without,rep05,basic,pass,,,False,exit=0
+t2_hls,without,rep05,back_to_back,pass,,,False,exit=0
+t2_hls,without,rep05,stale_done,pass,,,False,exit=0
+t2_hls,without,rep05,addr_high_word_dirty,pass,,,False,exit=0
+t2_hls,without,rep05,never_done,pass,timeout raised,,False,exit=0
+t2_hls,without,rep05,single_element,pass,,,False,exit=0
+t4_diagnose,placebo,rep01,Q1,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep01,Q2,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep01,Q3,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep01,Q4,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep01,Q5,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep01,Q6,fail,"missing concept ['(?i)(clear.?on.?read|COR|读清|读后清|read.{0,10}clear)']",pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep01,Q7,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep01,Q8,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep02,Q1,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep02,Q2,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep02,Q3,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep02,Q4,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep02,Q5,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep02,Q6,fail,"missing concept ['(?i)(clear.?on.?read|COR|读清|读后清|read.{0,10}clear)']",pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep02,Q7,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep02,Q8,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep03,Q1,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep03,Q2,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep03,Q3,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep03,Q4,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep03,Q5,fail,missing concept ['(?i)(reference|参考时钟|crystal|晶振|33\\.3|50 ?MHz|PS_CLK|参考)'],pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep03,Q6,fail,"missing concept ['(?i)(clear.?on.?read|COR|读清|读后清|read.{0,10}clear)']",pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep03,Q7,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep03,Q8,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep04,Q1,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep04,Q2,fail,missing concept ['(?i)TLAST'],pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep04,Q3,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep04,Q4,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep04,Q5,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep04,Q6,fail,"missing concept ['(?i)(clear.?on.?read|COR|读清|读后清|read.{0,10}clear)']",pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep04,Q7,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep04,Q8,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep05,Q1,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep05,Q2,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep05,Q3,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep05,Q4,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep05,Q5,fail,missing concept ['(?i)(reference|参考时钟|crystal|晶振|33\\.3|50 ?MHz|PS_CLK|参考)'],pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep05,Q6,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep05,Q7,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,placebo,rep05,Q8,pass,,pynq-style-notes,False,exit=0
+t4_diagnose,with,rep01,Q1,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep01,Q2,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep01,Q3,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep01,Q4,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep01,Q5,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep01,Q6,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep01,Q7,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep01,Q8,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep02,Q1,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep02,Q2,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep02,Q3,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep02,Q4,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep02,Q5,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep02,Q6,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep02,Q7,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep02,Q8,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep03,Q1,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep03,Q2,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep03,Q3,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep03,Q4,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep03,Q5,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep03,Q6,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep03,Q7,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep03,Q8,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep04,Q1,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep04,Q2,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep04,Q3,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep04,Q4,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep04,Q5,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep04,Q6,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep04,Q7,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep04,Q8,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep05,Q1,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep05,Q2,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep05,Q3,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep05,Q4,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep05,Q5,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep05,Q6,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep05,Q7,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,with,rep05,Q8,pass,,pynq-overlay-workflow,False,exit=0
+t4_diagnose,without,rep01,Q1,pass,,,False,exit=0
+t4_diagnose,without,rep01,Q2,pass,,,False,exit=0
+t4_diagnose,without,rep01,Q3,pass,,,False,exit=0
+t4_diagnose,without,rep01,Q4,pass,,,False,exit=0
+t4_diagnose,without,rep01,Q5,pass,,,False,exit=0
+t4_diagnose,without,rep01,Q6,fail,"missing concept ['(?i)(clear.?on.?read|COR|读清|读后清|read.{0,10}clear)']",,False,exit=0
+t4_diagnose,without,rep01,Q7,pass,,,False,exit=0
+t4_diagnose,without,rep01,Q8,pass,,,False,exit=0
+t4_diagnose,without,rep02,Q1,pass,,,False,exit=0
+t4_diagnose,without,rep02,Q2,pass,,,False,exit=0
+t4_diagnose,without,rep02,Q3,pass,,,False,exit=0
+t4_diagnose,without,rep02,Q4,pass,,,False,exit=0
+t4_diagnose,without,rep02,Q5,pass,,,False,exit=0
+t4_diagnose,without,rep02,Q6,fail,"missing concept ['(?i)(clear.?on.?read|COR|读清|读后清|read.{0,10}clear)']",,False,exit=0
+t4_diagnose,without,rep02,Q7,pass,,,False,exit=0
+t4_diagnose,without,rep02,Q8,pass,,,False,exit=0
+t4_diagnose,without,rep03,Q1,pass,,,False,exit=0
+t4_diagnose,without,rep03,Q2,pass,,,False,exit=0
+t4_diagnose,without,rep03,Q3,pass,,,False,exit=0
+t4_diagnose,without,rep03,Q4,pass,,,False,exit=0
+t4_diagnose,without,rep03,Q5,pass,,,False,exit=0
+t4_diagnose,without,rep03,Q6,fail,"missing concept ['(?i)(clear.?on.?read|COR|读清|读后清|read.{0,10}clear)']",,False,exit=0
+t4_diagnose,without,rep03,Q7,pass,,,False,exit=0
+t4_diagnose,without,rep03,Q8,pass,,,False,exit=0
+t4_diagnose,without,rep04,Q1,pass,,,False,exit=0
+t4_diagnose,without,rep04,Q2,pass,,,False,exit=0
+t4_diagnose,without,rep04,Q3,pass,,,False,exit=0
+t4_diagnose,without,rep04,Q4,pass,,,False,exit=0
+t4_diagnose,without,rep04,Q5,pass,,,False,exit=0
+t4_diagnose,without,rep04,Q6,pass,,,False,exit=0
+t4_diagnose,without,rep04,Q7,pass,,,False,exit=0
+t4_diagnose,without,rep04,Q8,pass,,,False,exit=0
+t4_diagnose,without,rep05,Q1,pass,,,False,exit=0
+t4_diagnose,without,rep05,Q2,pass,,,False,exit=0
+t4_diagnose,without,rep05,Q3,pass,,,False,exit=0
+t4_diagnose,without,rep05,Q4,pass,,,False,exit=0
+t4_diagnose,without,rep05,Q5,pass,,,False,exit=0
+t4_diagnose,without,rep05,Q6,fail,"missing concept ['(?i)(clear.?on.?read|COR|读清|读后清|read.{0,10}clear)']",,False,exit=0
+t4_diagnose,without,rep05,Q7,pass,,,False,exit=0
+t4_diagnose,without,rep05,Q8,pass,,,False,exit=0

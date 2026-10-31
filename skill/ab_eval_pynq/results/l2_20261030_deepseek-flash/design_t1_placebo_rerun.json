@@ -1,0 +1,19 @@
+{
+  "arms": [
+    "placebo"
+  ],
+  "tasks": [
+    "t1_overlay"
+  ],
+  "reps": 5,
+  "model": "deepseek/deepseek-flash",
+  "seed": 20261030,
+  "allow_shell": false,
+  "order": [
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1_fix_t1_placebo\\t1_overlay\\placebo\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1_fix_t1_placebo\\t1_overlay\\placebo\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1_fix_t1_placebo\\t1_overlay\\placebo\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1_fix_t1_placebo\\t1_overlay\\placebo\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1_fix_t1_placebo\\t1_overlay\\placebo\\rep05"
+  ]
+}

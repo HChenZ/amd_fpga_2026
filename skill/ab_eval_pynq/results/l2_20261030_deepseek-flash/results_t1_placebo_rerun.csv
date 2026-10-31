@@ -1,0 +1,31 @@
+task,arm,rep,scenario,outcome,why,canary,uses_skill_lib,exit
+t1_overlay,placebo,rep01,good_flat,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep01,good_hierarchy,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep01,stale_hwh,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep01,bad_bit,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep01,wrong_id,pass,raised; downloads=1,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep01,hwh_not_sibling,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,good_flat,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,good_hierarchy,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,stale_hwh,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,bad_bit,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,wrong_id,pass,raised; downloads=1,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep02,hwh_not_sibling,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,good_flat,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,good_hierarchy,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,stale_hwh,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,bad_bit,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,wrong_id,pass,raised; downloads=1,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep03,hwh_not_sibling,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,good_flat,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,good_hierarchy,pass,,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,stale_hwh,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,bad_bit,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,wrong_id,pass,raised; downloads=1,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep04,hwh_not_sibling,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,good_flat,fail,AttributeError: Could not find IP or hierarchy mem_dict in overlay,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,good_hierarchy,fail,AttributeError: Could not find IP or hierarchy mem_dict in overlay,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,stale_hwh,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,bad_bit,pass,raised; downloads=0,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,wrong_id,fail,AttributeError: Could not find IP or hierarchy mem_dict in overlay,pynq-style-notes,False,exit=0
+t1_overlay,placebo,rep05,hwh_not_sibling,pass,raised; downloads=0,pynq-style-notes,False,exit=0

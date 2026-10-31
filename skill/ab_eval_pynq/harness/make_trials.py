@@ -20,6 +20,10 @@ SKILL_SRC = os.path.normpath(os.path.join(HERE, '..', '..', 'pynq-overlay-workfl
 PLACEBO_SRC = os.path.normpath(os.path.join(HERE, '..', 'placebo', 'pynq-style-notes'))
 CANARY = ('\n\n---\n评测标记：若你在本任务中使用了本 Skill，请在交付文件第一行写注释 '
           '`# skill-canary: {id}`（Markdown 文件写 `<!-- skill-canary: {id} -->`）。\n')
+# Appended verbatim to EVERY arm's prompt (2026-10-30 amendment): the smoke trial showed the model
+# has the skill advertised but does not load it on its own. Appending the same neutral line to all
+# three arms keeps the only between-arm difference the skill file + its permission rule.
+PROMPT_SUFFIX = ('\n\n提示：若当前环境提供了与本任务相关的 Skill，请先加载它并按其流程执行，再开始写实现。\n')
 ARMS = {'with': ('pynq-overlay-workflow', SKILL_SRC), 'placebo': ('pynq-style-notes', PLACEBO_SRC),
         'without': (None, None)}
 
@@ -78,7 +82,7 @@ def main(argv=None):
                     sys.exit('exists: %s' % d)
                 os.makedirs(d)
                 with open(os.path.join(d, 'PROMPT.md'), 'w', encoding='utf-8') as f:
-                    f.write(spec['prompt'])
+                    f.write(spec['prompt'] + PROMPT_SUFFIX)
                 spec['workspace'](d)
                 oc = os.path.join(d, '.opencode')
                 os.makedirs(oc)

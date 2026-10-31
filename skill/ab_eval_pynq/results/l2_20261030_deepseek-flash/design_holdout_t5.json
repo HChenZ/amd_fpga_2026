@@ -1,0 +1,31 @@
+{
+  "arms": [
+    "with",
+    "without",
+    "placebo"
+  ],
+  "tasks": [
+    "t5_bram"
+  ],
+  "reps": 5,
+  "model": "deepseek/deepseek-flash",
+  "seed": 20261030,
+  "allow_shell": false,
+  "order": [
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\without\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\placebo\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\with\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\placebo\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\without\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\with\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\placebo\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\with\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\placebo\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\with\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\without\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\without\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\placebo\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\with\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run3\\t5_bram\\without\\rep04"
+  ]
+}

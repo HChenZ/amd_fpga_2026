@@ -1,5 +1,47 @@
 # 实际进度
 
+## 2026-10-30 ~ 10-31 — pynq-overlay-workflow Skill L2 受控实验 + 留出任务（`simulated`，owner TBD）
+
+- 根据 L2 归档完成 L3 方案局部调整：预检新增五个 Notebook、`src/pynq` 实际依赖、
+  `pynq_skill` 脚本树和 L2 归档文件的 SHA-256；DMA 增加 9-byte 奇数长度、16-byte
+  连续重复及超过 `max_transfer` 的启动前拒绝测试。`short_output` 与缺失 TLAST 明确
+  `not_tested`，不在正式回路上制造挂死。汇总要求绑定 `l2_evidence`，并保持 L2 为
+  `simulated`、不能补证因果或泛化。5 个 Notebook JSON/AST 与 diff 检查通过；
+  Skill 工具 47/47、假 PYNQ API 7/7。新逻辑尚未上板，旧
+  `l3_20261030_163953` 预检因缺少新字段需重跑。
+- 用户授权按 `skill/ab_eval_pynq/README.md` 执行 L2（Agent 层 A/B/安慰剂）。模型 `deepseek/deepseek-flash`，
+  4 题（T1 overlay、T2 HLS、T3 DMA、T4 诊断）× `with`/`without`/`placebo` × 5 次 = **60 次 `opencode run`**，
+  另加 T1×placebo 修复仪器后复跑 5 次，共 65 次，`65/65 exit=0`，无 hang。试验目录在仓库外
+  `C:\Nebula\HChenZ\Projects\ab_trials\{run1,run2,run1_fix_t1_placebo,run3}`，seed 20261030，`allow_shell=false`。
+- L1 复核（Python 3.14.0）：`pytest skill/pynq-overlay-workflow/tests -q` 47 passed；`skill_mutation_check.py`
+  13/13 killed；判分器 good/naive 区分度 T1 6/6·3/6、T2 6/6·0/6、T3 6/6·3/6、T4 8/8·0/8。
+- 配置生效性冒烟：agent=`trial`、模型=deepseek-flash、shell 被拒（模型报 `NO-SHELL`）、`/api/skill` 证明
+  Skill 已注册可加载、canary 写入成功。
+- 修正一个设计缺陷：模型能加载 Skill 但在真实任务里**不主动加载**（首轮 canary 缺失），`with` 组会退化成
+  `without`。按用户决定在三组 `PROMPT.md` 末尾追加**同一句**中性提示（`make_trials.py:PROMPT_SUFFIX`），
+  组间仍只差 Skill 文件与权限规则；修订已写进 `skill/ab_eval_pynq/README.md` 第 2 节。
+- 主结果（场景通过率，`simulated`，修复仪器后，主指标 T1–T3，n=15/组）：`with` **1.000（15/15）**、
+  `without` 0.833、`placebo` 0.844；`with` vs `without` +0.167，p=0.0425，δ=+0.33（显著）；
+  `with` vs `placebo` +0.156，p=0.2248，δ=+0.20（**未达显著**）；`placebo` vs `without` p=1.0。
+  T3 单独 `with` vs `without` p=0.0476、δ=+0.80；T1 ceiling（`with` 1.000 vs `without` 0.933，p=1.0）。
+  T4（文字诊断，次指标）`with` 1.000 / `without` 0.900 / `placebo` 0.825，`with` vs `placebo` p=0.0079、δ=+1.00
+  （区分点 Q6 clear-on-read，规则较粗，不算主结论）。T1–T4 探索性合并（n=20/组）`with` vs `without` p=0.0014、
+  `with` vs `placebo` p=0.0030。
+- 天花板：T2（HLS）三组全部 30/30 场景通过，对该模型无区分度，稀释了合并效应量（δ +0.50→+0.33）。
+- canary（次指标）：`with` 20/20、`placebo` 20/20、`without` 0/20；`pynq_skill` 辅助库引用 0/60。
+- 仪器缺口与修正：首轮 `fake_pynq` 缺 `pynq.Bitstream`（真实 PYNQ 2.7 有，且 `Overlay` 继承它）、
+  `hierarchy_dict`、`device`，`t1_overlay/placebo/rep04` 的正确写法被 `ImportError` 判 0 分。已补齐并让
+  `Overlay` 继承 `Bitstream`，新增 `harness/tests/test_fake_pynq_api.py`（7 例）钉住 API。重判旧批次只有该
+  试验 0.000→1.000；旧 placebo 合并均值 0.683→0.783、`with` vs `placebo` p 0.0867→0.2105（**越修越不显著**，
+  照实记录）。T1 的 placebo 随后重跑 5 次（0.900）作为最终数据。
+- 留出任务：先做 `t5_gpio`，发现与 Skill 自带的 `examples/axi_gpio.contract.json`（写着 `GPIO_TRI ... 1 = input`）
+  撞车后作废；改用 `t5_bram`（AXI BRAM：字节读-改-写、窗口容量、连续调用），假 PYNQ 新增 `Bram` 模型与
+  `span` 路由，自检 good 7/7、naive 3/7。正式跑 15 次（`run3`，15/15 exit=0）：`with` 1.000、`without` 0.800、
+  `placebo` 0.800，`with` vs `without` **p=1.0**、δ=+0.20 → **主实验差异未复现**；差异来自 2 个试验把
+  `ip_dict` 键名写成 `vlnv`（正确是 `type`），属真实错误而非仪器缺口，10 个非 `with` 试验中 8 个满分。
+- 判读边界：按预注册规则不能宣称"提升来自 Skill 的技术内容"（`with` vs `placebo` 不显著），也不能宣称
+  已泛化到新任务（留出任务未复现）。板级效果 `not_measured`。
+
 ## 2026-10-31 — L3 Notebook 配置项注释与文件名同步（board NOT_RUN，owner TBD）
 
 - 按用户要求，五个 L3 Notebook 已统一固定仓库绝对路径为

@@ -1,7 +1,30 @@
 # 开发记录
 
+## 2026-10-30 ~ 10-31 — pynq-overlay-workflow Skill L2 实验 + 留出任务（owner TBD）
+
+- L1 复核全绿（47 passed；变异 13/13 killed）；判分器 good/naive 区分度复核（T1/T3 6/6 vs 3/6、T2 6/6 vs 0/6、
+  T4 8/8 vs 0/8）。
+- 冒烟发现模型不主动加载 Skill，按用户决定给三组提示词追加同一句中性提示（`make_trials.py:PROMPT_SUFFIX`），
+  并在 `skill/ab_eval_pynq/README.md` 记录该预注册修订；二次冒烟确认 canary 出现、判分 6/6。
+- 两批共 60 次 `opencode run`（T1/T2/T3/T4 × 3 组 × 5 次，deepseek/deepseek-flash，seed 20261030，禁 shell），
+  60/60 exit=0；另加 T1×placebo 复跑 5 次。`grade.py` 生成 `results*.csv`，`stats.py` 出置换检验与 Cliff's δ：
+  主指标 T1–T3（n=15/组）`with` 1.000 vs `without` 0.833（p=0.0425，δ=+0.33），`with` vs `placebo` p=0.2248；
+  T4 次指标 `with` 1.000 vs `placebo` 0.825（p=0.0079）；T1–T4 探索性合并 `with` vs `without` p=0.0014。
+- 修复仪器并重判：`fake_pynq` 补 `Bitstream`（构造不下载、`download()` 计数）、`Overlay` 继承 `Bitstream`
+  （`hash`/`timestamp`/`downloaded`）、`hierarchy_dict`（嵌套 `ip`/`hierarchies`）与 `device`；新增
+  `harness/tests/test_fake_pynq_api.py`。重判旧批次仅 `t1_overlay/placebo/rep04` 0.000→1.000。
+- 留出任务：`t5_gpio` 因与 Skill 自带 `examples/axi_gpio.contract.json` 撞车而作废，改用 `t5_bram`；
+  假 PYNQ 新增 `Bram`（小端 32 位字、预填、`span` 路由），新增 2 个 BRAM API 用例，自检 good 7/7 / naive 3/7；
+  正式 15 次（`run3`）`with` 1.000 vs `without`/`placebo` 0.800，p=1.0，**未复现差异**。
+- 归档：`skill/ab_eval_pynq/results/l2_20261030_deepseek-flash/`（`results_all.csv`、`results_holdout_t5.csv`、
+  `stats_*.txt`、三份 `design*.json`）、`skill/ab_eval_pynq/holdout/t5_bram_design.md`。
+
 ## 2026-10-31 — L3 Notebook 配置项注释（owner TBD）
 
+- 将 L2 最终结果接入 L3：预检增加关键脚本/依赖/L2 归档逐文件哈希与 Skill 脚本树
+  聚合哈希；DMA 增加 odd-length、back-to-back、over-max 门禁；汇总强制读取
+  `l2_evidence`，并同步 L2 为 simulated、不可宣称因果/泛化的文档边界。验证为
+  5 个 Notebook JSON/AST、Skill 工具 47 passed、假 PYNQ API 7 passed。
 - 按用户明确要求把五个 Notebook 的仓库定位改为固定路径
   `/home/xilinx/jupyter_notebooks/amd_fpga_2026`，删除 `ASCON_REPO`/cwd 搜索，
   并同步 README；换路径时必须统一修改五个文件中的 `repo` 常量。

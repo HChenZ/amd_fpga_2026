@@ -95,3 +95,36 @@ known_failures / limitations:
 
 提交判据：至少一项完整可复查的实际运行；资源或额外通用性未测不阻塞，但必须从宣传结论中去掉。
 当日下午把结果交给材料负责人，更新报告 Skill 行，不提前标 done。
+
+## 6. PYNQ 工作流 Skill（`skill/pynq-overlay-workflow/`）验证状态（2026-10-31 更新）
+
+本节只记录**已经实际跑出来**的东西；详细表格、逐场景通过率与统计口径见
+`skill/ab_eval_pynq/README.md` 第 6 节，归档 CSV 在
+`skill/ab_eval_pynq/results/l2_20261030_deepseek-flash/`。
+
+| 层 | 状态 | 关键证据 |
+|---|---|---|
+| L1 工具层 | `done` | `pytest skill/pynq-overlay-workflow/tests` 47 passed；`skill_mutation_check.py` 13/13 killed；假 PYNQ API 用例 7 passed |
+| L2 受控对照（T1–T4） | `done`（`simulated`） | 60 次 `opencode run` + T1×placebo 复跑 5 次，全部 `exit=0`；模型 `deepseek/deepseek-flash` |
+| L2 留出任务 `t5_bram` | `done`，**未复现差异** | 15 次 `opencode run`；`with` 1.000 vs `without`/`placebo` 0.800，p=1.0 |
+| L3 实板 | **预检 `PASS`；功能段 `not_run`** | `data/skill/l3_20261030_163953/00_preflight.json`；该记录 `hardware_touched=false`，未加载 overlay |
+
+L2 主指标（预注册 = T1–T3 的场景通过率，n=15/组）：
+
+- `with` 1.000（15/15 全通过）、`without` 0.833、`placebo` 0.844
+- `with` vs `without` +0.167，p=0.0425，δ=+0.33（显著）
+- `with` vs `placebo` +0.156，p=0.2248，δ=+0.20（**不显著**）
+- 次指标 T4（文字诊断）：`with` 1.000 vs `placebo` 0.825，p=0.0079，但判分是概念正则、规则较粗
+- 留出任务 `t5_bram`：`with` 1.000 vs `without`/`placebo` 0.800，p=1.0（**未复现**）
+
+允许的措辞：
+
+- 可以写"在该任务集与该模型上，加载 Skill 的组全部通过，且显著优于无 Skill 组"。
+- **不可以**写"Skill 的技术内容被证明是提升来源"（`with` vs `placebo` 不显著），也不可以写
+  "已证明可泛化到新任务"（留出任务未复现）。
+- 板级效果一律 `not_measured`，直到 L3 在真实 PYNQ 上跑完并留证据。
+- L3 只做人工单组真实硬件功能验证。L2 的 `with vs placebo` 不显著且 T5 未复现，
+  不能通过 L3 补写“Skill 技术内容导致提升”或“已泛化”。
+
+已知的测量边界：结果是 `simulated`（假 PYNQ 行为模型）；只有一个模型；每组 n=5/题；留出题由
+读过 Skill 的人编写，夹带风险不为零（审计见 `skill/ab_eval_pynq/holdout/t5_bram_design.md`）。

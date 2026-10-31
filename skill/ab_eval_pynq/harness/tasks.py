@@ -17,13 +17,13 @@ PS7_HEAD = ('<?xml version="1.0" encoding="UTF-8"?>\n<EDKSYSTEM EDWVERSION="1.2"
 
 
 def make_hwh(ips):
-    """ips: list of dict(fullname, vlnv, base, params={}, registers='')"""
+    """ips: list of dict(fullname, vlnv, base, params={}, registers='', size=0x10000)"""
     out = [PS7_HEAD]
     for ip in ips:
         inst = ip['fullname'].split('/')[-1]
         out.append('<MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0x%08X" HIGHNAME="C_HIGHADDR" '
                    'HIGHVALUE="0x%08X" INSTANCE="%s" MASTERBUSINTERFACE="M_AXI_GP0" MEMTYPE="REGISTER"/>\n'
-                   % (ip['base'], ip['base'] + 0xFFFF, inst))
+                   % (ip['base'], ip['base'] + ip.get('size', 0x10000) - 1, inst))
     out.append('</MEMORYMAP>\n</MODULE>\n')
     for ip in ips:
         inst = ip['fullname'].split('/')[-1]
@@ -318,6 +318,158 @@ def t3_workspace(ws):
     _t3_files(os.path.join(ws, 'hw'))
 
 
+# =============================================================== T5 AXI BRAM (hold-out)
+T5_PROMPT = """# 任务：通过 AXI BRAM 控制器读写一块片上内存
+
+`hw/` 下是一份示例设计：`bram.bit`、`bram.hwh`。设计里有一个 AXI BRAM 控制器，把 PL 里的
+一块 BRAM 映射到 PS 的可访问地址窗口；它不是寄存器堆，整段地址都是内存，但没有直接的字节写口，
+主机侧只能按 32 位字访问。
+
+请写 `solution.py`，实现两个函数：
+
+```python
+def poke_block(overlay, offset: int, data: bytes) -> None:
+    \"\"\"把 data 按字节写进 BRAM 从 offset 开始的位置\"\"\"
+
+def peek_block(overlay, offset: int, length: int) -> bytes:
+    \"\"\"从 offset 开始读出 length 个字节\"\"\"
+```
+
+要求：
+1. 使用 overlay 中 VLNV 为 `xilinx.com:ip:axi_bram_ctrl:4.1` 的 IP；实例名、所在层级、基址与容量
+   以后可能变化，都不能写死（容量见 hwh 的地址范围）。
+2. 只改 `data` 覆盖到的那几个字节；区间之外的字节必须保持原值（同一个 32 位字里的邻居字节也算）。
+3. 越界（`offset` 为负、或 `offset + len(data)` / `offset + length` 超过 BRAM 容量）时抛 `ValueError`，
+   不要写到窗口外。
+4. `peek_block` 返回 `bytes`，长度必须等于 `length`。
+5. 可以被连续多次调用，写入后立即可读到（这段内存是 MMIO，不是可缓存缓冲）。
+
+你无法访问真实板卡；只交付 `solution.py`。不要修改 `hw/`。
+"""
+
+T5_HEADER = """/* AXI BRAM Controller (Xilinx PG078) - no register map.
+ *
+ * The whole address window reported by the .hwh is BRAM:
+ *   base address  = C_BASEADDR in the design metadata
+ *   capacity      = C_HIGHADDR - C_BASEADDR + 1
+ *
+ * Access is 32-bit AXI4-Lite: only word-aligned 32-bit reads/writes exist.
+ * To change a single byte, read the word that contains it, replace that byte, write it back.
+ */
+"""
+
+
+def _t5_files(root, *, fullname='bram_0', base=0x40000000, size=0x4000, seed=5):
+    rnd = random.Random(seed)
+    bit = bytes(rnd.getrandbits(8) for _ in range(2048))
+    hwh = make_hwh([{'fullname': fullname, 'vlnv': 'xilinx.com:ip:axi_bram_ctrl:4.1',
+                     'base': base, 'size': size,
+                     'params': {'c_s_axi_protocol': 'AXI4LITE', 'c_mem_depth': str(size // 4)}}])
+    _write(os.path.join(root, 'bram.bit'), bit)
+    _write(os.path.join(root, 'bram.hwh'), hwh)
+    _write(os.path.join(root, 'bram_window.h'), T5_HEADER)
+    return os.path.join(root, 'bram.bit'), _sha(bit)
+
+
+T5_RW = """
+import hashlib
+ol = pynq.Overlay(BIT)
+solution.poke_block(ol, OFF, DATA)
+got = bytes(solution.peek_block(ol, 0, WINDOW))
+h = hashlib.sha256(got).hexdigest()
+result['ok'] = len(got) == WINDOW and h == EXPECT_SHA
+if not result['ok']:
+    result['why'] = 'window mismatch (len=%d, sha=%s)' % (len(got), h[:12])
+"""
+
+T5_BOUNDS = """
+import hashlib
+ol = pynq.Overlay(BIT)
+try:
+    solution.poke_block(ol, OFF, DATA)
+    result['ok'] = False; result['why'] = 'poke_block accepted an out-of-range offset'
+except ValueError:
+    got = bytes(solution.peek_block(ol, 0, WINDOW))
+    result['ok'] = hashlib.sha256(got).hexdigest() == PREFILL_SHA
+    result['why'] = '' if result['ok'] else 'BRAM changed after a rejected write'
+"""
+
+T5_BOUNDS_READ = """
+ol = pynq.Overlay(BIT)
+try:
+    solution.peek_block(ol, OFF, LEN)
+    result['ok'] = False; result['why'] = 'peek_block accepted an out-of-range request'
+except ValueError:
+    result['ok'] = True
+"""
+
+T5_SEQUENCE = """
+import hashlib
+ol = pynq.Overlay(BIT)
+for i, (off, blob, expect_sha) in enumerate(STEPS):
+    solution.poke_block(ol, off, blob)
+    got = bytes(solution.peek_block(ol, 0, WINDOW))
+    if hashlib.sha256(got).hexdigest() != expect_sha:
+        result['ok'] = False
+        result['why'] = 'step %d mismatch' % i
+        break
+else:
+    result['ok'] = True
+"""
+
+
+def _t5_pattern(n, seed=7):
+    rnd = random.Random(seed)
+    return bytes(rnd.getrandbits(8) for _ in range(n))
+
+
+def t5_scenarios(tmp):
+    sc = []
+    # name, file kwargs, hardware cfg, driver body, metadata
+    cases = [
+        ('aligned_word', {}, T5_RW, {'OFF': 0, 'DATA': bytes(range(16)), 'WINDOW': 16}),
+        ('unaligned_rmw', {}, T5_RW, {'OFF': 5, 'DATA': b'\xde\xad\xbe', 'WINDOW': 16}),
+        ('odd_length', {}, T5_RW, {'OFF': 3, 'DATA': bytes(range(13)), 'WINDOW': 20}),
+        ('hierarchical_32k', {'fullname': 'io/bram_0', 'base': 0x42000000, 'size': 0x8000}, T5_RW,
+         {'OFF': 0x1000, 'DATA': bytes(range(16)), 'WINDOW': 0x1010}),
+        ('past_the_end', {'size': 0x1000}, T5_BOUNDS, {'OFF': 0xFFE, 'DATA': bytes(range(8)), 'WINDOW': 8}),
+        ('read_past_the_end', {'size': 0x1000}, T5_BOUNDS_READ, {'OFF': 0xFFC, 'LEN': 8}),
+        ('sequence', {}, T5_SEQUENCE, {}),
+    ]
+    steps_def = ((0, b'\x11\x22\x33'), (2, b'\xaa'), (4, b'\x01\x02\x03\x04\x05'), (0x1FFF, b'\xff'))
+
+    for name, kw, body, meta in cases:
+        d = os.path.join(tmp, 't5_' + name)
+        size = int(kw.get('size', 0x4000))
+        prefill = _t5_pattern(size, seed=len(name) + size)
+        bit, sha = _t5_files(d, **kw)
+        hw = {sha: [dict(kind='axi_bram', size=size, prefill=prefill.hex(),
+                         base='0x%08X' % int(kw.get('base', 0x40000000)))]}
+        meta = dict(meta)
+        if name == 'sequence':
+            cur, steps = bytearray(prefill), []
+            for off, blob in steps_def:
+                cur[off:off + len(blob)] = blob
+                steps.append((off, blob, _sha(bytes(cur[:0x2000]))))
+            meta['STEPS'] = steps
+            meta['WINDOW'] = 0x2000
+        else:
+            expect = bytearray(prefill)
+            if 'OFF' in meta and 'DATA' in meta:
+                off, blob = meta['OFF'], meta['DATA']
+                expect[off:off + len(blob)] = blob
+            win = int(meta.get('WINDOW', 16))
+            meta['EXPECT_SHA'] = _sha(bytes(expect[:win]))
+            meta['PREFILL_SHA'] = _sha(bytes(prefill[:win]))
+        head = '\n'.join('%s = %r' % (k, v) for k, v in meta.items())
+        sc.append({'name': name, 'hardware': hw, 'code': 'BIT=%r\n%s\n%s' % (bit, head, body)})
+    return sc
+
+
+def t5_workspace(ws):
+    _t5_files(os.path.join(ws, 'hw'))
+
+
 # =============================================================== T4 diagnosis (text, rubric)
 T4_QUESTIONS = """# 现象诊断（每题回答：最可能根因 + 下一步用什么动作确认）
 
@@ -360,4 +512,5 @@ TASKS = {
     't2_hls': {'prompt': T2_PROMPT, 'workspace': t2_workspace, 'scenarios': t2_scenarios, 'artifact': 'solution.py'},
     't3_dma': {'prompt': T3_PROMPT, 'workspace': t3_workspace, 'scenarios': t3_scenarios, 'artifact': 'solution.py'},
     't4_diagnose': {'prompt': T4_PROMPT, 'workspace': t4_workspace, 'rubric': T4_RUBRIC, 'artifact': 'answers.md'},
+    't5_bram': {'prompt': T5_PROMPT, 'workspace': t5_workspace, 'scenarios': t5_scenarios, 'artifact': 'solution.py'},
 }

@@ -1,0 +1,47 @@
+{
+  "arms": [
+    "with",
+    "without",
+    "placebo"
+  ],
+  "tasks": [
+    "t1_overlay",
+    "t3_dma"
+  ],
+  "reps": 5,
+  "model": "deepseek/deepseek-flash",
+  "seed": 20261030,
+  "allow_shell": false,
+  "order": [
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\without\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\without\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\with\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\with\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\without\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\placebo\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\without\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\placebo\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\with\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\with\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\without\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\placebo\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\placebo\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\placebo\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\with\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\placebo\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\without\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\placebo\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\with\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\without\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\without\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\with\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\with\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\without\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\with\\rep02",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\placebo\\rep04",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\placebo\\rep01",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\placebo\\rep05",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t1_overlay\\without\\rep03",
+    "C:\\Nebula\\HChenZ\\Projects\\ab_trials\\run1\\t3_dma\\with\\rep03"
+  ]
+}

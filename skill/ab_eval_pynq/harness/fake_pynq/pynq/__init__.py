@@ -233,13 +233,40 @@ class AxiDma(Device):
         self.regs[0x34] |= 0x1002
 
 
-_KINDS = {'ident': Ident, 'vadd': Vadd, 'axi_dma': AxiDma}
+class Bram(Device):
+    """AXI BRAM Controller (Xilinx PG078) - a byte-addressable memory window.
+
+    There is no register map: the whole address range is RAM. The host reaches it through
+    32-bit AXI4-Lite accesses, so MMIO can only touch word-aligned 32-bit words; a byte write
+    at an unaligned offset has to read-modify-write the containing word. Bytes outside the
+    requested range must keep their previous value.
+    """
+
+    def __init__(self, base, cfg):
+        super().__init__(base, cfg)
+        self.size = int(cfg.get('size', 0x4000))
+        self.span = self.size
+        pre = bytes.fromhex(cfg.get('prefill', '')) if cfg.get('prefill') else b''
+        self.mem = bytearray((pre + bytes(self.size))[:self.size])
+
+    def read(self, off):
+        if off < 0 or off + 4 > self.size:
+            return 0
+        return int.from_bytes(self.mem[off:off + 4], 'little')
+
+    def write(self, off, value):
+        if off < 0 or off + 4 > self.size:
+            return
+        self.mem[off:off + 4] = (int(value) & 0xFFFFFFFF).to_bytes(4, 'little')
+
+
+_KINDS = {'ident': Ident, 'vadd': Vadd, 'axi_dma': AxiDma, 'axi_bram': Bram}
 _PL = []
 
 
 def _bus(addr):
     for dev in _PL:
-        if dev.base <= addr < dev.base + 0x10000:
+        if dev.base <= addr < dev.base + getattr(dev, 'span', 0x10000):
             return dev
     return None
 
@@ -367,19 +394,87 @@ def _parse_hwh(path):
     return ips
 
 
-class Overlay:
-    def __init__(self, bitfile_name, dtbo=None, download=True, ignore_version=False, device=None):
+class Bitstream:
+    """pynq.Bitstream subset, matching PYNQ 2.7 semantics that host code relies on.
+
+    Constructing a Bitstream only parses the file (path, md5 ``hash``, timestamp); it does NOT
+    program the PL. Only ``download()`` does, and every download is counted in TRACE, so a
+    "verify manifest first, download nothing on mismatch" check still sees 0 downloads.
+    """
+
+    def __init__(self, bitfile_name, dtbo=None, partial=False, device=None):
         path = os.path.abspath(bitfile_name)
         if not os.path.isfile(path):
             raise IOError('Bitstream file %s does not exist.' % path)
-        hwh = os.path.splitext(path)[0] + '.hwh'
+        self.partial = partial
+        self.dtbo = os.path.abspath(dtbo) if dtbo else None
+        self.bitfile_name = path
+        self.binfile_name = os.path.splitext(path)[0] + '.bin'
+        with open(path, 'rb') as f:
+            data = f.read()
+        self.hash = hashlib.md5(data).hexdigest()          # PYNQ exposes the md5 as .hash
+        self.timestamp = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(os.path.getmtime(path)))
+        self.downloaded = False
+        self._sha = hashlib.sha256(data).hexdigest()
+
+    def download(self):
+        TRACE['downloads'] += 1
+        TRACE['downloaded'].append(self._sha)
+        self.downloaded = True
+        _save()
+        _PL.clear()
+        for d in _SCEN.get('hardware', {}).get(self._sha, []):
+            _PL.append(_KINDS[d['kind']](_num(d['base']), d))
+
+    def is_loaded(self):
+        return bool(TRACE['downloaded']) and TRACE['downloaded'][-1] == self._sha
+
+    def __repr__(self):
+        return 'Bitstream(%s)' % os.path.basename(self.bitfile_name)
+
+
+class _PLDevice:
+    """Minimal stand-in for pynq.Device: the attributes host code reads off ``overlay.device``."""
+
+    active_device = None
+
+    def __init__(self, bitfile_name=None):
+        self.bitfile_name = bitfile_name
+        self.timestamp = ''
+        self.ip_dict = {}
+        self.gpio_dict = {}
+        self.interrupt_pins = {}
+        self.hierarchy_dict = {}
+        self.mem_dict = {}
+
+    def __repr__(self):
+        return 'Device(%s)' % self.bitfile_name
+
+
+def _hierarchy_tree(ip_dict):
+    """Nest ``ip_dict`` (full paths) the way PYNQ's ``hierarchy_dict`` does:
+    each hierarchy maps to {'fullpath', 'ip': {name: desc}, 'hierarchies': {...}}."""
+    root = {'fullpath': '', 'ip': {}, 'hierarchies': {}}
+    for key, desc in ip_dict.items():
+        node, parts = root, key.split('/')
+        for part in parts[:-1]:
+            path = (node['fullpath'] + '/' + part).lstrip('/')
+            node = node['hierarchies'].setdefault(
+                part, {'fullpath': path, 'ip': {}, 'hierarchies': {}})
+        node['ip'][parts[-1]] = desc
+    return root
+
+
+class Overlay(Bitstream):
+    def __init__(self, bitfile_name, dtbo=None, download=True, ignore_version=False, device=None):
+        super().__init__(bitfile_name, dtbo, partial=False, device=device)
+        hwh = os.path.splitext(self.bitfile_name)[0] + '.hwh'
         if not os.path.isfile(hwh):
             raise ValueError('Cannot find metadata file %s' % hwh)
-        self.bitfile_name = path
         self.ip_dict = _parse_hwh(hwh)
+        self.hierarchy_dict = {'': _hierarchy_tree(self.ip_dict)}
+        self.device = _PLDevice(self.bitfile_name)
         self._drivers = {}
-        with open(path, 'rb') as f:
-            self._sha = hashlib.sha256(f.read()).hexdigest()
         if download:
             self.download()
 

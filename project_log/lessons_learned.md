@@ -1,5 +1,27 @@
 # 经验与踩坑
 
+## 2026-10-30 ~ 10-31 — Skill A/B 实验的四个坑
+
+- **Skill 注册成功 ≠ 被使用。** OpenCode V2 会把 Skill 的 `name`+`description` 放进可用列表，但
+  `deepseek-flash` 在 T1 任务里能加载却不主动加载（transcript 无 `skill` 调用、交付文件无 canary）。
+  不做冒烟就批量跑，30 次只会得到"没差异"，而真实原因是"没加载"。→ 任何"有无 Skill"实验必须先用
+  canary 验证操作生效，并把加载率作为次指标报告；加载率低时唯一公平修法是给**所有组**加同一句中性提示，
+  而不是只在 `with` 组写 `@skill-id`。
+- **仪器缺口会伪装成模型错误。** `fake_pynq` 缺 `pynq.Bitstream`（真实 PYNQ 2.7 有，且 `Overlay` 继承它），
+  一份"先校验再下载"的正确解法被 `ImportError` 判 0 分；同一解法用到的 `hierarchy_dict`/`device` 也缺。
+  修好后重判同一批输出，只有那 1 个试验从 0 变 1，其余不变——**重判足以定位仪器问题，不必重跑模型**。
+  但修正后 `with` vs `placebo` 的 p 从 0.087 升到 0.21，**对结论不利的修正也必须照实写**。
+- **天花板会稀释合并效应量。** T2（HLS vadd）三组 30/30 全通过，并入主指标后 δ 从 +0.50 掉到 +0.33。
+  报告里必须写明哪道题是天花板，不能只给一个合并数。
+- **留出题先 grep Skill 自带的 examples。** 第一版留出题做 AXI GPIO，自检全绿后才发现 Skill 的
+  `examples/axi_gpio.contract.json` 写着那道题最核心的陷阱（`GPIO_TRI ... 1 = input`）；`examples/` 三份契约
+  正好覆盖 DMA、GPIO、HLS。换到 AXI BRAM 后结果不显著（p=1.0），差异只来自 2 个试验把 `ip_dict` 的键名写成
+  `vlnv`（正确是 `type`）——说明留出题要选"失败模式与 Skill 门禁对应"的任务，否则只能测出偶然错误。
+- 工程坑：把 16 KiB 期望值用 `repr` 塞进 `python -c` 会超 Windows 命令行长度上限（`WinError 206`），
+  判分器传期望值要用摘要；30 次真实 `opencode run` 约 3.5 小时（约 7 分钟/次），排期别按 1 分钟估。
+- 找 Skill 是否被用上，最快的证据链是：终端抬头 `> trial · <model>`、探针回答 `NO-SHELL`、
+  `opencode api get "/api/skill?location[directory]=<试验目录>"` 列出 Skill（不传 `location` 会查到别处）。
+
 ## 2026-10-31 — 路径发现不能只检查有限层父目录
 
 - L3 入口最初只检查 `cwd` 与两级父目录，而 `skill/ab_eval_pynq/test_board/` 到仓库根

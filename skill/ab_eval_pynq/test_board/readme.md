@@ -7,6 +7,17 @@ Skill 的通用实现和既有 pytest 仍位于 `skill/pynq-overlay-workflow/`�
 本目录不进行 with/without/placebo 对照。L3 只回答：人工按照 Skill 流程，在真实 PYNQ
 板上能否完成加载、身份校验、寄存器访问和 DMA 数据通路验证。
 
+## 与 L2 结果的边界
+
+L2 已归档的结果全部是假 PYNQ 上的 `simulated` 证据：T1–T3 主指标中
+`with > without`（p=0.0425），但 `with vs placebo` 不显著（p=0.2248）；
+独立留出任务 `t5_bram` 也未复现显著差异（p=1.0）。因此：
+
+- L3 不通过重复 with/without/placebo 来“补显著性”。
+- L3 成功只证明指定脚本和 Skill 工具在真实板上可运行，不证明因果提升。
+- 报告必须同时引用 L2 的模型、n、p 值、留出失败和 `simulated` 边界。
+- T3 DMA 是 L2 中最有区分度的任务，因此 L3 优先完成 DMA；T5 BRAM 不因 L2 结果追加实板工件。
+
 ## 执行顺序
 
 1. `l3_00_preflight.ipynb`
@@ -96,6 +107,9 @@ export L3_RUN_DIR=/absolute/path/to/data/skill/l3_<timestamp>
 100 MHz 设计值和篡改 manifest 拒绝检查通过，不代表 Ascon release、GPIO、DMA
 或完整 L3 已在实板运行。`l3_current_session.json` 仅保存 session 指针，不是汇总结果。
 
+该旧预检早于关键依赖/L2 归档哈希字段。更新后的预检必须重新运行并创建新 session；
+新汇总会拒绝缺少 `l2_evidence` 的旧预检，避免把不同源码或 L2 结果混入同一 L3 结论。
+
 ## 无界面执行
 
 在板端仓库根目录按顺序执行，例如：
@@ -119,6 +133,8 @@ DMA 工件时预期非零退出；这是缺失证据，不是脚本故障。
 - Ascon release：artifact 哈希、加载、IP/VLNV/FCLK、control/mailbox ID、服务握手通过。
 - 非 Ascon GPIO：contract 校验、方向和值读回通过，原始状态已恢复。
 - 非 Ascon DMA：有界传输、实际长度、flush/invalidate 路径、哨兵值、黄金比较通过。
+- DMA 还应覆盖奇数长度、同长度连续调用和启动前拒绝超过最大传输长度的请求；
+  `short_output`/缺失 TLAST 若没有专用可恢复测试源，必须写 `not_tested`，不能在正式回路上制造挂死。
 - 至少一个负向门禁真实失败，例如篡改 manifest 在下载前被拒绝。
 
 没有 DMA 工件时只能写 `PARTIAL` 或 `not_measured`，不能写完整 L3 通过。
