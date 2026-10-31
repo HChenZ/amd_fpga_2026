@@ -1,5 +1,17 @@
 # 实际进度
 
+## 2026-10-31 — D04 演示视频脚本（脚本完成，实机未录，owner TBD）
+
+- 基于最新 2026-10-29 PYNQ 实板证据新增 `report/demo_video_script.md`：
+  5 分 20 秒主版时间轴、中文旁白、逐镜画面与字幕、3 分钟压缩版、可选 PUF
+  独立原型段、录制清单和事实卡。
+- 主性能叙事固定为同一轮 KAT #529、PT=16 B、AD=0、预热 5 次和 30 次采样的
+  `mcycle`：SW/HW/ISE 加密 23,342/1,439/3,995 cycles，16.221×/5.843×；
+  解密 24,005/1,388/4,385 cycles，17.295×/5.474×。明确 PS wall time
+  不参与加速比，容量与 PUF 原型边界保留。
+- D04 由 todo 改为 in_progress；仅有脚本与分镜，真实板级视频、最终视频哈希
+  索引和 D04 验收仍未完成。未改 RTL、固件、测试数据、release 或接口。
+
 ## 2026-10-31 — S04 报告采集收口；S05 README 补齐（owner TBD）
 
 - S04：`pynq_skill/report.py` 新增可配置指标 schema（`load_schema`/`collect_metrics`/`resolve_path`，来源 utilization/timing/json，汇总 count/sum/min/max/mean/all_true）、`tool_report` 证据级别、估算必须写 basis、缺失一律 `not_measured`、必需缺失 CLI exit 1；`references/report_schema.md`、`examples/report_schema.dma_loopback.json`。

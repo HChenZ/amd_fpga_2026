@@ -84,7 +84,7 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 | D01 | architecture figure | TBD | B01；定稿需 I02/Y01 | 架构图与版本说明 | 当前/计划分开；最终图与 CPU/PS/PL 实现一致，报告可引用 | 2026-10-29 | in_progress |
 | D02 | benchmark tables | TBD | I07、I08、Y05、V04 | 对比表与数据来源索引 | 每个数值追溯原始结果，测试条件一致，未测项明确 | 2026-10-30 | todo |
 | D03 | report | TBD | D01、D02、V04、S01-S04 | 报告、PPT、LLM 协作记录 | 原理/创新/对比/失败与复现材料齐全，规则/来源可追溯，无虚构成果 | 2026-11-01 | todo |
-| D04 | demo video | TBD | Y04、Y05、V04 | 演示视频与脚本/文件 hash 索引 | 真实目标板上输入输出、KAT 和两模式指标一致，关键过程可辨识 | 2026-11-01 | todo |
+| D04 | demo video | TBD | Y04、Y05、V04 | 演示视频与脚本/文件 hash 索引 | 真实目标板上输入输出、KAT 和两模式指标一致，关键过程可辨识 | 2026-11-01 | in_progress：`report/demo_video_script.md` 已完成 5 分 20 秒主版与 3 分钟压缩版；实机视频未录 |
 | D05 | clean-clone reproduction | TBD | B02、B03、B04、V04、D03、D04、S05 | 干净机器/clone 的端到端日志 | 无开发机缓存/IP/绝对路径依赖，重新构建并运行 KAT/benchmark/demo；材料引用有效 | 2026-11-02 | todo |
 | D06 | final package | TBD | D05、D03、D04、S05 | 最终清单/许可证/哈希/材料包 | 11-03 只修材料并核对包；11-04 仅正式提交，由用户控制提交动作 | 2026-11-03 | todo |
 
