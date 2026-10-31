@@ -1,0 +1,22 @@
+!hi 
+"
+?
+?
+?
+A
+A?
+?
+-
+?
+=== ASCON-AEAD128 hardware (MMIO) on RV32IM ===
+KAT empty   : PASS
+KAT 1B      : PASS
+KAT 16B     : PASS
+KAT 16B+AD  : PASS
+dec roundtrip: PASS
+tamper reject: PASS
+len reject  : PASS
+--- benchmark (warm) 16B encrypt ---
+crypto latency : 103 cycles
+full MMIO      : 688 cycles
+===DONE===

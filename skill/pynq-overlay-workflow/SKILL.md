@@ -147,8 +147,22 @@ contract = regmap.load_contract('my_ip.contract.json')                        # 
 regs = regmap.RegisterMap(pynq.MMIO(ol.ip_dict['my_ip_0']['phys_addr'], 0x1000), contract)
 ```
 
-命令行：`python scripts/pynq_skill_cli.py hwh <file.hwh>`（列 IP/基址/FCLK）、
-`... artifacts <bit> [--manifest m.json]`、`... gen <contract.json> -o out/`（生成驱动+pytest 骨架）、
+在 Python 中使用工具时，`<skill_dir>/scripts` 必须在 `sys.path` 上（如上），**上板时把 `scripts/pynq_skill/` 一起拷到板上**。
+
+由契约生成驱动（推荐路径，输出目录自包含，不需要设置路径）：
+
+```sh
+python <skill_dir>/scripts/pynq_skill_cli.py gen my_ip.contract.json -o my_ip_drv/
+python -m pytest my_ip_drv/          # 生成的结构测试应直接通过；行为测试是 skip 的 TODO，需接独立参考
+# 上板：把整个 my_ip_drv/ 目录拷过去（内含驱动、测试和一份 pynq_skill），在该目录下运行
+# （或先 sys.path.insert(0, '<my_ip_drv 路径>')），然后
+#   from my_ip_driver import MyIp; drv = MyIp.from_overlay(ol, 'my_ip_0')
+```
+
+`gen` 默认把 `pynq_skill` 复制进输出目录；加 `--no-vendor` 则不复制，此时按它打印的 `PYTHONPATH` 运行。
+
+其他命令：`python scripts/pynq_skill_cli.py hwh <file.hwh>`（列 IP/基址/FCLK）、
+`... artifacts <bit> [--manifest m.json]`、
 `... report --utilization u.rpt --results r.json -o report.md`；可配置指标：
 `... report --schema s.json --source util=u.rpt --source board=run.json -o report.md`（必需指标缺失时 exit 1）。
 

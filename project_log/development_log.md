@@ -1,5 +1,9 @@
 # 开发记录
 
+## 2026-10-31 — gen 输出自包含（owner TBD）
+
+- 修复独立下载复核中发现的生成骨架 ImportError；64 passed、16/16，仓库外复现通过。
+
 ## 2026-10-31 — S04 可配置报告与 S05 文档（owner TBD）
 
 - report schema + 非 Ascon DMA 回环示例；63 单元测试、16/16 变异；skill/readme.md S05 内容补齐。未改 loader/regmap/DMA/golden、RTL 与 release。

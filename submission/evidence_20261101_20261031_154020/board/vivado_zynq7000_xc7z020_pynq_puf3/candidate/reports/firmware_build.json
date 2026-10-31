@@ -1,0 +1,120 @@
+{
+  "records": [
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc",
+        "--version"
+      ],
+      "exit_code": 0,
+      "log": "compiler_version.log"
+    },
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc",
+        "-march=rv32im_zicsr",
+        "-mabi=ilp32",
+        "-O2",
+        "-ffreestanding",
+        "-nostdlib",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-msmall-data-limit=0",
+        "-Wall",
+        "-Wextra",
+        "-Isrc/firmware/pynq_svc/",
+        "-Isrc/firmware/pynq_svc_puf/",
+        "-Iascon/ascon_c/aead",
+        "-T",
+        "src/firmware/ascon_hw_rv32/riscv.ld",
+        "src/firmware/ascon_hw_rv32/crt0.S",
+        "src/firmware/ascon_hw_rv32/libc_min.c",
+        "src/firmware/pynq_svc/svc_io.c",
+        "src/firmware/pynq_svc/ascon_modes.c",
+        "src/firmware/pynq_svc_puf/main.c",
+        "src/firmware/pynq_svc_puf/puf_svc.c",
+        "-lgcc",
+        "-o",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\build\\local\\pynq_svc_puf\\pynq_svc_puf.elf"
+      ],
+      "exit_code": 0,
+      "log": "compile.log"
+    },
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-objcopy",
+        "-O",
+        "binary",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\build\\local\\pynq_svc_puf\\pynq_svc_puf.elf",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\build\\local\\pynq_svc_puf\\pynq_svc_puf.bin"
+      ],
+      "exit_code": 0,
+      "log": "objcopy.log"
+    },
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-objdump",
+        "-d",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\build\\local\\pynq_svc_puf\\pynq_svc_puf.elf"
+      ],
+      "exit_code": 0,
+      "log": "disasm.log"
+    },
+    {
+      "command": [
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-size",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\build\\local\\pynq_svc_puf\\pynq_svc_puf.elf"
+      ],
+      "exit_code": 0,
+      "log": "size.log"
+    },
+    {
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "src/firmware/ascon_hw_rv32/bin2vhex.py",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\build\\local\\pynq_svc_puf\\pynq_svc_puf.bin",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\build\\local\\pynq_svc_puf\\pynq_svc_puf.hex",
+        "32",
+        "32768"
+      ],
+      "exit_code": 0,
+      "log": "hex.log"
+    },
+    {
+      "command": [
+        "C:\\Users\\HXZ\\anaconda3\\python.exe",
+        "src/firmware/pynq_svc/bin2coe.py",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\build\\local\\pynq_svc_puf\\pynq_svc_puf.bin",
+        "C:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\build\\local\\pynq_svc_puf\\pynq_svc_puf.coe",
+        "32768"
+      ],
+      "exit_code": 0,
+      "log": "coe.log"
+    }
+  ],
+  "size": "text\t   data\t    bss\t    dec\t    hex\tfilename\r\n  47424\t      4\t    344\t  47772\t   ba9c\tC:\\wenjian\\game\\FPGA2026\\ours\\amd_fpga_2026\\build\\local\\pynq_svc_puf\\pynq_svc_puf.elf",
+  "custom0": {
+    "p12_0x200b": 1,
+    "p8_0x300b": 4,
+    "all_opcode_0x0b": 22
+  },
+  "source_sha256": {
+    "src/firmware/ascon_hw_rv32/crt0.S": "ba4a7568cc165ca2b7198c25d2d4a8159547c67b338e283d4abfa66d42128914",
+    "src/firmware/ascon_hw_rv32/libc_min.c": "b2ddf7b7fb9237ecaa26191168e8c22370751b428f6b0b005e99ad4f4b50c042",
+    "src/firmware/pynq_svc/svc_io.c": "a8196011c4ec5269c596284ee1f590ae59dabd71282060ec58f6e479bfbfcb1d",
+    "src/firmware/pynq_svc/ascon_modes.c": "24a66938bb498f1bc558800bc21b0fbc9869ce06ebef5e8a6ba5affe3eace391",
+    "src/firmware/pynq_svc_puf/main.c": "98043a77245707eead5345275f697132947d8d5405ae7b6848180de0e5d57513",
+    "src/firmware/pynq_svc_puf/puf_svc.c": "a047987f9d8a78d92f0b19ecb7b629ebbb6ea0e82bc98146fece38ef9a6c9a91",
+    "src/firmware/ascon_hw_rv32/riscv.ld": "27324abf10d8a733bf159d208e2a2c0e00b211f571f384ab5e2cd8d0b80b7e83",
+    "src/firmware/pynq_svc/svc.h": "f9c24854a4ba7d2a1249955ac2bf4b0fb64b40f73e19e0f2ebd84c31da87c09a",
+    "src/firmware/pynq_svc_puf/puf_svc.h": "16f9be2801fe0dadfb295ffda5a8c13bd61d5ca13687f33fbbe0a9d9a2300b0f",
+    "src/firmware/pynq_svc_puf/build.py": "423553a219a2cac0bf519d86765d40632c6eb769977d21868c87f60aff0f2032",
+    "src/firmware/ascon_hw_rv32/bin2vhex.py": "48e66b5fdfa498d23ee5ce0f3a485be9f4f3afb1546d385ef9489d5ae1c7d468",
+    "src/firmware/pynq_svc/bin2coe.py": "66e4cf98e0cbc1f4b865067ddfa3542b179aad1a4da07ee2f5e3d04642faf352"
+  },
+  "artifact_sha256": {
+    "pynq_svc_puf.bin": "857df29c4310cd483e92730d81f333a68e6970658d5cb81344faf29ec50dd9b7",
+    "pynq_svc_puf.hex": "2f5ef6f08d8471551cc9b6f39101328f56c8d31998482511fe2cce5ed0e59edb",
+    "pynq_svc_puf.coe": "bf3b0591afb251695d81846e6f844b2c5087b6ed38047242dcdde3fea05c6a9e"
+  },
+  "note": "elf hash varies with build metadata; bin/coe are the image fingerprint"
+}
