@@ -1,5 +1,18 @@
 # 实际进度
 
+## 2026-10-31 — PYNQ demo Notebook 全量 KAT 说明同步（owner TBD）
+
+- 用户将 `src/pynq/pynq_board_demo.ipynb` 的 `RUN_FULL_KAT` 设为 `True` 后在板上执行；
+  内嵌输出显示 SW/HW/ISE 三模式均为 `289/289` KAT 通过、`289/289` 错误 Tag 拒绝，
+  run 时间为 `2026-10-31T11:04:58`。
+- 同步修改该 Notebook 第 1 节标题和说明，以及末尾使用说明：明确当前运行容量内全部
+  289 组 KAT，并保留改回 `False` 时每模式运行 6 个代表用例的快速回归方式。未修改
+  `board_demo.run()`、release、RTL、固件、benchmark 参数或已保存执行输出。
+- 验证：Notebook JSON 解析 PASS；`python -B src/pynq/test_board_benchmark.py` 为
+  5 tests / OK / exit 0；该 Notebook 的 `git diff --check` exit 0。超过 16-byte 的
+  800 组仍为 `NOT_RUN`。下一接收：按需将板端 `notebook_20261031_110458` 证据目录
+  归档回仓库，owner TBD。
+
 ## 2026-10-31 — D04 演示视频脚本（脚本完成，实机未录，owner TBD）
 
 - 基于最新 2026-10-29 PYNQ 实板证据新增 `report/demo_video_script.md`：
