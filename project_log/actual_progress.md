@@ -1,24 +1,17 @@
 # 实际进度
 
-## 2026-10-31 — D02 数值核对、V04 冻结留档、源码包、证据包再装配（owner TBD）
+## 2026-10-31 — PYNQ demo Notebook 全量 KAT 说明同步（owner TBD）
 
-- D02：新增 `docs/tech_report/evidence/check_benchmark_tables.py`（只读报告），从 warm benchmark JSON、
-  `utilization.rpt`、`timing.rpt` 重算并核对 report.md 中表 3-13/3-14 的 6 行、摘要两组 SW/HW/ISE 中位、
-  JSON 加速比 4 项、资源与 WNS/TNS/WHS，15/15 PASS，exit 0；故意改报告副本 1439→1440 后 exit 1。
-  结果 `docs/tech_report/validation/benchmark_tables_check.json` 记录输入哈希；范围不含历史 PL-only/PUF。D02→done。
-- assemble.py 新增 X-7（D02 核对）、X-8（视频脚本），并在 D02 不是 PASS 或输入已过期时拒绝装配。新包
-  `submission/evidence_20261101_20261031_163056/`，122 文件，ZIP SHA-256
-  `3452e05cd68d182ef5c368b10a997421173e3d444fb291ae6cf9c9f10c01a314`；独立解包 122/122 一致、0 个清单外文件。
-  15:40 的包已入库，按规则保留，作为上一版；15:32 的作废包（未入库）已删除。
-- V04：新增 `freeze_manifest.py`，要求工作区已提交且干净；用 git archive 生成本机源码包，核对三套工件
-  sha256sums、主线 benchmark/错误门禁与 release 绑定、pynq_puf3 板测绑定、L3/DMA 绑定、D02、证据包 ZIP，
-  然后写出 `submission/freeze_manifest.{md,json}`。P0 尚有未验收项，V04 保持 in_progress。
-- 第一次运行 exit 1：主线 release 的 sha256sums 用的是仓库相对路径。修好后提交为 `af34e65`，在干净工作区重跑 exit 0。
-  冻结源码提交 `af34e65895cebf24f066b0a7b6abe9cd14a785cb`；源码包 `submission/source_af34e65.zip`
-  （4356 文件，112.3 MB，SHA-256 `d00fa6697aa4c96553393996c3a4d74a8afd2ce00c8f6b49fe6211f25458e31c`，不入库）。
-  解压到仓库外后，在包内运行 Skill pytest 64 passed，D02 核对 15/15，均 exit 0。这不等于 D05 完整复现：没有重新构建 Vivado/固件，也没有上板。
-  冻结时未推送（`pushed=false`）。
-
+- 用户将 `src/pynq/pynq_board_demo.ipynb` 的 `RUN_FULL_KAT` 设为 `True` 后在板上执行；
+  内嵌输出显示 SW/HW/ISE 三模式均为 `289/289` KAT 通过、`289/289` 错误 Tag 拒绝，
+  run 时间为 `2026-10-31T11:04:58`。
+- 同步修改该 Notebook 第 1 节标题和说明，以及末尾使用说明：明确当前运行容量内全部
+  289 组 KAT，并保留改回 `False` 时每模式运行 6 个代表用例的快速回归方式。未修改
+  `board_demo.run()`、release、RTL、固件、benchmark 参数或已保存执行输出。
+- 验证：Notebook JSON 解析 PASS；`python -B src/pynq/test_board_benchmark.py` 为
+  5 tests / OK / exit 0；该 Notebook 的 `git diff --check` exit 0。超过 16-byte 的
+  800 组仍为 `NOT_RUN`。下一接收：按需将板端 `notebook_20261031_110458` 证据目录
+  归档回仓库，owner TBD。
 ## 2026-10-31 — Skill 独立下载复核与 gen 文档漏洞修复（owner TBD）
 
 - 复核：`git archive` 导出 `skill/pynq-overlay-workflow` 到仓库外，60 passed/3 skipped（仅依赖本仓库板卡文件的用例按设计跳过），Skill 内无仓库路径。发现：照 SKILL.md 运行 `gen` 生成的测试骨架报 ImportError（生成代码导入 `pynq_skill`，文档未说明路径；板上同样缺包）。
