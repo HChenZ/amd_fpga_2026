@@ -1,0 +1,31 @@
+% PUF3 内的 PUF 原型：数据通路与调试可见性
+\begin{tikzpicture}[font=\scriptsize,
+ b/.style={draw=softline,rounded corners=2pt,fill=macblue!55,align=center,text width=3cm,minimum height=1cm},
+ ar/.style={-{Stealth[length=1.5mm]},thick}]
+\draw[dashed,black!45] (-7.4,0.5) rectangle (7.4,2.2);
+\node[anchor=south west] at (-7.4,2.2) {核心控制域（设计结构；不代表全域时序签核）};
+\node[b, fill=macpeach] (dna) at (-5.7,1.35) {Device DNA\\57-bit 公开标识};
+\node[b, fill=macamber] (kdf) at (-1.9,1.35) {自定义 P12 派生\\320-bit 输入状态};
+\node[b, fill=macrose!70] (key) at (1.9,1.35) {128-bit key\\内部寄存器};
+\node[b, fill=macamber!70] (aead) at (5.7,1.35) {ascon\_mmio\\HWKEY 开关选择 key};
+\draw[ar] (dna) -- (kdf);
+\draw[ar] (kdf) -- (key);
+\draw[ar] (key) -- (aead);
+\draw[dashed,black!45] (-7.4,-2.3) rectangle (7.4,-0.6);
+\node[b, fill=macgreen] (ro) at (-5.7,-1.45) {256 路 RO\\5 级 LUT 环};
+\node[b, fill=macgreen!55] (cnt) at (-1.9,-1.45) {RO 自时钟计数\\窗口按构建参数};
+\node[b, fill=maclav] (vote) at (1.9,-1.45) {两两比较、表决\\128-bit 响应与 dither};
+\node[b, fill=macblue] (ref) at (5.7,-1.45) {注册参考 / 掩码\\重建匹配与回退};
+\draw[ar] (ro) -- (cnt);
+\draw[ar] (cnt) -- (vote);
+\draw[ar] (vote) -- (ref);
+\draw[ar] (ref.north) -- (5.7,-0.05) -- (-1.9,-0.05) -- (kdf.south);
+\node[fill=white] at (1.8,-0.05) {采样握手完成后使用稳定输入};
+\node[draw=softline,fill=macgray,align=center,text width=13cm,minimum height=0.8cm] (debug) at (0,-3.5)
+ {key\_mmio 调试窗口可读取 DNA、REF、MASK、RAW、DITHER 与状态；key 本身没有直接读地址};
+\draw[ar,dashed] (ref.south) -- (5.7,-2.7) -- (debug.north -| 5.7,0);
+\node[draw=softline,fill=white,align=left,text width=14.4cm,anchor=north west] at (-7.2,-4.4) {%
+当前 PUF3 已集成此通路；quality=127/128，连续 5 次会话内重建及 HWKEY 开关通过。\\
+派生输入可由调试窗口读取，不能仅凭 key 无读地址声称保密隔离。\\
+跨上电、温压与多器件可靠性未测；RO 振荡环计数器域未签核，不声称完整安全启动。};
+\end{tikzpicture}

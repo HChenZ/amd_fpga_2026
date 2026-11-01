@@ -49,5 +49,7 @@ Vivado 操作记录：实际 `version`、IP 版本、part、board part、top、�
 Y01 明确数据缓存一致性、内存屏障、buffer 生命周期、长度检查、命令/完成/错误、timeout/reset、版本握手和 cycle 宽度。PYNQ image 必须匹配实际板级平台，不能只看 XC7Z020 芯片。
 
 P0/P1 稳定前不将 PUF/认证启动纳入主线。10-27 功能冻结，10-28 code freeze；之后仅必要缺陷修复且附回归记录，11-03 只修材料，11-04 不开发。日期来源见 [milestones](../tasks/milestones.md)。
+（2026-11-01 更新：按 10-29 授权改为 11-01 提交并冻结；最终报告以集成 PUF 密钥通路的 PUF3 overlay 为主演示，
+PUF 仅有会话内功能证据，认证启动未开展。上句为原规则，保留作记录。）
 
 新增文件 UTF-8，普通路径小写 ASCII；保留 README.md、AGENTS.md、Git 配置标准名。已有编码问题单列修复任务，不为统一编码触碰原 RTL/XDC。

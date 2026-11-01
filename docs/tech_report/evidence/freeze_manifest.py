@@ -72,10 +72,13 @@ def sums(folder):
 
 def main():
     fail = []
-    dirty = [l for l in git('status', '--porcelain').splitlines()
+    # 只要求已跟踪文件无改动；未跟踪文件（按用户要求不入库的截图、LaTeX 源等）不进入 git archive，
+    # 它们随证据包提供，此处只记录数量。
+    dirty = [l for l in git('status', '--porcelain', '--untracked-files=no').splitlines()
              if not any(l.endswith('submission/' + n) for n in OUTPUT_NAMES)]
     if dirty:
-        raise SystemExit('Working tree not clean; commit first:\n' + '\n'.join(dirty))
+        raise SystemExit('Tracked files modified; commit first:\n' + '\n'.join(dirty))
+    untracked = git('ls-files', '--others', '--exclude-standard').splitlines()
     commit = git('rev-parse', 'HEAD')
     short = commit[:7]
 
@@ -148,7 +151,9 @@ def main():
         'evidence_package': {'directory': rel(ev_dir), 'zip': rel(ev_zip), 'zip_sha256': ev['zip_sha256'],
                              'files': ev['files']},
         'report': {'pdf': rel(REPORT_PDF), 'sha256': sha(REPORT_PDF), 'build': ev.get('report_build'),
-                   'board_result': rel(PUF3_RUN)},
+                   'board_result': rel(PUF3_RUN), 'pdf_tracked': bool(git('ls-files', rel(REPORT_PDF)))},
+        'untracked_not_in_source_zip': {'count': len(untracked), 'files': untracked,
+                                        'note': '按用户要求不单独入库（截图、LaTeX 源等），随证据包提供'},
         'artefacts': artefacts,
         'checks': {'d02_benchmark_tables': f'{d02["status"]} {len(d02["checks"])}/{len(d02["checks"])}',
                    'pynq_puf3_board': 'PASS', 'skill_l3': 'PASS', 'release_board_binding': 'PASS'},
@@ -164,7 +169,8 @@ def main():
           f'SHA-256 `{record["source_zip"]["sha256"]}`（git archive，仅本机，不入库）',
           f'- 证据包：`{rel(ev_zip)}`（{ev["files"]} 文件），SHA-256 `{ev["zip_sha256"]}`；目录已入库',
           f'- 最终报告：`{rel(REPORT_PDF)}`，SHA-256 `{record["report"]["sha256"]}`，构建 {record["report"]["build"]}；'
-          f'板测主采样 `{rel(PUF3_RUN)}`',
+          f'板测主采样 `{rel(PUF3_RUN)}`；PDF {"已" if record["report"]["pdf_tracked"] else "未"}入库',
+          f'- 未入库文件 {len(untracked)} 个（截图、LaTeX 源等，按用户要求不单独入库），不在源码包内，随证据包提供',
           f'- 校验：D02 {record["checks"]["d02_benchmark_tables"]}（对最终报告）；PUF3 板测绑定 candidate、'
           'PYNQ v1 release 与 benchmark/错误门禁绑定、Skill L3 均 PASS\n',
           '## 交付工件\n']

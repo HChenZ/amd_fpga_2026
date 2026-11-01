@@ -1,0 +1,10 @@
+{
+  "sources_1_entries_unchanged": true,
+  "constrs_1_entries_unchanged": true,
+  "candidate_hashes_unchanged": {
+    "board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/pynq_puf3.bit": true,
+    "board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/pynq_puf3.hwh": true,
+    "board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/manifest.json": true
+  },
+  "project_sha256": "670d9d8e38592610fe43b0eb6b0fcf27d8f4484a19e742d86d3e523cd75301f1"
+}

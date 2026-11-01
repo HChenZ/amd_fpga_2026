@@ -1,20 +1,22 @@
 # 项目概览
 
-更新：2026-10-31。比赛与目标时间按用户本轮要求建档；未独立确认的官方规则不作推断。
+更新：2026-11-01。比赛与目标时间按用户本轮要求建档；未独立确认的官方规则不作推断。
 
 ## 当前状态摘要
 
+- 最终报告（`docs/tech_report/amd_fpga_2026_latex_final/`，PDF 已入库）以 **PUF3 overlay** 为主演示：
+  同一 bitstream 集成 SW/MMIO/ISE 三模式与 RO-PUF/DNA 硬件密钥通路；PYNQ v1 release 作历史对照。
 - P0 核心功能已有实板证据：NIST Final software、SW/MMIO/ISE、容量内 KAT、错误 Tag、
   mcycle benchmark、PPA/时序报告。
-- P1 主链已有实板证据：overlay、AXI-Lite/UART mailbox、Python API、Notebook、
-  benchmark、V03 错误/恢复门禁。
-- P0/P1 仍未全部关闭：B03 实物证据、原 CICC baseline、完整 RV32/RV64/异常矩阵；
-  通用 Skill 的 L1/L2/L3 已通过，S04 report/collector 与 S05 独立复现/证据包仍待收口。
-- D01-D06 材料、clean-clone 和最终包尚未完成。
-- P2/PUF 仍不进入当前提交主线；独立 PUF3 变体已有单次上电功能证据，但不等于 PUF 稳定性或安全启动验收。
+- P1 主链已有实板证据：overlay、AXI-Lite/UART mailbox、Python API、Notebook、benchmark；
+  V03 错误/恢复门禁 9/9 仅在 PYNQ v1（pynq-svc-v1）上通过，PUF3 未完整重跑。
+- 通用 Skill S01–S05 已 done（L1/L2/L3）。
+- P0/P1 仍未全部关闭：B03 实物证据、原 CICC baseline、完整 RV32/RV64/异常矩阵、clean-clone（D05）。
+- PUF3 的 PUF 部分只有会话内功能证据，不等于 PUF 稳定性、保密性或安全启动验收。
 
-当前任务明细见 [current_status_20261029](current_status_20261029.md) 与
-[task_board](../tasks/task_board.md)。
+当前提交状态见 [release_plan_20261101](../tasks/release_plan_20261101.md)、
+[submission/README](../submission/README.md) 与 [task_board](../tasks/task_board.md)；
+[current_status_20261029](current_status_20261029.md) 为 10-29 快照。
 
 ## 背景与目标
 
@@ -32,22 +34,23 @@ P2 不影响核心交付日期。任何 P0/P1 回归或 10-21 节点未达到，
 
 ## 当前事实与待定事项
 
-当前 PYNQ release 使用独立 `pynq_wrapper`、FCLK0 100 MHz、PS7 GP0 两个 AXI-Lite
-窗口和 AXI-Lite FIFO ↔ RV32 UART mailbox。2026-10-29 完成三模式 smoke、KAT #529
-30 次 warm benchmark 和 9/9 错误/恢复门禁，证据见
-[validation_20261029](../board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)。
+主演示 PUF3 overlay（`pynq_puf3_wrapper`，控制 ID PQF3，固件 `pynq-svc-puf3`）FCLK0 配置 100 MHz，
+2026-10-31 在目标板完成三模式各 289/289 容量内 KAT 与坏 Tag 拒绝、KAT #529 30 次 benchmark
+（加密 21862/1369/3895 cycles，15.969×/5.613×；解密 22562/1213/4288，18.600×/5.262×）以及会话内
+PUF enroll（127/128）/reconstruct×5/HWKEY 流程；原始结果见
+[result.json](../data/pynq_puf3/notebook_20261031_114512/result.json)。资源 LUT 18674/FF 32002/BRAM 34.5/DSP 4，
+已约束路径 WNS +0.104 ns。跨电源周期、温度/BER/熵/唯一性和 RO 计数器域时序签核仍为 `not_measured`。
 
-2026-10-30 的独立 `pynq_puf3` 变体在同一目标板完成 289/289 容量内 KAT 和坏 Tag
-拒绝（SW/HW/ISE 各一套）、30 次 benchmark 以及单次上电 PUF enroll/reconstruct/HWKEY
-流程；原始结果见
-[result.json](../data/pynq_puf3/notebook_20261030_144328/result.json)。跨电源周期、
-温度/BER/熵/唯一性和 RO 域时序签核仍为 `not_measured`。
+历史对照 PYNQ v1 release 使用独立 `pynq_wrapper`、PS7 GP0 两个 AXI-Lite 窗口和 AXI-Lite FIFO ↔ RV32
+UART mailbox；10-31 重测 KAT #529 benchmark（23342/1439/3995）与 9/9 错误/恢复门禁，原始数据在
+`data/pynq/notebook_20261031_112052/` 与 `data/pynq/error_gate_20261031_112812/`；
+[validation_20261029](../board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md) 为 10-29 首测记录。
 
 原始 CICC XC7Z020 baseline 仍与 PYNQ release 分开。B04 仍缺准确 FreeRTOS
 kernel/bootloader 来源；RV32/RV64 完整回归、板上 ISA 抽样和 800 组超 16B 容量 KAT
 仍不能宣称通过。
 
-待定/未完成：B03 完整实物证据、Skill S04/S05、D01-D06 材料与 clean-clone。
+待定/未完成：B03 完整实物证据、实机演示视频（D04）、clean-clone（D05）、冻结与最终提交（V04/D06）。
 全部人员 owner 仍为 TBD。
 
 ## 工程交付边界

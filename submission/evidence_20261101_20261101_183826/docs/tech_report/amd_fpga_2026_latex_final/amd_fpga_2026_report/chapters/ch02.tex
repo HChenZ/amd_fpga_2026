@@ -1,0 +1,81 @@
+\partchapter{1}{第一部分\quad 作品概述}
+
+\Needspace{85pt}
+
+\section{功能与特性}
+
+本作品在 Zynq-7020 上实现 RV32/PYNQ 短消息认证加密平台，最终演示使用 PUF3 单一 overlay。PL 内为五级 RV32IM + Zicsr CPU，提供标准 Ascon-AEAD128 软件、MMIO 与定制指令三种方案，并接入可显式切换的 RO-PUF/DNA 密钥通路。当前 PT/AD 各 $\leq$16 B，key/nonce/tag 各 16 B。PS 通过两个 AXI-Lite 窗口与 PL 内 UART mailbox 调用 RV32 服务固件，Jupyter 展示正确性、CPU 周期、PS 墙钟及 PUF 流程。PUF3 三模式各 289 组容量内 KAT 与坏 Tag 拒绝已有实板记录；完整 1089 组仅为 host 范围。旧 release 的 9 项错误恢复证据单列。
+
+本作品面向资源受限嵌入式设备的短消息认证加密，选择 NIST SP 800-232 Final Ascon-AEAD128，在既有五级流水线 RISC-V CPU 上比较纯软件与两条硬件加速路径。算法公开参考实现与官方 KAT 提供独立正确性基准；可交互 PYNQ 演示提供调用、验证与性能展示入口。
+
+本次交付聚焦标准正确性、同平台周期对照、可运行 overlay 与可追溯证据。 host 执行完整 1089 组 KAT；板端只声明容量内 289 组及负向验证，未验收项见 §\ref{sec:open_items}。
+
+\Needspace{85pt}
+
+\section{应用领域}
+
+本作品面向资源受限嵌入式系统的短消息认证加密评估，例如传感器状态、控制消息或设备间小包数据。当前实测只证明开发板上的有限长度功能与性能，不等于已部署产品的安全认证。
+
+平台也可作为体系结构与 FPGA 实验载体：同一 RV32 上比较纯软件、CPU 驱动 MMIO 与定制指令，用相同向量和测量边界观察周期差异。替换算法或平台需重新适配验证，不能直接沿用本作品性能值。
+
+\Needspace{85pt}
+
+\section{主要技术特点}
+
+三方案同平台、同输入对照；custom-0 的四条定制指令以 .insn 调用，不修改 GCC backend； AEAD 密文和 Tag 与锁定 Final 参考逐字节比对；CPU mcycle 与 PS 墙钟分别保存。构建采用 Vivado 2025.2，bit/hwh/固件逐项记录哈希；仿真、板测、实现报告与未测项分层标注。当前 PYNQ 数据通道为 AXI-Lite 字节 FIFO 与 RV32 uncached UART，不使用共享可缓存数据缓冲。
+
+\Needspace{85pt}
+
+\Needspace{180pt}
+\section{主要性能指标}
+
+{\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\thetable}{1-1}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.4263\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.1912\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.1912\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.1912\linewidth-2\tabcolsep\relax}@{}}
+\caption{主要性能指标}\label{tab:1-1}\\
+\toprule
+\textbf{指标} & \textbf{SW} & \textbf{HW/MMIO} & \textbf{ISE} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\footnotesize 续表 1-1}\\
+\toprule
+\textbf{指标} & \textbf{SW} & \textbf{HW/MMIO} & \textbf{ISE} \\
+\midrule
+\endhead
+加密 cycles & 21862 & 1369 & 3895 \\
+加密周期加速比 & 1.000$\times$ & 15.969$\times$ & 5.613$\times$ \\
+解密 cycles & 22562 & 1213 & 4288 \\
+解密周期加速比 & 1.000$\times$ & 18.600$\times$ & 5.262$\times$ \\
+加密 PS 墙钟 ms & 5.130 & 4.403 & 4.385 \\
+板级 KAT / 坏 Tag 拒绝 & 289/289 & 289/289 & 289/289 \\
+\bottomrule
+\end{longtable}
+}
+
+上表来自 \pufresult，HWKEY 关闭，官方 KAT \#529（PT=16 B、AD=0）预热 5 次、采样 30 次，周期不含 PS/UART。整机 LUT 18674、FF 32002、BRAM 34.5、DSP 4；100 MHz 约束下 WNS +0.104 ns、TNS 0、DRC 0 Error。mcycle/PS 时基测得约 99.9723 MHz；RO 振荡环计数器域未签核，不以正 WNS 宣称全域通过。
+
+\Needspace{85pt}
+
+\section{主要创新点}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  同一 RV32 平台、同输入比较软件、MMIO 和定制指令，避免跨平台拼接加速比。
+\item
+  custom-0 状态读写与 P8/P12 置换，经 inline assembly 调用，不改编译器后端。
+\item
+  策略扫掠与端点归因结合 RTL 结构改造，形成带 run 记录的时序收敛过程。
+\item
+  工件哈希、官方 KAT、原始周期、墙钟与 PUF 门禁构成可复核演示链，旧版证据分列。
+\end{enumerate}
+
+\Needspace{85pt}
+
+\section{设计流程}
+
+设计流程以“先定口径、再做实现、最后留证”为主线，分六个阶段（图 1-1）：确定指标及出处；按模块完成 RTL 与 testbench；以参考实现和官方向量逐层仿真收敛；先策略扫掠、再按失败端点改结构；板上验证三方案并采集 KAT 与周期；核验哈希后冻结。细节见附录 D。
+
+\figpdf{1-1}{fig_1_1}{设计与验证流程}{}

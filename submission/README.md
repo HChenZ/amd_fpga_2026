@@ -3,11 +3,13 @@
 项目方安排：2026-11-01 提交并冻结。`current_evidence.json` 指向最近一次装配并校验的证据包及 ZIP 哈希。
 `evidence/` 为此前生成的历史包，保留原样，不作为本轮最新版。
 
-> **2026-11-01 状态**：最终报告已改为独立 LaTeX 工程
-> `docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/`（PDF：`output/pdf/final_report.pdf`），
+> **2026-11-01 状态**：最终报告为独立 LaTeX 工程
+> `docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/`，PDF `output/pdf/final_report.pdf`
+> **已入库**；LaTeX 源、Vivado 截图 PNG 与 ISE 截图仿真数据/脚本按用户要求**不单独入库**，完整随证据包提供。
 > 主演示为 PUF3，板测主采样 `data/pynq_puf3/notebook_20261031_114512/result.json`。
-> 此前 `evidence_20261101_20261031_*` 三个包与 `freeze_manifest.*` 收录的是旧 `report.md`/`latex/main.pdf`
-> 和 10-29/10-30 板测，**已作废**，仅作历史保留；报告定稿后按下方顺序重新装配与冻结。
+> 当前证据包与冻结清单以 `current_evidence.json`、`freeze_manifest.md` 为准。
+> `evidence_20261101_20261031_*` 三个包（旧报告/旧板测）已作废；`evidence_20261101_20261101_181751`
+> 为入口文档更新前的一版，已被取代；均仅作历史保留。
 
 Git 中只保存证据包目录。ZIP 和历史包 `evidence/` 不入库，只留在本机；`current_evidence.json`
 里记录了 ZIP 哈希、报告构建记录、报告 PDF 哈希和板测主采样路径。
@@ -32,7 +34,7 @@ python -X utf8 docs/tech_report/evidence/build_evidence.py          # C 组清�
 python -X utf8 docs/tech_report/evidence/check_benchmark_tables.py  # D02，对最终报告
 python -X utf8 docs/tech_report/evidence/assemble.py --check-only   # 只跑门禁，不写包
 python -X utf8 docs/tech_report/evidence/assemble.py                # 证据包 + ZIP 自检
-# 3. 提交报告工程、证据包目录与日志，使工作区干净
+# 3. 提交报告 PDF、证据包目录、文档与日志，使已跟踪文件无改动（截图/LaTeX 源保持未跟踪）
 python -X utf8 docs/tech_report/evidence/freeze_manifest.py         # 冻结清单 + 源码包
 ```
 

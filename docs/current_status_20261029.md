@@ -1,6 +1,10 @@
-# 当前状态（2026-10-31）
+# 当前状态（2026-10-31 快照）
 
-owner TBD。本文件是当前状态索引；发生事实以 `project_log/actual_progress.md`
+> **2026-11-01：本文件为 10-31 快照，已过时。** 最终报告改以 PUF3 overlay 为主演示（板测
+> `data/pynq_puf3/notebook_20261031_114512/`），下文把 PUF3 称为“独立变体”的表述与 10-29/10-30 数据路径
+> 均为当时状态。当前状态见 `tasks/release_plan_20261101.md`、`submission/README.md` 与 `README.md` 顶部。
+
+owner TBD。本文件是 10-31 时的状态索引；发生事实以 `project_log/actual_progress.md`
 为准，任务字段以 `tasks/task_board.md` 为准。历史计划文档保留原文并标注历史边界。
 
 ## 结论

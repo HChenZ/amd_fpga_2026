@@ -1,4 +1,12 @@
-# 技术报告 v0.9：当前证据对齐稿
+# 技术报告 v0.9：当前证据对齐稿（已被最终报告取代）
+
+> **2026-11-01：本目录的 Markdown/HTML/LaTeX 流水线（`report.md`、`src/`、`src_template/`、`latex/`、
+> `build_report.py` 等）是 PYNQ v1 release 叙事的 v0.9 稿，已被取代，不再维护，数值不作为当前结论引用。**
+> 最终报告是独立 LaTeX 工程 `amd_fpga_2026_latex_final/amd_fpga_2026_report/`，PDF 为
+> `output/pdf/final_report.pdf`，主演示 PUF3 overlay，板测主采样
+> `data/pynq_puf3/notebook_20261031_114512/result.json`；维护说明见该目录 `readme.md`。
+> 证据装配与核对脚本在 `evidence/`（`build_evidence.py`、`check_benchmark_tables.py`、`assemble.py`、
+> `freeze_manifest.py`），使用顺序见 `submission/README.md`。下文为 10-29 原文，保留作记录。
 
 2026-10-29 更新；**11-01 提交并冻结**，以项目方最新安排为准。
 

@@ -214,7 +214,8 @@ def main():
               ('R-ref', '报告正文引用的仓库文件', referenced)] + EXTRA
     files = list(dict.fromkeys(f for _, _, paths in EVIDENCE for f in paths))
     files += [EV / n for n in ('manifest.md', 'sha256sums.txt')]
-    files += [ROOT / n for n in ('docs/skill_test_guide_20261030.md', 'tasks/release_plan_20261101.md',
+    files += [ROOT / n for n in ('docs/project_intro_20261101.md', 'docs/skill_test_guide_20261030.md',
+              'tasks/release_plan_20261101.md',
               'tasks/task_board.md', 'skill/rtl-design-discipline/SKILL.md', 'LICENSE')]
     files += [f for _, _, paths in groups for f in paths]
     files = list(dict.fromkeys(files))

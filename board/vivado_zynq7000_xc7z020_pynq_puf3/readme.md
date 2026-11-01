@@ -101,8 +101,9 @@ cosim 两个用例、固件 bin 哈希、变体 RTL 哈希，以及生成的 `.m
 
 ## 离线结果
 
-候选（2026-10-30，离线门禁 PASS；首次板上功能测试 PASS），完整信息见 `candidate/manifest.json`；
-板测原始证据见 `data/pynq_puf3/notebook_20261030_131920/`：
+候选（2026-10-30，离线门禁 PASS），完整信息见 `candidate/manifest.json`；
+当前板测原始证据（最终报告唯一主采样）见 `data/pynq_puf3/notebook_20261031_114512/`。
+10-30 的三次运行（含首次 62.5 MHz 失败）已于 11-01 由 c05782d 移出工作树，可从 Git 历史取回：
 
 | 项 | 结果 |
 |---|---|
@@ -152,12 +153,16 @@ cosim 用例：
 `src/pynq_puf3/pynq_puf3_board_test.ipynb`。
 ```
 
-最近一次板测（2026-10-30）：
+最近一次板测（2026-10-31 11:45 UTC，`data/pynq_puf3/notebook_20261031_114512/result.json`，最终报告引用）：
 
-- Notebook 状态 `PASS`、exit code `0`；FCLK0 寄存器推算 `99.999999 MHz`，mcycle 实测 `99.9882 MHz`。
-- SW/HW/ISE 各 6 个代表性 KAT 通过，错误 Tag 各 6 次拒绝；HW encrypt/decrypt 相对 SW 中位数加速比分别为 `15.969x` / `18.6x`，ISE 为 `5.613x` / `5.262x`。
-- PUF quality `127`，5 次 reconstruct 稳定，HWKEY 隔离和关闭后 KAT 恢复均通过。
-- 结论仅为 `in-session functional pass`；完整 529 KAT、跨电源周期、温度/BER/熵/唯一性和 RO 振荡环计数器时序签核仍未完成。
+- Notebook 状态 `PASS`、exit code `0`；bit/hwh/manifest 哈希与 `candidate/` 一致；FCLK0 寄存器推算
+  `99.999999 MHz`，mcycle/PS 时基估测 `99.9723 MHz`（非示波器/Fmax 测量）。
+- SW/HW/ISE 各 289 个容量内 KAT 通过，错误 Tag 各 289 次拒绝。
+- KAT #529（HWKEY 关闭）中位 cycles：加密 21862/1369/3895，解密 22562/1213/4288；HW 相对 SW 加速比
+  `15.969x` / `18.600x`，ISE `5.613x` / `5.262x`。墙钟只有 summary 中位，不保存原始数组。
+- PUF quality `127`（/128），5 次 reconstruct 稳定，HWKEY 隔离和关闭后 KAT 恢复均通过。
+- 结论仅为 `in-session functional pass`；超过 16 B 接口的 KAT、完整错误门禁、跨电源周期、温度/BER/熵/唯一性和
+  RO 振荡环计数器时序签核仍未完成。
 
 测试分四段，全部通过才 exit 0：
 1. 身份与时钟：哈希、ID、固件 ID；下载前 IO PLL FBDIV = 30，下载后 SLCR 推算 FCLK0 = 100 ± 0.5 MHz，

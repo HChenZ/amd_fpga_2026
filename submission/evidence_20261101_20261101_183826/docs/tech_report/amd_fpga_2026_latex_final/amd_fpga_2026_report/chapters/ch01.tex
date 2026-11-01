@@ -1,0 +1,11 @@
+\chapter*{摘要}
+\addcontentsline{toc}{chapter}{摘要}
+\markboth{摘要}{摘要}
+
+本作品在正点原子领航者 ZYNQ7020 开发板上实现集成 Ascon-AEAD128 的 RISC-V SoC。 PL 内为五级流水线 RV32IM + Zicsr 处理器，包含分支预测、I/D Cache、AXI 互连及 UART、GPIO、CLINT。密码功能以 NIST SP 800-232 Final 为基准，提供纯软件、存储器映射加速器和定制指令三种方案。四条定制指令使用 custom-0 编码空间，以 inline assembly 调用，不修改 GCC backend。
+
+本报告最终演示对象为 PUF3：PS 经两个 AXI-Lite 窗口及 PL 内 UART mailbox 控制 \texttt{pynq-svc-puf3}，同一 overlay 提供 SW/MMIO/ISE 与 RO-PUF/DNA 密钥通路。明文和关联数据各不超过 16 B，三模式各通过 289 组容量内官方 KAT 及 289 次错误 Tag 拒绝。固定官方 KAT \#529（PT=16 B、AD=0），HWKEY 关闭，各预热 5 次后采样 30 次，加密 SW/HW/ISE 中位周期为 21862/1369/3895，HW 与 ISE 的周期加速比为 15.969$\times$、5.613$\times$；解密为 22562/1213/4288 周期。周期来自固件 AEAD 调用边界，不含 PS 与串口；10-31 采样的 PS 调用墙钟中位 4.137--5.130 ms 单列，不充作同倍数响应加速。
+
+Vivado 2025.2 对当前 \texttt{pynq\_puf3\_wrapper} 在 100 MHz 约束下实现 WNS +0.104 ns、TNS 0、WHS +0.041 ns，已约束路径 setup/hold 失败端点均为 0；整机为 18674 LUT、32002 FF、34.5 BRAM tile、4 DSP。DRC 为 0 Error/0 Critical Warning，但 methodology 含 TIMING-17，RO 振荡环计数器域仍未签核。10-31 完整板测以 mcycle 对 PS 单调时钟测得约 99.9723 MHz；同次上电 enroll quality=127/128、连续 5 次重建及 HWKEY 开关恢复通过。host 完整 1089 组 KAT 与板级 289 组分列；跨上电、温压、熵、BER、唯一性、小时级稳定性与干净环境端到端复现尚未验收。旧 PYNQ release 的 9 项错误恢复门禁保留为历史证据，不移作 PUF3 的通过结论。
+
+\textbf{关键词}：RISC-V；Ascon-AEAD128；定制指令扩展；MMIO；Zynq-7000；PYNQ；RO-PUF 原型

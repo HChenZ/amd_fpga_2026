@@ -1,6 +1,6 @@
 # RISC-V Lightweight Cryptography SoC with ASCON ISE
 
-2026-10-31 当前状态入口：[状态总表](docs/current_status_20261029.md)、[PYNQ 实板验证](board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)、[Skill L3 汇总](data/skill/l3_20261031_063709/40_summary.json)。AXI-Lite/UART 服务链与独立 PUF3 变体已在正点原子领航者 ZYNQ7020 实板运行；`pynq-overlay-workflow` 已完成 L1、L2（`simulated`）和 L3 实板功能验证，L3 session 四段 PASS。S01–S03 已完成；S04 report/collector 非 Ascon 示例、S05 独立复现/证据包及 D01-D06 最终材料仍未完成。
+2026-11-01 当前状态入口：[最终报告 PDF](docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf)、[提交计划](tasks/release_plan_20261101.md)、[提交入口与证据包](submission/README.md)、[PUF3 板测结果](data/pynq_puf3/notebook_20261031_114512/result.json)、[Skill L3 汇总](data/skill/l3_20261031_063709/40_summary.json)。主演示为 PUF3 overlay（SW/MMIO/ISE 三模式 + RO-PUF/DNA 密钥通路同一 bit），10-31 在正点原子领航者 ZYNQ7020 实板三模式各 289/289 KAT，KAT #529 加密 21862/1369/3895 cycles（15.969×/5.613×）；PUF 仅会话内功能证据，RO 计数器域未签核、跨上电未测。PYNQ v1 release 作历史对照。`pynq-overlay-workflow` Skill S01–S05 已完成（L1、L2 `simulated`、L3 实板）。实机演示视频、clean-clone 与最终冻结提交仍待完成。
 
 在 CICC1000023「基于 RISC-V 的高性能 CPU 设计及 FPGA 验证」基础上扩展轻量级密码学：在自研 RISC-V CPU 上运行 **NIST SP 800-232 Ascon-AEAD128**，加入 custom instruction set extension（ISE），通过 FPGA 实测比较软件与 ISE，再用 PYNQ/Jupyter 完成控制、黄金参考比对和展示。
 
@@ -62,7 +62,8 @@ UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
 | `sim/cicc1000023/` | 恢复的模块/ISA/formal 验证源；适配与完整 CPU 回归待完成 |
 | `build/` | 资产哈希/原名还原脚本、精选历史报告、本轮验证元数据 |
 | `data/ascon/` | 锁定来源与许可、完整 Final KAT、固定 golden vectors、host/RTL 与失败证据 |
-| `data/pynq/` | 2026-10-28/29 PYNQ release 与 2026-10-30 PUF3 完整容量内 KAT、Notebook、warm benchmark 原始证据 |
+| `data/pynq/` | PYNQ v1 release（历史对照）：10-28 容量内 KAT、10-31 warm benchmark 与错误恢复门禁原始证据 |
+| `data/pynq_puf3/` | PUF3 主演示 10-31 实板结果（KAT、benchmark、PUF）；10-30 旧运行已移出，存于 Git 历史 |
 | `data/recovery/` | CICC1000023 recovery 清单、哈希、差异与小测试输入 |
 | `skill/` | 不绑定 Ascon 的通用 PYNQ Skill 预留 |
 | `report/` | 报告、图表、视频索引与 LLM 协作记录预留 |
@@ -96,7 +97,7 @@ UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
 
 历史证据：归档中有旧工程 bitstream/report，以及 100 MHz 下 WNS 0.056 ns、placed LUT/FF/BRAM/DSP 等历史结果；它们不是当前 Ascon 集成的本轮重建、PPA 或上板实测。
 
-计划项：P0 继续收口 baseline、目标软件、RTL integration/decrypt 和 CPU ISE；PYNQ 属于后续 P1。PUF/启动认证仍受门禁约束并暂缓，不进入当前主线。全部 owner 仍为 `TBD`。
+计划项（早期规划，保留原文；11-01 状态见顶部）：P0 继续收口 baseline、目标软件、RTL integration/decrypt 和 CPU ISE；PYNQ 属于后续 P1。PUF/启动认证仍受门禁约束并暂缓，不进入当前主线——11-01 起 PUF 密钥通路已以 PUF3 overlay 进入主演示（仅会话内功能证据），启动认证仍未开展。全部 owner 仍为 `TBD`。
 
 事实台账以 [actual_progress](project_log/actual_progress.md) 为准，任务字段以 [task_board](tasks/task_board.md) 为准。
 
@@ -174,6 +175,6 @@ UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
 | 10-21 | PYNQ/Jupyter、自动 KAT 与 benchmark；达标后才可开启 PUF |
 | 10-27 / 10-28 | 核心功能冻结 / 内部 code freeze |
 | 10-29～11-01 | 报告、图表、PPT、视频、Skill、LLM 记录 |
-| 11-02 / 11-03 / 11-04 | 干净环境复现 / 仅材料修复 / 正式提交 |
+| 11-02 / 11-03 / 11-04 | 干净环境复现 / 仅材料修复 / 正式提交（已由 10-29 授权改为 **11-01 提交并冻结**，此行为原计划） |
 
-验收细则见 [milestones](tasks/milestones.md)。**当前不要做：** Ascon ISE + PYNQ 全部稳定前，PUF、PUF-derived key 与 authenticated boot 不进入主线；不未经引用核验移动 Vivado、不删除旧代码、不直接编辑生成文件；本轮用户授权的 Kintex rename 已完成核验。
+验收细则见 [milestones](tasks/milestones.md)。**当前不要做：** 不未经引用核验移动 Vivado、不删除旧代码、不直接编辑生成文件；本轮用户授权的 Kintex rename 已完成核验。（原“PUF 不进入主线”约束已被 11-01 的 PUF3 主演示取代；authenticated boot 仍未开展。）

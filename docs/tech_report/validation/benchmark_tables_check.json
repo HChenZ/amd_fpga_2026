@@ -1,7 +1,7 @@
 {
   "task": "D02",
   "status": "PASS",
-  "timestamp": "2026-11-01T18:17:31+08:00",
+  "timestamp": "2026-11-01T18:38:14+08:00",
   "report_dir": "docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report",
   "pdf": {
     "path": "docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf",
@@ -25,6 +25,9 @@
     "docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/chapters/ch04.tex": "317ed40d0172a7709536baa539ab95dfa474077f12e1895658081cf92b9cec5b",
     "board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/reports/utilization.rpt": "6b935ff3864b80648a9b4e3ce0d1ce62bb49459c7be8024f13284d65910de3e3",
     "board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/reports/timing_summary.rpt": "35d249899839ed22051599cbf8018ac2b579ffa25970705978df5adbbbce906f",
+    "docs/project_intro_20261101.md": "1b3b03de8a43fd1392c8df369937e9afb28edae4c11c7fd14f9f8550b936e18f",
+    "report/demo_video_script.md": "38b68541dff698f2c74ddfc0e44b70e0bac110493966bf14834e873ba1eb5bfb",
+    "README.md": "bc9583857299e69b4cb3a3f126fa50325e2d16a8b78ff1ae69cbe305c5f9efa7",
     "docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf": "603c625a8e8f3c1271d9d96f1d4982e15ded676de9262c4ef3813111124e4825"
   },
   "checks": [
@@ -169,6 +172,90 @@
     },
     {
       "check": "摘要含 99.9723",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 docs/project_intro_20261101.md 含 21862/1369/3895",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 docs/project_intro_20261101.md 含 22562/1213/4288",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 docs/project_intro_20261101.md 含 15.969",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 docs/project_intro_20261101.md 含 18.600",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 docs/project_intro_20261101.md 含 5.613",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 docs/project_intro_20261101.md 含 5.262",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 docs/project_intro_20261101.md 含 18674",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 docs/project_intro_20261101.md 含 32002",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 docs/project_intro_20261101.md 含 +0.104",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 report/demo_video_script.md 含 21862/1369/3895",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 report/demo_video_script.md 含 22562/1213/4288",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 report/demo_video_script.md 含 15.969",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 report/demo_video_script.md 含 18.600",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 report/demo_video_script.md 含 5.613",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 report/demo_video_script.md 含 5.262",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 report/demo_video_script.md 含 18674",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 report/demo_video_script.md 含 32002",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 report/demo_video_script.md 含 +0.104",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 README.md 含 21862/1369/3895",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 README.md 含 15.969",
+      "status": "PASS"
+    },
+    {
+      "check": "配套材料 README.md 含 5.613",
       "status": "PASS"
     },
     {

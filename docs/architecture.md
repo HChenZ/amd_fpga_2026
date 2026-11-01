@@ -1,7 +1,8 @@
 # 系统架构
 
-更新：2026-10-30。CPU/baseline 部分更新于 2026-09-21；“目标”段保留历史设计，
-其中 PYNQ/ISE 主链现已有独立实现和实板证据。
+更新：2026-11-01。CPU/baseline 部分更新于 2026-09-21；“目标”段保留历史设计，
+其中 PYNQ/ISE 主链现已有独立实现和实板证据。最终报告主演示为 PUF3 overlay（见下），
+其 Block Design 与实现截图见最终报告图 2-10/2-11。
 
 ## 2026-10-29 已实现 PYNQ 拓扑
 
@@ -15,15 +16,17 @@ flowchart LR
     Result --> AXI
 ```
 
-当前 release 为 `pynq_wrapper`，FCLK0=100 MHz；control `0x4000_0000`、mailbox
+PYNQ v1 release（历史对照）为 `pynq_wrapper`，FCLK0=100 MHz；control `0x4000_0000`、mailbox
 `0x4000_1000`，各 4 KiB。UART 是 uncached MMIO，无 shared cacheable buffer。
 Y01-Y05/V03 实板验收见
 [validation_20261029](../board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)。
 
-独立 `pynq_puf3` 变体复用三模式服务链并增加 Y01P/Y01K PUF v1 控制面；其单次上电
-实板结果为 SW/HW/ISE 各 289/289 KAT 与坏 Tag 拒绝，enroll quality 127、5 次
-reconstruct 稳定，关闭 HWKEY 后标准 KAT 恢复。该变体的 PUF helper 为会话内数据，
-跨电源周期、RO 时序和可靠性统计不在本次证据内。
+**主演示 PUF3 overlay**（`pynq_puf3_wrapper`，控制 ID PQF3 `0x33465150`，固件 `pynq-svc-puf3`）
+沿用上图的 control/mailbox 地址与三模式服务链，增加 RO-PUF/DNA → `key_mmio` → Ascon MMIO 的
+HWKEY 密钥选择及 Y01P/Y01K PUF v1 控制面。2026-10-31 实板结果
+（`data/pynq_puf3/notebook_20261031_114512/result.json`）为 SW/HW/ISE 各 289/289 KAT 与坏 Tag 拒绝，
+enroll quality 127、5 次 reconstruct 稳定，关闭 HWKEY 后标准 KAT 恢复。PUF helper 为会话内数据，
+跨电源周期、RO 计数器域时序和可靠性统计不在本次证据内。
 
 ## 当前结构
 

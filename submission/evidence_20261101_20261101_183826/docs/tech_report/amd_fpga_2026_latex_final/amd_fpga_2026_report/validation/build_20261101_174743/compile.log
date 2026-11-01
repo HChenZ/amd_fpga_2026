@@ -1,0 +1,189 @@
+note: "version 2" Tectonic command-line interface activated
+note: Running TeX ...
+Fontconfig error: Cannot load default config file: No such file: (null)
+warning: lineno.sty:296: Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+warning: accessing absolute path `C:/Windows/fonts\DejaVuSansMono-Bold_0.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/Windows/fonts\DejaVuSansMono-BoldOblique_0.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/Windows/fonts\DejaVuSansMono-Oblique_0.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/Windows/fonts\DejaVuSansMono_0.ttf`; build may not be reproducible in other environments
+warning: chapters/ch03.tex:271: Underfull \hbox (badness 4899) in paragraph at lines 270--271
+warning: chapters/ch03.tex:348: Underfull \hbox (badness 10000) in paragraph at lines 347--348
+warning: chapters/ch03.tex:348: Underfull \hbox (badness 4403) in paragraph at lines 347--348
+warning: chapters/ch03.tex:348: Underfull \hbox (badness 1460) in paragraph at lines 347--348
+warning: chapters/ch03.tex:469: Underfull \hbox (badness 10000) in paragraph at lines 467--469
+warning: chapters/ch03.tex:612: Underfull \hbox (badness 10000) in paragraph at lines 611--612
+warning: chapters/ch03.tex:737: Underfull \hbox (badness 6641) in paragraph at lines 736--737
+warning: chapters/ch03.tex:777: Underfull \hbox (badness 10000) in paragraph at lines 775--777
+warning: chapters/ch03.tex:787: Underfull \hbox (badness 1616) in paragraph at lines 786--787
+warning: chapters/ch03.tex:787: Underfull \hbox (badness 2903) in paragraph at lines 786--787
+warning: chapters/ch03.tex:787: Underfull \hbox (badness 3492) in paragraph at lines 786--787
+warning: chapters/ch03.tex:881: Underfull \hbox (badness 3690) in paragraph at lines 880--881
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 1082) in paragraph at lines 882--883
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 3058) in paragraph at lines 882--883
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 10000) in paragraph at lines 882--883
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 10000) in paragraph at lines 882--883
+warning: chapters/ch03.tex:919: Underfull \hbox (badness 10000) in paragraph at lines 918--919
+warning: chapters/ch03.tex:919: Underfull \hbox (badness 10000) in paragraph at lines 918--919
+warning: chapters/ch03.tex:975: Underfull \hbox (badness 10000) in paragraph at lines 973--975
+warning: chapters/ch03.tex:977: Underfull \hbox (badness 1931) in paragraph at lines 976--977
+warning: chapters/ch03.tex:1027: Underfull \hbox (badness 10000) in paragraph at lines 1026--1027
+warning: chapters/ch03.tex:1027: Underfull \hbox (badness 10000) in paragraph at lines 1026--1027
+warning: chapters/ch03.tex:1027: Underfull \hbox (badness 10000) in paragraph at lines 1026--1027
+warning: chapters/ch03.tex:1063: Underfull \hbox (badness 1616) in paragraph at lines 1062--1063
+warning: chapters/ch03.tex:1065: Underfull \hbox (badness 3536) in paragraph at lines 1064--1065
+warning: chapters/ch03.tex:1065: Underfull \hbox (badness 2990) in paragraph at lines 1064--1065
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 1496) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 4036) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 3701) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 2277) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1232: Underfull \hbox (badness 1048) in paragraph at lines 1231--1232
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:40: Underfull \hbox (badness 10000) in paragraph at lines 39--40
+warning: chapters/ch04.tex:40: Underfull \hbox (badness 10000) in paragraph at lines 39--40
+warning: chapters/ch04.tex:72: Underfull \hbox (badness 10000) in paragraph at lines 71--72
+warning: chapters/ch04.tex:138: Underfull \hbox (badness 10000) in paragraph at lines 137--138
+warning: chapters/ch04.tex:305: Underfull \hbox (badness 2318) in paragraph at lines 302--305
+warning: chapters/ch04.tex:305: Underfull \hbox (badness 10000) in paragraph at lines 302--305
+warning: chapters/ch04.tex:305: Underfull \hbox (badness 1009) in paragraph at lines 302--305
+warning: chapters/ch04.tex:437: Underfull \hbox (badness 10000) in paragraph at lines 436--437
+warning: chapters/ch04.tex:437: Underfull \hbox (badness 10000) in paragraph at lines 436--437
+warning: chapters/ch04.tex:545: Underfull \hbox (badness 10000) in paragraph at lines 544--545
+warning: chapters/ch04.tex:545: Underfull \hbox (badness 10000) in paragraph at lines 544--545
+warning: chapters/ch04.tex:545: Underfull \hbox (badness 10000) in paragraph at lines 544--545
+warning: chapters/ch04.tex:639: Underfull \hbox (badness 10000) in paragraph at lines 638--639
+warning: chapters/ch04.tex:639: Underfull \hbox (badness 10000) in paragraph at lines 638--639
+warning: chapters/ch04.tex:663: Underfull \hbox (badness 6910) in paragraph at lines 662--663
+warning: chapters/app02.tex:38: Underfull \hbox (badness 10000) in paragraph at lines 37--38
+warning: chapters/app02.tex:38: Underfull \hbox (badness 1112) in paragraph at lines 37--38
+warning: chapters/app02.tex:44: Underfull \hbox (badness 10000) in paragraph at lines 43--44
+warning: chapters/app02.tex:44: Underfull \hbox (badness 10000) in paragraph at lines 43--44
+warning: evidence/puf3_benchmark:1: Underfull \hbox (badness 10000) in paragraph at lines 65--1
+warning: evidence/puf3_cosim:1: Underfull \hbox (badness 10000) in paragraph at lines 76--1
+warning: evidence/puf3_cosim:1: Underfull \hbox (badness 5133) in paragraph at lines 76--1
+warning: evidence/legacy_timing:1: Underfull \hbox (badness 10000) in paragraph at lines 98--1
+warning: chapters/app03.tex:104: Underfull \hbox (badness 10000) in paragraph at lines 103--104
+warning: chapters/app04.tex:44: Underfull \hbox (badness 10000) in paragraph at lines 43--44
+note: Rerunning TeX because "main.toc" changed ...
+warning: lineno.sty:296: Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+warning: chapters/ch03.tex:271: Underfull \hbox (badness 4899) in paragraph at lines 270--271
+warning: chapters/ch03.tex:348: Underfull \hbox (badness 10000) in paragraph at lines 347--348
+warning: chapters/ch03.tex:348: Underfull \hbox (badness 4403) in paragraph at lines 347--348
+warning: chapters/ch03.tex:348: Underfull \hbox (badness 1460) in paragraph at lines 347--348
+warning: chapters/ch03.tex:469: Underfull \hbox (badness 10000) in paragraph at lines 467--469
+warning: chapters/ch03.tex:612: Underfull \hbox (badness 10000) in paragraph at lines 611--612
+warning: chapters/ch03.tex:737: Underfull \hbox (badness 6641) in paragraph at lines 736--737
+warning: chapters/ch03.tex:777: Underfull \hbox (badness 10000) in paragraph at lines 775--777
+warning: chapters/ch03.tex:787: Underfull \hbox (badness 1616) in paragraph at lines 786--787
+warning: chapters/ch03.tex:787: Underfull \hbox (badness 2903) in paragraph at lines 786--787
+warning: chapters/ch03.tex:787: Underfull \hbox (badness 3492) in paragraph at lines 786--787
+warning: chapters/ch03.tex:881: Underfull \hbox (badness 3690) in paragraph at lines 880--881
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 1082) in paragraph at lines 882--883
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 3058) in paragraph at lines 882--883
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 10000) in paragraph at lines 882--883
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 10000) in paragraph at lines 882--883
+warning: chapters/ch03.tex:919: Underfull \hbox (badness 10000) in paragraph at lines 918--919
+warning: chapters/ch03.tex:919: Underfull \hbox (badness 10000) in paragraph at lines 918--919
+warning: chapters/ch03.tex:975: Underfull \hbox (badness 10000) in paragraph at lines 973--975
+warning: chapters/ch03.tex:977: Underfull \hbox (badness 1931) in paragraph at lines 976--977
+warning: chapters/ch03.tex:1027: Underfull \hbox (badness 10000) in paragraph at lines 1026--1027
+warning: chapters/ch03.tex:1027: Underfull \hbox (badness 10000) in paragraph at lines 1026--1027
+warning: chapters/ch03.tex:1027: Underfull \hbox (badness 10000) in paragraph at lines 1026--1027
+warning: chapters/ch03.tex:1063: Underfull \hbox (badness 1616) in paragraph at lines 1062--1063
+warning: chapters/ch03.tex:1065: Underfull \hbox (badness 3536) in paragraph at lines 1064--1065
+warning: chapters/ch03.tex:1065: Underfull \hbox (badness 2990) in paragraph at lines 1064--1065
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 1496) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 4036) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 3701) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 2277) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1232: Underfull \hbox (badness 1048) in paragraph at lines 1231--1232
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:40: Underfull \hbox (badness 10000) in paragraph at lines 39--40
+warning: chapters/ch04.tex:40: Underfull \hbox (badness 10000) in paragraph at lines 39--40
+warning: chapters/ch04.tex:72: Underfull \hbox (badness 10000) in paragraph at lines 71--72
+warning: chapters/ch04.tex:138: Underfull \hbox (badness 10000) in paragraph at lines 137--138
+warning: chapters/ch04.tex:305: Underfull \hbox (badness 2318) in paragraph at lines 302--305
+warning: chapters/ch04.tex:305: Underfull \hbox (badness 10000) in paragraph at lines 302--305
+warning: chapters/ch04.tex:305: Underfull \hbox (badness 1009) in paragraph at lines 302--305
+warning: chapters/ch04.tex:437: Underfull \hbox (badness 10000) in paragraph at lines 436--437
+warning: chapters/ch04.tex:437: Underfull \hbox (badness 10000) in paragraph at lines 436--437
+warning: chapters/ch04.tex:545: Underfull \hbox (badness 10000) in paragraph at lines 544--545
+warning: chapters/ch04.tex:545: Underfull \hbox (badness 10000) in paragraph at lines 544--545
+warning: chapters/ch04.tex:545: Underfull \hbox (badness 10000) in paragraph at lines 544--545
+warning: chapters/ch04.tex:639: Underfull \hbox (badness 10000) in paragraph at lines 638--639
+warning: chapters/ch04.tex:639: Underfull \hbox (badness 10000) in paragraph at lines 638--639
+warning: chapters/ch04.tex:663: Underfull \hbox (badness 6910) in paragraph at lines 662--663
+warning: chapters/app02.tex:38: Underfull \hbox (badness 10000) in paragraph at lines 37--38
+warning: chapters/app02.tex:38: Underfull \hbox (badness 1112) in paragraph at lines 37--38
+warning: chapters/app02.tex:44: Underfull \hbox (badness 10000) in paragraph at lines 43--44
+warning: chapters/app02.tex:44: Underfull \hbox (badness 10000) in paragraph at lines 43--44
+warning: evidence/puf3_benchmark:1: Underfull \hbox (badness 10000) in paragraph at lines 65--1
+warning: evidence/puf3_cosim:1: Underfull \hbox (badness 10000) in paragraph at lines 76--1
+warning: evidence/puf3_cosim:1: Underfull \hbox (badness 5133) in paragraph at lines 76--1
+warning: evidence/legacy_timing:1: Underfull \hbox (badness 10000) in paragraph at lines 98--1
+warning: chapters/app03.tex:104: Underfull \hbox (badness 10000) in paragraph at lines 103--104
+warning: chapters/app04.tex:44: Underfull \hbox (badness 10000) in paragraph at lines 43--44
+note: Rerunning TeX because "main.aux" changed ...
+warning: lineno.sty:296: Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+warning: chapters/ch03.tex:271: Underfull \hbox (badness 4899) in paragraph at lines 270--271
+warning: chapters/ch03.tex:348: Underfull \hbox (badness 10000) in paragraph at lines 347--348
+warning: chapters/ch03.tex:348: Underfull \hbox (badness 4403) in paragraph at lines 347--348
+warning: chapters/ch03.tex:348: Underfull \hbox (badness 1460) in paragraph at lines 347--348
+warning: chapters/ch03.tex:469: Underfull \hbox (badness 10000) in paragraph at lines 467--469
+warning: chapters/ch03.tex:612: Underfull \hbox (badness 10000) in paragraph at lines 611--612
+warning: chapters/ch03.tex:737: Underfull \hbox (badness 6641) in paragraph at lines 736--737
+warning: chapters/ch03.tex:777: Underfull \hbox (badness 10000) in paragraph at lines 775--777
+warning: chapters/ch03.tex:787: Underfull \hbox (badness 1616) in paragraph at lines 786--787
+warning: chapters/ch03.tex:787: Underfull \hbox (badness 2903) in paragraph at lines 786--787
+warning: chapters/ch03.tex:787: Underfull \hbox (badness 3492) in paragraph at lines 786--787
+warning: chapters/ch03.tex:881: Underfull \hbox (badness 3690) in paragraph at lines 880--881
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 1082) in paragraph at lines 882--883
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 3058) in paragraph at lines 882--883
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 10000) in paragraph at lines 882--883
+warning: chapters/ch03.tex:883: Underfull \hbox (badness 10000) in paragraph at lines 882--883
+warning: chapters/ch03.tex:919: Underfull \hbox (badness 10000) in paragraph at lines 918--919
+warning: chapters/ch03.tex:919: Underfull \hbox (badness 10000) in paragraph at lines 918--919
+warning: chapters/ch03.tex:975: Underfull \hbox (badness 10000) in paragraph at lines 973--975
+warning: chapters/ch03.tex:977: Underfull \hbox (badness 1931) in paragraph at lines 976--977
+warning: chapters/ch03.tex:1027: Underfull \hbox (badness 10000) in paragraph at lines 1026--1027
+warning: chapters/ch03.tex:1027: Underfull \hbox (badness 10000) in paragraph at lines 1026--1027
+warning: chapters/ch03.tex:1027: Underfull \hbox (badness 10000) in paragraph at lines 1026--1027
+warning: chapters/ch03.tex:1063: Underfull \hbox (badness 1616) in paragraph at lines 1062--1063
+warning: chapters/ch03.tex:1065: Underfull \hbox (badness 3536) in paragraph at lines 1064--1065
+warning: chapters/ch03.tex:1065: Underfull \hbox (badness 2990) in paragraph at lines 1064--1065
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 1496) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 4036) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 3701) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1224: Underfull \hbox (badness 2277) in paragraph at lines 1223--1224
+warning: chapters/ch03.tex:1232: Underfull \hbox (badness 1048) in paragraph at lines 1231--1232
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+warning: chapters/ch04.tex:40: Underfull \hbox (badness 10000) in paragraph at lines 39--40
+warning: chapters/ch04.tex:40: Underfull \hbox (badness 10000) in paragraph at lines 39--40
+warning: chapters/ch04.tex:72: Underfull \hbox (badness 10000) in paragraph at lines 71--72
+warning: chapters/ch04.tex:138: Underfull \hbox (badness 10000) in paragraph at lines 137--138
+warning: chapters/ch04.tex:305: Underfull \hbox (badness 2318) in paragraph at lines 302--305
+warning: chapters/ch04.tex:305: Underfull \hbox (badness 10000) in paragraph at lines 302--305
+warning: chapters/ch04.tex:305: Underfull \hbox (badness 1009) in paragraph at lines 302--305
+warning: chapters/ch04.tex:437: Underfull \hbox (badness 10000) in paragraph at lines 436--437
+warning: chapters/ch04.tex:437: Underfull \hbox (badness 10000) in paragraph at lines 436--437
+warning: chapters/ch04.tex:545: Underfull \hbox (badness 10000) in paragraph at lines 544--545
+warning: chapters/ch04.tex:545: Underfull \hbox (badness 10000) in paragraph at lines 544--545
+warning: chapters/ch04.tex:545: Underfull \hbox (badness 10000) in paragraph at lines 544--545
+warning: chapters/ch04.tex:639: Underfull \hbox (badness 10000) in paragraph at lines 638--639
+warning: chapters/ch04.tex:639: Underfull \hbox (badness 10000) in paragraph at lines 638--639
+warning: chapters/ch04.tex:663: Underfull \hbox (badness 6910) in paragraph at lines 662--663
+warning: chapters/app02.tex:38: Underfull \hbox (badness 10000) in paragraph at lines 37--38
+warning: chapters/app02.tex:38: Underfull \hbox (badness 1112) in paragraph at lines 37--38
+warning: chapters/app02.tex:44: Underfull \hbox (badness 10000) in paragraph at lines 43--44
+warning: chapters/app02.tex:44: Underfull \hbox (badness 10000) in paragraph at lines 43--44
+warning: evidence/puf3_benchmark:1: Underfull \hbox (badness 10000) in paragraph at lines 65--1
+warning: evidence/puf3_cosim:1: Underfull \hbox (badness 10000) in paragraph at lines 76--1
+warning: evidence/puf3_cosim:1: Underfull \hbox (badness 5133) in paragraph at lines 76--1
+warning: evidence/legacy_timing:1: Underfull \hbox (badness 10000) in paragraph at lines 98--1
+warning: chapters/app03.tex:104: Underfull \hbox (badness 10000) in paragraph at lines 103--104
+warning: chapters/app04.tex:44: Underfull \hbox (badness 10000) in paragraph at lines 43--44
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.
+note: Running xdvipdfmx ...
+warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+note: Writing `main.log` (67.05 KiB)
+note: Writing `main.pdf` (2.32 MiB)
+note: Skipped writing 15 intermediate files (use --keep-intermediates to keep them)

@@ -135,6 +135,20 @@ def main():
     for c in claims:
         add(f'摘要含 {c}', norm(c) in norm(ch01))
 
+    # 配套材料（简介、视频脚本、README）必须给出与原始数据一致的关键数字；千分位逗号不影响比对。
+    key = ['{:g}/{:g}/{:g}'.format(*(med[m, op] for m in ('sw', 'hw', 'ise'))) for op in ('encrypt', 'decrypt')]
+    key += [f'{speed[m, op]:.3f}' for m in ('hw', 'ise') for op in ('encrypt', 'decrypt')]
+    key += [util['Slice LUTs'], util['Slice Registers'], f'+{wns}']
+    for doc in ('docs/project_intro_20261101.md', 'report/demo_video_script.md', 'README.md'):
+        path = ROOT / doc
+        inputs[doc] = sha(path)
+        body = norm(path.read_text(encoding='utf-8')).replace(',', '')
+        need = key if doc != 'README.md' else [key[0], key[2], key[4]]  # 加密三元组、HW/ISE 加密加速比
+        for k in need:
+            # 简介/视频脚本把三元组拆在行文、表格或口播中，逐项出现即可；README 要求完整三元组
+            ok = norm(k) in body or (doc != 'README.md' and all(x in body for x in k.split('/')))
+            add(f'配套材料 {doc} 含 {k}', ok)
+
     pdf_info = {'path': rel(pdf_path), 'sha256': sha(pdf_path)}
     try:
         import pymupdf

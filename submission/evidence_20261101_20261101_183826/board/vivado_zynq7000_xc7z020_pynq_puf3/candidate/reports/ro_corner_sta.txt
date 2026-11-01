@@ -1,0 +1,31 @@
+dcp=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf3/vivado/pynq_puf3.runs/impl_1/pynq_puf3_wrapper_postroute_physopt.dcp tool=2025.2
+rings=256
+FAST_MIN ring period ns: min 1.194 max 7.849 -> fastest RO 837 MHz
+SLOW_MAX ring period ns: min 3.473 max 18.613 -> fastest RO 288 MHz
+20-bit counter wraps above 400 MHz (window 65536 x 40 ns)
+== Slow corner, RO period 3.473 ns ==
+  ro_osc0 intra setup 0.152 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[105].cnt_reg[105][15]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[105].cnt_reg[105][17]/D, skew -0.919)
+  ro_osc0 intra hold  -0.350 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[120].cnt_reg[120][6]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[120].cnt_reg[120][16]/D, skew 1.452)
+  ro_osc1 intra setup -0.478 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[169].cnt_reg[169][3]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[169].cnt_reg[169][17]/D, skew -1.545)
+  ro_osc1 intra hold  -0.552 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[170].cnt_reg[170][15]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[170].cnt_reg[170][16]/D, skew 1.447)
+  ro_osc2 intra setup 0.147 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[2].cnt_reg[2][1]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[2].cnt_reg[2][17]/D, skew -0.406)
+  ro_osc2 intra hold  -0.059 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[22].cnt_reg[22][11]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[22].cnt_reg[22][16]/D, skew 0.999)
+  ro_osc3 intra setup -0.394 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[74].cnt_reg[74][8]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[74].cnt_reg[74][17]/D, skew -1.270)
+  ro_osc3 intra hold  -0.240 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[81].cnt_reg[81][15]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[81].cnt_reg[81][16]/D, skew 1.086)
+  ro_clk intra setup 24.822 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/ro_wd_reg[14]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/pre_reg[193][7]/CE, skew -0.257)
+  ro_clk intra hold  0.334 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/acc_reg[243]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/raw_r_reg[81]/D, skew 0.022)
+  clk_fpga_0->ro_clk hold 1.062 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/req_tgl_reg/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/req_sync_reg[0]/D, skew 2.976)
+  ro_clk->clk_fpga_0 setup 3.742 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/dith_r_reg[42]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/dither_reg[42]/D, skew -3.052)
+== Fast corner, RO period 1.194 ns ==
+  ro_osc0 intra setup -0.409 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[105].cnt_reg[105][15]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[105].cnt_reg[105][17]/D, skew -0.432)
+  ro_osc0 intra hold  -0.286 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[131].cnt_reg[131][10]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[131].cnt_reg[131][12]/D, skew 0.670)
+  ro_osc1 intra setup -0.598 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[182].cnt_reg[182][3]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[182].cnt_reg[182][11]/D, skew -0.705)
+  ro_osc1 intra hold  -0.427 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[170].cnt_reg[170][15]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[170].cnt_reg[170][16]/D, skew 0.804)
+  ro_osc2 intra setup -0.303 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[2].cnt_reg[2][1]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[2].cnt_reg[2][17]/D, skew -0.197)
+  ro_osc2 intra hold  -0.086 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[22].cnt_reg[22][11]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[22].cnt_reg[22][16]/D, skew 0.478)
+  ro_osc3 intra setup -0.501 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[74].cnt_reg[74][8]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[74].cnt_reg[74][19]/D, skew -0.631)
+  ro_osc3 intra hold  -0.268 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[81].cnt_reg[81][15]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[81].cnt_reg[81][16]/D, skew 0.619)
+  ro_clk intra setup 32.288 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/ro_wd_reg[14]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/pre_reg[193][7]/CE, skew -0.306)
+  ro_clk intra hold  0.115 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/acc_reg[77]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/raw_r_reg[25]/D, skew 0.352)
+  clk_fpga_0->ro_clk hold 0.428 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/req_tgl_reg/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/req_sync_reg[0]/D, skew 1.547)
+  ro_clk->clk_fpga_0 setup 6.809 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/dith_r_reg[42]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/dither_reg[42]/D, skew -1.558)

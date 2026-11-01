@@ -1,0 +1,32 @@
+% 图 5-1 四层验证体系与证据流（坐标单位 cm）
+\begin{tikzpicture}[font=\footnotesize,
+  L/.style={draw=softline, rounded corners=1.5pt, fill=macblue!55, align=center, inner sep=2.2pt,
+            font=\scriptsize, minimum width=7.2cm, minimum height=1.15cm},
+  ar/.style={-{Stealth[length=1.5mm]}, thick}]
+
+\node[L, fill=maclav] (l0) at (-4.3,0) {\textbf{L0} 算法级交叉验证\\主机 KAT 1\,089 例 + 参考实现互校};
+\node[L, fill=macblue] (l1) at (-4.3,-1.75) {\textbf{L1} RTL 单元与子系统仿真\\\texttt{ascon\_aead\_2\_tb} 等定向激励};
+\node[L, fill=macgreen] (l2) at (-4.3,-3.50) {\textbf{L2} SoC 级自动回归\\smoke 6 PASS；regression 15 PASS};
+\node[L, fill=macamber] (l3) at (-4.3,-5.25) {\textbf{L3} 历史 PL-only\\三镜像 KAT：SW 6 / ISE 4 / MMIO 4};
+\node[L, fill=macpeach] (l4) at (-4.3,-7.0) {\textbf{L4} 当前 PUF3 实板\\三模式各 289 KAT；PUF 会话内功能};
+
+\node[align=left, font=\scriptsize, text width=6.2cm, anchor=west] at (-0.4,0.05)
+  {参考 Ascon 实现与官方 KAT 向量；\\输出：位精确期望值};
+\node[align=left, font=\scriptsize, text width=6.2cm, anchor=west] at (-0.4,-1.70)
+  {覆盖轮函数、AEAD 分层、长度边界\\与错误 Tag 拒绝；输出：波形与自检日志};
+\node[align=left, font=\scriptsize, text width=6.2cm, anchor=west] at (-0.4,-3.45)
+  {Icarus 仿真 + 固件交叉编译；\\输出：回归脚本退出码与 JSON 汇总};
+\node[align=left, font=\scriptsize, text width=6.2cm, anchor=west] at (-0.4,-5.20)
+  {UART 读数、\texttt{mcycle} 与 CPI；\\输出：\texttt{data/ascon/results/board/*}};
+
+\draw[ar] (l0.south) -- (l1.north);
+\draw[ar] (l1.south) -- (l2.north);
+\draw[ar] (l2.south) -- (l3.north);
+\draw[ar] (l3.south) -- (l4.north);
+\node[align=left, font=\scriptsize, text width=6.2cm, anchor=west] at (-0.4,-6.95)
+  {Notebook、30 次 warm 采样与墙钟；\\旧 release 的 9/9 错误门禁单列，不迁移};
+
+\node[draw=softline, rounded corners=2pt, fill=white, align=left, font=\scriptsize, text width=14.2cm, anchor=north west] at (-7.4,-7.8) {%
+证据闭环原则：任一层出现不一致，退回上一层定位；报告中的每个数值须可回溯至本层产物文件（附录 C 按章给出索引）。
+};
+\end{tikzpicture}
