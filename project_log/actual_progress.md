@@ -2035,3 +2035,17 @@ owner TBD。用户授权修改后直接提交，并要求今后提交标题/说�
 结构/布局检查exit0、0finding，逐页PNG视觉复查。临时脚本/JSON只放ignored目录。
 接口无变化，未重新板测/RTL/现场部署，未验证WPS/印刷；无阻塞，D03整体仍in_progress。
 下一接收D06材料归档，owner TBD。本轮提交标题和正文使用中文。
+
+
+## 2026-11-01 — D03 仅替换左侧DNA/PUF图
+
+owner TBD。用户要求用项目DNA相关图和介绍替换左侧应用图、其他脚本不改；基点c9fff89，入场main干净。
+中英文两页左图改为RO-PUF的128-bit响应与57-bit Device DNA，经固定上下文/P12派生128-bit key；
+来源docs/tech_report/report.md §2.3.4、src/rtl/keys/puf_key.v及device_dna.v。
+图内声明DNA非秘密、独立扩展及未验收边界，备注说明仅正常PUF参与路径、DNA-only回退不保证秘密性。
+只更换PPT左图/图注并更新备注，未改既有脚本；README、两张PNG和日志同步。
+验证：PowerPoint16.0渲染0文字溢出，两页视觉复查；Python3.14.3通用核验51项PASS，
+专项核对157项PASS（原有图形除左图/图注外XML完全一致，master不变、新图字段正确）；
+package/layout检查exit0、0finding。所有验证命令exit0。
+接口无变化；未重新板测/RTL，未验证跨上电、保密隔离、RO时序或其他Office/印刷。
+无阻塞，D03整体仍in_progress；下一接收D06材料归档，owner TBD。按既有授权中文提交并推送。
