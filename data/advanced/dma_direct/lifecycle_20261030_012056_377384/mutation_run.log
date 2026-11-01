@@ -1,2 +1,0 @@
-FATAL: C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\dma_direct\lifecycle_20261030_012056_377384\tb_core_lifecycle.sv:99: BAD_TAG_ACCEPTED bit=127
-       Time: 11320000  Scope: tb_core_lifecycle.finish_op

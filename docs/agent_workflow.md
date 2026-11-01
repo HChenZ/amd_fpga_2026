@@ -23,7 +23,7 @@
 | 信息 | 唯一维护入口 |
 |---|---|
 | owner、依赖、交付、验收、状态、deadline | `tasks/task_board.md` |
-| 总体日期、阶段门禁 | `tasks/milestones.md`；任务日期必须一致 |
+| 当前交付与历史门禁 | 根目录project_board.md、tasks/task_board.md；原milestones位于archive/history/tasks |
 | 已发生的结果、验证局限、阻塞 | `project_log/actual_progress.md` |
 | 技术接口 | `docs/interfaces.md`；冻结版本变更同步上下游 |
 | 有效设计决策 | `docs/decisions.md` |

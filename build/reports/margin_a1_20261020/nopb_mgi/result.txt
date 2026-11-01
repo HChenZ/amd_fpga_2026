@@ -1,1 +1,0 @@
-RESULT a1_variant=nopb_mgi pblock= place=ExtraTimingOpt route=MoreGlobalIterations wns=-0.297 tns=-7.793 failing=105 whs=0.027

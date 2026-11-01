@@ -1,3 +1,0 @@
-clock_period_ns=10.000 setup=-0.046 hold=0.020
-driver=cpu_dma_i/engine/inst/u_soc_top/u_cpu_core/u_mem_wb/tag_way1_reg_0_63_0_2_i_3/O[0] net=cpu_dma_i/engine/inst/u_soc_top/u_cpu_core/u_mem_wb/dcache_cpu_addr[4] leaf_loads=367 replicas_total=7
-planned_command=phys_opt_design -force_replication_on_nets $cpu_hot_net

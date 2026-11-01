@@ -1,5 +1,0 @@
-E1: clk == ro_clk, BITS=128 WINDOW=1024
-E1: sample#1 raw=55555555555555555555555555555555 txn=1
-E1: 6/6 identical samples, txn reached 6
-TEST_PASS tb_ro_core_single_clock
-sim/puf_min/tb_ro_core_single_clock.sv:124: $finish called at 73586000 (1ps)

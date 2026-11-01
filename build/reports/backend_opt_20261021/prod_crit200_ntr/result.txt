@@ -1,4 +1,0 @@
-RESULT variant=prod_crit200_ntr wns=-0.195 tns=-8.119 failing=93 whs=0.013 luts=13475 ffs=16388 rep_cells=56 routing_errors=na
-PATH start=u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/rs1_o_reg[4]/C end=u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/captured_addr_reg[7]_rep__0/CE datapath=9.909 logic=2.787 net=7.122 levels=10
-KNOBS maxfanout=0 fanout_min=0 frn=0 eqreg=0 place=Default popt=Explore prout=ExploreWithHoldFix route=NoTimingRelaxation fp= dens= crep=200
-SOURCE head=3c6f134 synth_dcp=top_pl_bram_opt.dcp tool=2025.2 date=Wed Oct 21 02:08:36 +0800 2026

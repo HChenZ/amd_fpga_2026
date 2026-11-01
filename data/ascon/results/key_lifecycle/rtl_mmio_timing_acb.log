@@ -1,3 +1,0 @@
-
-SUMMARY MMIO checks=13212 errors=0
-sim/ascon/tb_key_mmio.v:91: $finish called at 362660000 (1ps)

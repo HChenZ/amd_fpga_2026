@@ -1,25 +1,10 @@
-# 设计源码
+# 当前源码布局
 
-更新：2026-11-01。`rtl/` 是公共 CPU/SoC 与密码源，保持目录、文件名和工程引用；当前 RV32 ISE 已有仿真/实现/实板证据，
-不是“尚未完成 ISE”。独立 AEAD、公共 RTL、应用固件和板端入口不是同一个版本概念。
-已有算法软件保持在 `../ascon/`，不为目录整齐迁移。
+- `rtl/`：公共CPU、Ascon、PUF v1和PYNQ桥接；PUF3两个关键变体在board下，必须按专用Tcl排除/替换。
+- `firmware/pynq_svc_puf/`：当前服务固件。
+- `firmware/pynq_svc/`、`firmware/ascon_hw_rv32/`：当前固件复用的I/O、三模式算法、启动/链接/转换支持；不要误删。
+- `pynq_puf3/`：完整板测Notebook，内嵌PUF3身份驱动；仍依赖pynq公共API/协议/参考函数。
+- `pynq/`：上述公共库，部分旧v1兼容模块因import复用保留；其旧CLI不是当前入口。
 
-| 路径 | 当前职责 |
-|---|---|
-| [pynq_puf3](pynq_puf3/readme.md) | 当前 PUF3 板测 Notebook，内嵌 PQF3 驱动 |
-| [pynq](pynq/readme.md) | 公共 API/协议/参考与旧 v1 CLI；不是整个目录都为 PUF3 |
-| [firmware](firmware/readme.md) | PUF3 固件、共享支持、旧自测、DMA/PUF v2 与原始资产分开 |
-| [rtl](rtl/readme.md) | 公共源与应用变体选择；PUF3 的两个变体实际在 board 下 |
-
-完整选择见 [版本入口](../docs/version_entrypoints.md)。下文日期为原历史规则，不重新启动开发。
-
-修改前读 [interfaces](../docs/interfaces.md) 与 [technical_rules](../docs/technical_rules.md)。I02/I03/I05 交付 spec、RTL 与回归；10-07 单测、10-14 首版集成结果，10-27 功能冻结。普通新增文件用小写英文路径。
-
-源配置入库；生成 RTL/IP 输出回到构建流程生成，不能在这里伪造缺失 IP。
-
-已恢复 [CICC1000023 固件源](firmware/cicc1000023/readme.md)：CoreMark RV32/RV64、FreeRTOS 应用、RISC-V tests。原始文件名映射与哈希受控，构建前在 ignored 工作副本还原；尚缺精确 kernel/bootloader 依赖。
-
-## 2026-10-16 key lifecycle review
-
-The 10-16 [review](../docs/ascon_key_management.md) records lifecycle/handshake evidence for its source snapshot.
-Its unknown-board/no-programming statement is historical; current PUF3 evidence and remaining gaps are linked above.
+独立DMA/PUF v2/MIN、旧单镜像固件和原始CPU资产在archive/history/src，源码保留但不参与当前PUF3构建。
+版权/许可证按原文件保留；对外说明只描述实际结构、接口和验证，不以目录名推断来源或原创范围。

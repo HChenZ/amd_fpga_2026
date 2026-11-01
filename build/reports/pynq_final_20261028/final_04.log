@@ -1,3 +1,0 @@
-BACKEND simulated-ise; simulated=True
-KAT PASS 1089 / FAIL 0
-TAMPER REJECT 4290; cycle provenance is reported by the API; no board measurements collected

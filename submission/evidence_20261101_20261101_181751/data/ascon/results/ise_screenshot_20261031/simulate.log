@@ -1,3 +1,0 @@
-Time resolution is 1 ps
-SUMMARY ISE checks=1502 errors=0
-$finish called at time : 37390 ns : File "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/ascon/tb_key_ise.v" Line 63

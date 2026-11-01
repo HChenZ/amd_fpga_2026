@@ -1,0 +1,724 @@
+{
+  "record_archive": "archive/evidence/raw_records_20261102.zip",
+  "record_files": 2461,
+  "record_sha256": "de89e3af71d97383f4e6f94d31868cff18eabebc46b28aa9b6d519a8daa0f7f7",
+  "moves": [
+    {
+      "from_display": "board/vivado_kintex7_legacy",
+      "to": "archive/history/board/vivado_kintex7_legacy"
+    },
+    {
+      "from_display": "board/vivado_zynq7000_xc7z020_baseline",
+      "to": "archive/history/board/vivado_zynq7000_xc7z020_baseline"
+    },
+    {
+      "from_display": "board/vivado_zynq7000_xc7z020_pynq",
+      "to": "archive/history/board/vivado_zynq7000_xc7z020_pynq"
+    },
+    {
+      "from_display": "board/vivado_zynq7000_xc7z020_pynq_puf",
+      "to": "archive/history/board/vivado_zynq7000_xc7z020_pynq_puf"
+    },
+    {
+      "from_display": "board/vivado_zynq7000_xc7z020_puf_v2",
+      "to": "archive/history/board/vivado_zynq7000_xc7z020_puf_v2"
+    },
+    {
+      "from_display": "board/vivado_zynq7000_xc7z020_puf_min",
+      "to": "archive/history/board/vivado_zynq7000_xc7z020_puf_min"
+    },
+    {
+      "from_display": "board/vivado_zynq7000_xc7z020_pynq_dma_cpu",
+      "to": "archive/history/board/vivado_zynq7000_xc7z020_pynq_dma_cpu"
+    },
+    {
+      "from_display": "board/vivado_zynq7000_xc7z020_dma_direct",
+      "to": "archive/history/board/vivado_zynq7000_xc7z020_dma_direct"
+    },
+    {
+      "from_display": "board/vivado_zynq7000_xc7z020_axi_dma_loopback",
+      "to": "archive/history/board/vivado_zynq7000_xc7z020_axi_dma_loopback"
+    },
+    {
+      "from_display": "src/rtl/ascon_dma",
+      "to": "archive/history/src/rtl/ascon_dma"
+    },
+    {
+      "from_display": "src/rtl/keys_v2",
+      "to": "archive/history/src/rtl/keys_v2"
+    },
+    {
+      "from_display": "src/rtl/puf_min",
+      "to": "archive/history/src/rtl/puf_min"
+    },
+    {
+      "from_display": "src/rtl/puf_soc_v2",
+      "to": "archive/history/src/rtl/puf_soc_v2"
+    },
+    {
+      "from_display": "src/rtl/pynq_dma_cpu",
+      "to": "archive/history/src/rtl/pynq_dma_cpu"
+    },
+    {
+      "from_display": "src/rtl/dcache_experiments",
+      "to": "archive/history/src/rtl/dcache_experiments"
+    },
+    {
+      "from_display": "src/firmware/ascon_rv32",
+      "to": "archive/history/src/firmware/ascon_rv32"
+    },
+    {
+      "from_display": "src/firmware/ascon_ise_rv32",
+      "to": "archive/history/src/firmware/ascon_ise_rv32"
+    },
+    {
+      "from_display": "src/firmware/keys_rv32",
+      "to": "archive/history/src/firmware/keys_rv32"
+    },
+    {
+      "from_display": "src/firmware/keys_v2",
+      "to": "archive/history/src/firmware/keys_v2"
+    },
+    {
+      "from_display": "src/firmware/pynq_dma_svc",
+      "to": "archive/history/src/firmware/pynq_dma_svc"
+    },
+    {
+      "from_display": "src/firmware/original_cpu",
+      "to": "archive/history/src/firmware/original_cpu"
+    },
+    {
+      "from_display": "src/pynq/dma_transport.py",
+      "to": "archive/history/src/pynq/dma_transport.py"
+    },
+    {
+      "from_display": "src/pynq/test_dma_transport.py",
+      "to": "archive/history/src/pynq/test_dma_transport.py"
+    },
+    {
+      "from_display": "src/pynq/puf_helper_v2.py",
+      "to": "archive/history/src/pynq/puf_helper_v2.py"
+    },
+    {
+      "from_display": "src/pynq/puf_min.py",
+      "to": "archive/history/src/pynq/puf_min.py"
+    },
+    {
+      "from_display": "src/pynq/test_puf_min.py",
+      "to": "archive/history/src/pynq/test_puf_min.py"
+    },
+    {
+      "from_display": "src/pynq/puf_min_ascon_vector.json",
+      "to": "archive/history/src/pynq/puf_min_ascon_vector.json"
+    },
+    {
+      "from_display": "sim/ascon_dma",
+      "to": "archive/history/sim/ascon_dma"
+    },
+    {
+      "from_display": "sim/pynq_dma_cpu",
+      "to": "archive/history/sim/pynq_dma_cpu"
+    },
+    {
+      "from_display": "sim/puf_soc_v2",
+      "to": "archive/history/sim/puf_soc_v2"
+    },
+    {
+      "from_display": "sim/keys_v2",
+      "to": "archive/history/sim/keys_v2"
+    },
+    {
+      "from_display": "sim/puf_min",
+      "to": "archive/history/sim/puf_min"
+    },
+    {
+      "from_display": "sim/pynq_puf",
+      "to": "archive/history/sim/pynq_puf"
+    },
+    {
+      "from_display": "sim/original_cpu",
+      "to": "archive/history/sim/original_cpu"
+    },
+    {
+      "from_display": "sim/board",
+      "to": "archive/history/sim/board"
+    },
+    {
+      "from_display": "sim/pynq",
+      "to": "archive/history/sim/pynq"
+    },
+    {
+      "from_display": "sim/ascon/run_cpu_regression.py",
+      "to": "archive/history/sim/ascon/run_cpu_regression.py"
+    },
+    {
+      "from_display": "sim/ascon/run_cpu_units.py",
+      "to": "archive/history/sim/ascon/run_cpu_units.py"
+    },
+    {
+      "from_display": "sim/ascon/run_rv32_isa.py",
+      "to": "archive/history/sim/ascon/run_rv32_isa.py"
+    },
+    {
+      "from_display": "sim/ascon/run_ascon_sw.sh",
+      "to": "archive/history/sim/ascon/run_ascon_sw.sh"
+    },
+    {
+      "from_display": "sim/ascon/run_ascon_hw.sh",
+      "to": "archive/history/sim/ascon/run_ascon_hw.sh"
+    },
+    {
+      "from_display": "sim/ascon/run_ascon_ise.sh",
+      "to": "archive/history/sim/ascon/run_ascon_ise.sh"
+    },
+    {
+      "from_display": "sim/ascon/summarize_key_review.py",
+      "to": "archive/history/sim/ascon/summarize_key_review.py"
+    },
+    {
+      "from_display": "sim/ascon/summarize_timing_review.py",
+      "to": "archive/history/sim/ascon/summarize_timing_review.py"
+    },
+    {
+      "from_display": "sim/ascon/summarize_timing_acb.py",
+      "to": "archive/history/sim/ascon/summarize_timing_acb.py"
+    },
+    {
+      "from_display": "sim/ascon/verify_cleanup.py",
+      "to": "archive/history/sim/ascon/verify_cleanup.py"
+    },
+    {
+      "from_display": "sim/ascon/key_lifecycle_firmware.c",
+      "to": "archive/history/sim/ascon/key_lifecycle_firmware.c"
+    },
+    {
+      "from_display": "sim/ascon/tb_ascon_sw.v",
+      "to": "archive/history/sim/ascon/tb_ascon_sw.v"
+    },
+    {
+      "from_display": "sim/ascon/tb_rv32_isa.v",
+      "to": "archive/history/sim/ascon/tb_rv32_isa.v"
+    },
+    {
+      "from_display": "sim/ascon/isa_env",
+      "to": "archive/history/sim/ascon/isa_env"
+    },
+    {
+      "from_display": "skill/ab_eval_pynq",
+      "to": "archive/history/skill/ab_eval_pynq"
+    },
+    {
+      "from_display": "skill/rtl-design-discipline",
+      "to": "archive/history/skill/rtl-design-discipline"
+    },
+    {
+      "from_display": "build/advanced",
+      "to": "archive/history/build/advanced"
+    },
+    {
+      "from_display": "build/aggregate_strategy_sweep.py",
+      "to": "archive/history/build/aggregate_strategy_sweep.py"
+    },
+    {
+      "from_display": "build/backend_opt_20261021",
+      "to": "archive/history/build/backend_opt_20261021"
+    },
+    {
+      "from_display": "build/build_ascon_review.tcl",
+      "to": "archive/history/build/build_ascon_review.tcl"
+    },
+    {
+      "from_display": "build/build_bce_timing.tcl",
+      "to": "archive/history/build/build_bce_timing.tcl"
+    },
+    {
+      "from_display": "build/build_dcache_er.tcl",
+      "to": "archive/history/build/build_dcache_er.tcl"
+    },
+    {
+      "from_display": "build/build_dcache_pipe.tcl",
+      "to": "archive/history/build/build_dcache_pipe.tcl"
+    },
+    {
+      "from_display": "build/build_io_sta.tcl",
+      "to": "archive/history/build/build_io_sta.tcl"
+    },
+    {
+      "from_display": "build/build_keys_sta.tcl",
+      "to": "archive/history/build/build_keys_sta.tcl"
+    },
+    {
+      "from_display": "build/build_timing_acb.tcl",
+      "to": "archive/history/build/build_timing_acb.tcl"
+    },
+    {
+      "from_display": "build/check_a1.sh",
+      "to": "archive/history/build/check_a1.sh"
+    },
+    {
+      "from_display": "build/check_bce_patches.sh",
+      "to": "archive/history/build/check_bce_patches.sh"
+    },
+    {
+      "from_display": "build/check_io_signoff.py",
+      "to": "archive/history/build/check_io_signoff.py"
+    },
+    {
+      "from_display": "build/collect_applied_constraints.tcl",
+      "to": "archive/history/build/collect_applied_constraints.tcl"
+    },
+    {
+      "from_display": "build/collect_io_sta_results.py",
+      "to": "archive/history/build/collect_io_sta_results.py"
+    },
+    {
+      "from_display": "build/fill_signoff_doc.py",
+      "to": "archive/history/build/fill_signoff_doc.py"
+    },
+    {
+      "from_display": "build/patches",
+      "to": "archive/history/build/patches"
+    },
+    {
+      "from_display": "build/prepare_original_cpu_sources.py",
+      "to": "archive/history/build/prepare_original_cpu_sources.py"
+    },
+    {
+      "from_display": "build/probe_freq_headroom.tcl",
+      "to": "archive/history/build/probe_freq_headroom.tcl"
+    },
+    {
+      "from_display": "build/probe_geometry.tcl",
+      "to": "archive/history/build/probe_geometry.tcl"
+    },
+    {
+      "from_display": "build/probe_geometry2.tcl",
+      "to": "archive/history/build/probe_geometry2.tcl"
+    },
+    {
+      "from_display": "build/probe_keys_placement.tcl",
+      "to": "archive/history/build/probe_keys_placement.tcl"
+    },
+    {
+      "from_display": "build/probe_keys_post.tcl",
+      "to": "archive/history/build/probe_keys_post.tcl"
+    },
+    {
+      "from_display": "build/probe_path_classes.tcl",
+      "to": "archive/history/build/probe_path_classes.tcl"
+    },
+    {
+      "from_display": "build/probe_path_compare.tcl",
+      "to": "archive/history/build/probe_path_compare.tcl"
+    },
+    {
+      "from_display": "build/probe_timing_wall.tcl",
+      "to": "archive/history/build/probe_timing_wall.tcl"
+    },
+    {
+      "from_display": "build/probe_worst_detail.tcl",
+      "to": "archive/history/build/probe_worst_detail.tcl"
+    },
+    {
+      "from_display": "build/refine_ascon_timing.tcl",
+      "to": "archive/history/build/refine_ascon_timing.tcl"
+    },
+    {
+      "from_display": "build/regen_sweep_reports.tcl",
+      "to": "archive/history/build/regen_sweep_reports.tcl"
+    },
+    {
+      "from_display": "build/regen_sweep_reports2.tcl",
+      "to": "archive/history/build/regen_sweep_reports2.tcl"
+    },
+    {
+      "from_display": "build/report_timing_endpoints.tcl",
+      "to": "archive/history/build/report_timing_endpoints.tcl"
+    },
+    {
+      "from_display": "build/screen_dcache_donttouch.sh",
+      "to": "archive/history/build/screen_dcache_donttouch.sh"
+    },
+    {
+      "from_display": "build/snapshot_rtl_hashes.py",
+      "to": "archive/history/build/snapshot_rtl_hashes.py"
+    },
+    {
+      "from_display": "build/strategies_extra.txt",
+      "to": "archive/history/build/strategies_extra.txt"
+    },
+    {
+      "from_display": "build/strategies_extra2.txt",
+      "to": "archive/history/build/strategies_extra2.txt"
+    },
+    {
+      "from_display": "build/summarize_timing_acb.py",
+      "to": "archive/history/build/summarize_timing_acb.py"
+    },
+    {
+      "from_display": "build/sweep_margin_a1.tcl",
+      "to": "archive/history/build/sweep_margin_a1.tcl"
+    },
+    {
+      "from_display": "build/sweep_margin_phys.tcl",
+      "to": "archive/history/build/sweep_margin_phys.tcl"
+    },
+    {
+      "from_display": "build/sweep_strategy_timing.tcl",
+      "to": "archive/history/build/sweep_strategy_timing.tcl"
+    },
+    {
+      "from_display": "build/synth_margin_variants.tcl",
+      "to": "archive/history/build/synth_margin_variants.tcl"
+    },
+    {
+      "from_display": "build/timing_tests",
+      "to": "archive/history/build/timing_tests"
+    },
+    {
+      "from_display": "docs/advanced_board_handoff.md",
+      "to": "archive/history/docs/advanced_board_handoff.md"
+    },
+    {
+      "from_display": "docs/advanced_dma_contract.md",
+      "to": "archive/history/docs/advanced_dma_contract.md"
+    },
+    {
+      "from_display": "docs/advanced_offline_status_20261030.md",
+      "to": "archive/history/docs/advanced_offline_status_20261030.md"
+    },
+    {
+      "from_display": "docs/ascon_board_checklist.md",
+      "to": "archive/history/docs/ascon_board_checklist.md"
+    },
+    {
+      "from_display": "docs/ascon_branch_review.md",
+      "to": "archive/history/docs/ascon_branch_review.md"
+    },
+    {
+      "from_display": "docs/ascon_key_management.md",
+      "to": "archive/history/docs/ascon_key_management.md"
+    },
+    {
+      "from_display": "docs/ascon_ppa_comparison.md",
+      "to": "archive/history/docs/ascon_ppa_comparison.md"
+    },
+    {
+      "from_display": "docs/ascon_rtl_decrypt_validation.md",
+      "to": "archive/history/docs/ascon_rtl_decrypt_validation.md"
+    },
+    {
+      "from_display": "docs/ascon_rtl_regression_audit.md",
+      "to": "archive/history/docs/ascon_rtl_regression_audit.md"
+    },
+    {
+      "from_display": "docs/ascon_strategy_sweep.md",
+      "to": "archive/history/docs/ascon_strategy_sweep.md"
+    },
+    {
+      "from_display": "docs/ascon_timing_review.md",
+      "to": "archive/history/docs/ascon_timing_review.md"
+    },
+    {
+      "from_display": "docs/backend_placement_campaign.md",
+      "to": "archive/history/docs/backend_placement_campaign.md"
+    },
+    {
+      "from_display": "docs/board_bringup_plan.md",
+      "to": "archive/history/docs/board_bringup_plan.md"
+    },
+    {
+      "from_display": "docs/original_cpu_recovery_audit.md",
+      "to": "archive/history/docs/original_cpu_recovery_audit.md"
+    },
+    {
+      "from_display": "docs/original_cpu_rtl_diff.md",
+      "to": "archive/history/docs/original_cpu_rtl_diff.md"
+    },
+    {
+      "from_display": "docs/cpu_pipeline_flow.md",
+      "to": "archive/history/docs/cpu_pipeline_flow.md"
+    },
+    {
+      "from_display": "docs/cpu_timing_architecture_plan.md",
+      "to": "archive/history/docs/cpu_timing_architecture_plan.md"
+    },
+    {
+      "from_display": "docs/current_status_20261029.md",
+      "to": "archive/history/docs/current_status_20261029.md"
+    },
+    {
+      "from_display": "docs/dcache_fix_checklist_en.md",
+      "to": "archive/history/docs/dcache_fix_checklist_en.md"
+    },
+    {
+      "from_display": "docs/dcache_fix_plan_for_opencode.md",
+      "to": "archive/history/docs/dcache_fix_plan_for_opencode.md"
+    },
+    {
+      "from_display": "docs/dma_puf_implementation_plan.md",
+      "to": "archive/history/docs/dma_puf_implementation_plan.md"
+    },
+    {
+      "from_display": "docs/freeze_checkpoint_20261018.md",
+      "to": "archive/history/docs/freeze_checkpoint_20261018.md"
+    },
+    {
+      "from_display": "docs/freeze_checkpoint_20261027.md",
+      "to": "archive/history/docs/freeze_checkpoint_20261027.md"
+    },
+    {
+      "from_display": "docs/io_timing_signoff.md",
+      "to": "archive/history/docs/io_timing_signoff.md"
+    },
+    {
+      "from_display": "docs/key_subsystem.md",
+      "to": "archive/history/docs/key_subsystem.md"
+    },
+    {
+      "from_display": "docs/project_abstract.md",
+      "to": "archive/history/docs/project_abstract.md"
+    },
+    {
+      "from_display": "docs/puf_min_explore_20261030.md",
+      "to": "archive/history/docs/puf_min_explore_20261030.md"
+    },
+    {
+      "from_display": "docs/pynq_bringup_m1.md",
+      "to": "archive/history/docs/pynq_bringup_m1.md"
+    },
+    {
+      "from_display": "docs/repository_audit.md",
+      "to": "archive/history/docs/repository_audit.md"
+    },
+    {
+      "from_display": "docs/repository_foundation_closeout.md",
+      "to": "archive/history/docs/repository_foundation_closeout.md"
+    },
+    {
+      "from_display": "docs/ross_and_engineering_skills_evaluation.md",
+      "to": "archive/history/docs/ross_and_engineering_skills_evaluation.md"
+    },
+    {
+      "from_display": "docs/ross_usage_experience.md",
+      "to": "archive/history/docs/ross_usage_experience.md"
+    },
+    {
+      "from_display": "docs/skill_test_guide_20261030.md",
+      "to": "archive/history/docs/skill_test_guide_20261030.md"
+    },
+    {
+      "from_display": "docs/timing_acb_validation.md",
+      "to": "archive/history/docs/timing_acb_validation.md"
+    },
+    {
+      "from_display": "docs/timing_bce_patches.md",
+      "to": "archive/history/docs/timing_bce_patches.md"
+    },
+    {
+      "from_display": "docs/timing_margin_plan.md",
+      "to": "archive/history/docs/timing_margin_plan.md"
+    },
+    {
+      "from_display": "docs/timing_route_replication_r2.md",
+      "to": "archive/history/docs/timing_route_replication_r2.md"
+    },
+    {
+      "from_display": "docs/timing_route_tests_20261024.md",
+      "to": "archive/history/docs/timing_route_tests_20261024.md"
+    },
+    {
+      "from_display": "docs/vivado_project_diff.md",
+      "to": "archive/history/docs/vivado_project_diff.md"
+    },
+    {
+      "from_display": "docs/workspace_cleanup.md",
+      "to": "archive/history/docs/workspace_cleanup.md"
+    },
+    {
+      "from_display": "docs/tech_report/assets",
+      "to": "archive/history/docs/tech_report/assets"
+    },
+    {
+      "from_display": "docs/tech_report/build_clean.py",
+      "to": "archive/history/docs/tech_report/build_clean.py"
+    },
+    {
+      "from_display": "docs/tech_report/build_latex.py",
+      "to": "archive/history/docs/tech_report/build_latex.py"
+    },
+    {
+      "from_display": "docs/tech_report/build_local.bat",
+      "to": "archive/history/docs/tech_report/build_local.bat"
+    },
+    {
+      "from_display": "docs/tech_report/build_report.py",
+      "to": "archive/history/docs/tech_report/build_report.py"
+    },
+    {
+      "from_display": "docs/tech_report/build_site.py",
+      "to": "archive/history/docs/tech_report/build_site.py"
+    },
+    {
+      "from_display": "docs/tech_report/build_template_src.py",
+      "to": "archive/history/docs/tech_report/build_template_src.py"
+    },
+    {
+      "from_display": "docs/tech_report/data_gap_after_pull_20261029.md",
+      "to": "archive/history/docs/tech_report/data_gap_after_pull_20261029.md"
+    },
+    {
+      "from_display": "docs/tech_report/evidence",
+      "to": "archive/history/docs/tech_report/evidence"
+    },
+    {
+      "from_display": "docs/tech_report/figs",
+      "to": "archive/history/docs/tech_report/figs"
+    },
+    {
+      "from_display": "docs/tech_report/handoff_20261029.md",
+      "to": "archive/history/docs/tech_report/handoff_20261029.md"
+    },
+    {
+      "from_display": "docs/tech_report/index.html",
+      "to": "archive/history/docs/tech_report/index.html"
+    },
+    {
+      "from_display": "docs/tech_report/latex",
+      "to": "archive/history/docs/tech_report/latex"
+    },
+    {
+      "from_display": "docs/tech_report/make_overleaf_zip.py",
+      "to": "archive/history/docs/tech_report/make_overleaf_zip.py"
+    },
+    {
+      "from_display": "docs/tech_report/prerender_figs.py",
+      "to": "archive/history/docs/tech_report/prerender_figs.py"
+    },
+    {
+      "from_display": "docs/tech_report/report.md",
+      "to": "archive/history/docs/tech_report/report.md"
+    },
+    {
+      "from_display": "docs/tech_report/review_20261029.md",
+      "to": "archive/history/docs/tech_report/review_20261029.md"
+    },
+    {
+      "from_display": "docs/tech_report/src",
+      "to": "archive/history/docs/tech_report/src"
+    },
+    {
+      "from_display": "docs/tech_report/src_template",
+      "to": "archive/history/docs/tech_report/src_template"
+    },
+    {
+      "from_display": "docs/tech_report/style.css",
+      "to": "archive/history/docs/tech_report/style.css"
+    },
+    {
+      "from_display": "docs/tech_report/template.html",
+      "to": "archive/history/docs/tech_report/template.html"
+    },
+    {
+      "from_display": "docs/tech_report/verify_report.py",
+      "to": "archive/history/docs/tech_report/verify_report.py"
+    },
+    {
+      "from_display": "docs/tech_report/技术报告_完整版_存档.pdf",
+      "to": "archive/history/docs/tech_report/技术报告_完整版_存档.pdf"
+    },
+    {
+      "from_display": "docs/tech_report/技术报告_提交版.pdf",
+      "to": "archive/history/docs/tech_report/技术报告_提交版.pdf"
+    },
+    {
+      "from_display": "tasks/advanced_features_plan_20261101.md",
+      "to": "archive/history/tasks/advanced_features_plan_20261101.md"
+    },
+    {
+      "from_display": "tasks/milestones.md",
+      "to": "archive/history/tasks/milestones.md"
+    },
+    {
+      "from_display": "tasks/parallel_task_a_pynq_host.md",
+      "to": "archive/history/tasks/parallel_task_a_pynq_host.md"
+    },
+    {
+      "from_display": "tasks/parallel_task_b_ppa_docs.md",
+      "to": "archive/history/tasks/parallel_task_b_ppa_docs.md"
+    },
+    {
+      "from_display": "tasks/puf_fix_and_min_goal_20261030.md",
+      "to": "archive/history/tasks/puf_fix_and_min_goal_20261030.md"
+    },
+    {
+      "from_display": "report/llm_collab",
+      "to": "archive/history/report/llm_collab"
+    }
+  ],
+  "source_before": "ec603268e9d6b62e22d172cb7a7aa47e5f08c84f",
+  "archives": [
+    {
+      "path": "archive/evidence/entry_documents_before_cleanup.zip",
+      "sha256": "5f3c3f18abf94c0c5f03fe2271a3962a92dd28afa8719f60ec43d88f46d186c9",
+      "bytes": 22174,
+      "members": 9,
+      "sha256_members_verified": 8,
+      "crc": "PASS"
+    },
+    {
+      "path": "archive/evidence/historical_artifacts_20261102.zip",
+      "sha256": "4726544949b1c4aa638bbabb64e20accdf70408e9429f6e21b34ca87aafd8be4",
+      "bytes": 2104554,
+      "members": 79,
+      "sha256_members_verified": 78,
+      "crc": "PASS"
+    },
+    {
+      "path": "archive/evidence/prior_snapshot_variants_20261102.zip",
+      "sha256": "96a8e8669e211cf7211c3c3b17e32734f868dfb59f80f106c32e27cd9f075909",
+      "bytes": 25499757,
+      "members": 75,
+      "sha256_members_verified": 72,
+      "crc": "PASS"
+    },
+    {
+      "path": "archive/evidence/raw_records_20261102.zip",
+      "sha256": "de89e3af71d97383f4e6f94d31868cff18eabebc46b28aa9b6d519a8daa0f7f7",
+      "bytes": 11423109,
+      "members": 2466,
+      "sha256_members_verified": 2461,
+      "crc": "PASS"
+    },
+    {
+      "path": "archive/evidence/submission_snapshot_20261101.zip",
+      "sha256": "2a0f0304e975dd14ca3d53989cac78e000f7584aa8303ed6e5f82fe1500dffec",
+      "bytes": 8987561,
+      "members": 268,
+      "sha256_members_verified": 0,
+      "crc": "PASS"
+    }
+  ],
+  "prior_snapshot_retention": {
+    "source_before": "ec603268e9d6b62e22d172cb7a7aa47e5f08c84f",
+    "prior_files": 4915,
+    "unique_prior_blobs": 3632,
+    "unmatched_before_preservation": 0,
+    "unique_unmatched_before_preservation": 0,
+    "comparison": "exact SHA256, or LF-equivalent for text; immutable archives retain their stored bytes",
+    "archive_hashes": {
+      "entry_documents_before_cleanup.zip": "5f3c3f18abf94c0c5f03fe2271a3962a92dd28afa8719f60ec43d88f46d186c9",
+      "historical_artifacts_20261102.zip": "4726544949b1c4aa638bbabb64e20accdf70408e9429f6e21b34ca87aafd8be4",
+      "prior_snapshot_variants_20261102.zip": "96a8e8669e211cf7211c3c3b17e32734f868dfb59f80f106c32e27cd9f075909",
+      "raw_records_20261102.zip": "de89e3af71d97383f4e6f94d31868cff18eabebc46b28aa9b6d519a8daa0f7f7",
+      "submission_snapshot_20261101.zip": "2a0f0304e975dd14ca3d53989cac78e000f7584aa8303ed6e5f82fe1500dffec"
+    }
+  },
+  "report_rebuild": {
+    "build": "build_20261102_002644",
+    "pages": 77,
+    "pdf_sha256": "8cd1493eb9125950d6ea813984fd9c302be2c55cd0b1337774ed12ca9300aae4",
+    "scope": "CPU description only; source evidence and compile/PDF checks exit 0; no new board measurement",
+    "validation_records": "raw_records_20261102.zip/docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/validation/build_20261102_002644/"
+  }
+}

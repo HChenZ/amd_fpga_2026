@@ -1,3 +1,0 @@
-Time resolution is 1 ps
-TEST_PASS tb_puf_mmio_v2
-$finish called at time : 25910 ns : File "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/keys_v2/tb_puf_mmio_v2.sv" Line 107

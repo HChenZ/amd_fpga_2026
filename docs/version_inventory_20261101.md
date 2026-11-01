@@ -1,5 +1,9 @@
 # 工程版本清单与 PUF3 入口一致性审计
 
+> **2026-11-02 隔离完成**：本页保留审计时的旧位置；独立历史源码现已迁入archive/history，原始记录压缩到archive/evidence。
+> 当前实际入口以project_board.md、board/readme.md与delivery/README.md为准。当前源码/历史源码分开压缩，Skill独立，
+> 报告另包交付；不再用旧证据包作附件。原始资料和许可保留，当前CPU描述使用中性架构措辞。
+
 日期：2026-11-01；owner TBD；Git HEAD `35fe0a5`（当前本地 main，比 origin/main 领先 8 个提交）。
 当前源码包冻结点 `92159b9`；随后 `35fe0a5` 提交了冻结元数据。另有上一轮 P0 复核文档/日志未提交。
 
@@ -80,7 +84,7 @@
 | `keys_rv32` | PUF v1 的 ASCII 自检固件（v3） | 不作为 PUF3 main；PUF3 协议借鉴其流程，keys_v2 构建还共享其启动/UART支持 |
 | `keys_v2` | 独立 PUF v2 自检/驱动 | 不用 |
 | `pynq_dma_svc` | 独立 CPU-DMA 固件 | 不用 |
-| `cicc1000023` | 恢复 coremark_rv32/coremark_rv64/freertos_demo/riscv_tests 四类原始资产 | 不作为当前固件；保留来源和原 baseline 验收 |
+| `original_cpu`（现位于archive/history） | CoreMark/FreeRTOS/ISA历史资产 | 不作为当前固件，原件另有保留 |
 
 `svc.h` 的 FW_ID_STR 仍是 pynq-svc-v1 **不是 PUF3 固件混版错误**：
 PUF3 main.c 在 include 后明确 `#undef FW_ID_STR` / `#define FW_ID_STR "pynq-svc-puf3"`。

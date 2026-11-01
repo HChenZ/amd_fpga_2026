@@ -127,3 +127,66 @@ desktop.ini
 # Vivado 运行时残留
 **/dfx_runtime.txt
 /build/reports/io_sta_20261027/
+
+# Source delivery and repository isolation (2026-11-02).
+# Raw records are retained in archive/evidence/*.zip; their restored working
+# copies and redundant historical submission bundles stay local, not duplicated.
+/delivery/*.zip
+!/delivery/puf3_project.zip
+!/delivery/historical_projects.zip
+!/delivery/pynq_overlay_workflow_skill.zip
+!/delivery/technical_report.zip
+/delivery/*.pdf
+/report/technical/*.zip
+/archive/local_only/
+/archive/history/**/work/
+/archive/history/**/work_v2/
+/archive/history/**/work_fix/
+/archive/history/board/*/work*/
+/archive/history/report/llm_collab/sessions/
+/archive/history/**/candidate/*.bit
+/build/reports/
+/build/metadata/*
+!/build/metadata/puf3_sources.json
+!/build/metadata/source_delivery_check.json
+/data/advanced/
+/data/ascon/results/
+/data/recovery/
+/data/skill/*/
+/data/skill/l3_current_session.json
+/board/atk_navigator_7020/validation_evidence.json
+/archive/history/docs/tech_report/index.html
+/archive/history/docs/tech_report/report.md
+/archive/history/board/vivado_zynq7000_xc7z020_baseline/readme.md
+/archive/history/docs/original_cpu_recovery_audit.md
+/archive/history/docs/original_cpu_rtl_diff.md
+/archive/history/docs/repository_audit.md
+/archive/history/docs/repository_foundation_closeout.md
+/archive/history/docs/vivado_project_diff.md
+/archive/history/docs/workspace_cleanup.md
+/archive/history/sim/original_cpu/readme.md
+/archive/history/src/firmware/original_cpu/readme.md
+/archive/history/skill/ab_eval_pynq/test_board/l3_00_preflight.ipynb
+
+# Historical trees are frozen tracked snapshots. Do not accidentally add their
+# untracked generated caches or old local outputs after relocation.
+/archive/history/**
+!/archive/history/README.md
+!/archive/history/skill/
+!/archive/history/skill/ab_eval_pynq/
+!/archive/history/skill/ab_eval_pynq/test_board/
+!/archive/history/skill/ab_eval_pynq/test_board/l3_00_preflight_source.ipynb
+/report/llm_collab/sessions/
+/submission/evidence*/
+/submission/current_evidence.json
+/submission/freeze_manifest.json
+/submission/freeze_manifest.md
+
+# The editable report is published as a verified standalone ZIP; keep the
+# local editable tree and old input ZIPs without exposing disposable builds.
+/docs/tech_report/amd_fpga_2026_latex_final.zip
+/docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report.zip
+/docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/**
+!/docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/
+!/docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/
+!/docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf

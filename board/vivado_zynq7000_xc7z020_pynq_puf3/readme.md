@@ -1,5 +1,9 @@
 # pynq_puf3：三模式 SW/HW(MMIO)/ISE 服务 + PUF v1，单一 bitstream
 
+2026-11-02 隔离补注：旧v1/PUF-only工程已移至archive/history/board；下文当时相邻工程路径仅保留设计语境。
+当前构建/固件/Notebook及共享IP路径不改，当前源包另附必要依赖。交付从project_board.md和delivery/README.md开始，
+不再把旧证据包作为比赛附件；原始记录仍保留在仓库归档。
+
 **2026-11-01 入口说明**：本目录是当前主演示，PUF3 意为三模式 + PUF v1，不是 PUF 第三代。
 板测用 src/pynq_puf3/pynq_puf3_board_test.ipynb，默认 FULL_KAT=True；旧 src/pynq 的三个 CLI
 仍为 pynq-svc-v1，不能只换 --release 路径使用。本轮仅说明分责，不改程序或工件。

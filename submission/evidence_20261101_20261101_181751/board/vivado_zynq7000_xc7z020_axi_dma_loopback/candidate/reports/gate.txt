@@ -1,1 +1,0 @@
-run=impl_1 strategy=Performance_ExploreWithRemap dcp=dma_loop_wrapper_postroute_physopt.dcp wns=1.736 whs=0.025 drc_error_or_critical=0 netlist_29_160=0 unrouted_or_conflict_nets=0

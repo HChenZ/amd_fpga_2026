@@ -1,5 +1,15 @@
 # 任务看板
 
+## 当前交付快捷入口（2026-11-02）
+
+先看[项目总看板](../project_board.md)：当前PUF3及其依赖、隔离历史源码、独立Skill、技术报告分别定位/压缩。
+原始记录保留在archive/evidence；旧证据包不再作为附件。下面P0/P1任务沿用各自原验收范围，不把整理当成新板测。
+双语海报已合并保留；当前CPU描述去内部编号，不修改版权/许可或不可变记录。源码交付与校验见[交付清单](../delivery/README.md)。
+
+| ID | task | owner | deliverable | acceptance criteria | status |
+|---|---|---|---|---|---|
+| D07 | 当前/历史源码隔离与独立交付 | TBD | 当前源码、历史源码、Skill、技术报告四ZIP及导航/原始资料归档 | 生产输入/工件不变，归档可校验；独立解包host/Skill/固件验证、编号扫描、正常提交推送 | in_progress（解包host61、Skill61/3skip、固件BIN一致、56项源与7项构建支持检查通过；待固化清单并推送。网页原件当前未找到，不列入已交付） |
+
 更新：2026-11-01。所有 owner 为 **TBD**，仅由项目方指派。截止日期为内部计划；依赖完成是开工/验收门槛，不能用到期日替代。日期以 Asia/Shanghai 为准。
 
 编号：B=baseline/build，C=cryptography software，I=instruction extension，V=verification，Y=PYNQ，S=skill，P=PUF/security，D=documentation/release。

@@ -1,5 +1,13 @@
 # Agent 项目入口
 
+## 2026-11-02 本轮最新交付授权
+
+- 用户明确要求：当前PUF3与必需依赖、隔离历史源码分别压缩，另提供独立Skill和技术报告；不以旧证据包作为交付附件。
+- 仓库仍保留原始记录（archive/evidence）和历史源码（archive/history），从project_board.md快速导航。
+- 当前RTL/固件算法和已验证candidate保持不变；对外CPU描述只写RV32五级流水线结构，去掉内部编号，不改第三方版权/许可和原始记录。
+- 原始档案中保留的旧标识与Git历史不伪造清除；当前维护源码/网页/报告和交付文件名另行扫描。
+- 本轮用户已明确授权提交并push；不得force push或丢弃队友改动。原下文日期/入口描述按其历史时点解读。
+
 ## 当前交付安排（2026-10-29 用户最新授权，优先于下文历史计划）
 
 - **2026-11-01 提交并冻结**，取代原 10-27/10-28 冻结与 11-04 提交安排；这是项目方安排，不推断官方赛期。
@@ -9,10 +17,10 @@
   功能证据，跨上电/RO 时序签核等未测边界必须保留。
 - 10-30 队友先验证实际交付 Skill；小时级稳定性、完整通用性/跨平台与独立核/大消息实验不阻塞本次提交。
 - 原始失败与未测边界保留；不能因缩减交付范围把未完成任务改为通过。现有代码/证据不删除，不自动 commit/push。
-- 当前顺序见 `tasks/release_plan_20261101.md`，Skill 执行表见 `docs/skill_test_guide_20261030.md`。
+- 当前交付先看 `project_board.md`；原阶段顺序见 `tasks/release_plan_20261101.md`，历史Skill执行表位于 `archive/history/docs/skill_test_guide_20261030.md`。
 - 版本选择先读 `docs/version_entrypoints.md`：保留旧入口的默认行为与历史证据，不把 v1 CLI、Skill L3 或独立 DMA/PUF v2 结果改写为 PUF3 结果；本轮说明收口不授权修改 PUF3/公共 RTL。
 
-项目：RISC-V Lightweight Cryptography SoC with ASCON ISE。复用 CICC1000023 CPU，目标 XC7Z020CLG400-1；主线是标准 Ascon-AEAD128 软件、ISE 与 MMIO 加速及 PYNQ 展示；11-01 起主演示为集成 PUF 密钥通路的 PUF3 overlay，早期独立 PUF 原型另列。当前提交/冻结日期 2026-11-01。
+项目：RISC-V Lightweight Cryptography SoC with ASCON ISE。CPU 采用 RV32 五级流水线结构，目标 XC7Z020CLG400-1；主线是标准 Ascon-AEAD128 软件、ISE 与 MMIO 加速及 PYNQ 展示，主演示为集成 PUF 密钥通路的 PUF3 overlay。历史项目集中在 archive/history，原始证据保留在 archive/evidence。
 
 ## 必读顺序
 
@@ -28,9 +36,9 @@
 
 ## 立即知道的事实
 
-- CPU 在 `src/rtl/`，已有软件在 `ascon/`，原 Kintex 经 git mv 统一到 `board/vivado_kintex7_legacy/`；“仅两个工程”是恢复初期状态。当前 board 有 11 个工程家族及板卡资料目录，职责见 `board/readme.md`，主演示为 pynq_puf3。
+- CPU在src/rtl，算法在ascon；独立旧工程已隔离到archive/history/board。当前board仅保留PUF3、其共享IP配置来源和板卡资料，职责见board/readme.md。
 - 原 XPR 实际 part 为 `xc7k325tlffv676-2L`，不是目标 Zynq。这些资料在初始 Git HEAD 缺失（not_in_current_repo），现已从 ZIP 找到并选择恢复到独立 baseline/firmware/sim；不要继续表述为 not_available。
-- 原始 XC7Z020 baseline 入口为 `board/vivado_zynq7000_xc7z020_baseline/`，三个 XCI/XDC/COE 与 imports 均已恢复；读 `docs/cicc1000023_recovery_audit.md`。它不是当前 PUF3 演示入口；不得从零创建空工程替代原始 baseline，也不凭换行差异选择哪个 RTL 更新。
+- 原始 XC7Z020 baseline 已隔离到 archive/history/board；它不是当前 PUF3 演示入口。原件与来源保留，不凭换行差异选择哪个 RTL 更新，不改第三方版权/许可。
 - `csr_file.v:mcycle` 是周期来源；`cpi_cnt.v` 是事件计数，不能替代总周期。
 - Ascon 软件存在不等于符合最终标准，须看锁定 KAT。初始快照“ascon_round.v 只有 ror”已过时：当前含 round，P8/P12/ISE 与容量内板测已有证据；模块存在仍不能替代对应版本的验证。
 - 所有 owner 先为 `TBD`；不要从 Git 作者、聊天身份或参考项目猜负责人。

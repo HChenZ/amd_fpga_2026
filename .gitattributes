@@ -2,10 +2,10 @@
 # These snapshots are verified against SHA-256 values in the recovery manifest.
 board/vivado_zynq7000_xc7z020_baseline/** -text
 board/vivado_kintex7_legacy/** -text
-src/firmware/cicc1000023/** -text
-sim/cicc1000023/** -text
-data/recovery/cicc1000023/smoke/** -text
-build/reports/cicc1000023_archive/** -text
+archive/history/src/firmware/original_cpu/** -text
+archive/history/sim/original_cpu/** -text
+data/recovery/original_cpu/smoke/** -text
+build/reports/original_cpu_archive/** -text
 
 # C01/C03 lock downloaded and frozen reference/KAT bytes for SHA-256 checks.
 data/ascon/** -text
@@ -45,3 +45,18 @@ board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/** -text -diff
 
 # AXI DMA loopback candidate (Skill L3): bytes pinned by candidate/sha256sums.txt and manifest.json.
 board/vivado_zynq7000_xc7z020_axi_dma_loopback/candidate/** -text -diff
+
+# Isolated source snapshots and immutable record containers retain their bytes.
+archive/history/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+archive/evidence/*.zip -text -diff
+report/technical/*.zip -text -diff
+
+# Preserve inherited patch-context spaces, verbatim report tables and three
+# frozen experiment copies. These are not current PUF3 formatting exceptions.
+archive/history/build/patches/*.patch whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+archive/history/docs/tech_report/evidence/appendix_c_raw.md whitespace=-blank-at-eol,cr-at-eol
+archive/history/docs/tech_report/latex/chapters/app03.tex whitespace=-blank-at-eol,cr-at-eol
+archive/history/docs/tech_report/src_template/40_part4_5.md whitespace=-blank-at-eol,cr-at-eol
+archive/history/src/rtl/dcache_experiments/dcache.v.backup_manual whitespace=-blank-at-eol,cr-at-eol
+archive/history/src/rtl/puf_soc_v2/bus_interconnect_puf_v2.v whitespace=-blank-at-eol,cr-at-eol
+archive/history/src/rtl/pynq_dma_cpu/bus_interconnect_dma.v whitespace=-blank-at-eol,cr-at-eol

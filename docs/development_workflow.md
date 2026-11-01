@@ -1,5 +1,8 @@
 # 开发与复现流程
 
+2026-11-02：源码/历史源码、Skill、技术报告分开交付，当前入口为project_board.md；旧构建和研究工具位于archive/history。
+本轮用户已授权提交/push，须先校验独立源码包；原始证据归档保留，不把新源码压缩当成新板测通过。
+
 2026-10-29 更新：项目方改为 **11-01 提交并冻结**；旧日期作历史计划，不约束本轮。
 现有功能保持可演示，额外稳定性/通用性与完整 clean-clone 未做就记未测，不自动等同交付失败。
 当前实际验收与排期见 `tasks/release_plan_20261101.md`。
@@ -30,11 +33,11 @@ PUF3 不等于“直接把 src/rtl 全加进工程”；旧程序的默认行为
 3. 在源文件或 Tcl/IP 配置上修改；临时构建放被忽略目录，精选证据复制至受控目录。
 4. 运行与改动相称的验证，记录命令、退出码、版本和原始输出；RTL 必须配套功能验证。
 5. 更新 task_board、actual_progress，失败写 lessons_learned；提交 review-ready diff 与验证局限。
-6. **本轮及默认 agent 流程不执行 commit/push**。用户人工检查后决定提交；将来明确授权时采用 `type(scope): description`，如 `docs(repo): document baseline gaps`，正文列任务号与验证。
+6. **默认不执行commit/push，明确授权除外**。本轮11-02用户已授权，在校验后正常提交/推送，不force push。标题与正文按用户偏好写中文，列任务号、验证与边界。
 
 ## baseline 恢复顺序（B02/B03/B04）
 
-1. 记录当前 HEAD 与 dirty 状态，阅读恢复审计；用 `python build/prepare_cicc1000023_sources.py` 核对已恢复源资产。原 ZIP、版本、IP、报告与双哈希已有清单，不重新造空工程。
+1. 原baseline研究线已隔离在archive/history，原始来源/资产记录保留在archive/evidence；不要把旧恢复脚本当成当前PUF3构建入口。
 2. 使用 `board/vivado_zynq7000_xc7z020_baseline/` 的真实 XPR/三个 XCI/XDC/COE，Vivado 2025.2 打开并重生成 IP；保留原 imports 快照。增量 DCP 依赖已最小移除，原 Kintex 工程保留。
 3. B03 核验实际 XC7Z020 板卡、revision、时钟、复位、UART、DDR、引脚、电压和 image；在恢复的真实 XC7Z020 入口核验；若需适配其他板型再单独配置，不能只替换 part 字符串。
 4. B04 核对已恢复 startup/linker/Makefile；按脚本隔离还原原文件名，取得精确 FreeRTOS kernel 与 bootloader 源，检查旧 TB 层次及扁平化链接，再验证内存布局与固件加载；程序入口与复位 PC/BRAM 映射一致。`RAM_INIT_FILE` 参数存在不代表加载链路已实现。
@@ -59,4 +62,4 @@ D05 的完整验收必须在干净机器或干净 clone 实跑；检查源代码
 
 `.gitignore` 不忽略整个 build，也不泛化忽略 CSV/JSON/Tcl/XDC/XCI/BD/COE/MEM。缓存、runs、临时 waveform 与私有工具目录忽略；需要留存的摘要先导出到 `build/reports/` 或 `data/`。foundation 收口已从索引/工作区移除原先跟踪的 `.cache/wt/project.wpc` 与 `.hw/*.lpr`；它们不属于 579 个恢复资产。ignore 本身不会清理已有跟踪项。
 
-10-27/10-28/11-02/11-03/11-04 的冻结与发布门禁见 [milestones](../tasks/milestones.md)。
+旧日期的原阶段门禁见 [历史milestones](../archive/history/tasks/milestones.md)，当前交付以根目录project_board.md为准。

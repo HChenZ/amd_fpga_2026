@@ -1,1 +1,0 @@
-run=impl_3 strategy=Performance_ExtraTimingOpt wns=0.062 whs=0.009 drc_error_or_critical=0 ro_luts=1280 ro_luts_assigned_pblock=1280 ro_luts_placed_in_pblock_region=585 pblock_soft=1 netlist_29_160=0

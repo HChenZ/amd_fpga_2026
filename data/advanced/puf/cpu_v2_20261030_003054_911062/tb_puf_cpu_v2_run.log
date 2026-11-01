@@ -1,3 +1,0 @@
-PUF_V2_OFFLINE_SELFTEST
-PUF_V2_TEST_PASSFATAL: sim/keys_v2/tb_puf_cpu_v2.sv:66: incomplete selftest
-       Time: 36115000  Scope: tb_puf_cpu_v2

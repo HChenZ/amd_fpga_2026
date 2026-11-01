@@ -1,5 +1,15 @@
 # 报告与提交材料
 
+## 当前交付（2026-11-02）
+
+- 技术报告：[独立ZIP](../delivery/technical_report.zip)含当前PDF与可编辑LaTeX/图件；CPU措辞已去内部编号，数据保持PUF3。
+- 海报：poster/中队友最新双语PPTX/PNG完整保留。
+- 讲解网页：历史日志记录过project_explainer.html，但当前工作区、Git快照及整理备份均未找到该文件；不声称已入库或已清理其文本，需原制作会话补交原件。
+- 工程源码与Skill分别压缩，见delivery/README.md；旧证据包不作附件，原始记录仍保存在archive/evidence。
+- 下文带日期状态是整理前记录，旧llm_collab工具已隔离到archive/history/report，原始会话归档保存。
+
+## 整理前的阶段说明（保留原语境）
+
 更新：2026-11-01（10-29 初版）。
 
 2026-11-01：D03 的可编辑 AMD 模板中英两页海报（含官方校徽）已完成，见 [poster/readme.md](poster/readme.md)、

@@ -1,89 +1,17 @@
-# 构建与复现
+# PUF3 构建与交付校验
 
-## 2026-11-01 当前入口与旧构建的边界
+当前构建顺序（源码包在仓库根运行，需本机工具）：
 
-- 当前 PUF3 构建入口在 `board/vivado_zynq7000_xc7z020_pynq_puf3/build.tcl`，固件入口为
-  `src/firmware/pynq_svc_puf/build.py`；板端使用已发布 candidate 则不需要重建。
-- 本目录 ACB/BCE/dcache/策略 sweep/IO-STA 等 Tcl 是各自日期的研究构建，**不是 PUF3 build 的替代品**。
-- `advanced/` 是 CPU-DMA/HW_DIRECT/PUF v2 等独立实验；80 MHz 候选不是 PUF3 降频版本。
-- `prepare_cicc1000023_sources.py` 核验原恢复资产，不是生成 PUF3 固件。
-- 报告/打包入口在 `docs/tech_report/evidence/`，步骤见 `submission/README.md`。
-- 下面“未重建/板型未知/11-02计划”和第一阶段静态命令均保留为原阶段说明，不是当前全仓状态或无版本一键命令。
-  默认旧 CPU runner 缺 keys/BUFG；--pynq-p0 是旧 v1。复核结果与当前职责见
-  [版本入口](../docs/version_entrypoints.md)。不要为跑旧实验覆盖冻结 candidate 或复用旧结果。
-
-## 历史构建背景与原阶段操作
-
-V09 最终双策略实验 RPT 位于 `reports/timing_acb_20261018/`，原始恢复归档保留。
-旧实验报告清理后被并行任务部分恢复；用户最新确认暂时保留这些并行产物，待并行任务结束后收尾。
-被检查脚本实际使用的 JSON/TXT 仍保留。
-详细范围与清理后重跑见 [V10 清理说明](../docs/workspace_cleanup.md)。
-
-已恢复真实 XC7Z020 XPR、三个 IP XCI 和固件/测试源；尚未完成 Vivado/固件重建。历史报告在 reports/cicc1000023_archive，本轮模块测试证据在 metadata。B02/B04 继续关闭构建依赖与验证缺口。
-
-## 存放约定
-
-| 路径 | 内容 |
-|---|---|
-| 本目录中的受控脚本 | Tcl/构建/验证入口；待后续任务实现 |
-| `reports/` | 精选 synthesis/implementation/timing/utilization 摘要 |
-| `metadata/` | 工具/IP/source/part/top/约束/命令/哈希和复现记录 |
-| `local/`、`tmp/`、`cache/`、`generated/`、`artifacts/` | 可丢弃输出，已 ignore |
-
-不要把唯一证据留在被忽略的 runs 中；导出摘要和必要原始结果后再清理。KAT 与 benchmark CSV/JSON 放 data，不被全局 ignore。
-
-## 第一阶段可复跑的静态检查（PowerShell）
-
-在仓库根目录，安装可用的 Icarus Verilog 后执行：
-
-```powershell
-$auditOutput = Join-Path $env:TEMP 'amd-fpga-stage1-audit'
-New-Item -ItemType Directory -Force -Path $auditOutput | Out-Null
-$rtlFiles = @(Get-ChildItem src/rtl -File -Filter '*.v' | ForEach-Object FullName)
-iverilog -g2012 -I src/rtl -s top -o (Join-Path $auditOutput 'top.vvp') @rtlFiles
-# 检查 $LASTEXITCODE；本轮为 0，仅 elaboration。
-iverilog -g2012 -I src/rtl -s top_pl_bram -o (Join-Path $auditOutput 'top_pl_bram.vvp') @rtlFiles
-# 本轮为 4：缺 clk_wiz_0、axi_bram_ctrl_0、blk_mem_gen_0。
+```sh
+python -X utf8 src/firmware/pynq_svc_puf/build.py
+python -X utf8 sim/pynq_puf3/run.py
+vivado -mode batch -source board/vivado_zynq7000_xc7z020_pynq_puf3/build.tcl -notrace
 ```
 
-第一阶段未加 dummy IP、未运行 vvp。恢复阶段已运行两个模块 TB，结果另记。2026-09-21 使用 Icarus 12.0 devel；完整命令与输出见 [repository_audit](../docs/repository_audit.md)。Vivado/Vitis/RISC-V GCC 在本轮 PATH 未发现，这不表示磁盘上一定未安装。
+现有build.tcl拒绝覆盖同名工作区；重建会产生新的工件，必须按其输出重新绑定验证，不能冒用10-31板测。
+本目录keys_ro_allow_loops.tcl/keys_ro_pblock.xdc是共享支持，保留原字节；其他旧时序/策略实验已隔离到archive/history/build。
+源码打包入口为tools/package_delivery.py；只打包源码与配置，不把原始证据归档塞进工程附件。
+原始报告/旧元数据在archive/evidence，必要时用tools/restore_records.py恢复本机忽略副本。
 
-## 下一步完整构建
-
-按 [development_workflow](../docs/development_workflow.md) 恢复源依赖，记录 tool version，使用已恢复的真实目标配置验证综合/实现/上板。11-02 D05 从干净环境执行；在此之前不提供未经验证的“一键完整运行”命令。
-
-## 恢复资产校验与原名工作副本
-
-```powershell
-python build/prepare_cicc1000023_sources.py
-python build/prepare_cicc1000023_sources.py --stage cicc1000023_sources
-```
-
-第一条核对 579 个资产哈希；第二条只向不存在的 build/local 子目录还原原包大小写文件名与 formal 相对 RTL/少量 HEX 输入，不执行任何旧脚本。已有同名工作副本会被拒绝覆盖，可换一个新名称。源目录使用小写存储名，实际编译应在原名副本进行；kernel/bootloader/ISA harness 缺口见 [恢复审计](../docs/cicc1000023_recovery_audit.md)。
-
-[本轮验证元数据](metadata/cicc1000023_recovery_verification.json) 留存恢复 RTL elaboration、tb_bypass、tb_regfile 的精确命令和输出。
-
-恢复资产由 `.gitattributes` 禁止 Git 自动换行转换，以保持源字节及 manifest 哈希；普通文档不因此要求全仓统一行尾。
-
-Git 行尾例外：两份 Kintex legacy XPR/XDC 在已有提交中的 blob 为 LF、恢复工作区为 CRLF；精确文件规则使用 text/eol=crlf 保留这一既有状态。从 ZIP 恢复的源资产仍使用 -text，禁止格式化；哈希校验依据工作区原始字节。
-
-## 2026-10-16 key lifecycle review
-
-Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands and build evidence: [review](../docs/ascon_key_management.md). Earlier dated status above is historical. Board model remains unknown; no programming performed.
-
-The continuation's [100 MHz review](../docs/ascon_timing_review.md) retains each implementation round.
-`build_ascon_review.tcl` accepts a build leaf, `fresh`/`resume`, and an optional report leaf;
-fresh runs refuse to overwrite either an existing build or report directory.
-
-## 2026-10-18 V09 A/C/B validation
-
-`build_timing_acb.tcl` clones the recovered Zynq project, snapshots production RTL,
-synthesizes once and implements `Performance_ExplorePostRoutePhysOpt` and
-`Performance_ExploreWithRemap` separately. Use Vivado 2025.2 through Ross MCP:
-`source <repo>/build/build_timing_acb.tcl`. Existing work/report directories are
-never overwritten. Do not run it against the strategy-sweep project.
-
-`python build/summarize_timing_acb.py` independently cross-checks final reports,
-endpoint CSVs, source hashes and XDC identity. Current [results](../docs/timing_acb_validation.md)
-meet existing 100 MHz constraints with only 1–7 ps setup slack; board IO/DRC
-signoff remains separate and incomplete.
+完整仓库的交付包校验：`python tools/verify_delivery.py`（另需pytest、PyMuPDF、Icarus与上述交叉工具链）。
+它在仓库外解压后重编译固件、比对BIN、跑host/Skill并检查构建输入；不运行Vivado/实板，也不覆盖现成candidate。

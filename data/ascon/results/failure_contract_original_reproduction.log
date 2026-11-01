@@ -1,3 +1,0 @@
-PASS repository-c/raw_tag_rejection
-FAIL repository-c/no_usable_plaintext_on_failure expected=fail with length=0 actual=rc=-1 length=17 candidate_equals_plaintext=True; caller must discard/wipe output
-FAIL SUMMARY {'passed': 1, 'failed': 1, 'exit_code': 1}

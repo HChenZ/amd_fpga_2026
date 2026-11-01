@@ -1,1 +1,0 @@
-status=PASS tops=5 version=2025.2 hex=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/advanced/puf/cpu_v2_20261030_010334_900335/firmware/puf_v2.hex board=NOT_RUN

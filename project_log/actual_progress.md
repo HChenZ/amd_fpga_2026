@@ -1,5 +1,23 @@
 # 实际进度
 
+## 2026-11-02 — D07 源码隔离与三类独立交付准备（owner TBD）
+
+- 最新用户授权：工程当前PUF3及依赖、独立历史源码分别压缩，另交付独立Skill与技术报告；不以旧证据包作附件，但仓库保留源码和原始资料，允许正常commit/push。
+- 入场保留文档审计、报告编辑树和并行记录，备份于本机opencode临时目录；181bafd保存说明层工作，ec60326正常合并origin/main，保留队友最新双语PUF3海报；未force push或丢弃他人修改。
+- 当前board只保留PUF3、实际共享IP来源及板卡资料；独立历史board/src/sim/build/Skill验证工具隔离到archive/history。
+  当前PYNQ公共库、pynq_svc/ascon_hw_rv32固件支持、Ascon参考/向量和build共享hook保留。当前RTL、固件算法、已执行PUF3 Notebook与candidate未改。
+- 原始报告/日志/高级实验/恢复/会话等压缩归档，旧展开提交包去重。对ec60326的4915个路径/3632种Git blob做内容回查，当前树或归档均有对应内容（文本允许LF/CRLF等价）；额外保存未覆盖的72种旧字节变体。
+  所有归档CRC与显式成员SHA-256校验通过，索引见archive/evidence/index.json；原标识/第三方许可与真实原件不伪造清除。
+- README→project_board→当前源码/构建/Notebook/历史/原件/Skill/交付导航已建立。当前维护内容与交付源码中的指定内部编号已清理，CPU只描述RV32五级流水线，不新增独占原创声明。
+- 报告仅调整CPU架构措辞并重新编译：build_20261102_002644，编译/证据/PDF检查均exit0，77页，PDF SHA-256 8cd1493eb9125950d6ea813984fd9c302be2c55cd0b1337774ed12ca9300aae4。
+  新编译记录归档，原始测量不改；报告源和图件单独ZIP，四张Vivado截图不散放入库。
+- 验证（Python3.13.9、pytest8.4.2、Icarus14.0 devel、xPack GCC15.2.0）：tools/verify_puf3_sources.py --compile exit0，56项候选生产输入、7项构建支持hash与5个现成工件匹配；共享hook/两个XCI路径检查通过。
+  仓库pytest为122 passed/3 skipped，exit0；源码包仓库外解压后主机61项、独立Skill61 passed/3工程实物可选项skip、固件重编译与elaboration均exit0；BIN完全匹配原candidate的857df29c…。
+- 初包曾漏带build共享hook，现已修打包源清单并增加专门依赖门禁，不能以elaboration代替Vivado输入核验。最终ZIP须在源码提交后重新生成/复核，以delivery/manifest.json为准；tools/verify_delivery.py为可复验入口。
+- 例外：历史日志记录的report/project_explainer.html在当前工作区、Git和现有备份中均未找到，不声称已入库/已扫描；需原制作会话补交原件，不重造网页冒充保留。
+- 接口变化：无硬件/固件ABI变化，仅仓库导航/归档/打包工具。未新跑Vivado实现、实板、完整历史工程复现或PUF可靠性，D05与原宽范围门禁不因解包测试转done。
+  下一接收D07最终清单固化与推送、D06人工材料审核/上传；网页补交待原制作会话，owner TBD。
+
 ## 2026-11-01 — 说明层按版本分责收口，不强行修改 PUF3/旧程序（owner TBD）
 
 - 用户授权仅更新说明：明确旧入口与当前现状，不把全部程序强制改成PUF3。未改脚本、RTL、固件、
@@ -1635,13 +1653,13 @@ checkpoint 无新增 commit。看板仍不改；交接 RTL owner/TBD 修重复/�
 
 | 任务 / 范围 | 实际结果 | 证据 | 状态 / 局限 |
 |---|---|---|---|
-| B01 / D00 | 初始仓库审计、协作骨架已完成；现补充归档审计与结论更正 | docs/repository_audit.md、docs/cicc1000023_recovery_audit.md | done；审计不是功能验收 |
+| B01 / D00 | 初始仓库审计、协作骨架已完成；现补充归档审计与结论更正 | 历史审计/恢复记录（已隔离） | done；审计不是功能验收 |
 | B02 | Rebuild and verify recovered XC7Z020 CICC baseline；原始 XC7Z020 XPR、31 RTL/header、3 XCI、XDC/COE 恢复；活动文件引用闭合；Kintex 保留 | board/vivado_zynq7000_xc7z020_baseline；manifest 双哈希 | in_progress；未运行 Vivado/IP 再生成/综合/实现 |
 | B03 | 原始 target xc7z020clg400-1、PLL 50→100 MHz、128 KiB BRAM 配置已知 | 原 XPR/XCI/XDC 与恢复审计 | blocked；target part 已确认，physical board model pending；revision/引脚适用性/PYNQ image 未核验 |
-| B04 | CoreMark RV32/RV64、FreeRTOS 应用、RISC-V tests 源与构建输入共 465 文件恢复 | src/firmware/cicc1000023；原名还原脚本 | blocked；准确 kernel/bootloader 源不在所供 ZIP；未编译/加载 |
-| V01 | 原始 RTL top elaboration、tb_bypass 7 项与 tb_regfile 15 项通过 | build/metadata/cicc1000023_recovery_verification.json | in_progress；ISA/Cache/AXI/中断/counter 完整回归待做 |
+| B04 | CoreMark RV32/RV64、FreeRTOS应用、ISA源与构建输入共465文件的恢复记录 | archive/history中的original_cpu资产 | blocked；准确kernel/bootloader源未闭合 |
+| V01 | 原始RTL top elaboration、tb_bypass7项与tb_regfile15项通过 | 归档中的original_cpu恢复验证记录 | in_progress；原宽范围验收未关闭 |
 | 历史硬件输出 | ZIP 有 bitstream、综合/实现成功日志；100 MHz 下 WNS 0.056 ns；placed LUT 4806 / FF 3129 / BRAM 38.5 / DSP 4 | 精选 6 个报告/日志与 archive_inventory | historical_archive_evidence；有未设 IO delay，非本轮重建或实测 |
-| RTL 比较 | 31 共有文件：14 字节同、17 仅换行差异；repo-only 两个 Ascon helper | docs/cicc1000023_rtl_diff.md | 没有选择哪个更新；当前 src/rtl 未改 |
+| RTL比较 | 当时31共有文件：14字节同、17仅换行差异；两个Ascon helper仅在仓库 | 历史RTL比较（已隔离） | 未据换行差异选择更新版本 |
 | C02 | 既有 Ascon C/Python 保留 | ascon/ | in_progress；未移植或运行最终标准 KAT |
 | C01/C03/C04 | 无锁定的最终标准 KAT 及板上 benchmark | 尚无相关结果 | todo；Ascon cycles/code size 均 not_measured |
 | Ixx | Ascon RTL 仍只有 ror/load_bytes/store_bytes | src/rtl/ascon/ | I01-I08 todo |
@@ -2199,7 +2217,7 @@ owner TBD；用户明确授权首次commit/push，后续新增测试保留本地
 owner TBD；分支feat/navigator_preboard，HEAD仍68fafc8，保留既有13项未提交工作，本轮未commit/push/merge。
 
 - 独立连续两次复现原TB四项FAIL/exit1，保留修改前文件与日志。根因是IDLE接受请求后经过MISS_CAPTURE才发单拍request；旧36/206ns检查早于45/215ns合法事件。分类TB_STALE，不是生产RTL修复。
-- 仅修订sim/cicc1000023/unit/dcache/tb_dcache.v：8拍有界请求事件等待、独立预期事务队列、方向/地址/data/mask/qualifier/次数和回填检查；完成上限仍30拍，negedge驱动/posedge NBA后采样。原场景和expected保留，增加byte lane、连续store、跨拍stall、半条line reset中止以及已有效line的reset失效检查。
+- 当时仅修订原CPU的dcache TB：8拍有界请求事件等待、独立事务队列、方向/地址/data/mask/qualifier/次数和回填检查；完成上限仍30拍。原场景/expected保留，补byte lane、连续store、跨拍stall与reset中止/失效场景；源码现已隔离。
 - 修订TB在Store Buffer前与当前生产源码均PASS：116检查、13事务、18回填beat；独立事务TB保持578读/671写/404读事务/1616beat PASS；4种子逐拍差分一致。
 - 修订TB的坏回填、缺读、重复读、错地址、错写data、错mask、缺写7种反例均exit1；原事务TB的坏回填/丢写和中断3种反例也全部按预期失败。历史原TB+RTL按已发布68fafc8冻结，只用于历史复现，不驱动当前正常测试的FAIL豁免。
 - 按要求实际执行python -B sim/board/run_tests.py --mode smoke：6 PASS/0 FAIL/0 BLOCKED/9 NOT_RUN，exit0，16.394s。完整--mode regression：15 PASS/0 FAIL/0 BLOCKED/1 NOT_RUN，exit0，757.713s；SW/MMIO/ISE、完整Host KAT、Mailbox、COE/CPU镜像一致性、修订TB、独立事务TB与6个真实CPU+CLINT中断场景均实际运行。

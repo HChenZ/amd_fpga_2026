@@ -54,15 +54,15 @@ HWKEY_ON/HWKEY_OFF 操作。实板结果已完成单次上电的 289 组容量�
   延迟。MMIO 采用原固定延迟读回（检测 T，T+1 请求/等待，T+2 数据/解除等待），
   不等待仅用于 cacheable fill 的 `bus_rdata_valid_i`。CPU/总线端口与地址映射不变。
 
-验证与尚未验收项见 [V09 报告](timing_acb_validation.md)。
+验证与尚未验收项见 [历史V09报告](../archive/history/docs/timing_acb_validation.md)。
 
 2026-10-16现行增量：软件/MMIO/ISE已在RV32仿真运行。MMIO CTRL[2]为idle ZEROIZE，
 BUSY写忽略、认证成功且有效长度内才允许OUT读取；ISE新增内部cancel/ack、EX hold接线，
 **没有新opcode**。ISE decrypt helper新增最后一个mlen指针，失败-1/0长度并擦除候选。
-完整地址、编码、端序、生命周期与局限以[密钥管理审查](ascon_key_management.md)为准；
+当时地址、编码、端序、生命周期与局限见[历史密钥管理审查](../archive/history/docs/ascon_key_management.md)；
 下文带2026-09/10-09日期的内容保留为历史，不能据其断言CPU ISE仍未实现。
 
-恢复补充（2026-09-21）：原始 XCI 已确认 PLL 50→100 MHz，BRAM 为 32×32768 words（128 KiB）、freertos_demo.coe 初始化。下文 RTL 地址/计数语义保持不变；共有 31 个 RTL 规范化换行后与当前源码一致。配置频率和历史报告不等于本轮板上实测，详见 [恢复审计](cicc1000023_recovery_audit.md)。
+恢复阶段说明：原始XCI配置PLL 50→100 MHz，BRAM为32×32768 words（128 KiB），使用当时的COE输入。该源快照和报告现已隔离，不等于当前PUF3实测；当前源清单由PUF3专用Tcl定义。
 
 更新快照：2026-09-21。该段描述当时状态：现有 RTL 静态提取、未上板、目标接口草案
 未冻结。当前 PYNQ UART mailbox v1 与 V03 状态以上方 2026-10-29 条目为准。

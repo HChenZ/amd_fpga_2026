@@ -1,3 +1,0 @@
-
-SUMMARY EXECUTE checks=11 errors=0
-sim/ascon/tb_key_execute.v:52: $finish called at 950000 (1ps)

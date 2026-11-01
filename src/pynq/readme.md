@@ -1,5 +1,10 @@
 # PYNQ host layer and board validation
 
+**2026-11-02 隔离说明**：本目录保留PUF3所需的公共API/协议及因import复用保留的旧兼容模块；
+DMA/PUF v2/MIN主机工具已移到archive/history/src/pynq，旧硬件工件移到archive/history/board。
+下面v1 CLI默认路径是历史行为，当前不作为可直接运行入口；PUF3只用src/pynq_puf3的Notebook。
+本轮不改共享库算法、身份常量或Notebook来强行统一。
+
 ## 2026-11-01 版本适用范围（优先阅读）
 
 本目录是**多版本公共主机库 + 旧 PYNQ v1 入口 + 独立实验主机工具**，不是 PUF3 专属目录。

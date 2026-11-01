@@ -1,3 +1,0 @@
-
-SUMMARY ISE checks=1502 errors=0
-sim/ascon/tb_key_ise.v:63: $finish called at 37390000 (1ps)

@@ -1,7 +1,0 @@
-"xvlog --incr --relax -L uvm -L axi_vip_v1_1_22 -L processing_system7_vip_v1_0_24 -L xilinx_vip -prj tb_dma_endpoint_vlog.prj"
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/dma_cpu_endpoint.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module dma_cpu_endpoint
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/pynq_dma_cpu/tb_dma_endpoint.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module tb_dma_endpoint
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.sim/sim_dma_endpoint/behav/xsim/glbl.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module glbl

@@ -1,1 +1,0 @@
-RESULT a1_variant=pb3_epp pblock=SLICE_X50Y0:SLICE_X113Y149 place=ExtraPostPlacementOpt route=AggressiveExplore wns=-0.041 tns=-0.164 failing=4 whs=0.016

@@ -1,2 +1,0 @@
-checks=1502 errors=0 time=37390 ns
-PASS: original tb_key_ise completed all 1502 checks

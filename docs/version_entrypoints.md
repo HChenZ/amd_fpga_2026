@@ -1,5 +1,10 @@
 # 当前与旧入口速查
 
+> **2026-11-02 布局更新**：当前总入口为project_board.md。下面旧布局表是此前审计记录；其中独立board/src/sim/
+> build/Skill验证工具现已整体隔离到archive/history的相同相对子树，不能按旧根路径直接运行。
+> 当前PUF3及实际共享依赖仍保留原位，当前交付看delivery/README.md，不再生成证据包附件。
+> 原始记录在archive/evidence，旧完整包本机隔离；目录改变不表示补做了硬件验证。
+
 更新：2026-11-01；owner TBD。只定义说明层面的版本职责，不修改任何程序默认值。
 全部工程/固件/包的历史与审计结果见 [版本清单](version_inventory_20261101.md)，P0 覆盖见
 [证据复核](p0_evidence_review_20261101.md)。

@@ -31,7 +31,7 @@
 
 | ID | 状态 | 决策 / 原因 | 后果与关联任务 |
 |---|---|---|---|
-| ADR-001 | accepted | 复用 CICC1000023 CPU，先恢复 baseline，再扩展 Ascon ISE | B02/B03/B04 前置；本轮不动原 RTL/IP/XPR/XDC |
+| ADR-001 | accepted | 原阶段CPU/baseline整理与Ascon ISE扩展 | B02/B03/B04原范围保留；源码与原件另行隔离 |
 | ADR-002 | accepted | 现有 src、board、ascon 原位映射；新增协作文档与未占用目录 | 保留 Vivado 相对路径；路径异常记录到审计，D05/D06 再处理发布问题 |
 | ADR-003 | accepted | Ascon-AEAD128 以 NIST SP 800-232 final 为准 | C01 锁定参考/KAT；当前 C 1.3.0 与 draft README 只视为待验证线索 |
 | ADR-004 | accepted | 第一期 inline asm/intrinsic，不改 GCC backend | I06 提供反汇编和执行证据；自动编译优化后置 |

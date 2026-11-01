@@ -1,8 +1,0 @@
-{
-  "generated_local": "2026-10-29T13:09:20",
-  "generated_utc": "2026-10-29T13:09:20+00:00",
-  "git_commit": "ac9143d5c6acc9e7ac61f907a7e802eb6b35cddd",
-  "pynq_version": "2.7.0",
-  "python_version": "3.8.2",
-  "kernel": "Linux-5.4.0-xilinx-v2020.2-armv7l-with-glibc2.29"
-}

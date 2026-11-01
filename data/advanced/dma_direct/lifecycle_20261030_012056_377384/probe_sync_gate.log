@@ -1,2 +1,0 @@
-FATAL: C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\dma_direct\lifecycle_20261030_012056_377384\tb_core_lifecycle.sv:149: SYNC_ADDRESS_GATE: unsampled invalid address changes synchronous result output
-       Time: 23331000  Scope: tb_core_lifecycle

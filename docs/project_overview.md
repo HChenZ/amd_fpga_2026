@@ -1,5 +1,8 @@
 # 项目概览
 
+当前仓库布局已按2026-11-02交付整理：PUF3及共享依赖留根目录，独立历史源码在archive/history，
+原始记录在archive/evidence。先从project_board.md与delivery/README.md导航，下面阶段性计划不自动成为新授权。
+
 更新：2026-11-01。比赛与目标时间按用户本轮要求建档；未独立确认的官方规则不作推断。
 
 ## 当前状态摘要
@@ -19,11 +22,11 @@
 
 当前提交状态见 [release_plan_20261101](../tasks/release_plan_20261101.md)、
 [submission/README](../submission/README.md) 与 [task_board](../tasks/task_board.md)；
-[current_status_20261029](current_status_20261029.md) 为 10-29 快照。
+[current_status_20261029](../archive/history/docs/current_status_20261029.md) 为历史快照。
 
 ## 背景与目标
 
-CICC1000023 已提供自研 RISC-V CPU 基础，本项目继续扩展，不重造 CPU。以 NIST SP 800-232 的 Ascon-AEAD128 为唯一主线 AEAD 标准，在 XC7Z020CLG400-1 上比较纯软件与 custom ISE，使用 Zynq PS/PYNQ 作控制和展示层。实物平台已确认运行在正点原子领航者 ZYNQ7020 上；完整丝印、速度等级、板卡 revision 和独立频率测量仍需 B03 留证。
+CPU采用RV32五级流水线结构，集成NIST SP 800-232 Final Ascon-AEAD128软件、MMIO与定制指令路径，在XC7Z020平台由PS/PYNQ控制与展示。当前板型为正点原子领航者ZYNQ7020，完整芯片丝印/速度等级等未测边界保留。
 
 ## 优先级与完成定义
 
@@ -47,7 +50,7 @@ PUF enroll（127/128）/reconstruct×5/HWKEY 流程；原始结果见
 历史对照 PYNQ v1 release 使用独立 `pynq_wrapper`、PS7 GP0 两个 AXI-Lite 窗口和 AXI-Lite FIFO ↔ RV32
 UART mailbox；10-31 重测 KAT #529 benchmark（23342/1439/3995）与 9/9 错误/恢复门禁，原始数据在
 `data/pynq/notebook_20261031_112052/` 与 `data/pynq/error_gate_20261031_112812/`；
-[validation_20261029](../board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md) 为 10-29 首测记录。
+[validation_20261029](../archive/history/board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md) 为旧v1首测记录。
 
 原始 CICC XC7Z020 baseline 仍与 PYNQ release 分开。B04 仍缺准确 FreeRTOS
 kernel/bootloader 来源；RV32/RV64 完整回归、板上 ISA 抽样和 800 组超 16B 容量 KAT
@@ -64,4 +67,4 @@ kernel/bootloader 来源；RV32/RV64 完整回归、板上 ISA 抽样和 800 组
 - 原始测量与 KAT 放 data，构建脚本和精选报告放 build，上板入口放 board，材料放 report。
 - 最终复现覆盖 source→firmware/IP→bitstream/overlay→KAT→benchmark→报告，不仅是能打开 XPR。
 
-入口：[审计](repository_audit.md)、[任务](../tasks/task_board.md)、[节点](../tasks/milestones.md)。
+入口：[当前看板](../project_board.md)、[任务](../tasks/task_board.md)、[历史节点](../archive/history/tasks/milestones.md)。

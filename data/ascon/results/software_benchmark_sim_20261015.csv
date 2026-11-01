@@ -1,5 +1,0 @@
-operation,message_bytes,ad_bytes,raw_cycles,instructions,cpi,cycles_per_byte,evidence_kind,clock_hz
-encrypt,16,0,16840,4176,4.03,1052.5,simulation,50000000
-encrypt,32,0,21018,5291,3.97,656.8,simulation,50000000
-decrypt,16,0,17226,4343,3.96,1076.6,simulation,50000000
-decrypt,32,0,21461,5481,3.91,670.7,simulation,50000000

@@ -21,7 +21,7 @@ flowchart LR
 PYNQ v1 release（历史对照）为 `pynq_wrapper`，FCLK0=100 MHz；control `0x4000_0000`、mailbox
 `0x4000_1000`，各 4 KiB。UART 是 uncached MMIO，无 shared cacheable buffer。
 Y01-Y05/V03 实板验收见
-[validation_20261029](../board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)。
+[旧v1验证记录](../archive/history/board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md)。
 
 **主演示 PUF3 overlay**（`pynq_puf3_wrapper`，控制 ID PQF3 `0x33465150`，固件 `pynq-svc-puf3`）
 沿用上图的 control/mailbox 地址与三模式服务链，增加 RO-PUF/DNA → `key_mmio` → Ascon MMIO 的
