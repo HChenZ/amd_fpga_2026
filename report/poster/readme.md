@@ -1,45 +1,47 @@
 # Ascon SoC poster
 
-任务 D03，owner TBD，2026-11-01。本目录交付仿照用户指定 AMD 模板的一页横版、可编辑海报。
+任务 D03，owner TBD，更新 2026-11-01。PPT 共两页：第 1 页中文，第 2 页英文；
+在用户手动更新的海报上修改，保留 960 × 540 pt 画布、AMD 标识与三栏布局。
+文字、架构图、性能条形图和数据表可编辑。指导老师按用户要求不填。
 
-- `ascon_soc_poster.pptx`：正式 PPTX，960 × 540 pt，与源模板尺寸一致。
-- `ascon_soc_poster.png`：PowerPoint 导出的 2400 × 1350 预览。
-- `build_poster.ps1`：使用 Windows PowerPoint COM，在模板副本中修改；不会覆盖源模板。
-- `verify_poster.py`：从原始 JSON 核对 KAT、周期、加速比、人员信息、可编辑表格和尺寸。
-- `validation.json`、`text_fit.json`、`verification.json`：工具、源/产物哈希及检查结果。
+## 交付文件
 
-学校与人员来自本轮用户：华南理工大学，熊雅琦、胡潇正、黄晨中。指导老师不填。
-源模板内容仅作设计参考，示例学校、成员、无线电系统和黄色说明均不作为项目事实。
-保留源模板 AMD 标识、三条分区线、三栏结构及黑白视觉；中文使用 Microsoft YaHei，英文辅助使用 Calibri。
+- [ascon_soc_poster.pptx](ascon_soc_poster.pptx)：中英文两页海报。
+- [ascon_soc_poster.png](ascon_soc_poster.png)：中文页，2400 × 1350。
+- [ascon_soc_poster_en.png](ascon_soc_poster_en.png)：英文页，2400 × 1350。
+- `readme.md`：使用说明、来源与验证摘要。
 
-## 数据来源
+原 `build_poster.ps1` 是初稿生成脚本，`verify_poster.py` 是核验脚本，五份 JSON 是工具/哈希/
+布局/文字边界/内容检查记录，不是播放 PPT 的依赖。按用户要求已从本目录及本次仓库版本移除，
+本地临时保留。修改海报直接编辑当前 PPTX，再用 PowerPoint 导出两页 PNG。
 
-- 性能：`data/pynq/notebook_20261031_112052/pynq_warm_benchmark.json`，同次 run、KAT #529、PT=16 B、AD=0，预热 5 次，采样 30 次。
-- 三模式各 289 组 KAT / 坏 Tag：同目录 `pynq_board_smoke.json`。
-- 错误恢复：`data/pynq/error_gate_20261031_112812/pynq_board_error_gate.json`。
-- 架构、ISE、资源与时序：`docs/tech_report/report.md` 及其中的原始报告摘录。
-- Skill：`data/skill/l3_20261031_063709/40_summary.json`。
-- 实物照片：`docs/tech_report/figs/board_photo.jpg`。
+## 学校与成员
 
-逐项出处与测量边界已写入 PPT 备注。周期为固件 AEAD 调用 `mcycle`，不含 PS/UART，不是 Python API 响应加速比。
-100 MHz 为主线工程配置；主线独立频率与跨上电稳定性 `not_measured`。独立 PUF 结果不混入主线。
-本次仅整理既有证据，未重跑硬件/RTL，也不代表 D03 报告、视频或整包全部完成。
+学校：华南理工大学（South China University of Technology）。
+成员：熊雅琦、胡潇正、黄晨中；英文按拼音写为 Yaqi Xiong、Xiaozheng Hu、Chenzhong Huang。
 
-## 重建与核验
+校徽取自[华南理工大学官网“学校标识”](https://www.scut.edu.cn/new/9017/list.htm)，
+使用该页[校徽高清原图](https://www.scut.edu.cn/_upload/article/images/16/02/3166fd1b4c8cb0148ec56c04f071/8ab1bcf6-62d8-47c0-bff4-0ce88872dbd7.jpg)，
+获取日期 2026-11-01。原图已嵌入两页，保持比例，未裁切或重绘，校徽权利归华南理工大学。
 
-需要 Windows、本机 Microsoft PowerPoint 16.0 和 Python 3（stdlib）。源模板由用户提供，未复制入仓库；哈希见 `validation.json`。
+## 项目数据与边界
 
-```powershell
-./report/poster/build_poster.ps1 -TemplatePath 'F:\2026嵌入式大赛FPGA\海报\参考模板\AMD_poster_template.pptx'
-python -X utf8 report/poster/verify_poster.py
-```
+- 周期/加速比：[原始 benchmark](../../data/pynq/notebook_20261031_112052/pynq_warm_benchmark.json)。KAT #529，PT=16 B、AD=0，预热5次，每档30次采样，中位数。
+- 三模式各289组 KAT 与坏 Tag：[smoke](../../data/pynq/notebook_20261031_112052/pynq_board_smoke.json)。
+- 9项错误门禁/7次恢复：[error gate](../../data/pynq/error_gate_20261031_112812/pynq_board_error_gate.json)。
+- 架构、ISE、资源/时序：[技术报告](../../docs/tech_report/report.md)及其原始报告摘录。
+- Skill L3：[汇总](../../data/skill/l3_20261031_063709/40_summary.json)。照片来自 `docs/tech_report/figs/board_photo.jpg`。
 
-本会话没有可调用的 `load_workspace_dependencies` 或 Artifact Session，因此采用本机 PowerPoint COM，未安装替代依赖。
-已用 PowerPoint 导出并逐页检查；技能提供的 package integrity 与 layout geometry 检查均为 exit 0、0 finding。
-未测试其他版本 Office、WPS、Google Slides 或印刷输出。重建需要用户原模板；核验既有 PPTX 不需要模板。
+CPU `mcycle` 不含 PS/UART；100 MHz 是主线配置，主线独立频率与跨上电稳定性为
+`not_measured`。独立 PUF 结果未混入主线。逐项来源也写入两页备注。
 
+## 验证
 
-## 2026-11-01 用户修订版
+PowerPoint 16.0 保存及渲染，Python 3.14.3 ZIP/XML/原始数据核验51项 PASS。
+两页数据一致、各有可编辑表格及官方校徽；PPTX结构和布局检查均exit 0、0 finding，
+PowerPoint文字高度检查0溢出，两页PNG均已视觉检查。未重跑板测/RTL，未验证其他Office/WPS/印刷。
+临时脚本和JSON位于本地忽略目录 `build/tmp/poster_bilingual_20261101/`，不是交付依赖。
 
-当前PPTX为用户手动更新版，已同步PNG预览和哈希并重新核验。`build_poster.ps1`仍为初稿
-生成器，不包含此次手动编辑，重新运行会覆盖修订；需要继续修改时以当前PPTX为准。
+PPTX SHA-256：`5e1d0f85ce4c59305b86c089313f745ae26dfbcfd046be4a13e9e0179e1d4ff9`。
+
+D03仅海报子项完成，整体材料状态保持in_progress；下一接收D06材料归档，owner TBD。

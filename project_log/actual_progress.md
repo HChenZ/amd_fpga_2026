@@ -2007,3 +2007,17 @@ owner TBD。用户明确要求再次提交更新后的 `report/poster/ascon_soc_
 exit 0，31 checks PASS；package/layout 检查 exit 0，0 finding，文字高度检查0溢出。
 接口无变化；未重新板测、未验证其他 Office/WPS/印刷。D03整体保持in_progress，
 无提交阻塞；下一接收D06材料归档，owner TBD。本轮按用户授权commit/push。
+
+
+## 2026-11-01 — D03 中英文两页海报与官方校徽
+
+owner TBD。用户明确要求中英各一页、在线查找华南理工大学校徽、精简海报目录并直接提交推送。
+入场main干净，基点276b4df；git fetch成功，无远端新增。以用户修订PPTX为基础复制英文页，
+保留原版式和主线数据，校徽取自 https://www.scut.edu.cn/new/9017/list.htm 的高清下载原图，
+获取日期2026-11-01；两页嵌入原始图像，不裁切/变色，出处写入备注与README。
+交付report/poster仅保留PPTX、中文PNG、英文PNG及readme.md。初稿生成/核验脚本及5份JSON
+按本轮用户授权移出Git，副本留本地build/tmp/poster_bilingual_20261101（ignored）。
+验证：PowerPoint16.0渲染两页，Python3.14.3临时check_bilingual.py exit0，51项PASS，
+含两页原始周期/加速比/数据表一致及官方校徽字节嵌入；package/layout检查exit0、0finding，
+两页文字高度检查0溢出，两页PNG视觉复查。接口无变化；未重新板测/RTL，未验证WPS/印刷。
+海报无阻塞；D03整体仍in_progress，下一接收D06材料归档（owner TBD）。
