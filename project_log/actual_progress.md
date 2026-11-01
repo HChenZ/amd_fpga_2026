@@ -2049,3 +2049,29 @@ owner TBD。用户要求用项目DNA相关图和介绍替换左侧应用图、�
 package/layout检查exit0、0finding。所有验证命令exit0。
 接口无变化；未重新板测/RTL，未验证跨上电、保密隔离、RO时序或其他Office/印刷。
 无阻塞，D03整体仍in_progress；下一接收D06材料归档，owner TBD。按既有授权中文提交并推送。
+
+
+## 2026-11-01 — D03 双语海报更新PUF3最新数据
+
+owner TBD。用户要求仅替换最新相关数据、其他内容不动并直接提交仓库。入场main干净，
+基点033b92f；git fetch origin成功，HEAD与origin/main无差异。三张截图与
+data/pynq_puf3/notebook_20261031_114512/result.json及PUF3 candidate/reports对应。
+中英两页同步加密周期21,862/1,369/3,895、解密22,562/1,213/4,288及相应加速比；
+大数字15.969×与5.613×，柱长按新周期更新。注明KAT529、PT16 B、AD0、HWKEY关闭、
+预热5次/采样30次/中位数、CPU周期不含PS/UART。
+同步LUT18,674、FF32,002、BRAM34.5、DSP4；WNS+0.104 ns、TNS0、WHS+0.041 ns只针对
+已约束路径。100 MHz为配置，99.9723 MHz为mcycle/PS时基估测，非示波器或Fmax测量。
+PUF3各模式289/289 KAT与289次坏Tag拒绝，质量127/128、同会话5次重建稳定、关闭HWKEY后KAT恢复；
+9/9错误门禁和7/7恢复明确归属PYNQ v1历史证据。左图说明改为PUF3同一overlay集成RO-PUF/DNA，
+保留RO计数器域未签核、跨上电/温度/BER/熵/唯一性未测、保密隔离未验收边界。
+修改report/poster的PPTX、双PNG、README及本节/开发日志/任务字段；未改任何既有脚本、RTL、固件或原始证据。
+验证：PowerPoint16.0渲染两页，文字宽高0溢出，逐页视觉复查；Python3.14.3
+`python -X utf8 build/tmp/poster_puf3_data_20261101/check_data.py` exit0，503项PASS，
+含原始30次样本中位数、双语表格/柱长、未修改图形XML一致、母版/布局语义/主题/图片不变、数据对象位置不变。
+`inspect_presentation_package_integrity.py ... --fail-on-findings`和
+`inspect_presentation_layout_geometry.py ... --expected-slide-count 2 --expected-slide-size-emu 12192000,6858000 --require-native-table-slide 1 --require-native-table-slide 2 --fail-on-findings`
+均exit0、0 finding。工具位于presentations/26.1025.11240/skills/presentations/container_tools；
+临时脚本/校验JSON仅留ignored目录，交付目录仍只有4个文件，PPTX SHA-256见README。
+接口无变化；未重新板测、未验证其他Office/WPS/印刷，未新增PUF稳定性或安全验收结论。
+无阻塞，D03仅海报子项完成、整体仍in_progress；下一接收D06材料归档，owner TBD。
+按用户明确授权，使用中文提交标题/说明并推送。
