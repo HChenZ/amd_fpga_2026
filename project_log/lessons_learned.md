@@ -678,3 +678,14 @@ L08 的“保留两个跟踪生成元数据”是此前策略；本轮按用户�
 - Windows checkout把新shell脚本变CRLF，WSL set -euo pipefail报错；新增eol=lf约束。默认Python采用GBK读UTF8文件会报错，脚本显式UTF8。
 - Vivado module reference顶层不接受SystemVerilog类型；仅把含i++的辅助ascon_word.v标为SV。import_ip会把旧COE注册成工程依赖，即使CONFIG.Coe_File已更换也须移除旧依赖，再生成BRAM。
 - 新main包含PUF，但旧CPU runner没列keys/primitive模型；原main回归编译失败，增加显式--pynq-p0源集，绝不默默替换main测试口径。初稿全局替换错误将此参数传给固件/targeted脚本，保留失败并修调用点后整套重跑PASS。
+
+
+## 2026-11-01 — PowerPoint 海报与证据路径
+
+- 历史文档中的 notebook_20261029_130920 目录在当前 checkout 已由 20261031_112052
+  证据替代；引用前以实际跟踪 JSON 核对，不能只复制旧 Markdown 路径。
+- PowerPoint COM AddTextbox 的初始高度不能当作最终几何保证。首次核验发现文本能显示，
+  OOXML 中高度却统一为默认约21.81 pt；显式关闭 TextFrame2.AutoSize 并在写入后设置宽高，
+  再用 BoundHeight 检查，13处溢出降到0。视觉正常不代表编辑时边界正确。
+- PowerShell 数组内算术表达式要加括号，COM 字号显式转整数；这些失败已修复并重建，
+  不保留错误产物。OOXML 会将中英文拆成多个 run，核验文字应按段落合并 run。

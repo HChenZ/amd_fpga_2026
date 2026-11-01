@@ -1976,3 +1976,24 @@ owner TBD；分支 feat/board-bringup（期间并发工作线把工作区分支�
 最终P0 regression与smoke PASS，初始main runner缺PUF源的FAIL及误传参数失败均保留；bridge/host/model PASS。构建/联合仿真最终证据及发布状态见board/vivado_zynq7000_xc7z020_pynq/validation_20261028.md；板上PYNQ/网络/真实cycles NOT_RUN/NOT_MEASURED。详细接收手册handoff_20261028.md，下一任务B03/Y02/Y03/Y04实板取证，owner TBD。
 
 本轮硬件收口：Vivado真实生成100MHz bitstream；WNS+0.034ns/TNS0/WHS+0.020ns，DRC0 Error/0 Critical（warnings及限制见报告）。最终COE生成MIF与BIN逐字节一致，官方4代表KAT×三模式36请求及半帧reset真实CPU联合仿真PASS。源码提交86dc10f13e96adbb360f1adfe0c4891ce2f8e2a7；正式发布在PYNQ工程release/，SHA256逐项复核PASS；实板仍NOT_RUN。
+
+
+## 2026-11-01 — D03 AMD 模板海报完成
+
+owner TBD。用户明确授权先拉取最新仓库、制作后 commit/push；入场 main 工作区干净，
+`git pull --ff-only` exit 0，从 506e856 快进到 c05782d510a2c1936b3bb7c45a943ef76cc6bd02，无需丢弃文件。
+
+- 交付 `report/poster/`：可编辑的一页 PPTX、2400×1350 PNG、PowerPoint COM 构建脚本、
+  标准库核验脚本及检查 JSON；来源与模板 SHA-256 见该目录 readme/validation。
+- 按用户模板保留 960×540 pt、AMD 标识、分区线与三栏组织，替换全部示例内容。
+  用户确认学校华南理工大学，成员熊雅琦、胡潇正、黄晨中，指导老师不填；owner 不据此推断。
+- 性能从 `data/pynq/notebook_20261031_112052/pynq_warm_benchmark.json` 读取，
+  同目录 smoke 三模式各 289 KAT/坏 Tag；恢复来自 `data/pynq/error_gate_20261031_112812/`。
+  备注包含出处、测量身份与范围，不把材料制作当成重新上板。
+- 验证：PowerPoint 16.0 COM，`./report/poster/build_poster.ps1` exit 0；
+  Python 3.14.3，`python -X utf8 report/poster/verify_poster.py` exit 0，31 checks PASS；
+  presentations 技能的 package integrity 和 layout geometry 检查均 exit 0 / 0 finding，
+  PowerPoint TextRange.BoundHeight 检查 0 overflow，整页 PNG 视觉检查通过。
+- 接口变化：无。未改 RTL、固件、Vivado 或既有测量；未测试其他 Office/WPS/印刷，未重跑板测。
+- D03 仅 PPT 子项完成，整体保持 in_progress；D02/D04/D05/D06 不据此变为 done。
+  阻塞：海报无阻塞。下一接收：D03 其余材料审核、D06 将海报纳入最终提交包，owner TBD。

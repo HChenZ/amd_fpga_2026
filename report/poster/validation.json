@@ -1,0 +1,24 @@
+{
+  "version": "16.0",
+  "dec_cycles": [
+    24005.0,
+    1388.0,
+    4385.0
+  ],
+  "tool": "Microsoft PowerPoint COM",
+  "benchmark_source": "data/pynq/notebook_20261031_112052/pynq_warm_benchmark.json",
+  "benchmark_sha256": "15b0a9e58b259dd29504382bd4785a3249971d06ac548717e6cb51e9b5a83230",
+  "height_pt": 540.0,
+  "enc_cycles": [
+    23342.0,
+    1439.0,
+    3995.0
+  ],
+  "width_pt": 960.0,
+  "slides": 1,
+  "template_sha256": "b99946c7443efd2a169035159185ed45b0021272e03d180786c2718ec40259df",
+  "gate_source": "data/pynq/error_gate_20261031_112812/pynq_board_error_gate.json",
+  "shapes": 69,
+  "native_tables": 1,
+  "output_sha256": "d1713294918e7390f16d9b5c6e9156383ee406863c623385f64181c4f0db0b62"
+}

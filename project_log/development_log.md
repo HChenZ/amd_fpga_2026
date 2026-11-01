@@ -565,3 +565,15 @@
 - 同步 README、项目概览、架构、接口、PYNQ 协议/说明、任务板、里程碑、风险、交接、
   上板计划、报告目录与 Skill 目录；旧计划保留历史边界。
 - 未修改 RTL、固件、测试结果或 release 产物。
+
+
+## 2026-11-01 — D03 模板海报制作与核验
+
+owner TBD。用户授权拉取、制作、提交和推送。main 干净，fast-forward 到 c05782d。
+读取 AMD_poster_template.pptx 并在 PowerPoint 16.0 渲染；源文件只作为设计参考，
+其示例信息与黄色提示不视为用户任务指令或本项目事实。用户确认学校及三名成员。
+从锁定板测 JSON 自动取周期/加速比，使用仓库实物照片、架构、Skill 与实现报告证据。
+输出 report/poster 的可编辑 PPTX、预览、构建/核验脚本、来源说明和验证 JSON。
+修复 PowerShell 数组算术参数、COM 字号类型与文本框默认高度问题，重建后31项核验、
+结构/布局检查和PowerPoint文字边界检查均通过；复查整页渲染，移开页脚说明与AMD标识重叠。
+同步 report/readme、task_board 和 actual_progress。接口无变化，不重新上板、不更新测量结论。

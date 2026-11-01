@@ -1,5 +1,9 @@
 # 报告与提交材料
 
+2026-11-01：D03 的可编辑 AMD 模板海报已完成，见 [poster/readme.md](poster/readme.md)、
+[PPTX](poster/ascon_soc_poster.pptx) 与 [预览](poster/ascon_soc_poster.png)。学校/成员由用户确认，
+周期表取原始 JSON；报告、视频和最终包不因海报完成而自动验收。下文为历史状态。
+
 更新：2026-10-29。当前仍只预留正式报告目录，但原始证据已齐备：
 
 - D01 架构初稿在 `docs/architecture.md`，PYNQ 实板拓扑已补充，报告定稿未完成。
