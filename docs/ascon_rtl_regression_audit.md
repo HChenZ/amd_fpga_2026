@@ -1,5 +1,8 @@
 # Ascon 最新 main 只读审计与独立 RTL 回归
 
+> 2026-11-01：“最新main”是10-07审计对象，不是今天的HEAD；后续整合与PUF3系统结果各自另有证据。
+> 当前入口见 version_entrypoints.md，本页原始失败和修复过程保留。
+
 本文件保存2026-10-07历史审计；decrypt空壳、旧文件与integration FAIL描述不代表
 2026-10-09的当前工作区。最新功能/接口/全源集门禁见
 [解密整合验证](ascon_rtl_decrypt_validation.md)，基于最新main 0a425f9保留队友

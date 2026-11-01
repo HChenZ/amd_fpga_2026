@@ -1,5 +1,8 @@
 # 100 MHz 时序余量：根因、实验与提余量路线
 
+> 2026-11-01：本页计划/时序值按其源快照解读，不是当前PUF3重建步骤或Fmax声明。
+> 当前已发布候选与未签核边界见 version_entrypoints.md；不因旧路线计划自动继续改硬件。
+
 2026-10-20；owner TBD。基线 commit `3c6f134`（工作区 clean）。证据：
 `build/reports/timing_acb_20261018/{postroute,remap}/`（当前生产策略）、
 `build/reports/margin_20261020/*/`（本轮 4 个 P&R 变体）、

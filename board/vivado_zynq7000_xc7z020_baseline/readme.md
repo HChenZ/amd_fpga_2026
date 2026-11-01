@@ -1,5 +1,8 @@
 # CICC1000023 原始 XC7Z020 baseline
 
+> 2026-11-01 职责：原始恢复资产/独立复现研究线，不是当前 PUF3 的操作入口。
+> 下文未重建声明只针对原 baseline 独立复现；不代表整个项目或 PUF3 从未综合/上板。
+
 来源：用户提供的 CICC1000023 技术数据 ZIP。此目录恢复真实原工程，不是新建空白工程。Vivado 2025.2，part `xc7z020clg400-1`，top `top_pl_bram`；保留原 `.srcs` 布局、31 个 RTL/header、3 个 XCI、`const.xdc` 与 `freertos_demo.coe`。
 
 RTL/XCI/XDC/COE 均与 ZIP 字节一致。XPR 唯一内容调整是删除生成 DCP 的 File/IncrementalCheckpoint 引用并关闭 synth_1 的 AutoIncrementalCheckpoint；不导入旧 checkpoint、cache、runs 或 bitstream。完整差异在 [xpr_recovery.diff](../../data/recovery/cicc1000023/xpr_recovery.diff)，哈希及来源在 [manifest](../../data/recovery/cicc1000023/manifest.json)。

@@ -1,5 +1,10 @@
 # CPU-preserving DMA experimental handoff
 
+> 2026-11-01 scope: independent D01/ABI v2 CPU-DMA experiment, **not PUF3**. The final physical candidate is
+> 80 MHz (040257); plain setup.tcl still selects a retained 100 MHz experiment. Both defaults are intentional
+> history and are not changed here. Full SW/ISE1089 target simulations belong to this source/firmware version,
+> not to PUF3 board validation. Board NOT_RUN; see docs/version_entrypoints.md for current demonstration.
+
 Owner TBD. Independent experimental overlay; **physical-board execution is not claimed**.
 The authorized Vivado continuation below supersedes the earlier source-only handoff.
 **Qualified candidate is 80 MHz**, not the failed 100 MHz experiment. Start a fresh

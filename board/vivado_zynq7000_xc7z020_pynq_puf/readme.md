@@ -1,5 +1,10 @@
 # PYNQ overlay + PUF v1 self-test (pynq_puf)
 
+> 2026-11-01 scope: historical **PUF-only** overlay (PFU1 / keys_rv32 ASCII self-test), not the
+> three-mode PUF3 service. Its candidate has offline evidence; no separate board result is claimed here.
+> The current PUF3 board PASS must not be assigned to this overlay. Keep its artifacts and build defaults;
+> use docs/version_entrypoints.md to choose the current entry. The dated narrative below is retained.
+
 2026-10-30; owner TBD. Independent overlay: the frozen PYNQ release
 (`../vivado_zynq7000_xc7z020_pynq/release/`) and the JTAG project
 (`../vivado_zynq7000_xc7z020_ascon/`) are not opened or modified.

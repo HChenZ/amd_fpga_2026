@@ -1,5 +1,9 @@
 # 密钥子系统（RO-PUF + Device DNA → Ascon KDF）
 
+> 2026-11-01 范围：早期 PUF v1/PL-only 设计与阶段记录；下文“未综合/未上板”不是现在的全仓状态。
+> PUF3 复用 PUF v1，但增加软件 HWKEY 选择并使用独立 soc_top/key_mmio 变体。
+> keys_rv32 v3 不等于 PUF3 固件，PUF v2/MIN 也不是它的替换品；当前入口见 version_entrypoints.md。
+
 2026-10-25；owner TBD。目标板：正点原子 领航者 ZYNQ7020（`xc7z020clg400-1`，
 50 MHz @ U18，MMCM ×2 = 100 MHz 核频）。本文对应代码已落地并通过仿真；
 尚未综合/上板。

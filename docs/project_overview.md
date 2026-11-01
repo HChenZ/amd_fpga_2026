@@ -4,6 +4,9 @@
 
 ## 当前状态摘要
 
+当前/旧入口明确分责，见 [版本速查](version_entrypoints.md)；本页描述当前状态，不意味着所有程序已改成PUF3。
+原baseline与独立实验的历史范围保留，说明更新不重新证明它们或回写已发布包。
+
 - 最终报告（`docs/tech_report/amd_fpga_2026_latex_final/`，PDF 已入库）以 **PUF3 overlay** 为主演示：
   同一 bitstream 集成 SW/MMIO/ISE 三模式与 RO-PUF/DNA 硬件密钥通路；PYNQ v1 release 作历史对照。
 - P0 核心功能已有实板证据：NIST Final software、SW/MMIO/ISE、容量内 KAT、错误 Tag、
@@ -50,7 +53,8 @@ UART mailbox；10-31 重测 KAT #529 benchmark（23342/1439/3995）与 9/9 错�
 kernel/bootloader 来源；RV32/RV64 完整回归、板上 ISA 抽样和 800 组超 16B 容量 KAT
 仍不能宣称通过。
 
-待定/未完成：B03 完整实物证据、实机演示视频（D04）、clean-clone（D05）、冻结与最终提交（V04/D06）。
+待定/未完成：B03完整实物证据、实机视频（D04）、clean-clone（D05）、原宽范围冻结验收与人工提交。
+冻结留档已于11-01 18:39生成；留档脚本PASS不等于原P0/P1宽范围全部验收。
 全部人员 owner 仍为 TBD。
 
 ## 工程交付边界

@@ -1,5 +1,9 @@
 # Locked Ascon-AEAD128 Final data
 
+> 2026-11-01 scope: shared standard/host/standalone and dated CPU evidence, not a single overlay release.
+> PUF3 board data live in data/pynq_puf3; DMA full-target tests live in data/advanced. Results are not transferred
+> between versions. Older statements about hardware not measured describe this dataset's original audit scope.
+
 Audited 2026-10-07; task C01/C03; owner TBD.
 
 | File | Meaning |
@@ -15,7 +19,7 @@ Audited 2026-10-07; task C01/C03; owner TBD.
 | `derived_integrity.json` | Exact SHA-256 for the three frozen derived files |
 | `results/reference_gate.*` | Complete upstream reference KAT gate before derivation |
 | `results/host_validation.*` | Final four-backend host KAT/permutation run |
-| `results/failure_contract.*` | Real FAIL of repository C's raw failed-decrypt output contract |
+| `results/failure_contract.*` | Fixed production C failure-buffer contract:23965 PASS/0 FAIL; before/original_reproduction files preserve the original FAIL |
 | `results/runner_race_before_fix.*` | Retained transient test-runner build collision; fixed with isolated per-call builds |
 | `results/harness.log` | Five tests for failure detection and golden CLI/memory mapping |
 | `results/audit_snapshot.json` | Git history, actual commands/exit codes, hashes and reproduction evidence |

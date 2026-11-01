@@ -1,5 +1,8 @@
 # Independent CPU DMA variant (owner TBD)
 
+> 2026-11-01 scope: independent CPU-DMA source copies and D01 ABI, not the PUF3 source set.
+> Keep its SoC/bus/endpoint selection separate; source changes here do not update the released PUF3 bitstream.
+
 ABI: `docs/advanced_dma_contract.md`, D01Q/D01R v2, 48-byte headers.
 Single clock, 32-bit stream, low-contiguous TKEEP, TLAST. One 160-byte request
 and 96-byte response slot; no second packet accepted until response consumed.

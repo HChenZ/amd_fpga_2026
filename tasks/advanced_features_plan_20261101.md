@@ -1,5 +1,9 @@
 # 高端功能实施计划与阶段验收
 
+> 2026-11-01：独立DMA/PUF v2实验计划与阶段状态，不是当前PUF3的默认功能。
+> CPU-DMA全量目标仿真不转记到PUF3；PUF v2旧SoC候选已INVALID，原离线PASS不等于可上板。
+> 本轮只收口说明，不继续执行旧计划或改程序；当前入口见 docs/version_entrypoints.md。
+
 ## 2026-10-30 实际实施增量（取代下方初始planned状态）
 
 用户已授权完成可离线执行项及高速路径。当前证据索引：`../docs/advanced_offline_status_20261030.md`。

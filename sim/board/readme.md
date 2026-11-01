@@ -1,5 +1,11 @@
 # Navigator preboard 自动测试与镜像（V01/C03/B04/Y01/Y03/Y04，owner TBD）
 
+> **2026-11-01 版本说明**：本页为早期板前工具与旧 PYNQ v1/rtl_p0 的说明，不是 PUF3 一键验收。
+> `run_tests.py --pynq-p0` 只选旧无 PUF 源集；不带该选项的 CPU runner 源列表现缺 keys/BUFG（elaboration exit 4）。
+> 下文“无板/NOT_CONFIGURED/target只6组”是当时状态；后来 PUF3 已有三模式各289组板测，完整错误门禁仍只属旧 v1。
+> 当前 PUF3 请用 `sim/pynq_puf3/run.py` 和 `src/pynq_puf3/pynq_puf3_board_test.ipynb`。
+> 本轮不修改工具默认值、旧 TB、历史结果或原验收范围，见 [版本入口](../../docs/version_entrypoints.md)。
+
 2026-10-25。只新增独立工具，复用已有 firmware、KAT/reference、CPU runner 和 Host/Mailbox API；原生产源码、测试向量和历史证据不改。
 
 从仓库根目录：

@@ -1,10 +1,28 @@
 # 任务看板
 
-更新：2026-10-31。所有 owner 为 **TBD**，仅由项目方指派。截止日期为内部计划；依赖完成是开工/验收门槛，不能用到期日替代。日期以 Asia/Shanghai 为准。
+更新：2026-11-01。所有 owner 为 **TBD**，仅由项目方指派。截止日期为内部计划；依赖完成是开工/验收门槛，不能用到期日替代。日期以 Asia/Shanghai 为准。
 
 编号：B=baseline/build，C=cryptography software，I=instruction extension，V=verification，Y=PYNQ，S=skill，P=PUF/security，D=documentation/release。
 
 status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progress` 已有工作未验收；`blocked` 有已知阻塞；`done` 有满足验收的证据；`gated` 未获前置门禁；`deferred` 明确移出本轮。done 仅表示任务本身完成，不表示整个系统可运行。事实与失败见 [实际进度](../project_log/actual_progress.md) 和 [经验](../project_log/lessons_learned.md)。
+
+## 2026-11-01 版本职责审计
+
+全部工程/固件/包/脚本对应关系见 [版本清单](../docs/version_inventory_20261101.md)，机器明细
+`build/metadata/version_alignment_20261101.json`。当前 PUF3 专用链一致（D02 64/64、报告 194/194），
+但旧 v1 board_demo/benchmark/error_gate CLI、冻结的 Skill L3 Ascon、DMA/PUF v2 实验和原 baseline 各有职责，
+不能统称“所有程序都已是 PUF3”。默认旧 CPU 回归源列表 elaboration exit 4，PUF3 专用源列表 exit 0；
+入口/文档仍需区分，未改生产程序。另：CPU-DMA 实验确有 SW/ISE 全 1089 目标仿真，当前 PUF3 仍每模式 289 板测，勿跨版本转记。
+
+## 2026-11-01 P0 证据复核说明
+
+下表沿用原宽范围任务状态，**非 done 不等于未验证**。逐项证据见
+[P0 现有证据复核](../docs/p0_evidence_review_20261101.md)。当前 RV32 I03 实现已有仿真/实现/实板证据；
+I04 已做固定 seed 随机、边界、hold/cancel/reset（当前 XSim 1502/0）；C03 当前容量内三模式板测各 289+289；
+V01 有真实 CLINT 六场景、Cache 差分/事务与 ISA 49/50；B03 有板卡版本与 mcycle/PS 时基核验。
+不能沿用后面早期备注宣称这些子项仍未测试。完整 RV64/保留编码/抢占/ISE-disabled 与原 baseline 独立复现
+等验收仍未闭合；V10 是文件留存而非功能未测；V04 冻结留档已于 11-01 18:39 生成，不能说仍待生成。
+本轮不自动把原任务改为 done，也不更改既有数据/证据包快照。
 
 ## baseline 与标准软件（P0）
 
@@ -16,7 +34,7 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 | B04 | baseline firmware build/load | TBD | B01；精确 FreeRTOS kernel/bootloader 依赖 | 已恢复部分启动/链接/构建源；待重编译/加载 | clean build 固件，入口/内存匹配；加载后可报告状态和 mcycle；不依赖未入库镜像 | 2026-09-28 | blocked |
 | C01 | NIST SP800-232 reference | TBD | B01 | 规范/参考版本/许可清单与可信 KAT/hash | 固定 final 标准、C/Python reference 提交；区别旧版/draft；核对 IV、端序和 KAT 来源 | 2026-09-24 | done |
 | C02 | Ascon-AEAD128 software port | TBD | C01；目标固件需 B04 | 既有 ascon 目录内标准 C 移植、API/构建入口 | 加解密 API、长度/错误规则明确；host 与目标编译通过；不将已有代码直接算完成 | 2026-09-28 | done |
-| C03 | KAT | TBD | C02、C01 | host 全1,089 KAT、standalone RTL接口内289 KAT及认证失败验证；target待验 | 完整锁定可信 KAT 逐字节比对；空/边界/多块/AD；篡改 tag/ciphertext 拒绝；保留失败日志 | 2026-09-29 | in_progress |
+| C03 | KAT | TBD | C02、C01 | host全1089、独立RTL接口内289；当前PUF3三模式各289+289实板；CPU-DMA另有SW/ISE各1089目标仿真，不跨版本转记 | 完整锁定可信 KAT 逐字节比对；空/边界/多块/AD；篡改 tag/ciphertext 拒绝；保留失败日志 | 2026-09-29 | in_progress（原宽范围；不是target未测，PUF3接口外800组未跑） |
 | C04 | RISC-V software benchmark | TBD | C03、B02、B03、B04、V01 | 纯软件程序、mcycle 读取、原始 CSV/JSON | 自研 CPU 上运行且 KAT 正确；64-bit cycle 可靠读取；记录 flags/频率/Cache/中断/计时范围及代码量 | 2026-09-30 | done |
 
 ## ISE 与验证（P0）
@@ -33,14 +51,14 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 | I08 | PPA comparison | TBD | I05、B03 | docs/ascon_ppa_comparison.md（芯片级 STA 证据）；板上 PPA 待 B03/V01；板级 IO 覆盖见 docs/io_timing_signoff.md | 同工具/part/约束/策略，LUT/FF/BRAM/DSP/Fmax/时序均有证据；芯片级收敛 WNS+0.007/0 失败端点；IO 覆盖已闭合（no_input_delay/no_output_delay=0），但板级真实延迟 not_measured，不标板级 IO 已签核 | 2026-10-20 | done |
 | V01 | baseline regression/counter sanity | TBD | 完整验收需 B02、B03、B04；模块测试可先行 | 修订dcache TB/独立事务/故障注入/6中断场景及完整smoke、regression均PASS；ISA/SoC/板级完整门禁待验 | 保存可重跑程序/TB/日志；mcycle 读取与溢出、计数开销已检查；支持范围明确 | 2026-09-29 | in_progress |
 | V02 | software/ISE differential verification | TBD | I05、I06、C03 | ACB 套件（sw/hw/ise 同 KAT + 篡改拒绝 + stall/reset 注入）证据 data/ascon/results/key_lifecycle/*_timing_acb*.json | 两套固件均通过可信 KAT，篡改拒绝；流水 hazard/flush 场景无回归 | 2026-10-13 | done |
-| V03 | PS/PL end-to-end regression | TBD | Y02、Y03、V02 | 自动板级测试/错误场景日志 | 软件/ISE 输入到输出可复现；错误 tag、超时、长度边界、重复命令、缓存可见性可检查 | 2026-10-20 | done |
-| V04 | core freeze regression | TBD | Y05、I08、V03 | 冻结回归清单与证据索引 | P0/P1 验收齐全、无未关闭阻断缺陷；冻结哈希与环境留档；不以 P2 拖延 | 2026-10-27 | in_progress（10-31 的 `submission/freeze_manifest.md` 收录旧报告，11-01 作废；`freeze_manifest.py` 已改为最终报告与 10-31 板测，待报告定稿后重跑；P0 中 B02/B04/I02/I04/I05/V01 未验收，按 10-29 授权不阻塞提交，故不标 done） |
+| V03 | PS/PL end-to-end regression | TBD | Y02、Y03、V02 | 旧PYNQ v1（pynq-svc-v1）的自动板测/9项错误门禁，非PUF3 | 软件/ISE 输入到输出可复现；错误 tag、超时、长度边界、重复命令、缓存可见性可检查 | 2026-10-20 | done（限旧v1；PUF3完整错误矩阵未重跑） |
+| V04 | core freeze regression | TBD | Y05、I08、V03 | 冻结回归清单与证据索引 | P0/P1 验收齐全、无未关闭阻断缺陷；冻结哈希与环境留档；不以 P2 拖延 | 2026-10-27 | in_progress（当前冻结留档11-01 18:39已生成，源码92159b9，替代10-31旧清单；原baseline/完整矩阵等宽范围验收仍未关闭，不因留档PASS自动done） |
 | V05 | standalone Ascon AEAD RTL verification and main integration | TBD | C01；独立于CPU ISE | sim/ascon TB/runner、data/ascon/results/rtl_integration_regression.*、docs/ascon_rtl_decrypt_validation.md | 最新main上整合、远端Decrypt接口兼容；289官方KAT、篡改/超长/reset、round/P8/P12、全生产编译仿真PASS；旧工作区保留 | 2026-10-09 | done |
 
 V06（2026-10-17复核）：安全修复/最终源码仿真PASS，两轮实现后100 MHz timing not met：WNS=-0.177ns/TNS=-2.968ns，31个setup端点失败；已停止优化。阶段性收尾可提交，板型/DRC/IO门禁仍未过。
 V06 审查纠正：I02/I04/I05 的早期 done 覆盖不全。定向hold/cancel/reset与KAT已通过，
 但RV64、完整异常/抢占上下文、ISE-disabled和全部baseline门禁尚未验收，保持in_progress。
-C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
+C04/I07在该历史时点的done仅代表所记录的RTL仿真性能；后续PL-only、PYNQ v1和PUF3均已有各自板测，当前以10-31 PUF3主采样为准，不混用。
 
 | ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
 |---|---|---|---|---|---|---|---|
@@ -86,11 +104,11 @@ C04/I07既有done仅代表所记录的RTL仿真性能，不代表板上验收。
 |---|---|---|---|---|---|---|---|
 | D00 | repository collaboration skeleton | TBD | B01 | README/AGENTS/docs/tasks/project_log/目录说明/.gitignore | 请求的入口齐全、任务字段完整、链接可用、原工程未变、忽略规则保留证据 | 2026-09-23 | done |
 | D01 | architecture figure | TBD | B01；定稿需 I02/Y01 | 架构图与版本说明 | 当前/计划分开；最终图与 CPU/PS/PL 实现一致，报告可引用 | 2026-10-29 | in_progress |
-| D02 | benchmark tables | TBD | I07、I08、Y05、V04 | 对比表与数据来源索引 | 每个数值追溯原始结果，测试条件一致，未测项明确 | 2026-10-30 | done（历史 release 表 15/15；10-31 独立 LaTeX 稿改用当天 PUF3，`review_evidence.py` 证据/正文/PDF 174/174，墙钟仅核对摘要；11-01 独立复核 `check_benchmark_tables.py` 改对最终 LaTeX 43/43，旧 15/15 仅针对旧 report.md） |
+| D02 | benchmark tables | TBD | I07、I08、Y05、V04 | 对比表与数据来源索引 | 每个数值追溯原始结果，测试条件一致，未测项明确 | 2026-10-30 | done（当前PUF3最终报告：独立数值核对64/64、报告/PDF194/194；墙钟仅summary；旧v1表15/15与早期43/43为各自历史范围） |
 | D03 | report | TBD | D01、D02、V04、S01-S04 | 报告、PPT、LLM 协作记录 | 原理/创新/对比/失败与复现材料齐全，规则/来源可追溯，无虚构成果 | 2026-11-01 | in_progress（报告 PDF 已定稿：构建 build_20261101_174743，SHA-256 603c625a…，77 页，已入库并装入证据包；4 张实际工程截图各用一次，ISE 自检 1502/0；PPT 未见，故 D03 不标 done） |
 | D04 | demo video | TBD | Y04、Y05、V04 | 演示视频与脚本/文件 hash 索引 | 真实目标板上输入输出、KAT 和两模式指标一致，关键过程可辨识 | 2026-11-01 | in_progress：`report/demo_video_script.md` 已完成 5 分 20 秒主版与 3 分钟压缩版，11-01 按 PUF3 主演示与 10-31 数据重写；实机视频未录 |
 | D05 | clean-clone reproduction | TBD | B02、B03、B04、V04、D03、D04、S05 | 干净机器/clone 的端到端日志 | 无开发机缓存/IP/绝对路径依赖，重新构建并运行 KAT/benchmark/demo；材料引用有效 | 2026-11-02 | todo |
-| D06 | final package | TBD | D03、D04、S05（D05 按 10-29 授权不阻塞本次提交） | 最终清单/许可证/哈希/材料包 | 按 10-29 授权改为 11-01 提交并冻结（原 11-03 核包/11-04 提交作废）；由用户控制提交动作 | 2026-11-01 | in_progress（11-01 已用最终 PDF build_20261101_174743 按新门禁装配证据包，见 `submission/current_evidence.json`；10-31 三个旧包作废保留；冻结清单待生成；11-01 简介等入口文档已按 PUF3 更新并放回证据包） |
+| D06 | final package | TBD | D03、D04、S05（D05 按 10-29 授权不阻塞本次提交） | 最终清单/许可证/哈希/材料包 | 按 10-29 授权改为 11-01 提交并冻结（原 11-03 核包/11-04 提交作废）；由用户控制提交动作 | 2026-11-01 | in_progress（18:38证据包267件、18:39冻结清单/源码92159b9已生成；之后说明收口未写回旧包；原始快照保留，新包需重新核对装配，人工材料/上传待确认） |
 
 2026-10-15：C02 目标编译/运行已在仿真层达成（done）；C04 CPU 级软件 benchmark 完成
 （done，仿真层，非上板）：自研 RV32IM CPU 运行锁定生产 Ascon-AEAD128，6 组官方 KAT +

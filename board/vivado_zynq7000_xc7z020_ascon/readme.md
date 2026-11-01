@@ -1,5 +1,10 @@
 # vivado_zynq7000_xc7z020_ascon — 上板工程（B03/B04/C03/V01）
 
+> 2026-11-01 范围：本页为早期 **PL-only/JTAG** 三镜像及随后 keys3 阶段，不是当前 PUF3 overlay。
+> 下文“PUF未进入/板级待验/镜像缺失”等按所在日期解读；当前结果见 docs/version_entrypoints.md。
+> PUF3 build.tcl 复用本工程 AXI BRAM/blk_mem_gen XCI，不能整目录删除；历史三镜像必须用对应源快照，
+> 不通过只换 COE 把当前 PUF-enabled 源当作早期三镜像。同目录源集演变不回写当时数据。
+
 2026-10-27；owner TBD。本目录是**目标板的独立 Vivado 工程**，不动
 [vivado_zynq7000_xc7z020_baseline](../vivado_zynq7000_xc7z020_baseline/readme.md) 的任何字节。
 

@@ -4,6 +4,10 @@
 现有功能保持可演示，额外稳定性/通用性与完整 clean-clone 未做就记未测，不自动等同交付失败。
 当前实际验收与排期见 `tasks/release_plan_20261101.md`。
 
+2026-11-01 补充：先按 [版本入口](version_entrypoints.md) 区分当前 PUF3、旧 v1、原 baseline 和独立实验。
+PUF3 不等于“直接把 src/rtl 全加进工程”；旧程序的默认行为保留，不通过全局改 ID/路径制造版本统一。
+说明层收口不重建候选、不回写历史数据；源码/工件变化仍需对应验证。
+
 ## 开工与分支
 
 先读 AGENTS 和任务前置条件，运行 `git status --short`、`git branch --show-current`、`git log -5 --oneline`。保留未提交修改；不要用自动 pull/reset/clean 覆盖工作区。确需同步时在无冲突的隔离分支/工作树处理，不把参考仓库的强制同步脚本带入本项目。
@@ -16,7 +20,8 @@
 | `feat/puf` / `feat/boot-auth` | 通过 P0/P1 门禁后才创建功能工作 |
 | `docs/*` / `fix/*` | 文档与可验证修复 |
 
-`main` 只接收有构建/运行证据的变更。当前历史 baseline 尚有已知复现缺口，B02/B03 关闭前如实报告状态，不伪装成可运行。当前分支 `docs/repository-foundation` 已增加独立恢复资产；原工程和开发 RTL 字节不变。
+`main` 只接收有相应验证证据的变更。原 baseline 独立复现仍有缺口，不能据此否认当前 PUF3 已有实板。
+`docs/repository-foundation` 与“原工程/RTL未变”是恢复阶段记录，不是当前分支/全仓现状；实际分支以 git 查询为准。
 
 ## 单个任务
 
@@ -40,7 +45,7 @@
 
 | 类型 | 位置 / 判定 |
 |---|---|
-| 构建入口 | `build/` 的受控脚本；本轮尚无完整脚本 |
+| 构建入口 | 当前 PUF3：board 下专用 build.tcl + pynq_svc_puf/build.py；build/ 下旧实验脚本各有源快照，非统一入口 |
 | Vivado 摘要 | `build/reports/` 中精选 synthesis/implementation/utilization/timing；原始 runs 不入库 |
 | 复现元数据 | `build/metadata/`，版本/part/top/命令/source hash/IP 配置来源 |
 | KAT / benchmark | `data/` 的版本化 JSON/CSV/文本及原始记录，不只截图 |
@@ -48,7 +53,7 @@
 | 验证代码 | `sim/`；波形是临时产物，结论和必要诊断摘要保留 |
 | 报告与协作 | `report/`，可追溯图表、演示材料与用户批准范围/agent 自我纠错记录 |
 
-D05（11-02）验收必须在干净机器或干净 clone 实跑；检查源代码、IP、工具版本、固件、overlay、reference/KAT 均无本机绝对路径依赖，执行软件与 ISE KAT、benchmark、demo，形成完整日志和哈希清单。环境不可用只能记 blocked，不能算通过。
+D05 的完整验收必须在干净机器或干净 clone 实跑；检查源代码、IP、工具版本、固件、overlay、reference/KAT 均无本机绝对路径依赖，执行软件与 ISE KAT、benchmark、demo，形成完整日志和哈希清单。环境不可用只能记 blocked，不能算通过。原 11-02 日期已被 10-29 的 11-01 提交安排取代，D05 未测但不阻塞本次提交。
 
 ## generated 文件管理
 

@@ -1,5 +1,9 @@
 # 技术报告 v0.9：当前证据对齐稿（已被最终报告取代）
 
+**当前操作只按 [版本入口](../version_entrypoints.md) 与 [证据目录说明](evidence/README.md)。**
+下文旧“阅读/维护/构建入口”全部保留为v0.9历史，不是当前推荐命令；尤其不运行build_report.py覆盖最终报告。
+旧压缩包名称含final/review也不代表当前PDF，选择依据是构建记录和submission/current_evidence.json。
+
 > **2026-11-01：本目录的 Markdown/HTML/LaTeX 流水线（`report.md`、`src/`、`src_template/`、`latex/`、
 > `build_report.py` 等）是 PYNQ v1 release 叙事的 v0.9 稿，已被取代，不再维护，数值不作为当前结论引用。**
 > 最终报告是独立 LaTeX 工程 `amd_fpga_2026_latex_final/amd_fpga_2026_report/`，PDF 为

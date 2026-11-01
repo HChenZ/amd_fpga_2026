@@ -1,5 +1,8 @@
 # AXI DMA 回环 overlay（非 Ascon，Skill L3 实板测试用）
 
+> 2026-11-01 职责：保留为 Skill L3 非 Ascon 实板工件；不是 PUF3 集成 DMA 功能，也不含 RV32。
+> 它与 PUF3 在演示中分别加载，不能把两种 overlay 的结果说成同一 bit。候选和默认程序不改。
+
 2026-10-31；owner TBD。给 `skill/pynq-overlay-workflow` 的 L3 实板层提供一个与 Ascon 无关的
 overlay（段 C 寄存器契约、段 D 有界 DMA），见 `skill/ab_eval_pynq/README.md` §1 L3。
 独立入口，不引用任何项目 RTL，不改其他 board 工程。

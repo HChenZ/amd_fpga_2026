@@ -1,5 +1,8 @@
 # `src/rtl/puf_min` — PUF-MIN 最小闭环 RTL
 
+> 2026-11-01 范围：独立无RV32的PUF-MIN实验，复用keys_v2采样器；不是当前PUF3源集。
+> 下文资源/仿真属于其探索记录，未声明已发布可用候选或板测；程序/参数保持不变。
+
 任务号 `PUF-MIN`（`tasks/puf_fix_and_min_goal_20261030.md` §4.2 / §4.3 / §4.5）。
 owner TBD。**复用** `src/rtl/keys_v2/` 已有的 RO 采样器，不修改它。
 

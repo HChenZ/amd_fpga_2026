@@ -1,5 +1,8 @@
 # next.html 路线实测：F（MMIO 写译码寄存化）与 R（80 MHz）
 
+> 2026-11-01：10-24路由/架构实验的80MHz方案，不是独立CPU-DMA最终80MHz候选，也不是PUF3降频版本。
+> 原源集/测量记录保留，当前入口见 version_entrypoints.md。
+
 2026-10-24；owner TBD。基线 `3c6f134`（`src/rtl/dcache.v`、`ascon_ise.v` 的 sha256 与
 2026-10-20 control run 记录一致，见 `build/reports/tests_20261024/*/build_context.txt`）。
 工具 Vivado 2025.2，part `xc7z020clg400-1`，top `top_pl_bram`，策略

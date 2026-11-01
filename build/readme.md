@@ -1,5 +1,19 @@
 # 构建与复现
 
+## 2026-11-01 当前入口与旧构建的边界
+
+- 当前 PUF3 构建入口在 `board/vivado_zynq7000_xc7z020_pynq_puf3/build.tcl`，固件入口为
+  `src/firmware/pynq_svc_puf/build.py`；板端使用已发布 candidate 则不需要重建。
+- 本目录 ACB/BCE/dcache/策略 sweep/IO-STA 等 Tcl 是各自日期的研究构建，**不是 PUF3 build 的替代品**。
+- `advanced/` 是 CPU-DMA/HW_DIRECT/PUF v2 等独立实验；80 MHz 候选不是 PUF3 降频版本。
+- `prepare_cicc1000023_sources.py` 核验原恢复资产，不是生成 PUF3 固件。
+- 报告/打包入口在 `docs/tech_report/evidence/`，步骤见 `submission/README.md`。
+- 下面“未重建/板型未知/11-02计划”和第一阶段静态命令均保留为原阶段说明，不是当前全仓状态或无版本一键命令。
+  默认旧 CPU runner 缺 keys/BUFG；--pynq-p0 是旧 v1。复核结果与当前职责见
+  [版本入口](../docs/version_entrypoints.md)。不要为跑旧实验覆盖冻结 candidate 或复用旧结果。
+
+## 历史构建背景与原阶段操作
+
 V09 最终双策略实验 RPT 位于 `reports/timing_acb_20261018/`，原始恢复归档保留。
 旧实验报告清理后被并行任务部分恢复；用户最新确认暂时保留这些并行产物，待并行任务结束后收尾。
 被检查脚本实际使用的 JSON/TXT 仍保留。

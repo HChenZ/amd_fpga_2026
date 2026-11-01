@@ -1,5 +1,9 @@
 # PYNQ Skill L3 board Notebooks
 
+> 2026-11-01 版本边界：l3_10_ascon_release.ipynb 固定测试旧 PYNQ v1（ID 0x514e5950 / pynq-svc-v1），
+> 不是 PUF3。其余段使用 Base GPIO 与独立 DMA 回环。下面冻结哈希/原始 session 保留，不为“更新说明”修改。
+> 当前 Skill 代码晚于该 session；新测试必须按原步骤显式绑定实际版本，不能跳过断言或宣称旧结果已覆盖新代码。
+
 owner TBD。这里存放 **人工 L3 验证**的上板入口。所有执行入口使用 Jupyter Notebook；
 Skill 的通用实现和既有 pytest 仍位于 `skill/pynq-overlay-workflow/`，Notebook 只负责
 编排、断言和保存证据。

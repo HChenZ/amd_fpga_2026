@@ -1,5 +1,8 @@
 # PYNQ Notebook 与 warm benchmark 验证（2026-10-29）
 
+> 2026-11-01 版本提示：本页是旧 PYNQ v1 的 Notebook/benchmark/9项错误门禁记录，非 PUF3。
+> 10-31有该旧版的独立重测；不回写原数据，当前主演示与入口见 docs/version_entrypoints.md。
+
 任务 Y04/Y05 的实板证据，owner TBD。正点原子领航者 ZYNQ7020，PYNQ 2.7.0，
 Python 3.8.2，Linux 5.4.0-xilinx-v2020.2 armv7l。板端身份见
 `data/pynq/notebook_20261029_130920/identity.json`，Notebook 顺序执行时间为

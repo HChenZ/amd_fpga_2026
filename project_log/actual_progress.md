@@ -1,5 +1,76 @@
 # 实际进度
 
+## 2026-11-01 — 说明层按版本分责收口，不强行修改 PUF3/旧程序（owner TBD）
+
+- 用户授权仅更新说明：明确旧入口与当前现状，不把全部程序强制改成PUF3。未改脚本、RTL、固件、
+  已执行Notebook、SKILL.md、原始板测、已发布manifest/PDF/ZIP/冻结指针，未commit/push。
+- 新增 `docs/version_entrypoints.md` 及目录导航，修正README/AGENTS/board/src/build/data/sim旧当前状态；
+  逐工程区分主演示、旧v1、PUF-only、PL-only、原baseline、独立DMA/PUF v2/MIN及Skill。
+  明示共享firmware/IP依赖必须保留，旧CPU runner缺keys/BUFG、v1 CLI不兼容PQF3仍是未修程序问题。
+- 历史评审/时序/交接/任务卡只加适用范围，保留原文与成败；旧报告/旧final ZIP不用作当前稿。
+  包内快照、锁定参考与实验固定材料不为文案同步重写。更新/补充125份说明，范围见documentation_scope_20261101.json。
+- PUF3 readme按实际固件纠正Y01K末8B为now_mcycle，按现有Notebook纠正FULL_KAT默认及不存在的CLI参数说明；
+  看板只澄清已有证据、目标版本和冻结已生成，不新增验收PASS。
+- 现有脚本刷新派生C组sha256清单/D02输入hash：build_evidence PASS52、D02 64/64、报告/PDF核对194/194（temp输出）。
+  assemble --check-only PASS，拟装配268件（新增文档引用）；**未写新包**，旧指针仍18:38的267件/2a0f0304…，旧包未回写。
+- 615个保护对象hash全部未变，程序diff0；61个新增相对链接有效，旧ZIP hash与指针一致。
+  明细 `build/metadata/documentation_scope_20261101.json`。并行新增讲解网页/日志已保留，不纳入本轮程序变更。
+- 后续要交付新说明快照时再独立核对/装配/冻结；本轮停在可审查工作区。
+
+## 2026-11-01 — 项目全链路讲解网页（owner TBD）
+
+- 用户要求制作通俗、严谨、详细的项目讲解网页，重点覆盖密码模块接入、PYNQ 工作方式及 CPU→密码→软件展示全链路。
+  新增单文件离线页面 `report/project_explainer.html`（无外部依赖），内容只整理仓库现有源码、构建脚本、实现报告、
+  最终报告与 `data/pynq_puf3/notebook_20261031_114512/result.json`，不新增任何测量；按“实板/仿真/实现报告/源码事实/
+  推算/背景知识/未测”逐项标注证据类别，PUF3 为主演示，PYNQ v1 与 PL-only 只作历史对照，版本表述按 `docs/version_entrypoints.md`。
+- 页面内嵌 JS 版 Ascon-AEAD128 演示（BigInt，与 RTL/固件同构）：本机 Node v24.15.0 从页面抽取库，对锁定
+  `data/ascon/kat/asconaead128.txt` 执行加密 1089/1089、解密 1089/1089、Tag/密文篡改拒绝 2145/2145、0 错，exit 0。
+  浏览器实测（本地 http.server 加载）各交互组件可运行、控制台无错误。该实现仅用于讲解，不是板上实现或证据。
+- 文中标为“推算”的量级（如 #529 一次 ISE 加密动态 73 条 custom-0、置换约占 ISE 周期 1%、P8/P12 在 EX 约 13/17 拍、
+  往返 176 B 理论线路 0.28 ms）均按源码/RTL 计算，未实测分项，不能当作板测结论。
+- 未修改 RTL、固件、Notebook、manifest、证据包或报告；未运行 Vivado、未上板、未 commit/push。
+
+## 2026-11-01 — 全部工程版本与 PUF3 入口一致性审计（owner TBD）
+
+- 用户要求列清全部版本、历史用途和本次不用的版本，并检查脚本是否对应 PUF3。本轮未改生产程序/RTL/固件/Notebook/
+  已发布 manifest，未新板测、未运行 Vivado、未重新打包、未 commit/push。保留原有未提交改动与新出现的 project_explainer.html。
+- 交付 `docs/version_inventory_20261101.md`、`build/metadata/version_alignment_20261101.json`：枚举 board 12 目录
+  （11 工程家族 + 1 资料目录）、固件 9 目录、Git 5 个 XPR 与本机 ASCON.xpr、六个本地分支、报告/证据/源码 ZIP；
+  扫描 493 个跟踪/明确未跟踪脚本，逐个列路径、hash、分类和版本引用。排除包重复副本、LLM 会话、第三方恢复固件与锁定 reference。
+- 当前 PUF3 五个工件、56 个选定生产输入、固件 build.json 的 12 个输入、10-31 板测 bit/hwh/manifest 绑定均匹配；
+  D02 64/64、报告/PDF 核对 194/194（输出到 temp）、assemble --check-only PASS 267，当前 ZIP 与冻结指针一致。
+- 全 70 项 candidate source 只有 Notebook 不同：追到 dd0dc25 的 CRLF 原件，当前代码仅 FULL_KAT False→True，
+  加执行输出/元数据变动；这是测试版本演进，不改构建 manifest 来假装一致。
+- 用临时输出复现源列表的 elaboration（不运行 vvp）：默认 run_cpu_regression 源集 exit 4，缺 BUFG/puf_key/key_mmio；
+  pynq-p0、PUF3 专用源集、当前 ISE TB、旧 MMIO TB 均 exit 0。v1 BridgeRegs 对 PQF3 模拟寄存器明确拒绝，
+  Notebook 的 PUF3 身份子类接受；不能仅改 --release 路径就把 v1 CLI 变成 PUF3。
+- 发现未收口入口：src/pynq 的 board_demo/benchmark/error_gate 仍默认 v1，Skill L3 Ascon 也有意测 v1；
+  src/rtl/soc_top.v 是自动锁钥旧版，PUF3 依赖 board 下两个变体；evidence/README.md 仍推荐旧 build_report.py；
+  README 表格/board/readme/src 与 data readme 等仍有旧状态，之前“全部入口已更新”的结论过满。
+- 四个旧报告 ZIP 全部不是当前 PDF，最近的 amd_fpga_2026_report.zip 也有 fig_2_9.tex 不同；18:38 证据包才是当前提交包。
+- 另纠正 P0 审计的全仓表述：CPU-DMA 实验已有真实 CPU 的 SW1089/ISE1089/HW289、vendor XSim 7418/7418，
+  均为独立 DMA 版本离线结果（board NOT_RUN），不能套给当前 PUF3。已补正 P0 复核文档及看板说明。
+
+## 2026-11-01 — P0 未验收项按现有证据复核与答复纠正（owner TBD）
+
+- 用户要求结合当前数据重新核对。此前把 11 个非 done 任务近似说成未验证，尤其“缺 I04 随机/边界/复位/seed、
+  没有中断验证、没有板卡 revision/频率记录”等说法不准确，已纠正。逐项证据见
+  `docs/p0_evidence_review_20261101.md`；本轮只读现有结果/源码，不运行硬件或仿真流程。
+- I04：`permutation_cases.json` 为 seed 0x800232、6 定向/边界 + 16 伪随机状态，P8/P12 各 22 次；
+  当前 XSim 原始日志 ISE 1502/0，summary 中 8 个源/配置/向量哈希与工作区完全一致。
+- I03/I05/C03：PUF3 候选 56 个选定生产输入 raw/LF 哈希全部一致、行为协同仿真 54 步 PASS，
+  固件构建 7 步 exit 0、静态 custom-0=22；10-31 板测 PASS、simulated=false、三模式各 289+289，
+  bit/hwh/manifest 三项绑定通过。当前 RV32 实现与容量内板测不是未验证。
+- V01/I05：现有真实 CPU+CLINT 六场景均接受中断并执行 handler/mret，Cache 四 seed 差分与独立事务已验证；
+  10-28 regression=15 PASS/0 FAIL/0 BLOCKED/1 NOT_RUN。ISA 为 49 PASS/ma_data 1 FAIL，不是没跑。
+  老 ACB 生命周期 MMIO 13212/0、ISE 1502/0、EX 11/0、单元 5/5，但若干当前源码哈希已改变，不能外推为最新全套重跑。
+- B03：10-27 冻结记录已有底板 V3.9/核心板 2V5；10-31 PUF3 有 mcycle/PS 时基估测 99.9723 MHz，
+  “尚无示波器/Fmax 测量”不能说成“没有任何频率核验”。完整芯片丝印/速度等级、真实 IO 延迟仍未闭合。
+- 真正剩余：原 baseline 独立复现/原 FreeRTOS 与 bootloader 构建依赖，完整保留编码/特权异常/RV64/
+  ISE 抢占上下文恢复/ISE-disabled 配置、全 1089 目标 KAT；PUF3 完整错误门禁、RO 计数器域与跨上电/PVT 等。
+  V10 是文件留存检查未收口，不是功能未测；V04 冻结留档已生成，不等于整个 P0 验收。
+- 看板补复核说明，不自动提升旧任务状态；未改 RTL、报告 PDF、原始证据或打包快照，未 commit/push。
+
 ## 2026-11-01 — 证据包重装与冻结清单（owner TBD）
 
 - 顺序执行（Python 3.13.9）：`build_evidence.py` PASS 52；`check_benchmark_tables.py` 64/64；`assemble.py --check-only` PASS 267；

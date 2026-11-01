@@ -1,0 +1,6 @@
+tool=2025.2 part=xc7z020clg400-1 design_top=pynq_puf3_wrapper
+project=pynq_puf3 directory=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf3/vivado
+simset=sim_ise_screenshot simulation_top=tb_key_ise backend=XSim mode=behavioral
+tb=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/ascon/tb_key_ise.v vectors=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/ascon/permutation.mem
+synth_status=synth_design Complete! impl_status=write_bitstream Complete!
+custom_tcl=C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/ascon/run_ise_screenshot.tcl

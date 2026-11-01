@@ -1,5 +1,9 @@
 # V06 review evidence, 2026-10-16
 
+> 2026-11-01 scope: original lifecycle/ACB source snapshots, not a fresh full PUF3 rerun.
+> Preserve before/intermediate FAIL and source hashes; newer board success does not retroactively change these runs.
+> Current PUF3 versus historical coverage is explained in docs/p0_evidence_review_20261101.md.
+
 Owner TBD. `final_validation_summary.json` indexes the timing continuation;
 `validation_summary.json` retains the pre-optimization review. Values are simulation
 or implementation reports, never board measurements. `.log.gz` files are lossless

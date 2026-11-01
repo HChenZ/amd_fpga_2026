@@ -1,5 +1,8 @@
 # 扇出复制第二轮：单根/双根定点复制实测（2026-10-25）
 
+> 2026-11-01：10-25独立对照实验记录，不是当前PUF3的复现凭据或新修改授权。
+> 原成败与快照保留；当前候选见 version_entrypoints.md。
+
 工具 Vivado 2025.2，part `xc7z020clg400-1`，top `top_pl_bram`，策略
 `Performance_ExploreWithRemap`，核心约束 10.000 ns（`clk` 输入 20.000 ns，`clk_wiz_0` ×2）。
 RTL 为当前 `src/rtl`（C + D 已落地，`dcache.v`/`cpu_core.v`/`crypto_aead.v` 的 sha256 见各臂

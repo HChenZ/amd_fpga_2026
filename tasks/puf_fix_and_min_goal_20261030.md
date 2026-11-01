@@ -1,5 +1,9 @@
 # GOAL：PUF v2 修正 + 最小闭环 PUF（PUF-MIN）方案
 
+> 2026-11-01：本页为10-30任务书，“构建未完成/尚无候选”等观察按当时读取，后续结果以各版本证据为准。
+> 本轮不继续执行Track A/B，也不改已发布PUF3。PUF v2旧候选仍INVALID；PUF3使用PUF v1，不是该修正方案。
+> 当前与历史入口见 docs/version_entrypoints.md，原失败/禁止项保留。
+
 日期 2026-10-30；owner TBD；交付冻结 2026-11-01。本文件是给执行 AI 的任务书，
 不是结果记录。执行前按 `AGENTS.md` 必读顺序读文档，先 `git status`，不 commit/push。
 

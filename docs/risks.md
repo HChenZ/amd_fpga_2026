@@ -2,6 +2,18 @@
 
 更新：2026-10-29。probability / impact 是定性评估，不是实测统计。owner 全部 TBD；已观察问题明确标注。触发后更新 task_board 与 actual_progress，不隐瞒延期或失败。
 
+## 2026-11-01 当前补充（下方旧风险表保留日期语境）
+
+- **已观察：版本入口混淆。** PUF3 专用链已验证，但 v1 CLI 默认不兼容 PQF3，旧默认 CPU runner 缺 keys/BUFG；
+  说明按 version_entrypoints.md 分责，本轮未修程序。不要执行旧报告流水线或只凭“final”ZIP 名选包。
+- PUF 已进入 PUF3 主演示（仅会话内功能），R7/R8 的“未启动”不再是现状：结构/实板已有证据，
+  RO 计数器时序、跨上电/PVT/BER、保密性仍未闭合。9/9 错误门禁仅属于旧 v1。
+- 板卡有 V3.9/2V5 和 mcycle/PS 时基估测，完整芯片丝印/速度等级、真实 IO 延迟仍待补；不能泛称完全没测频率。
+- 提交日期按 10-29 授权为 11-01；旧 R12 的 11-04 计划不再适用。Skill S01–S05 与冻结留档已有相应证据，
+  原 baseline/完整矩阵/clean-clone 等仍未验收，不因缩范围变为 PASS。
+
+## 10-29 风险表（历史记录）
+
 | ID | 风险 | probability | impact | mitigation | trigger |
 |---|---|---|---|---|---|
 | R1 | 旧 Ascon 与 NIST SP 800-232 混淆 | 高：本地有 1.3.0 / draft 标记 | 极高：全部结果失效 | C01 固定 final 规范、参考提交与 KAT 哈希；逐项核对 IV/端序等；C03/V02 双路径比对 | 使用旧 Ascon-128/128a 向量；标准来源不明；KAT 任一失败 |

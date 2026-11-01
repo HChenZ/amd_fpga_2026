@@ -1,5 +1,19 @@
 # Ascon Final host validation and RTL golden interface
 
+## Version scope, 2026-11-01
+
+This directory mixes shared Final host/standalone RTL/unit checks and historical PL-only CPU runners.
+The current PUF3 integration entry is `sim/pynq_puf3/run.py`; its board entry is the Notebook under
+`src/pynq_puf3/`. See [version entrypoints](../../docs/version_entrypoints.md).
+
+**Known old-entry limitation:** `run_cpu_regression.py` currently selects the PUF-enabled original soc_top
+but omits keys/BUFG dependencies by default (elaboration exit 4). `run_ascon_sw/hw/ise.sh` inherit that default.
+`--pynq-p0` selects the historical no-PUF v1 source set; it does not select PUF3. These programs are not repaired
+by this documentation update. Old PASS records remain results for their recorded source snapshots, not new runs.
+Host and standalone tests have their own scope; none alone establishes complete PUF3 system verification.
+Commands below can overwrite default result paths, so use a fresh supported output/report/label when rerunning;
+do not erase archived evidence or mistake generated logs for old published records.
+
 V10 cleanup: historical Vivado report directories and unused intermediate results
 were pruned by user request. Final dual-strategy reports, golden inputs and current
 regression evidence remain. `verify_cleanup.py` performs fresh regressions and compares

@@ -1,5 +1,8 @@
 # Final offline physical preparation (2026-10-30)
 
+> 2026-11-01 scope: dated PUF v2 core preparation, not PUF3; final/offline in the title is not a board-release claim.
+> The old puf_v2 SoC candidate remains INVALID, and its RO signoff gaps are not closed by these core results.
+
 **Historical baseline:** subsequent measured RTL fixes and retained results are
 in `synchronous_timing_20261030.md`. The failures below are preserved evidence;
 they are not the final current digital setup result.

@@ -1,5 +1,10 @@
 # PUF v2 standalone PYNQ SoC candidate
 
+> **2026-11-01: the existing candidate is INVALID_DO_NOT_PROGRAM.** Read candidate/INVALID.md first.
+> The positive timed-subset/offline results below are historical, not permission to program or publish this bit.
+> This is an independent PUF v2 architecture, not PUF3 (which uses PUF v1). No fixed replacement candidate is
+> claimed by this documentation update; the capture hash blacklist and all artifacts stay unchanged.
+
 Task PUF-SOC-V2; owner TBD. This is independent of the original PYNQ release.
 No Y01 service or DMA protocol is implemented: the firmware prints an ASCII
 self-test log over CPU UART → PL mailbox → PS AXI-Lite.

@@ -1,5 +1,9 @@
 # 拿到板卡后的分步推进清单（上板 bring-up）
 
+> 2026-11-01 版本补注：下面已完成的 V03 9/9 属旧 PYNQ v1，不能转记到当前 PUF3。
+> PUF3 已有10-31容量内三模式/PUF会话内板测和99.9723 MHz时基估测；不等于示波器/Fmax测量。
+> 旧快照/复选框保留，当前入口见 version_entrypoints.md。
+
 2026-10-20 起草；owner TBD。下方是原始分步操作清单，保留历史。当前已实际完成：
 正点原子领航者 ZYNQ7020 起板、100 MHz PYNQ overlay、SW/HW/ISE 容量内 KAT、
 Python/Notebook、warm benchmark 和 V03 错误/恢复门禁。尚未完成 B03 完整实物照片/

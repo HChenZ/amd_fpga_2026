@@ -1,5 +1,8 @@
 # M1 起板：从镜像写卡到 PYNQ 网络起来（纯 GUI 分步）
 
+> 2026-11-01 范围：这是板卡 PYNQ 2.7 镜像/网络起板步骤，不是加载 PUF3 或旧 v1 的专用操作。
+> 后续已在该平台运行 PUF3；具体 overlay、固件身份和 Notebook 按 version_entrypoints.md 选择。
+
 2026-10-28 目标，owner TBD。所有操作由用户本人点，本文件只给步骤与要留的证据。
 镜像：`E:\...\正点原子领航者(V2)ZYNQ开发板资料盘(A盘)\4_Source_Code\5_PYNQ_Design\IMG\ZYNQ-7020-2.7.0.zip`
 （1,869,237,643 B；解压后约 8.09 GB，需 ≥16 GB TF 卡）。

@@ -1,5 +1,13 @@
 # 通用 Skill 交付目录
 
+## 2026-11-01 当前职责（下面带日期的选择为历史记录）
+
+本次交付 pynq-overlay-workflow，S01–S05 已有各自范围证据，最新归档工具64 passed/变异16/16。
+它是通用工具，不是 PUF3 固件或驱动，不硬编码 PUF3。已冻结 L3 的 Ascon 对象是旧 PYNQ v1/
+pynq-svc-v1，另有 Base GPIO/DMA 回环；不能称为 PUF3 Skill 实板复测。
+L2 为 simulated，L3 后的 S04/gen 修复只具离线证据。本轮不改 SKILL.md、程序、已执行 Notebook 或实验原始结果。
+版本选择见 docs/version_entrypoints.md；验证步骤与原结论保留在下文。
+
 2026-10-29 最新交付选择：11-01提交；10-30优先测试已有 `rtl-design-discipline`，
 见 `docs/skill_test_guide_20261030.md`。当前仅确认文本内容，实际效果仍待测试。
 2026-10-30 新增 `pynq-overlay-workflow`（通用 PYNQ Skill），当日仅工具层离线验证（历史状态，已被下行更新）。

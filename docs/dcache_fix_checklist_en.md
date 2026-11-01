@@ -1,5 +1,8 @@
 # dcache Pipeline Fix Checklist
 
+> 2026-11-01 scope: historical cache-fix checklist, not a new PUF3 change authorization or evidence of completion.
+> Keep recorded source/contract boundaries; current entrypoints are in version_entrypoints.md.
+
 **V10 retention update:** older RPTs, intermediate fix_r1/A/C JSONs and lint
 reports referenced below were deleted at the user's request. Final V09
 dual-strategy reports and current regression inputs are retained; see

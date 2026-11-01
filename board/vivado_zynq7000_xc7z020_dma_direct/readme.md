@@ -1,5 +1,9 @@
 # Independent AXI DMA / HW_DIRECT experimental overlay
 
+> 2026-11-01 scope: independent mode4/D01 experiment, no RV32 and no PUF3 UART service.
+> Only the 024214 final candidate is the documented experiment candidate; the board remains NOT_RUN.
+> Do not mix its PL cycles or 1024-byte capacity into the PUF3 performance table. Original defaults stay unchanged.
+
 Target xc7z020clg400-1, Vivado 2025.2. This is NOT the released RV32/PYNQ overlay.
 `setup.tcl` creates a fresh BD: PS7 GP0 control, HP0 DDR, simple AXI DMA with 64-bit
 memory crossbar/HP0 and 32-bit native DMA/stream interfaces, and `dma_direct_top`. `loopback` is an optional

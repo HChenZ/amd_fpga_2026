@@ -1,5 +1,8 @@
 # DMA RV32 firmware v2
 
+> 2026-11-01 scope: independent CPU-DMA firmware/D01 ABI, not pynq-svc-puf3.
+> Its32/16/32-byte capacities and source choices must not replace the PUF3 UART firmware; defaults stay unchanged.
+
 Task: advanced DMA CPU path; owner TBD. Independent firmware, no UART v1 changes.
 Requests use uncached MMIO at 0x20020000. The CPU reads only a complete bounded
 packet, checks ABI/session/id/mode/capacity/framing, then dispatches AEAD.

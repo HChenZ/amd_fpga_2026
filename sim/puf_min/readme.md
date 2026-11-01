@@ -1,5 +1,8 @@
 # `sim/puf_min` — PUF-MIN 仿真
 
+> 2026-11-01 范围：独立无RV32的 PUF-MIN，不是 PUF3；本页模型仿真结论不作为当前overlay板测。
+> 本轮不修改测试、模拟振荡器、判据或原结果，版本入口见 docs/version_entrypoints.md。
+
 owner TBD。**行为级 RO 模型不是物理 PUF 证据**：`sim/puf_soc_v2/ro_array_model.sv`
 只把 1280 个 LUT 环整替换成确定性差频振荡器，用来验证数字路径；板测状态永远是
 `not_measured`。

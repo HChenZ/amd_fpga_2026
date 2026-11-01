@@ -1,5 +1,9 @@
 # PUF-MIN：最小闭环 RO-PUF overlay
 
+> 2026-11-01 范围：独立探索版本，不是 PUF3，也没有 RV32/ISE。work/ 与 work_v2/ 是探索工程，
+> 不是两个已发布 PUF3。未见可用的已发布 candidate，板测 NOT_RUN；下面“打包/交付”是操作流程而非完成声明。
+> 本次不用作主演示，程序和实验记录保留；见 docs/version_entrypoints.md。
+
 任务号 `PUF-MIN`（`tasks/puf_fix_and_min_goal_20261030.md` §4）。owner TBD。
 
 **只把"物理响应"留在 PL**：PS 上的 Python 负责注册、重建、派生密钥、加解密与统计。

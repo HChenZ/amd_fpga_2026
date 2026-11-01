@@ -1,5 +1,9 @@
 # DMA / PUF 离线实现状态（2026-10-30）
 
+> 2026-11-01 范围：本页是独立实验的10-30证据索引，非当前 PUF3。CPU-DMA的全1089目标仿真只属该版本。
+> **PUF v2 SoC旧候选已作废**（candidate/INVALID.md），下文结构/时序/交付检查PASS保留历史，不可据此上板。
+> “原主线 release”指旧 PYNQ v1；当前 PUF3 的PS外部接口和门禁不能由旧版推断覆盖。见 version_entrypoints.md。
+
 owner TBD。独立实验目录，不覆盖原PYNQ release，不修改已提交简介。
 这是代码/仿真/实现的证据索引；所有新版本 board_validation 仍为 NOT_RUN。
 
@@ -135,4 +139,3 @@ candidate下bit/hwh配对，manifest含源快照/哈希；不是已上板结果�
 
 1. 接受 `not_retained`，主线保持现状（推荐：主线功能证据已齐，且冻结在 2026-11-01）。
 2. 后续单独安排一次主线只读复核（新建 work 目录、不改 release），把 29-160 计数补进本文件。
-

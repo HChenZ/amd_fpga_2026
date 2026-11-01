@@ -1,5 +1,8 @@
 # Independent PUF v2 CPU integration
 
+> 2026-11-01 scope: independent v2 integration, not PUF3. The old physical candidate is INVALID_DO_NOT_PROGRAM;
+> retain its historical offline results without treating them as a replacement release or board result.
+
 Owner TBD, task PUF-SOC-V2. New modules only; no original RTL or keys_v2 edits.
 
 - `bus_interconnect_puf_v2`: inherited DMA extension slot repurposed for

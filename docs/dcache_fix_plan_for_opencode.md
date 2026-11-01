@@ -1,5 +1,8 @@
 # dcache 修复执行方案（OpenCode + AMD Ross）
 
+> 2026-11-01：旧Cache修复任务方案，不是当前说明收口的执行授权；不因看到本页就改生产dcache/PUF3。
+> 方案与实际运行证据分开，当前入口见 version_entrypoints.md。
+
 > 本方案是历史执行记录。V10 已按用户要求清理其旧报告/中间结果；请使用
 > [当前清理与复验入口](workspace_cleanup.md)，不要继续执行下面的旧删除/覆盖命令。
 

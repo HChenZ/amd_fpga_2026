@@ -1,5 +1,8 @@
 # Ascon 三实现 PPA 对比与收敛历程（I08 收口）
 
+> 2026-11-01 范围：历史三实现/时序快照的 PPA 记录，不是三份当前 PUF3 独立核 PPA。
+> PUF3 整个 overlay 的资源与时序在其 candidate 报告中；指标不得跨源集混用。当前入口见 version_entrypoints.md。
+
 日期 2026-10-18；owner TBD。本文件以芯片级 STA 证据收口 I08（PPA comparison）；
 板上 PPA 仍待 B03（板型核验）与 V01（实板回归）。所有数字均可追溯到报告文件，
 缺失项标 not_measured。

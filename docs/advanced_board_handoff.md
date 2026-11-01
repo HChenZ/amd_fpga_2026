@@ -1,5 +1,9 @@
 # DMA / PUF 新版上板交接门禁
 
+> 2026-11-01 范围：本页的“新版”指独立 CPU-DMA/HW_DIRECT/PUF v2 实验，不是当前 PUF3。
+> PUF v2 旧 candidate 已 INVALID、禁止上板；其早期正 slack/校验结果不构成下载许可。
+> 当前主演示入口见 version_entrypoints.md；实验程序和已归档结果不改。
+
 本文件用于离线工作完成后的现场执行，所有 board 结果初始为 NOT_RUN。
 原PYNQ正式release与新实验候选必须区分；先记录hash，再烧录。已提交简介保持不动。
 

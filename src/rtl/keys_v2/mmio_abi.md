@@ -1,5 +1,8 @@
 # PUF v2 MMIO ABI 2, revision 2
 
+> 2026-11-01 scope: independent keys_v2 ABI, not the current PUF3 key_mmio/Y01P/Y01K interface.
+> Its related old SoC candidate is invalid; this ABI contract does not authorize programming it. No ABI changes here.
+
 2026-10-30; owner TBD. Independent integration, not the existing Ascon/PUF ABI.
 `puf_mmio_v2` adds unchanged `keys/device_dna.v` and internally connects
 `puf_key_v2` to `crypto_aead`. `puf_mmio_physical_v2` also instantiates 256

@@ -1,5 +1,8 @@
 # 项目简介（draft v2，2026-10-27）
 
+> 2026-11-01：本稿已被 project_intro_20261101.md 取代。下文 PL-only 数字、PUF v2失败片段和“后续完成PYNQ”
+> 均保留当时语境，不可直接用于当前提交；本页“投稿定稿”也是旧稿，不代表最新 PDF。当前入口见 version_entrypoints.md。
+
 > 依据当前仓库实测证据改写，替换队友 v1。所有数字可在 `docs/freeze_checkpoint_20261027.md`
 > 与 `data/ascon/results/board/` 中追溯到原始报告或串口日志。
 

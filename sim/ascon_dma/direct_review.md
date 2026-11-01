@@ -1,5 +1,8 @@
 # Direct core lifecycle review / handoff
 
+> 2026-11-01 scope: HW_DIRECT lifecycle checks for the recorded experiment source, not PUF3 security acceptance.
+> Keep historical PASS/FAIL and source hashes; current entrypoints are listed in docs/version_entrypoints.md.
+
 2026-10-30; owner TBD. Verification-only subtask; production RTL/host unchanged.
 
 ## Parent fixes verified: strict PASS

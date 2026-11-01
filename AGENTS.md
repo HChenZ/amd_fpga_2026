@@ -10,6 +10,7 @@
 - 10-30 队友先验证实际交付 Skill；小时级稳定性、完整通用性/跨平台与独立核/大消息实验不阻塞本次提交。
 - 原始失败与未测边界保留；不能因缩减交付范围把未完成任务改为通过。现有代码/证据不删除，不自动 commit/push。
 - 当前顺序见 `tasks/release_plan_20261101.md`，Skill 执行表见 `docs/skill_test_guide_20261030.md`。
+- 版本选择先读 `docs/version_entrypoints.md`：保留旧入口的默认行为与历史证据，不把 v1 CLI、Skill L3 或独立 DMA/PUF v2 结果改写为 PUF3 结果；本轮说明收口不授权修改 PUF3/公共 RTL。
 
 项目：RISC-V Lightweight Cryptography SoC with ASCON ISE。复用 CICC1000023 CPU，目标 XC7Z020CLG400-1；主线是标准 Ascon-AEAD128 软件、ISE 与 MMIO 加速及 PYNQ 展示；11-01 起主演示为集成 PUF 密钥通路的 PUF3 overlay，早期独立 PUF 原型另列。当前提交/冻结日期 2026-11-01。
 
@@ -27,11 +28,11 @@
 
 ## 立即知道的事实
 
-- CPU 在 `src/rtl/`，已有软件在 `ascon/`，原 Kintex 经 git mv 统一到 `board/vivado_kintex7_legacy/`；board 仅保留该 legacy 与真实 Zynq baseline 两个工程。
+- CPU 在 `src/rtl/`，已有软件在 `ascon/`，原 Kintex 经 git mv 统一到 `board/vivado_kintex7_legacy/`；“仅两个工程”是恢复初期状态。当前 board 有 11 个工程家族及板卡资料目录，职责见 `board/readme.md`，主演示为 pynq_puf3。
 - 原 XPR 实际 part 为 `xc7k325tlffv676-2L`，不是目标 Zynq。这些资料在初始 Git HEAD 缺失（not_in_current_repo），现已从 ZIP 找到并选择恢复到独立 baseline/firmware/sim；不要继续表述为 not_available。
-- 真实 XC7Z020 入口为 `board/vivado_zynq7000_xc7z020_baseline/`，三个 XCI/XDC/COE 与 imports 均已恢复；读 `docs/cicc1000023_recovery_audit.md`。不得从零创建空工程替代原始 baseline，也不凭换行差异选择哪个 RTL 更新。
+- 原始 XC7Z020 baseline 入口为 `board/vivado_zynq7000_xc7z020_baseline/`，三个 XCI/XDC/COE 与 imports 均已恢复；读 `docs/cicc1000023_recovery_audit.md`。它不是当前 PUF3 演示入口；不得从零创建空工程替代原始 baseline，也不凭换行差异选择哪个 RTL 更新。
 - `csr_file.v:mcycle` 是周期来源；`cpi_cnt.v` 是事件计数，不能替代总周期。
-- Ascon 软件存在不等于已符合最终标准；`ascon_round.v` 只有 `ror`，不能视为完成的 permutation/ISE。
+- Ascon 软件存在不等于符合最终标准，须看锁定 KAT。初始快照“ascon_round.v 只有 ror”已过时：当前含 round，P8/P12/ISE 与容量内板测已有证据；模块存在仍不能替代对应版本的验证。
 - 所有 owner 先为 `TBD`；不要从 Git 作者、聊天身份或参考项目猜负责人。
 
 ## 行为规则
@@ -52,4 +53,4 @@
 
 ## 交付最小格式
 
-任务号、改动文件、接口变化、验证命令/版本/退出码/证据、未验证内容、阻塞、下一接收任务。owner 未分配则写 TBD。当前阶段恢复真实比赛 baseline；不顺手开始大规模 Ascon、板卡迁移或编译器实现。
+任务号、改动文件、接口变化、验证命令/版本/退出码/证据、未验证内容、阻塞、下一接收任务。owner 未分配则写 TBD。原 baseline 独立复现是遗留研究线；当前为 PUF3 提交/文档收口，不顺手开始大规模 Ascon、板卡迁移或编译器实现。

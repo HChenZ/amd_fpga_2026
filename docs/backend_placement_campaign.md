@@ -1,5 +1,8 @@
 # 后端战役：控制锥复制 + 依赖驱动 floorplan + 疏松布局（2026-10-21 夜间）
 
+> 2026-11-01：历史布局/路由战役，非当前PUF3候选或上板结果。保留当时的源/COE/策略，不套用其周期或WNS。
+> 当前入口见 version_entrypoints.md，不自动继续扫掠或覆盖他人工程。
+
 owner TBD。**不改 RTL、不改 baseline XDC/工程、不 commit**（`git status` 只多出
 `build/backend_opt_20261021/`、`build/reports/backend_opt_20261021/` 与本文件）。
 所有实验从同一张已验收网表出发：

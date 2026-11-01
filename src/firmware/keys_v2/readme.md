@@ -1,5 +1,8 @@
 # PUF v2 transport-neutral firmware helper
 
+> 2026-11-01 scope: independent PUF v2 helper/self-test, not the PUF3 service firmware.
+> The related old puf_v2 SoC candidate is INVALID; this helper's offline tests do not authorize board programming.
+
 ## Integrated RV32 self-test (2026-10-30 update)
 
 `puf_mmio_v2.h/.c` implement the independent ABI in

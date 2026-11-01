@@ -1,5 +1,8 @@
 # Advanced DMA CPU validation handoff
 
+> 2026-11-01 scope: independent CPU-DMA, not PUF3. SW/ISE1089/HW289 and XSim7418 belong to this firmware/source set.
+> The qualified physical candidate is80MHz; board execution is NOT_RUN. Do not transfer these results to PUF3.
+
 Task: independent CPU-preserving DMA endpoint/firmware/host. Owner TBD.
 Status: implemented and passing the executed no-board gates below. Root logs and
 release files intentionally remain under the parent session's ownership.

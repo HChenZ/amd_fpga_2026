@@ -1,5 +1,8 @@
 # Measured synchronous timing repair
 
+> 2026-11-01 scope: PUF v2 synchronous-core timing experiment, not PUF3 or complete physical PUF signoff.
+> Preserve its stated OOC/IO/RO boundaries; it does not validate the old invalid SoC bitstream.
+
 2026-10-30, owner TBD. Final implementation uses Vivado 2025.2, xc7z020clg400-1,
 top puf_mmio_physical_v2, out-of-context mode. Only yielded general session
 vivado-20261030-004722-a44ab1cf was used. Original RTL/release/root logs unchanged.

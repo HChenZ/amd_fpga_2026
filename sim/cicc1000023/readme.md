@@ -1,5 +1,8 @@
 # CICC1000023 历史验证源
 
+> 2026-11-01：本页描述恢复资产，不是当前已执行测试的完整清单。后续RV32 ISA49/50、Cache/中断等
+> 已有各自证据；存在RV64测试源不等于RV64已验收，当前覆盖见 docs/p0_evidence_review_20261101.md。
+
 恢复 21 个模块 TestBench、2 个 RV32/RV64 add TestBench 示例，以及 JasperGold 的 43 个 assertion/bind/wrapper/Tcl/脚本输入。源字节不修改；没有恢复 jgproject、stage_logs、波形或批量编译输出。是否适用于当前接口必须逐项验证。
 
 `python build/prepare_cicc1000023_sources.py --stage cicc1000023_sources` 可在 build/local 恢复原文件名；formal 的 `../rtl` 指向原 Zynq imports RTL 的隔离副本。该命令不调用 JasperGold 或任何清理脚本。

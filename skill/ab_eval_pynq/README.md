@@ -1,5 +1,9 @@
 # `pynq-overlay-workflow` Skill 验证方案
 
+> 2026-11-01 职责：独立通用 Skill 验证，不是 PUF3 的硬件回归。冻结 L3 的 Ascon 工件为旧 v1
+> （pynq-svc-v1），另有 Base GPIO/DMA 回环；L2 为 simulated。不能靠把路径/哈希换成 PUF3 复用旧通过结论。
+> 本轮不改实验、判分器、SKILL.md 或已执行 Notebook；新增运行要按实际版本重新取证。
+
 owner TBD。本目录是**测量工具**，不是 Skill 本身；不要把它复制到 agent 的试验工作区
 （`make_trials.py` 只复制 `skill/pynq-overlay-workflow/` 或安慰剂 Skill）。
 

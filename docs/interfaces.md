@@ -1,8 +1,21 @@
 # 接口契约与待定项
 
-## 2026-10-30 当前实现状态
+## 2026-11-01 版本兼容边界
 
-当前 P0/P1 演示主链已经有实板接口证据：
+| 对象 | 控制身份 / 固件 | 使用入口 |
+|---|---|---|
+| **当前 PUF3** | PQF3=0x33465150 / pynq-svc-puf3 | src/pynq_puf3 的 Notebook 与内嵌驱动；三模式 Y01 + Y01P/Y01K |
+| 旧 PYNQ v1 release | PYNQ=0x514e5950 / pynq-svc-v1 | src/pynq 的 board_demo/benchmark/error_gate 与两个板测 Notebook |
+| 旧 PUF-only | PFU1=0x31554650 / keys_rv32 自检 | ASCII 自检，不是三模式服务 |
+| 独立 CPU-DMA/HW_DIRECT | D01/ABI v2，独立控制窗口/能力 | DMA host/bringup，不是 UART Y01 |
+
+这些身份互不替代，不能靠换 bit 路径或改共享 ID 绕过。旧 9/9 错误恢复与 Skill L3 Ascon 是 v1 证据，
+不自动成为 PUF3 的同项验证。当前 PUF3 只有 ≤16 B 的三模式与会话内 PUF 证据，完整 RV64/异常/抢占等仍有边界。
+本文下方带日期的寄存器/接口说明保留对应阶段；完整入口见 [版本速查](version_entrypoints.md)。
+
+## 2026-10-30 PYNQ v1 实现状态（历史对照）
+
+PYNQ v1 在当时已经有实板接口证据（以下 V03 结论不转记到 PUF3）：
 
 - PS 两个 4 KiB AXI-Lite 窗口：control `0x4000_0000`、mailbox `0x4000_1000`，地址以
   同次导出的 HWH 为准。
@@ -17,7 +30,7 @@
 本条更新 Y01 当前实现；下文 2026-09/10 内容保留历史边界。CPU ISE 的完整 RV64、
 异常/中断矩阵和 baseline 全回归仍未全部关闭。
 
-### PUF3 独立变体（非 PYNQ release ABI）
+### PUF3：当前主演示，独立于旧 release 身份
 
 `pynq_puf3` 使用独立 overlay、`pynq-svc-puf3` 固件和 PQF3 control ID
 `0x33465150`，不改变现有 PYNQ release 的 mailbox v1。服务能力仍为 SW/HW/ISE，

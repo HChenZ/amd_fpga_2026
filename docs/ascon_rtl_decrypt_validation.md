@@ -1,5 +1,8 @@
 # Ascon RTL 解密整合与重新验证
 
+> 2026-11-01：本页记录10-09独立RTL整合，接口合同与当时证据保留；“最新main/未CPU/未板测”按该日期解读。
+> 当前PUF3系统层结果另列于 version_entrypoints.md，不能用独立RTL通过替代系统验收。
+
 2026-10-09（Asia/Shanghai）；V05/C03；owner TBD。
 新分支feat/ascon-decrypt-kat-integration基于重新fetch确认的
 `0a425f9f0ed36e0c2666552b87a9173e79ffca0e`。2026-10-09验证结束时未commit/push/PR/merge。

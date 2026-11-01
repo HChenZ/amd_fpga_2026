@@ -3,6 +3,8 @@
 更新：2026-11-01，与最终报告 `docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf`
 及板测 `data/pynq_puf3/notebook_20261031_114512/result.json` 一致。
 
+本页是当前提交简介，不取代旧入口各自的协议/默认值；具体使用与历史边界见 [版本速查](version_entrypoints.md)。
+
 本作品面向嵌入式数据安全场景，基于 AMD Zynq-7000（XC7Z020）平台，实现集成轻量级密码加速的
 RISC-V 处理器 SoC。处理器采用五级流水线，支持 RV32IM、Zicsr，集成分支预测、指令与数据 Cache、
 AXI 互连及 UART、GPIO、CLINT 等外设，配置工作频率为 100 MHz。围绕 NIST SP 800-232 Final

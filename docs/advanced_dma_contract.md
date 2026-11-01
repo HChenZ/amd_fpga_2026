@@ -1,5 +1,8 @@
 # Advanced DMA ABI v2 (implementation contract)
 
+> 2026-11-01 scope: independent CPU-DMA/HW_DIRECT D01/ABI v2, not PUF3 UART Y01.
+> Capacities, modes, cycles and deadlines below apply only to those experiments. No protocol defaults are changed.
+
 2026-10-29; owner TBD. Independent experimental variants; original UART v1 release stays unchanged.
 All integers little-endian; 32-bit AXI-Stream, contiguous low TKEEP, full TKEEP except last beat,
 exactly one TLAST at the complete packet boundary. One request in flight. MAX_AD/MAX_MSG=1024

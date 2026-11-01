@@ -1,5 +1,8 @@
 # CPU 流水线现状（RV32IM + Zicsr + Ascon ISE）
 
+> 2026-11-01 阅读提示：下面行号、top_pl_bram 层次与时序数字属于10-26静态分析快照。
+> 公共 CPU 仍复用，但当前 PUF3 顶层/固件/时钟来源以专用工程为准；见 version_entrypoints.md。
+
 更新：2026-10-26。全部结论来自 `src/rtl` 静态检查，行号在写本文时核对过（`dcache.v` 已含 TIMING C 的
 store buffer，`cpu_core.v` 985 行）。周期数标「推」的是从代码推导、未上板实测；实测基线见 §9。
 

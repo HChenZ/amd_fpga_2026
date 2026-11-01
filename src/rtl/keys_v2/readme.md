@@ -1,5 +1,9 @@
 # Independent PUF v2 diagnostic prototype
 
+> 2026-11-01 scope: this is PUF v2, whereas the current PUF3 overlay uses PUF v1.
+> Offline core results are separate from physical/board signoff; the old puf_v2 SoC candidate is invalid.
+> No RTL/default parameters are changed by this document-only clarification.
+
 Integration update: `puf_mmio_v2` / `puf_mmio_physical_v2` add an explicit MMIO ABI,
 the actual existing DNA reader, and a bounded image-authentication demonstration.
 See `mmio_abi.md`. The original direct-control ports below remain unchanged.

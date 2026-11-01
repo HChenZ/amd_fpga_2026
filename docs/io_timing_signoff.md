@@ -1,5 +1,9 @@
 # 板级 IO 时序签核（XC7Z020 上板工程）
 
+> 2026-11-01 范围：本页是10-27 top_pl_bram/keys 源快照的 IO 约束变体，不是 PUF3 当前签核报告。
+> no_input_delay/no_output_delay归零不等于真实板级延迟已测；当前 PUF3 的RO未签核边界仍保留。
+> 本页数值/例外不自动转用到 PUF3；版本选择见 version_entrypoints.md，原证据字节不改。
+
 owner TBD。任务：B03（板级 sanity）/ I08（PPA 诚实性）的 IO 门禁补充 —— 给
 `board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project` 的板级端口补时序约束，
 并做一次**不替换冻结镜像**的签核变体。

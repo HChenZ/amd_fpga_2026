@@ -1,5 +1,11 @@
 # pynq_puf3：三模式 SW/HW(MMIO)/ISE 服务 + PUF v1，单一 bitstream
 
+**2026-11-01 入口说明**：本目录是当前主演示，PUF3 意为三模式 + PUF v1，不是 PUF 第三代。
+板测用 src/pynq_puf3/pynq_puf3_board_test.ipynb，默认 FULL_KAT=True；旧 src/pynq 的三个 CLI
+仍为 pynq-svc-v1，不能只换 --release 路径使用。本轮仅说明分责，不改程序或工件。
+生成 manifest 的 NOT_RUN 是打包时快照，当前板测以10-31 result.json的工件绑定为准；不要直接改 manifest 成 PASS。
+共享依赖与历史入口见 docs/version_entrypoints.md。
+
 2026-10-30；owner TBD。独立入口：不打开、不修改 PYNQ 发布版
 （`../vivado_zynq7000_xc7z020_pynq/release/`）、`../vivado_zynq7000_xc7z020_pynq_puf/`
 与 JTAG 工程；共享的 `src/rtl/soc_top.v`、`src/rtl/keys/key_mmio.v` 也没有改。
@@ -68,7 +74,8 @@ Y01P 16B：`'Y01P' | u32 version=1 | u32 cmd | u32 seq`。cmd：0 STATUS、1 ENR
 2 RECONSTRUCT、3 HWKEY_ON、4 HWKEY_OFF。
 
 Y01K 112B：`magic | u16 version | u16 flags | u32 cmd | u32 seq | u32 result | u32 STATUS |
-u32 DNA_LO | u32 DNA_HI | u64 op_mcycle | REF16 | MASK16 | RAW16 | DITHER16 | 8B 0`。
+u32 DNA_LO | u32 DNA_HI | u64 op_mcycle | REF16 | MASK16 | RAW16 | DITHER16 | u64 now_mcycle`。
+末8字节是发帧时刻 mcycle，不是零填充；本处只按已实现固件更正说明。
 result：0 OK、1 TIMEOUT、2 NOT_ACCEPTED、3 BAD_CMD、4 BAD_VERSION、5 NO_PUF_KEY、6 BUSY_STUCK。
 
 固件策略（不是硬件强制）：ENROLL/RECONSTRUCT 开始前关 HWKEY；HWKEY_ON 只在
@@ -167,7 +174,7 @@ cosim 用例：
 测试分四段，全部通过才 exit 0：
 1. 身份与时钟：哈希、ID、固件 ID；下载前 IO PLL FBDIV = 30，下载后 SLCR 推算 FCLK0 = 100 ± 0.5 MHz，
    mcycle 实测 100 MHz ± 1 %（见上文"FCLK0 时钟配置"；原版 `pynq.Clocks` 显示 150 属正常）；
-2. 三模式 KAT：6 个官方用例，加 `--full-kat` 则跑 289 个；
+2. 三模式 KAT：当前 Notebook 默认 `FULL_KAT=True`，每模式跑289个；False是旧6例抽样，不是本 Notebook 的 `--full-kat` CLI 参数；
 3. 基准：KAT #529，预热 5 次、采集 30 次，输出中位 mcycle 和相对 SW 的加速比；
 4. PUF：enroll，5 次 reconstruct 稳定且 helper 不变；HWKEY 打开后 HW 拒绝官方密文；
    PUF 密钥往返成功；reconstruct 后密文相同；HWKEY 关闭后官方 KAT 恢复。

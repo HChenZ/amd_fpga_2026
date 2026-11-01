@@ -1,5 +1,10 @@
 # Ascon-AEAD128 RTL
 
+> 2026-11-01 scope: the standalone contract below is retained from10-09; its no-CPU/no-board statements are historical.
+> Current RV32 ISE/MMIO and PUF3 board evidence exist, but whole-system source selection is defined by the PUF3 board
+> build, not by adding this entire directory. Old lifecycle tests retain their recorded source versions.
+> See docs/version_entrypoints.md; this documentation update does not change RTL or the contract.
+
 2026-10-09; V05/C03; owner TBD. Integration baseline: `0a425f9`.
 The standalone core supports NIST SP 800-232 Final with at most 16-byte data
 and 16-byte AD. It is not yet a CPU ISE or AXI peripheral.

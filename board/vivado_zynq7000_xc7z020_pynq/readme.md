@@ -1,5 +1,11 @@
 # PYNQ overlay 工程（PS↔PL 已打通）
 
+> **2026-11-01 版本定位：旧 PYNQ v1，无 PUF。** 本页的“当前/release/100 MHz/9项门禁”均指
+> pynq_wrapper / ID 0x514e5950 / pynq-svc-v1，不是 PUF3。最新旧版重测位于 data/pynq 的两个10-31目录。
+> 当前主演示在相邻 pynq_puf3 工程，板测用 src/pynq_puf3 的 Notebook。这里的 CLI/固件/rtl_p0 默认值保留，
+> 并仍用于历史对照和 Skill L3；不要改共享 ID 或仅换 --release 路径。下文保留各日期的设计/构建语境，
+> 原频率假设不外推为独立测量；版本选择见 docs/version_entrypoints.md。
+
 更新：2026-10-29；owner TBD。
 
 **当前状态：**100 MHz overlay、同名 bit/hwh、服务固件、Python API、Notebook、

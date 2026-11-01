@@ -1,5 +1,8 @@
 # 100 MHz 架构改动方案（含“砍掉 dcache”的定量评估）
 
+> 2026-11-01：历史架构/改动评估，非当前PUF3修改授权。保留估算与实测区分，不把计划方案当已集成。
+> 当前源选择与冻结工件见 version_entrypoints.md。
+
 2026-10-20；owner TBD。基线 `3c6f134`。数据来源：`build/local/margin_20261020/paths_lt_2p0.csv`
 （14164 条 slack<2.0 ns 的 setup 路径，导出自 `acb_remap_routed.dcp`，探针
 `build/probe_path_classes.tcl`）。本文只给方案与数据，不改 RTL。

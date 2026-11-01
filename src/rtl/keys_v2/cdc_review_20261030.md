@@ -1,5 +1,8 @@
 # Completion capture and reset-path review
 
+> 2026-11-01 scope: independent PUF v2 source/CDC review, not current PUF3 acceptance.
+> Recorded fixes/models are not a complete RO/board signoff or permission to use the invalid old SoC candidate.
+
 Task P-A CDC follow-up, 2026-10-30, owner TBD. Input evidence:
 `data/advanced/puf/physical_ooc_20261030_0054/cdc.rpt`, synthesized
 `puf_mmio_physical_v2`, Vivado 2025.2. Parent reported all five XSim tops passed

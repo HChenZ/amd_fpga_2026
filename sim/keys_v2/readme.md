@@ -1,5 +1,8 @@
 # PUF v2 offline verification and parent handoff
 
+> 2026-11-01 scope: independent keys_v2 architecture; PUF3 uses PUF v1, not this implementation.
+> These offline tests do not close the invalid puf_v2 SoC candidate or establish board/PVT reliability.
+
 ## Measured synchronous timing follow-up
 
 See `src/rtl/keys_v2/synchronous_timing_20261030.md` for the retained 32-step

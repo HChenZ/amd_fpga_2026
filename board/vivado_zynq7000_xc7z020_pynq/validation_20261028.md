@@ -1,5 +1,8 @@
 # PYNQ 2026-10-28 最终验证
 
+> 2026-11-01 版本提示：本页“最终”指10-28旧 PYNQ v1/pynq-svc-v1，不是当前 PUF3。
+> 原测量与缺口保留；旧路径移出后从 Git 历史取回，不能改成10-31路径冒充当次运行。
+
 Y01/Y02/Y03/Y04/V01/V04，owner TBD。分支feat/pynq-final-integration，从远端0f5d49c开始；源码提交见release manifest（生成后填写）。实物型号/速度级待核实，目标xc7z020clg400-1。
 
 | 验证 | 实际结果 | 原始证据 |

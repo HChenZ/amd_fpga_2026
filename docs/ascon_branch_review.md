@@ -1,5 +1,8 @@
 # Ascon 分支有限审查
 
+> 2026-11-01：有限审查的历史分支/源快照，非当前PUF3全仓结论；原问题和后续修复按日期区分。
+> 当前状态与旧入口职责见 version_entrypoints.md，不把本页“尚未实现”外推为现在。
+
 2026-10-17，owner TBD。使用Matt Pocock `code-review` 工作流，规范与需求两个独立只读agent，
 均未编辑源码、运行Vivado或长回归。固定点origin/main=`c37ecae4bba050d833079d56f8aec05365637aad`，
 受审HEAD=`2b48a8a730267787b399fe06304ae5e2b53ff203`；命令`git diff origin/main...HEAD`。

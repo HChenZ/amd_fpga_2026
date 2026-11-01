@@ -2,20 +2,27 @@
 
 2026-11-01 当前状态入口：[最终报告 PDF](docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf)、[提交计划](tasks/release_plan_20261101.md)、[提交入口与证据包](submission/README.md)、[PUF3 板测结果](data/pynq_puf3/notebook_20261031_114512/result.json)、[Skill L3 汇总](data/skill/l3_20261031_063709/40_summary.json)。主演示为 PUF3 overlay（SW/MMIO/ISE 三模式 + RO-PUF/DNA 密钥通路同一 bit），10-31 在正点原子领航者 ZYNQ7020 实板三模式各 289/289 KAT，KAT #529 加密 21862/1369/3895 cycles（15.969×/5.613×）；PUF 仅会话内功能证据，RO 计数器域未签核、跨上电未测。PYNQ v1 release 作历史对照。`pynq-overlay-workflow` Skill S01–S05 已完成（L1、L2 `simulated`、L3 实板）。实机演示视频、clean-clone 与最终冻结提交仍待完成。
 
+**先选版本再运行**：[当前/旧入口速查](docs/version_entrypoints.md)、[全部版本清单](docs/version_inventory_20261101.md)。
+PUF3 的板测入口是 [PUF3 Notebook 使用说明](src/pynq_puf3/readme.md)；`src/pynq/board_demo.py`、
+`board_benchmark.py`、`board_error_gate.py` 及 `src/pynq/` 下两个已执行板测 Notebook 均是 **旧 PYNQ v1**。
+本次只厘清说明，不更改它们的默认行为，不把旧门禁和 Skill L3 结果转记到 PUF3。
+
 在 CICC1000023「基于 RISC-V 的高性能 CPU 设计及 FPGA 验证」基础上扩展轻量级密码学：在自研 RISC-V CPU 上运行 **NIST SP 800-232 Ascon-AEAD128**，加入 custom instruction set extension（ISE），通过 FPGA 实测比较软件与 ISE，再用 PYNQ/Jupyter 完成控制、黄金参考比对和展示。
 
 | 项目 | 约定 |
 |---|---|
 | 比赛 | 全国大学生嵌入式芯片与系统设计竞赛 2026，FPGA 创新设计赛道，AMD 自主选题初级组 |
-| 目标硬件 | 正点原子领航者 ZYNQ7020；part **xc7z020clg400-1**；完整丝印/速度等级、板卡 revision 和独立频率测量仍待 B03 取证 |
-| 最终提交 | **2026-11-04**（用户给定截止日期；11 月 4 日不安排开发） |
-| 当前阶段 | 核心 PYNQ 演示、V03 与 Skill L3 已完成；继续完成 B03 实物证据、S04/S05 Skill 收口和 D01-D06 材料 |
-| 当前工程实际配置 | PYNQ release：`xc7z020clg400-1` / Vivado `2025.2` / `pynq_wrapper` / FCLK0 100 MHz；原 CICC baseline 与 Kintex legacy 独立保留 |
+| 目标硬件 | 正点原子领航者 ZYNQ7020；part **xc7z020clg400-1**；已有底板 V3.9/核心板 2V5 记录，完整芯片丝印/速度等级仍待取证；FCLK0 有 99.9723 MHz 时基估测，非示波器/Fmax 测量 |
+| 最终提交 | **2026-11-01 提交并冻结**（10-29 用户授权，取代原 11-04 安排；非官方赛期推断） |
+| 当前阶段 | PUF3 容量内板测、报告 PDF、Skill S01–S05 和冻结留档已有证据；视频/PPT、完整 clean-clone 等边界未关闭；V03 9/9 仅属旧 PYNQ v1 |
+| 当前工程实际配置 | 主演示 `xc7z020clg400-1` / Vivado `2025.2` / **pynq_puf3_wrapper** / FCLK0 100 MHz / PQF3 / pynq-svc-puf3；旧 `pynq_wrapper`、原 baseline 与 Kintex legacy 独立保留 |
 | 开源协议 | [Apache-2.0](LICENSE)；引入第三方代码须单独核对来源与许可 |
 
 比赛规则以可追溯官方原文为准。仓库中的历史选题指南只作已有资料，不把未核实条款、评分或工具限制写成官方结论。
 
-## 2026-10-16 密钥安全与上板前审查
+## 2026-10-16 密钥安全与上板前审查（历史记录）
+
+以下“板型未知/无实板”只描述 10-16，当时的安全修复证据仍保留；当前实板状态以上方 11-01 入口为准。
 
 三套软件/MMIO/ISE实现已存在并经本轮审查；修复认证失败输出、MMIO清零与读门禁、
 ISE状态生命周期及CPU提前译码/完成握手。结果、剩余风险和复现入口见
@@ -38,23 +45,26 @@ flowchart LR
     PS --> Link["AXI-Lite FIFO ↔ UART mailbox v1"]
     Link --> CPU["PL：现有自研 RISC-V CPU"]
     CPU --> SW["Ascon-AEAD128：host 与 RV32 软件已验证"]
+    CPU --> MMIO["MMIO AEAD：调用方密钥 / HWKEY"]
     CPU --> ISE["Ascon P8/P12 custom-0 ISE（已实现并上板）"]
+    PUF["PUF v1 + Device DNA（会话内原型）"] --> MMIO
     CPU --> Counter["已有 mcycle / CPI 事件计数器"]
     Counter --> Link
     Link --> Host
 ```
 
-原始 baseline 仍为 `top_pl_bram → top → soc_top → cpu_core/总线/外设`。当前 PYNQ release
-使用独立 BD：PS7 GP0 两个 AXI-Lite 窗口接 `pynq_ctl`/`pynq_mbox`，后者通过 RV32
-UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
-[架构](docs/architecture.md) 与 [PYNQ 工程说明](board/vivado_zynq7000_xc7z020_pynq/readme.md)。
+原始 baseline 仍为 `top_pl_bram → top → soc_top → cpu_core/总线/外设`。当前 PUF3 与旧 PYNQ v1 均使用独立 BD：
+PS7 GP0 两个 AXI-Lite 窗口接 `pynq_ctl`/`pynq_mbox`，后者通过 RV32 UART uncached MMIO 连接服务固件。
+PUF3 必须选用 `board/vivado_zynq7000_xc7z020_pynq_puf3/rtl/` 的 soc_top/key_mmio 变体，
+不能直接换成 `src/rtl/soc_top.v`。详见 [架构](docs/architecture.md) 与
+[PUF3 工程说明](board/vivado_zynq7000_xc7z020_pynq_puf3/readme.md)。
 
 ## 仓库结构
 
 | 路径 | 用途 / 现状 |
 |---|---|
-| `src/rtl/` | CPU、Cache、总线、外设保持原位；`ascon/` round/P8/P12与AEAD加解密通过独立黄金验证，生产源码全编译/仿真通过；尚非CPU ISE |
-| `ascon/ascon_c/`、`ascon/pyascon/` | C/Python host 实现已通过锁定的 NIST Final KAT；C decrypt 认证失败时返回失败、`mlen=0` 并清除候选明文；目标 RISC-V 构建/运行待验证 |
+| `src/rtl/` | 公共 CPU/Cache/总线/外设/Ascon ISE 与 AEAD；PUF3 的两个顶层变体在 board 下，由专用 build.tcl 排除/替换，不能任意全量加入 |
+| `ascon/ascon_c/`、`ascon/pyascon/` | 标准算法与 host 验证实现；生产 C 被当前 RV32 固件复用；不是另一个 PUF3 overlay |
 | `board/vivado_zynq7000_xc7z020_baseline/` | 原比赛 XPR、31 RTL/header、3 XCI、XDC、FreeRTOS COE |
 | `board/vivado_kintex7_legacy/` | 原 tracked 工程经 git mv 归并后的唯一 Kintex 入口；只作 legacy |
 | `src/firmware/cicc1000023/` | CoreMark RV32/RV64、FreeRTOS 应用、RISC-V tests 源/构建输入 |
@@ -65,8 +75,8 @@ UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
 | `data/pynq/` | PYNQ v1 release（历史对照）：10-28 容量内 KAT、10-31 warm benchmark 与错误恢复门禁原始证据 |
 | `data/pynq_puf3/` | PUF3 主演示 10-31 实板结果（KAT、benchmark、PUF）；10-30 旧运行已移出，存于 Git 历史 |
 | `data/recovery/` | CICC1000023 recovery 清单、哈希、差异与小测试输入 |
-| `skill/` | 不绑定 Ascon 的通用 PYNQ Skill 预留 |
-| `report/` | 报告、图表、视频索引与 LLM 协作记录预留 |
+| `skill/` | 通用 PYNQ Skill 与 L1/L2/L3 验证；L3 Ascon 工件为旧 v1，另有 GPIO/DMA 回环 |
+| `report/` | 当前视频脚本、讲解材料与 LLM 协作记录；最终 PDF 位于 docs/tech_report 的独立 LaTeX 工程 |
 | `docs/` | 审计、技术契约、架构与工作流程 |
 | `tasks/` | 任务、依赖、验收与内部里程碑 |
 | `project_log/` | 已发生的进度、开发活动、失败与经验 |
@@ -103,6 +113,11 @@ UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
 
 ## 从零复现入口
 
+下面的 host/独立 RTL/原 baseline 命令各有范围，**不是 PUF3 一键全链路命令**。
+当前已发布 PUF3 的板端操作见 `src/pynq_puf3/readme.md`；重建、旧回归与包校验入口见
+`docs/version_entrypoints.md`。旧默认 `run_cpu_regression.py` 的源集缺 keys/BUFG 依赖，
+`--pynq-p0` 只选择旧 v1，不会选择 PUF3；本轮仅说明，不修程序。
+
 1. `git clone https://github.com/HChenZ/amd_fpga_2026.git`，进入目录后记录 `git rev-parse HEAD` 和 `git status --short`。
 2. 按 [AGENTS.md](AGENTS.md) 阅读项目约定，再读 [审计](docs/repository_audit.md) 的缺口清单。
 3. 在 WSL/Linux 从仓库根目录运行 Final host 与认证失败验证；完整范围和输出格式见 [sim/ascon/readme](sim/ascon/readme.md)：
@@ -130,18 +145,19 @@ UART uncached MMIO 连接服务固件；没有 shared cacheable buffer。详见
 
    runner同时执行isolated与完整production source-set门禁，当前overall exit0；整合报告为`data/ascon/results/rtl_integration_regression.*`。保留最新main的tag_in/tag/correct解密接口，并重新验证具名/位置连接；历史失败证据保留。可另运行`python sim/ascon/test_rtl_harness.py`证明错误认证/明文/提前发布/hash失败确实非零退出。
 5. 按 [build/readme.md](build/readme.md) 做已有 CPU RTL 的静态 elaboration 检查；这不是 CPU 程序验证。阅读 [恢复审计](docs/cicc1000023_recovery_audit.md)，运行 `python build/prepare_cicc1000023_sources.py` 核对恢复资产。
-6. B02 使用 Vivado 2025.2 重建真实 XC7Z020 baseline，B03 核对实物板，B04 补齐准确 FreeRTOS kernel/bootloader 来源并验证目标软件；完成 C04 真实 cycle 后再进入 CPU ISE 与 PYNQ 集成。
+6. 原 baseline 研究线仍需 B02/B04 独立复现与 FreeRTOS/kernel/bootloader 依赖锁定；这些不是“当前 Ascon 固件从未构建”的证据，也不是加载已发布 PUF3 candidate 的步骤。
 
-**目前不能承诺 clean clone 即可完成全部 FPGA 端到端验收。** 当前 release overlay 已有
-容量内 KAT、benchmark、Notebook 和 V03 实板验证；B03 实物证据、Skill S04/S05、
-独立复现证据包与 clean-clone 尚未完成。
+**目前不能承诺 clean clone 即可完成全部 FPGA 端到端验收。** PUF3 已有容量内 KAT、benchmark、PUF 会话内流程与报告；
+Skill S01–S05、证据包与冻结留档已完成相应范围。V03 9/9 属旧 v1，PUF3 未完整重跑；
+原 baseline 独立复现、完整芯片实物取证与 clean-clone 全流程仍未闭合。
 
 ## 文档索引
 
 | 文档 | 内容 |
 |---|---|
 | [AGENTS.md](AGENTS.md) | 三分钟入场、行为红线 |
-| [current_status_20261029](docs/current_status_20261029.md) | 2026-10-29 已完成、未完成与提交前顺序 |
+| [版本入口速查](docs/version_entrypoints.md) / [版本清单](docs/version_inventory_20261101.md) | 当前 PUF3、旧 v1、共享依赖、实验与历史快照的职责 |
+| [current_status_20261029](docs/current_status_20261029.md) | 10-29/31 历史状态快照，不是当前提交总表 |
 | [project_overview](docs/project_overview.md) | P0/P1/P2 与完成定义 |
 | [repository_audit](docs/repository_audit.md) | 初始 HEAD 审计快照及恢复后的结论更正 |
 | [recovery_audit](docs/cicc1000023_recovery_audit.md) / [rtl_diff](docs/cicc1000023_rtl_diff.md) / [vivado_diff](docs/vivado_project_diff.md) | ZIP 工程、固件审计、逐文件哈希与源配置比较 |

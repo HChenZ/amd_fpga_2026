@@ -1,5 +1,9 @@
 # Methodology status, PUF SoC diagnostic candidate
 
+> 2026-11-01: this is the recorded methodology review of the old independent PUF v2 candidate.
+> That candidate was later invalidated (candidate/INVALID.md); positive timed-subset/offline results below
+> do not authorize programming or publishing it, and do not apply to current PUF3.
+
 Owner TBD; new project only. Constraint sources and full object details are in
 `data/advanced/puf_soc/optimized/{methodology.rpt,applied_constraints.xdc,clocks.rpt,cdc_details.rpt}`.
 

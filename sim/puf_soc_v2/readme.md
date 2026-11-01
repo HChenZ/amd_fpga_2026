@@ -1,5 +1,8 @@
 # PUF SoC simulation
 
+> 2026-11-01 scope: independent PUF v2, not PUF3. Behavioral/model validation remains valid for its recorded source,
+> but the old physical candidate is INVALID_DO_NOT_PROGRAM; simulation PASS does not authorize programming it.
+
 `python sim/puf_soc_v2/run.py` runs Icarus normal and diagnostic configurations.
 First prepare firmware using the board entry. XSim entry: `run_xsim.tcl`, sourced
 only in the new PUF board project/session.

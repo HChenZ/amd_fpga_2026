@@ -1,5 +1,8 @@
 # HW_DIRECT offline validation
 
+> 2026-11-01 scope: independent no-CPU HW_DIRECT/mode4 experiment, not the PUF3 board entry.
+> Offline/vendor-DMA checks do not establish PUF3 DMA support or board throughput. Keep this source set separate.
+
 Independent NIST Final multiblock AEAD, DMA ABI v2, 1024-byte AD/message limits.
 The old `src/rtl/ascon/ascon_aead_core.v` and released UART overlay are unchanged.
 
