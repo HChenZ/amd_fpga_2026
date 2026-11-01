@@ -1,0 +1,35 @@
+{
+  "source_revision": "124f5c7fc17374c343e28d0cf168bdcbffa1320a",
+  "generated": "2026-11-02T01:20:11+08:00",
+  "packages": [
+    {
+      "path": "delivery/puf3_project.zip",
+      "sha256": "a32ae752b4a7921348fb090a1e3f8adece89a068ead030bf10aa22b56156191d",
+      "bytes": 1959558,
+      "files": 263,
+      "archive_root": "puf3_project"
+    },
+    {
+      "path": "delivery/historical_projects.zip",
+      "sha256": "5a6bfeba473dafd19ea6609bb9bfe1c2363f135b7852c818a73335acd3b8101b",
+      "bytes": 30305437,
+      "files": 1484,
+      "archive_root": "historical_projects"
+    },
+    {
+      "path": "delivery/pynq_overlay_workflow_skill.zip",
+      "sha256": "de1e9a119a3bda0d5a61b33a6a43348b9c1dbbdd61386a6698f8f92dd2b85404",
+      "bytes": 59655,
+      "files": 28,
+      "archive_root": "pynq-overlay-workflow"
+    },
+    {
+      "path": "delivery/technical_report.zip",
+      "sha256": "d4efeaea57bf1726fc9a3b66de2f92829b979e1e618654f2ad0bd95e405bf01a",
+      "bytes": 3982718,
+      "files": 62,
+      "archive_root": "technical_report"
+    }
+  ],
+  "scope": "current and historical source separated; independent Skill; editable report; no evidence-package attachment"
+}

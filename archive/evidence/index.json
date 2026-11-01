@@ -697,6 +697,14 @@
       "members": 268,
       "sha256_members_verified": 0,
       "crc": "PASS"
+    },
+    {
+      "path": "archive/evidence/source_delivery_checks_20261102.zip",
+      "sha256": "9010ac8a579d913d6a03e9a9c5005e51ad519692d74e0ba6196316651bbb8267",
+      "bytes": 22768,
+      "members": 11,
+      "sha256_members_verified": 10,
+      "crc": "PASS"
     }
   ],
   "prior_snapshot_retention": {

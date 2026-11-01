@@ -19,3 +19,9 @@ manifest.json记录版本/文件数/SHA-256。仓库仍保留所有原始证据�
 
 下载：[当前PUF3源码](puf3_project.zip) · [历史独立源码](historical_projects.zip) ·
 [独立Skill](pynq_overlay_workflow_skill.zip) · [技术报告PDF与源](technical_report.zip)。
+
+当前冻结源码：`124f5c7fc17374c343e28d0cf168bdcbffa1320a`。四包分别263/1484/28/62件（含各自清单），
+SHA-256以[manifest.json](manifest.json)为准。验证见[机器记录](../build/metadata/source_delivery_check.json)：
+解包host61、Skill61/3可选skip、固件BIN一致、56项生产输入/7项候选支持与共享hook/XCI检查通过；
+另在没有忽略结果/报告编辑树的干净源树重打包后通过同样测试，报告ZIP内LaTeX单独编译77页。
+干净源树比较只有checkout换行差异；这些检查不表示已重做Vivado/实板或跨平台字体复现。

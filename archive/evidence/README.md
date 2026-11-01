@@ -9,6 +9,7 @@
 | entry_documents_before_cleanup.zip | 清理前入口文档原件，供追溯描述调整 |
 | historical_artifacts_20261102.zip | 旧工程candidate/release/work中的78个生成工件原件，含逐文件SHA-256 |
 | prior_snapshot_variants_20261102.zip | 前一仓库快照中未被其他归档覆盖的72种原字节，包括旧提交差异与整理前措辞；不重复全部旧展开包 |
+| source_delivery_checks_20261102.zip | 本次分包的解包host/Skill/固件/elaboration工具输出、干净源树重分包检查与报告独立编译日志；不作为比赛附件 |
 | index.json | 归档哈希、记录数与中性路径迁移说明 |
 
 源目录旧重复展开包/更早ZIP在本机archive/local_only或Git历史，不再占用当前入口。

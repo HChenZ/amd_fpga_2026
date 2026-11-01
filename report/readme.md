@@ -2,7 +2,7 @@
 
 ## 当前交付（2026-11-02）
 
-- 技术报告：[独立ZIP](../delivery/technical_report.zip)含当前PDF与可编辑LaTeX/图件；CPU措辞已去内部编号，数据保持PUF3。
+- 技术报告：[当前PDF](../docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf)、[独立ZIP](../delivery/technical_report.zip)（可编辑LaTeX/图件）；CPU措辞已去内部编号，数据保持PUF3。
 - 海报：poster/中队友最新双语PPTX/PNG完整保留。
 - 讲解网页：历史日志记录过project_explainer.html，但当前工作区、Git快照及整理备份均未找到该文件；不声称已入库或已清理其文本，需原制作会话补交原件。
 - 工程源码与Skill分别压缩，见delivery/README.md；旧证据包不作附件，原始记录仍保存在archive/evidence。

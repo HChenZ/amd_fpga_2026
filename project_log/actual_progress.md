@@ -1,5 +1,15 @@
 # 实际进度
 
+## 2026-11-02 — D07 最终四包固化与独立复验完成（owner TBD）
+
+- 源码/整理提交124f5c7后生成四个独立ZIP：PUF3源码263件（1959558 B）、历史源码1484件（30305437 B）、独立Skill28件（59655 B）、技术报告62件（3982718 B）；每包均含逐文件hash，最终ZIP SHA-256见delivery/manifest.json。
+- tools/verify_delivery.py对这一次正式ZIP完整复验exit0：CRC/成员hash与编号扫描通过；host61、Skill61 passed/3可选skip、固件重编译BIN857df29c…一致、elaboration和56项输入/7项候选支持检查全部通过。未把bit/DCP/波形/旧证据ZIP装进源码附件。
+- 在仓库外创建124f5c7的临时干净工作树，确认忽略的host结果副本与LaTeX编辑树不存在，重新运行package_delivery.py与verify_delivery.py均exit0。
+  四包成员集合相同，除checkout LF/CRLF外内容差异0；现成五工件仍完全匹配。该临时工作树只删除本轮创建的6个文件后正常移除，无force，不影响其他worktree。
+- 技术报告ZIP的LaTeX在独立解包目录用Tectonic再编译exit0，仍77页，关键性能数字及编号检查通过；未替换已冻结交付PDF。字体绝对路径/fontconfig、lineno编码、Underfull与PDF版本警告保留，不宣称跨平台逐位复现。
+- 完整机器结果在build/metadata/source_delivery_check.json；10个原始工具输出/编译记录存archive/evidence/source_delivery_checks_20261102.zip，CRC/成员SHA通过。
+- D07可定位源码的分包/导航/验证已完成，当前提交随后按用户授权正常推送，远端状态以Git引用为准；D06人工材料审阅/上传、D05硬件端到端、网页原件补交和所有PUF未测边界不因此关闭。
+
 ## 2026-11-02 — D07 源码隔离与三类独立交付准备（owner TBD）
 
 - 最新用户授权：工程当前PUF3及依赖、独立历史源码分别压缩，另交付独立Skill与技术报告；不以旧证据包作附件，但仓库保留源码和原始资料，允许正常commit/push。

@@ -1,0 +1,174 @@
+{
+  "status": "PASS",
+  "timestamp": "2026-11-02T01:20:42+08:00",
+  "python": "3.13.9",
+  "scope": "cold extraction/member checks, build input presence, host/Skill tests, firmware rebuild and elaboration; not a new Vivado/board verdict",
+  "source_revision": "124f5c7fc17374c343e28d0cf168bdcbffa1320a",
+  "packages": [
+    {
+      "path": "delivery/puf3_project.zip",
+      "sha256": "a32ae752b4a7921348fb090a1e3f8adece89a068ead030bf10aa22b56156191d",
+      "bytes": 1959558,
+      "files": 263,
+      "archive_root": "puf3_project"
+    },
+    {
+      "path": "delivery/historical_projects.zip",
+      "sha256": "5a6bfeba473dafd19ea6609bb9bfe1c2363f135b7852c818a73335acd3b8101b",
+      "bytes": 30305437,
+      "files": 1484,
+      "archive_root": "historical_projects"
+    },
+    {
+      "path": "delivery/pynq_overlay_workflow_skill.zip",
+      "sha256": "de1e9a119a3bda0d5a61b33a6a43348b9c1dbbdd61386a6698f8f92dd2b85404",
+      "bytes": 59655,
+      "files": 28,
+      "archive_root": "pynq-overlay-workflow"
+    },
+    {
+      "path": "delivery/technical_report.zip",
+      "sha256": "d4efeaea57bf1726fc9a3b66de2f92829b979e1e618654f2ad0bd95e405bf01a",
+      "bytes": 3982718,
+      "files": 62,
+      "archive_root": "technical_report"
+    }
+  ],
+  "checks": {
+    "delivery/puf3_project.zip": {
+      "zip_hash": "PASS",
+      "crc": "PASS",
+      "member_hashes": 262
+    },
+    "delivery/historical_projects.zip": {
+      "zip_hash": "PASS",
+      "crc": "PASS",
+      "member_hashes": 1483
+    },
+    "delivery/pynq_overlay_workflow_skill.zip": {
+      "zip_hash": "PASS",
+      "crc": "PASS",
+      "member_hashes": 27
+    },
+    "delivery/technical_report.zip": {
+      "zip_hash": "PASS",
+      "crc": "PASS",
+      "member_hashes": 61
+    },
+    "puf3_source_identity_elaboration": {
+      "exit_code": 0,
+      "tail": "{\r\n  \"status\": \"PASS\",\r\n  \"scope\": \"production source identity and optional elaboration only; no new functional/board verdict\",\r\n  \"production_inputs\": 56,\r\n  \"source_mismatches\": [],\r\n  \"artifacts\": {\r\n    \"pynq_puf3.bit\": \"NOT_BUNDLED_SOURCE_ONLY\",\r\n    \"pynq_puf3.hwh\": \"NOT_BUNDLED_SOURCE_ONLY\",\r\n    \"pynq_svc_puf.bin\": \"NOT_BUNDLED_SOURCE_ONLY\",\r\n    \"pynq_svc_puf.coe\": \"NOT_BUNDLED_SOURCE_ONLY\",\r\n    \"pynq_svc_puf.elf\": \"NOT_BUNDLED_SOURCE_ONLY\"\r\n  },\r\n  \"build_support\": {\r\n    \"candidate_hashes_checked\": 7,\r\n    \"required_paths\": [\r\n      \"build/keys_ro_allow_loops.tcl\",\r\n      \"build/keys_ro_pblock.xdc\",\r\n      \"board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.srcs/sources_1/ip/axi_bram_ctrl_0/axi_bram_ctrl_0.xci\",\r\n      \"board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci\"\r\n    ],\r\n    \"missing\": []\r\n  },\r\n  \"elaboration\": {\r\n    \"exit_code\": 0,\r\n    \"diagnostics\": \"\"\r\n  }\r\n}\r\n\r\n"
+    },
+    "cold_host_tests": {
+      "exit_code": 0,
+      "tail": "sw simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured\r\nhw simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured\r\nise simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured\r\nsw official sample KAT PASS; tampered tag rejected\r\nhw official sample KAT PASS; tampered tag rejected\r\nise official sample KAT PASS; tampered tag rejected\r\nsw speedup= NOT_MEASURED\r\nhw speedup= NOT_MEASURED\r\nise speedup= NOT_MEASURED\r\n.............................................................\r\n----------------------------------------------------------------------\r\nRan 61 tests in 8.157s\r\n\r\nOK\r\n"
+    },
+    "standalone_skill": {
+      "exit_code": 0,
+      "tail": ".................s......s......................................s         [100%]\r\n61 passed, 3 skipped in 2.74s\r\n"
+    },
+    "cold_firmware": {
+      "exit_code": 0,
+      "tail": "   text\t   data\t    bss\t    dec\t    hex\tfilename\r\r\n  47424\t      4\t    344\t  47772\t   ba9c\t<scratch>\\puf3_project\\build\\local\\cold_verify_puf3\\pynq_svc_puf.elf\r\r\n\r\ncustom-0: {'p12_0x200b': 1, 'p8_0x300b': 4, 'all_opcode_0x0b': 22}\r\nBUILD OK <scratch>\\puf3_project\\build\\local\\cold_verify_puf3\r\n"
+    },
+    "cold_binary_matches_verified_candidate": {
+      "passed": true,
+      "sha256": "857df29c4310cd483e92730d81f333a68e6970658d5cb81344faf29ec50dd9b7"
+    },
+    "report": {
+      "pages": 77,
+      "pdf_sha256": "8cd1493eb9125950d6ea813984fd9c302be2c55cd0b1337774ed12ca9300aae4",
+      "rejected_label_matches": 0,
+      "metric_tokens_present": true
+    }
+  },
+  "clean_source_checkout_repack": {
+    "status": "PASS",
+    "source_revision": "124f5c7fc17374c343e28d0cf168bdcbffa1320a",
+    "ignored_fixtures_absent": true,
+    "ignored_editable_report_absent": true,
+    "package_delivery_exit_code": 0,
+    "checks": {
+      "delivery/puf3_project.zip": {
+        "zip_hash": "PASS",
+        "crc": "PASS",
+        "member_hashes": 262
+      },
+      "delivery/historical_projects.zip": {
+        "zip_hash": "PASS",
+        "crc": "PASS",
+        "member_hashes": 1483
+      },
+      "delivery/pynq_overlay_workflow_skill.zip": {
+        "zip_hash": "PASS",
+        "crc": "PASS",
+        "member_hashes": 27
+      },
+      "delivery/technical_report.zip": {
+        "zip_hash": "PASS",
+        "crc": "PASS",
+        "member_hashes": 61
+      },
+      "puf3_source_identity_elaboration": {
+        "exit_code": 0,
+        "tail": "{\r\n  \"status\": \"PASS\",\r\n  \"scope\": \"production source identity and optional elaboration only; no new functional/board verdict\",\r\n  \"production_inputs\": 56,\r\n  \"source_mismatches\": [],\r\n  \"artifacts\": {\r\n    \"pynq_puf3.bit\": \"NOT_BUNDLED_SOURCE_ONLY\",\r\n    \"pynq_puf3.hwh\": \"NOT_BUNDLED_SOURCE_ONLY\",\r\n    \"pynq_svc_puf.bin\": \"NOT_BUNDLED_SOURCE_ONLY\",\r\n    \"pynq_svc_puf.coe\": \"NOT_BUNDLED_SOURCE_ONLY\",\r\n    \"pynq_svc_puf.elf\": \"NOT_BUNDLED_SOURCE_ONLY\"\r\n  },\r\n  \"build_support\": {\r\n    \"candidate_hashes_checked\": 7,\r\n    \"required_paths\": [\r\n      \"build/keys_ro_allow_loops.tcl\",\r\n      \"build/keys_ro_pblock.xdc\",\r\n      \"board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.srcs/sources_1/ip/axi_bram_ctrl_0/axi_bram_ctrl_0.xci\",\r\n      \"board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci\"\r\n    ],\r\n    \"missing\": []\r\n  },\r\n  \"elaboration\": {\r\n    \"exit_code\": 0,\r\n    \"diagnostics\": \"\"\r\n  }\r\n}\r\n\r\n"
+      },
+      "cold_host_tests": {
+        "exit_code": 0,
+        "tail": "sw simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured\r\nhw simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured\r\nise simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured\r\nsw official sample KAT PASS; tampered tag rejected\r\nhw official sample KAT PASS; tampered tag rejected\r\nise official sample KAT PASS; tampered tag rejected\r\nsw speedup= NOT_MEASURED\r\nhw speedup= NOT_MEASURED\r\nise speedup= NOT_MEASURED\r\n.............................................................\r\n----------------------------------------------------------------------\r\nRan 61 tests in 8.082s\r\n\r\nOK\r\n"
+      },
+      "standalone_skill": {
+        "exit_code": 0,
+        "tail": ".................s......s......................................s         [100%]\r\n61 passed, 3 skipped in 2.79s\r\n"
+      },
+      "cold_firmware": {
+        "exit_code": 0,
+        "tail": "   text\t   data\t    bss\t    dec\t    hex\tfilename\r\r\n  47424\t      4\t    344\t  47772\t   ba9c\t<scratch>\\puf3_project\\build\\local\\cold_verify_puf3\\pynq_svc_puf.elf\r\r\n\r\ncustom-0: {'p12_0x200b': 1, 'p8_0x300b': 4, 'all_opcode_0x0b': 22}\r\nBUILD OK <scratch>\\puf3_project\\build\\local\\cold_verify_puf3\r\n"
+      },
+      "cold_binary_matches_verified_candidate": {
+        "passed": true,
+        "sha256": "857df29c4310cd483e92730d81f333a68e6970658d5cb81344faf29ec50dd9b7"
+      },
+      "report": {
+        "pages": 77,
+        "pdf_sha256": "8cd1493eb9125950d6ea813984fd9c302be2c55cd0b1337774ed12ca9300aae4",
+        "rejected_label_matches": 0,
+        "metric_tokens_present": true
+      }
+    },
+    "scope_comparison": {
+      "delivery/puf3_project.zip": {
+        "same_member_names": true,
+        "line_endings_only": 76,
+        "other_differences": 0
+      },
+      "delivery/historical_projects.zip": {
+        "same_member_names": true,
+        "line_endings_only": 229,
+        "other_differences": 0
+      },
+      "delivery/pynq_overlay_workflow_skill.zip": {
+        "same_member_names": true,
+        "line_endings_only": 26,
+        "other_differences": 0
+      },
+      "delivery/technical_report.zip": {
+        "same_member_names": true,
+        "line_endings_only": 0,
+        "other_differences": 0
+      }
+    },
+    "note": "Independent temporary tracked-source checkout; rebuilt ZIP hashes are not the published delivery hashes. Content differs only by checkout line endings. No Vivado/board rebuild."
+  },
+  "standalone_report_compile": {
+    "exit_code": 0,
+    "tool": "Tectonic",
+    "command": "tectonic -X compile main.tex --keep-logs",
+    "pages": 77,
+    "pdf_sha256": "59a217f73755ceda68345541d0a3839c9082fe362f38559cce3c4cf9c32edc39",
+    "metrics_present": true,
+    "rejected_label_matches": 0,
+    "delivered_pdf_replaced": false,
+    "warnings": "System-font absolute paths/fontconfig, lineno encoding, underfull boxes and figure PDF-version warnings remain; this is same-machine buildability, not cross-platform reproducibility."
+  }
+}
