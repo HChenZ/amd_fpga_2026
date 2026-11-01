@@ -1,0 +1,16 @@
+% 仅展示 WNS 趋势；TNS、端点、资源代价保留于正文和表 3-5。
+\begin{tikzpicture}
+\begin{axis}[
+ width=145mm,height=64mm,ymin=-1.1,ymax=.25,xmin=.7,xmax=4.3,
+ xtick={1,2,3,4},xticklabels={默认策略,策略最优,结构改造,历史镜像},
+ tick label style={font=\footnotesize},label style={font=\footnotesize},
+ ylabel={WNS / ns},ymajorgrids,grid style={macline!25},axis lines*=left,
+ clip=false]
+\addplot[thick,draw=softline,mark=*,mark size=2.5pt] coordinates {(1,-.942)(2,-.118)(3,.007)(4,.087)};
+\node[font=\footnotesize,anchor=south,yshift=5pt] at (axis cs:1,-.942) {-0.942};
+\node[font=\footnotesize,anchor=south,yshift=5pt] at (axis cs:2,-.118) {-0.118};
+\node[font=\footnotesize,anchor=south,yshift=5pt] at (axis cs:3,.007) {+0.007};
+\node[font=\footnotesize,anchor=south,yshift=5pt] at (axis cs:4,.087) {+0.087};
+\draw[dashed,macline] (axis cs:.7,0)--(axis cs:4.3,0);
+\end{axis}
+\end{tikzpicture}

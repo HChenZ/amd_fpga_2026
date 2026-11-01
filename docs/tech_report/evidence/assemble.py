@@ -221,7 +221,8 @@ def main():
     fail += ['Missing: ' + rel(f) for f in files if not f.is_file()]
     if fail:
         raise SystemExit('FAIL\n' + '\n'.join(dict.fromkeys(fail)))
-    summary = {'status': 'PASS', 'files': len(files) + 3, 'report_build': build.name, 'report_pdf': rel(REPORT_PDF),
+    summary = {'status': 'PASS', 'files': len(files) + 2,  # + README.md、extra_manifest.md（sha256sums 不计入自身）
+               'report_build': build.name, 'report_pdf': rel(REPORT_PDF),
                'report_pdf_sha256': sha(REPORT_PDF), 'board_result': rel(PUF3_RUN / 'result.json')}
     if args.check_only:
         print(json.dumps({**summary, 'mode': 'check-only (no package written)'}, ensure_ascii=False, indent=2))

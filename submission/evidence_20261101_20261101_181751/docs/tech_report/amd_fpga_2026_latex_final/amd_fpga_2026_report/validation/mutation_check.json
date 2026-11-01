@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "mutation": "table 3-13 HW encrypt 1369 -> 1370 in isolated copy",
+  "checker_exit_code": 1,
+  "detected_failures": [
+    "report table 3-13: hw"
+  ]
+}

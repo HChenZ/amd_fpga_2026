@@ -1,0 +1,46 @@
+%% 队友交付的独立 LaTeX 编辑稿；2026-10-31 起按 PUF3 实物版本核对。
+%% 本目录 chapters/ 与 figs/ 是此稿的维护源，不使用上层旧版生成器覆盖。
+% !TEX program = xelatex
+% 本稿使用 ctex + fandol 字体，必须用 XeLaTeX 编译；若用 pdfLaTeX 会立即报错并给出提示。
+\RequirePackage{iftex}
+\ifPDFTeX\errmessage{编译器不对：请在 Overleaf 左侧齿轮 Settings -> Compiler 选择 XeLaTeX，然后重新编译}\fi
+\documentclass[UTF8,a4paper,11pt,fontset=fandol,openany,oneside]{ctexbook}
+\input{preamble}
+\title{RISC-V轻量密码加速SoC}
+\author{队伍编号 41555 \quad 团队名称 芯尽自然亮\\[2mm]
+  \small 全国大学生嵌入式芯片与系统设计竞赛 2026 · FPGA 创新设计赛道 · AMD 自主选题初级组}
+\date{2026年10月31日}
+
+\begin{document}
+\input{cover}
+
+\frontmatter
+\renewcommand{\thechapter}{}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\theequation}{\arabic{equation}}
+\setcounter{tocdepth}{2}
+\tableofcontents
+\cleardoublepage
+\mainmatter
+
+\include{chapters/ch01}
+\include{chapters/ch02}
+\include{chapters/ch03}
+\include{chapters/ch04}
+\include{chapters/ch05}
+\include{chapters/ch06}
+\appendix
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\include{chapters/app01}
+\include{chapters/app02}
+\include{chapters/app03}
+\include{chapters/app04}
+
+% 附录末尾：插图与表格目录
+\ctexset{listfigurename={插图目录},listtablename={表格目录}}
+\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{插图目录}
+\listoffigures
+\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{表格目录}
+\listoftables
+
+\end{document}

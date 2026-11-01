@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "build": "validation/build_20261101_010857",
+  "pages": 77,
+  "overfull_boxes": [],
+  "margin_candidates": [],
+  "figure_placement_rule": "caption measured in a box; fit in place; else scale proportionally to >=62% on the current page; else float to top of next page and let following text fill the current page; later figures float while one is pending (numbering order kept)",
+  "figure_placement": {
+    "here": ["2-4", "2-5", "2-6", "2-7", "2-9", "2-13", "2-14", "3-1", "3-2", "3-3", "3-6"],
+    "scaled": {"1-1": 0.925, "3-4": 0.98, "3-5": 0.91},
+    "next_page_top": ["2-1", "2-2", "2-3", "2-8", "2-10", "2-11", "2-12"]
+  },
+  "longtable_float_patch": "LT@output places deferred floats at the top of table continuation pages",
+  "headings_before_longtable_needspace_pt": 150,
+  "part1": "1.4, 1.5, 1.6 and figure 1-1 on printed page 3 (user request); figure 1-1 rows tightened, 1.5 item 4 and 1.6 paragraph condensed by one line each",
+  "known_page_notes": [
+    "PDF p50 (printed 46): ~19% bottom space because table 3-11 row 1 cannot split"
+  ],
+  "figure_pixels_and_single_occurrences": "PASS",
+  "evidence_check_count": 194,
+  "visual_review": "Body pages rendered and reviewed after measured-caption placement change"
+}

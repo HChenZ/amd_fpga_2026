@@ -1,0 +1,115 @@
+\chapter{证据索引}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+2026-10-31 核验：远端 \texttt{c385a9d99754} 的板测更新已合并到工作区；本稿最终演示对象改为 PUF3。主要数据来自 \pufresult，工件位于 \pufcandidate。旧 PYNQ release、PL-only 与当前 PUF3 按原身份引用，不能把旧版已通过项目自动转移到当前版本。
+
+本目录的 \texttt{review\_evidence.py} 从原始 JSON、manifest 与报告生成下列摘录，并验证哈希、周期重算与正文主表。输出 \texttt{validation/evidence\_check.json} 记录证据文件哈希。墙钟在 PUF3 JSON 中只有摘要，不能独立复算其逐次中位数。ISE 配图对应同日另列的 XSim 单元复验；报告构建仅读取证据，没有重新综合实现或上板。
+
+{\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\thetable}{C-1}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.31\linewidth}>{\raggedright\arraybackslash}p{0.62\linewidth}@{}}
+\caption{结论与主要证据对照}\label{tab:C-1}\\
+\toprule
+\textbf{结论} & \textbf{主要证据} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{@{}l}{\footnotesize 续表 C-1}\\
+\toprule
+\textbf{结论} & \textbf{主要证据} \\
+\midrule
+\endhead
+当前工件身份 & \pufcandidate 的 manifest.json、sha256sums.txt \\
+当前实现/资源/时序 & \pufreports 的 timing\_summary.rpt、utilization.rpt、drc.rpt、ro\_corner\_sta.txt \\
+当前 KAT/benchmark/PUF & \pufresult 及同目录 mailbox\_log.txt \\
+当前执行 Notebook & \texttt{src/pynq\_puf3/pynq\_puf3\_board\_test.ipynb} \\
+当前仿真与固件 & candidate/reports/cosim\_summary.json、firmware\_build.json \\
+旧 release 全容量统计 & \texttt{data/pynq/board\_20261028/pynq\_board\_full.json}，只用于历史表 2-16 \\
+旧 release 错误恢复 & \texttt{data/pynq/error\_gate\_20261031\_112812/}；执行本体在 src/pynq/ \\
+host 标准与失败契约 & \texttt{data/ascon/results/} 的 host\_validation、reference\_gate、failure\_contract JSON \\
+历史 PL-only 原始日志 & \texttt{data/ascon/results/board/} 下 uart\_20261026\_sw\_and\_ise.txt、uart\_20261027\_mmio.txt、uart\_20261027\_keys3.txt \\
+历史策略记录 & \texttt{data/ascon/results/strategy\_sweep\_20261017/} \\
+真实工程截图 & 本报告 figs/ 下 Block Design、Implemented Design、Utilization、ISE waveform 四张 PNG；用户提供，原字节保存 \\
+ISE 截图配套自检 & \texttt{data/ascon/results/\allowbreak{}ise\_screenshot\_20261031/}，1502 checks / 0 errors \\
+实物照片 & \texttt{docs/tech\_report/figs/board\_photo.jpg}；不证明当前运行镜像或芯片速度等级 \\
+\bottomrule
+\end{longtable}}
+
+资源利用率界面和 ISE 真实仿真波形已补入图 3-2、3-5，原工程截图的缺图位置已补齐。截图支持可视核对，不替代原始报告、板测身份或 RO 全域签核。历史本地备份不保证随 clone 可用；最终证据包须按此稿与新数据重新装配。
+
+\Needspace{85pt}
+\section{当前 PUF3 工件身份}
+来源：\pufcandidate 的 manifest.json。以下仅摘取身份与工件字段，构建时的 NOT\_RUN 保持原样，后续板测另列。
+\input{evidence/puf3_identity}
+
+\Needspace{85pt}
+\section{当前实现原件}
+以下均来自 \pufreports，摘录行保留原文，省略的行不补写。
+\subsection{时序原文}
+\input{evidence/puf3_timing}
+\subsection{整机资源原文}
+\input{evidence/puf3_resources}
+\subsection{DRC 汇总原文}
+\input{evidence/puf3_drc}
+\subsection{RO 计数器角分析与覆盖}
+正 WNS 不覆盖未声明的振荡环计数器。下列器件模型分析不是板上 RO 频率测量。
+\input{evidence/puf3_ro}
+
+\Needspace{85pt}
+\section{容量内 KAT 核对}
+来源：\pufresult 的 sections.kat。核对 3 组用例集合均为 PT/AD 各 0--16 B 的 289 组；KAT 编号 \#529 是其中一组，不是用例总数。
+\input{evidence/puf3_kat}
+
+\Needspace{85pt}
+\section{固定输入 warm 复算（KAT \#529，PT16/AD0）}
+来源：\pufresult 的 sections.benchmark。5 次预热、每档 30 次；cycles 从 raw\_cycles 重算，墙钟从 wall\_ns\_summary 换算，二者证据粒度不同。
+\input{evidence/puf3_benchmark}
+
+\Needspace{85pt}
+\section{旧 release 错误门禁记录}
+来源：\texttt{data/pynq/error\_gate\_20261031\_112812/\allowbreak{}pynq\_board\_error\_gate.json}。这是旧 release 的证据，PUF3 完整错误矩阵仍为 NOT\_RUN。
+\input{evidence/legacy_error_gate}
+
+\Needspace{85pt}
+\section{归档仿真回归}
+\subsection{PUF3 联合仿真与固件}
+来源：\pufreports 的 cosim\_summary.json、firmware\_build.json。normal 为生产正例；mutant\_autolock 是应失败的原自动锁定 RTL 反例。仿真中 RO/DNA/BUFG 与 AXI BRAM 使用行为模型，不测 PUF 物理特性。
+\input{evidence/puf3_cosim}
+\subsection{ISE 截图配套单元仿真}
+来源：\texttt{data/ascon/results/\allowbreak{}ise\_screenshot\_20261031/}。
+截图显示首个 P8 片段；完整自检结果和源文件哈希另存，控制台的查询命令错误不计为 TB 断言错误。
+\input{evidence/ise_screenshot_validation}
+\subsection{旧 P0 smoke 与 regression}
+来源：\texttt{build/reports/pynq\_final\_20261028/}，保留 NOT\_RUN 项，不称为 PUF3 重跑。
+\input{evidence/legacy_regression}
+
+\Needspace{85pt}
+\section{host 标准验证与失败契约}
+来源：\texttt{data/ascon/results/}。原始失败复现与生产修复后结果分别保留。
+\input{evidence/host_validation}
+
+\Needspace{85pt}
+\section{历史 PL-only 日志选行}
+来源：\texttt{data/ascon/results/board/} 的 SW/ISE 和 MMIO 原始文本。当前性能主表不用这些历史周期。
+\input{evidence/legacy_board}
+
+\Needspace{85pt}
+\section{历史 PL-only 时序原文}
+来源：\texttt{build/local/\allowbreak{}proj\_backup\_first\_time\_20261027/\allowbreak{}first\_time.runs/\allowbreak{}impl\_1/} 的 routed timing summary。本地原件本次可读，但不保证包含在远端 clone 中。
+\input{evidence/legacy_timing}
+
+\Needspace{85pt}
+\section{历史策略 sweep 记录}
+逐项记录见 \texttt{strategy\_sweep\_summary.json}，位于 \texttt{data/ascon/results/\allowbreak{}strategy\_sweep\_20261017/}。该历史默认/最优 WNS 为 $-0.942/-0.118$ ns；不与不同源集的 PUF3 run 混作单补丁效果。校验清单包含该文件哈希。
+
+\Needspace{85pt}
+\section{实物照片与工程截图}
+图 3-1 为已有板卡正面照片；图 2-10、2-11、3-2、3-5 分别为用户提供的 Block Design、Implemented Design、Utilization 和 ISE 波形截图，每张只出现一次。四张 PNG 逐字节复制并保存 SHA-256，工程名、数值、波形及控制台记录保持原样。
+\input{evidence/screenshots}
+
+\Needspace{85pt}
+\section{PUF3 功能与历史原型边界}
+当前来源：\pufresult。下列结果证明会话内功能，不证明跨上电恢复、BER、熵、温压或唯一性；REF/RAW/MASK/DNA 可读，也不证明保密隔离。
+\input{evidence/puf3_puf}
+历史来源：\texttt{data/ascon/results/board/uart\_20261027\_keys3.txt}，保留 v2 抢跑失败和 v3 通过片段；历史 quality=128 不覆盖当前的 127。
+\input{evidence/legacy_puf}

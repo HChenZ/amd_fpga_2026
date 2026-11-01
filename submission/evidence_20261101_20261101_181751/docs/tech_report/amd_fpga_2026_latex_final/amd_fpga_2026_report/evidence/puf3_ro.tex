@@ -1,0 +1,14 @@
+\begin{codeblock}
+There are 5120 register/latch pins with no clock driven by root clock pin: pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/ro_en_reg/Q (HIGH)
+ There are 15360 pins that are not constrained for maximum delay. (HIGH)
+ There are 256 combinational loops in the design. (HIGH)
+FAST_MIN ring period ns: min 1.194 max 7.849 -> fastest RO 837 MHz
+SLOW_MAX ring period ns: min 3.473 max 18.613 -> fastest RO 288 MHz
+20-bit counter wraps above 400 MHz (window 65536 x 40 ns)
+== Slow corner, RO period 3.473 ns ==
+  ro_osc1 intra setup -0.478 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[169].cnt_reg[169][3]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[169].cnt_reg[169][17]/D, skew -1.545)
+  ro_osc1 intra hold  -0.552 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[170].cnt_reg[170][15]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[170].cnt_reg[170][16]/D, skew 1.447)
+== Fast corner, RO period 1.194 ns ==
+  ro_osc1 intra setup -0.598 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[182].cnt_reg[182][3]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[182].cnt_reg[182][11]/D, skew -0.705)
+  ro_osc1 intra hold  -0.427 (pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[170].cnt_reg[170][15]/C -> pynq_puf3_i/pynq_soc_0/inst/u_soc_axi_top/u_soc_top/u_puf_key/u_puf/g_ro[170].cnt_reg[170][16]/D, skew 0.804)
+\end{codeblock}

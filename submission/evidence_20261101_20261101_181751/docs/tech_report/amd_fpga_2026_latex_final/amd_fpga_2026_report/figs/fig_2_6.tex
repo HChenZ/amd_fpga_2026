@@ -1,0 +1,20 @@
+% 一轮置换的实际运算顺序；只作结构示意
+\begin{tikzpicture}[font=\scriptsize,
+ b/.style={draw=softline,rounded corners=2pt,fill=macblue!55,align=center,text width=3.1cm,minimum height=1cm},
+ ar/.style={-{Stealth[length=1.5mm]},thick}]
+\node[b, fill=macblue] (state) at (-5.7,0) {状态寄存器 320 bit\\$s_0,s_1,s_2,s_3,s_4$};
+\node[b, fill=macamber] (rc) at (-1.9,0) {常量注入\\$s_2\gets s_2\oplus c_r$};
+\node[b, fill=macrose!70] (sbox) at (1.9,0) {非线性层\\64 组 5-bit S-box};
+\node[b, fill=macgreen] (lin) at (5.7,0) {线性层\\各字的两次旋转与异或};
+\draw[ar] (state) -- (rc);
+\draw[ar] (rc) -- (sbox);
+\draw[ar] (sbox) -- (lin);
+\draw[ar] (lin.south) -- (5.7,-1.5) -- (-5.7,-1.5) -- (state.south);
+\node[fill=white,align=center] at (0,-1.5) {一轮结果写回；P12 使用12轮，P8 使用后8轮常量};
+\node[draw=softline,fill=macgray,align=left,text width=14.4cm,anchor=north west] at (-7.2,-2.2) {%
+旋转常数：$s_0:(19,28)$；$s_1:(61,39)$；$s_2:(1,6)$；$s_3:(10,17)$；$s_4:(7,41)$。\\
+线性更新：$s_i\gets s_i\oplus\mathrm{rotr}(s_i,r_{i,1})\oplus\mathrm{rotr}(s_i,r_{i,2})$。\\
+轮常量为8 bit，注入 $s_2$ 低字节；AEAD 的域分离 $s_4\gets s_4\oplus2^{63}$ 位于 AD 与消息之间。\\
+AEAD IV：\texttt{0x0000\_1000\_808c\_0001}；rate=128 bit，capacity=192 bit。\\
+同一轮函数定义可以多次实例化，不意味着 MMIO 与 ISE 共享一块物理电路。};
+\end{tikzpicture}

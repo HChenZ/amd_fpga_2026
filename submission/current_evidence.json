@@ -1,7 +1,10 @@
 {
   "status": "PASS",
-  "files": 122,
-  "directory": "submission\\evidence_20261101_20261031_163056",
-  "zip": "submission\\evidence_20261101_20261031_163056.zip",
-  "zip_sha256": "3452e05cd68d182ef5c368b10a997421173e3d444fb291ae6cf9c9f10c01a314"
+  "files": 266,
+  "directory": "submission\\evidence_20261101_20261101_181751",
+  "zip": "submission\\evidence_20261101_20261101_181751.zip",
+  "zip_sha256": "01000e5c2665c638002c95d030a8c73170ca0af3ba12b6cfd19aede41a7a8a53",
+  "report_build": "build_20261101_174743",
+  "report_pdf_sha256": "603c625a8e8f3c1271d9d96f1d4982e15ded676de9262c4ef3813111124e4825",
+  "board_result": "data/pynq_puf3/notebook_20261031_114512/result.json"
 }

@@ -1,0 +1,58 @@
+% 图 2-5 D-cache 状态与总线请求时序（坐标单位 cm）
+\begin{tikzpicture}[font=\footnotesize,
+  s/.style={draw=softline, rounded corners=1.5pt, fill=macblue!55, align=center, inner sep=2pt,
+            font=\scriptsize, minimum width=3.1cm, minimum height=0.95cm},
+  ar/.style={-{Stealth[length=1.4mm]}, thick}]
+
+% 状态框：正交走线，标签落在空白处
+\node[s, fill=macblue] (idle) at (-5.3,0) {IDLE\\查 tag / 判 cacheable};
+\node[s, fill=macgreen] (hit)  at (-5.3,2.1) {命中\\单拍返回数据};
+\node[s, fill=macamber] (cap)  at (-0.4,-1.9) {MISS\_CAPTURE\\属性锁存 1 拍};
+\node[s, fill=macrose!70] (fill) at (4.9,-1.9) {FILL\\逐字写入对应 way};
+
+% IDLE → 命中（竖直）
+\draw[ar] (idle.north) -- (hit.south);
+\node[font=\scriptsize, anchor=west] at (-5.15,1.05) {hit};
+
+% IDLE → MISS_CAPTURE（下—右）
+\draw[ar] (idle.south) -- (-5.3,-1.9) -- (cap.west);
+\node[font=\scriptsize, anchor=south] at (-3.2,-1.82) {cacheable miss};
+
+% MISS_CAPTURE → FILL（水平）
+\draw[ar] (cap.east) -- (fill.west);
+\node[font=\scriptsize, anchor=south] at (2.25,-1.82) {总线请求 / 应答};
+
+% FILL → IDLE（回环，走最下方）
+\draw[ar] (fill.south) -- (4.9,-3.2) -- (-5.3,-3.2) -- (idle.south);
+\node[font=\scriptsize, anchor=north] at (-0.2,-3.28) {填充完成后重查并返回};
+
+% 时序示意
+\begin{scope}[xshift=-6.0cm, yshift=-6.4cm, x=1.05cm, y=1.0cm]
+  \node[font=\scriptsize, anchor=east] at (-0.25,2.05) {clk};
+  \draw[thick] (0,2.0) -- (8.6,2.0);
+  \foreach \k in {0.5,1.5,...,8.5} {\draw (\k,1.9) -- (\k,2.1);}
+
+  \node[font=\scriptsize, anchor=east] at (-0.25,1.25) {req};
+  \draw[black!30] (0,1.05) -- (8.6,1.05);
+  \fill[macamber] (1.6,1.05) rectangle (2.6,1.45);
+  \draw[black!45] (1.6,1.05) rectangle (2.6,1.45);
+  \draw[decorate, decoration={brace, mirror, amplitude=2.5pt}, thick] (1.6,1.0) -- (2.6,1.0);
+  \node[font=\scriptsize, anchor=south] at (2.1,1.5) {锁存 1 拍};
+
+  \node[font=\scriptsize, anchor=east] at (-0.25,0.4) {busy};
+  \draw[black!30] (0,0.2) -- (8.6,0.2);
+  \fill[macgreen] (2.6,0.2) rectangle (5.8,0.6);
+  \draw[black!45] (2.6,0.2) rectangle (5.8,0.6);
+
+  \node[font=\scriptsize, anchor=east] at (-0.25,-0.45) {rdata};
+  \draw[black!30] (0,-0.65) -- (8.6,-0.65);
+  \fill[macrose] (5.8,-0.65) rectangle (6.8,-0.25);
+  \draw[black!45] (5.8,-0.65) rectangle (6.8,-0.25);
+  \draw[decorate, decoration={brace, mirror, amplitude=2.5pt}, thick] (5.8,-0.7) -- (6.8,-0.7);
+  \node[font=\scriptsize, anchor=north] at (6.3,-0.76) {恢复命中};
+
+  \node[font=\scriptsize, anchor=west] at (8.75,1.05) {请求};
+  \node[font=\scriptsize, anchor=west] at (8.75,0.2) {等待};
+  \node[font=\scriptsize, anchor=west] at (8.75,-0.65) {返回};
+\end{scope}
+\end{tikzpicture}

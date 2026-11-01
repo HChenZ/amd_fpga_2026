@@ -1,0 +1,21 @@
+% 图 2-3：IF 接口与重定向；线路不经过模块文本。
+\begin{tikzpicture}[font=\footnotesize,
+ b/.style={draw=softline,rounded corners=2pt,align=center,text width=2.25cm,inner sep=5pt,minimum height=1.2cm,fill=macblue},
+ ar/.style={-{Stealth[length=1.4mm]},thick,draw=softline},lab/.style={font=\scriptsize,fill=white,inner sep=2pt}]
+\node[b,fill=maclav] (pc) at (-6,0) {PC 选择\\trap / 跳转\\分支预测};
+\node[b] (ic) at (-2.8,0) {I-cache 2 KiB\\64 组、两路\\每行 4 字};
+\node[b,text width=1.2cm,fill=macgray] (ifid) at (.1,0) {IF/ID};
+\node[b,text width=1.2cm,fill=macgray] (idex) at (2.5,0) {\mbox{ID/EX}};
+\node[b,text width=1.7cm,fill=macgreen] (ex) at (5.5,0) {EX\\分支裁决};
+\draw[ar] (pc)--(ic);\draw[ar] (ic)--(ifid);\draw[ar] (ifid)--(idex);\draw[ar] (idex)--(ex);
+\draw[ar] (ex.north)--(5.5,1.5)--(-6,1.5)--(pc.north);
+\node[lab] at (0,1.5) {EX 重定向：jump\_en / 目标 PC};
+\node[b,fill=macamber,text width=3cm] (bp) at (-5.7,-2.6) {BTB / BHT\\预测 taken 与 target};
+\node[b,fill=macblue,text width=3cm] (ram) at (-1,-2.6) {BRAM 128 KiB\\I-cache 行填充};
+\node[b,fill=macrose,text width=3cm] (ctrl) at (4.6,-2.6) {stall\_ctrl\\stall / flush};
+\draw[ar] (bp.north)--(pc.south);
+\draw[ar] (ram.north)--(-1,-1.35)--(-2.8,-1.35)--(ic.south);
+\draw[ar,dashed] (ex.south)--(ctrl.north);
+\draw[ar,dashed] (ctrl.north west)--(3,-1.55)--(.1,-1.55)--(ifid.south);
+\node[align=left,text width=14.5cm,font=\footnotesize,anchor=north west] at (-7.3,-3.8) {分支：flush[3:2] 清 IF/ID 与 ID/EX。陷入 / mret / 中断：flush[3:1]。\\I-cache / fence.i 停顿：stall[4:3]，flush[2]。结构示意不代表固定惩罚拍数。};
+\end{tikzpicture}
