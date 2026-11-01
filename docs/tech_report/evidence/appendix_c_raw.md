@@ -148,20 +148,20 @@ ise: KAT=289/289 bad_tag=289/289; cycles min/mean/median/max=3012/4122.0/4137/52
 
 ### 固定输入 warm 复算（KAT #529，PT16/AD0，5 次预热）
 
-来源：`data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json`
+来源：`data/pynq/notebook_20261031_112052/pynq_warm_benchmark.json`
 
 ```text
-sw/encrypt: n=30 median_cycles=23342; median_wall_ms=5.215529
-sw/decrypt: n=30 median_cycles=24005; median_wall_ms=4.956839
-hw/encrypt: n=30 median_cycles=1439; median_wall_ms=4.478620
-hw/decrypt: n=30 median_cycles=1388; median_wall_ms=4.262073
-ise/encrypt: n=30 median_cycles=3995; median_wall_ms=5.154210
-ise/decrypt: n=30 median_cycles=4385; median_wall_ms=4.985971
+sw/encrypt: n=30 median_cycles=23342; median_wall_ms=5.151629
+sw/decrypt: n=30 median_cycles=24005; median_wall_ms=4.898594
+hw/encrypt: n=30 median_cycles=1439; median_wall_ms=4.421964
+hw/decrypt: n=30 median_cycles=1388; median_wall_ms=4.193070
+ise/encrypt: n=30 median_cycles=3995; median_wall_ms=5.096612
+ise/decrypt: n=30 median_cycles=4385; median_wall_ms=4.892817
 ```
 
 ### 错误门禁记录
 
-来源：`data/pynq/error_gate_20261029_134023/pynq_board_error_gate.json`
+来源：`data/pynq/error_gate_20261031_112812/pynq_board_error_gate.json`
 
 ```text
 initial_health: PASS

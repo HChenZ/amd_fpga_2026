@@ -14,24 +14,28 @@ import sys
 import zipfile
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from build_evidence import BENCH as BENCH_DIR, GATE as GATE_DIR, PUF3_RUN as PUF3_DIR, REPORT_PDF, ROOT
+
 SUB = ROOT / 'submission'
 PYNQ = ROOT / 'board/vivado_zynq7000_xc7z020_pynq/release'
 PUF3 = ROOT / 'board/vivado_zynq7000_xc7z020_pynq_puf3/candidate'
 DMA = ROOT / 'board/vivado_zynq7000_xc7z020_axi_dma_loopback/candidate'
-BENCH = ROOT / 'data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json'
-GATE = ROOT / 'data/pynq/error_gate_20261029_134023/pynq_board_error_gate.json'
-PUF3_RUN = ROOT / 'data/pynq_puf3/notebook_20261030_144328/result.json'
+BENCH = BENCH_DIR / 'pynq_warm_benchmark.json'
+GATE = GATE_DIR / 'pynq_board_error_gate.json'
+PUF3_RUN = PUF3_DIR / 'result.json'
 L3 = ROOT / 'data/skill/l3_20261031_063709'
 D02 = ROOT / 'docs/tech_report/validation/benchmark_tables_check.json'
 OUTPUT_NAMES = ('freeze_manifest.json', 'freeze_manifest.md')
 
 LIMITS = [
-    'pynq_puf3：跨上电 not_measured；RO 振荡域时序未签核；REF/MASK/RAW/DNA 可读，未证明保密隔离；扩展展示，不替代主线 release。',
+    'PUF3（主演示）：跨上电/PVT/BER/熵/唯一性 not_measured；RO 计数器域未签核（Slow/Fast 角负 slack）；'
+    'REF/MASK/RAW/DNA 可读，未证明保密隔离；墙钟只有 summary 中位；PUF3 未跑完整错误门禁矩阵。',
+    'PYNQ v1 release 在最终报告中作历史对照；其 9/9 错误门禁、7 次 reset 属于 pynq-svc-v1，不代表 PUF3。',
     'Skill：L2 为 simulated，with vs placebo 不显著，留出任务未复现；L3 验证版本 7bc1abf，其后 S04/gen 修复仅离线验证；DMA 吞吐、short_output/missing_tlast 未测。',
-    '主线：消息/AD 各 ≤16 B；非 1089 全量板测；小时级/断电稳定性未测。',
+    '消息/AD 各 ≤16 B；非 1089 全量板测；小时级/断电稳定性未测。',
     '未验收研发项（按 10-29 授权不阻塞提交）：B02 原 baseline 重建、B04 FreeRTOS 固件、I02/I04/I05 RV64 与完整异常矩阵、V01 完整门禁、D05 干净环境复现。',
-    '报告 PDF 为 2026-10-31 14:30 构建版；实机演示视频与 PPT 不在本清单内。',
+    '10-29/10-30 板测目录已由 ae7a270/c05782d 移出工作树（含 10-30 首次 62.5 MHz 失败运行），仅存于 Git 历史；实机演示视频与 PPT 不在本清单内。',
 ]
 
 
@@ -76,8 +80,8 @@ def main():
     short = commit[:7]
 
     artefacts = []
-    for name, folder, board in (('PYNQ 主线 release', PYNQ, [BENCH, GATE]),
-                                ('pynq_puf3 扩展 candidate', PUF3, [PUF3_RUN]),
+    for name, folder, board in (('PUF3 overlay candidate（最终报告主演示）', PUF3, [PUF3_RUN]),
+                                ('PYNQ v1 release（历史对照）', PYNQ, [BENCH, GATE]),
                                 ('非 Ascon AXI DMA 回环 candidate（Skill L3）', DMA, [L3 / '30_non_ascon_dma.json'])):
         m = load(folder / 'manifest.json')
         files = {}
@@ -105,10 +109,12 @@ def main():
     if sha(DMA / 'axi_dma_loopback.bit') not in dma or load(L3 / '40_summary.json')['status'] != 'PASS':
         fail.append('Skill L3 not PASS/bound to DMA candidate')
     d02 = load(D02)
-    if d02['status'] != 'PASS':
-        fail.append('D02 check not PASS')
+    if d02['status'] != 'PASS' or d02.get('board_result') != rel(PUF3_RUN):
+        fail.append('D02 check not PASS or not against PUF3_RUN')
 
     ev = load(SUB / 'current_evidence.json')
+    if ev.get('report_pdf_sha256') != sha(REPORT_PDF) or ev.get('board_result') != rel(PUF3_RUN):
+        fail.append('evidence package not bound to current report PDF / PUF3_RUN (rerun assemble.py)')
     ev_zip = ROOT / ev['zip'].replace('\\', '/')
     if not ev_zip.is_file() or sha(ev_zip) != ev['zip_sha256']:
         fail.append('evidence ZIP missing or hash differs from current_evidence.json')
@@ -141,6 +147,8 @@ def main():
                        'files': n_files, 'method': f'git archive --format=zip {short}（仅已跟踪文件，不入库）'},
         'evidence_package': {'directory': rel(ev_dir), 'zip': rel(ev_zip), 'zip_sha256': ev['zip_sha256'],
                              'files': ev['files']},
+        'report': {'pdf': rel(REPORT_PDF), 'sha256': sha(REPORT_PDF), 'build': ev.get('report_build'),
+                   'board_result': rel(PUF3_RUN)},
         'artefacts': artefacts,
         'checks': {'d02_benchmark_tables': f'{d02["status"]} {len(d02["checks"])}/{len(d02["checks"])}',
                    'pynq_puf3_board': 'PASS', 'skill_l3': 'PASS', 'release_board_binding': 'PASS'},
@@ -155,8 +163,10 @@ def main():
           f'- 源码包：`{rel(src_zip)}`，{n_files} 文件，{src_zip.stat().st_size / 1e6:.1f} MB，'
           f'SHA-256 `{record["source_zip"]["sha256"]}`（git archive，仅本机，不入库）',
           f'- 证据包：`{rel(ev_zip)}`（{ev["files"]} 文件），SHA-256 `{ev["zip_sha256"]}`；目录已入库',
-          f'- 校验：D02 {record["checks"]["d02_benchmark_tables"]}；主线 release 与 benchmark/错误门禁绑定、'
-          'pynq_puf3 板测、Skill L3 均 PASS\n',
+          f'- 最终报告：`{rel(REPORT_PDF)}`，SHA-256 `{record["report"]["sha256"]}`，构建 {record["report"]["build"]}；'
+          f'板测主采样 `{rel(PUF3_RUN)}`',
+          f'- 校验：D02 {record["checks"]["d02_benchmark_tables"]}（对最终报告）；PUF3 板测绑定 candidate、'
+          'PYNQ v1 release 与 benchmark/错误门禁绑定、Skill L3 均 PASS\n',
           '## 交付工件\n']
     for a in artefacts:
         md.append(f'### {a["name"]}\n')

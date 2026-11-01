@@ -15,26 +15,33 @@ P0 = ROOT / 'build/local/proj_backup_first_time_20261027/first_time.runs/impl_1'
 BITS = ROOT / 'build/local/board_bitstream'
 RUN = ROOT / 'build/reports/pynq_final_20261028'
 DATA = ROOT / 'data/pynq'
-BENCH = DATA / 'notebook_20261029_130920'
-GATE = DATA / 'error_gate_20261029_134023'
+# 板测来源统一为 10-31 最新一版（10-29/10-30 旧目录已由 ae7a270/c05782d 移出，留在 Git 历史）。
+BENCH = DATA / 'notebook_20261031_112052'
+GATE = DATA / 'error_gate_20261031_112812'
+PUF3_RUN = ROOT / 'data/pynq_puf3/notebook_20261031_114512'
 HOST = ROOT / 'data/ascon/results'
 LOGS = HOST / 'board'
 
-# 仅列当前报告使用的工件。历史 PL-only 单独标注，不混为当前发布。
+# 最终报告（队友维护的独立 LaTeX 工程）。报告换目录或换 PDF 时只改这里。
+REPORT_DIR = ROOT / 'docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report'
+REPORT_PDF = REPORT_DIR / 'output/pdf/final_report.pdf'
+
+# 证据分组。最终报告以 PUF3 为主演示（见 assemble.py 的 X 组）；C-1～C-5 的 PYNQ v1
+# release（固件 pynq-svc-v1）在最终报告中作历史对照，历史 PL-only 单独标注。
 EVIDENCE = [
-    ('C-1', '当前 release：配套 bit/hwh/固件与构建身份',
+    ('C-1', 'PYNQ v1 release（pynq-svc-v1，最终报告作历史对照）：bit/hwh/固件与构建身份',
      [PYNQ / 'release' / n for n in ('pynq.bit', 'pynq.hwh', 'pynq_svc.bin',
       'pynq_svc.coe', 'pynq_svc.elf', 'manifest.json', 'sha256sums.txt')]),
-    ('C-2', '当前 overlay 实现原件，Vivado 2025.2',
+    ('C-2', 'PYNQ v1 overlay 实现原件，Vivado 2025.2',
      [RUN / n for n in ('context.txt', 'timing.rpt', 'utilization.rpt', 'drc.rpt', 'bram_image.json')]),
-    ('C-3', '当前板级容量内官方 KAT，2026-10-28',
+    ('C-3', 'PYNQ v1 板级容量内官方 KAT，2026-10-28',
      [DATA / 'board_20261028' / n for n in ('pynq_board_full.json', 'pynq_board_full.log', 'identity.txt')]),
-    ('C-4', '当前固定输入 warm benchmark，2026-10-29',
+    ('C-4', 'PYNQ v1 固定输入 warm benchmark 与已执行 Notebook，2026-10-31',
      [BENCH / n for n in ('identity.json', 'pynq_board_smoke.json', 'pynq_board_smoke.log',
-      'pynq_warm_benchmark.json', 'pynq_warm_benchmark.log')]),
-    ('C-5', '当前错误恢复与已执行 Notebook，2026-10-29',
+      'pynq_warm_benchmark.json', 'pynq_warm_benchmark.log')] + [ROOT / 'src/pynq/pynq_board_demo.ipynb']),
+    ('C-5', 'PYNQ v1 错误恢复与已执行 Notebook，2026-10-31（不是 PUF3 的错误门禁）',
      [GATE / n for n in ('identity.json', 'pynq_board_error_gate.json',
-      'pynq_board_error_gate.log', 'pynq_board_error_gate.ipynb')]),
+      'pynq_board_error_gate.log')] + [ROOT / 'src/pynq/pynq_board_error_gate.ipynb']),
     ('C-6', '归档仿真回归，2026-10-28；不是当前 HEAD 重跑',
      [RUN / 'smoke/summary.json', RUN / 'regression_final/summary.json', RUN / 'final_tests.json']),
     ('C-7', 'host 标准验证与生产失败契约；修复前结果分列',

@@ -1,11 +1,13 @@
 #!/usr/bin/env python
-"""D02：从原始数据重算当前 PYNQ 性能/资源/时序数值，并核对 report.md 中对应表格行与关键语句。
+"""D02：从原始数据重算最终报告（PUF3 主演示）的性能/资源/时序数值，核对 LaTeX 表格行、摘要与 PDF 文本。
 
-只读报告源，不修改；结果写入 docs/tech_report/validation/benchmark_tables_check.json。
-任一数值不一致或报告中缺少对应行时 exit 1。
+独立于报告工程自带的 review_evidence.py 实现，只读报告，不修改。报告位置取 build_evidence.REPORT_DIR，
+可用 --report-dir/--pdf 临时覆盖（用于隔离反例）。结果写入 docs/tech_report/validation/benchmark_tables_check.json；
+任一数值不一致、报告引用的板测结果不是 PUF3_RUN 或缺少对应行时 exit 1。
 """
 from __future__ import annotations
 
+import argparse
 import datetime
 import hashlib
 import json
@@ -15,11 +17,12 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from build_evidence import BENCH, ROOT, RUN
+from build_evidence import PUF3_RUN, REPORT_DIR, REPORT_PDF, ROOT
 
-REPORT = ROOT / 'docs/tech_report/report.md'
+CAND = ROOT / 'board/vivado_zynq7000_xc7z020_pynq_puf3/candidate'
 OUT = ROOT / 'docs/tech_report/validation/benchmark_tables_check.json'
 LABEL = {'sw': 'SW', 'hw': 'HW/MMIO', 'ise': 'ISE'}
+RESULT_REF = re.compile(r'data/pynq_puf3/notebook_\d{8}_\d{6}')
 
 
 def sha(path):
@@ -27,99 +30,145 @@ def sha(path):
 
 
 def rel(path):
-    return path.relative_to(ROOT).as_posix()
+    try:
+        return path.resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        return str(path)
 
 
-def norm(line):
-    return re.sub(r'\s+', '', line)
+def norm(text):
+    return re.sub(r'\s+', '', text.replace('\\allowbreak{}', '').replace('\\,', ''))
 
 
 def main():
-    report = REPORT.read_text(encoding='utf-8')
-    rows = {norm(l) for l in report.splitlines() if l.lstrip().startswith('|')}
-    flat = norm(report)
-    checks = []
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--report-dir', type=Path, default=REPORT_DIR)
+    ap.add_argument('--pdf', type=Path)
+    ap.add_argument('--output', type=Path, default=OUT)
+    args = ap.parse_args()
+    report = args.report_dir.resolve()
+    pdf_path = (args.pdf or report / REPORT_PDF.relative_to(REPORT_DIR)).resolve()
+    checks, inputs = [], {}
 
-    def expect_row(name, cells, source):
-        line = norm('| ' + ' | '.join(cells) + ' |')
-        checks.append({'check': name, 'expected_row': '| ' + ' | '.join(cells) + ' |',
-                       'source': source, 'status': 'PASS' if line in rows else 'FAIL'})
+    def add(name, ok, **detail):
+        checks.append({'check': name, 'status': 'PASS' if ok else 'FAIL', **detail})
 
-    def expect_text(name, text, source):
-        checks.append({'check': name, 'expected_text': text, 'source': source,
-                       'status': 'PASS' if norm(text) in flat else 'FAIL'})
+    def tex(name):
+        path = report / 'chapters' / name
+        inputs[rel(path)] = sha(path)
+        return path.read_text(encoding='utf-8')
 
-    bench_path = BENCH / 'pynq_warm_benchmark.json'
-    b = json.loads(bench_path.read_text(encoding='utf-8'))
-    cond = (b['kat'], b['plaintext_bytes'], b['ad_bytes'], b['warmup'], b['repetitions'], b['board_validation'])
-    if cond != (529, 16, 0, 5, 30, 'PASS') or b['service']['simulated'] is not False:
-        raise SystemExit('Unexpected benchmark conditions: ' + repr(cond))
+    result_path = PUF3_RUN / 'result.json'
+    r = json.loads(result_path.read_text(encoding='utf-8'))
+    inputs[rel(result_path)] = sha(result_path)
+    b = r['sections']['benchmark']
+    if (r['status'], r['exit_code'], r['service']['simulated'], b['kat'], b['warmup'], b['repetitions']) != \
+            ('PASS', 0, False, 529, 5, 30):
+        raise SystemExit('Unexpected PUF3 board result/conditions')
+    for key, name in (('bit_sha256', 'pynq_puf3.bit'), ('hwh_sha256', 'pynq_puf3.hwh'),
+                      ('manifest_sha256', 'manifest.json')):
+        add(f'板测结果绑定 candidate {name}', r[key] == sha(CAND / name))
+
     med, wall = {}, {}
     for mode in ('sw', 'hw', 'ise'):
         for op in ('encrypt', 'decrypt'):
             d = b['modes'][mode][op]
-            if len(d['raw_cycles']) != 30 or len(d['raw_wall_ns']) != 30:
+            if len(d['raw_cycles']) != 30:
                 raise SystemExit(f'{mode}/{op}: sample count != 30')
             med[mode, op] = statistics.median(d['raw_cycles'])
-            wall[mode, op] = statistics.median(d['raw_wall_ns']) / 1e6
-    src = rel(bench_path)
-    for mode in ('sw', 'hw', 'ise'):
-        cells = [LABEL[mode]]
+            wall[mode, op] = d['wall_ns_summary']['median'] / 1e6  # 墙钟只有 summary，无原始数组
+    speed = {(m, op): med['sw', op] / med[m, op] for m in ('sw', 'hw', 'ise') for op in ('encrypt', 'decrypt')}
+    for m in ('hw', 'ise'):
         for op in ('encrypt', 'decrypt'):
-            c = med[mode, op]
-            cells += [f'{c:.0f}', f'{round(c / 16, 3):.3f}', f'{med["sw", op] / c:.3f}×']
-        expect_row(f'表 3-13 {LABEL[mode]} cycles/cpb/加速比', cells, src)
-        expect_row(f'表 3-14 {LABEL[mode]} PS 墙钟中位', [LABEL[mode], f'{wall[mode, "encrypt"]:.3f}',
-                   f'{wall[mode, "decrypt"]:.3f}'], src)
-    for mode in ('hw', 'ise'):
-        for op in ('encrypt', 'decrypt'):
-            recomputed = round(med['sw', op] / med[mode, op], 3)
-            stored = b['speedup_median_vs_sw'][mode][op]
-            checks.append({'check': f'JSON 加速比 {mode}/{op} 与重算一致', 'recomputed': recomputed,
-                           'stored': stored, 'source': src,
-                           'status': 'PASS' if recomputed == stored else 'FAIL'})
-    expect_text('摘要加密中位 SW/HW/ISE', '{:.0f}/{:.0f}/{:.0f}'.format(
-        med['sw', 'encrypt'], med['hw', 'encrypt'], med['ise', 'encrypt']), src)
-    expect_text('摘要解密中位 SW/HW/ISE', '{:.0f}/{:.0f}/{:.0f}'.format(
-        med['sw', 'decrypt'], med['hw', 'decrypt'], med['ise', 'decrypt']), src)
+            add(f'JSON 加速比 {m}/{op} 与重算一致', round(speed[m, op], 3) == b['speedup_median_vs_sw'][m][op])
 
-    util_path = RUN / 'utilization.rpt'
+    # 报告源中引用的 PUF3 板测目录必须恰好是本脚本使用的 PUF3_RUN。
+    refs = set()
+    for path in list(report.rglob('*.tex')) + list(report.glob('*.md')) + list(report.glob('*.py')):
+        refs |= set(RESULT_REF.findall(path.read_text(encoding='utf-8', errors='replace')))
+    add('报告引用的 PUF3 板测目录 = PUF3_RUN', refs == {rel(PUF3_RUN)}, found=sorted(refs), expected=rel(PUF3_RUN))
+
+    ch01, ch02, ch04 = tex('ch01.tex'), tex('ch02.tex'), tex('ch04.tex')
+    rows01 = {norm(l) for l in ch02.splitlines() if '&' in l}
+    rows04 = {norm(l) for l in ch04.splitlines() if '&' in l}
+
+    def row(name, cells, rows):
+        line = ' & '.join(cells) + ' \\\\'
+        add(name, norm(line) in rows, expected_row=line)
+
+    x = '$\\times$'
+    for op, zh in (('encrypt', '加密'), ('decrypt', '解密')):
+        row(f'表 1-1 {zh} cycles', [f'{zh} cycles'] + [f'{med[m, op]:g}' for m in ('sw', 'hw', 'ise')], rows01)
+        row(f'表 1-1 {zh}周期加速比', [f'{zh}周期加速比'] + [f'{speed[m, op]:.3f}{x}' for m in ('sw', 'hw', 'ise')], rows01)
+    row('表 1-1 加密 PS 墙钟', ['加密 PS 墙钟 ms'] + [f'{wall[m, "encrypt"]:.3f}' for m in ('sw', 'hw', 'ise')], rows01)
+    kat = r['sections']['kat']
+    row('表 1-1 板级 KAT', ['板级 KAT / 坏 Tag 拒绝'] +
+        [f'{kat[m]["kat_pass"]}/{kat[m]["tag_reject"]}' for m in ('sw', 'hw', 'ise')], rows01)
+    for m in ('sw', 'hw', 'ise'):
+        cells = [LABEL[m]]
+        for op in ('encrypt', 'decrypt'):
+            cells += [f'{med[m, op]:g}', f'{med[m, op] / 16:.4f}', f'{speed[m, op]:.3f}{x}']
+        row(f'表 3-13 {LABEL[m]}', cells, rows04)
+        row(f'表 3-14 {LABEL[m]}', [LABEL[m], f'{wall[m, "encrypt"]:.3f}', f'{wall[m, "decrypt"]:.3f}'], rows04)
+
+    util_path = CAND / 'reports/utilization.rpt'
+    inputs[rel(util_path)] = sha(util_path)
     util = {}
     for line in util_path.read_text(encoding='utf-8', errors='replace').splitlines():
-        m = re.match(r'\|\s*(Slice LUTs|Slice Registers|Block RAM Tile|DSPs)\s*\|\s*([\d.]+)\s*\|', line)
-        if m and m.group(1) not in util:
-            util[m.group(1)] = m.group(2)
-    expect_text('实现资源 LUT/FF/BRAM/DSP',
-                f'LUT {util["Slice LUTs"]}、FF {util["Slice Registers"]}、BRAM {util["Block RAM Tile"]}、DSP {util["DSPs"]}',
-                rel(util_path))
+        mm = re.match(r'\|\s*(Slice LUTs|Slice Registers|Block RAM Tile|DSPs)\s*\|\s*([\d.]+)\s*\|', line)
+        if mm and mm.group(1) not in util:
+            util[mm.group(1)] = mm.group(2)
+    res = f'LUT {util["Slice LUTs"]}、FF {util["Slice Registers"]}、BRAM {util["Block RAM Tile"]}'
+    add('第 3 部分资源 LUT/FF/BRAM', norm(res) in norm(ch04), expected_text=res)
+    add('第 3 部分 DSP', norm(f'DSP {util["DSPs"]}') in norm(ch04))
 
-    timing_path = RUN / 'timing.rpt'
+    timing_path = CAND / 'reports/timing_summary.rpt'
+    inputs[rel(timing_path)] = sha(timing_path)
     lines = timing_path.read_text(encoding='utf-8', errors='replace').splitlines()
     i = next(n for n, l in enumerate(lines) if 'WNS(ns)' in l and 'TNS(ns)' in l)
-    v = lines[i + 2].split()
-    wns, tns, fail_ep, total_ep, whs = v[0], v[1], v[2], v[3], v[4]
-    expect_row('实现时序 WNS/TNS 行', ['WNS / TNS', f'**+{wns} ns / {float(tns):.0f}**',
-               f'setup 失败端点 {fail_ep}/{total_ep}'], rel(timing_path))
-    expect_text('实现时序 WHS', f'WHS +{whs} ns', rel(timing_path))
+    wns, tns, fail_ep, total_ep, whs = lines[i + 2].split()[:5]
+    row('实现时序 WNS/TNS 行', ['WNS / TNS', f'+{wns} ns / {float(tns):.0f}', 'timing\\_summary.rpt'], rows04)
+    add('实现时序失败端点', norm(f'{fail_ep}/{total_ep}') in norm(ch04), expected_text=f'{fail_ep}/{total_ep}')
+
+    claims = ['{:g}/{:g}/{:g}'.format(*(med[m, op] for m in ('sw', 'hw', 'ise'))) for op in ('encrypt', 'decrypt')]
+    claims += [util['Slice LUTs'], util['Slice Registers'], f'+{wns}', f'+{whs}', f'{r["clock"]["fclk0_mhz_measured_mcycle"]}']
+    for c in claims:
+        add(f'摘要含 {c}', norm(c) in norm(ch01))
+
+    pdf_info = {'path': rel(pdf_path), 'sha256': sha(pdf_path)}
+    try:
+        import pymupdf
+    except ImportError:
+        pdf_info['text_check'] = 'not_run (pymupdf missing)'
+    else:
+        with pymupdf.open(pdf_path) as pdf:
+            text = re.sub(r'\s+', '', ''.join(p.get_text() for p in pdf))
+            pdf_info['pages'] = len(pdf)
+        nums = [f'{med[m, op]:g}' for m in ('sw', 'hw', 'ise') for op in ('encrypt', 'decrypt')]
+        nums += [f'{speed[m, op]:.3f}' for m in ('hw', 'ise') for op in ('encrypt', 'decrypt')]
+        nums += [util['Slice LUTs'], util['Slice Registers']]
+        for n in nums:
+            add(f'PDF 含 {n}', n in text)
+        pdf_info['text_check'] = 'run'
+    inputs[rel(pdf_path)] = pdf_info['sha256']
 
     fails = [c for c in checks if c['status'] != 'PASS']
     record = {
         'task': 'D02', 'status': 'PASS' if not fails else 'FAIL',
         'timestamp': datetime.datetime.now().astimezone().isoformat(timespec='seconds'),
-        'scope': '当前 PYNQ 主线：KAT #529 warm benchmark（表 3-13/3-14、摘要）、pynq_wrapper 实现资源与时序；'
-                 '历史 PL-only、PUF 原型与 pynq_puf3 数值不在本检查范围（报告未引用 pynq_puf3 数值）',
-        'conditions': {'kat': 529, 'plaintext_bytes': 16, 'ad_bytes': 0, 'warmup': 5, 'repetitions': 30,
-                       'measurement_scope': b['measurement_scope'], 'wall_time_scope': b['wall_time_scope']},
-        'inputs': {rel(p): sha(p) for p in (REPORT, bench_path, util_path, timing_path)},
-        'checks': checks, 'failures': len(fails),
+        'report_dir': rel(report), 'pdf': pdf_info, 'board_result': rel(result_path),
+        'scope': '最终报告（PUF3 主演示）：表 1-1、表 3-13/3-14、摘要、PUF3 资源与时序、PDF 文本；'
+                 '墙钟只有 summary 中位，无原始数组；PYNQ v1/历史 PL-only 历史对照不在本检查范围',
+        'conditions': {'kat': 529, 'plaintext_bytes': 16, 'ad_bytes': 0, 'warmup': 5, 'repetitions': 30},
+        'inputs': inputs, 'checks': checks, 'failures': len(fails),
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(f'{record["status"]}: {len(checks) - len(fails)}/{len(checks)} checks; written {rel(OUT)}')
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print(f'{record["status"]}: {len(checks) - len(fails)}/{len(checks)} checks; written {rel(args.output)}')
     for c in fails:
-        print('FAIL', c['check'], c.get('expected_row') or c.get('expected_text') or c)
-    sys.exit(0 if not fails else 1)
+        print('FAIL', c['check'], c.get('expected_row') or c.get('expected_text') or c.get('found') or '')
+    return 0 if not fails else 1
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
