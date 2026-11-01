@@ -2,6 +2,10 @@
 
 更新：2026-11-01（10-29 初版）。
 
+2026-11-01：D03 的可编辑 AMD 模板中英两页海报（含官方校徽）已完成，见 [poster/readme.md](poster/readme.md)、
+[PPTX](poster/ascon_soc_poster.pptx)、[中文预览](poster/ascon_soc_poster.png) 与 [英文预览](poster/ascon_soc_poster_en.png)。学校/成员由用户确认，
+周期表取原始 JSON；报告、视频和最终包不因海报完成而自动验收。
+
 当前与旧入口按 `docs/version_entrypoints.md` 区分。视频脚本是PUF3，旧v1的9项错误门禁只能作标注的历史对照。
 本轮只更新说明，程序/PDF/原数据/已发布包不变；当前包仍是18:38快照，新说明未自动装入该包。
 
@@ -15,7 +19,7 @@
 - PYNQ v1 release（`pynq-svc-v1`）的 benchmark 与 V03 错误/恢复门禁在 `data/pynq/notebook_20261031_112052/`、
   `data/pynq/error_gate_20261031_112812/`，在报告中只作历史对照，不代表 PUF3。
 - D04 分镜与旁白脚本 `report/demo_video_script.md` 已按 PUF3 主演示更新；实机视频与最终哈希索引仍待录制和归档。
-- PPT 仍待项目方确认。V04冻结留档已于11-01 18:39生成（源码92159b9），但原宽范围验收未全关闭，不能把留档PASS写成“核心全部通过”。
+- 双语PPT海报已完成，见上方入口。V04冻结留档已于11-01 18:39生成（源码92159b9），但原宽范围验收未全关闭，不能把留档PASS写成“核心全部通过”。
 
 按 10-29 授权，11-01 提交并冻结（原 11-02 D05、11-03 D06、11-04 提交的安排作废）。保留 source/工具/测量版本，
 让图表可追溯；临时转换文件放 build/tmp。

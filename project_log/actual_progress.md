@@ -2307,3 +2307,102 @@ owner TBD；分支 feat/board-bringup（期间并发工作线把工作区分支�
 最终P0 regression与smoke PASS，初始main runner缺PUF源的FAIL及误传参数失败均保留；bridge/host/model PASS。构建/联合仿真最终证据及发布状态见board/vivado_zynq7000_xc7z020_pynq/validation_20261028.md；板上PYNQ/网络/真实cycles NOT_RUN/NOT_MEASURED。详细接收手册handoff_20261028.md，下一任务B03/Y02/Y03/Y04实板取证，owner TBD。
 
 本轮硬件收口：Vivado真实生成100MHz bitstream；WNS+0.034ns/TNS0/WHS+0.020ns，DRC0 Error/0 Critical（warnings及限制见报告）。最终COE生成MIF与BIN逐字节一致，官方4代表KAT×三模式36请求及半帧reset真实CPU联合仿真PASS。源码提交86dc10f13e96adbb360f1adfe0c4891ce2f8e2a7；正式发布在PYNQ工程release/，SHA256逐项复核PASS；实板仍NOT_RUN。
+
+
+## 2026-11-01 — D03 AMD 模板海报完成
+
+owner TBD。用户明确授权先拉取最新仓库、制作后 commit/push；入场 main 工作区干净，
+`git pull --ff-only` exit 0，从 506e856 快进到 c05782d510a2c1936b3bb7c45a943ef76cc6bd02，无需丢弃文件。
+
+- 交付 `report/poster/`：可编辑的一页 PPTX、2400×1350 PNG、PowerPoint COM 构建脚本、
+  标准库核验脚本及检查 JSON；来源与模板 SHA-256 见该目录 readme/validation。
+- 按用户模板保留 960×540 pt、AMD 标识、分区线与三栏组织，替换全部示例内容。
+  用户确认学校华南理工大学，成员熊雅琦、胡潇正、黄晨中，指导老师不填；owner 不据此推断。
+- 性能从 `data/pynq/notebook_20261031_112052/pynq_warm_benchmark.json` 读取，
+  同目录 smoke 三模式各 289 KAT/坏 Tag；恢复来自 `data/pynq/error_gate_20261031_112812/`。
+  备注包含出处、测量身份与范围，不把材料制作当成重新上板。
+- 验证：PowerPoint 16.0 COM，`./report/poster/build_poster.ps1` exit 0；
+  Python 3.14.3，`python -X utf8 report/poster/verify_poster.py` exit 0，31 checks PASS；
+  presentations 技能的 package integrity 和 layout geometry 检查均 exit 0 / 0 finding，
+  PowerPoint TextRange.BoundHeight 检查 0 overflow，整页 PNG 视觉检查通过。
+- 接口变化：无。未改 RTL、固件、Vivado 或既有测量；未测试其他 Office/WPS/印刷，未重跑板测。
+- D03 仅 PPT 子项完成，整体保持 in_progress；D02/D04/D05/D06 不据此变为 done。
+  阻塞：海报无阻塞。下一接收：D03 其余材料审核、D06 将海报纳入最终提交包，owner TBD。
+
+
+## 2026-11-01 — D03 用户更新版海报提交
+
+owner TBD。用户明确要求再次提交更新后的 `report/poster/ascon_soc_poster.pptx`。
+入场仅该 PPTX 修改；保留用户文件字节，未运行初稿构建脚本。PowerPoint 16.0 只读导出
+同名 PNG，同步产物哈希和核验记录。Python 3.14.3 `python -X utf8 report/poster/verify_poster.py`
+exit 0，31 checks PASS；package/layout 检查 exit 0，0 finding，文字高度检查0溢出。
+接口无变化；未重新板测、未验证其他 Office/WPS/印刷。D03整体保持in_progress，
+无提交阻塞；下一接收D06材料归档，owner TBD。本轮按用户授权commit/push。
+
+
+## 2026-11-01 — D03 中英文两页海报与官方校徽
+
+owner TBD。用户明确要求中英各一页、在线查找华南理工大学校徽、精简海报目录并直接提交推送。
+入场main干净，基点276b4df；git fetch成功，无远端新增。以用户修订PPTX为基础复制英文页，
+保留原版式和主线数据，校徽取自 https://www.scut.edu.cn/new/9017/list.htm 的高清下载原图，
+获取日期2026-11-01；两页嵌入原始图像，不裁切/变色，出处写入备注与README。
+交付report/poster仅保留PPTX、中文PNG、英文PNG及readme.md。初稿生成/核验脚本及5份JSON
+按本轮用户授权移出Git，副本留本地build/tmp/poster_bilingual_20261101（ignored）。
+验证：PowerPoint16.0渲染两页，Python3.14.3临时check_bilingual.py exit0，51项PASS，
+含两页原始周期/加速比/数据表一致及官方校徽字节嵌入；package/layout检查exit0、0finding，
+两页文字高度检查0溢出，两页PNG视觉复查。接口无变化；未重新板测/RTL，未验证WPS/印刷。
+海报无阻塞；D03整体仍in_progress，下一接收D06材料归档（owner TBD）。
+
+
+## 2026-11-01 — D03 条目编号与典型应用示意图
+
+owner TBD。用户授权修改后直接提交，并要求今后提交标题/说明使用中文；入场main干净，基点83d33af。
+中英文两页的当前交付范围、创新一、创新二按1–3、1–4、1–3编号。左侧重复实物照替换为
+可编辑传感器遥测短消息认证加密应用图，展示采集、Ascon保护、接收端验证/解密和Nonce/密文/Tag，
+依据docs/tech_report/report.md §1.2，明确标注概念示意、未实地部署；右上实物照和校徽保留。
+更新report/poster的PPTX、两张PNG、README及任务状态；目录仍仅4个交付文件。
+验证：PowerPoint16.0渲染及文字边界0溢出，Python3.14.3临时check_application.py exit0、61项PASS，
+其中逐页编号顺序、可编辑应用图、实物照位置、原始周期/加速比和双语表格一致均通过；
+结构/布局检查exit0、0finding，逐页PNG视觉复查。临时脚本/JSON只放ignored目录。
+接口无变化，未重新板测/RTL/现场部署，未验证WPS/印刷；无阻塞，D03整体仍in_progress。
+下一接收D06材料归档，owner TBD。本轮提交标题和正文使用中文。
+
+
+## 2026-11-01 — D03 仅替换左侧DNA/PUF图
+
+owner TBD。用户要求用项目DNA相关图和介绍替换左侧应用图、其他脚本不改；基点c9fff89，入场main干净。
+中英文两页左图改为RO-PUF的128-bit响应与57-bit Device DNA，经固定上下文/P12派生128-bit key；
+来源docs/tech_report/report.md §2.3.4、src/rtl/keys/puf_key.v及device_dna.v。
+图内声明DNA非秘密、独立扩展及未验收边界，备注说明仅正常PUF参与路径、DNA-only回退不保证秘密性。
+只更换PPT左图/图注并更新备注，未改既有脚本；README、两张PNG和日志同步。
+验证：PowerPoint16.0渲染0文字溢出，两页视觉复查；Python3.14.3通用核验51项PASS，
+专项核对157项PASS（原有图形除左图/图注外XML完全一致，master不变、新图字段正确）；
+package/layout检查exit0、0finding。所有验证命令exit0。
+接口无变化；未重新板测/RTL，未验证跨上电、保密隔离、RO时序或其他Office/印刷。
+无阻塞，D03整体仍in_progress；下一接收D06材料归档，owner TBD。按既有授权中文提交并推送。
+
+
+## 2026-11-01 — D03 双语海报更新PUF3最新数据
+
+owner TBD。用户要求仅替换最新相关数据、其他内容不动并直接提交仓库。入场main干净，
+基点033b92f；git fetch origin成功，HEAD与origin/main无差异。三张截图与
+data/pynq_puf3/notebook_20261031_114512/result.json及PUF3 candidate/reports对应。
+中英两页同步加密周期21,862/1,369/3,895、解密22,562/1,213/4,288及相应加速比；
+大数字15.969×与5.613×，柱长按新周期更新。注明KAT529、PT16 B、AD0、HWKEY关闭、
+预热5次/采样30次/中位数、CPU周期不含PS/UART。
+同步LUT18,674、FF32,002、BRAM34.5、DSP4；WNS+0.104 ns、TNS0、WHS+0.041 ns只针对
+已约束路径。100 MHz为配置，99.9723 MHz为mcycle/PS时基估测，非示波器或Fmax测量。
+PUF3各模式289/289 KAT与289次坏Tag拒绝，质量127/128、同会话5次重建稳定、关闭HWKEY后KAT恢复；
+9/9错误门禁和7/7恢复明确归属PYNQ v1历史证据。左图说明改为PUF3同一overlay集成RO-PUF/DNA，
+保留RO计数器域未签核、跨上电/温度/BER/熵/唯一性未测、保密隔离未验收边界。
+修改report/poster的PPTX、双PNG、README及本节/开发日志/任务字段；未改任何既有脚本、RTL、固件或原始证据。
+验证：PowerPoint16.0渲染两页，文字宽高0溢出，逐页视觉复查；Python3.14.3
+`python -X utf8 build/tmp/poster_puf3_data_20261101/check_data.py` exit0，503项PASS，
+含原始30次样本中位数、双语表格/柱长、未修改图形XML一致、母版/布局语义/主题/图片不变、数据对象位置不变。
+`inspect_presentation_package_integrity.py ... --fail-on-findings`和
+`inspect_presentation_layout_geometry.py ... --expected-slide-count 2 --expected-slide-size-emu 12192000,6858000 --require-native-table-slide 1 --require-native-table-slide 2 --fail-on-findings`
+均exit0、0 finding。工具位于presentations/26.1025.11240/skills/presentations/container_tools；
+临时脚本/校验JSON仅留ignored目录，交付目录仍只有4个文件，PPTX SHA-256见README。
+接口无变化；未重新板测、未验证其他Office/WPS/印刷，未新增PUF稳定性或安全验收结论。
+无阻塞，D03仅海报子项完成、整体仍in_progress；下一接收D06材料归档，owner TBD。
+按用户明确授权，使用中文提交标题/说明并推送。
