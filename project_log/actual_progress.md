@@ -1997,3 +1997,13 @@ owner TBD。用户明确授权先拉取最新仓库、制作后 commit/push；�
 - 接口变化：无。未改 RTL、固件、Vivado 或既有测量；未测试其他 Office/WPS/印刷，未重跑板测。
 - D03 仅 PPT 子项完成，整体保持 in_progress；D02/D04/D05/D06 不据此变为 done。
   阻塞：海报无阻塞。下一接收：D03 其余材料审核、D06 将海报纳入最终提交包，owner TBD。
+
+
+## 2026-11-01 — D03 用户更新版海报提交
+
+owner TBD。用户明确要求再次提交更新后的 `report/poster/ascon_soc_poster.pptx`。
+入场仅该 PPTX 修改；保留用户文件字节，未运行初稿构建脚本。PowerPoint 16.0 只读导出
+同名 PNG，同步产物哈希和核验记录。Python 3.14.3 `python -X utf8 report/poster/verify_poster.py`
+exit 0，31 checks PASS；package/layout 检查 exit 0，0 finding，文字高度检查0溢出。
+接口无变化；未重新板测、未验证其他 Office/WPS/印刷。D03整体保持in_progress，
+无提交阻塞；下一接收D06材料归档，owner TBD。本轮按用户授权commit/push。

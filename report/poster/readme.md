@@ -37,3 +37,9 @@ python -X utf8 report/poster/verify_poster.py
 本会话没有可调用的 `load_workspace_dependencies` 或 Artifact Session，因此采用本机 PowerPoint COM，未安装替代依赖。
 已用 PowerPoint 导出并逐页检查；技能提供的 package integrity 与 layout geometry 检查均为 exit 0、0 finding。
 未测试其他版本 Office、WPS、Google Slides 或印刷输出。重建需要用户原模板；核验既有 PPTX 不需要模板。
+
+
+## 2026-11-01 用户修订版
+
+当前PPTX为用户手动更新版，已同步PNG预览和哈希并重新核验。`build_poster.ps1`仍为初稿
+生成器，不包含此次手动编辑，重新运行会覆盖修订；需要继续修改时以当前PPTX为准。

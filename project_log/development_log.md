@@ -577,3 +577,10 @@ owner TBD。用户授权拉取、制作、提交和推送。main 干净，fast-f
 修复 PowerShell 数组算术参数、COM 字号类型与文本框默认高度问题，重建后31项核验、
 结构/布局检查和PowerPoint文字边界检查均通过；复查整页渲染，移开页脚说明与AMD标识重叠。
 同步 report/readme、task_board 和 actual_progress。接口无变化，不重新上板、不更新测量结论。
+
+
+## 2026-11-01 — D03 用户修改版海报再次提交
+
+owner TBD。只读核对用户修改的PPTX，ZIP CRC正常；同步PowerPoint预览、哈希与验证JSON，
+核验31项PASS、结构/布局0 finding。原PPTX哈希在只读操作前后相同，未用构建脚本覆盖修改。
+同步D03状态说明，按用户本轮明确授权提交推送；不触碰RTL/固件/测量数据。

@@ -20,5 +20,6 @@
   "gate_source": "data/pynq/error_gate_20261031_112812/pynq_board_error_gate.json",
   "shapes": 69,
   "native_tables": 1,
-  "output_sha256": "d1713294918e7390f16d9b5c6e9156383ee406863c623385f64181c4f0db0b62"
+  "output_sha256": "db3335de3d7bb8bbe05e692eaa9510cb7efe371b9db531e44919d556e5782345",
+  "revision": "2026-11-01 user-edited PPTX; read-only preview export and revalidation; builder not rerun"
 }
