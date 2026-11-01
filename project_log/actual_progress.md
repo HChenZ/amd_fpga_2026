@@ -1,5 +1,18 @@
 # 实际进度
 
+## 2026-11-01 — 证据包重装与冻结清单（owner TBD）
+
+- 顺序执行（Python 3.13.9）：`build_evidence.py` PASS 52；`check_benchmark_tables.py` 64/64；`assemble.py --check-only` PASS 267；
+  `assemble.py` exit 0 → `submission/evidence_20261101_20261101_183826/`，267 文件，9.0 MB，ZIP SHA-256
+  `2a0f0304e975dd14ca3d53989cac78e000f7584aa8303ed6e5f82fe1500dffec`（比 18:17 版多项目简介）。
+  独立解包 267/267 一致、0 清单外；PDF=构建记录，52 报告源与 98 证据输入齐全；包内简介/视频脚本/计划与仓库一致。
+- 提交 `92159b9`：入口文档更新、`final_report.pdf` 入库、证据包目录；LaTeX 源、截图 PNG、ISE 截图数据/脚本、两个旧 Overleaf ZIP
+  保持未跟踪（196 个未入库文件）。
+- `freeze_manifest.py` exit 0：冻结源码 `92159b9eb2b368814f86fef0030bd95b71613896`；源码包 `submission/source_92159b9.zip`
+  4881 文件、132.8 MB、SHA-256 `0ade4e665743d94d0e3fd173197eb5e34b5ccc3db3b289f3fdba2a22031d95eb`（不入库），CRC 通过，
+  报告工程中只含 PDF、不含截图；清单记录报告构建/PDF 哈希/板测主采样与未入库文件列表。冻结时未推送。
+- V04 仍 in_progress（P0 未验收项不变）；视频实机录制、PPT 与上传待项目方。
+
 ## 2026-11-01 — 入口文档按最终报告/PUF3 10-31 统一，PDF 入库，证据包重装（owner TBD）
 
 - 用户要求：未更新的都更新，内容不过时、数据对应；截图不单独提交；PDF 入库；重新打包并提交。
