@@ -1,0 +1,111 @@
+{
+  "check": {
+    "old_pages": 85,
+    "new_pages": 85,
+    "raw_text_identical_ignoring_whitespace_and_old_wrap_marker": false,
+    "old_wrap_markers": 46,
+    "new_wrap_markers": 0,
+    "technical_text_identical_excluding_pagination_furniture": true,
+    "technical_characters_compared": 87189,
+    "source_changes": [
+      "technical_report/latex/preamble.tex"
+    ],
+    "codeblocks": 23,
+    "all_commands_preserved_in_pdf": true,
+    "logical_command_lines": 31,
+    "image_pixels_identical": true,
+    "code_pages": [
+      13,
+      18,
+      20,
+      23,
+      25,
+      27,
+      31,
+      34,
+      46,
+      50,
+      57,
+      58,
+      59,
+      60,
+      61,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80
+    ],
+    "code_boundary_errors": [],
+    "target_command_pdf_lines": [
+      {
+        "page": 58,
+        "line": "python -X utf8 tools/verify_puf3_sources.py --compile --output build/local/reproduce/run_01/source_check.json"
+      }
+    ],
+    "target_single_line": true,
+    "pdf_sha256": "c3a474d8d9a98d9e1a08034a47a6531ef8d6be72cf70c31ee87f1584a5ff0e0e"
+  },
+  "package_check": {
+    "delivery/puf3_project.zip": {
+      "zip_hash": "PASS",
+      "crc": "PASS",
+      "member_hashes": 262
+    },
+    "delivery/historical_projects.zip": {
+      "zip_hash": "PASS",
+      "crc": "PASS",
+      "member_hashes": 1483
+    },
+    "delivery/pynq_overlay_workflow_skill.zip": {
+      "zip_hash": "PASS",
+      "crc": "PASS",
+      "member_hashes": 27
+    },
+    "delivery/technical_report.zip": {
+      "zip_hash": "PASS",
+      "crc": "PASS",
+      "member_hashes": 61
+    },
+    "changed_report_members": [
+      "technical_report/final_report.pdf",
+      "technical_report/latex/preamble.tex",
+      "technical_report/latex/readme.md",
+      "technical_report/source_manifest.json"
+    ],
+    "other_packages_and_snapshot_unchanged": true
+  },
+  "compile_check": {
+    "baseline": {
+      "Overfull": 0,
+      "Missing character:": 0,
+      "There were undefined references": 0,
+      "Underfull": 64,
+      "Package fontspec Warning": 2
+    },
+    "updated_standalone": {
+      "Overfull": 0,
+      "Missing character:": 0,
+      "There were undefined references": 0,
+      "Underfull": 64,
+      "Package fontspec Warning": 2
+    },
+    "standalone_pages": 85,
+    "standalone_page_text_identical": true
+  },
+  "scope": "D03-CODE; codeblock formatting only; owner TBD; no new hardware/firmware verdict",
+  "backup": "E:/amd_fpga_2026_backups/report_layout_20261102/build/local/report_layout_backup (original PDF and technical_report.zip)",
+  "full_delivery_verifier": {
+    "exit_code": 1,
+    "reason": "cold_firmware: missing riscv-none-elf-gcc / historical C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1; not a report failure",
+    "preceding_steps": "source_identity_elaboration, cold_host_tests, standalone_skill exit0; all four ZIP hashes/CRC/member hashes PASS"
+  },
+  "render_review": "25 pages containing code, plus section 3.4 pages 57-62 rendered and inspected; target command PDF page58 one line; no truncation, overlap or margin spill observed",
+  "old_pdf_sha256": "c071768b7b36afbbca60aa13bc05d2c5a7feb570b083a54272d80a367d0a6e34",
+  "old_zip_sha256": "e183bd4c4021bebeae44acc4b2a35457b589be0745f0dbd279a9cc88fddd376c"
+}

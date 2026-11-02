@@ -94,3 +94,6 @@ python -X utf8 docs/tech_report/evidence/assemble.py
 本轮复算已有数据并重建报告，没有重跑实板、Vivado、PUF 温压或 Skill 效果实验。
 照片已存在但不能从照片判断当前加载镜像或芯片速度等级。warm benchmark JSON/log 已归档，执行后的本体仍待补；
 error-gate 的已执行 Notebook 已归档。所有这些与“功能已运行”的结论分开。
+
+
+2026-11-02：代码块统一取消续行标记、优先空格自动换行；指定命令在PDF第58页完整一行，报告仍85页。正文/命令/数据/图片源未改，仅同步当前PDF与technical_report.zip；[验证与备份](validation/codeblock_layout_20261102/readme.md)。

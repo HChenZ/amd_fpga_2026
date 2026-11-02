@@ -25,13 +25,13 @@
     },
     {
       "path": "delivery/technical_report.zip",
-      "sha256": "e183bd4c4021bebeae44acc4b2a35457b589be0745f0dbd279a9cc88fddd376c",
-      "bytes": 4076080,
+      "sha256": "623b18576565fb4ce945b2a6ad13ecf08d05fbf90844432676b75ee9d5ee1d8b",
+      "bytes": 4097523,
       "files": 62,
       "archive_root": "technical_report",
-      "source_revision": "cd0f3f362ef936a94a0b07874030f46af7c80eac",
-      "generated": "2026-11-02T20:28:14+08:00",
-      "note": "rebuilt alone on 2026-11-02 (figure/path/reproduction update, then section 4.3 AMD ROSS); the other three packages keep the top-level source_revision snapshot"
+      "source_revision": "3efdf5525cb2a9fe4325ee21fb0b3273ca97b868",
+      "generated": "2026-11-02T21:29:46+08:00",
+      "note": "codeblock formatting only; other packages and repository_snapshot remain historical frozen artifacts"
     }
   ],
   "scope": "current and historical source separated; independent Skill; editable report; no evidence-package attachment",

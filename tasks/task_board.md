@@ -235,3 +235,8 @@ owner TBD。
   报告改动后需重跑，assemble.py 会拒绝过期结果。
 - V04 in_progress：`freeze_manifest.py` 在干净提交上生成 `submission/freeze_manifest.{md,json}`
   与本机 `git archive` 源码包；P0 未验收项见上表。15:32 作废证据包已删除。
+
+
+## 2026-11-02 D03-CODE 补充任务
+
+D03-CODE / owner TBD / done：仅代码块排版、85页PDF重编与独立报告包同步；无接口变化。证据 report/technical/validation/codeblock_layout_20261102/readme.md；下一接收D03/D06。完整交付工具的固件重编因缺xPack GCC未通过，未将其改为done。

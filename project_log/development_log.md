@@ -758,3 +758,8 @@ owner TBD。用户提供三张数据截图，要求只更新数据并直接提�
 去掉实现数据框继承段间距后宽高0溢出；Python3.14.3专项核验503项PASS，结构/布局检查exit0。
 同步PPTX、两张PNG、来源README、日志及D03海报状态；不重新运行硬件测试，不修改原始证据。
 海报子项完成、D03整体in_progress；下接D06，owner TBD。提交说明按用户偏好使用中文并推送。
+
+
+## 2026-11-02 D03-CODE（owner TBD）
+
+基于远程3efdf55隔离检出，保留原工作区5项未提交修改；从正式ZIP恢复LaTeX，只调整统一codeblock配置。Tectonic0.15重编与包内独立编译exit0，渲染全代码页面并对照原稿，报告仍85页，更新报告ZIP/哈希。验证证据：report/technical/validation/codeblock_layout_20261102/。无RTL/固件/候选/原始证据变更。
