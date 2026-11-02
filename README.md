@@ -8,6 +8,7 @@
 | 想了解什么 | 入口 |
 |---|---|
 | **项目总看板、当前/历史与交付清单** | [项目看板](project_board.md) |
+| 第一次接手，从克隆到验证、重建与上板 | [从零复现指南](docs/reproduce_from_zero.md) |
 | 当前 PUF3 工程 | [board 工程入口](board/readme.md) |
 | 板上操作 | [PUF3 Notebook](src/pynq_puf3/readme.md) |
 | 当前源码/构建依赖 | [源码说明](src/readme.md)、[构建说明](build/readme.md) |
@@ -19,6 +20,65 @@
 
 当前目录只放 PUF3、其共享依赖和维护文档；独立 DMA/PUF v2/MIN、原型和旧工具集中隔离。
 历史源码的旧相对路径属于当时布局，不应直接当成当前构建命令；物理原件与 Git 历史保留，不改写失败为通过。
+
+## 仓库结构
+
+仅列主要维护入口；Vivado 缓存、临时构建和本机恢复副本不在下列交付结构中。
+
+```text
+amd_fpga_2026/
+├── README.md                       # 项目简介与导航
+├── project_board.md                # 总看板：当前工程、交付物、证据和未测边界
+├── board/                          # 当前板级工程与真实依赖
+│   ├── vivado_zynq7000_xc7z020_pynq_puf3/  # PUF3 Tcl、变体 RTL、已验证 candidate
+│   ├── vivado_zynq7000_xc7z020_ascon/      # PUF3 复用的 XCI / 存储初始化配置来源
+│   └── atk_navigator_7020/                # 板卡资料与引脚说明
+├── src/                            # 当前工程源码与共享支持
+│   ├── rtl/                        # RV32 CPU、Ascon、PUF v1 与 PYNQ 桥
+│   ├── firmware/                   # pynq_svc_puf 主固件及必要共享依赖
+│   ├── pynq/                       # 公共 Python API / 协议；含保留的旧 v1 兼容入口
+│   └── pynq_puf3/                  # 当前完整板测 Notebook
+├── ascon/                          # C / Python 算法实现及说明
+├── sim/                            # Final host、独立 RTL、PUF3 协同仿真
+├── build/                          # 共享 RO 约束 / hook、精选校验元数据
+├── data/                           # 锁定 KAT / 向量、分版本的原始板测
+├── tools/                          # 源码打包、独立解包校验、原件恢复工具
+├── skill/pynq-overlay-workflow/     # 可独立安装的 Skill、示例与测试
+├── docs/                           # 架构、接口、版本和工程约定
+│   └── reproduce_from_zero.md      # 环境准备 → 离线验证 → 固件 / Vivado → 上板
+├── report/                         # 报告入口、双语海报、演示脚本
+├── image/pynq/                     # 已保留的 PYNQ / Skill 界面截图，辅助展示
+├── tasks/                          # 任务看板与阶段交付计划
+├── project_log/                    # 实际进度、开发记录、踩坑与失败
+├── archive/
+│   ├── history/                    # 隔离的独立历史工程和源码，不参与当前默认构建
+│   └── evidence/                   # 原始日志 / 报告 / 历史快照的可校验归档
+├── delivery/                       # 当前源码、历史源码、Skill、技术报告四个独立 ZIP
+└── submission/                     # 旧提交流程说明；当前下载入口是 delivery/
+```
+
+**依赖不要误删：**PUF3 仍使用 `src/firmware/pynq_svc/`、`src/firmware/ascon_hw_rv32/`、
+公共 `src/pynq/` 和保留的 Ascon 工程 IP 配置；名称较旧不等于无用。
+PUF3 的 `soc_top.v` / `key_mmio.v` 用 `board/` 下变体，不是把所有 RTL 递归加入 Vivado。
+
+## 从零复现入口
+
+先在新的工作目录克隆，记录版本；不要在已有工作区执行强制同步或覆盖候选。
+
+```sh
+git clone https://github.com/HChenZ/amd_fpga_2026.git
+cd amd_fpga_2026
+git rev-parse HEAD
+git status --short
+```
+
+按[从零复现指南](docs/reproduce_from_zero.md)选择：
+
+- **先验证现成候选：**检查源码 / 工件身份 → 在匹配的 PYNQ 板端执行 Notebook。
+- **从源码重建：**环境准备 → Final host / RTL 验证 → 固件 → PUF3 协同仿真 → Vivado → 新候选上板。
+
+每步的依赖、命令、输出位置和停止条件均在指南中。离线 PASS 不等于实板 PASS；
+完整干净机器硬件端到端复现和 PUF 未测项目仍保留边界，不因新增教程而改成通过。
 
 ## 当前版本身份与实测范围
 

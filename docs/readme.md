@@ -2,6 +2,7 @@
 
 当前入口从project_board.md和README.md开始。
 
+- [reproduce_from_zero.md](reproduce_from_zero.md)：按当前PUF3入口从克隆、环境到离线验证、重建与上板；区分现成候选和新构建。
 - project_intro_20261101.md / project_overview.md：项目简介与范围。
 - architecture.md / interfaces.md：当前结构和协议，以及旧v1的兼容边界。
 - technical_rules.md / development_workflow.md / agent_workflow.md：验证纪律和协作规则。

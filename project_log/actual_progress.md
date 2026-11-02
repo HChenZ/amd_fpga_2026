@@ -1,5 +1,18 @@
 # 实际进度
 
+## 2026-11-02 — D08 README目录说明与从零复现入口（owner TBD）
+
+- 用户要求参考仓库README的目录说明，并按所给图片风格补一份从零复现文件。入场main工作区干净、HEAD957256f；本轮仅文档，不改程序或重新装配交付。
+- 查阅phantom-drive的README“仓库结构”组织（https://github.com/Freebird415/phantom-drive，访问2026-11-02），只参考目录职责和快速导航形式，不把该项目的技术/成员/来源关系移植到本项目。
+- README新增当前布局目录树、共享依赖提醒、克隆与复现入口；新增docs/reproduce_from_zero.md，分清现成candidate、从源码重建和四ZIP校验三种目标。
+  指南覆盖工具/Windows与WSL、身份检查、Final host、独立RTL、真实RV32固件/协同仿真、Vivado2025.2、RO分析、候选备份和Notebook新副本；不照搬图片中的历史恢复入口。
+- 明确输出写到新的build/local目录，不覆盖冻结build/metadata/、候选、已执行Notebook和旧板测；发布脚本只在独立克隆中备份candidate后运行；新bit须绑定新板测，不能回用旧PASS。
+- 同步project_board.md、docs/readme.md和D08任务导航；现有四ZIP、manifest、PDF、RTL/固件、锁定参考与原始记录保持原字节，新增指南未暗装入旧交付包。
+- 验证：Python3.13.9；5份入口/指南文档44个相对链接、18处命令脚本路径有效，8个argparse CLI的--help均exit0；tools/verify_puf3_sources.py --compile输出到新build/local目录，exit0，56项源/7项构建支持匹配、五工件MATCH。
+  python -B -m pytest -q -p no:cacheprovider：122 passed/3 skipped，exit0；1132个程序/工件/数据/交付保护对象hash全部不变，git diff --check exit0。记录build/local/reproduction_docs_check_20261102/doc_check.json及同目录日志。
+- 未运行新的Vivado综合/实现、PUF3功能协同仿真或实板，不将D05、RO域与PUF可靠性改成通过。D08仅文档完成，接口变化无，阻塞无；下一接收D05独立硬件端到端实做与D06材料审阅，owner TBD。
+- 文档准备阶段停在未提交工作区；随后用户明确要求“直接推送”，授权提交这8份文档及任务/活动记录。发布前再次fetch、核验44个链接及1132个保护对象不变，正常提交推送，不force push；远端同步以Git main引用为准。仍未重打包，不改原始验收状态。
+
 ## 2026-11-02 — D07 最终四包固化与独立复验完成（owner TBD）
 
 - 源码/整理提交124f5c7后生成四个独立ZIP：PUF3源码263件（1959558 B）、历史源码1484件（30305437 B）、独立Skill28件（59655 B）、技术报告62件（3982718 B）；每包均含逐文件hash，最终ZIP SHA-256见delivery/manifest.json。

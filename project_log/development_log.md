@@ -1,5 +1,12 @@
 # 开发记录
 
+## 2026-11-02 — D08 README导航与PUF3从零复现指南
+
+owner TBD。参考phantom-drive README的目录职责组织和用户图片的步骤/命令块形式，新增本仓库实际目录树与docs/reproduce_from_zero.md。
+逐项对照当前host/RTL runner、固件build.py、Vivado Tcl、发布脚本和已执行Notebook，写清环境、输出、预期状态、备份与停止条件；不改程序，不照搬旧baseline命令。
+同步README、项目看板、docs导航与D08任务。Python3.13.9检查44个链接/18处脚本路径与8项CLI帮助，PUF3源集elaboration通过，离线122 passed/3skip；1132项保护hash不变，diff --check通过。
+原始交付四ZIP/PDF/候选/板测未改，D05及PUF未测边界不变。初次保留可审查未提交文档，用户随后明确授权直接推送；再次fetch并校验链接/保护hash后，使用中文提交说明正常发布，不force push，仍不重打包。
+
 ## 2026-11-02 — D07 固化交付与干净源树复验
 
 源码提交124f5c7后固化263/1484/28/62件四ZIP，正式ZIP的独立解包测试与成员hash/编号检查通过。

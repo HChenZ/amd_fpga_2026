@@ -1,5 +1,7 @@
 # 项目总看板
 
+第一次接手先看 [README 目录说明](README.md#仓库结构) 和 [从零复现指南](docs/reproduce_from_zero.md)。
+
 ## 先看这三项
 
 | 交付类别 | 当前内容 | 仓库入口 | 独立交付 |
