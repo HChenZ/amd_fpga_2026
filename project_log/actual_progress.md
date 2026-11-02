@@ -1,5 +1,17 @@
 # 实际进度
 
+## 2026-11-02 — D11 技术报告图件修正、仓库路径对齐与复现章节完善（owner TBD）
+
+- 用户给出图 2-1/2-2/2-4 三张截图：去掉图 2-1 标注旁白底分割；修正图 2-2 连线穿框与文字压线；图 2-4 斜线改为竖直/水平；并按新仓库结构更新报告路径、重点完善复现内容。入场 HEAD 864520d、工作区干净；LaTeX 编辑树先备份到本机 build/local/report_puf3_review/before_figfix_20261102_170615.zip。
+- 图件：图 2-1 旋转标注去白底、放到竖线外侧，AXI/BRAM 竖线移出 soc_top 框线，BRAM 与 Ascon 两路在总线右端分开接入，控制窗口虚线改为直落 cpu_core；图 2-2 控制分发分左右两组、ex_stall_req 从 EX 上沿引出，重定向/训练、操作数旁路、GPR 写回各走独立通道，分支点加圆点，仅保留三处必要的正交跨越；图 2-4 扇出改为竖直分配线、汇聚线止于首尾两路、握手虚线留出竖直段、状态机改为两条正交回路。同类问题顺带修正图 2-3（斜线与压线标注）、2-7/2-9/2-13（白底压线标注）、2-14（旧 run_tests.py 改为 sim/ 脚本）、3-3（-0.118 压零线），以及图 2-4/2-5 说明中的 Markdown 反引号残留。
+- 路径：正文与附录 30 余处按当前仓库更新——docs/ 文档改指 report/design/ 或 archive/history/docs/，旧 v1 验证/交接、keys_rv32、sim/board、sim/pynq、ab_eval_pynq 改指 archive/history/，照片改为 report/technical/figs/board_photo.jpg（与图 3-1 内嵌 JPEG 字节一致），ascon_ise.v 更正为 src/rtl/ascon/；不随 Git 跟踪的 data/ascon/results、build/reports、build/local 原件统一注明 archive/evidence/raw_records_20261102.zip 与 tools/restore_records.py，本地 PL-only bitstream 注明未入库。
+- §3.4 复现说明重写为七节（仓库结构与原始记录、环境与版本、离线验证、比特流构建、上板运行、交付包与报告复核、复现边界），新增表 3-17～3-20；命令全部改为显式 --report/--output 新目录，删去已隔离的 sim/board、sim/pynq 命令，判据逐项对照脚本源码与既有记录（56/7/5 身份、28,661/0、23,965/0、RTL PASS 与 4/0、22 条 custom-0、54 步协同仿真、build.tcl 门禁与打印、package.py 复查项、Notebook 时钟/KAT/基准/PUF 判据）。镜像来源与 SHA-256 位置取自 archive/history 旧 v1 交接 §B/§C。
+- 干净检出复跑：git worktree（864520d，无忽略文件）中于中文 Windows 11（Python 3.13.9、MinGW-w64 GCC 8.1.0、Icarus 14.0 devel、xPack GCC 15.2.0）按 §3.4.3 执行：源集身份 PASS 且 elaboration exit0；固件 BIN/COE 与 candidate 逐字节一致；协同仿真 54 步 PASS、自动锁定反例检出；RTL 回归 PASS、反例 4/0；host 28,661/0、失败契约 23,965/0；restore_records 恢复 2420 件后 pytest 122 passed/3 skipped。test_harness.py 首次 3 个 error（子进程 GBK 错误信息解码失败），设置 PYTHONUTF8=1 后 5 项 OK；首轮复跑曾因服务重启在协同仿真中断，按记录续跑。机器记录 build/metadata/offline_reproduce_check.json（路径已脱敏）。
+- 编译：build_review.py（Tectonic 0.15.0）首轮发现表 2-14 后三行被推出页面——longtable 重置 \@colroom 后，图 2-10/2-11 两张浮动图被叠到同一页顶部；在图 2-10 前加 \Needspace{300pt} 使其就地排放后消除，另补 3 处长路径断行点消除 Overfull \hbox。最终 build_20261102_191808：83 页，evidence/PDF 检查 194/194，日志无 Overfull，PDF 全页扫描无版心外文字。性能/资源/时序数值与原件不变。
+- 报告复核脚本：把打包后的 latex/ 放进干净检出运行 review_evidence.py 时，3 项“ISE screenshot source”因 .tcl/.wcfg 被 autocrlf 检出为 CRLF 而失败（Linux 检出则 4 个 .v 会因记录为 CRLF 而失败）。改为与同脚本 RTL 输入核对一致的 LF/CRLF 等价比较后，主仓库与干净检出均 194/194；只改比较方式，记录的 hash 与原件不变。
+- 同步：report/reproduce_from_zero.md 增补 Windows 原生运行与 PYTHONUTF8 说明、镜像来源及“已有离线复跑记录”一节；report/technical/README.md、report/readme.md、LaTeX readme（构建命令改为 report/technical 路径）与任务看板 D11 更新。
+- 未做：未重跑 Vivado 综合/实现与实板；D05 与 PUF/RO 未签核边界不变。另记：赛题要求文件名纯英文，根目录“AMD 自主选题赛道.md”不符合，本轮未改名。接口变化：无。
+
 ## 2026-11-02 — D10 全部 Markdown 渲染检查与修正（owner TBD）
 
 - 用户要求检查所有 md 文档、保证渲染正确后重新上传。范围为 231 个已跟踪 .md：维护文档、archive/history 137 个、协作会话 21 个与索引。入场 HEAD 51f4365，工作区干净。

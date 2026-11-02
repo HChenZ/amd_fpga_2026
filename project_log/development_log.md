@@ -1,5 +1,13 @@
 # 开发记录
 
+## 2026-11-02 — D11 技术报告图件、路径与复现章节
+
+owner TBD。按用户三张截图修图：图 2-1 去掉旋转标注白底并让 AXI/BRAM 竖线离开 soc_top 框线；图 2-2 重新布线，连线不穿过模块与流水寄存器、标注不压线；
+图 2-4 扇出与状态机改为正交走线。同类问题顺带修正图 2-3、2-7、2-9、2-13、2-14、3-3。正文 30 余处路径对齐当前仓库（docs→report、历史→archive/history、
+原件→raw_records 归档并给出恢复命令），§3.4 复现说明重写为七节并新增表 3-17～3-20。在 864520d 的干净 worktree 中复跑离线命令并记录
+build/metadata/offline_reproduce_check.json（Windows 需 PYTHONUTF8=1）。发现并修正 longtable 与浮动图叠页导致表 2-14 被截断的问题。
+报告 83 页、review_evidence 194/194；复现指南补 Windows 与镜像说明。用户选择只重打技术报告包，并授权提交推送，不 force。
+
 ## 2026-11-02 — D10 Markdown 渲染全量检查
 
 owner TBD。用 cmark-gfm 逐个渲染 231 个已跟踪 .md，判定规则先经 GitHub `/markdown` API 校准；修正中文标点粗体、表格管道符/吞行/列数、

@@ -10,6 +10,13 @@
 CPU描述已去内部编号，实测数据不变，已重新编译并核对。下面v0.9流水线现隔离到archive/history/docs/tech_report，
 原始记录另存archive/evidence；不得按旧路径覆盖当前稿。
 
+2026-11-02 晚间再次重编（83 页）：按审阅意见修正图 2-1、2-2、2-4 的白底标注、穿框连线、压线文字与斜线，
+同类问题顺带修正图 2-3、2-7、2-9、2-13、2-14、3-3；正文路径对齐当前仓库结构；§3.4 复现说明重写为仓库结构、
+环境、离线验证判据、构建、上板判据、交付包/报告复核与边界七节，并引用干净检出离线复跑记录
+`build/metadata/offline_reproduce_check.json`。性能/资源/时序数值不变；构建记录在本机忽略的
+`amd_fpga_2026_latex_final/amd_fpga_2026_report/validation/`，可编辑源随 delivery/technical_report.zip 重新打包。
+重建报告前先运行 `python tools/restore_records.py`，再执行该目录 readme.md 中的 build_review.py 命令。
+
 **当前操作只按 [版本入口](../design/version_entrypoints.md) 与 [证据目录说明](../../archive/history/docs/tech_report/evidence/README.md)。**
 下文旧“阅读/维护/构建入口”全部保留为v0.9历史，不是当前推荐命令；尤其不运行build_report.py覆盖最终报告。
 旧压缩包名称含final/review也不代表当前PDF，选择依据是构建记录和submission/current_evidence.json。

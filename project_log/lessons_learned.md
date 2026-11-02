@@ -1,5 +1,17 @@
 # 经验与踩坑
 
+## 2026-11-02 — 报告图件与复现章节的三个坑（D11）
+
+- 单图预览必须用与正文相同的基础字号：最初用 10pt standalone 渲染，图内 `\scriptsize` 只有 7pt，标注看起来离线很远；
+  报告是 11pt（`\scriptsize`=8pt），同一标注在 PDF 中贴住两侧竖线。预览改为 `standalone` 加 `11pt` 后再逐图调整，最终以 PDF 放大检查为准。
+- longtable 开始时执行 `\global\@colroom\@colht`，会抹掉本页已有顶部浮动图对版心的占用；若随后再遇到 `[!tbp]` 浮动图，LaTeX 误以为放得下，
+  把两张图都堆在该页顶部，表 2-14 后三行被推到页面以外而不报错误，只在日志留下 “Overfull \vbox … while \output is active”。
+  处理：让前一张图就地排放（`\Needspace`），不在同一页形成“顶部浮动图 + longtable + 新浮动图”；每次编译检查该告警，并扫描 PDF 是否有文字落在版心之外。
+- 中文 Windows 上 `sim/ascon/test_harness.py` 的子进程在退出清理已加载的临时 DLL 时输出 GBK 错误信息，父进程按 UTF-8 解码失败，
+  `result.stderr` 变成 None，表现为 3 个 TypeError error，功能断言其实未执行到失败；设置 `PYTHONUTF8=1` 后 5 项全部 OK。复现文档要写明这类环境差异，而不是把首个失败抹掉。
+- 报告引用的 data/ascon/results、build/reports 等原件不随 Git 跟踪；凡在报告里给出这类路径，都要同时写明归档位置与恢复命令，并在干净检出里实际恢复一次验证。
+- 在开发工作区通过的源文件 hash 核对，换到干净检出可能因换行转换失败：同一记录里 .v 按 CRLF、.tcl/.wcfg 按 LF 取 hash，Windows autocrlf 与 Linux 检出各错一组。对文本源一律做 LF/CRLF 等价比较，并实际在干净检出里跑一遍。
+
 ## 2026-11-02 — 中文 Markdown 在 GitHub 上的渲染陷阱（D10）
 
 - 闭合 `**` 前是中文标点、后面紧跟文字时，GitHub 不认粗体：`**停止条件：**固件` 会原样显示星号。写成 `**停止条件**：固件`，或保留原范围时用 `<strong>`。

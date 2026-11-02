@@ -111,6 +111,11 @@ wsl -d Ubuntu -- python3 -X utf8 sim/ascon/test_harness.py
 - `test_harness.py` 刻意注入错误输出、错误认证接受和 hash 错误，检查测试器确实拒绝；预期 unittest `OK`。
   子进程的预期 FAIL 是反例，不是绕过正常失败。
 
+也可在 Windows 原生运行（同一环境的 PATH 中需有 MinGW-w64 等主机 gcc）。**中文 Windows 先设置
+`$env:PYTHONUTF8=1`（cmd 为 `set PYTHONUTF8=1`）**：`test_harness.py` 的子进程在清理已加载的临时 DLL 时输出本地编码的
+错误信息，父进程未启用 UTF-8 模式时解码失败，表现为 3 个 `TypeError` error，这是测试器的解码问题而不是功能断言失败；
+`run_validation.py` 退出时打印的同类 `PermissionError` 不影响退出码与 `summary`。
+
 JSON 及同名 `.log` 写入上面指定的新目录；临时 C 库在 `build/local/ascon_kat/`。
 这些是 host 结果，不能转记成 RV32 执行或实板 KAT。详细范围见 [sim/ascon/readme](../sim/ascon/readme.md)。
 
@@ -200,6 +205,10 @@ python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py
 
 1. 准备已验证板型和匹配镜像，确认能进入有 Overlay / MMIO 权限的板端 Jupyter。
    板卡资料见 [board/atk_navigator_7020](../board/atk_navigator_7020/)；镜像准备不是“在普通 PC 上 pip 安装 PYNQ”。
+   镜像取自厂家资料盘 `4_Source_Code/5_PYNQ_Design/IMG/ZYNQ-7020-2.7.0.zip`，解压 img 的 SHA-256 记录在
+   [旧 v1 交接 §B](../archive/history/board/vivado_zynq7000_xc7z020_pynq/handoff_20261028.md)；写卡、P5 串口跳线、
+   SD 启动模式与网络按该文件 §C 执行，其余 v1 步骤不用于 PUF3。10-31 板测 JSON 记录 PYNQ 2.7.0 / Python 3.8.2 /
+   Linux 5.4.0-xilinx-v2020.2，未记录镜像哈希。
 2. 将完整仓库放到板端 `/home/xilinx/jupyter_notebooks/amd_fpga_2026`。先跑现成候选时直接使用仓库 candidate；
    测新构建时传递**同一套**新 candidate、源码、manifest，使用独立板端目录，不混用新 bit 和旧 hwh / 固件。
 3. 用 Jupyter 的复制 / 另存功能将 [PUF3 Notebook](../src/pynq_puf3/pynq_puf3_board_test.ipynb)
@@ -238,6 +247,16 @@ python -X utf8 tools/verify_delivery.py --output build/local/reproduce/run_01/de
 它在仓库外解包，校验 ZIP / 成员 hash、主机与独立 Skill、固件重编译 BIN 和 elaboration；
 不执行综合 / 实现或真实板测。BIN 对照要求匹配既有工具链；不一致时调查编译器 / flags / 源码，不伪造 hash。
 **不要用 `package_delivery.py` 代替校验：它会重写四个 ZIP 与清单；本次只增文档，不修改冻结交付。**
+
+## 已有的离线复跑记录
+
+2026-11-02 在源码版本 `864520d` 的干净检出（git worktree，无任何忽略文件）中，于中文 Windows 11 原生环境
+（Python 3.13.9、MinGW-w64 GCC 8.1.0、Icarus 14.0 devel、xPack GCC 15.2.0）按第 3～6 步与第 9 步的 pytest 复跑：
+源集身份 PASS 且 elaboration 退出 0；host 28,661 / 0、失败契约 23,965 / 0；RTL 回归 PASS、反例 4 / 0；
+固件 BIN 与 COE 与 candidate 逐字节一致；协同仿真 54 步 PASS 且自动锁钥反例被检出；恢复原件后 pytest 为 122 passed / 3 skipped。
+`test_harness.py` 首次未设 `PYTHONUTF8=1` 时出现上文第 4 步所述的 3 个解码 error，设置后 5 项 OK。
+逐步命令、退出码与结果见 [build/metadata/offline_reproduce_check.json](../build/metadata/offline_reproduce_check.json)。
+该记录不含 Vivado 重建、四包校验与实板，不能据此把 D05 标为完成。
 
 ## 完成后留下什么
 

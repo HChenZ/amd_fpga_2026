@@ -148,6 +148,7 @@ desktop.ini
 /build/metadata/*
 !/build/metadata/puf3_sources.json
 !/build/metadata/source_delivery_check.json
+!/build/metadata/offline_reproduce_check.json
 /data/advanced/
 /data/ascon/results/
 /data/recovery/
