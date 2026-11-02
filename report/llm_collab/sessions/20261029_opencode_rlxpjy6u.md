@@ -6,23 +6,23 @@
 ## 用户提示（2026-10-29 23:59）
 
 You are a subagent spawned by another session.
-Implement independent PUF v2 non-board work comprehensively in this repo per docs/dma_puf_implementation_plan.md and user request all feasible offline implementation, no board. Applicable Vivado instructions explicitly permit delegation. You own src/rtl/keys_v2/, sim/keys_v2/, src/firmware/keys_v2/, src/pynq/puf_helper_v2.py and test only. Do NOT modify existing src/rtl/keys, original soc_top, release, report, root logs/task files (parent handles). First git status/read AGENTS/docs interfaces and keys code. Build new module names preserving original design. Fix watchdog errors, stale data/key, key_valid revocation on start/error, core-domain deadline when ro clock stops, properly synchronize toggle detection using final stages, health flags for equal/no count/overflow as practical, fail closed no DNA-only normal fallback. Diagnostic helper persist/load interface version/board/build binding, not claimed secure helper. Add fail-closed wrapper integration showing internal key feeds existing <=16B crypto_aead with no debug exported in normal mode; test enroll -> encrypt -> reconstruct -> encrypt same result, bad tag refusal plus fault injection. Use Icarus explicitly as extra fast regression; PATH iverilog/vvp known C:/wenjian/.vscode/iverilog/bin. Record versions commands exit code source hashes raw logs JSON in data/advanced/puf/<unique>; add readmes with precise ports/build list. Do not launch Vivado sessions (parent has shared session vivado-20261029-235723-83fb5dde, only parent issues Tcl). Provide XSim-ready bounded selfchecking TB tops and source manifest for parent. Can add independent synth wrapper. No invented entropy/reliability claims; ECC/security final parameters require physical BER and cannot be validated offline: implement what you can soundly, document exact gated remainder. Read appropriate simulation skill if needed. Use patch tool edits. Complete tests and return detailed file list, interfaces, test results, integration handoff. Do not commit.
+Implement independent PUF v2 non-board work comprehensively in this repo per docs/dma_puf_implementation_plan.md and user request all feasible offline implementation, no board. Applicable Vivado instructions explicitly permit delegation. You own src/rtl/keys_v2/, sim/keys_v2/, src/firmware/keys_v2/, src/pynq/puf_helper_v2.py and test only. Do NOT modify existing src/rtl/keys, original soc_top, release, report, root logs/task files (parent handles). First git status/read AGENTS/docs interfaces and keys code. Build new module names preserving original design. Fix watchdog errors, stale data/key, key_valid revocation on start/error, core-domain deadline when ro clock stops, properly synchronize toggle detection using final stages, health flags for equal/no count/overflow as practical, fail closed no DNA-only normal fallback. Diagnostic helper persist/load interface version/board/build binding, not claimed secure helper. Add fail-closed wrapper integration showing internal key feeds existing <=16B crypto_aead with no debug exported in normal mode; test enroll -> encrypt -> reconstruct -> encrypt same result, bad tag refusal plus fault injection. Use Icarus explicitly as extra fast regression; PATH iverilog/vvp known C:/wenjian/.vscode/iverilog/bin. Record versions commands exit code source hashes raw logs JSON in data/advanced/puf/\<unique>; add readmes with precise ports/build list. Do not launch Vivado sessions (parent has shared session vivado-20261029-235723-83fb5dde, only parent issues Tcl). Provide XSim-ready bounded selfchecking TB tops and source manifest for parent. Can add independent synth wrapper. No invented entropy/reliability claims; ECC/security final parameters require physical BER and cannot be validated offline: implement what you can soundly, document exact gated remainder. Read appropriate simulation skill if needed. Use patch tool edits. Complete tests and return detailed file list, interfaces, test results, integration handoff. Do not commit.
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` docs/dma_puf_implementation_plan.md
+- `read` `docs/dma_puf_implementation_plan.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content AGENTS.md,README.md,docs/project_overview.md,docs/technical_rules.md,tasks/task_board.md,project_log/actual_progress.md,project_
+- `shell` `Get-Content AGENTS.md,README.md,docs/project_overview.md,docs/technical_rules.md,tasks/task_board.md,project_log/actual_progress.md,project_`
 
 </details>
 
@@ -34,16 +34,16 @@ Implement independent PUF v2 non-board work comprehensively in this repo per doc
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` src/rtl/keys/*
+- `glob` `src/rtl/keys/*`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` src/rtl/keys/ro_puf_core.v
-- `read` src/rtl/keys/puf_key.v
-- `read` src/rtl/ascon/crypto_aead.v
-- `read` src/rtl/keys/ro_unit.v
+- `read` `src/rtl/keys/ro_puf_core.v`
+- `read` `src/rtl/keys/puf_key.v`
+- `read` `src/rtl/ascon/crypto_aead.v`
+- `read` `src/rtl/keys/ro_unit.v`
 
 </details>
 
@@ -77,22 +77,22 @@ I found two concrete baseline hazards: watchdog completion can publish stale sam
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/keys_v2/run_regression.py
+- `shell` `python sim/keys_v2/run_regression.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Command gcc,clang,riscv64-unknown-elf-gcc -ErrorAction SilentlyContinue | Select-Object Name,Source
+- `shell` `Get-Command gcc,clang,riscv64-unknown-elf-gcc -ErrorAction SilentlyContinue | Select-Object Name,Source`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` docs/technical_rules.md
-- `read` docs/agent_workflow.md
-- `read` src/rtl/ascon/readme.md
-- `read` docs/development_workflow.md
+- `read` `docs/technical_rules.md`
+- `read` `docs/agent_workflow.md`
+- `read` `src/rtl/ascon/readme.md`
+- `read` `docs/development_workflow.md`
 
 </details>
 
@@ -104,7 +104,7 @@ I found two concrete baseline hazards: watchdog completion can publish stale sam
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/keys_v2/run_regression.py
+- `shell` `python sim/keys_v2/run_regression.py`
 
 </details>
 
@@ -120,9 +120,9 @@ The extra Icarus regression now passes enrollment/reconstruction AEAD consistenc
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` src/rtl/keys/key_mmio.v
-- `read` src/rtl/keys/device_dna.v
-- `shell` git diff --check
+- `read` `src/rtl/keys/key_mmio.v`
+- `read` `src/rtl/keys/device_dna.v`
+- `shell` `git diff --check`
 
 </details>
 
@@ -134,25 +134,13 @@ The extra Icarus regression now passes enrollment/reconstruction AEAD consistenc
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/keys_v2/run_regression.py
+- `shell` `python sim/keys_v2/run_regression.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short -- src/rtl/keys_v2 sim/keys_v2 src/firmware/keys_v2 src/pynq/puf_helper_v2.py data/advanced/puf
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` python sim/keys_v2/run_regression.py
+- `shell` `git status --short -- src/rtl/keys_v2 sim/keys_v2 src/firmware/keys_v2 src/pynq/puf_helper_v2.py data/advanced/puf`
 
 </details>
 
@@ -164,13 +152,25 @@ The extra Icarus regression now passes enrollment/reconstruction AEAD consistenc
 
 <details><summary>工具调用 1 次</summary>
 
+- `shell` `python sim/keys_v2/run_regression.py`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
 - `patch` 
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/keys_v2/run_regression.py
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `python sim/keys_v2/run_regression.py`
 
 </details>
 
@@ -265,16 +265,16 @@ Continue remaining non-board integration in your owned paths: implement MMIO ada
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` src/firmware/**/*
+- `glob` `src/firmware/**/*`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `shell` git status --short
-- `read` src/firmware/pynq_dma_svc/build.py
-- `read` src/firmware/keys_rv32/build.sh
-- `read` sim/keys/DNA_PORT_sim.v
+- `shell` `git status --short`
+- `read` `src/firmware/pynq_dma_svc/build.py`
+- `read` `src/firmware/keys_rv32/build.sh`
+- `read` `sim/keys/DNA_PORT_sim.v`
 
 </details>
 
@@ -290,7 +290,7 @@ I’ll add a standalone MMIO peripheral with a versioned register ABI, the exist
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/rtl/keys_v2
+- `read` `src/rtl/keys_v2`
 
 </details>
 
@@ -320,89 +320,29 @@ I’ll add a standalone MMIO peripheral with a versioned register ABI, the exist
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/keys_v2/run_regression.py
+- `shell` `python sim/keys_v2/run_regression.py`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` src/firmware/keys_rv32/crt0.S
-- `read` src/firmware/keys_rv32/riscv.ld
-- `read` src/firmware/keys_rv32/uart.h
-- `read` src/firmware/keys_rv32/uart.c
-- `shell` & 'C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc.exe' --version
+- `read` `src/firmware/keys_rv32/crt0.S`
+- `read` `src/firmware/keys_rv32/riscv.ld`
+- `read` `src/firmware/keys_rv32/uart.h`
+- `read` `src/firmware/keys_rv32/uart.c`
+- `shell` `& 'C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc.exe' --version`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/rtl/cpu_core.v
+- `read` `src/rtl/cpu_core.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` sim/pynq_dma_cpu/*
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` python src/firmware/keys_v2/build.py
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `read` sim/pynq_dma_cpu/tb_dma_cpu.v
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `grep` sim
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `read` sim/board/tb_cpu_interrupt.v
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `grep` src/rtl/dcache.v
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `grep` sim/board
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `read` sim/board/run_targeted_validation.py
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `read` src/rtl
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `grep` src/rtl/ex_stage.v
+- `glob` `sim/pynq_dma_cpu/*`
 
 </details>
 
@@ -414,7 +354,67 @@ I’ll add a standalone MMIO peripheral with a versioned register ABI, the exist
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/keys_v2/run_cpu.py
+- `shell` `python src/firmware/keys_v2/build.py`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `sim/pynq_dma_cpu/tb_dma_cpu.v`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `grep` `sim`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `sim/board/tb_cpu_interrupt.v`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `grep` `src/rtl/dcache.v`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `grep` `sim/board`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `sim/board/run_targeted_validation.py`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `src/rtl`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `grep` `src/rtl/ex_stage.v`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `python sim/keys_v2/run_cpu.py`
 
 </details>
 
@@ -442,7 +442,7 @@ The MMIO tests pass, including all 16 WSTRB masks, helper-load locking, normal-m
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` src/rtl/keys_v2/mmio_abi.md
+- `glob` `src/rtl/keys_v2/mmio_abi.md`
 
 </details>
 
@@ -454,13 +454,13 @@ The MMIO tests pass, including all 16 WSTRB masks, helper-load locking, normal-m
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl/keys_v2/readme.md
+- `grep` `src/rtl/keys_v2/readme.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/rtl/keys_v2/readme.md
+- `read` `src/rtl/keys_v2/readme.md`
 
 </details>
 
@@ -472,26 +472,26 @@ The MMIO tests pass, including all 16 WSTRB masks, helper-load locking, normal-m
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python sim/keys_v2/run_regression.py
-- `shell` python sim/keys_v2/run_cpu.py
+- `shell` `python sim/keys_v2/run_regression.py`
+- `shell` `python sim/keys_v2/run_cpu.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/puf/cpu_v2_20261030_003552_231052/firmware/build.json
+- `read` `data/advanced/puf/cpu_v2_20261030_003552_231052/firmware/build.json`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/puf/cpu_v2_20261030_003552_231052/firmware/build.json
+- `read` `data/advanced/puf/cpu_v2_20261030_003552_231052/firmware/build.json`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/firmware/keys_v2/readme.md
+- `read` `src/firmware/keys_v2/readme.md`
 
 </details>
 
@@ -568,21 +568,21 @@ XSim all5 tops passed; physical OOC synth passed and1280 ring LUTs preserved. Ev
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/rtl/keys_v2/ro_puf_core_v2.v
+- `read` `src/rtl/keys_v2/ro_puf_core_v2.v`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` data/advanced/puf/physical_ooc_20261030_0054/cdc.rpt
-- `read` src/rtl/keys_v2/ro_counter_v2.v
-- `grep` src/rtl/keys_v2/puf_key_v2.v
+- `read` `data/advanced/puf/physical_ooc_20261030_0054/cdc.rpt`
+- `read` `src/rtl/keys_v2/ro_counter_v2.v`
+- `grep` `src/rtl/keys_v2/puf_key_v2.v`
 
 </details>
 
@@ -598,7 +598,7 @@ The report confirms both CDC-1 paths decode `sample_error` before it is register
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` sim/keys_v2/tb_ro_health_v2.sv
+- `read` `sim/keys_v2/tb_ro_health_v2.sv`
 
 </details>
 
@@ -616,7 +616,7 @@ The report confirms both CDC-1 paths decode `sample_error` before it is register
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/puf/physical_ooc_20261030_0054/cdc.rpt
+- `read` `data/advanced/puf/physical_ooc_20261030_0054/cdc.rpt`
 
 </details>
 
@@ -628,14 +628,14 @@ The report confirms both CDC-1 paths decode `sample_error` before it is register
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python sim/keys_v2/run_regression.py
-- `shell` python sim/keys_v2/run_cpu.py
+- `shell` `python sim/keys_v2/run_regression.py`
+- `shell` `python sim/keys_v2/run_cpu.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-FileHash -Algorithm SHA256 src/rtl/keys_v2/ro_puf_core_v2.v,sim/keys_v2/tb_ro_health_v2.sv,src/rtl/keys_v2/cdc_review_20261030.md | Form
+- `shell` `Get-FileHash -Algorithm SHA256 src/rtl/keys_v2/ro_puf_core_v2.v,sim/keys_v2/tb_ro_health_v2.sv,src/rtl/keys_v2/cdc_review_20261030.md | Form`
 
 </details>
 
@@ -709,16 +709,16 @@ Continue actual Vivado final XSim+OOC physical review using parent GENERAL sessi
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` build/advanced/*puf*
+- `glob` `build/advanced/*puf*`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` build/advanced/puf_xsim.tcl
-- `read` build/advanced/puf_physical_ooc.tcl
-- `read` C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/xsim.md
-- `shell` Get-ChildItem Env: | Where-Object { $_.Name -match 'PUF|RO_PERIOD|CORE_PERIOD|MANAGEMENT|IO_BUDGET' }
+- `read` `build/advanced/puf_xsim.tcl`
+- `read` `build/advanced/puf_physical_ooc.tcl`
+- `read` `C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/xsim.md`
+- `shell` `Get-ChildItem Env: | Where-Object { $_.Name -match 'PUF|RO_PERIOD|CORE_PERIOD|MANAGEMENT|IO_BUDGET' }`
 
 </details>
 
@@ -788,7 +788,7 @@ The yielded session is idle. No RO-period bound is present in the environment, s
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/puf/xsim_final_20261030_011517
+- `grep` `data/advanced/puf/xsim_final_20261030_011517`
 
 </details>
 
@@ -830,7 +830,7 @@ The yielded session is idle. No RO-period bound is present in the environment, s
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/puf/physical_final_20261030_0121/cdc_synth.rpt
+- `read` `data/advanced/puf/physical_final_20261030_0121/cdc_synth.rpt`
 
 </details>
 
@@ -872,13 +872,13 @@ The yielded session is idle. No RO-period bound is present in the environment, s
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/puf/physical_final_20261030_0121/constraint_help.txt
+- `grep` `data/advanced/puf/physical_final_20261030_0121/constraint_help.txt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/puf/physical_final_20261030_0121/constraint_help.txt
+- `read` `data/advanced/puf/physical_final_20261030_0121/constraint_help.txt`
 
 </details>
 
@@ -948,7 +948,7 @@ All five updated XSim tops passed. OOC synthesis also passed, and the two CDC-1 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Start-Sleep -Seconds 30
+- `shell` `Start-Sleep -Seconds 30`
 
 </details>
 
@@ -984,27 +984,27 @@ All five updated XSim tops passed. OOC synthesis also passed, and the two CDC-1 
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` data/advanced/puf/physical_final_20261030_0121/methodology.rpt
-- `read` data/advanced/puf/physical_final_20261030_0121/hold_paths.rpt
-- `read` data/advanced/puf/physical_final_20261030_0121/setup_paths.rpt
-- `read` data/advanced/puf/physical_final_20261030_0121/route_status.rpt
-- `read` data/advanced/puf/physical_final_20261030_0121/drc_routed.rpt
+- `read` `data/advanced/puf/physical_final_20261030_0121/methodology.rpt`
+- `read` `data/advanced/puf/physical_final_20261030_0121/hold_paths.rpt`
+- `read` `data/advanced/puf/physical_final_20261030_0121/setup_paths.rpt`
+- `read` `data/advanced/puf/physical_final_20261030_0121/route_status.rpt`
+- `read` `data/advanced/puf/physical_final_20261030_0121/drc_routed.rpt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/puf/physical_final_20261030_0121/methodology.rpt
+- `grep` `data/advanced/puf/physical_final_20261030_0121/methodology.rpt`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` data/advanced/puf/physical_final_20261030_0121/methodology.rpt
-- `read` data/advanced/puf/physical_final_20261030_0121/bus_skew.rpt
-- `read` C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/TIMING-37.md
-- `read` C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/TIMING-39.md
-- `read` C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/TIMING-17.md
+- `read` `data/advanced/puf/physical_final_20261030_0121/methodology.rpt`
+- `read` `data/advanced/puf/physical_final_20261030_0121/bus_skew.rpt`
+- `read` `C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/TIMING-37.md`
+- `read` `C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/TIMING-39.md`
+- `read` `C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/TIMING-17.md`
 
 </details>
 
@@ -1034,7 +1034,7 @@ All five updated XSim tops passed. OOC synthesis also passed, and the two CDC-1 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item src/rtl/keys_v2/physical_constraints.tcl data/advanced/puf/physical_final_20261030_0121/physical_constraints_initial.tcl
+- `shell` `Copy-Item src/rtl/keys_v2/physical_constraints.tcl data/advanced/puf/physical_final_20261030_0121/physical_constraints_initial.tcl`
 
 </details>
 
@@ -1064,13 +1064,13 @@ All five updated XSim tops passed. OOC synthesis also passed, and the two CDC-1 
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/puf/physical_final_20261030_0121
+- `grep` `data/advanced/puf/physical_final_20261030_0121`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/puf/physical_final_20261030_0121/cdc_routed.rpt
+- `read` `data/advanced/puf/physical_final_20261030_0121/cdc_routed.rpt`
 
 </details>
 
@@ -1106,12 +1106,12 @@ All five updated XSim tops passed. OOC synthesis also passed, and the two CDC-1 
 
 <details><summary>工具调用 6 次</summary>
 
-- `read` data/advanced/puf/physical_final_20261030_0121/timing_final.rpt
-- `read` data/advanced/puf/physical_final_20261030_0121/completion_data_bound.rpt
-- `read` data/advanced/puf/physical_final_20261030_0121/methodology_final.rpt
-- `read` data/advanced/puf/physical_final_20261030_0121/topology_summary.txt
-- `read` C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/TIMING-16.md
-- `read` C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/TIMING-23.md
+- `read` `data/advanced/puf/physical_final_20261030_0121/timing_final.rpt`
+- `read` `data/advanced/puf/physical_final_20261030_0121/completion_data_bound.rpt`
+- `read` `data/advanced/puf/physical_final_20261030_0121/methodology_final.rpt`
+- `read` `data/advanced/puf/physical_final_20261030_0121/topology_summary.txt`
+- `read` `C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/TIMING-16.md`
+- `read` `C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/TIMING-23.md`
 
 </details>
 
@@ -1151,13 +1151,13 @@ OOC placement and routing completed: all 39,514 routable nets are routed, with z
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/keys_v2/seal_vivado_evidence.py --xsim data/advanced/puf/xsim_final_20261030_011517 --physical data/advanced/puf/physical_final_2
+- `shell` `python sim/keys_v2/seal_vivado_evidence.py --xsim data/advanced/puf/xsim_final_20261030_011517 --physical data/advanced/puf/physical_final_2`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-FileHash -Algorithm SHA256 src/rtl/keys_v2/ro_puf_core_v2.v,src/rtl/keys_v2/physical_constraints.tcl,data/advanced/puf/physical_final_20
+- `shell` `Get-FileHash -Algorithm SHA256 src/rtl/keys_v2/ro_puf_core_v2.v,src/rtl/keys_v2/physical_constraints.tcl,data/advanced/puf/physical_final_20`
 
 </details>
 
@@ -1222,7 +1222,7 @@ Continue to fix feasible synchronous timing violation rather than leave known -1
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/rtl/keys_v2/puf_key_v2.v
+- `read` `src/rtl/keys_v2/puf_key_v2.v`
 
 </details>
 
@@ -1244,13 +1244,13 @@ I’ll replace the 128-bit combinational popcount with a bounded nibble-at-a-tim
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short -- src/rtl/keys_v2 sim/keys_v2 src/firmware/keys_v2
+- `shell` `git status --short -- src/rtl/keys_v2 sim/keys_v2 src/firmware/keys_v2`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item src/rtl/keys_v2/puf_key_v2.v data/advanced/puf/physical_final_20261030_0121/baseline_puf_key_v2.v
+- `shell` `Copy-Item src/rtl/keys_v2/puf_key_v2.v data/advanced/puf/physical_final_20261030_0121/baseline_puf_key_v2.v`
 
 </details>
 
@@ -1268,8 +1268,8 @@ I’ll replace the 128-bit combinational popcount with a bounded nibble-at-a-tim
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python sim/keys_v2/run_regression.py
-- `shell` python sim/keys_v2/run_cpu.py
+- `shell` `python sim/keys_v2/run_regression.py`
+- `shell` `python sim/keys_v2/run_cpu.py`
 
 </details>
 
@@ -1281,7 +1281,7 @@ I’ll replace the 128-bit combinational popcount with a bounded nibble-at-a-tim
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/keys_v2/run_regression.py
+- `shell` `python sim/keys_v2/run_regression.py`
 
 </details>
 
@@ -1377,7 +1377,7 @@ I’ll replace the 128-bit combinational popcount with a bounded nibble-at-a-tim
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/puf/physical_quality_20261030_021240/setup_paths.rpt
+- `read` `data/advanced/puf/physical_quality_20261030_021240/setup_paths.rpt`
 
 </details>
 
@@ -1389,13 +1389,13 @@ I’ll replace the 128-bit combinational popcount with a bounded nibble-at-a-tim
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/puf/physical_quality_20261030_021240
+- `grep` `data/advanced/puf/physical_quality_20261030_021240`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/puf/physical_quality_20261030_021240/core_internal_setup.rpt
+- `read` `data/advanced/puf/physical_quality_20261030_021240/core_internal_setup.rpt`
 
 </details>
 
@@ -1411,7 +1411,7 @@ The serial count removed the reported internal setup failure. After routing, cor
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item src/rtl/keys_v2/puf_key_v2.v,src/rtl/keys_v2/puf_mmio_v2.v data/advanced/puf/physical_quality_20261030_021240/
+- `shell` `Copy-Item src/rtl/keys_v2/puf_key_v2.v,src/rtl/keys_v2/puf_mmio_v2.v data/advanced/puf/physical_quality_20261030_021240/`
 
 </details>
 
@@ -1429,13 +1429,13 @@ The serial count removed the reported internal setup failure. After routing, cor
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/keys_v2/run_regression.py
+- `shell` `python sim/keys_v2/run_regression.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/keys_v2/run_cpu.py
+- `shell` `python sim/keys_v2/run_cpu.py`
 
 </details>
 
@@ -1519,12 +1519,12 @@ The serial count removed the reported internal setup failure. After routing, cor
 
 <details><summary>工具调用 6 次</summary>
 
-- `read` data/advanced/puf/physical_quality_decode_20261030_023728/timing_final.rpt
-- `read` data/advanced/puf/physical_quality_decode_20261030_023728/core_internal_setup.rpt
-- `read` data/advanced/puf/physical_quality_decode_20261030_023728/core_internal_hold.rpt
-- `read` data/advanced/puf/physical_quality_decode_20261030_023728/management_internal_setup.rpt
-- `read` data/advanced/puf/physical_quality_decode_20261030_023728/route_status.rpt
-- `grep` data/advanced/puf/physical_quality_decode_20261030_023728
+- `read` `data/advanced/puf/physical_quality_decode_20261030_023728/timing_final.rpt`
+- `read` `data/advanced/puf/physical_quality_decode_20261030_023728/core_internal_setup.rpt`
+- `read` `data/advanced/puf/physical_quality_decode_20261030_023728/core_internal_hold.rpt`
+- `read` `data/advanced/puf/physical_quality_decode_20261030_023728/management_internal_setup.rpt`
+- `read` `data/advanced/puf/physical_quality_decode_20261030_023728/route_status.rpt`
+- `grep` `data/advanced/puf/physical_quality_decode_20261030_023728`
 
 </details>
 
@@ -1534,7 +1534,7 @@ The second routed candidate has **no setup violations in the currently timed OOC
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` sim/keys_v2/seal_vivado_evidence.py
+- `read` `sim/keys_v2/seal_vivado_evidence.py`
 
 </details>
 
@@ -1546,7 +1546,7 @@ The second routed candidate has **no setup violations in the currently timed OOC
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/puf/physical_quality_decode_20261030_023728
+- `grep` `data/advanced/puf/physical_quality_decode_20261030_023728`
 
 </details>
 
@@ -1558,13 +1558,13 @@ The second routed candidate has **no setup violations in the currently timed OOC
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/puf/physical_quality_20261030_021240/timing_final.rpt
+- `grep` `data/advanced/puf/physical_quality_20261030_021240/timing_final.rpt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/puf/physical_quality_decode_20261030_023728/management_internal_hold.rpt
+- `grep` `data/advanced/puf/physical_quality_decode_20261030_023728/management_internal_hold.rpt`
 
 </details>
 
@@ -1594,13 +1594,13 @@ The second routed candidate has **no setup violations in the currently timed OOC
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/keys_v2/seal_vivado_evidence.py --xsim data/advanced/puf/xsim_final_20261030_022912 --physical data/advanced/puf/physical_quality
+- `shell` `python sim/keys_v2/seal_vivado_evidence.py --xsim data/advanced/puf/xsim_final_20261030_022912 --physical data/advanced/puf/physical_quality`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-FileHash -Algorithm SHA256 src/rtl/keys_v2/puf_key_v2.v,src/rtl/keys_v2/puf_mmio_v2.v,data/advanced/puf/physical_quality_decode_20261030
+- `shell` `Get-FileHash -Algorithm SHA256 src/rtl/keys_v2/puf_key_v2.v,src/rtl/keys_v2/puf_mmio_v2.v,data/advanced/puf/physical_quality_decode_20261030`
 
 </details>
 

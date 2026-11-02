@@ -186,7 +186,7 @@ non_aligned_word = (ex_mem_addr[1:0] != 2'b00);       // 只用到低 2 位
 
 
 A1 的路径级效果：最差类从 `sel_*_o → id_ex/CE`（13 级 / 8 CARRY4 / logic 3.564 ns）
-变成 `pc → if/ex_mem 或 dcache CE`（9~10 级 / 1~2 CARRY4 / logic ~1.93~2.11 ns），
+变成 `pc → if/ex_mem 或 dcache CE`（9\~10 级 / 1\~2 CARRY4 / logic \~1.93\~2.11 ns），
 **深逻辑类整条消失**，LUT 只多 3 个，六种场景功能/周期完全一致。
 
 A1 的真正价值不是那 +0.009 ns，而是**把“最容易被网表扰动放大成 −0.6 ns 的那一类”删掉了**。

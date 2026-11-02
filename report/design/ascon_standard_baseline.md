@@ -81,7 +81,7 @@ data/ascon、sim/ascon/reference 的字节保留规则和新测试脚本 LF 规�
 | P8 | 数据块 8 rounds；`b4 a5 96 87 78 69 5a 4b` | P8 相同 | permutation 最后 8 RC 相同 | p8 RC 静态相同；接口 R02/R07 |
 | Round | RC XOR s2 低 byte；S-box；ROR 对 `(19,28),(61,39),(1,6),(10,17),(7,41)` | ROUND 匹配；golden 比对通过 | permutation 匹配；golden 比对通过 | 已有完整 S-box/diffusion，静态匹配；本轮未仿真 |
 | Key injection | 初始后 s3^K0/s4^K1；final P12 前 s2^K0/s3^K1，后 s3^K0/s4^K1 | 匹配 | 匹配 | 表达式意图匹配；时序未验 |
-| 输出 | C 与 P 等长；T=LE64(s3)||LE64(s4) | C||T 拼接 | C||T 拼接 | c[63:0] 截断、GET_TAG 覆盖 R03 |
+| 输出 | C 与 P 等长；T=LE64(s3)\|\|LE64(s4) | C\|\|T 拼接 | C\|\|T 拼接 | c[63:0] 截断、GET_TAG 覆盖 R03 |
 | 解密失败 | fail；应用不得使用未认证明文 | -1；但 buffer/mlen 保留候选明文 S01 | bad tag 返回 None；短 tag assertion | decrypt 空壳 R06 |
 | 长度 | AD/PT 显式长度；允许尾零、多块 | unsigned long long 显式长度 | bytes 长度 | get_bytes(value) 推导长度 R01 |
 
@@ -165,7 +165,7 @@ C test adapter 丢弃失败候选 plaintext，但不修复生产 API。因此另
 |---|---|---|
 | R01 | src/rtl/ascon/ascon_aead.v:27-28,263-278 | get_bytes 用最高非零 bit 推导长度；00 被认为空，a500 被认为 1 byte；16-byte 输入不支持多块。建议显式长度/分块，用 extended_00/01/02 和尾零/多块用例 |
 | R02 | ascon_aead.v:44-45；ascon_permutation.v:11,77 | p12/p8 需要 start，AEAD 实例未连接；无法启动 busy 路径。建议请求/接收/完成握手与 busy 时 start 规则 |
-| R03 | ascon_aead.v:13,225-237 | c 只有 64 bits，GET_TAG 两次赋值覆盖，无独立 tag/长度/done；不能返回完整 C||16-byte T。建议输出/流接口及有效时序 |
+| R03 | ascon_aead.v:13,225-237 | c 只有 64 bits，GET_TAG 两次赋值覆盖，无独立 tag/长度/done；不能返回完整 C\|\|16-byte T。建议输出/流接口及有效时序 |
 | R04 | ascon_aead.v:135,171,176 | packed 数据加 rate/8 不等同 C 指针推进；s1_load_in 用 m_reg+8，不是第二 64-bit slice。建议明确 block/byte 索引，测 full/multi-block |
 | R05 | ascon_aead.v:147-156,205-211 | AD=8 走 s0 pad 分支，shift 64 丢 pad，应填 s1；短 PT 设置 s1_pad_in 却读 s0_pad_out；新 load 参数同拍读取旧输出。建议 >=8 分支、正确 pad 输入与时序，测 7/8/9/每个尾长 |
 | R06 | ascon_aead.v:241-261 | decrypt 仅声明，无 tag verify/输出驱动。建议实现并测篡改拒绝、失败明文发布规则后才宣称 AEAD RTL 完成 |

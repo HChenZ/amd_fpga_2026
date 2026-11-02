@@ -44,11 +44,11 @@ JSON 自带 `wall_time_scope: descriptive only`。
 | 3 | 板上 ISA 抽样回归 | 仓库内三套 `data/ascon/results/isa/*/` 均为仿真/host，且 `rv32ui_ma_data.json` 三套全 `FAIL` | 先定 ma_data 失败归因（修或写豁免），再在板上跑 riscv-tests 子集 |
 | 4 | 完整 1,089 组板级 KAT 的剩余 800 组 | 板端上限 16 B，仅 289 组（PT/AD 各 0–16 全组合）；`error_gate` 仅验证 17 B 返回 `LENGTH` | 需 AXI-Stream/DMA 或分段接口；否则正文只能写 289/1,089 |
 | 5 | 长时运行与资源泄漏统计 | 手头最长证据为 30 次采样 + 每模式 50 次往返；无小时级运行、无 FD/内存增长记录 | 板端循环跑 1–4 h，周期采样 `/proc/<pid>/fd`、RSS |
-| 6 | 大消息吞吐、密码核独立 PPA | 未测；`git ls-files | grep standalone` 为空 | 需独立 ascon core 的 OOC 综合 + 流式吞吐测试 |
+| 6 | 大消息吞吐、密码核独立 PPA | 未测；`git ls-files \| grep standalone` 为空 | 需独立 ascon core 的 OOC 综合 + 流式吞吐测试 |
 | 7 | PYNQ 独立 FCLK 测量 | `validation_20261029.md` 第 49 行仍 `not_measured`；只有 PS 侧读 PL 计数器 | 用 PL 输出方波到 PS 计数器，或外部频率计 |
 | 8 | 10-29 的仿真 smoke/regression 存档 | 仓库内 `build/reports/pynq_final_20261028/` 为 **10-28、source_head 0f5d49c** 的 run：smoke `elapsed_s=18.739`、regression_final `400.168`；而报告 §5.4 写 **16.4 s / 757.7 s**，两者不是同一次 run | 重跑 `sim/board/run_tests.py --mode smoke/regression` 并归档，或把 §5.4 改成 10-28 run 的实测值 |
 | 9 | P0 三份 Vivado 报告、IO 机检输出、bitstream 入库 | 均未入 git（`.gitignore` 排除 `*.runs/`、`build/local/**`）；目前只在未跟踪的 `submission/evidence/` 里 | 按 D3/D5 决策：入 900 KB 文本报告 / bitstream 只进证据包 |
-| 10 | B03 板卡实物证据 | `git ls-files | grep -E '\.(jpg|png|mp4)$'` 为空——仓库无任何图片；丝印/速度等级/SD 镜像/跳线均无 | 拍板卡正反面、核心板丝印、SD 卡与跳线照片 |
+| 10 | B03 板卡实物证据 | `git ls-files \| grep -E '\.(jpg\|png\|mp4)$'` 为空——仓库无任何图片；丝印/速度等级/SD 镜像/跳线均无 | 拍板卡正反面、核心板丝印、SD 卡与跳线照片 |
 | 11 | `dna.txt`、`docs/tech_report/`、`submission/` | 仍未跟踪（`git status` 显示 `??`） | 由项目方决定是否入库 |
 
 已解决、不必再查：

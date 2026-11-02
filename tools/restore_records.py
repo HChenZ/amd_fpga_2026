@@ -14,7 +14,9 @@ def main():
             name = info.filename
             if name.endswith('/') or name.endswith('SHA256SUMS.txt'):
                 continue
-            if not name.startswith(('data/', 'build/', 'report/llm_collab/sessions/')):
+            # report/llm_collab/sessions/ is tracked in the repository since 2026-11-02 (render-safe copy);
+            # its byte-exact originals stay in this archive and are not restored over the tracked files.
+            if not name.startswith(('data/', 'build/')):
                 continue
             target = (ROOT / name).resolve()
             if not target.is_relative_to(ROOT):

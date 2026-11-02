@@ -1,5 +1,17 @@
 # 实际进度
 
+## 2026-11-02 — D10 全部 Markdown 渲染检查与修正（owner TBD）
+
+- 用户要求检查所有 md 文档、保证渲染正确后重新上传。范围为 231 个已跟踪 .md：维护文档、archive/history 137 个、协作会话 21 个与索引。入场 HEAD 51f4365，工作区干净。
+- 方法：临时 venv 安装 cmarkgfm（GitHub 同款 cmark-gfm），逐文件渲染并按源码行检查：贴中文标点的粗体失效、表格单元格（含行内代码）中的 `|` 拆列丢字、表格后紧跟的行被吞成表格行、表头与分隔行列数不等、成对单个 `~` 变删除线、被剥除的 `<tag>`、裸 URL 吞掉中文标点、未闭合代码围栏、`*` 通配符变斜体、数学公式。先用 GitHub `/markdown` API 验证判定与 GitHub 一致；数学按 API 结果收紧（闭合 `$` 后接字母不成公式，PowerShell 的 `$var` 不受影响）。
+- 维护文档（只改标记、不改文字）：README 3 处与复现指南 3 处“标签：”粗体；设计基线与邮箱协议 4 行表格中的 `||` 转义；actual_progress、lessons_learned、task_board 的删除线、通配符斜体、`<install>`/`<ver>`、裸 URL 与 3 处被吞进表格的结论行（前加空行）；另把 2 个已隔离文件的旧链接改指 archive/history。
+- archive/history 16 个文件：2 张因分隔行列数不等而不渲染的表、表格内管道符、粗体、删除线、斜体、1 处缺失的闭合反引号，2 个公式中会被 Markdown 吃掉的 `\,\|\,`/`\|` 改为等价的 `\mathbin{\Vert}`/`\Vert`。
+- 两处历史结构损坏：key_subsystem.md 自首次提交 ad38eda 起 printf 里的 `\n` 被写成真实换行，列表与代码围栏错位，第 301 行后整篇变成代码，恢复为 `\n`；timing_route_tests_20261024.md 的 §9.2 标题在 adcd9ee 被误插一段证据清单（编辑工具匹配到同名补丁的第一次出现），同样 5 行已在证据块中，恢复 8e51bee 的标题并删除重复。
+- 协作会话：按“修生成器”处理 export_sessions.py（code_span/md_safe：工具调用摘要放进行内代码；正文代码外，含 GitHub 会剥除标签的段落整段转义标签，可成对的单个 `~` 转义，贴中文标点失效的 `**` 改 `<strong>`，作者写的原始 HTML 块不动）。源库在 10-30 后继续增长，重导出无法复现原范围，所以用同一函数处理 raw_records_20261102.zip 中的逐字节原件一次生成仓库副本。逐行审计只有 3922 个反引号、91 个 `\<`、7 个 `\~`、4 处 `**`→`<strong>`，撤销后与原件逐行一致。index.md 说明与导出器生成文字一致；restore_records.py 不再恢复已入库会话（否则遇不同字节拒绝覆盖而退出）。
+- 换行：archive/history 为 -text，工作区此前残留 CRLF 而 Git 状态缓存未显示，编辑后会整文件改换行；已把修改文件恢复为与 HEAD 相同的 LF。20_part2.md 与 1 个会话在 HEAD 中本就含 CRLF，保持原样。
+- 验证：cmark-gfm 复扫 231 个文件 E 类缺陷 0（余 3 条为 `__file__`、`__udivdi3`、`_rep__0` 字面量误报）；GitHub API 渲染 17 个代表文件（README、复现指南、协议、基线、本次三份日志与任务板、report 与会话索引、2 个修复的历史文档、campaign、4 个会话含最大的 3 个）0 缺陷；pytest -q -p no:cacheprovider 122 passed/3 skipped；tools/restore_records.py exit0（恢复 20 个本机忽略的 data/build 副本）；相对链接 181 个，损坏 2 个（目标为 .gitignore 中的本机文件）。
+- 未改：上游第三方 README（pyascon、riscv-tests、ascon-c）按原作者的 setext 标题、缩进代码与 `*` 脚注渲染；中文硬换行在 GitHub 显示为空格属写法风格，未全量重排；交付 ZIP 未重打包。接口变化：无。
+
 ## 2026-11-02 — D09 仓库结构对齐赛题推荐目录（owner TBD）
 
 - 用户给出当前README目录树与赛题3.3.5.4推荐结构截图，要求report/对齐“设计报告 + 大模型协作记录”。经确认：docs/整体并入report/；llm_collab移回report/且会话原文入库；README补目录对照；完成后正常commit/push。入场工作区干净、HEAD c300ba9。
@@ -13,7 +25,7 @@
 ## 2026-11-02 — D08 README目录说明与从零复现入口（owner TBD）
 
 - 用户要求参考仓库README的目录说明，并按所给图片风格补一份从零复现文件。入场main工作区干净、HEAD957256f；本轮仅文档，不改程序或重新装配交付。
-- 查阅phantom-drive的README“仓库结构”组织（https://github.com/Freebird415/phantom-drive，访问2026-11-02），只参考目录职责和快速导航形式，不把该项目的技术/成员/来源关系移植到本项目。
+- 查阅phantom-drive的README“仓库结构”组织（<https://github.com/Freebird415/phantom-drive>，访问2026-11-02），只参考目录职责和快速导航形式，不把该项目的技术/成员/来源关系移植到本项目。
 - README新增当前布局目录树、共享依赖提醒、克隆与复现入口；新增docs/reproduce_from_zero.md，分清现成candidate、从源码重建和四ZIP校验三种目标。
   指南覆盖工具/Windows与WSL、身份检查、Final host、独立RTL、真实RV32固件/协同仿真、Vivado2025.2、RO分析、候选备份和Notebook新副本；不照搬图片中的历史恢复入口。
 - 明确输出写到新的build/local目录，不覆盖冻结build/metadata/、候选、已执行Notebook和旧板测；发布脚本只在独立克隆中备份candidate后运行；新bit须绑定新板测，不能回用旧PASS。
@@ -1186,7 +1198,7 @@ owner TBD；基线 `3c6f134`（工作区 clean）。未改 RTL/XDC/XCI/COE，未
   新增脚本 `build/sweep_margin_phys.tcl`、`build/probe_timing_wall.tcl`、`build/probe_geometry{,2}.tcl`；
   证据 `build/reports/margin_20261020/*/`、`build/local/margin_20261020/`。
 - **未完成**：降频后的实测 STA（需改 XCI，待用户决定）；L1 RTL 断链（属 RTL owner）；
-  B02/B03/B04/V01/V03/Y01~Y05/S01~S05 状态不变。
+  B02/B03/B04/V01/V03/Y01\~Y05/S01\~S05 状态不变。
 - 首轮脚本用 `get_timing_paths -pulse_width` 取 WPWS 抛错（2025.2 无该选项），
   发生在写 result.txt 之前；RPT 正常，数字取自 `route_timing.rpt`，脚本已修正。
 
@@ -1237,7 +1249,7 @@ owner TBD；基线 `3c6f134`（工作区 clean）。未改 RTL/XDC/XCI/COE，未
   `src/rtl/ex_stage.v` 非对齐判定改用 3 位部分和（`(a+b)[2:0] == (a[2:0]+b[2:0])[2:0]`），
   把 32 位地址加法器从 `trap → flush → ID/EX 使能` 锥里摘出。
   实测 **WNS +0.016 / TNS 0 / 0 失败端点 / WHS +0.012 / LUT 11821(+3)**；
-  最差类由 13 级/8 CARRY4/logic 3.564 ns 变为 9~10 级/1~2 CARRY4/logic ~1.93 ns。
+  最差类由 13 级/8 CARRY4/logic 3.564 ns 变为 9\~10 级/1\~2 CARRY4/logic \~1.93 ns。
   功能与周期六场景逐项一致（ise/stall/reset 2496、安全 402/0、hw PASS、sw 17353/21515/17847/22094）。
 - **100 MHz 天花板**：A1 + 4 个 floorplan/directive 变体 = +0.003 / +0.022 / −0.041 / −0.297，
   最优 **+0.022**（A1 + pblock X50Y0:X113Y99）。最差路径始终是 `pc → icache tag → CE`
@@ -1280,7 +1292,7 @@ owner TBD；基线 f52bc49 + 工作区 dcache/ascon_ise/ex_stage/mult 修改（�
 - **未完成**：板级 IO delay/板型/pinout（B02/B03）、PS/PYNQ（P1）、Ascon 固件镜像
   替换（COE 仍 FreeRTOS）、板上 KAT/benchmark（V01/I08/Y01）。芯片级收敛不等于上板通过。
 - 证据：build/reports/timing_acb_20261018/{postroute,remap}/、
-  data/ascon/results/key_lifecycle/*_timing_acb*.json、data/ascon/results/isa/{fix_r1_control,timing_acb}/。
+  data/ascon/results/key_lifecycle/\*_timing_acb\*.json、data/ascon/results/isa/{fix_r1_control,timing_acb}/。
 
 ## 2026-10-18 — V09 A→C→B 与双策略完成：既有 100 MHz STA 通过
 
@@ -1579,8 +1591,8 @@ E:/amd_fpga_2026_integration，分支feat/ascon-decrypt-kat-integration。
 - 所有四个production.v编译exit0，10module无重复，全源加解密仿真exit0，
   原队友TB5组PASS。故障注入4/4，三个功能故障vvp exit1、坏向量runner exit1。
   参考全1,089 KAT gate12,936/0；软件四backend本worktree重跑28,661/0。
-- 新证据rtl_integration_regression.*、rtl_integration_harness.json、
-  host_integration_validation.*，记录0a425f9+实际dirty source/TB/scripts hashes，
+- 新证据rtl_integration_regression.\*、rtl_integration_harness.json、
+  host_integration_validation.\*，记录0a425f9+实际dirty source/TB/scripts hashes，
   不是旧7139a80结果复用。工具版本/命令/退出码及保护说明见最新解密整合报告。
 - 最终integration_review.json核验当前源码/验证源哈希、原28dirty和89备份未变，
   远程main仍0a425f9、diff --check exit0；暂存/提交/推送/PR为0。
@@ -1850,7 +1862,7 @@ owner TBD。用户要求：在站点里加一张能看出"当前布局布线是�
 | hf_clock_hold | `-clock_opt` + `-aggressive_hold_fix` | +0.138 | +0.017 | 0.000 / 0.000 |
 
 结论：WHS 为正时 hold 修复指令无事可做（help 只对 "hold violators" 生效），LUT 数也不变。
-hold 薄的结构原因是 Ascon 核内 0~1 级逻辑的相邻寄存器对（数据 0.30~0.44 ns，最差
+hold 薄的结构原因是 Ascon 核内 0\~1 级逻辑的相邻寄存器对（数据 0.30\~0.44 ns，最差
 `p12_inst/s_out_reg[315] → u_crypto_aead/s4_reg[59]`，靠 +0.271 ns 时钟偏斜撑到 +0.017）。
 35 臂统计 `corr(WNS,WHS) = −0.516`，WHS ≥ +0.05 的 7 个臂 WNS 全部 ≤ −0.102（setup 违例），
 官方生产也只有 +0.023/+0.031 → 建议把 hold 门限改为 "hold 失败端点 = 0 且 WHS > 0"。
@@ -1949,6 +1961,7 @@ WHS 由一整群 0~1 级逻辑的寄存器对决定，不是单点。**结论：
   | SCD / DCD / CPR | −2.156 / −1.675 / −0.504 | −2.423 / −2.146 / −0.528 |
   | **skew** | **−0.024** | **−0.252** |
   | data path | 9.152 | 9.103 |
+
   → 结论：唯一倒退不是数据路径变差（快 0.049），而是 **MMIO 那 2048 个 FF 从 clock region X0Y2 搬到 X0Y1**，捕获时钟提前 0.233 ns，skew 由 −0.024 变 −0.252。同一搬动也解释了 `u_crypto_aead` 的 −0.180。
 - 全站 16 条路径的 skew 分布：base −0.225…+0.052，ndh −0.252…+0.054 —— **离散步长几乎不变（0.28 vs 0.31 ns）**，变的是「哪条路径抽到下签」。所以设计的时钟树本来就带 ~0.25 ns 的落地差，WNS 只有 0.1 ns 余量时等于听天由命。
 - 站点修正：Δ 列改为「本页 − 对比」；彩线恒为本页网表；路径列表标题与 Δ 表头改为动态 tag；`next.html` 的 ndh WHS 由 `not_measured` 更正为 **+0.017**（比基线 +0.023 更差）。
@@ -2027,6 +2040,7 @@ WHS 由一整群 0~1 级逻辑的寄存器对决定，不是单点。**结论：
   | control（10-20 记录） | +0.007 | 0 | 0 | +0.023 | 11509 | 16040 | 38.5 |
   | **c_100（C）** | **+0.057** | 0 | **0** | +0.019 | 11476 | 16146 | **34.5** |
   | fc_100（F+C） | +0.005 | 0 | 0 | +0.013 | 11784 | 16189 | 34.5 |
+
   → C 是第一个既把目标族打穿、又在 100 MHz 上正收益的 RTL 改动；**F+C 不如 C 单独**（F 的 +202 LUT 纯负担）。
 - **等价性两道**：① 全 SoC 6 场景（`check_C.sh`）KAT 全 PASS，cycles 与 control 完全相同
   （ise/ise_stall/ise_reset 2496、hw full MMIO **670** 与 latency 99 不变、sw 17353/21515/17847/22094 不变）；
@@ -2115,6 +2129,7 @@ WHS 由一整群 0~1 级逻辑的寄存器对决定，不是单点。**结论：
   | **rep_ff400** | **只 state[3]** | **+0.130** | +0.013 | 0 | 60 |
   | rep_any150 | 24 根宽网 | +0.124 | +0.013 | 0 | 93 |
   | e_100 | RTL `max_fanout=64` + 生产策略 | **−0.008** | +0.028 | **1** | — |
+
   → **只复制一根网就 +0.127（同流程对照），复制 24 根反而略差**；
   **合成期复制（RTL 属性）是反例**：放置后复制才能把 628 个负载分给就近副本。
 - 复制后 `state[*]` 从 fo≥128 清单消失；新最差 `sel_ex_mem_rs1_o_reg →

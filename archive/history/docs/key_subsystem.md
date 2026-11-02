@@ -240,13 +240,10 @@ TB 侧另有一条 `framing_err` 计数：UART 监视器会校验 stop bit，坏
    *(volatile uint32_t*)0x30000084 = 0x3;                  // start + enroll
    while (!(*(volatile uint32_t*)0x30000080 & (1u<<5))) ;  // wait done
    uint32_t st = *(volatile uint32_t*)0x30000080;          // quality = st>>8
-   printf("DNA  = %08x%08x
-", *(volatile uint32_t*)0x3000008c & 0x1ffffff,
+   printf("DNA  = %08x%08x\n", *(volatile uint32_t*)0x3000008c & 0x1ffffff,
                                  *(volatile uint32_t*)0x30000088);
-   printf("REF  = %08x %08x %08x %08x
-", REG(0x94), REG(0x98), REG(0x9c), REG(0xa0));
-   printf("MASK = %08x %08x %08x %08x
-", REG(0xa4), REG(0xa8), REG(0xac), REG(0xb0));
+   printf("REF  = %08x %08x %08x %08x\n", REG(0x94), REG(0x98), REG(0x9c), REG(0xa0));
+   printf("MASK = %08x %08x %08x %08x\n", REG(0xa4), REG(0xa8), REG(0xac), REG(0xb0));
    ```
 4. 把 `REF`/`MASK` 填回顶层参数 `KEY_INIT_REF`/`KEY_INIT_MASK`，重新综合 → 下次上电直接 reconstruct。
 

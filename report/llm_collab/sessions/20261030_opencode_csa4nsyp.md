@@ -10,45 +10,45 @@ Implement CPU-preserving DMA endpoint, firmware, host backend and tests for all 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` docs/advanced_dma_contract.md
+- `read` `docs/advanced_dma_contract.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content AGENTS.md,README.md,docs/project_overview.md,docs/technical_rules.md,tasks/task_board.md,project_log/actual_progress.md,project_
+- `shell` `Get-Content AGENTS.md,README.md,docs/project_overview.md,docs/technical_rules.md,tasks/task_board.md,project_log/actual_progress.md,project_`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/firmware/pynq_svc
+- `read` `src/firmware/pynq_svc`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` src/firmware/pynq_svc/ascon_modes.c
-- `read` src/firmware/pynq_svc/main.c
-- `read` src/firmware/pynq_svc/build.sh
-- `read` src/rtl/bus_interconnect.v
-- `read` src/pynq/mailbox_protocol.md
+- `read` `src/firmware/pynq_svc/ascon_modes.c`
+- `read` `src/firmware/pynq_svc/main.c`
+- `read` `src/firmware/pynq_svc/build.sh`
+- `read` `src/rtl/bus_interconnect.v`
+- `read` `src/pynq/mailbox_protocol.md`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` src/rtl/soc_top.v
-- `read` sim/pynq
-- `read` src/firmware/pynq_svc/svc.h
-- `shell` wsl bash -lc 'command -v riscv64-unknown-elf-gcc; command -v iverilog'
-- `read` src/rtl/top.v
+- `read` `src/rtl/soc_top.v`
+- `read` `sim/pynq`
+- `read` `src/firmware/pynq_svc/svc.h`
+- `shell` `wsl bash -lc 'command -v riscv64-unknown-elf-gcc; command -v iverilog'`
+- `read` `src/rtl/top.v`
 
 </details>
 
@@ -78,41 +78,35 @@ Implement CPU-preserving DMA endpoint, firmware, host backend and tests for all 
 
 <details><summary>工具调用 5 次</summary>
 
-- `shell` wsl --list --verbose
-- `read` sim/pynq/run_service.py
-- `read` sim/pynq/tb_pynq_svc.v
-- `glob` **/soc_top*.v
-- `read` src/rtl/pynq/readme.md
+- `shell` `wsl --list --verbose`
+- `read` `sim/pynq/run_service.py`
+- `read` `sim/pynq/tb_pynq_svc.v`
+- `glob` `**/soc_top*.v`
+- `read` `src/rtl/pynq/readme.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item src/rtl/bus_interconnect.v src/rtl/pynq_dma_cpu/bus_interconnect_dma.v Copy-Item board/vivado_zynq7000_xc7z020_pynq/rtl_p0/soc_top
+- `shell` `Copy-Item src/rtl/bus_interconnect.v src/rtl/pynq_dma_cpu/bus_interconnect_dma.v Copy-Item board/vivado_zynq7000_xc7z020_pynq/rtl_p0/soc_top`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build
+- `grep` `build`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Test-Path C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc.exe
+- `shell` `Test-Path C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc.exe`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl/pynq_dma_cpu/soc_top_dma.v
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
+- `grep` `src/rtl/pynq_dma_cpu/soc_top_dma.v`
 
 </details>
 
@@ -124,7 +118,13 @@ Implement CPU-preserving DMA endpoint, firmware, host backend and tests for all 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python src/firmware/pynq_dma_svc/build.py --cc-prefix C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `python src/firmware/pynq_dma_svc/build.py --cc-prefix C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-`
 
 </details>
 
@@ -136,25 +136,25 @@ Implement CPU-preserving DMA endpoint, firmware, host backend and tests for all 
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl/pynq_dma_cpu/soc_top_dma.v
+- `grep` `src/rtl/pynq_dma_cpu/soc_top_dma.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl/cpu_core.v
+- `grep` `src/rtl/cpu_core.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/run.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe
+- `shell` `python sim/pynq_dma_cpu/run.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/pynq/ascon_host_api.py
+- `read` `src/pynq/ascon_host_api.py`
 
 </details>
 
@@ -166,7 +166,7 @@ Implement CPU-preserving DMA endpoint, firmware, host backend and tests for all 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python src/pynq/test_dma_transport.py
+- `shell` `python src/pynq/test_dma_transport.py`
 
 </details>
 
@@ -182,43 +182,25 @@ The real RV32 integration regression passed all 84 transactions, including 32-by
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe
+- `shell` `python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl/cpu_core.v
+- `grep` `src/rtl/cpu_core.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl/ex_stage.v
+- `grep` `src/rtl/ex_stage.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/rtl/ex_stage.v
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `grep` src/rtl/cpu_core.v
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` python sim/pynq_dma_cpu/run.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe
+- `read` `src/rtl/ex_stage.v`
 
 </details>
 
@@ -230,19 +212,13 @@ The real RV32 integration regression passed all 84 transactions, including 32-by
 
 <details><summary>工具调用 1 次</summary>
 
-- `patch` 
+- `grep` `src/rtl/cpu_core.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` Copy-Item src/rtl/pynq_dma_cpu/top_dma.v board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq_dma_cpu.v
+- `shell` `python sim/pynq_dma_cpu/run.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe`
 
 </details>
 
@@ -266,25 +242,7 @@ The real RV32 integration regression passed all 84 transactions, including 32-by
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python src/firmware/pynq_dma_svc/build.py --cc-prefix C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` python sim/pynq_dma_cpu/run.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` New-Item -ItemType Directory -Path data/advanced/dma_cpu/build_20261030_0021 Copy-Item build/local/pynq_dma_svc/build.json data/advanced/dma
+- `shell` `Copy-Item src/rtl/pynq_dma_cpu/top_dma.v board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq_dma_cpu.v`
 
 </details>
 
@@ -296,7 +254,7 @@ The real RV32 integration regression passed all 84 transactions, including 32-by
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short -- src/rtl/pynq_dma_cpu src/firmware/pynq_dma_svc src/pynq/dma_transport.py src/pynq/test_dma_transport.py sim/pynq_dma_c
+- `patch` 
 
 </details>
 
@@ -308,7 +266,49 @@ The real RV32 integration regression passed all 84 transactions, including 32-by
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/dma_cpu/20261030_002124_404425/iverilog_version.log
+- `shell` `python src/firmware/pynq_dma_svc/build.py --cc-prefix C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `python sim/pynq_dma_cpu/run.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `New-Item -ItemType Directory -Path data/advanced/dma_cpu/build_20261030_0021 Copy-Item build/local/pynq_dma_svc/build.json data/advanced/dma`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `git status --short -- src/rtl/pynq_dma_cpu src/firmware/pynq_dma_svc src/pynq/dma_transport.py src/pynq/test_dma_transport.py sim/pynq_dma_c`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `data/advanced/dma_cpu/20261030_002124_404425/iverilog_version.log`
 
 </details>
 
@@ -350,13 +350,13 @@ Continue on your owned paths: add full official KAT regression mode: SW/ISE each
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` sim/pynq_dma_cpu/run.py
+- `read` `sim/pynq_dma_cpu/run.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
@@ -378,7 +378,7 @@ I’ll start the full real-CPU KAT regression in bounded parallel shards, then u
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/run_full.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe --
+- `shell` `python sim/pynq_dma_cpu/run_full.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe --`
 
 </details>
 
@@ -390,14 +390,14 @@ I’ll start the full real-CPU KAT regression in bounded parallel shards, then u
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/pynq/dma_transport.py
+- `read` `src/pynq/dma_transport.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
 - `webfetch` 
-- `read` src/pynq/test_dma_transport.py
+- `read` `src/pynq/test_dma_transport.py`
 
 </details>
 
@@ -427,7 +427,7 @@ I’ll start the full real-CPU KAT regression in bounded parallel shards, then u
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python src/pynq/test_dma_transport.py
+- `shell` `python src/pynq/test_dma_transport.py`
 
 </details>
 
@@ -439,13 +439,13 @@ I’ll start the full real-CPU KAT regression in bounded parallel shards, then u
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe
+- `shell` `python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` data/advanced/dma_cpu/full_*/xsim_all/manifest.json
+- `glob` `data/advanced/dma_cpu/full_*/xsim_all/manifest.json`
 
 </details>
 
@@ -480,25 +480,13 @@ The PYNQ 2.7 source confirms that constructing its DMA driver calls an unbounded
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe
+- `shell` `python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/dma_cpu/full_20261030_002958_293520/xsim_all/manifest.json
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `read` C:/Users/HXZ/.local/share/opencode/shell/9184df53af93036ad8e09dbc09fd0cf7a9d8f15b/sh_1887f2b31001MlVn8ZhSPRezu6.out
+- `read` `data/advanced/dma_cpu/full_20261030_002958_293520/xsim_all/manifest.json`
 
 </details>
 
@@ -510,19 +498,7 @@ The PYNQ 2.7 source confirms that constructing its DMA driver calls an unbounded
 
 <details><summary>工具调用 1 次</summary>
 
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` git status --short --untracked-files=all -- src/rtl/pynq_dma_cpu src/firmware/pynq_dma_svc src/pynq/dma_transport.py src/pynq/test_dma_trans
+- `read` `C:/Users/HXZ/.local/share/opencode/shell/9184df53af93036ad8e09dbc09fd0cf7a9d8f15b/sh_1887f2b31001MlVn8ZhSPRezu6.out`
 
 </details>
 
@@ -534,7 +510,19 @@ The PYNQ 2.7 source confirms that constructing its DMA driver calls an unbounded
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/verify_full.py data/advanced/dma_cpu/full_20261030_002958_293520 --vectors-only
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `git status --short --untracked-files=all -- src/rtl/pynq_dma_cpu src/firmware/pynq_dma_svc src/pynq/dma_transport.py src/pynq/test_dma_trans`
 
 </details>
 
@@ -546,7 +534,7 @@ The PYNQ 2.7 source confirms that constructing its DMA driver calls an unbounded
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/pynq/dma_transport.py
+- `shell` `python sim/pynq_dma_cpu/verify_full.py data/advanced/dma_cpu/full_20261030_002958_293520 --vectors-only`
 
 </details>
 
@@ -558,19 +546,31 @@ The PYNQ 2.7 source confirms that constructing its DMA driver calls an unbounded
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe
+- `read` `src/pynq/dma_transport.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/verify_full.py data/advanced/dma_cpu/full_20261030_002958_293520
+- `patch` 
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/dma_cpu/full_20261030_002958_293520/result.json
+- `shell` `python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `python sim/pynq_dma_cpu/verify_full.py data/advanced/dma_cpu/full_20261030_002958_293520`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `data/advanced/dma_cpu/full_20261030_002958_293520/result.json`
 
 </details>
 
@@ -620,10 +620,10 @@ User wants ALL nonboard done. Continue CPU branch through Vivado actual BD build
 
 <details><summary>工具调用 4 次</summary>
 
-- `shell` git status --short
-- `read` board/vivado_zynq7000_xc7z020_dma_direct/setup.tcl
-- `read` board/vivado_zynq7000_xc7z020_dma_direct/collect.tcl
-- `read` C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/xsim.md
+- `shell` `git status --short`
+- `read` `board/vivado_zynq7000_xc7z020_dma_direct/setup.tcl`
+- `read` `board/vivado_zynq7000_xc7z020_dma_direct/collect.tcl`
+- `read` `C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/xsim.md`
 
 </details>
 
@@ -651,34 +651,28 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 
 <details><summary>工具调用 4 次</summary>
 
-- `glob` board/vivado_zynq7000_xc7z020_pynq/*.tcl
-- `glob` board/vivado_zynq7000_xc7z020_baseline/**/*.xci
-- `read` board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq_dma_cpu.v
-- `read` build/advanced
+- `glob` `board/vivado_zynq7000_xc7z020_pynq/*.tcl`
+- `glob` `board/vivado_zynq7000_xc7z020_baseline/**/*.xci`
+- `read` `board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq_dma_cpu.v`
+- `read` `build/advanced`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` board/vivado_zynq7000_xc7z020_pynq/build.tcl
+- `read` `board/vivado_zynq7000_xc7z020_pynq/build.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/rtl/pynq/pynq_soc.v
+- `read` `src/rtl/pynq/pynq_soc.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/advanced/vendor_dma_xsim.tcl
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
+- `read` `build/advanced/vendor_dma_xsim.tcl`
 
 </details>
 
@@ -690,79 +684,7 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 
 <details><summary>工具调用 1 次</summary>
 
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
 - `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `grep` src/rtl/ascon
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
 
 </details>
 
@@ -798,6 +720,18 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 
 <details><summary>工具调用 1 次</summary>
 
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `grep` `src/rtl/ascon`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
 - `patch` 
 
 </details>
@@ -810,7 +744,73 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item sim/pynq_dma_cpu/tb_dma_cpu.v sim/pynq_dma_cpu/tb_dma_cpu_vendor.v
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `Copy-Item sim/pynq_dma_cpu/tb_dma_cpu.v sim/pynq_dma_cpu/tb_dma_cpu_vendor.v`
 
 </details>
 
@@ -858,16 +858,16 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/compile.bat
-- `read` build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/elaborate.bat
-- `read` build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/simulate.bat
-- `read` build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/tb_dma_cpu_vendor.tcl
+- `read` `build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/compile.bat`
+- `read` `build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/elaborate.bat`
+- `read` `build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/simulate.bat`
+- `read` `build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/tb_dma_cpu_vendor.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/tb_dma_cpu_vendor_vlog.prj
+- `read` `build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/tb_dma_cpu_vendor_vlog.prj`
 
 </details>
 
@@ -885,7 +885,7 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado --stages compile,elaborate
+- `shell` `python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado --stages compile,elaborate`
 
 </details>
 
@@ -903,7 +903,7 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/GENERAL_GUIDELINES.md
+- `read` `C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/GENERAL_GUIDELINES.md`
 
 </details>
 
@@ -915,19 +915,19 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/dma_cpu/cpu_dma.runs
+- `grep` `build/local/dma_cpu/cpu_dma.runs`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado --stages compile,elaborate
+- `shell` `python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado --stages compile,elaborate`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff --name-only -- src/rtl/defines.v src/rtl/cpu_core.v src/rtl/bus_interconnect.v src/rtl/soc_top.v src/rtl/top.v board/vivado_zynq700
+- `shell` `git diff --name-only -- src/rtl/defines.v src/rtl/cpu_core.v src/rtl/bus_interconnect.v src/rtl/soc_top.v src/rtl/top.v board/vivado_zynq700`
 
 </details>
 
@@ -963,14 +963,14 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/simulate.bat
-- `read` build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/tb_dma_cpu_vendor.tcl
+- `read` `build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/simulate.bat`
+- `read` `build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/tb_dma_cpu_vendor.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado
+- `shell` `python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado`
 
 </details>
 
@@ -989,38 +989,26 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 <details><summary>工具调用 2 次</summary>
 
 - `execute` 
-- `read` data/advanced/dma_cpu/xsim_20261030_013758_403545/simulate_console.log
+- `read` `data/advanced/dma_cpu/xsim_20261030_013758_403545/simulate_console.log`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:/ruanjian/2025.2/Vivado/bin/xsim.bat
-- `read` C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/known-issue-research.md
+- `read` `C:/ruanjian/2025.2/Vivado/bin/xsim.bat`
+- `read` `C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/known-issue-research.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:/ruanjian/2025.2/Vivado/bin/loader.bat
+- `grep` `C:/ruanjian/2025.2/Vivado/bin/loader.bat`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:/ruanjian/2025.2/Vivado/bin/rdiArgs.bat
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado --stages simulate --quote-plusargs
+- `grep` `C:/ruanjian/2025.2/Vivado/bin/rdiArgs.bat`
 
 </details>
 
@@ -1032,13 +1020,25 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe
+- `shell` `python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado --stages simulate --quote-plusargs`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/local/dma_cpu/context.txt
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `build/local/dma_cpu/context.txt`
 
 </details>
 
@@ -1050,33 +1050,33 @@ I’ve started an independent Tcl session, `vivado-20261030-010908-1cbde35d`, wi
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` build/local/dma_cpu/cpu_dma.runs/impl_1/*timing*
+- `glob` `build/local/dma_cpu/cpu_dma.runs/impl_1/*timing*`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/local/dma_cpu/cpu_dma.runs/impl_1
+- `read` `build/local/dma_cpu/cpu_dma.runs/impl_1`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_timing_summary_postroute_physopted.rpt
+- `grep` `build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_timing_summary_postroute_physopted.rpt`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_timing_summary_postroute_physopted.rpt
-- `read` build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_methodology_drc_routed.rpt
-- `read` build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_drc_routed.rpt
+- `read` `build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_timing_summary_postroute_physopted.rpt`
+- `read` `build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_methodology_drc_routed.rpt`
+- `read` `build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_drc_routed.rpt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl/pynq_dma_cpu/dma_control.v
+- `grep` `src/rtl/pynq_dma_cpu/dma_control.v`
 
 </details>
 
@@ -1104,19 +1104,13 @@ The CPU DMA design now passes implementation at the configured 100 MHz: setup sl
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_cpu/vivado_20261030_015408/candidate/dma_cpu.hwh
+- `grep` `data/advanced/dma_cpu/vivado_20261030_015408/candidate/dma_cpu.hwh`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_cpu/vivado_20261030_015408/candidate/dma_cpu.hwh
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
+- `grep` `data/advanced/dma_cpu/vivado_20261030_015408/candidate/dma_cpu.hwh`
 
 </details>
 
@@ -1128,7 +1122,13 @@ The CPU DMA design now passes implementation at the configured 100 MHz: setup sl
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $out='data/advanced/dma_cpu/vivado_20261030_015408' New-Item -ItemType Directory -Path "$out/run_logs" -Force Get-ChildItem 'build/local/dma
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `$out='data/advanced/dma_cpu/vivado_20261030_015408' New-Item -ItemType Directory -Path "$out/run_logs" -Force Get-ChildItem 'build/local/dma`
 
 </details>
 
@@ -1140,7 +1140,7 @@ The CPU DMA design now passes implementation at the configured 100 MHz: setup sl
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Move-Item data/advanced/dma_cpu/vivado_20261030_015408/sha256.json data/advanced/dma_cpu/vivado_20261030_015408/sha256_initial_audit_failed.
+- `shell` `Move-Item data/advanced/dma_cpu/vivado_20261030_015408/sha256.json data/advanced/dma_cpu/vivado_20261030_015408/sha256_initial_audit_failed.`
 
 </details>
 
@@ -1164,39 +1164,39 @@ The CPU DMA design now passes implementation at the configured 100 MHz: setup sl
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` foreach($kind in @('endpoint','control','reset')) {   $marker='DMA_'+$kind.ToUpper()+'_TEST_PASS'   python sim/pynq_dma_cpu/run_xsim.py --vi
+- `shell` `foreach($kind in @('endpoint','control','reset')) {   $marker='DMA_'+$kind.ToUpper()+'_TEST_PASS'   python sim/pynq_dma_cpu/run_xsim.py --vi`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `grep` data/advanced/dma_cpu/vivado_20261030_015408/utilization.rpt
-- `grep` C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/SUPPORTED_IDS.md
-- `read` data/advanced/dma_cpu/vivado_20261030_015408/candidate_audit.json
+- `grep` `data/advanced/dma_cpu/vivado_20261030_015408/utilization.rpt`
+- `grep` `C:/Users/HXZ/.agents/skills/vivado-timing-methodology-checks/references/SUPPORTED_IDS.md`
+- `read` `data/advanced/dma_cpu/vivado_20261030_015408/candidate_audit.json`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/simulation-performance.md
+- `read` `C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/simulation-performance.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/simulate.log
+- `grep` `build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/simulate.log`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/dma_cpu/vivado_20261030_015408/timing.rpt
+- `read` `data/advanced/dma_cpu/vivado_20261030_015408/timing.rpt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` sim/ascon_dma/tb_vendor_dma.sv
+- `read` `sim/ascon_dma/tb_vendor_dma.sv`
 
 </details>
 
@@ -1210,9 +1210,9 @@ My CPU BD left those PS interfaces internal. I’ll check the corresponding warn
 
 <details><summary>工具调用 3 次</summary>
 
-- `grep` data/advanced/dma_cpu/vivado_20261030_015408/run_logs
-- `read` board/vivado_zynq7000_xc7z020_dma_direct/setup.tcl
-- `read` data/advanced/dma_direct/vivado_20261030_015458/candidate/dma_direct.hwh
+- `grep` `data/advanced/dma_cpu/vivado_20261030_015408/run_logs`
+- `read` `board/vivado_zynq7000_xc7z020_dma_direct/setup.tcl`
+- `read` `data/advanced/dma_direct/vivado_20261030_015458/candidate/dma_direct.hwh`
 
 </details>
 
@@ -1224,7 +1224,7 @@ My CPU BD left those PS interfaces internal. I’ll check the corresponding warn
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_postroute_physopt.dcp data/advanced/dma_cpu/vivado_20261030_015408/interme
+- `shell` `Copy-Item build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_postroute_physopt.dcp data/advanced/dma_cpu/vivado_20261030_015408/interme`
 
 </details>
 
@@ -1272,13 +1272,13 @@ My CPU BD left those PS interfaces internal. I’ll check the corresponding warn
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/simulate.log
+- `grep` `build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/simulate.log`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/dma_cpu/cpu_dma.gen/sources_1/bd/cpu_dma/hw_handoff/cpu_dma.hwh
+- `grep` `build/local/dma_cpu/cpu_dma.gen/sources_1/bd/cpu_dma/hw_handoff/cpu_dma.hwh`
 
 </details>
 
@@ -1296,13 +1296,13 @@ My CPU BD left those PS interfaces internal. I’ll check the corresponding warn
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $log='build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/simulate.log' $cases=Select-String -Path $log -Pattern '^CPU_DMA_KAT case=' 
+- `shell` `$log='build/local/dma_cpu/cpu_dma.sim/sim_cpu_vendor/behav/xsim/simulate.log' $cases=Select-String -Path $log -Pattern '^CPU_DMA_KAT case=' `
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Process -Id 44880,49832 | Select-Object Id,ProcessName,CPU,@{Name='WorkingSetMiB';Expression={[math]::Round($_.WorkingSet64/1MB,1)}},@{N
+- `shell` `Get-Process -Id 44880,49832 | Select-Object Id,ProcessName,CPU,@{Name='WorkingSetMiB';Expression={[math]::Round($_.WorkingSet64/1MB,1)}},@{N`
 
 </details>
 
@@ -1314,7 +1314,7 @@ My CPU BD left those PS interfaces internal. I’ll check the corresponding warn
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item sim/ascon_dma/tb_vendor_dma.sv sim/pynq_dma_cpu/tb_vendor_dma_cpu.sv
+- `shell` `Copy-Item sim/ascon_dma/tb_vendor_dma.sv sim/pynq_dma_cpu/tb_vendor_dma_cpu.sv`
 
 </details>
 
@@ -1338,9 +1338,9 @@ My CPU BD left those PS interfaces internal. I’ll check the corresponding warn
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` data/advanced/dma_cpu/vivado_20261030_025251/result.txt
-- `read` data/advanced/dma_cpu/vivado_20261030_025251/setup_paths.rpt
-- `read` data/advanced/dma_cpu/vivado_20261030_025251/timing.rpt
+- `read` `data/advanced/dma_cpu/vivado_20261030_025251/result.txt`
+- `read` `data/advanced/dma_cpu/vivado_20261030_025251/setup_paths.rpt`
+- `read` `data/advanced/dma_cpu/vivado_20261030_025251/timing.rpt`
 
 </details>
 
@@ -1352,7 +1352,7 @@ My CPU BD left those PS interfaces internal. I’ll check the corresponding warn
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/prepare_system_vectors.py
+- `shell` `python sim/pynq_dma_cpu/prepare_system_vectors.py`
 
 </details>
 
@@ -1370,67 +1370,13 @@ My CPU BD left those PS interfaces internal. I’ll check the corresponding warn
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado --work build/local/dma_cpu/cpu_dma.sim/sim_dma_cpu_system/behav/
+- `shell` `python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado --work build/local/dma_cpu/cpu_dma.sim/sim_dma_cpu_system/behav/`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl/dcache.v
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado --work build/local/dma_cpu/cpu_dma.sim/sim_dma_cpu_system/behav/
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `read` src/rtl/dcache.v
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` $out='data/advanced/dma_cpu/vivado_20261030_025251' Copy-Item build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_postroute_physopt.dcp 
+- `grep` `src/rtl/dcache.v`
 
 </details>
 
@@ -1448,6 +1394,60 @@ My CPU BD left those PS interfaces internal. I’ll check the corresponding warn
 
 <details><summary>工具调用 1 次</summary>
 
+- `shell` `python sim/pynq_dma_cpu/run_xsim.py --vivado-root C:/ruanjian/2025.2/Vivado --work build/local/dma_cpu/cpu_dma.sim/sim_dma_cpu_system/behav/`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `src/rtl/dcache.v`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `$out='data/advanced/dma_cpu/vivado_20261030_025251' Copy-Item build/local/dma_cpu/cpu_dma.runs/impl_1/cpu_dma_wrapper_postroute_physopt.dcp `
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
 - `execute` 
 
 </details>
@@ -1466,7 +1466,7 @@ My CPU BD left those PS interfaces internal. I’ll check the corresponding warn
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/dma_cpu/context.txt
+- `grep` `build/local/dma_cpu/context.txt`
 
 </details>
 
@@ -1526,7 +1526,7 @@ The native AXI DMA → CPU/control → vendor-BRAM integration test also passed 
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/dma_cpu/fclk80/context.txt
+- `grep` `build/local/dma_cpu/fclk80/context.txt`
 
 </details>
 
@@ -1538,7 +1538,7 @@ The native AXI DMA → CPU/control → vendor-BRAM integration test also passed 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $out='data/advanced/dma_cpu/cli_clock_'+(Get-Date -Format 'yyyyMMdd_HHmmss') New-Item -ItemType Directory -Path $out | Out-Null python sim/p
+- `shell` `$out='data/advanced/dma_cpu/cli_clock_'+(Get-Date -Format 'yyyyMMdd_HHmmss') New-Item -ItemType Directory -Path $out | Out-Null python sim/p`
 
 </details>
 
@@ -1568,25 +1568,25 @@ The native AXI DMA → CPU/control → vendor-BRAM integration test also passed 
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` data/advanced/dma_cpu/xsim_20261030_0146*/source_sha256.json
+- `glob` `data/advanced/dma_cpu/xsim_20261030_0146*/source_sha256.json`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_cpu/xsim_20261030_014606_238543/source_sha256.json
+- `grep` `data/advanced/dma_cpu/xsim_20261030_014606_238543/source_sha256.json`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_cpu/xsim_20261030_014606_238543/source_sha256.json
+- `grep` `data/advanced/dma_cpu/xsim_20261030_014606_238543/source_sha256.json`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_cpu/xsim_20261030_030042_215364/simulate.log
+- `grep` `data/advanced/dma_cpu/xsim_20261030_030042_215364/simulate.log`
 
 </details>
 
@@ -1598,13 +1598,13 @@ The native AXI DMA → CPU/control → vendor-BRAM integration test also passed 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/verify_xsim.py data/advanced/dma_cpu/xsim_20261030_030042_215364 --marker CPU_VENDOR_DMA_TEST_PASS --cases 95 if($LA
+- `shell` `python sim/pynq_dma_cpu/verify_xsim.py data/advanced/dma_cpu/xsim_20261030_030042_215364 --marker CPU_VENDOR_DMA_TEST_PASS --cases 95 if($LA`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_cpu/xsim_20261030_030042_215364/simulate.log
+- `grep` `data/advanced/dma_cpu/xsim_20261030_030042_215364/simulate.log`
 
 </details>
 
@@ -1622,9 +1622,9 @@ The native AXI DMA → CPU/control → vendor-BRAM integration test also passed 
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` data/advanced/dma_cpu/vivado_20261030_040257/result.txt
-- `grep` data/advanced/dma_cpu/vivado_20261030_040257/utilization.rpt
-- `read` data/advanced/dma_cpu/vivado_20261030_040257/methodology.rpt
+- `read` `data/advanced/dma_cpu/vivado_20261030_040257/result.txt`
+- `grep` `data/advanced/dma_cpu/vivado_20261030_040257/utilization.rpt`
+- `read` `data/advanced/dma_cpu/vivado_20261030_040257/methodology.rpt`
 
 </details>
 
@@ -1636,13 +1636,13 @@ The native AXI DMA → CPU/control → vendor-BRAM integration test also passed 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $out='data/advanced/dma_cpu/vivado_20261030_040257' New-Item -ItemType Directory -Path "$out/run_logs" -Force | Out-Null Get-ChildItem 'buil
+- `shell` `$out='data/advanced/dma_cpu/vivado_20261030_040257' New-Item -ItemType Directory -Path "$out/run_logs" -Force | Out-Null Get-ChildItem 'buil`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_cpu/vivado_20261030_040257/run_logs
+- `grep` `data/advanced/dma_cpu/vivado_20261030_040257/run_logs`
 
 </details>
 
@@ -1654,7 +1654,7 @@ The native AXI DMA → CPU/control → vendor-BRAM integration test also passed 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $out='data/advanced/dma_cpu/xsim_20261030_030042_215364' Copy-Item build/local/dma_cpu_system_vectors.txt "$out/vectors.txt" Copy-Item build
+- `shell` `$out='data/advanced/dma_cpu/xsim_20261030_030042_215364' Copy-Item build/local/dma_cpu_system_vectors.txt "$out/vectors.txt" Copy-Item build`
 
 </details>
 
@@ -1666,8 +1666,8 @@ The native AXI DMA → CPU/control → vendor-BRAM integration test also passed 
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/verify_xsim.py data/advanced/dma_cpu/xsim_20261030_014606_238543 --marker CPU_DMA_VENDOR_TEST_PASS --cases 7418
-- `shell` python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe
+- `shell` `python sim/pynq_dma_cpu/verify_xsim.py data/advanced/dma_cpu/xsim_20261030_014606_238543 --marker CPU_DMA_VENDOR_TEST_PASS --cases 7418`
+- `shell` `python sim/pynq_dma_cpu/run_unit.py --iverilog C:/wenjian/.vscode/iverilog/bin/iverilog.exe --vvp C:/wenjian/.vscode/iverilog/bin/vvp.exe`
 
 </details>
 
@@ -1679,9 +1679,9 @@ The native AXI DMA → CPU/control → vendor-BRAM integration test also passed 
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` data/advanced/dma_cpu/xsim_20261030_014606_238543/result.json
-- `read` data/advanced/dma_cpu/vivado_20261030_040257/candidate_audit.json
-- `shell` python sim/pynq_dma_cpu/verify_full.py data/advanced/dma_cpu/full_20261030_002958_293520 --vectors-only
+- `read` `data/advanced/dma_cpu/xsim_20261030_014606_238543/result.json`
+- `read` `data/advanced/dma_cpu/vivado_20261030_040257/candidate_audit.json`
+- `shell` `python sim/pynq_dma_cpu/verify_full.py data/advanced/dma_cpu/full_20261030_002958_293520 --vectors-only`
 
 </details>
 
@@ -1693,7 +1693,7 @@ The native AXI DMA → CPU/control → vendor-BRAM integration test also passed 
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` sim/pynq_dma_cpu/readme.md
+- `grep` `sim/pynq_dma_cpu/readme.md`
 
 </details>
 
@@ -1723,13 +1723,13 @@ The native AXI DMA → CPU/control → vendor-BRAM integration test also passed 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/pynq_dma_cpu/finish_handoff.py
+- `shell` `python sim/pynq_dma_cpu/finish_handoff.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item .vivado-ai/vivado_93748163_0824c235.log data/advanced/dma_cpu/vivado_20261030_040257/vivado_session_final.log git diff --name-only
+- `shell` `Copy-Item .vivado-ai/vivado_93748163_0824c235.log data/advanced/dma_cpu/vivado_20261030_040257/vivado_session_final.log git diff --name-only`
 
 </details>
 

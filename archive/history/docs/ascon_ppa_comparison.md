@@ -18,7 +18,7 @@
 
 - A = ascon_ise.v 局部复位寄存器化（消 93 端点）；C = 乘法器输入/输出寄存器化 +
   done 保持到 ack（消 48 端点，mult.v 新模块）；B = store/MMIO 绕过 MISS_CAPTURE
-  （周期代价收回）。资源代价：相对 HEAD 约 +120~190 LUT、+43~91 FF，BRAM/DSP 不变。
+  （周期代价收回）。资源代价：相对 HEAD 约 +120\~190 LUT、+43\~91 FF，BRAM/DSP 不变。
 - 证据：`build/reports/timing_acb_20261018/{postroute,remap}/route_utilization.rpt`、
   `route_timing.rpt`、`build/reports/strategy_sweep_20261017/`。
 

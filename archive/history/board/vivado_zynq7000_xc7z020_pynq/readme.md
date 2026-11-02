@@ -8,7 +8,7 @@
 
 更新：2026-10-29；owner TBD。
 
-**当前状态：**100 MHz overlay、同名 bit/hwh、服务固件、Python API、Notebook、
+**当前状态**：100 MHz overlay、同名 bit/hwh、服务固件、Python API、Notebook、
 容量内三模式 KAT、warm benchmark 和 V03 错误/恢复门禁均已在正点原子领航者
 ZYNQ7020 实板通过。最新证据见 [validation_20261029](validation_20261029.md)；
 当前总状态见 [current_status](../../docs/current_status_20261029.md)。

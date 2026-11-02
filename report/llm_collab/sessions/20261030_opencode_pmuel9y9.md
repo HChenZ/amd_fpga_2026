@@ -9,141 +9,141 @@
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` git status --short | Select-Object -First 30; Get-ChildItem -Recurse -Include *.tex,*.cls,*.sty -File | Where-Object { $_.FullName -notmatch
-- `shell` Get-Item 'C:\wenjian\game\FPGA2026\赛题标志.png' | Select-Object FullName,Length; Get-Command pandoc,xelatex,latexmk -ErrorAction SilentlyContin
+- `shell` `git status --short | Select-Object -First 30; Get-ChildItem -Recurse -Include *.tex,*.cls,*.sty -File | Where-Object { $_.FullName -notmatch`
+- `shell` `Get-Item 'C:\wenjian\game\FPGA2026\赛题标志.png' | Select-Object FullName,Length; Get-Command pandoc,xelatex,latexmk -ErrorAction SilentlyContin`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\preamble.tex
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\main.tex
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\preamble.tex`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\main.tex`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report
-- `shell` Get-ChildItem docs/tech_report/assets, docs/tech_report/latex, docs/tech_report/latex/figs -Force | Select-Object FullName,Length | Format-T
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report`
+- `shell` `Get-ChildItem docs/tech_report/assets, docs/tech_report/latex, docs/tech_report/latex/figs -Force | Select-Object FullName,Length | Format-T`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\README.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\README.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` Get-ChildItem C:\wenjian\game\FPGA2026 -Recurse -Depth 3 -Include *.docx,*.doc,*.dotx -File -ErrorAction SilentlyContinue | Where-Object { $
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\chapters
+- `shell` `Get-ChildItem C:\wenjian\game\FPGA2026 -Recurse -Depth 3 -Include *.docx,*.doc,*.dotx -File -ErrorAction SilentlyContinue | Where-Object { $`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\chapters`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl.py
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl2.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl2.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl2.py
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl2.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 -c "import zipfile,re;z=zipfile.ZipFile(r'C:\wenjian\game\FPGA2026\技术报告模板.docx');s=z.read('word/styles.xml').decode();print(r
+- `shell` `python -X utf8 -c "import zipfile,re;z=zipfile.ZipFile(r'C:\wenjian\game\FPGA2026\技术报告模板.docx');s=z.read('word/styles.xml').decode();print(r`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl3.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl3.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl3.py
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\inspect_tpl3.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $o="C:\Users\HXZ\AppData\Local\Temp\opencode\test_direct.docx"; pandoc main.tex -f latex -t docx -o $o --resource-path=".;figs" 2>&1 | Selec
+- `shell` `$o="C:\Users\HXZ\AppData\Local\Temp\opencode\test_direct.docx"; pandoc main.tex -f latex -t docx -o $o --resource-path=".;figs" 2>&1 | Selec`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\analyze_docx.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\analyze_docx.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\analyze_docx.py C:\Users\HXZ\AppData\Local\Temp\opencode\test_direct.docx; pandoc --
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\analyze_docx.py C:\Users\HXZ\AppData\Local\Temp\opencode\test_direct.docx; pandoc --`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\make_overleaf_zip.py
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_report.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\make_overleaf_zip.py`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_report.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\verify_report.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\verify_report.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Test-Path C:/Users/HXZ/AppData/Local/hermes/cache/scratch/tectonic.exe, C:/wenjian/toolchain/tectonic/tectonic.exe; python -c "import pymupd
+- `shell` `Test-Path C:/Users/HXZ/AppData/Local/hermes/cache/scratch/tectonic.exe, C:/wenjian/toolchain/tectonic/tectonic.exe; python -c "import pymupd`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item -LiteralPath 'C:\wenjian\game\FPGA2026\赛题标志.png' -Destination docs/tech_report/figs/header_logo.png; python -c "import pymupdf;p=p
+- `shell` `Copy-Item -LiteralPath 'C:\wenjian\game\FPGA2026\赛题标志.png' -Destination docs/tech_report/figs/header_logo.png; python -c "import pymupdf;p=p`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `browser.preview` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\header_logo.png
+- `browser.preview` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\header_logo.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\header_logo.png
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\header_logo.png`
 
 </details>
 
@@ -153,24 +153,24 @@ Now edit the generator (preamble is a generated file, so the source is `build_la
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\make_overleaf_zip.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_report.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\verify_report.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\make_overleaf_zip.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_report.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\verify_report.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-Object -Last 30
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-Object -Last 30`
 
 </details>
 
@@ -180,47 +180,47 @@ Build passed. Let me render pages to visually check the header.
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\render_pages.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\render_pages.py; Select-String -Path docs/tech_report/latex/main.log -Pattern 'headh
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\render_pages.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\render_pages.py; Select-String -Path docs/tech_report/latex/main.log -Pattern 'headh`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\page_5.png
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\head_7.png
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\page_5.png`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\head_7.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\main.log
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\main.log`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $o="C:\Users\HXZ\AppData\Local\Temp\opencode\test_ref.docx"; pandoc main.tex -f latex -t docx -o $o --reference-doc="C:\wenjian\game\FPGA202
+- `shell` `$o="C:\Users\HXZ\AppData\Local\Temp\opencode\test_ref.docx"; pandoc main.tex -f latex -t docx -o $o --reference-doc="C:\wenjian\game\FPGA202`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content project_log/actual_progress.md -Encoding utf8 -TotalCount 30; "-----"; Get-Content project_log/development_log.md -Encoding utf8
+- `shell` `Get-Content project_log/actual_progress.md -Encoding utf8 -TotalCount 30; "-----"; Get-Content project_log/development_log.md -Encoding utf8`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md`
 
 </details>
 
@@ -267,38 +267,38 @@ Build passed. Let me render pages to visually check the header.
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\01_front.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\01_front.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-Object -Last 12
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-Object -Last 12`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\check_team.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\check_team.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\check_team.py
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\check_team.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
 
 </details>
 
@@ -324,57 +324,57 @@ Build passed. Let me render pages to visually check the header.
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_2_1.tex
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_2_1.tex`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_2_1.tex
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_2_1.tex`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-Object -Last 12; python 
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-Object -Last 12; python `
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content docs/tech_report/validation/build_20261030_143338/pdf.log -Encoding utf8 | Select-Object -Last 25; Get-Content docs/tech_report/
+- `shell` `Get-Content docs/tech_report/validation/build_20261030_143338/pdf.log -Encoding utf8 | Select-Object -Last 25; Get-Content docs/tech_report/`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python -X utf8 -c "import pymupdf;d=pymupdf.open('docs/tech_report/figs/fig_2_1.pdf');d[0].get_pixmap(dpi=200).save(r'C:\Users\HXZ\AppData\L
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\fig21.png
+- `shell` `python -X utf8 -c "import pymupdf;d=pymupdf.open('docs/tech_report/figs/fig_2_1.pdf');d[0].get_pixmap(dpi=200).save(r'C:\Users\HXZ\AppData\L`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\fig21.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_2_1.tex
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_2_1.tex`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/prerender_figs.py 2>&1 | Select-String fig_2_1; python -X utf8 -c "import pymupdf;d=pymupdf.open('docs/tech_
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\fig21.png
+- `shell` `python -X utf8 docs/tech_report/prerender_figs.py 2>&1 | Select-String fig_2_1; python -X utf8 -c "import pymupdf;d=pymupdf.open('docs/tech_`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\fig21.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/prerender_figs.py 2>&1 | Select-Object -First 8; Get-Item docs/tech_report/figs/fig_2_1.* | Select-Object Na
+- `shell` `python -X utf8 docs/tech_report/prerender_figs.py 2>&1 | Select-Object -First 8; Get-Item docs/tech_report/figs/fig_2_1.* | Select-Object Na`
 
 </details>
 
@@ -384,19 +384,19 @@ Needs the TECTONIC env var; I'll just run the full build again (it also re-rende
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\fig21.png
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\fig21.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
 
 </details>
 
@@ -432,45 +432,45 @@ python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\find_fig.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\find_fig.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\find_fig.py
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\find_fig.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\fig21_page.png
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\fig21_page.png`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');pg=[i for i,p in enumerate(d) if 'MAILBOX' in p.get_tex
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\fig21_page.png
+- `shell` `python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');pg=[i for i,p in enumerate(d) if 'MAILBOX' in p.get_tex`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\fig21_page.png`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');d[9].get_pixmap(dpi=90).save(r'C:\Users\HXZ\AppData\Loc
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\p10_fig21.png
+- `shell` `python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');d[9].get_pixmap(dpi=90).save(r'C:\Users\HXZ\AppData\Loc`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\p10_fig21.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
 
 </details>
 
@@ -490,118 +490,118 @@ python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\tpl_text.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\tpl_text.py; Get-ChildItem docs/tech_report/src, docs/tech_report/src_template, docs
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\tpl_text.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\tpl_text.py; Get-ChildItem docs/tech_report/src, docs/tech_report/src_template, docs`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\chapters\ch03.tex
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\chapters\ch03.tex`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\count.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\count.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\count.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\count.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\10_part1.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\10_part1.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\review_20261029.md
-- `shell` Get-ChildItem docs/tech_report/*.pdf, docs/tech_report/latex/main.pdf | Select-Object Name,Length,LastWriteTime | Format-Table -AutoSize | O
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\review_20261029.md`
+- `shell` `Get-ChildItem docs/tech_report/*.pdf, docs/tech_report/latex/main.pdf | Select-Object Name,Length,LastWriteTime | Format-Table -AutoSize | O`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\report.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_2_7.tex
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\report.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_2_7.tex`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\scan_pdfs.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\scan_pdfs.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\scan_pdfs.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\scan_pdfs.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\40_part4_5.md
-- `shell` Get-Content docs/tech_report/src_template/new/p1_4.md, docs/tech_report/src_template/new/p1_6.md -Encoding utf8 | Out-String -Width 400
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\40_part4_5.md`
+- `shell` `Get-Content docs/tech_report/src_template/new/p1_4.md, docs/tech_report/src_template/new/p1_6.md -Encoding utf8 | Out-String -Width 400`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\01_front.md
-- `shell` Get-Content docs/tech_report/src/08_summary.md -Encoding utf8 | Out-File -Encoding utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\s08.txt
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\01_front.md`
+- `shell` `Get-Content docs/tech_report/src/08_summary.md -Encoding utf8 | Out-File -Encoding utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\s08.txt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\s08.txt
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\s08.txt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem docs/tech_report/src/*.md, docs/tech_report/src_template/new/*.md | Select-String -Pattern '§[0-9A-Z][0-9.]*' -AllMatches | Fo
+- `shell` `Get-ChildItem docs/tech_report/src/*.md, docs/tech_report/src_template/new/*.md | Select-String -Pattern '§[0-9A-Z][0-9.]*' -AllMatches | Fo`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` Get-ChildItem docs/tech_report/src/*.md, docs/tech_report/src_template/new/*.md | Select-String -Pattern '§[3458](?![0-9.])' | ForEach-Objec
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\refs.txt
+- `shell` `Get-ChildItem docs/tech_report/src/*.md, docs/tech_report/src_template/new/*.md | Select-String -Pattern '§[3458](?![0-9.])' | ForEach-Objec`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\refs.txt`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\refs.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\refs.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\refs.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\refs.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py`
 
 </details>
 
@@ -611,43 +611,43 @@ Now add Appendix D to the tree.
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_4.md
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_6.md
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p4_1.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\01_front.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_4.md`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_6.md`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p4_1.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\01_front.md`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\count.py; python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\count.py; python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_6.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_6.md`
 
 </details>
 
@@ -657,34 +657,34 @@ Meanwhile let me check the TOC render from the last build.
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\toc_v2_2.png
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\toc_v2_3.png
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\toc_v2_2.png`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\toc_v2_3.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_6.md
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_6.md`
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\body_v3_6.png
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\body_v3_13.png
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\body_v3_6.png`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\body_v3_13.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
 
 </details>
 
@@ -743,19 +743,19 @@ Meanwhile let me check the TOC render from the last build.
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\evidence\build_evidence.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\evidence\build_evidence.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs`
 
 </details>
 
@@ -765,46 +765,46 @@ Now restructure the excerpt generator so each evidence group C-n becomes section
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\evidence\build_evidence.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\evidence\build_evidence.py`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\evidence\build_evidence.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\evidence\build_evidence.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\evidence\build_evidence.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\evidence\build_evidence.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\evidence\build_evidence.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\evidence\build_evidence.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\toc_v4_3.png
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\toc_v4_3.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');t=d[3].get_text();print(t[:300])"
+- `shell` `python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');t=d[3].get_text();print(t[:300])"`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
 
 </details>
 
@@ -831,142 +831,142 @@ Now restructure the excerpt generator so each evidence group C-n becomes section
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\03_ascon.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\03_ascon.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\03_ascon.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\03_ascon.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_1_1.tex
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_1_1.tex`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` $p='docs/tech_report/build_latex.py'; $t=[IO.File]::ReadAllText($p); $n=([regex]::Matches($t,'\\begin\{figure\}\[htbp\]')).Count; $t=$t.Repl
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `shell` `$p='docs/tech_report/build_latex.py'; $t=[IO.File]::ReadAllText($p); $n=([regex]::Matches($t,'\\begin\{figure\}\[htbp\]')).Count; $t=$t.Repl`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_1_1.tex
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\figs\fig_1_1.tex`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\layout_check.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\layout_check.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\layout_check.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\layout_check.py`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `shell` python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');[d[i-1].get_pixmap(dpi=55).save(r'C:\Users\HXZ\AppData\
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\lay5_8.png
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\lay5_18.png
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\lay5_37.png
+- `shell` `python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');[d[i-1].get_pixmap(dpi=55).save(r'C:\Users\HXZ\AppData\`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\lay5_8.png`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\lay5_18.png`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\lay5_37.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\05_verify.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\05_verify.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\05_verify.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\05_verify.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\contact.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\contact.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\contact.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\contact.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\contact_a.png
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\contact_a.png`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\fill.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\fill.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\fill.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\fill.py`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');[d[i-1].get_pixmap(dpi=50).save(r'C:\Users\HXZ\AppData\
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\lay6_38.png
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\lay6_39.png
+- `shell` `python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');[d[i-1].get_pixmap(dpi=50).save(r'C:\Users\HXZ\AppData\`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\lay6_38.png`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\lay6_39.png`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/figs/fig_1_1.pdf');d[0].get_pixmap(dpi=110).save(r'C:\Users\HXZ\AppData\
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\fig11_v2.png
+- `shell` `python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/figs/fig_1_1.pdf');d[0].get_pixmap(dpi=110).save(r'C:\Users\HXZ\AppData\`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\fig11_v2.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
 
 </details>
 
@@ -992,7 +992,7 @@ Now restructure the excerpt generator so each evidence group C-n becomes section
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
@@ -1002,87 +1002,87 @@ Rewrite `keep_together` (drop the figure barrier/needspace; add heading orphan c
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 -c " import re,pathlib p=pathlib.Path('docs/tech_report/build_latex.py');t=p.read_text(encoding='utf-8') a=t.index('TEXTWIDTH
+- `shell` `python -X utf8 -c " import re,pathlib p=pathlib.Path('docs/tech_report/build_latex.py');t=p.read_text(encoding='utf-8') a=t.index('TEXTWIDTH`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\kt.py
-- `shell` python -X utf8 -c " import re,pathlib p=pathlib.Path('docs/tech_report/build_latex.py');t=p.read_text(encoding='utf-8') a=t.index('TEXTWIDTH
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\kt.py`
+- `shell` `python -X utf8 -c " import re,pathlib p=pathlib.Path('docs/tech_report/build_latex.py');t=p.read_text(encoding='utf-8') a=t.index('TEXTWIDTH`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` $p='docs/tech_report/figs/fig_1_1.tex'; $t=Get-Content $p -Raw -Encoding utf8; $t=$t.Replace('minimum height=1.55cm','minimum height=1.25cm'
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_6.md
+- `shell` `$p='docs/tech_report/figs/fig_1_1.tex'; $t=Get-Content $p -Raw -Encoding utf8; $t=$t.Replace('minimum height=1.55cm','minimum height=1.25cm'`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_6.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_6.md
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p1_6.md`
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\lay7_7.png
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\lay7_7.png`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');p=d[6];r=p.rect;p.get_pixmap(dpi=120,clip=pymupdf.Rect(
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\lay7_fig.png
+- `shell` `python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');p=d[6];r=p.rect;p.get_pixmap(dpi=120,clip=pymupdf.Rect(`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\lay7_fig.png`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\where.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\where.py "图2-6" "长度须显式给出" "结构与寄存器定义" "图2-9" "CONTROL窗口（pynq_ctl.v"
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\where.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\where.py "图2-6" "长度须显式给出" "结构与寄存器定义" "图2-9" "CONTROL窗口（pynq_ctl.v"`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\w_17.png
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\w_22.png
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\w_24.png
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\w_17.png`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\w_22.png`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\w_24.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\w_18.png
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\w_18.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
 
 </details>
 
@@ -1112,321 +1112,321 @@ Rewrite `keep_together` (drop the figure barrier/needspace; add heading orphan c
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\guide.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\guide.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\guide.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\guide.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 -c "import pymupdf,glob;f=[x for x in glob.glob(r'C:\wenjian\game\FPGA2026\*AMD.pdf')][0];d=pymupdf.open(f);print('\n'.join(d
+- `shell` `python -X utf8 -c "import pymupdf,glob;f=[x for x in glob.glob(r'C:\wenjian\game\FPGA2026\*AMD.pdf')][0];d=pymupdf.open(f);print('\n'.join(d`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem -Recurse -File -Include *.jsonl,*transcript*,*prompt*,*session*,*conversation*,*chat* -ErrorAction SilentlyContinue | Where-Ob
+- `shell` `Get-ChildItem -Recurse -File -Include *.jsonl,*transcript*,*prompt*,*session*,*conversation*,*chat* -ErrorAction SilentlyContinue | Where-Ob`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $c=@("$env:USERPROFILE\.local\share\opencode","$env:APPDATA\opencode","$env:LOCALAPPDATA\opencode","$env:USERPROFILE\.codex\sessions","$env:
+- `shell` `$c=@("$env:USERPROFILE\.local\share\opencode","$env:APPDATA\opencode","$env:LOCALAPPDATA\opencode","$env:USERPROFILE\.codex\sessions","$env:`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem "$env:USERPROFILE\.local\share\opencode" | Select-Object Name,Length,LastWriteTime | Format-Table -AutoSize | Out-String -Widt
+- `shell` `Get-ChildItem "$env:USERPROFILE\.local\share\opencode" | Select-Object Name,Length,LastWriteTime | Format-Table -AutoSize | Out-String -Widt`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\db_probe.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\db_probe.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\db_probe.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\db_probe.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\db_probe2.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\db_probe2.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\db_probe2.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\db_probe2.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem "$env:USERPROFILE\.claude\projects\c--wenjian-game-FPGA2026-ours-amd-fpga-2026" -Recurse -File | Select-Object Name,Length,Las
+- `shell` `Get-ChildItem "$env:USERPROFILE\.claude\projects\c--wenjian-game-FPGA2026-ours-amd-fpga-2026" -Recurse -File | Select-Object Name,Length,Las`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\export_sessions.py
-- `shell` python -X utf8 report/llm_collab/export_sessions.py; Get-Content report/llm_collab/index.md -Encoding utf8 | Out-File -Encoding utf8 C:\User
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\export_sessions.py`
+- `shell` `python -X utf8 report/llm_collab/export_sessions.py; Get-Content report/llm_collab/index.md -Encoding utf8 | Out-File -Encoding utf8 C:\User`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\index.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\index.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\prompts.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\prompts.py > C:\Users\HXZ\AppData\Local\Temp\opencode\prompts.txt; (Get-Item C:\User
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\prompts.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\prompts.py > C:\Users\HXZ\AppData\Local\Temp\opencode\prompts.txt; (Get-Item C:\User`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\prompts.txt
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\prompts.txt`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python -X utf8 -c "import subprocess,sys;o=subprocess.run([sys.executable,'-X','utf8',r'C:\Users\HXZ\AppData\Local\Temp\opencode\prompts.py'
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\prompts8.txt
+- `shell` `python -X utf8 -c "import subprocess,sys;o=subprocess.run([sys.executable,'-X','utf8',r'C:\Users\HXZ\AppData\Local\Temp\opencode\prompts.py'`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\prompts8.txt`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\README.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\README.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\README.md
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\04_impl.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\README.md`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\04_impl.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\04_impl.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\04_impl.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` Get-ChildItem board/vivado_zynq7000_xc7z020_pynq -File | Select-Object Name,Length | Format-Table -AutoSize | Out-String -Width 200; Get-Chi
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq
+- `shell` `Get-ChildItem board/vivado_zynq7000_xc7z020_pynq -File | Select-Object Name,Length | Format-Table -AutoSize | Out-String -Width 200; Get-Chi`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\handoff_20261028.md
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\validation_20261029.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\handoff_20261028.md`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\validation_20261029.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions\20261018_claude-code_c2452d2d.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions\20261018_claude-code_c2452d2d.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions\20261018_claude-code_c2452d2d.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions\20261018_claude-code_c2452d2d.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions\20261018_claude-code_c2452d2d.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions\20261018_claude-code_c2452d2d.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\build.tcl
-- `shell` (Select-String -Path project_log/lessons_learned.md -Pattern '^## ').Count; Select-String -Path src/pynq/board_benchmark.py,src/pynq/board_e
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\build.tcl`
+- `shell` `(Select-String -Path project_log/lessons_learned.md -Pattern '^## ').Count; Select-String -Path src/pynq/board_benchmark.py,src/pynq/board_e`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\readme.md
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\validation_20261028.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\readme.md`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\validation_20261028.md`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\export_sessions.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\export_sessions.py
-- `shell` python -X utf8 report/llm_collab/export_sessions.py; Get-Content report/llm_collab/index.md -Encoding utf8 -TotalCount 9 | Select-Object -La
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\export_sessions.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\export_sessions.py`
+- `shell` `python -X utf8 report/llm_collab/export_sessions.py; Get-Content report/llm_collab/index.md -Encoding utf8 -TotalCount 9 | Select-Object -La`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions\20261018_opencode_z6payu1i.md
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions\20261030_opencode_6fd50qbm.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions\20261018_opencode_z6payu1i.md`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\llm_collab\sessions\20261030_opencode_6fd50qbm.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_1.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_1.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_2.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_2.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 -c " t=open(r'report/llm_collab/sessions/20261030_opencode_6fd50qbm.md',encoding='utf-8').read() i=t.find('这里的高速通道带来的优化有什么');
+- `shell` `python -X utf8 -c " t=open(r'report/llm_collab/sessions/20261030_opencode_6fd50qbm.md',encoding='utf-8').read() i=t.find('这里的高速通道带来的优化有什么');`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_2.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_2.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_2.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_2.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_3.md
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_4.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_3.md`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_4.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\README.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\README.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_3.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_3.md`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_1.md
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_2.md
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_3.md
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_4.md
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_5.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_1.md`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_2.md`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_3.md`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_4.md`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_5.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_template_src.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\08_summary.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src\08_summary.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_4.md
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_4.md`
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit|BUILD_RECOR`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\where.py "2.4.2代表性协作记录" "3.4.4上板运行"
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\where.py "2.4.2代表性协作记录" "3.4.4上板运行"`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');[d[i-1].get_pixmap(dpi=60).save(r'C:\Users\HXZ\AppData\
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\llm_32.png
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\llm_48.png
+- `shell` `python -X utf8 -c "import pymupdf;d=pymupdf.open(r'docs/tech_report/latex/main.pdf');[d[i-1].get_pixmap(dpi=60).save(r'C:\Users\HXZ\AppData\`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\llm_32.png`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\llm_48.png`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_4.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_3.md
-- `shell` python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit 1|BUILD_REC
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_4.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p3_4_3.md`
+- `shell` `python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe 2>&1 | Select-String 'exit 1|BUILD_REC`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\w_32.png
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\w_31.png
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\w_32.png`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\w_31.png`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\chapters\ch03.tex
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\report.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\chapters\ch03.tex`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\report.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\chapters\ch03.tex
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\chapters\ch03.tex`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py
-- `shell` git stash list | Out-Null; $before = Get-ChildItem docs/tech_report/latex/chapters/*.tex | ForEach-Object { "$($_.Name) $((Get-Content $_.Fu
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\build_latex.py`
+- `shell` `git stash list | Out-Null; $before = Get-ChildItem docs/tech_report/latex/chapters/*.tex | ForEach-Object { "$($_.Name) $((Get-Content $_.Fu`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\chapters\ch03.tex
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\latex\chapters\ch03.tex`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_2.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\readme.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report\src_template\new\p2_4_2.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\readme.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\readme.md
-- `shell` python -X utf8 report/llm_collab/export_sessions.py; python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectoni
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\report\readme.md`
+- `shell` `python -X utf8 report/llm_collab/export_sessions.py; python -X utf8 docs/tech_report/build_report.py --tectonic C:/wenjian/toolchain/tectoni`
 
 </details>

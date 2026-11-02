@@ -3,7 +3,7 @@
 > 2026-11-01：本页是PL-only三镜像及keys3阶段的历史证据索引，不是当前PUF3冻结清单。
 > 底板V3.9/核心板2V5等事实保留；当前PUF3与旧v1的身份/主采样/当前冻结点见 version_entrypoints.md。
 
-> **2026-10-29 状态更新：**本文保留历史上板签核索引。之后 PYNQ 已另行完成容量内
+> **2026-10-29 状态更新**：本文保留历史上板签核索引。之后 PYNQ 已另行完成容量内
 > KAT、Notebook、warm benchmark 和 V03 错误/恢复门禁，见
 > `board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md`。当前总表见
 > `docs/current_status_20261029.md`。

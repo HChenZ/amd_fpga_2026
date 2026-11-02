@@ -45,11 +45,11 @@ $$
 2. 关联数据：按 16 byte 分块吸收并执行 $P^8$；非空整块之后仍须追加一个空 padding 块并再次执行
    $P^8$；
 3. 域分离：$s_4 \mathrel{\oplus}= 2^{63}$；
-4. 明文：按 16 byte 分块挤出 $C_i = P_i \oplus (s_0 \| s_1)$ 并执行 $P^8$；末块不足 16 byte 时先补
+4. 明文：按 16 byte 分块挤出 $C_i = P_i \oplus (s_0 \Vert s_1)$ 并执行 $P^8$；末块不足 16 byte 时先补
    `0x01` 再补 `0x00`，末块不再置换；
 5. 终结：$s_2 \mathrel{\oplus}= K_0$，$s_3 \mathrel{\oplus}= K_1$，$S \gets P^{12}(S)$，
    $s_3 \mathrel{\oplus}= K_0$，$s_4 \mathrel{\oplus}= K_1$；
-6. 标签：$T = \mathrm{LE64}(s_3) \,\|\, \mathrm{LE64}(s_4)$；密文与明文等长。
+6. 标签：$T = \mathrm{LE64}(s_3) \mathbin{\Vert} \mathrm{LE64}(s_4)$；密文与明文等长。
 
 三种方案遵循的实现要点如下。完整 1,089 组 KAT 为 host 验证范围；当前板级三模式仅验证容量内 289 组：
 

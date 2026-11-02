@@ -15,7 +15,7 @@
 | PYNQ | 指南 V3.2 §2.2/§2.3 描述 PYNQ 2.7.0、Ubuntu 20.04、kernel 5.4.0 | PASS 文档提取；实板 NOT_RUN |
 | 镜像 | 文档列 `ZYNQ-7020-2.7.0.zip` / `.img`，说明出厂镜像不支持 PYNQ | 当前资料树与 7020 ZIP 未找到，BLOCKED |
 
-源码入口：[统一测试](../../sim/board/readme.md)、[接口建议](interface_plan.md)、[厂家证据](vendor_findings.md)、[待配置后端](backend_profile.json)、[最小 XDC](navigator_uart.xdc)。本目录不是第三套 Vivado 工程。
+源码入口：[统一测试](../../archive/history/sim/board/readme.md)、[接口建议](interface_plan.md)、[厂家证据](vendor_findings.md)、[待配置后端](backend_profile.json)、[最小 XDC](navigator_uart.xdc)。本目录不是第三套 Vivado 工程。
 
 ## 最小引脚与串口
 

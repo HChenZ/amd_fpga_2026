@@ -11,6 +11,9 @@
   index.md                           会话清单与统计
 仅做以下处理：工具输出（命令回显、文件内容）折叠为一行摘要；超长回答保留首尾；疑似密钥按正则打码；
 OMIT_PROMPTS 列出的与工程无关的提示只保留轮次、省略原文。
+为在 GitHub 上正确渲染，另做只改标记、不改文字的处理（md_safe / code_span）：工具调用摘要放进行内代码；
+正文代码以外，GitHub 会剥除的 HTML 样式标签与可能配成删除线的单个 ~ 加反斜杠转义；
+因中文标点无法被 GitHub 识别的 **粗体** 改写为 <strong>。
 用法：python -X utf8 report/llm_collab/export_sessions.py
 """
 from __future__ import annotations
@@ -22,7 +25,9 @@ import os
 import re
 import shutil
 import sqlite3
+import string
 import tempfile
+import unicodedata
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -55,13 +60,160 @@ def ts(ms: float | None) -> str:
     return dt.datetime.fromtimestamp(ms / 1000).strftime("%Y-%m-%d %H:%M")
 
 
+# ------------------------------------------------------------------ GitHub 渲染安全（只改标记，不改文字）
+# GitHub 允许保留的 HTML 元素；其余标签会被剥除，所以正文中出现时按文字显示。
+GH_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "br", "b", "i", "strong", "em", "a", "pre", "code", "img",
+           "tt", "div", "ins", "del", "sup", "sub", "p", "ol", "ul", "table", "thead", "tbody", "tfoot", "blockquote",
+           "dl", "dt", "dd", "kbd", "q", "samp", "var", "hr", "ruby", "rt", "rp", "li", "tr", "td", "th", "s",
+           "strike", "summary", "details", "caption", "figure", "figcaption", "abbr", "bdo", "cite", "dfn", "mark",
+           "small", "span", "time", "wbr", "picture", "source", "input"}
+_TAG = re.compile(r"(?<!\\)<(?=/?([A-Za-z][A-Za-z0-9-]*)[\s/>])")
+_TILDE = re.compile(r"(?<![~\\])~(?!~)")
+_FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
+# 行首出现即开始 HTML 块的标签（CommonMark 第 6 类）；块内不解析 Markdown，转义会原样露出。
+_BLOCK_TAGS = {"address", "article", "aside", "base", "basefont", "blockquote", "body", "caption", "center", "col",
+               "colgroup", "dd", "details", "dialog", "dir", "div", "dl", "dt", "fieldset", "figcaption", "figure",
+               "footer", "form", "frame", "frameset", "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hr",
+               "html", "iframe", "legend", "li", "link", "main", "menu", "menuitem", "nav", "noframes", "ol",
+               "optgroup", "option", "p", "param", "section", "source", "summary", "table", "tbody", "td", "tfoot",
+               "th", "thead", "title", "tr", "track", "ul"}
+_HTML_LINE = re.compile(r"^ {0,3}<(/?)([A-Za-z][A-Za-z0-9-]*)(?=[\s/>]|$)")
+
+
+def code_span(text: str) -> str:
+    """把任意文字放进 Markdown 行内代码（反引号长度与内容自适应）。"""
+    if not text.strip():
+        return text
+    n = max((len(r) for r in re.findall(r"`+", text)), default=0) + 1
+    pad = " " if text[0] == "`" or text[-1] == "`" or (text[0] == " " and text[-1] == " ") else ""
+    return "`" * n + pad + text + pad + "`" * n
+
+
+def _is_space(ch: str) -> bool:
+    return ch == "" or ch in "\t\n\f\r" or unicodedata.category(ch) == "Zs"
+
+
+def _is_punct(ch: str) -> bool:
+    return ch != "" and (ch in string.punctuation or unicodedata.category(ch).startswith("P"))
+
+
+def _segments(s: str):
+    """按 CommonMark 规则切出行内代码段，返回 [(是否代码, 文字)]。"""
+    segs, i, start = [], 0, 0
+    while i < len(s):
+        if s[i] == "\\":
+            i += 2
+            continue
+        if s[i] != "`":
+            i += 1
+            continue
+        j = i
+        while j < len(s) and s[j] == "`":
+            j += 1
+        k, close = j, None
+        while k < len(s):
+            if s[k] != "`":
+                k += 1
+                continue
+            m = k
+            while m < len(s) and s[m] == "`":
+                m += 1
+            if m - k == j - i:
+                close = m
+                break
+            k = m
+        if close is None:
+            i = j
+            continue
+        segs += [(False, s[start:i]), (True, s[i:close])]
+        i = start = close
+    segs.append((False, s[start:]))
+    return segs
+
+
+def _strong_fix(s: str, masked: str) -> str:
+    """GitHub 不认的 **粗体**（定界符贴着中文标点）改为 <strong>；成对且可判定时才改。"""
+    pos = [m.start() for m in re.finditer(r"(?<!\*)\*\*(?!\*)", masked)]
+    if len(pos) % 2:
+        return s
+
+    def at(i):
+        return masked[i] if 0 <= i < len(masked) else ""
+
+    for o, c in reversed(list(zip(pos[::2], pos[1::2]))):
+        if _is_space(at(o + 2)) or _is_space(at(c - 1)):
+            continue                      # 贴空格的不是标点问题，原样保留
+        nxt, prv = at(o + 2), at(o - 1)
+        left = not _is_space(nxt) and (not _is_punct(nxt) or _is_space(prv) or _is_punct(prv))
+        prv, nxt = at(c - 1), at(c + 2)
+        right = not _is_space(prv) and (not _is_punct(prv) or _is_space(nxt) or _is_punct(nxt))
+        if not (left and right):
+            s = s[:o] + "<strong>" + s[o + 2:c] + "</strong>" + s[c + 2:]
+    return s
+
+
+def _inline_safe(para: str) -> str:
+    segs = _segments(para)
+    text = [t for code, t in segs if not code]
+    # 段内有会被 GitHub 剥除的标签（多为工具/IDE 注入的 XML 样式文本）时，整段标签都按文字显示。
+    escape_tags = any(m.group(1).lower() not in GH_TAGS for t in text for m in _TAG.finditer(t))
+    if not escape_tags and any((m := _HTML_LINE.match(ln)) and m.group(2).lower() in _BLOCK_TAGS
+                               for ln in para.split("\n")):
+        return para                       # 作者写的原始 HTML 块：不解析 Markdown，保持原样
+    tildes = sum(len(_TILDE.findall(t)) for t in text)
+    out = []
+    for code, t in segs:
+        if not code:
+            if escape_tags:
+                t = _TAG.sub(r"\\<", t)
+            if tildes >= 2:
+                t = _TILDE.sub(r"\\~", t)
+        out.append(t)
+    s = "".join(out)
+    # 粗体配对在转义之后的文字上判断；代码段内容用占位字母遮住，两端反引号保留为标点。
+    masked = "".join(t if not code else t[:1] + "x" * (len(t) - 2) + t[-1:] for code, t in _segments(s))
+    return _strong_fix(s, masked)
+
+
+def md_safe(text: str) -> str:
+    """对一段 Markdown 正文做 GitHub 渲染安全处理；围栏代码块与行内代码保持原样。"""
+    out, para, fence = [], [], ""
+
+    def flush():
+        if para:
+            out.extend(_inline_safe("\n".join(para)).split("\n"))
+            para.clear()
+
+    for line in text.split("\n"):
+        m = _FENCE.match(line)
+        if m and m.group(1)[0] == "`" and "`" in line.strip()[len(m.group(1)):]:
+            m = None                      # ```x``` 是行内代码，不是围栏
+        if fence:
+            out.append(line)
+            run = m.group(1) if m else ""
+            if run and run[0] == fence[0] and len(run) >= len(fence) and not line.strip()[len(run):].strip():
+                fence = ""
+            continue
+        if m:
+            flush()
+            fence = m.group(1)
+            out.append(line)
+        elif not line.strip():
+            flush()
+            out.append(line)
+        else:
+            para.append(line)
+    flush()
+    return "\n".join(out)
+
+
 def tool_line(name: str, inp) -> str:
     if isinstance(inp, dict):
         key = next((inp[k] for k in ("path", "command", "pattern", "description", "file_path", "cmd") if k in inp), "")
     else:
         key = inp
     key = str(key).replace("\n", " ")[:140]
-    return f"- `{name}` {key}"
+    return f"- `{name}` {code_span(key)}"
 
 
 # ------------------------------------------------------------------ OpenCode
@@ -214,11 +366,11 @@ def write(sessions):
                  f"- 开始：{ts(s['created'])}；用户提示 {len(users)} 条；工具调用 {ntools} 次", ""]
         for role, t, text, tools in s["turns"]:
             if role == "user":
-                body = OMIT_NOTE if omitted(s["id"], text) else clean(text)
+                body = OMIT_NOTE if omitted(s["id"], text) else md_safe(clean(text))
                 lines += [f"## 用户提示（{ts(t)}）", "", body, ""]
             else:
                 if text.strip():
-                    lines += [f"### 模型回答（{ts(t)}）", "", clean(text), ""]
+                    lines += [f"### 模型回答（{ts(t)}）", "", md_safe(clean(text)), ""]
                 if tools:
                     lines += ["<details><summary>工具调用 %d 次</summary>" % len(tools), ""] + tools + ["", "</details>", ""]
         (OUT / name).write_text("\n".join(lines), encoding="utf-8")
@@ -229,6 +381,9 @@ def write(sessions):
     idx = ["# 大模型协作原始记录索引（自动导出）", "",
            "由 `export_sessions.py` 从本机工具会话库只读导出；提示词与回答为原文，"
            "仅折叠工具输出、截断超长回答、打码疑似密钥，并省略 1 条与工程无关的用户提示原文（保留轮次与计数）。"
+           "为在 GitHub 上正确渲染，另做只改标记、不改文字的处理：工具调用摘要放进行内代码，"
+           "正文中会被剥除的 HTML 样式标签和单个 `~` 加转义，贴着中文标点而失效的 `**粗体**` 改写为 `<strong>`；"
+           "2026-10-30 那次导出的逐字节原件见 `archive/evidence/raw_records_20261102.zip`。"
            "公开前请人工复核隐私信息。", "",
            f"导出时间 {dt.datetime.now():%Y-%m-%d %H:%M}。会话 {len(rows)} 个，其中有工具调用的工程会话 {len(work)} 个"
            f"（用户提示 {sum(r[4] for r in work)} 条、工具调用 {sum(r[5] for r in work)} 次）；"

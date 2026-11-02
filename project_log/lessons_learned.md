@@ -1,5 +1,13 @@
 # 经验与踩坑
 
+## 2026-11-02 — 中文 Markdown 在 GitHub 上的渲染陷阱（D10）
+
+- 闭合 `**` 前是中文标点、后面紧跟文字时，GitHub 不认粗体：`**停止条件：**固件` 会原样显示星号。写成 `**停止条件**：固件`，或保留原范围时用 `<strong>`。
+- 表格单元格里的 `|`（包括行内代码中的 `||`）会拆出新列，多出的列被静默丢弃，须写 `\|`；表格后紧跟的一行（即使缩进在列表里）会被吞成表格行，结论前要空一行；表头与分隔行列数不等时整张表不渲染。
+- GitHub 支持单个 `~` 删除线，同一段出现两次范围写法（`5~10 … 3~4`）就会划掉中间文字，要写 `\~`；`<name>`、`<install>` 这类占位符会被当成 HTML 剥除；裸 URL 会把紧随的中文标点一路吞到下一个空格，要用 `<URL>`。
+- 自动导出的原始记录要在生成器里做渲染安全处理；源库会继续增长，不能靠重导出复现历史范围，只能对归档原件套用同一函数，并逐行审计“撤销标记即还原原文”。
+- -text 文件的工作区换行可能早已与 HEAD 不同，状态缓存让 git status 看不出来，一编辑就整文件改换行；提交前用 `git ls-files --eol` 与 HEAD 字节核对。
+
 ## 2026-11-02 — 目录迁移只改“确实搬走”的引用（D09）
 
 - docs/下的大量旧引用在本次迁移前就已失效（文件早已隔离到archive/history/docs）。按字符串把docs/批量换成report/design/会制造新的错误路径；改为逐条解析目标、只改映射后真实存在的路径，并分别统计迁移前后损坏链接。
@@ -333,7 +341,7 @@
   杀掉后必须数 vivado|vrs 进程为 0 再重开，启动前 archive 上次日志。
 - L73：器件的 open_project 报错 "part not available" 是缺器件支持包而非 XPR 问题；
   本机 Vivado 只装了 artix7/kintex7 没有 zynq7。开始菜单 "Add Design Tools or
-  Devices"（xsetup.exe 缓存在 <install>/.xinstall/<ver>/）Modify 勾 Zynq-7000 即可，
+  Devices"（xsetup.exe 缓存在 \<install>/.xinstall/\<ver>/）Modify 勾 Zynq-7000 即可，
   ~1-2 GB；装完用 get_parts 验证再跑长任务。
 - L74：跨机器可复现性是真实且可依赖的：同工具/part/RTL，本机重跑 Default 与
   ExplorePostRoutePhysOpt 的 WNS/TNS/失败端点与 xyq 机 V06 报告逐位一致。build_context
@@ -565,8 +573,8 @@ L08 的“保留两个跟踪生成元数据”是此前策略；本轮按用户�
   `phys_opt_design -force_replication_on_nets <get_nets 结果>`。
   加 `-force_replication_on_nets` 时不要试图用它去拆最大的那几个锥（实测拆不动），
   它的有效用法是**只喂失败端点的 CE 锥**。
-- **`DATAPATH_NET_DELAY` 是整条路径的累计走线**，不是一条网络。本例 10~11 级逻辑、
-  net 7.1~7.5 ns，等于每跳约 0.7 ns 的分布式线长；因此"找到那条坏网络复制一下"不成立，
+- **`DATAPATH_NET_DELAY` 是整条路径的累计走线**，不是一条网络。本例 10\~11 级逻辑、
+  net 7.1\~7.5 ns，等于每跳约 0.7 ns 的分布式线长；因此"找到那条坏网络复制一下"不成立，
   只能靠更短的跳（布局，上限 ±0.1 ns）或更少的跳（RTL）或更长的周期。
 - **floorplan 生效与否要数溢出，不能看 bbox。** `add_cells_to_pblock` 只给层次单元是
   有效的（pb_cpu 覆盖 10404 个 leaf），但 place 之后的 `phys_opt_design` 会插入副本并做

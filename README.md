@@ -85,7 +85,7 @@ amd_fpga_2026/
 `docs/reproduce_from_zero.md` → `report/reproduce_from_zero.md`。历史日志、任务看板旧条目、旧提交流程、原始记录和此前生成的 ZIP
 仍保留旧路径；其中此前已隔离的 `docs/<name>.md` / `docs/tech_report/<旧流水线>` 在 `archive/history/docs/` 下。
 
-**依赖不要误删：**PUF3 仍使用 `src/firmware/pynq_svc/`、`src/firmware/ascon_hw_rv32/`、
+**依赖不要误删**：PUF3 仍使用 `src/firmware/pynq_svc/`、`src/firmware/ascon_hw_rv32/`、
 公共 `src/pynq/` 和保留的 Ascon 工程 IP 配置；名称较旧不等于无用。
 PUF3 的 `soc_top.v` / `key_mmio.v` 用 `board/` 下变体，不是把所有 RTL 递归加入 Vivado。
 
@@ -102,8 +102,8 @@ git status --short
 
 按[从零复现指南](report/reproduce_from_zero.md)选择：
 
-- **先验证现成候选：**检查源码 / 工件身份 → 在匹配的 PYNQ 板端执行 Notebook。
-- **从源码重建：**环境准备 → Final host / RTL 验证 → 固件 → PUF3 协同仿真 → Vivado → 新候选上板。
+- **先验证现成候选**：检查源码 / 工件身份 → 在匹配的 PYNQ 板端执行 Notebook。
+- **从源码重建**：环境准备 → Final host / RTL 验证 → 固件 → PUF3 协同仿真 → Vivado → 新候选上板。
 
 每步的依赖、命令、输出位置和停止条件均在指南中。离线 PASS 不等于实板 PASS；
 完整干净机器硬件端到端复现和 PUF 未测项目仍保留边界，不因新增教程而改成通过。

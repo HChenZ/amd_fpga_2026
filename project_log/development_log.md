@@ -1,5 +1,12 @@
 # 开发记录
 
+## 2026-11-02 — D10 Markdown 渲染全量检查
+
+owner TBD。用 cmark-gfm 逐个渲染 231 个已跟踪 .md，判定规则先经 GitHub `/markdown` API 校准；修正中文标点粗体、表格管道符/吞行/列数、
+单个 `~` 删除线、被剥除标签、裸 URL、通配符斜体与 2 个公式写法，并修复 key_subsystem.md（printf 换行）与 timing_route_tests 的 §9.2 标题两处历史损坏。
+会话记录改为修导出器（行内代码 + 渲染安全转义）后，用同一函数处理归档原件并逐行审计只改标记；restore_records 不再覆盖已入库会话。
+-text 文件按 HEAD 保持 LF。E 类缺陷 0，GitHub API 抽查 17 个文件 0 缺陷，pytest 122/3skip。用户授权正常提交推送，不 force。
+
 ## 2026-11-02 — D09 docs/并入report/，协作记录归位
 
 owner TBD。按赛题3.3.5.4推荐结构，report/ = 设计报告 + 大模型协作记录：docs/tech_report → report/technical，其余说明 → report/design，

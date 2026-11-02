@@ -91,8 +91,8 @@ bbbc34692fe05e5fda0a3b025585622ab3e3747495e5e3655b29aae8c2a4bd33。
 3/25/45/60/69 cycles且先断言busy，最后一点在认证发布前。请求timeout200cycles，
 独立TB均watchdog/fatal；失败入口非零；完整性检查不用可被python -O禁用的assert。
 
-新证据名称为rtl_integration_regression.*、rtl_integration_harness.json、
-host_integration_validation.*；没有将旧报告改名为本次PASS。软件完整log无损gzip。
+新证据名称为rtl_integration_regression.\*、rtl_integration_harness.json、
+host_integration_validation.\*；没有将旧报告改名为本次PASS。软件完整log无损gzip。
 最终[审查清单](../data/ascon/results/integration_review.json)核对所有当前source/TB/
 script哈希、原28dirty及89备份、原队友未改文件、远程main未前进、白空格与修改范围；
 该2026-10-09审查快照的暂存、commit、push、PR均为0。

@@ -10,7 +10,7 @@
 CPU描述已去内部编号，实测数据不变，已重新编译并核对。下面v0.9流水线现隔离到archive/history/docs/tech_report，
 原始记录另存archive/evidence；不得按旧路径覆盖当前稿。
 
-**当前操作只按 [版本入口](../design/version_entrypoints.md) 与 [证据目录说明](evidence/README.md)。**
+**当前操作只按 [版本入口](../design/version_entrypoints.md) 与 [证据目录说明](../../archive/history/docs/tech_report/evidence/README.md)。**
 下文旧“阅读/维护/构建入口”全部保留为v0.9历史，不是当前推荐命令；尤其不运行build_report.py覆盖最终报告。
 旧压缩包名称含final/review也不代表当前PDF，选择依据是构建记录和submission/current_evidence.json。
 

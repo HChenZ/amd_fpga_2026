@@ -91,7 +91,7 @@ hold 方式使流水线跨越 P12/P8 的多拍执行，`done` 保持至指令推
 不会因跨过完成的停顿而被重复执行。
 
 > <span class="figslot">图 2-4</span> **EX 级功能单元与多周期握手状态图**：含 `Idle → Busy → Done →
-> ack 转换、陷入与中断取消分支，以及 ISE hold 与 ALU 单拍路径的复用关系。
+> ack` 转换、陷入与中断取消分支，以及 ISE hold 与 ALU 单拍路径的复用关系。
 
 ### 2.5 访存与写回（MEM/WB）及 Cache 结构
 

@@ -17,8 +17,8 @@
 
 ## 用户提示（2026-10-28 15:31）
 
-<command-message>claude-api</command-message>
-<command-name>/claude-api</command-name>
+\<command-message>claude-api\</command-message>
+\<command-name>/claude-api\</command-name>
 
 ## 用户提示（2026-10-28 15:31）
 

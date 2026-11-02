@@ -29,7 +29,7 @@ Vivado 2025.2 build 6299465，part xc7z020clg400-1，top=top_pl_bram，本机 DE
 ## 结果总表（33 策略，按 WNS 从好到差）
 
 | 排名 | 策略 | WNS ns | TNS ns | 失败端点 | LUT | FF |
-|---|---:|---:|---:|---:|---:|
+|---|---|---:|---:|---:|---:|---:|
 | 1 | **Performance_ExploreWithRemap** | **-0.118** | **-1.008** | **22** | 11643 | 15949 |
 | 2 | Performance_ExplorePostRoutePhysOpt | -0.177 | -2.968 | 31 | 11636 | 15949 |
 | 3 | Congestion_SpreadLogic_medium | -0.195 | -3.480 | 60 | 11594 | 15957 |
@@ -78,7 +78,7 @@ Performance_ExplorePostRoutePhysOpt -0.177/-2.968/31 —— 本机重跑逐位�
    与此前"high 最好"的单点结论相反；此前只用 high 是欠采样的教训。
 5. **WLBlockPlacement 失败端点仅 9 个**（-0.220）：路径最集中，若配合 RTL 定点修复
    是候选。WLBlockPlacementFanoutOpt 反而最差之一（-0.716）——fanout 优化副作用。
-6. **Area 族确实省资源**：LUT 11236~11427（-3%），但时序 -0.51~-0.94。
+6. **Area 族确实省资源**：LUT 11236\~11427（-3%），但时序 -0.51\~-0.94。
    Flow_Quick 灾难性（WNS -32.9、hold -0.146、TNS -321610），仅作运行时换时序的极值参考。
 7. **结合 dcache 新 RTL 的收敛预期**：dcache 流水线版（修复功能后）在
    ExplorePostRoutePhysOpt 下 WNS=-0.055；按 ExploreWithRemap 相对提升 ~0.059 ns

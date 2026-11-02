@@ -24,11 +24,11 @@
    → **F 是"清场"，不是"提余量"；F 必须与 A 一起做才有 WNS 收益。**
 2. **R（80 MHz）"重跑实现"拿不到 +2.3 ns，只有 +0.483 ns。** 同一份未改 RTL，把核心约束改成
    12.5 ns 重做综合+实现：WNS **+0.483**（失败端点 0）。原因不是设计变差，而是
-   **P&R 按松约束干活**：最差路径 route 9.167 ns（100 MHz 网表同类路径 ~7.6 ns），
+   **P&R 按松约束干活**：最差路径 route 9.167 ns（100 MHz 网表同类路径 \~7.6 ns），
    物理质量掉了约 1.9 ns。站点上"80 MHz → +2.340 ns"是**同一张已按 10 ns 布线的网表**
    `reset_timing` 重算出来的，两者不是同一个东西。
    → **降频正确做法：实现仍按 10 ns 过度约束，只把 MMCM 输出改成 80 MHz。** 这样网表是
-   100 MHz 军规的，上板时序就是 +2.3~+2.5 ns 量级，再用 `report_timing` 在 12.5 ns 下复核。
+   100 MHz 军规的，上板时序就是 +2.3\~+2.5 ns 量级，再用 `report_timing` 在 12.5 ns 下复核。
 3. **WHS 在两种频率下都过不了站点自己写的门禁（≥+0.05）**：100 MHz +0.023 / +0.030，
    80 MHz +0.018 / +0.020。降频不改善 hold，这条门禁必须单独处理。
 4. **（2026-10-24 晚追加）路线 C（store buffer）实测有效且 0 周期**：WNS **+0.007 → +0.057**、
@@ -370,12 +370,7 @@ wire inter_accept_ready = id_ex_inst_valid && !dcache_stall && !dmem_axi_stall_r
                        && !ex_stall_req && !icache_stall && !fence_i_stall;   // 改前
 ```
 
-### 9.2 改法（补丁 `build/patches/timing_D_interrupt_guard_register.patch
-build/timing_tests/rep_fanout.tcl, probe_fanout.tcl   # 定点扇出复制 + 大扇出网探针
-build/timing_tests/run_prod_rep.tcl                   # 把复制接进生产策略的 run 钩子（结论：不进流程）
-build/reports/tests_20261024/{prod_ctl,prod_rep,prod_rep1}/   # 接入后的重测结果
-build/reports/timing_tests/{rep_ctl,rep_ff400,rep_any150}/   # 三个复制臂的结果
-build/reports/tests_20261024/e_100/                   # RTL max_fanout 反例（−0.008）`，只改 `cpu_core.v`）
+### 9.2 改法（补丁 `build/patches/timing_D_interrupt_guard_register.patch`，只改 `cpu_core.v`）
 
 把 pc 长链那一项拆出来只驱动一个触发器，当拍再与全部快项（都是寄存器输出）相与：
 

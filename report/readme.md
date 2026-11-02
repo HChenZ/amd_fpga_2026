@@ -17,7 +17,8 @@
 - 讲解网页：历史日志记录过project_explainer.html，但当前工作区、Git快照及整理备份均未找到该文件；不声称已入库或已清理其文本，需原制作会话补交原件。
 - 工程源码与Skill分别压缩，见delivery/README.md；旧证据包不作附件，原始记录仍保存在archive/evidence。
 - 大模型协作记录：llm_collab/ 曾短暂隔离到archive/history/report，11-02 按推荐结构移回本目录；21个会话原文
-  经用户确认后入库（与archive/evidence/raw_records_20261102.zip中的副本逐字节一致），覆盖范围与未收录来源见index.md。
+  经用户确认后入库。为在 GitHub 上正确渲染，仓库副本只改了标记（工具调用摘要放进行内代码、转义会被剥除的标签等，文字不变），
+  逐字节原件仍在archive/evidence/raw_records_20261102.zip；覆盖范围与未收录来源见index.md。
 - 下文带日期状态是整理前记录，其中 `docs/...` 路径已按新位置更新；仍指向已隔离文件的旧路径保持原样。
 
 ## 整理前的阶段说明（保留原语境）

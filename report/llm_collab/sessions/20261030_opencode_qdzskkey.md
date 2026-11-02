@@ -13,40 +13,40 @@
 
 <details><summary>工具调用 2 次</summary>
 
-- `glob` **/puf*/**
-- `shell` git status --short | Select-Object -First 50
+- `glob` `**/puf*/**`
+- `shell` `git status --short | Select-Object -First 50`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `glob` board/vivado_zynq7000_xc7z020_puf_v2/**/*.{tcl,xdc,md,txt}
-- `glob` src/rtl/puf_soc_v2/**
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\puf_soc\validation_20261030.md
+- `glob` `board/vivado_zynq7000_xc7z020_puf_v2/**/*.{tcl,xdc,md,txt}`
+- `glob` `src/rtl/puf_soc_v2/**`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\puf_soc\validation_20261030.md`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_puf_v2\setup.tcl
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_puf_v2\readme.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_puf_v2\candidate\reports\verdict.txt
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\puf_soc\vivado_logs\impl_1.log
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_puf_v2\setup.tcl`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_puf_v2\readme.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_puf_v2\candidate\reports\verdict.txt`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\puf_soc\vivado_logs\impl_1.log`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_puf_v2\sources.txt
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_puf_v2\methodology_resolution_report.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_puf_v2\sources.txt`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_puf_v2\methodology_resolution_report.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` Get-ChildItem src/rtl/keys_v2, src/rtl/keys, src/rtl/pynq, board/vivado_zynq7000_xc7z020_pynq_puf, sim/pynq_puf, src/firmware/keys_v2 | Sele
-- `shell` Select-String -Path data/advanced/puf_soc/implementation/setup_paths.rpt -Pattern "Slack|Source:|Destination:|Logic Levels|Data Path Delay|R
+- `shell` `Get-ChildItem src/rtl/keys_v2, src/rtl/keys, src/rtl/pynq, board/vivado_zynq7000_xc7z020_pynq_puf, sim/pynq_puf, src/firmware/keys_v2 | Sele`
+- `shell` `Select-String -Path data/advanced/puf_soc/implementation/setup_paths.rpt -Pattern "Slack|Source:|Destination:|Logic Levels|Data Path Delay|R`
 
 </details>
 
@@ -56,50 +56,50 @@ Now the PUF RTL scope and the older independent PUF prototype.
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\keys_v2\puf_mmio_v2.v
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\keys_v2\readme.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\readme.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\keys_v2\puf_mmio_v2.v`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\keys_v2\readme.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\readme.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem -Recurse board/vivado_zynq7000_xc7z020_pynq_puf, build/local/pynq_puf -ErrorAction SilentlyContinue -Depth 1 | Select-Object F
+- `shell` `Get-ChildItem -Recurse board/vivado_zynq7000_xc7z020_pynq_puf, build/local/pynq_puf -ErrorAction SilentlyContinue -Depth 1 | Select-Object F`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content build/local/pynq_puf/build.log -Tail 25; Get-ChildItem build/local/pynq_puf/vivado/reports | Select-Object Name; Get-Content bui
+- `shell` `Get-Content build/local/pynq_puf/build.log -Tail 25; Get-ChildItem build/local/pynq_puf/vivado/reports | Select-Object Name; Get-Content bui`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\puf_soc_v2\soc_top_puf_v2.v
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\puf_soc_v2\bus_interconnect_puf_v2.v
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_dma_cpu\setup.tcl
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\puf_soc_v2\soc_top_puf_v2.v`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\puf_soc_v2\bus_interconnect_puf_v2.v`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_dma_cpu\setup.tcl`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\build.tcl
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\build.tcl`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` def ascon_encrypt|import ascon|pyascon
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\keys_v2\ro_puf_core_v2.v
+- `grep` `def ascon_encrypt|import ascon|pyascon`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\keys_v2\ro_puf_core_v2.v`
 
 </details>
 
@@ -109,7 +109,7 @@ Material is sufficient. Writing the plan document.
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\tasks\puf_fix_and_min_goal_20261030.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\tasks\puf_fix_and_min_goal_20261030.md`
 
 </details>
 
@@ -119,7 +119,7 @@ Per the AGENTS.md rules, I'm adding a progress entry.
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
 
 </details>
 

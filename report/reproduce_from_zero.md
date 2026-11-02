@@ -14,7 +14,7 @@
 | 从源码重建当前 PUF3 | 1～8 | 逐段验证软件、RTL、固件、实现和本次板测；必须保存自己的新结果 |
 | 检查四个交付 ZIP | 1、2、9 | 包完整性、独立解包、固件 / host / Skill 与 elaboration；不运行 Vivado 或实板 |
 
-**不是“一键全部验收通过”承诺。**既有记录证明过离线验证、固件 BIN 一致、源码包装配和一次 PUF3 板测；
+**不是“一键全部验收通过”承诺**。既有记录证明过离线验证、固件 BIN 一致、源码包装配和一次 PUF3 板测；
 完整干净机器硬件端到端复现（D05）、PUF 跨上电 / PVT / BER / 熵 / 唯一性、RO 计数器域签核等仍未闭合。
 本次新增的是操作指南，不是新的硬件验收记录。
 
@@ -63,7 +63,7 @@ riscv-none-elf-gcc --version
 ```
 
 Windows 也可使用原生 Python、Icarus、xPack 和 Vivado；用该 Python 执行 `python -m pip install pytest PyMuPDF`。
-**Windows 和 WSL 的 Python / PATH 是两套环境。**每条命令所调用的编译器必须能从同一环境找到；
+**Windows 和 WSL 的 Python / PATH 是两套环境**。每条命令所调用的编译器必须能从同一环境找到；
 尤其 `verify_delivery.py` 内部直接调用固件构建，要求 `riscv-none-elf-gcc` 在该环境的 PATH 中。
 不要依赖固件脚本中仅适用于开发机的 Windows 兜底路径。
 
@@ -155,7 +155,7 @@ mutant_autolock_detected = true
 正常用例应通过；自动锁钥的历史 RTL 反例应被检测为非零退出，不能把它改成正常路径。
 这一步使用真实 RV32 固件与 AXI / UART，但 RO / DNA / BRAM 等含行为模型，不证明物理 PUF 可靠性。
 
-**停止条件：**固件构建或任一协同仿真门禁不通过，不继续 Vivado / 发布。
+**停止条件**：固件构建或任一协同仿真门禁不通过，不继续 Vivado / 发布。
 COE 是构建时 BRAM 初值；只替换 ELF / BIN 不会更新已有 bitstream。
 
 ## 7. Vivado 2025.2 从源码综合、实现与新候选

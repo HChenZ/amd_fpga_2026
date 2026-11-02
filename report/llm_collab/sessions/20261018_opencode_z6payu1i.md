@@ -9,50 +9,50 @@ please finish this markdown file
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `glob` docs/dcache*
-- `shell` git status --short; git log --oneline -5
+- `glob` `docs/dcache*`
+- `shell` `git status --short; git log --oneline -5`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff --stat src/rtl/dcache.v; git diff src/rtl/dcache.v | Select-Object -First 300
+- `shell` `git diff --stat src/rtl/dcache.v; git diff src/rtl/dcache.v | Select-Object -First 300`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff src/rtl/dcache.v | Select-Object -Skip 300
+- `shell` `git diff src/rtl/dcache.v | Select-Object -Skip 300`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl
+- `grep` `src/rtl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\bus_interconnect.v
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\bus_interconnect.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Test-Path data/ascon/results/key_lifecycle/sw_dcache_pipe2.json, build/local/strategy_sweep_log/dcache_head_screen.log, build/reports/dcache
+- `shell` `Test-Path data/ascon/results/key_lifecycle/sw_dcache_pipe2.json, build/local/strategy_sweep_log/dcache_head_screen.log, build/reports/dcache`
 
 </details>
 
@@ -62,7 +62,7 @@ Before adding anything, I checked the document against the RTL. Section 1 gets t
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md`
 
 </details>
 
@@ -72,7 +72,7 @@ Now add the remaining sections after the evidence list.
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md`
 
 </details>
 
@@ -103,19 +103,19 @@ All evidence paths listed in section 5 exist. I didn't update `project_log/actua
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_plan_for_opencode.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_plan_for_opencode.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` (?i)ross
+- `grep` `(?i)ross`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\ross_and_engineering_skills_evaluation.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\ross_and_engineering_skills_evaluation.md`
 
 </details>
 
@@ -128,25 +128,25 @@ All evidence paths listed in section 5 exist. I didn't update `project_log/actua
 <details><summary>工具调用 2 次</summary>
 
 - `skill` 
-- `shell` Get-ChildItem -Path $env:USERPROFILE\Downloads, $env:USERPROFILE\.config\opencode, $env:USERPROFILE\.opencode -Recurse -Depth 2 -ErrorAction
+- `shell` `Get-ChildItem -Path $env:USERPROFILE\Downloads, $env:USERPROFILE\.config\opencode, $env:USERPROFILE\.opencode -Recurse -Depth 2 -ErrorAction`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem C:\Users\HXZ\.agents\skills -Name; Get-ChildItem C:\Users\HXZ\.config\opencode -ErrorAction SilentlyContinue -Name; Get-ChildI
+- `shell` `Get-ChildItem C:\Users\HXZ\.agents\skills -Name; Get-ChildItem C:\Users\HXZ\.config\opencode -ErrorAction SilentlyContinue -Name; Get-ChildI`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content C:\Users\HXZ\.config\opencode\opencode.json; Get-ChildItem C:\ruanjian\2025.2 -Name -ErrorAction SilentlyContinue; Test-Path C:/
+- `shell` `Get-Content C:\Users\HXZ\.config\opencode\opencode.json; Get-ChildItem C:\ruanjian\2025.2 -Name -ErrorAction SilentlyContinue; Test-Path C:/`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-CimInstance Win32_Process -Filter "Name like 'vivado-mcp%' or Name like 'vivado%'" | Select-Object ProcessId,ParentProcessId,ExecutableP
+- `shell` `Get-CimInstance Win32_Process -Filter "Name like 'vivado-mcp%' or Name like 'vivado%'" | Select-Object ProcessId,ParentProcessId,ExecutableP`
 
 </details>
 
@@ -158,7 +158,7 @@ All evidence paths listed in section 5 exist. I didn't update `project_log/actua
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` & C:\wenjian\tool\vivado-mcp-server-windows-amd64-2026.9.1.exe --help 2>&1 | Select-Object -First 80; Get-ChildItem C:\wenjian\tool -Name
+- `shell` `& C:\wenjian\tool\vivado-mcp-server-windows-amd64-2026.9.1.exe --help 2>&1 | Select-Object -First 80; Get-ChildItem C:\wenjian\tool -Name`
 
 </details>
 
@@ -176,7 +176,7 @@ All evidence paths listed in section 5 exist. I didn't update `project_log/actua
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` opencode mcp add vivado --global --env VIVADO_PATH=C:/ruanjian/2025.2/Vivado/bin/vivado.bat -- C:/wenjian/tool/vivado-mcp-server-windows-amd
+- `shell` `opencode mcp add vivado --global --env VIVADO_PATH=C:/ruanjian/2025.2/Vivado/bin/vivado.bat -- C:/wenjian/tool/vivado-mcp-server-windows-amd`
 
 </details>
 
@@ -186,13 +186,13 @@ No `opencode` CLI on PATH, so I'll add the server to the global config by hand.
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\Users\HXZ\.config\opencode\opencode.json
+- `edit` `C:\Users\HXZ\.config\opencode\opencode.json`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "import json;d=json.load(open(r'C:\Users\HXZ\.config\opencode\opencode.json'));print(json.dumps(d['mcp']))"; & C:\wenjian\tool\viv
+- `shell` `python -c "import json;d=json.load(open(r'C:\Users\HXZ\.config\opencode\opencode.json'));print(json.dumps(d['mcp']))"; & C:\wenjian\tool\viv`
 
 </details>
 
@@ -202,8 +202,8 @@ Ross MCP (vivado server 2026.9.1) is now connected. Next, the gates and the fix.
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\screen_dcache_donttouch.sh
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\build_dcache_pipe.tcl
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\screen_dcache_donttouch.sh`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\build_dcache_pipe.tcl`
 
 </details>
 
@@ -213,25 +213,25 @@ Gate 4.1: baseline screen with the committed dcache (does not touch the working 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` bash build/screen_dcache_donttouch.sh head 2>&1 | Select-Object -Last 15
+- `shell` `bash build/screen_dcache_donttouch.sh head 2>&1 | Select-Object -Last 15`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Command bash -All | Select-Object Source; Test-Path "C:\Program Files\Git\bin\bash.exe"; Get-Command iverilog, vvp -ErrorAction Silently
+- `shell` `Get-Command bash -All | Select-Object Source; Test-Path "C:\Program Files\Git\bin\bash.exe"; Get-Command iverilog, vvp -ErrorAction Silently`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem C:\, D:\, E:\ -Filter bash.exe -Recurse -Depth 4 -ErrorAction SilentlyContinue | Select-Object -First 10 FullName; Get-Command
+- `shell` `Get-ChildItem C:\, D:\, E:\ -Filter bash.exe -Recurse -Depth 4 -ErrorAction SilentlyContinue | Select-Object -First 10 FullName; Get-Command`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PATH = "C:\wenjian\.vscode\iverilog\bin;" + $env:PATH; & C:\ruanjian\Git\bin\bash.exe -lc "cd /c/wenjian/game/FPGA2026/ours/amd_fpga_20
+- `shell` `$env:PATH = "C:\wenjian\.vscode\iverilog\bin;" + $env:PATH; & C:\ruanjian\Git\bin\bash.exe -lc "cd /c/wenjian/game/FPGA2026/ours/amd_fpga_20`
 
 </details>
 
@@ -241,49 +241,49 @@ Gate 4.1: baseline screen with the committed dcache (does not touch the working 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item build/local/dcache_dt_sim/out/sim.log build/local/strategy_sweep_log/dcache_head_screen_fix_r1.log; Select-String -Path src/rtl/cp
+- `shell` `Copy-Item build/local/dcache_dt_sim/out/sim.log build/local/strategy_sweep_log/dcache_head_screen_fix_r1.log; Select-String -Path src/rtl/cp`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\cpu_core.v
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\cpu_core.v
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\cpu_core.v`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\cpu_core.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\bus_interconnect.v
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\bus_interconnect.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl
+- `grep` `src/rtl`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\dcache.v`
 
 </details>
 
@@ -293,8 +293,8 @@ Now add a `wt` (working tree) mode to the screen script so the fixed RTL can be 
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\screen_dcache_donttouch.sh
-- `shell` & C:\ruanjian\Git\bin\bash.exe -c "cd /c/wenjian/game/FPGA2026/ours/amd_fpga_2026 && export PATH=/c/wenjian/.vscode/iverilog/bin:`$PATH && b
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\screen_dcache_donttouch.sh`
+- `shell` ``& C:\ruanjian\Git\bin\bash.exe -c "cd /c/wenjian/game/FPGA2026/ours/amd_fpga_2026 && export PATH=/c/wenjian/.vscode/iverilog/bin:`$PATH && b``
 
 </details>
 
@@ -304,19 +304,19 @@ Deadlock is gone: sw screen PASS, KAT 6/6, cycles +0.3% vs HEAD (17410 vs 17353 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/ascon/run_cpu_regression.py --help; git diff --stat sim/ascon/run_cpu_regression.py; Test-Path sim/ascon/run_cpu_units.py
+- `shell` `python sim/ascon/run_cpu_regression.py --help; git diff --stat sim/ascon/run_cpu_regression.py; Test-Path sim/ascon/run_cpu_units.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PATH = "C:\wenjian\.vscode\iverilog\bin;" + $env:PATH; $P="C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-";
+- `shell` `$env:PATH = "C:\wenjian\.vscode\iverilog\bin;" + $env:PATH; $P="C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-";`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content build/local/dcache_fix_r1/reg_hw_security.log -Tail 25
+- `shell` `Get-Content build/local/dcache_fix_r1/reg_hw_security.log -Tail 25`
 
 </details>
 
@@ -326,13 +326,13 @@ Security mode fails at firmware compile (`key_cases.h` missing), not in RTL. Let
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` key_cases
+- `grep` `key_cases`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content sim/ascon/prepare_key_vectors.py -TotalCount 20; Get-ChildItem build/local/key_audit -Name -ErrorAction SilentlyContinue
+- `shell` `Get-Content sim/ascon/prepare_key_vectors.py -TotalCount 20; Get-ChildItem build/local/key_audit -Name -ErrorAction SilentlyContinue`
 
 </details>
 
@@ -342,7 +342,7 @@ The header is a generated test input (`prepare_key_vectors.py`, cross-checked ag
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/ascon/prepare_key_vectors.py; "prep exit=$LASTEXITCODE"; Get-ChildItem build/local/key_audit -File -Name
+- `shell` `python sim/ascon/prepare_key_vectors.py; "prep exit=$LASTEXITCODE"; Get-ChildItem build/local/key_audit -File -Name`
 
 </details>
 
@@ -352,7 +352,7 @@ Vectors generated (27 cases PASS; the traceback is only Windows failing to delet
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PATH = "C:\wenjian\.vscode\iverilog\bin;" + $env:PATH; $P="C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-";
+- `shell` `$env:PATH = "C:\wenjian\.vscode\iverilog\bin;" + $env:PATH; $P="C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-";`
 
 </details>
 
@@ -362,19 +362,19 @@ All gates 4.2/4.3 pass. Let me pull the details and compare cycles against the c
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem data/ascon/results/key_lifecycle -Name; foreach ($f in Get-ChildItem build/local/dcache_fix_r1/reg_*.log) { "== $($f.Name)"; S
+- `shell` `Get-ChildItem data/ascon/results/key_lifecycle -Name; foreach ($f in Get-ChildItem build/local/dcache_fix_r1/reg_*.log) { "== $($f.Name)"; S`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "import gzip,re;[print(f, [l.strip() for l in gzip.open('data/ascon/results/key_lifecycle/'+f,'rt',errors='ignore') if re.search('
+- `shell` `python -c "import gzip,re;[print(f, [l.strip() for l in gzip.open('data/ascon/results/key_lifecycle/'+f,'rt',errors='ignore') if re.search('`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff sim/ascon/run_cpu_regression.py
+- `shell` `git diff sim/ascon/run_cpu_regression.py`
 
 </details>
 
@@ -384,13 +384,13 @@ To compare cycles fairly (same xpack toolchain), I'll run hw/ise with the HEAD d
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $T="C:/Users/HXZ/AppData/Local/Temp/opencode/head_dcache_wt"; git worktree add --detach $T HEAD 2>&1 | Select-Object -Last 2; Copy-Item sim/
+- `shell` `$T="C:/Users/HXZ/AppData/Local/Temp/opencode/head_dcache_wt"; git worktree add --detach $T HEAD 2>&1 | Select-Object -Last 2; Copy-Item sim/`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PATH = "C:\wenjian\.vscode\iverilog\bin;" + $env:PATH; $P="C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-";
+- `shell` `$env:PATH = "C:\wenjian\.vscode\iverilog\bin;" + $env:PATH; $P="C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-";`
 
 </details>
 
@@ -400,7 +400,7 @@ HEAD references done. Removing the temporary worktree:
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git worktree remove --force C:/Users/HXZ/AppData/Local/Temp/opencode/head_dcache_wt; git worktree list; git status --short | Select-Object -
+- `shell` `git worktree remove --force C:/Users/HXZ/AppData/Local/Temp/opencode/head_dcache_wt; git worktree list; git status --short | Select-Object -`
 
 </details>
 
@@ -410,7 +410,7 @@ Gates 4.1–4.3 all pass. Now the Ross lint step via the Vivado MCP (isolated se
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\Users\HXZ\.agents\skills\vivado-rtl-lint\tcl-reference.md
+- `read` `C:\Users\HXZ\.agents\skills\vivado-rtl-lint\tcl-reference.md`
 - `execute` 
 
 </details>
@@ -423,7 +423,7 @@ Gates 4.1–4.3 all pass. Now the Ross lint step via the Vivado MCP (isolated se
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` New-Item -ItemType Directory -Force build/local/dcache_fix_r1/lint | Out-Null; Copy-Item src/rtl/dcache.v build/local/dcache_fix_r1/lint/
+- `shell` `New-Item -ItemType Directory -Force build/local/dcache_fix_r1/lint | Out-Null; Copy-Item src/rtl/dcache.v build/local/dcache_fix_r1/lint/`
 - `execute` 
 
 </details>
@@ -462,14 +462,14 @@ Lint: 2 warnings, 0 critical. Running the skill's parser (mandatory for <2026.1)
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` $d="build/local/dcache_fix_r1/lint/vivado_agentic_ai_reports/rtl-lint"; python C:\Users\HXZ\.agents\skills\vivado-rtl-lint\parse_lint_report
+- `shell` `$d="build/local/dcache_fix_r1/lint/vivado_agentic_ai_reports/rtl-lint"; python C:\Users\HXZ\.agents\skills\vivado-rtl-lint\parse_lint_report`
 - `execute` 
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Start-Sleep 45; Get-Content build/local/dcache_fix_r1/lint_head/rpt/linter.rpt -ErrorAction SilentlyContinue | Select-String "ASSIGN|INFER|R
+- `shell` `Start-Sleep 45; Get-Content build/local/dcache_fix_r1/lint_head/rpt/linter.rpt -ErrorAction SilentlyContinue | Select-String "ASSIGN|INFER|R`
 
 </details>
 
@@ -481,15 +481,15 @@ Lint: 2 warnings, 0 critical. Running the skill's parser (mandatory for <2026.1)
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\build_dcache_pipe.tcl
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\build_dcache_pipe.tcl
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\build_dcache_pipe.tcl`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\build_dcache_pipe.tcl`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\build_dcache_pipe.tcl
-- `shell` (Get-FileHash src/rtl/dcache.v -Algorithm SHA256).Hash; Test-Path build/local/ascon_dcache_pipe_fix_r1; Get-CimInstance Win32_Processor | Se
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\build_dcache_pipe.tcl`
+- `shell` `(Get-FileHash src/rtl/dcache.v -Algorithm SHA256).Hash; Test-Path build/local/ascon_dcache_pipe_fix_r1; Get-CimInstance Win32_Processor | Se`
 
 </details>
 
@@ -499,20 +499,20 @@ Launching the timing re-measurement (gate 4.4) in the background — isolated co
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` & C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -source build/build_dcache_pipe.tcl -notrace -log build/local/strategy_sweep_log/viva
+- `shell` `& C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -source build/build_dcache_pipe.tcl -notrace -log build/local/strategy_sweep_log/viva`
 - `execute` 
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content build/local/dcache_fix_r1/lint/.vivado-ai/vivado_00575336_78110e24.log -Tail 15
+- `shell` `Get-Content build/local/dcache_fix_r1/lint/.vivado-ai/vivado_00575336_78110e24.log -Tail 15`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Start-Sleep 20; Select-String -Path build/local/dcache_fix_r1/lint/.vivado-ai/vivado_00575336_78110e24.log -Pattern "Synth 37-(78|93|85)" | 
+- `shell` `Start-Sleep 20; Select-String -Path build/local/dcache_fix_r1/lint/.vivado-ai/vivado_00575336_78110e24.log -Pattern "Synth 37-(78|93|85)" | `
 
 </details>
 
@@ -522,15 +522,15 @@ HEAD shows the same two lint rules (ASSIGN-1, ASSIGN-6), so the fix adds no new 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content project_log/actual_progress.md -TotalCount 22; "-----"; Get-Content project_log/lessons_learned.md -TotalCount 30 | Select-Objec
+- `shell` `Get-Content project_log/actual_progress.md -TotalCount 22; "-----"; Get-Content project_log/lessons_learned.md -TotalCount 30 | Select-Objec`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
-- `grep` project_log/lessons_learned.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
+- `grep` `project_log/lessons_learned.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md`
 
 </details>
 
@@ -546,13 +546,13 @@ Let me close the lint Vivado session (the HEAD lint should be done by now) and w
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem build/local/dcache_fix_r1/lint_head/rpt; Get-Content build/local/dcache_fix_r1/lint/.vivado-ai/vivado_00575336_78110e24.log -T
+- `shell` `Get-ChildItem build/local/dcache_fix_r1/lint_head/rpt; Get-Content build/local/dcache_fix_r1/lint/.vivado-ai/vivado_00575336_78110e24.log -T`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $l="build/local/dcache_fix_r1/lint/.vivado-ai/vivado_00575336_78110e24.log"; (Select-String -Path $l -Pattern "RTL Linter Report").Count; Se
+- `shell` `$l="build/local/dcache_fix_r1/lint/.vivado-ai/vivado_00575336_78110e24.log"; (Select-String -Path $l -Pattern "RTL Linter Report").Count; Se`
 
 </details>
 
@@ -564,7 +564,7 @@ Let me close the lint Vivado session (the HEAD lint should be done by now) and w
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Start-Sleep 30; Get-ChildItem build/local/dcache_fix_r1/lint_head/rpt; Get-ChildItem build/local/dcache_fix_r1/lint_head/.vivado-ai/*.log | 
+- `shell` `Start-Sleep 30; Get-ChildItem build/local/dcache_fix_r1/lint_head/rpt; Get-ChildItem build/local/dcache_fix_r1/lint_head/.vivado-ai/*.log | `
 
 </details>
 
@@ -574,7 +574,7 @@ My PowerShell export corrupted the HEAD copy (BOM plus re-encoded Chinese commen
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` Remove-Item -Recurse -Force build/local/dcache_fix_r1/lint_head; New-Item -ItemType Directory build/local/dcache_fix_r1/lint_head/rpt | Out-
+- `shell` `Remove-Item -Recurse -Force build/local/dcache_fix_r1/lint_head; New-Item -ItemType Directory build/local/dcache_fix_r1/lint_head/rpt | Out-`
 - `execute` 
 
 </details>
@@ -586,7 +586,7 @@ HEAD lint is now verified (exported blob hash matches `c6ccde2`): the same 2 war
 <details><summary>工具调用 2 次</summary>
 
 - `execute` 
-- `shell` Get-CimInstance Win32_Process -Filter "Name like 'vivado%'" | Select-Object ProcessId,CommandLine | Format-Table -Wrap
+- `shell` `Get-CimInstance Win32_Process -Filter "Name like 'vivado%'" | Select-Object ProcessId,CommandLine | Format-Table -Wrap`
 
 </details>
 
@@ -596,7 +596,7 @@ Only my timing build remains among my processes (36468 is the other Ross session
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\local\dcache_fix_r1\lint\vivado_agentic_ai_reports\rtl-lint\rtl_lint_report.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\build\local\dcache_fix_r1\lint\vivado_agentic_ai_reports\rtl-lint\rtl_lint_report.md`
 
 </details>
 
@@ -606,7 +606,7 @@ While timing runs: the runner also has `--stall` and `--reset` options. Let me c
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` sim/ascon/run_cpu_regression.py
+- `grep` `sim/ascon/run_cpu_regression.py`
 
 </details>
 
@@ -616,7 +616,7 @@ These inject a CPU hold or a reset across ISE completion, which exercises the st
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PATH = "C:\wenjian\.vscode\iverilog\bin;" + $env:PATH; $P="C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-";
+- `shell` `$env:PATH = "C:\wenjian\.vscode\iverilog\bin;" + $env:PATH; $P="C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-";`
 
 </details>
 
@@ -626,19 +626,19 @@ Stall and reset injection both PASS. I'll write the verification status into the
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl
+- `grep` `src/rtl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` sim/ascon/run_cpu_regression.py
+- `grep` `sim/ascon/run_cpu_regression.py`
 
 </details>
 
@@ -648,7 +648,7 @@ Only `src/rtl/dcache.v` is picked up: the Tcl, screen and runner globs are all n
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content build/local/strategy_sweep_log/vivado_dcache_fix.log -Tail 6
+- `shell` `Get-Content build/local/strategy_sweep_log/vivado_dcache_fix.log -Tail 6`
 
 </details>
 
@@ -662,13 +662,13 @@ Synthesis is done and implementation is running. I'll wait for the completion no
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content build/local/strategy_sweep_log/vivado_dcache_fix.log -Tail 8; Get-Content build/local/ascon_dcache_pipe_fix_r1/riscv_vivado_proj
+- `shell` `Get-Content build/local/strategy_sweep_log/vivado_dcache_fix.log -Tail 8; Get-Content build/local/ascon_dcache_pipe_fix_r1/riscv_vivado_proj`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $r="build/local/ascon_dcache_pipe_fix_r1/riscv_vivado_project.runs/dcache_pipe_impl/runme.log"; Select-String -Path $r -Pattern "WNS=" | Sel
+- `shell` `$r="build/local/ascon_dcache_pipe_fix_r1/riscv_vivado_project.runs/dcache_pipe_impl/runme.log"; Select-String -Path $r -Pattern "WNS=" | Sel`
 
 </details>
 
@@ -728,7 +728,7 @@ The cost comes from every store and MMIO access now waiting one extra cycle in M
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Select-String -Path build/local/strategy_sweep_log/vivado_dcache_fix.log -Pattern "RESULT wns|BUILD COMPLETE" | ForEach-Object { $_.Line }; 
+- `shell` `Select-String -Path build/local/strategy_sweep_log/vivado_dcache_fix.log -Pattern "RESULT wns|BUILD COMPLETE" | ForEach-Object { $_.Line }; `
 
 </details>
 
@@ -738,7 +738,7 @@ Final result is in. The worst path has moved out of the dcache. Let me check whe
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $d="build/reports/dcache_pipe_20261018_fix_r1"; (Select-String -Path "$d/route_paths.rpt" -Pattern "u_dcache").Count; (Select-String -Path "
+- `shell` `$d="build/reports/dcache_pipe_20261018_fix_r1"; (Select-String -Path "$d/route_paths.rpt" -Pattern "u_dcache").Count; (Select-String -Path "`
 
 </details>
 
@@ -748,8 +748,8 @@ The run finished (exit 0). Now recording the results in the checklist and projec
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\dcache_fix_checklist_en.md`
 
 </details>
 
@@ -759,15 +759,15 @@ Now the project logs (actual progress, lessons, development log):
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md`
 
 </details>
 
@@ -811,46 +811,46 @@ B（store/MMIO 绕行）：顺手做，找回 hw +7%
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $files=@('AGENTS.md','README.md','docs/project_overview.md','docs/technical_rules.md','tasks/task_board.md','project_log/actual_progress.md'
+- `shell` `$files=@('AGENTS.md','README.md','docs/project_overview.md','docs/technical_rules.md','tasks/task_board.md','project_log/actual_progress.md'`
 
 </details>
 
 <details><summary>工具调用 6 次</summary>
 
 - `skill` 
-- `read` src/rtl/mult.v
-- `read` src/rtl/ascon/ascon_ise.v
-- `glob` src/rtl
-- `read` src/rtl/readme.md
-- `read` sim/readme.md
+- `read` `src/rtl/mult.v`
+- `read` `src/rtl/ascon/ascon_ise.v`
+- `glob` `src/rtl`
+- `read` `src/rtl/readme.md`
+- `read` `sim/readme.md`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` src/rtl/ascon/ascon_permutation.v
-- `read` src/rtl/ex_stage.v
-- `read` sim/ascon/readme.md
-- `glob` sim
-- `read` src/rtl/ascon/readme.md
+- `read` `src/rtl/ascon/ascon_permutation.v`
+- `read` `src/rtl/ex_stage.v`
+- `read` `sim/ascon/readme.md`
+- `glob` `sim`
+- `read` `src/rtl/ascon/readme.md`
 
 </details>
 
 <details><summary>工具调用 7 次</summary>
 
-- `read` sim/ascon/tb_key_ise.v
-- `read` sim/ascon/run_key_rtl.py
-- `read` sim/ascon/tb_key_execute.v
-- `read` sim/ascon/run_cpu_units.py
-- `glob` sim/cicc1000023
-- `read` build/build_dcache_er.tcl
-- `read` build/reports/dcache_pipe_20261018_fix_r1/route_paths.rpt
+- `read` `sim/ascon/tb_key_ise.v`
+- `read` `sim/ascon/run_key_rtl.py`
+- `read` `sim/ascon/tb_key_execute.v`
+- `read` `sim/ascon/run_cpu_units.py`
+- `glob` `sim/cicc1000023`
+- `read` `build/build_dcache_er.tcl`
+- `read` `build/reports/dcache_pipe_20261018_fix_r1/route_paths.rpt`
 
 </details>
 
@@ -868,7 +868,7 @@ B（store/MMIO 绕行）：顺手做，找回 hw +7%
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` tasks/task_board.md
+- `read` `tasks/task_board.md`
 
 </details>
 
@@ -880,64 +880,64 @@ B（store/MMIO 绕行）：顺手做，找回 hw +7%
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; python sim/ascon/run_key_rtl.py --label timing_a; python sim/ascon/run_cpu_units.py 
+- `shell` `$env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; python sim/ascon/run_key_rtl.py --label timing_a; python sim/ascon/run_cpu_units.py `
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` src/rtl/cpu_core.v
+- `grep` `src/rtl/cpu_core.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/rtl/cpu_core.v
+- `read` `src/rtl/cpu_core.v`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `glob` **/*isa*
-- `glob` **/*rv32*
-- `read` sim/cicc1000023/readme.md
-- `read` sim/cicc1000023/unit/multiplier/tb_multiplier.v
-- `read` build/readme.md
+- `glob` `**/*isa*`
+- `glob` `**/*rv32*`
+- `read` `sim/cicc1000023/readme.md`
+- `read` `sim/cicc1000023/unit/multiplier/tb_multiplier.v`
+- `read` `build/readme.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/firmware/cicc1000023/riscv_tests/isa/rv32um
+- `read` `src/firmware/cicc1000023/riscv_tests/isa/rv32um`
 
 </details>
 
 <details><summary>工具调用 6 次</summary>
 
-- `read` src/firmware/cicc1000023/riscv_tests/isa/rv32um/mul.s
-- `read` src/firmware/cicc1000023/riscv_tests/isa/rv32ui/add.s
-- `glob` src/firmware/cicc1000023/riscv_tests
-- `read` sim/ascon/tb_ascon_sw.v
-- `read` src/rtl/ctrl.v
-- `read` docs/ascon_key_management.md
+- `read` `src/firmware/cicc1000023/riscv_tests/isa/rv32um/mul.s`
+- `read` `src/firmware/cicc1000023/riscv_tests/isa/rv32ui/add.s`
+- `glob` `src/firmware/cicc1000023/riscv_tests`
+- `read` `sim/ascon/tb_ascon_sw.v`
+- `read` `src/rtl/ctrl.v`
+- `read` `docs/ascon_key_management.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/firmware/cicc1000023/riscv_tests/env/p/riscv_test.h
+- `read` `src/firmware/cicc1000023/riscv_tests/env/p/riscv_test.h`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` sim/ascon/tb_ascon_sw.v
+- `read` `sim/ascon/tb_ascon_sw.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` sim/ascon/axi_slave_bram.v
+- `grep` `sim/ascon/axi_slave_bram.v`
 
 </details>
 
@@ -959,23 +959,23 @@ A 的控制改动已通过 MMIO/ISE 生命周期测试和 EX 交互测试；新�
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; python sim/ascon/run_cpu_units.py --label timing_ac
+- `shell` `$env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; python sim/ascon/run_cpu_units.py --label timing_ac`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` src/firmware/cicc1000023/riscv_tests/isa/rv32ui
-- `read` src/firmware/cicc1000023/riscv_tests/isa/macros/scalar/test_macros.h
-- `read` src/firmware/cicc1000023/riscv_tests/env/p/riscv_test.h
-- `read` src/firmware/cicc1000023/riscv_tests/isa/rv64ui/simple.s
-- `read` src/firmware/ascon_rv32/bin2vhex.py
+- `read` `src/firmware/cicc1000023/riscv_tests/isa/rv32ui`
+- `read` `src/firmware/cicc1000023/riscv_tests/isa/macros/scalar/test_macros.h`
+- `read` `src/firmware/cicc1000023/riscv_tests/env/p/riscv_test.h`
+- `read` `src/firmware/cicc1000023/riscv_tests/isa/rv64ui/simple.s`
+- `read` `src/firmware/ascon_rv32/bin2vhex.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/firmware/cicc1000023/riscv_tests/isa/rv64ui/ma_data.s
+- `read` `src/firmware/cicc1000023/riscv_tests/isa/rv64ui/ma_data.s`
 
 </details>
 
@@ -987,25 +987,25 @@ A 的控制改动已通过 MMIO/ISE 生命周期测试和 EX 交互测试；新�
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` src/rtl/if_stage.v
+- `read` `src/rtl/if_stage.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; python sim/ascon/run_rv32_isa.py --label timing_ac --cc-prefix C:/wenjian/toolchain/
+- `shell` `$env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; python sim/ascon/run_rv32_isa.py --label timing_ac --cc-prefix C:/wenjian/toolchain/`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; python sim/ascon/run_rv32_isa.py --label fix_r1_control --rtl-dir build/local/ascon_
+- `shell` `$env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; python sim/ascon/run_rv32_isa.py --label fix_r1_control --rtl-dir build/local/ascon_`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/ascon/results/isa/timing_ac/rv32ui_ma_data.json
+- `read` `data/ascon/results/isa/timing_ac/rv32ui_ma_data.json`
 
 </details>
 
@@ -1027,7 +1027,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; New-Item -ItemType Directory -Force build/local/timing_acb | Out-Null; $p='C:/wenjia
+- `shell` `$env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; New-Item -ItemType Directory -Force build/local/timing_acb | Out-Null; $p='C:/wenjia`
 
 </details>
 
@@ -1039,7 +1039,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` New-Item -ItemType Directory -Force build/local/timing_acb_audit | Out-Null; Copy-Item build/local/ascon_dcache_pipe_fix_r1/dcache_pipe_rout
+- `shell` `New-Item -ItemType Directory -Force build/local/timing_acb_audit | Out-Null; Copy-Item build/local/ascon_dcache_pipe_fix_r1/dcache_pipe_rout`
 
 </details>
 
@@ -1069,11 +1069,11 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` README.md
-- `read` docs/project_overview.md
-- `read` docs/technical_rules.md
-- `read` project_log/actual_progress.md
-- `read` src/readme.md
+- `read` `README.md`
+- `read` `docs/project_overview.md`
+- `read` `docs/technical_rules.md`
+- `read` `project_log/actual_progress.md`
+- `read` `src/readme.md`
 
 </details>
 
@@ -1085,7 +1085,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` docs/interfaces.md
+- `read` `docs/interfaces.md`
 
 </details>
 
@@ -1115,16 +1115,16 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` python C:/Users/HXZ/.agents/skills/vivado-rtl-lint/parse_lint_report.py build/reports/timing_acb_lint/ex_stage.rpt build/reports/timing_acb_
-- `read` C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/xsim.md
-- `read` C:/Users/HXZ/.agents/skills/vivado-rtl-lint/resolution/INFER-2.md
+- `shell` `python C:/Users/HXZ/.agents/skills/vivado-rtl-lint/parse_lint_report.py build/reports/timing_acb_lint/ex_stage.rpt build/reports/timing_acb_`
+- `read` `C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/xsim.md`
+- `read` `C:/Users/HXZ/.agents/skills/vivado-rtl-lint/resolution/INFER-2.md`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` build/reports/timing_acb_lint/ex_stage.csv
-- `read` build/reports/timing_acb_lint/dcache.csv
+- `read` `build/reports/timing_acb_lint/ex_stage.csv`
+- `read` `build/reports/timing_acb_lint/dcache.csv`
 - `execute` 
 
 </details>
@@ -1173,19 +1173,19 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` build/local/timing_acb_audit/xsim_mult
+- `glob` `build/local/timing_acb_audit/xsim_mult`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim -Name; python C:/Users/HXZ/.agents/skills/vivado-rtl-lin
+- `shell` `Get-ChildItem build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim -Name; python C:/Users/HXZ/.agents/skills/vivado-rtl-lin`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` New-Item -ItemType Directory -Force data/ascon/results/timing_acb_xsim | Out-Null; Copy-Item build/local/timing_acb_audit/xsim_mult/xsim_mul
+- `shell` `New-Item -ItemType Directory -Force data/ascon/results/timing_acb_xsim | Out-Null; Copy-Item build/local/timing_acb_audit/xsim_mult/xsim_mul`
 
 </details>
 
@@ -1197,30 +1197,30 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/simulate.log data/ascon/results/timing_acb_xsim/mul_simulate
+- `shell` `Copy-Item build/local/timing_acb_audit/xsim_mult/xsim_mult.sim/sim_1/behav/xsim/simulate.log data/ascon/results/timing_acb_xsim/mul_simulate`
 
 </details>
 
 <details><summary>工具调用 6 次</summary>
 
-- `read` data/ascon/results/timing_acb_xsim/mul_simulate.log
-- `read` data/ascon/results/timing_acb_xsim/ise_simulate.log
-- `read` build/reports/timing_acb_lint/ex_stage_control.csv
-- `read` src/rtl/ex_stage.v
-- `read` src/rtl/mult.v
-- `read` src/rtl/dcache.v
+- `read` `data/ascon/results/timing_acb_xsim/mul_simulate.log`
+- `read` `data/ascon/results/timing_acb_xsim/ise_simulate.log`
+- `read` `build/reports/timing_acb_lint/ex_stage_control.csv`
+- `read` `src/rtl/ex_stage.v`
+- `read` `src/rtl/mult.v`
+- `read` `src/rtl/dcache.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/ascon/results/key_lifecycle/ise_fix_r1.json
+- `read` `data/ascon/results/key_lifecycle/ise_fix_r1.json`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/ascon/results/key_lifecycle/ise_fix_r1.json
+- `grep` `data/ascon/results/key_lifecycle/ise_fix_r1.json`
 
 </details>
 
@@ -1242,7 +1242,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff --check; python -m py_compile sim/ascon/run_rv32_isa.py sim/ascon/summarize_timing_acb.py build/snapshot_rtl_hashes.py; git diff --
+- `shell` `git diff --check; python -m py_compile sim/ascon/run_rv32_isa.py sim/ascon/summarize_timing_acb.py build/snapshot_rtl_hashes.py; git diff --`
 
 </details>
 
@@ -1254,7 +1254,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` .
+- `grep` `.`
 
 </details>
 
@@ -1276,7 +1276,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/ascon/summarize_timing_acb.py; Select-String -Path build/local/timing_acb/sw.log,build/local/timing_acb/hw.log,build/local/timing
+- `shell` `python sim/ascon/summarize_timing_acb.py; Select-String -Path build/local/timing_acb/sw.log,build/local/timing_acb/hw.log,build/local/timing`
 
 </details>
 
@@ -1316,13 +1316,13 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $dir=(Resolve-Path build/local/timing_acb_impl).Path; $target=Join-Path $dir 'acb_remap_routed.dcp'; $watcher=New-Object System.IO.FileSyste
+- `shell` `$dir=(Resolve-Path build/local/timing_acb_impl).Path; $target=Join-Path $dir 'acb_remap_routed.dcp'; $watcher=New-Object System.IO.FileSyste`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "import json,hashlib,pathlib; r=pathlib.Path('.'); d=r/'build/reports/timing_acb_20261018'; h=json.loads((d/'source_hashes.json').
+- `shell` `python -c "import json,hashlib,pathlib; r=pathlib.Path('.'); d=r/'build/reports/timing_acb_20261018'; h=json.loads((d/'source_hashes.json').`
 
 </details>
 
@@ -1346,16 +1346,16 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` foreach($s in 'postroute','remap'){ $d="build/reports/timing_acb_20261018/$s"; Get-Content "$d/result.txt"; Select-String -Path "$d/route_st
+- `shell` `foreach($s in 'postroute','remap'){ $d="build/reports/timing_acb_20261018/$s"; Get-Content "$d/result.txt"; Select-String -Path "$d/route_st`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` build/reports/timing_acb_20261018/postroute/route_timing.rpt
-- `read` build/reports/timing_acb_20261018/remap/route_timing.rpt
-- `read` build/reports/timing_acb_20261018/build_context.txt
-- `shell` git status --short; python -c "import pathlib,json,hashlib; r=pathlib.Path('.'); h=json.loads((r/'build/reports/timing_acb_20261018/source_h
+- `read` `build/reports/timing_acb_20261018/postroute/route_timing.rpt`
+- `read` `build/reports/timing_acb_20261018/remap/route_timing.rpt`
+- `read` `build/reports/timing_acb_20261018/build_context.txt`
+- `shell` `git status --short; python -c "import pathlib,json,hashlib; r=pathlib.Path('.'); h=json.loads((r/'build/reports/timing_acb_20261018/source_h`
 
 </details>
 
@@ -1383,7 +1383,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python build/summarize_timing_acb.py
+- `shell` `python build/summarize_timing_acb.py`
 
 </details>
 
@@ -1401,7 +1401,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python sim/ascon/summarize_timing_acb.py; python build/summarize_timing_acb.py; git diff --check; python -m py_compile build/summarize_timin
+- `shell` `python sim/ascon/summarize_timing_acb.py; python build/summarize_timing_acb.py; git diff --check; python -m py_compile build/summarize_timin`
 
 </details>
 
@@ -1413,7 +1413,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Process -Id 53900 -ErrorAction SilentlyContinue | Select-Object Id,ProcessName
+- `shell` `Get-Process -Id 53900 -ErrorAction SilentlyContinue | Select-Object Id,ProcessName`
 
 </details>
 
@@ -1440,7 +1440,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
@@ -1450,23 +1450,23 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 7 次</summary>
 
-- `read` TIMING_FIX_README.md
-- `read` TIMING_OPTIMIZATION_FINAL_REPORT.md
-- `read` apply_timing_fix.bat
-- `read` apply_timing_fix.sh
-- `read` dfx_runtime.txt
-- `read` ascon/dfx_runtime.txt
-- `read` ascon/ASCON.xpr
+- `read` `TIMING_FIX_README.md`
+- `read` `TIMING_OPTIMIZATION_FINAL_REPORT.md`
+- `read` `apply_timing_fix.bat`
+- `read` `apply_timing_fix.sh`
+- `read` `dfx_runtime.txt`
+- `read` `ascon/dfx_runtime.txt`
+- `read` `ascon/ASCON.xpr`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `grep` TIMING_FIX_README|TIMING_OPTIMIZATION_FINAL_REPORT|apply_timing_fix|ASCON\.xpr|dfx_runtime\.txt
-- `grep` ascon/ASCON.xpr
-- `shell` Get-CimInstance Win32_Process -Filter "Name like 'vivado%'" | Select-Object ProcessId,CommandLine | Format-List; Get-ChildItem -LiteralPath 
-- `read` build/reports/timing_fix_execution_status.md
-- `read` build/reports/timing_experiments_summary.md
+- `grep` `TIMING_FIX_README|TIMING_OPTIMIZATION_FINAL_REPORT|apply_timing_fix|ASCON\.xpr|dfx_runtime\.txt`
+- `grep` `ascon/ASCON.xpr`
+- `shell` `Get-CimInstance Win32_Process -Filter "Name like 'vivado%'" | Select-Object ProcessId,CommandLine | Format-List; Get-ChildItem -LiteralPath `
+- `read` `build/reports/timing_fix_execution_status.md`
+- `read` `build/reports/timing_experiments_summary.md`
 
 </details>
 
@@ -1482,29 +1482,29 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` .gitignore
-- `grep` sim/ascon/support.py
-- `grep` data/ascon/results/key_lifecycle/sw_security_timing_acb_sw_security.json
-- `shell` $dirs=@('build/local/timing_acb_audit','build/local/dcache_fix_r1','build/local/dcache_dt_sim','build/local/ascon_kat','build/local/rv32_isa
-- `grep` .
+- `read` `.gitignore`
+- `grep` `sim/ascon/support.py`
+- `grep` `data/ascon/results/key_lifecycle/sw_security_timing_acb_sw_security.json`
+- `shell` `$dirs=@('build/local/timing_acb_audit','build/local/dcache_fix_r1','build/local/dcache_dt_sim','build/local/ascon_kat','build/local/rv32_isa`
+- `grep` `.`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $targets=@('build/__pycache__','sim/ascon/__pycache__','ascon/pyascon/__pycache__','sim/ascon/reference/pyascon/__pycache__','build/local/as
+- `shell` `$targets=@('build/__pycache__','sim/ascon/__pycache__','ascon/pyascon/__pycache__','sim/ascon/reference/pyascon/__pycache__','build/local/as`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $root=(Get-Location).Path; $obsolete=@('TIMING_FIX_README.md','TIMING_OPTIMIZATION_FINAL_REPORT.md','apply_timing_fix.bat','apply_timing_fix
+- `shell` `$root=(Get-Location).Path; $obsolete=@('TIMING_FIX_README.md','TIMING_OPTIMIZATION_FINAL_REPORT.md','apply_timing_fix.bat','apply_timing_fix`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/metadata/cleanup_20261018.json
+- `read` `build/metadata/cleanup_20261018.json`
 
 </details>
 
@@ -1516,13 +1516,13 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $allowed=@('build/__pycache__','sim/ascon/__pycache__','sim/ascon/reference/pyascon/__pycache__','build/local/ascon_kat/upstream-c-a70cwyck'
+- `shell` `$allowed=@('build/__pycache__','sim/ascon/__pycache__','sim/ascon/reference/pyascon/__pycache__','build/local/ascon_kat/upstream-c-a70cwyck'`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "import json,pathlib; p=pathlib.Path('build/metadata/cleanup_20261018.json'); d=json.loads(p.read_text(encoding='utf-8-sig')); fil
+- `shell` `python -c "import json,pathlib; p=pathlib.Path('build/metadata/cleanup_20261018.json'); d=json.loads(p.read_text(encoding='utf-8-sig')); fil`
 
 </details>
 
@@ -1532,9 +1532,9 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` build/reports
-- `glob` .
-- `read` build/reports/timing_acb_20261018
+- `read` `build/reports`
+- `glob` `.`
+- `read` `build/reports/timing_acb_20261018`
 
 </details>
 
@@ -1550,10 +1550,10 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 4 次</summary>
 
-- `shell` $dirs=@(Get-ChildItem build/reports -Directory|Where-Object {$_.Name -notin @('timing_acb_20261018','cicc1000023_archive')}); foreach($d in 
-- `grep` build/reports/(ascon_key_lifecycle|ascon_timing_r[12]|dcache_pipe|strategy_sweep|timing_acb_baseline|timing_acb_lint)|\]\([^)]*(ascon_timing
-- `read` sim/ascon/summarize_timing_acb.py
-- `read` build/summarize_timing_acb.py
+- `shell` `$dirs=@(Get-ChildItem build/reports -Directory|Where-Object {$_.Name -notin @('timing_acb_20261018','cicc1000023_archive')}); foreach($d in `
+- `grep` `build/reports/(ascon_key_lifecycle|ascon_timing_r[12]|dcache_pipe|strategy_sweep|timing_acb_baseline|timing_acb_lint)|\]\([^)]*(ascon_timing`
+- `read` `sim/ascon/summarize_timing_acb.py`
+- `read` `build/summarize_timing_acb.py`
 
 </details>
 
@@ -1567,50 +1567,38 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` sim/ascon/summarize_key_review.py
-- `grep` ascon_key_lifecycle|ascon_timing_r1|ascon_timing_r2|timing_acb_baseline|timing_acb_lint
-- `shell` git ls-files build/reports/ascon_key_lifecycle build/reports/ascon_timing_r1 build/reports/ascon_timing_r2; Get-ChildItem data/ascon/results
-- `read` sim/ascon/run_cpu_regression.py
-- `read` docs/ascon_timing_review.md
+- `read` `sim/ascon/summarize_key_review.py`
+- `grep` `ascon_key_lifecycle|ascon_timing_r1|ascon_timing_r2|timing_acb_baseline|timing_acb_lint`
+- `shell` `git ls-files build/reports/ascon_key_lifecycle build/reports/ascon_timing_r1 build/reports/ascon_timing_r2; Get-ChildItem data/ascon/results`
+- `read` `sim/ascon/run_cpu_regression.py`
+- `read` `docs/ascon_timing_review.md`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` sim/ascon/summarize_timing_review.py
-- `read` build/aggregate_strategy_sweep.py
-- `read` build/reports/timing_acb_20261018/remap
-- `read` project_log/actual_progress.md
+- `read` `sim/ascon/summarize_timing_review.py`
+- `read` `build/aggregate_strategy_sweep.py`
+- `read` `build/reports/timing_acb_20261018/remap`
+- `read` `project_log/actual_progress.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` tasks/task_board.md
+- `grep` `tasks/task_board.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/aggregate_strategy_sweep.py
+- `read` `build/aggregate_strategy_sweep.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' import hashlib,json,pathlib,re,subprocess root=pathlib.Path.cwd(); mp=root/'build/metadata/cleanup_20261018.json' d=json.loads(mp.read_te
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` @' import hashlib,json,pathlib,shutil root=pathlib.Path.cwd(); mp=root/'build/metadata/cleanup_20261018.json'; d=json.loads(mp.read_text()) 
+- `shell` `@' import hashlib,json,pathlib,re,subprocess root=pathlib.Path.cwd(); mp=root/'build/metadata/cleanup_20261018.json' d=json.loads(mp.read_te`
 
 </details>
 
@@ -1622,17 +1610,29 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; $env:PYTHONDONTWRITEBYTECODE='1'; python sim/ascon/verify_cleanup.py --cc-prefix C:/
+- `shell` `@' import hashlib,json,pathlib,shutil root=pathlib.Path.cwd(); mp=root/'build/metadata/cleanup_20261018.json'; d=json.loads(mp.read_text()) `
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `$env:PATH="C:\wenjian\.vscode\iverilog\bin;"+$env:PATH; $env:PYTHONDONTWRITEBYTECODE='1'; python sim/ascon/verify_cleanup.py --cc-prefix C:/`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `grep` \]\([^)]*(ascon_key_lifecycle|ascon_timing_r1|ascon_timing_r2|dcache_pipe_20261018|strategy_sweep_20261017|timing_acb_baseline|timing_acb_li
-- `shell` python -B -c "import json,collections,pathlib;d=json.loads(pathlib.Path('build/metadata/cleanup_20261018.json').read_text()); fs=[f for t in
-- `read` docs/timing_acb_validation.md
-- `read` project_log/development_log.md
-- `read` project_log/lessons_learned.md
+- `grep` `\]\([^)]*(ascon_key_lifecycle|ascon_timing_r1|ascon_timing_r2|dcache_pipe_20261018|strategy_sweep_20261017|timing_acb_baseline|timing_acb_li`
+- `shell` `python -B -c "import json,collections,pathlib;d=json.loads(pathlib.Path('build/metadata/cleanup_20261018.json').read_text()); fs=[f for t in`
+- `read` `docs/timing_acb_validation.md`
+- `read` `project_log/development_log.md`
+- `read` `project_log/lessons_learned.md`
 
 </details>
 
@@ -1644,10 +1644,10 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` docs/ascon_key_management.md
-- `read` docs/ascon_strategy_sweep.md
-- `read` docs/dcache_fix_checklist_en.md
-- `read` docs/workspace_cleanup.md
+- `read` `docs/ascon_key_management.md`
+- `read` `docs/ascon_strategy_sweep.md`
+- `read` `docs/dcache_fix_checklist_en.md`
+- `read` `docs/workspace_cleanup.md`
 
 </details>
 
@@ -1665,7 +1665,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $env:PYTHONDONTWRITEBYTECODE='1'; @' import ast,hashlib,json,pathlib,subprocess,sys root=pathlib.Path.cwd(); manifest=json.loads((root/'buil
+- `shell` `$env:PYTHONDONTWRITEBYTECODE='1'; @' import ast,hashlib,json,pathlib,subprocess,sys root=pathlib.Path.cwd(); manifest=json.loads((root/'buil`
 
 </details>
 
@@ -1681,13 +1681,13 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/ascon/results/cleanup_v10_verification.json
+- `read` `data/ascon/results/cleanup_v10_verification.json`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/ascon/results/cleanup_v10_verification.json
+- `read` `data/ascon/results/cleanup_v10_verification.json`
 
 </details>
 
@@ -1699,19 +1699,19 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 4 次</summary>
 
-- `shell` git status --short; Get-CimInstance Win32_Process -Filter "Name like 'vivado%' or Name like 'python%'" | Select-Object ProcessId,CommandLine
-- `shell` $paths=@('dfx_runtime.txt','build/reports/ascon_key_lifecycle','build/reports/ascon_timing_r1','build/reports/ascon_timing_r2','build/report
-- `read` project_log/actual_progress.md
-- `read` docs/workspace_cleanup.md
+- `shell` `git status --short; Get-CimInstance Win32_Process -Filter "Name like 'vivado%' or Name like 'python%'" | Select-Object ProcessId,CommandLine`
+- `shell` `$paths=@('dfx_runtime.txt','build/reports/ascon_key_lifecycle','build/reports/ascon_timing_r1','build/reports/ascon_timing_r2','build/report`
+- `read` `project_log/actual_progress.md`
+- `read` `docs/workspace_cleanup.md`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` build/regen_sweep_reports.tcl
-- `read` build/regen_sweep_reports2.tcl
-- `read` tasks/parallel_task_b_ppa_docs.md
-- `shell` @' import pathlib,json,hashlib,collections,datetime r=pathlib.Path('.');m=json.loads((r/'build/metadata/cleanup_20261018.json').read_text())
+- `read` `build/regen_sweep_reports.tcl`
+- `read` `build/regen_sweep_reports2.tcl`
+- `read` `tasks/parallel_task_b_ppa_docs.md`
+- `shell` `@' import pathlib,json,hashlib,collections,datetime r=pathlib.Path('.');m=json.loads((r/'build/metadata/cleanup_20261018.json').read_text())`
 
 </details>
 
@@ -1729,7 +1729,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' import ast,datetime,hashlib,json,pathlib r=pathlib.Path('.');mp=r/'build/metadata/cleanup_20261018.json';m=json.loads(mp.read_text());v=j
+- `shell` `@' import ast,datetime,hashlib,json,pathlib r=pathlib.Path('.');mp=r/'build/metadata/cleanup_20261018.json';m=json.loads(mp.read_text());v=j`
 
 </details>
 
@@ -1739,11 +1739,11 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` tasks/task_board.md
-- `read` project_log/actual_progress.md
-- `read` project_log/development_log.md
-- `read` project_log/lessons_learned.md
-- `shell` python -B -c "import json,pathlib; r=pathlib.Path('.');m=json.loads((r/'build/metadata/cleanup_20261018.json').read_text());v=json.loads((r/
+- `read` `tasks/task_board.md`
+- `read` `project_log/actual_progress.md`
+- `read` `project_log/development_log.md`
+- `read` `project_log/lessons_learned.md`
+- `shell` `python -B -c "import json,pathlib; r=pathlib.Path('.');m=json.loads((r/'build/metadata/cleanup_20261018.json').read_text());v=json.loads((r/`
 
 </details>
 
@@ -1755,7 +1755,7 @@ C 已通过乘法器 1,259 组定向/随机与 hold/cancel/reset 测试，整套
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff --check
+- `shell` `git diff --check`
 
 </details>
 

@@ -119,7 +119,7 @@ python skill/ab_eval_pynq/harness/stats.py D:\ab_trials\run1\results.csv
 | 工具单元测试 | `python -m pytest skill/pynq-overlay-workflow/tests -q` | 47 passed，0 skipped（含真实 release 工件） |
 | 假 PYNQ API 测试 | `python -m pytest skill/ab_eval_pynq/harness/tests -q` | 5 passed（`Bitstream` 不下载/计数、`Overlay` 继承、`hierarchy_dict`、`device`、`hash`、与 `Overlay` 字节一致） |
 | 工具变异测试 | `python skill/ab_eval_pynq/harness/skill_mutation_check.py` | 13/13 killed，exit 0（第一次运行发现 HLS 测试假模型错误地丢掉残留 done，修复后通过；另有一个等价变异被替换为有意义的变异） |
-| 判分器区分能力 | `grade.py --solution selftest/<task>/<good|naive>` | good：6/6、6/6、6/6、8/8；naive：T1 3/6、T2 0/6、T3 3/6、T4 0/8，失败都落在设计的陷阱上 |
+| 判分器区分能力 | `grade.py --solution selftest/<task>/<good\|naive>` | good：6/6、6/6、6/6、8/8；naive：T1 3/6、T2 0/6、T3 3/6、T4 0/8，失败都落在设计的陷阱上 |
 | 流程连通性 | `make_trials.py`（仓库内拒绝；仓库外 18 个试验）→ 用参考答案代替 agent 输出 → `grade.py` → `stats.py` | 连通；n=2 时 p=0.33，印证第 4 节样本量要求。**这是管线自检，不是 Skill 效果数据** |
 | L2 真实 agent 实验 | `make_trials.py --tasks t1_overlay,t2_hls,t3_dma,t4_diagnose --reps 5` → `run_all.ps1` → `grade.py` → `stats.py` | `done`（4 题 60 次 + T1×placebo 复跑 5 次，65/65 exit=0），结果见 6.1 |
 | L2 冒烟（配置生效性） | 单次 `with` 试验 + 环境自检探针 | agent=`trial`、模型=deepseek-flash、shell 拒绝（模型报 `NO-SHELL`）、Skill 可列出并可加载、canary 写入成功 |
