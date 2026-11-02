@@ -17,6 +17,7 @@
 | 独立历史工程 | [archive/history](archive/history/README.md) |
 | 原始测试/实现证据 | [archive/evidence](archive/evidence/README.md) |
 | 三类交付的分别压缩 | [delivery](delivery/README.md) |
+| 全部仓库内容的单个 ZIP | `delivery/amd_fpga_2026_repo_snapshot.zip`（范围与校验见 [delivery](delivery/README.md)） |
 
 当前目录只放 PUF3、其共享依赖和维护文档；独立 DMA/PUF v2/MIN、原型和旧工具集中隔离。
 历史源码的旧相对路径属于当时布局，不应直接当成当前构建命令；物理原件与 Git 历史保留，不改写失败为通过。
@@ -56,7 +57,7 @@ amd_fpga_2026/
 ├── archive/
 │   ├── history/                    # 隔离的独立历史工程和源码，不参与当前默认构建
 │   └── evidence/                   # 原始日志 / 报告 / 历史快照的可校验归档
-├── delivery/                       # 当前源码、历史源码、Skill、技术报告四个独立 ZIP
+├── delivery/                       # 当前源码、历史源码、Skill、技术报告四个独立 ZIP；整仓快照 ZIP
 └── submission/                     # 旧提交流程说明；当前下载入口是 delivery/
 ```
 
@@ -78,7 +79,7 @@ amd_fpga_2026/
 | — | `tools/` | 源码打包、解包校验、原件恢复脚本 |
 | — | `tasks/`、`project_log/` | 任务看板、实际进度、开发记录与踩坑 |
 | — | `archive/` | 隔离的历史工程（`history/`）与原始记录归档（`evidence/`） |
-| — | `delivery/`、`submission/` | 四个独立交付 ZIP；旧提交流程说明 |
+| — | `delivery/`、`submission/` | 四个独立交付 ZIP 与整仓快照 ZIP；旧提交流程说明 |
 | — | `image/` | 界面截图 |
 
 2026-11-02 起原 `docs/` 已并入 `report/`：`docs/tech_report/` → `report/technical/`，其余说明 → `report/design/`，

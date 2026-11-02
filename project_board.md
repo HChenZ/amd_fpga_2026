@@ -42,6 +42,9 @@
 - 当前报告已重新编译，77页，性能数据保持PUF3；CPU措辞中的内部编号不再出现在报告文本/交付源码。
 - 11-02 晚间报告按审阅修图（图 2-1/2-2/2-4 等）、路径对齐当前仓库结构、§3.4 复现说明重写，重编为 83 页（数值不变），
   technical_report.zip 单独重打；离线复现命令已在干净检出复跑，见 build/metadata/offline_reproduce_check.json 与 report_repack_check.json。
+- 随后新增 §4.3「AMD ROSS 使用心得」（85 页），报告包再次重打；按用户要求另生成整仓快照 ZIP
+  delivery/amd_fpga_2026_repo_snapshot.zip（全部跟踪文件去掉 delivery/ 目录，另按原路径放入报告包中不受 Git 跟踪的
+  LaTeX 编辑源），范围与校验见 delivery/README.md。
 - 原始证据和Git历史不篡改，保留当时标识。具体ZIP/member/hash及验证范围见delivery/manifest.json和build/metadata/source_delivery_check.json。
 - 讲解网页在历史日志中有记录，但当前工作区/已有备份未找到原件，不列入交付；待原制作会话补交，不重造内容冒充保留。
 

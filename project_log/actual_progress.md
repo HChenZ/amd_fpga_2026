@@ -1,5 +1,18 @@
 # 实际进度
 
+## 2026-11-02 — D12 报告补 AMD ROSS 使用心得，全部内容打包为单个 ZIP（owner TBD）
+
+- 用户要求在技术报告结尾加上对 AMD ROSS 的心得体会，并把所有内容打包成一个 ZIP；经确认 ZIP 范围为“仓库快照，去掉 delivery 重复包”，完成后提交推送（不 force）。入场 HEAD 5f509e8、工作区干净。
+- 报告：第四部分末尾新增 §4.3「AMD ROSS 使用心得」，放在“心得体会”之后、参考文献之前。表 4-1 列八项实际用途：10-17 接入评估（官方下载 BIG-IP 错误 19，not_measured）、10-18 以 stdio 将 vivado-mcp-server 2026.9.1 接入 OpenCode（Vivado 2025.2）、D-cache 修复后 lint 2 条 WARNING 与 HEAD 相同、fix_r1 DCP 副本导出 156 端点（93/48/11/4）、双策略实现 exit0 3895.571 s（+0.001/+0.007 ns）、DSP 打包实测（AREG/BREG=1，仅 1 个 PREG，MREG 0）、PUF v2 方法学 TIMING-6/7/17 处置、PUF3 工程 sim_ise_screenshot 1502/0。随后四点体会：价值（对话内闭环、全量端点、长任务托管）、版本边界（2026.1 基线与各 Skill 最低版本，linterCsvFile 不支持）、MCP 注意事项（命令去重 SKIPPED、批命令中途失败、execute 可写工程、并行会话抢工程、无 amd-doc-search）、团队裁决（案例一否决降频，ROSS 不替代验证）。
+- 出处逐条核对：archive/history/docs/ross_usage_experience.md、ross_and_engineering_skills_evaluation.md、timing_acb_validation.md，project_log V07/V08/V09 条目与 lessons L68/L85/L87/L88/L91/L93，development_log 10-31 ISE 截图条目；不含新测量。§2.5.1 加交叉引用，参考文献补第 11 条（Xilinx/ross-ai-assistant，审阅提交 2cdc9eef，MIT）。
+- 编译 build_20261102_194053：85 页，evidence/PDF 检查 194/194，日志无 Overfull，PDF 全页扫描无版心外文字；新节与表 4-1 逐页目视复核。
+- 整仓快照：从本提交（含本条记录）的 Git 树逐 blob 取原字节生成 delivery/amd_fpga_2026_repo_snapshot.zip，排除 delivery/ 目录（快照不能包含自身），另附 snapshot_manifest.json（提交号、逐文件 SHA-256 与来源）和 snapshot_readme.md（范围、排除项、Git 依赖步骤说明）。按 git archive 试算约 88 MB，低于 GitHub 100 MB 单文件上限。
+- 排除前逐成员核对 delivery/ 四个包是否真与仓库重复（按 LF/CRLF 等价比较，比对本提交树、124f5c7 树及已跟踪 ZIP 归档的成员）：PUF3 源码、历史源码、Skill 三包的成员都能在本提交或 124f5c7 中找到相同内容，其中 PUF3 包 35 个、历史包 28 个是此后更新过的说明文档与维护脚本（docs/ 旧路径、readme、.gitignore、AGENTS.md、project_board.md、tools/ 三个脚本、export_sessions.py）的 124f5c7 旧版，无 RTL/固件/约束，快照收录其当前版本；此外只余 package_delivery.py 按模板生成的 README.md、pytest.ini、source_package.md 与 source_manifest.json；技术报告包的 latex/ 编辑源被 .gitignore 排除，其中 18 个文件在仓库别处没有相同内容。因此快照另把重打后报告包的 latex/ 按原路径放到 report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/（D11 干净检出复核用的也是这一放法），报告包内 PDF 与已跟踪 PDF 同字节、不重复放。
+- 报告包随之按 package_delivery.py 同一规则重打。两个 ZIP 的 SHA-256、大小与复验结果记在随后只改 delivery/ 的交付提交（delivery/manifest.json、delivery/README.md、delivery/snapshot_and_report_check.json），保证快照内容等于最终仓库去掉 delivery/、再加报告 LaTeX 源。
+- 快照不含 .git。解压后可直接运行源集身份与 elaboration、固件重编译、PUF3 协同仿真与原件恢复，恢复原件后再运行 pytest、报告核对与重建（不先恢复时 pytest 中 test_host_api.py 的 test_cycle_sources 因缺原始记录失败）；sim/ascon 的主机/RTL 校验链用 Git 记录来源（support.py 的 Report 读取 HEAD，run_rtl_regression.py 另读 origin/main 并对照 HEAD，run_key_rtl.py、run_tail_equivalence.py 读取历史提交 c37ecae），须在完整 Git 克隆中运行。试跑时快照说明只写了 run_rtl_regression.py，解压目录中 prepare_rtl_vectors.py 报 not a git repository 才发现范围更大，说明已逐项改正。两部分复跑（快照解压目录、本提交的干净 worktree）结果记在 delivery/snapshot_and_report_check.json。
+- 快照试做时发现跨平台缺陷：候选 manifest 的源 hash 取自 Windows CRLF 工作副本，而 Git blob 与 Linux 检出为 LF；tools/verify_puf3_sources.py 与报告 review_evidence.py 只容忍“文件 CRLF、记录 LF”一个方向，按 blob 原字节打包的快照（等同 Linux 检出）报 49 项源不匹配。两处改为 LF/CRLF 双向等价比较（记录的 hash 不变），修正后主仓库（CRLF）与 LF 快照均 status=PASS、elaboration exit0，review_evidence 均 194/194。delivery/puf3_project.zip 仍是 124f5c7 快照，内含旧的单向比较版本。
+- 未做：未重跑 Vivado 与实板；D05、PUF/RO 未签核边界不变。接口变化：verify_puf3_sources.py 对 LF 检出不再误报，输出格式不变。
+
 ## 2026-11-02 — D11 技术报告图件修正、仓库路径对齐与复现章节完善（owner TBD）
 
 - 用户给出图 2-1/2-2/2-4 三张截图：去掉图 2-1 标注旁白底分割；修正图 2-2 连线穿框与文字压线；图 2-4 斜线改为竖直/水平；并按新仓库结构更新报告路径、重点完善复现内容。入场 HEAD 864520d、工作区干净；LaTeX 编辑树先备份到本机 build/local/report_puf3_review/before_figfix_20261102_170615.zip。

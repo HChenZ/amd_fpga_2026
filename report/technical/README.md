@@ -17,6 +17,11 @@ CPU描述已去内部编号，实测数据不变，已重新编译并核对。�
 `amd_fpga_2026_latex_final/amd_fpga_2026_report/validation/`，可编辑源随 delivery/technical_report.zip 重新打包。
 重建报告前先运行 `python tools/restore_records.py`，再执行该目录 readme.md 中的 build_review.py 命令。
 
+同日稍后在第四部分末尾新增 §4.3「AMD ROSS 使用心得」（表 4-1：接入评估与接入、lint 对照、156 端点归因、
+双策略实现、DSP 打包核实、方法学处置、ISE 波形仿真；随后为价值、版本边界、MCP 使用注意与团队裁决四点体会），
+内容来自项目日志与当时验证文档，不含新测量；报告重编为 85 页，数值不变。
+可编辑 LaTeX 源仍只随 delivery/technical_report.zip 发布；整仓快照 ZIP 按原路径带有同一份源（见 delivery/README.md）。
+
 **当前操作只按 [版本入口](../design/version_entrypoints.md) 与 [证据目录说明](../../archive/history/docs/tech_report/evidence/README.md)。**
 下文旧“阅读/维护/构建入口”全部保留为v0.9历史，不是当前推荐命令；尤其不运行build_report.py覆盖最终报告。
 旧压缩包名称含final/review也不代表当前PDF，选择依据是构建记录和submission/current_evidence.json。

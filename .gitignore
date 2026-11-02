@@ -136,6 +136,7 @@ desktop.ini
 !/delivery/historical_projects.zip
 !/delivery/pynq_overlay_workflow_skill.zip
 !/delivery/technical_report.zip
+!/delivery/amd_fpga_2026_repo_snapshot.zip
 /delivery/*.pdf
 /report/technical/*.zip
 /archive/local_only/

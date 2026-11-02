@@ -13,7 +13,8 @@
 ## 当前交付（2026-11-02）
 
 - 技术报告：[当前PDF](technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf)、[独立ZIP](../delivery/technical_report.zip)（可编辑LaTeX/图件）；CPU措辞已去内部编号，数据保持PUF3。
-  11-02 晚间按审阅修正图 2-1/2-2/2-4 等连线与标注、路径对齐当前仓库结构、§3.4 复现说明重写（83 页），报告ZIP随之重打。
+  11-02 晚间按审阅修正图 2-1/2-2/2-4 等连线与标注、路径对齐当前仓库结构、§3.4 复现说明重写（83 页），报告ZIP随之重打；
+  随后在第四部分末尾新增 §4.3「AMD ROSS 使用心得」，重编为 85 页。全部仓库内容另有单个快照 ZIP，见 delivery/README.md。
 - 海报：poster/中队友最新双语PPTX/PNG完整保留。
 - 讲解网页：历史日志记录过project_explainer.html，但当前工作区、Git快照及整理备份均未找到该文件；不声称已入库或已清理其文本，需原制作会话补交原件。
 - 工程源码与Skill分别压缩，见delivery/README.md；旧证据包不作附件，原始记录仍保存在archive/evidence。

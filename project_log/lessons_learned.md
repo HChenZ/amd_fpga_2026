@@ -1,5 +1,18 @@
 # 经验与踩坑
 
+## 2026-11-02 — 整仓快照 ZIP 的边界（D12）
+
+- 快照放在仓库内就不能包含自身，ZIP 的 hash 也不能写进被快照的提交；先提交内容，再从该提交树生成快照，最后用只改 delivery/ 的提交记录 hash 与复验，快照才等于“最终仓库去掉 delivery/”。
+- GitHub 单文件上限 100 MB：含 delivery/ 的整仓 ZIP 约 122 MB 无法推送，去掉 delivery/ 后约 88 MB。先试算大小，再决定范围。
+- “去掉重复包”之前先逐成员核对是否真的重复：技术报告包里的 LaTeX 编辑源被 .gitignore 排除、只存在于该 ZIP，
+  把 delivery/ 整个排除会让“全部内容”的快照缺少报告源。核对要比对已跟踪 ZIP 归档内的成员，并按 LF/CRLF 等价。
+- “哪些步骤离开 Git 也能跑”要逐条实测：快照说明最初只列了 run_rtl_regression.py，解压复跑才发现 sim/ascon 的
+  support.Report 每次都读 git HEAD，向量准备、主机校验、失败契约及其测试全部依赖 Git。先 grep 静态查依赖，再在无 .git 的解压目录实跑确认。
+  顺序也要实测：pytest 依赖恢复的原始记录，不先运行 restore_records.py 时 test_cycle_sources 失败，说明里须写明先后。
+- 快照按 Git blob 原字节打包，而不是用工作区文件或带 autocrlf 转换的导出，否则同一提交在不同机器上会得到不同字节。
+- 这一做法立刻暴露了源 hash 核对的单向换行容忍：manifest 按 Windows CRLF 副本记录，LF 检出（Linux、Git blob）全部误报不匹配。
+  记录与核对的换行约定要显式写明，文本源一律做 LF/CRLF 双向等价比较，并在 LF 与 CRLF 两种检出上各跑一遍。
+
 ## 2026-11-02 — 报告图件与复现章节的三个坑（D11）
 
 - 单图预览必须用与正文相同的基础字号：最初用 10pt standalone 渲染，图内 `\scriptsize` 只有 7pt，标注看起来离线很远；
