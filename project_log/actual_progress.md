@@ -10,6 +10,8 @@
 - 编译：build_review.py（Tectonic 0.15.0）首轮发现表 2-14 后三行被推出页面——longtable 重置 \@colroom 后，图 2-10/2-11 两张浮动图被叠到同一页顶部；在图 2-10 前加 \Needspace{300pt} 使其就地排放后消除，另补 3 处长路径断行点消除 Overfull \hbox。最终 build_20261102_191808：83 页，evidence/PDF 检查 194/194，日志无 Overfull，PDF 全页扫描无版心外文字。性能/资源/时序数值与原件不变。
 - 报告复核脚本：把打包后的 latex/ 放进干净检出运行 review_evidence.py 时，3 项“ISE screenshot source”因 .tcl/.wcfg 被 autocrlf 检出为 CRLF 而失败（Linux 检出则 4 个 .v 会因记录为 CRLF 而失败）。改为与同脚本 RTL 输入核对一致的 LF/CRLF 等价比较后，主仓库与干净检出均 194/194；只改比较方式，记录的 hash 与原件不变。
 - 同步：report/reproduce_from_zero.md 增补 Windows 原生运行与 PYTHONUTF8 说明、镜像来源及“已有离线复跑记录”一节；report/technical/README.md、report/readme.md、LaTeX readme（构建命令改为 report/technical 路径）与任务看板 D11 更新。
+- 交付：用户选择只重打技术报告包并授权提交推送（不 force）。先提交 9433ff1（PDF、文档、记录），再按 package_delivery.py 同一内容规则单独重建 delivery/technical_report.zip（62 件，4054378 B，SHA-256 d35fa273…），manifest 只更新该项并另记 source_revision 9433ff1；其余三包保持 124f5c7 快照。
+  复验：verify_delivery.py 按新 manifest 四包全部 PASS（host61、Skill61/3 skip、固件 BIN 857df29c… 一致、elaboration、报告 83 页）；包内 LaTeX 独立编译 exit0、83 页、无 Overfull；打包 PDF 与跟踪 PDF 字节一致；干净检出 review_evidence 194/194。记录 build/metadata/report_repack_check.json，01:20 的 source_delivery_check.json 保留原样。
 - 未做：未重跑 Vivado 综合/实现与实板；D05 与 PUF/RO 未签核边界不变。另记：赛题要求文件名纯英文，根目录“AMD 自主选题赛道.md”不符合，本轮未改名。接口变化：无。
 
 ## 2026-11-02 — D10 全部 Markdown 渲染检查与修正（owner TBD）

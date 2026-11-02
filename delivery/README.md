@@ -26,5 +26,11 @@ SHA-256以[manifest.json](manifest.json)为准。验证见[机器记录](../buil
 另在没有忽略结果/报告编辑树的干净源树重打包后通过同样测试，报告ZIP内LaTeX单独编译77页。
 干净源树比较只有checkout换行差异；这些检查不表示已重做Vivado/实板或跨平台字体复现。
 
-2026-11-02 仓库按比赛推荐结构把 `docs/` 并入 `report/`（见根README目录对照）。上述四个ZIP是此前快照、**未重新打包**，
+2026-11-02 仓库按比赛推荐结构把 `docs/` 并入 `report/`（见根README目录对照）。前三个ZIP仍是 `124f5c7` 快照、**未重新打包**，
 包内仍为旧 `docs/` 路径；`tools/package_delivery.py` 已改为读取新位置，下次重打包时包内路径随之更新。
+
+**technical_report.zip 已于 2026-11-02 19:20 单独重打**（源码版本 `9433ff1`，manifest 中该项另记 source_revision/generated）：
+报告修图、路径对齐与复现章节重写后为 83 页。复验见[机器记录](../build/metadata/report_repack_check.json)：
+按新 manifest 运行 verify_delivery.py 四包全部 PASS（host61、Skill61/3 skip、固件 BIN 一致、elaboration），
+包内 LaTeX 用 Tectonic 单独编译 exit0、83 页、无 Overfull/缺字/未定义引用，打包 PDF 与仓库跟踪 PDF 字节一致；
+在 864520d 干净检出中恢复原件并放入包内 latex/ 后，review_evidence.py 194/194。上段 `source_delivery_check.json` 保留 01:20 的原始四包记录（当时报告 77 页）。
