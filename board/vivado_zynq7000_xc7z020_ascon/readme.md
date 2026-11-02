@@ -1,7 +1,7 @@
 # vivado_zynq7000_xc7z020_ascon — 上板工程（B03/B04/C03/V01）
 
 > 2026-11-01 范围：本页为早期 **PL-only/JTAG** 三镜像及随后 keys3 阶段，不是当前 PUF3 overlay。
-> 下文“PUF未进入/板级待验/镜像缺失”等按所在日期解读；当前结果见 docs/version_entrypoints.md。
+> 下文“PUF未进入/板级待验/镜像缺失”等按所在日期解读；当前结果见 report/design/version_entrypoints.md。
 > PUF3 build.tcl 复用本工程 AXI BRAM/blk_mem_gen XCI，不能整目录删除；历史三镜像必须用对应源快照，
 > 不通过只换 COE 把当前 PUF-enabled 源当作早期三镜像。同目录源集演变不回写当时数据。
 
@@ -32,7 +32,7 @@
 
 三轮实现均为 **WNS +0.087 ns / TNS 0 / 0 失败端点 / WHS +0.021 / 0 布线错误 / DRC 0 Error**；
 KAT 全 PASS（MMIO 另有 16B 长度拒绝）。完整哈希与证据索引见
-[上板冻结检查点](../../docs/freeze_checkpoint_20261027.md)。
+[上板冻结检查点](../../archive/history/docs/freeze_checkpoint_20261027.md)。
 
 ## 换一套 COE 的完整动作（每次都要重综合+重实现）
 

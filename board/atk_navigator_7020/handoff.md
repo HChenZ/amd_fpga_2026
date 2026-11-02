@@ -1,7 +1,7 @@
 # 本轮交接：自动测试、COE、领航者 PYNQ 准备
 
 > 2026-11-01：本页“本轮”是早期板前交接，不是当前 PUF3 工作区。镜像/物理服务未配置等按当时解读。
-> 后续有旧v1与PUF3各自板测；当前入口见 docs/version_entrypoints.md，原FAIL/BLOCKED不回写。
+> 后续有旧v1与PUF3各自板测；当前入口见 report/design/version_entrypoints.md，原FAIL/BLOCKED不回写。
 
 2026-10-25 / owner **TBD**。任务映射：A=V01/C03/Y05 自动化子集；B=B04/C02 镜像子集；C=B03/Y01/Y03/Y04 无板准备。没有提升完整板级任务为done。
 

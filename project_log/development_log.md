@@ -1,5 +1,12 @@
 # 开发记录
 
+## 2026-11-02 — D09 docs/并入report/，协作记录归位
+
+owner TBD。按赛题3.3.5.4推荐结构，report/ = 设计报告 + 大模型协作记录：docs/tech_report → report/technical，其余说明 → report/design，
+复现指南 → report/reproduce_from_zero.md，llm_collab从archive/history/report移回并入库21个会话原文（与原始归档逐字节一致）。
+引用用脚本按“目标存在才改”重算，同步.gitignore、package_delivery.py与pytest.ini；README补目录对照表。pytest 122/3skip，损坏链接13→4。
+交付ZIP未重打包，历史日志/原始记录旧路径不改。用户授权正常commit/push，不force。
+
 ## 2026-11-02 — D08 README导航与PUF3从零复现指南
 
 owner TBD。参考phantom-drive README的目录职责组织和用户图片的步骤/命令块形式，新增本仓库实际目录树与docs/reproduce_from_zero.md。

@@ -25,3 +25,6 @@ SHA-256以[manifest.json](manifest.json)为准。验证见[机器记录](../buil
 解包host61、Skill61/3可选skip、固件BIN一致、56项生产输入/7项候选支持与共享hook/XCI检查通过；
 另在没有忽略结果/报告编辑树的干净源树重打包后通过同样测试，报告ZIP内LaTeX单独编译77页。
 干净源树比较只有checkout换行差异；这些检查不表示已重做Vivado/实板或跨平台字体复现。
+
+2026-11-02 仓库按比赛推荐结构把 `docs/` 并入 `report/`（见根README目录对照）。上述四个ZIP是此前快照、**未重新打包**，
+包内仍为旧 `docs/` 路径；`tools/package_delivery.py` 已改为读取新位置，下次重打包时包内路径随之更新。

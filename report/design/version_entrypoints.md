@@ -22,7 +22,7 @@
 | 实现 / 协同仿真 | `board/vivado_zynq7000_xc7z020_pynq_puf3/build.tcl` / `sim/pynq_puf3/run.py` |
 | 关键源选择 | 排除 src/rtl/soc_top.v、keys/key_mmio.v，换入 PUF3 board 下的两个变体；以专用 build.tcl 为准 |
 | 报告主采样 | `data/pynq_puf3/notebook_20261031_114512/result.json` |
-| 报告 PDF | `docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf` |
+| 报告 PDF | `report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf` |
 | 发布入口 | `submission/current_evidence.json`、`submission/freeze_manifest.md`，不是按 ZIP 名称选“final” |
 
 PUF3 指三模式 + PUF v1，不是 PUF 第三代。板端 PT/AD 各 ≤16 B；PUF 只有会话内功能证据，
@@ -63,7 +63,7 @@ RO 计数器域未签核、跨上电/PVT/BER 未测。加载 candidate 与重新
 
 当前证据包 `evidence_20261101_20261101_183826`（267 文件）与源码留档 `source_92159b9.zip`
 冻结于本轮说明收口之前。说明改动不会偷偷改旧包、manifest、PDF 或其哈希；需要新交付快照时，
-按 [submission/README](../submission/README.md) 重新核对与装配。它们是完整工程/证据留档，不是仅含 PUF3 的精简部署包。
+按 [submission/README](../../submission/README.md) 重新核对与装配。它们是完整工程/证据留档，不是仅含 PUF3 的精简部署包。
 
 当前 PDF 已入库；独立 LaTeX 源与截图按用户安排不单独入库、随证据包提供。在只有 Git checkout 的环境中，
 必须先从已核验的包恢复报告源与本机历史原件，才能运行需要这些输入的报告/装配脚本，不能承诺空环境一键复现。

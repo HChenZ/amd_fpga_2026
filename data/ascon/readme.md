@@ -48,4 +48,4 @@ attribution. This does not relicense the whole project or prove the provenance
 of historical local files. No real secret material is present; all inputs are
 public test data. These results are host software evidence; hardware cycles,
 PPA remain `not_measured`. Standalone RTL encrypt/decrypt and round/P8/P12 now
-have simulation evidence; see [current audit](../../docs/ascon_rtl_decrypt_validation.md).
+have simulation evidence; see [current audit](../../archive/history/docs/ascon_rtl_decrypt_validation.md).

@@ -5,10 +5,10 @@
 
 更新 2026-11-01（初版 10-29）；owner 全为 TBD，由项目方分配。日期来源为本轮用户确认，不是官方规则推断。
 
-11-01 口径变更：最终报告（`docs/tech_report/amd_fpga_2026_latex_final/`）以 **PUF3 overlay 为主演示**，
+11-01 口径变更：最终报告（`report/technical/amd_fpga_2026_latex_final/`）以 **PUF3 overlay 为主演示**，
 板测一律采用 10-31 最新一版；PYNQ v1 release（`pynq-svc-v1`）在报告中作历史对照。下表按此更新。
 
-说明层收口见 `docs/version_entrypoints.md`：当前与旧入口明确分责，程序默认行为不改；原始结果、已执行 Notebook、
+说明层收口见 `report/design/version_entrypoints.md`：当前与旧入口明确分责，程序默认行为不改；原始结果、已执行 Notebook、
 candidate/PDF/包内快照保留字节。下表“当前文档”不意味着这些说明已写回历史包。
 
 ## 已经实现的工程

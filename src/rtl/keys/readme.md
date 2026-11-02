@@ -7,4 +7,4 @@ PUF3 build.tcl 明确换入 board/vivado_zynq7000_xc7z020_pynq_puf3/rtl/key_mmio
 keys_rv32 v3 是早期自检固件修复版；PUF3 是三模式服务 + PUF v1，并非 PUF 第三代。
 keys_v2、puf_soc_v2、puf_min 是独立实验，不应为统一名称替换这里的实现。
 原始响应/helper/DNA 调试可读，RO计数器域未签核、跨上电等未测；不宣称可靠保密密钥或安全启动。
-本次只补说明，RTL、约束和既有证据不变。当前与历史入口见 docs/version_entrypoints.md。
+本次只补说明，RTL、约束和既有证据不变。当前与历史入口见 report/design/version_entrypoints.md。

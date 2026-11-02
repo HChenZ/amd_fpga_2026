@@ -12,4 +12,4 @@
 
 PUF3 key_hw_sel 由软件 HWKEY_ON/OFF 控制；把旧 soc_top 误加入会改变官方 KAT 的密钥路径。
 不要为“统一版本”改 RTL、批量重命名、全局替换 ID 或把所有子目录加入同一 Vivado 工程。
-角色、工件与验证边界见 [版本入口](../../docs/version_entrypoints.md)。
+角色、工件与验证边界见 [版本入口](../../report/design/version_entrypoints.md)。

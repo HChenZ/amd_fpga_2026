@@ -2,7 +2,7 @@
 
 > 2026-11-01 阅读提示：本目录为资料/板前验证交接，不是 overlay。下面镜像缺失/未上板等状态是当时记录；
 > 后续旧 PYNQ v1、PUF3 均已实板。完整丝印/速度等级与真实 IO 延迟等仍未闭合。
-> 当前入口见 docs/version_entrypoints.md，本文不回写原数据或改变操作程序。
+> 当前入口见 report/design/version_entrypoints.md，本文不回写原数据或改变操作程序。
 
 2026-10-25；只读厂家证据、独立配置与接口准备。未修改两个 baseline、CPU/Cache/Ascon/PUF RTL 或 `skill/`，未生成正式 bitstream，未下载板卡。
 

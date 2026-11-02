@@ -12,7 +12,7 @@
 可用任务提示词：
 
 ```text
-处理任务 <id>。先读 AGENTS.md 与 docs/interfaces.md，核对 prerequisite。
+处理任务 <id>。先读 AGENTS.md 与 report/design/interfaces.md，核对 prerequisite。
 本轮目标：<可验收结果>；范围：<目录/文件>。
 交付给：<下游任务 id，人员未知写 TBD>。
 给出证据、未验证项和剩余阻塞，更新实际进度；不要 commit/push。
@@ -25,8 +25,8 @@
 | owner、依赖、交付、验收、状态、deadline | `tasks/task_board.md` |
 | 当前交付与历史门禁 | 根目录project_board.md、tasks/task_board.md；原milestones位于archive/history/tasks |
 | 已发生的结果、验证局限、阻塞 | `project_log/actual_progress.md` |
-| 技术接口 | `docs/interfaces.md`；冻结版本变更同步上下游 |
-| 有效设计决策 | `docs/decisions.md` |
+| 技术接口 | `report/design/interfaces.md`；冻结版本变更同步上下游 |
+| 有效设计决策 | `report/design/decisions.md` |
 | 开发活动 | `project_log/development_log.md` |
 | 失败、返工、原因未明事项 | `project_log/lessons_learned.md` |
 

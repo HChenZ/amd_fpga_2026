@@ -1,7 +1,7 @@
 # PS/PL 最小接入建议（Y01 draft，owner TBD）
 
 > 2026-11-01：这是早期接入建议，非当前唯一方案/运行授权。PUF3使用独立身份与Notebook，旧v1程序保留。
-> 当前协议/源集选择见 docs/interfaces.md 与 docs/version_entrypoints.md，不按草案替换现有设计。
+> 当前协议/源集选择见 report/design/interfaces.md 与 report/design/version_entrypoints.md，不按草案替换现有设计。
 
 2026-10-25。接口设计准备，**未冻结、未实现到 RTL/固件**。复用 `src/pynq/mailbox_protocol.md` 的 draft v1 消息；不分配任何真实 PS 寄存器地址。当前 baseline 无 PS7、无 PS 可用 Mailbox；三套固件是 UART 自测程序，没有 Mailbox 服务循环。
 

@@ -4,7 +4,7 @@
 
 This directory mixes shared Final host/standalone RTL/unit checks and historical PL-only CPU runners.
 The current PUF3 integration entry is `sim/pynq_puf3/run.py`; its board entry is the Notebook under
-`src/pynq_puf3/`. See [version entrypoints](../../docs/version_entrypoints.md).
+`src/pynq_puf3/`. See [version entrypoints](../../report/design/version_entrypoints.md).
 
 **Known old-entry limitation:** `run_cpu_regression.py` currently selects the PUF-enabled original soc_top
 but omits keys/BUFG dependencies by default (elaboration exit 4). `run_ascon_sw/hw/ise.sh` inherit that default.
@@ -20,7 +20,7 @@ regression evidence remain. `verify_cleanup.py` performs fresh regressions and c
 binary images/cycles/source/report hashes; see [cleanup](../../docs/workspace_cleanup.md).
 
 Task C01/C02/C03, owner TBD, audited 2026-10-07 (Asia/Shanghai).
-The standard and observed issues are in [ascon_standard_baseline](../../docs/ascon_standard_baseline.md).
+The standard and observed issues are in [ascon_standard_baseline](../../report/design/ascon_standard_baseline.md).
 The production C API is documented in
 [aead/readme.md](../../ascon/ascon_c/aead/readme.md).
 
@@ -151,9 +151,9 @@ not NIST-published vectors or a NIST certification.
 
 ## RTL regression after latest main
 
-Read [current RTL validation](../../docs/ascon_rtl_decrypt_validation.md) and
+Read [current RTL validation](../../archive/history/docs/ascon_rtl_decrypt_validation.md) and
 [RTL interface](../../src/rtl/ascon/readme.md) for tested scope and limitations.
-The [older RTL audit](../../docs/ascon_rtl_regression_audit.md) retains historical
+The [older RTL audit](../../archive/history/docs/ascon_rtl_regression_audit.md) retains historical
 failures. From the repository root:
 
 ```sh
@@ -204,12 +204,12 @@ valid stable-key algorithm checks. Own TestBenches have watchdogs and $fatal(1).
 
 ## 2026-10-16 key lifecycle review
 
-Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands and build evidence: [review](../../docs/ascon_key_management.md). Earlier dated status above is historical. Board model remains unknown; no programming performed.
+Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands and build evidence: [review](../../archive/history/docs/ascon_key_management.md). Earlier dated status above is historical. Board model remains unknown; no programming performed.
 
 `run_tail_equivalence.py` compares all public outputs and handshake cycles against the pre-optimization
 core for 867 requests. Cryptographic correctness remains gated by the independent Final reference
 regression. Timing continuation reports use distinct `timing_*` labels; see
-[timing review](../../docs/ascon_timing_review.md).
+[timing review](../../archive/history/docs/ascon_timing_review.md).
 
 `python sim/ascon/test_evidence_snapshot.py` verifies that missing, empty, partial or changed implementation
 snapshots cannot be certified as matching. This evidence gate runs in seconds and does not invoke Vivado.
@@ -226,4 +226,4 @@ Results/commands/hashes are in `data/ascon/results/isa/<label>/`.
 
 `run_cpu_units.py --label <unique>` also runs `tb_multiplier_pipeline`: four multiply
 forms, signed/unsigned edge cases, 1000 deterministic random cases (seed 4d554c31),
-completion holds, cancellation and reset. See [V09 report](../../docs/timing_acb_validation.md).
+completion holds, cancellation and reset. See [V09 report](../../archive/history/docs/timing_acb_validation.md).

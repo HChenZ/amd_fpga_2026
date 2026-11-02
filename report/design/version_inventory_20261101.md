@@ -140,7 +140,7 @@ PUF3 变体明确用 `key_hw_sel = key_hwkey_on & key_have_r`，只有软件显�
 | `skill/pynq-overlay-workflow/` | 通用工具，契约/回调/manifest 注入 | 正常，不应硬编码 PUF3 |
 | Skill L3 `l3_10_ascon_release.ipynb` | 旧 v1 release，ID 0x514e5950、pynq-svc-v1 | **有意冻结的测试对象**；L3 非 Ascon 还用 Base GPIO 与 DMA 回环。不能把 L3 结果说成 PUF3 Skill 复测 |
 | `docs/tech_report/evidence/{build_evidence,check_benchmark_tables,assemble,freeze_manifest}.py` | PUF3 主采样 + 最终报告；v1/PL-only 明确历史分组 | 正确；C 组出现 v1 不意味着主演示错版 |
-| `docs/tech_report/amd_fpga_2026_latex_final/.../{build_review,review_evidence}.py` | 当前 PUF3 candidate/10-31 结果 | 正确；PDF 和生成记录相符 |
+| `report/technical/amd_fpga_2026_latex_final/.../{build_review,review_evidence}.py` | 当前 PUF3 candidate/10-31 结果 | 正确；PDF 和生成记录相符 |
 | `docs/tech_report/{build_report,build_latex,build_site,make_overleaf_zip,verify_report}.py` 等 | 已取代的 Markdown/v0.9 流水线 | **不用生成最终报告**；verify_report 还引用已删除的 10-29 数据目录 |
 | `build/` 中 ACB/BCE/dcache/sweep/IO-STA 旧构建，`build/advanced/`、`data/advanced/` 中回放脚本 | 各自历史 top/源集/COE，或独立实验 | 不是当前 PUF3 build，不能不分对象全部重跑 |
 
@@ -167,8 +167,8 @@ PUF3 变体明确用 `key_hw_sel = key_hwkey_on & key_have_r`，只有软件显�
 | 名称/路径 | 对应版本 | 使用结论 |
 |---|---|---|
 | `docs/tech_report/report.md`、`index.html`、`latex/main.pdf`、`src/`、`src_template/` | v0.9 旧 PYNQ v1 主叙事 | 历史，不用作最终稿 |
-| `docs/tech_report/latex_project.zip` | 旧 Markdown 流水线的 Overleaf 包 | 不用；与最终 52 个编译源仅 2 个相同，38 缺失、12 不同 |
-| `docs/tech_report/amd_fpga_2026_latex_final.zip` | 队友最初交付 ZIP，“final”是名称，不是当前构建 | 不用上传；与当前 52 个编译源 11 相同、21 缺失、20 不同，内置 PDF 不是当前 PDF |
+| `report/technical/latex_project.zip` | 旧 Markdown 流水线的 Overleaf 包 | 不用；与最终 52 个编译源仅 2 个相同，38 缺失、12 不同 |
+| `report/technical/amd_fpga_2026_latex_final.zip` | 队友最初交付 ZIP，“final”是名称，不是当前构建 | 不用上传；与当前 52 个编译源 11 相同、21 缺失、20 不同，内置 PDF 不是当前 PDF |
 | `.../amd_fpga_2026_latex_final/amd_fpga_2026_report.zip` | 11-01 较近的报告快照 | 仍不是当前稿：52 个编译源中 51 相同、fig_2_9.tex 不同，PDF 也不同 |
 | `.../amd_fpga_2026_report/output/amd_fpga_2026_report_puf3_review.zip` | 10-31 review 快照 | 不用：52 源中 42 相同、10 不同，PDF 不同 |
 | `.../amd_fpga_2026_report/output/pdf/final_report.pdf` | **当前定稿 PDF**：构建 build_20261101_174743，77 页，SHA-256 `603c625a…4825` | **唯一当前报告 PDF**，已入库；LaTeX/原图随证据包，不单独入库 |

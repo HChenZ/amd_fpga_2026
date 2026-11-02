@@ -9,7 +9,8 @@
 | ID | task | owner | deliverable | acceptance criteria | status |
 |---|---|---|---|---|---|
 | D07 | 当前/历史源码隔离与独立交付 | TBD | 当前源码、历史源码、Skill、技术报告四ZIP及导航/原始资料归档 | 生产输入/工件不变，归档可校验；独立解包host/Skill/固件验证、编号扫描、正常提交推送 | done（可定位源码的四ZIP已固化，源码124f5c7；独立解包与无忽略副本的干净源树分包均通过，56项源/7项支持匹配，BIN一致；报告独立编译77页。远端同步以Git main引用为准；网页原件缺失仍待补，不计入交付） |
-| D08 | README目录说明与从零复现指南 | TBD | [README结构说明](../README.md#仓库结构)、[从零复现指南](../docs/reproduce_from_zero.md)及导航 | 按当前PUF3实际入口区分host/RTL/固件/实现/板测，命令参数和链接核验，原程序/候选/交付包不变 | done（文档：44个相对链接、18处命令路径、8个CLI帮助核验通过；PUF3 elaboration与离线122/3skip通过，1132个保护文件不变；用户已授权正常提交推送，远端同步以Git引用为准；未重打包，不据此补齐D05或PUF验收） |
+| D09 | 仓库结构对齐赛题推荐目录（report/ = 设计报告 + 大模型协作记录） | TBD | [README目录对照](../README.md#与比赛推荐目录的对照)、[report入口](../report/readme.md)、[协作记录](../report/llm_collab/index.md) | docs/并入report/（technical/design/复现指南），llm_collab移回report/且21个会话原文入库；引用、忽略规则与打包脚本同步；RTL/固件/candidate/交付ZIP不变 | done（32个git rename保留历史；仅改路径的78行+手工说明；相对链接178个，损坏13→4，余4个为改动前已失效且非docs/目标；pytest 122 passed/3 skipped；会话与原始归档逐字节一致；交付ZIP未重打包） |
+| D08 | README目录说明与从零复现指南 | TBD | [README结构说明](../README.md#仓库结构)、[从零复现指南](../report/reproduce_from_zero.md)及导航 | 按当前PUF3实际入口区分host/RTL/固件/实现/板测，命令参数和链接核验，原程序/候选/交付包不变 | done（文档：44个相对链接、18处命令路径、8个CLI帮助核验通过；PUF3 elaboration与离线122/3skip通过，1132个保护文件不变；用户已授权正常提交推送，远端同步以Git引用为准；未重打包，不据此补齐D05或PUF验收） |
 
 更新：2026-11-01。所有 owner 为 **TBD**，仅由项目方指派。截止日期为内部计划；依赖完成是开工/验收门槛，不能用到期日替代。日期以 Asia/Shanghai 为准。
 
@@ -19,7 +20,7 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 
 ## 2026-11-01 版本职责审计
 
-全部工程/固件/包/脚本对应关系见 [版本清单](../docs/version_inventory_20261101.md)，机器明细
+全部工程/固件/包/脚本对应关系见 [版本清单](../report/design/version_inventory_20261101.md)，机器明细
 `build/metadata/version_alignment_20261101.json`。当前 PUF3 专用链一致（D02 64/64、报告 194/194），
 但旧 v1 board_demo/benchmark/error_gate CLI、冻结的 Skill L3 Ascon、DMA/PUF v2 实验和原 baseline 各有职责，
 不能统称“所有程序都已是 PUF3”。默认旧 CPU 回归源列表 elaboration exit 4，PUF3 专用源列表 exit 0；
@@ -28,7 +29,7 @@ status：`todo` 未开始；`ready` 输入已齐、可开始执行；`in_progres
 ## 2026-11-01 P0 证据复核说明
 
 下表沿用原宽范围任务状态，**非 done 不等于未验证**。逐项证据见
-[P0 现有证据复核](../docs/p0_evidence_review_20261101.md)。当前 RV32 I03 实现已有仿真/实现/实板证据；
+[P0 现有证据复核](../report/design/p0_evidence_review_20261101.md)。当前 RV32 I03 实现已有仿真/实现/实板证据；
 I04 已做固定 seed 随机、边界、hold/cancel/reset（当前 XSim 1502/0）；C03 当前容量内三模式板测各 289+289；
 V01 有真实 CLINT 六场景、Cache 差分/事务与 ISA 49/50；B03 有板卡版本与 mcycle/PS 时基核验。
 不能沿用后面早期备注宣称这些子项仍未测试。完整 RV64/保留编码/抢占/ISE-disabled 与原 baseline 独立复现
@@ -39,7 +40,7 @@ V01 有真实 CLINT 六场景、Cache 差分/事务与 ISA 49/50；B03 有板卡
 
 | ID | task | owner | prerequisite | deliverable | acceptance criteria | deadline | status |
 |---|---|---|---|---|---|---|---|
-| B01 | baseline repo audit | TBD | 无 | docs/repository_audit.md | 完整树/模块/part/生成文件/路径问题/读取范围与静态检查证据；不改原工程 | 2026-09-23 | done |
+| B01 | baseline repo audit | TBD | 无 | report/design/repository_audit.md | 完整树/模块/part/生成文件/路径问题/读取范围与静态检查证据；不改原工程 | 2026-09-23 | done |
 | B02 | Rebuild and verify recovered XC7Z020 CICC baseline | TBD | B01；Vivado 2025.2 环境 | 原 XPR/XCI/XDC/COE 已恢复；尚需重建入口与新报告 | 明确版本、part、top；从已恢复 XCI 再生成 IP；独立 checkout 综合/实现与基线运行证据，无本机缓存依赖 | 2026-09-27 | in_progress |
 | B03 | xc7z020 board sanity check | TBD | B01；上板阶段需 B02 | target part = xc7z020clg400-1 confirmed；板型=正点原子领航者ZYNQ7020、8 端口逐引脚核验、独立工程 `board/vivado_zynq7000_xc7z020_ascon` 已上板（三套 COE 均烧录运行） | target part 已确认；核验 physical board model / revision，时钟/复位/UART/LED/存储及 PYNQ 平台；独立配置上板 | 2026-09-28 | in_progress |
 | B04 | baseline firmware build/load | TBD | B01；精确 FreeRTOS kernel/bootloader 依赖 | 已恢复部分启动/链接/构建源；待重编译/加载 | clean build 固件，入口/内存匹配；加载后可报告状态和 mcycle；不依赖未入库镜像 | 2026-09-28 | blocked |
@@ -227,7 +228,7 @@ owner TBD。
 - D03、D06 改为 in_progress；D04 已有视频脚本（`report/demo_video_script.md`），实机视频与 PPT 未见；
   D05 未开展，保持 todo（按 10-29 授权不阻塞提交）。
 - D02 done：`docs/tech_report/evidence/check_benchmark_tables.py` 从原始 JSON/rpt 重算并核对报告 15/15
-  （故意改报告副本 1439→1440 时 exit 1）；结果 `docs/tech_report/validation/benchmark_tables_check.json`。
+  （故意改报告副本 1439→1440 时 exit 1）；结果 `report/technical/validation/benchmark_tables_check.json`。
   报告改动后需重跑，assemble.py 会拒绝过期结果。
 - V04 in_progress：`freeze_manifest.py` 在干净提交上生成 `submission/freeze_manifest.{md,json}`
   与本机 `git archive` 源码包；P0 未验收项见上表。15:32 作废证据包已删除。

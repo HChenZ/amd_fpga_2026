@@ -7,7 +7,7 @@
 - 语言：中文旁白，中英术语用字幕辅助
 - 主证据：PUF3 overlay 2026-10-31 实板 Notebook `src/pynq_puf3/pynq_puf3_board_test.ipynb`，
   结果 `data/pynq_puf3/notebook_20261031_114512/result.json`；数字与最终报告
-  `docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf` 一致
+  `report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf` 一致
 
 ## 1. 一句话定位
 

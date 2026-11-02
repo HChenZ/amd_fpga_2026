@@ -1,5 +1,15 @@
 # 实际进度
 
+## 2026-11-02 — D09 仓库结构对齐赛题推荐目录（owner TBD）
+
+- 用户给出当前README目录树与赛题3.3.5.4推荐结构截图，要求report/对齐“设计报告 + 大模型协作记录”。经确认：docs/整体并入report/；llm_collab移回report/且会话原文入库；README补目录对照；完成后正常commit/push。入场工作区干净、HEAD c300ba9。
+- 移动（git rename，保留历史）：docs/tech_report/ → report/technical/（含本地忽略的LaTeX编辑树与旧ZIP，层级深度不变），其余15个docs/*.md → report/design/，docs/reproduce_from_zero.md → report/reproduce_from_zero.md，archive/history/report/llm_collab/ → report/llm_collab/。顶层docs/与archive/history/report/已不存在。
+- 21个会话原文先与archive/evidence/raw_records_20261102.zip逐字节比对（diff 0），并做密钥/口令/邮箱模式扫描（0命中）后入库；.gitignore去掉两条sessions忽略规则，LaTeX编辑树/旧ZIP的忽略与PDF例外改到report/technical/，忽略结果与移动前一致。
+- 引用：脚本只改“映射后目标真实存在”的路径（链接按新旧相对位置重算，正文仓库相对路径按前缀替换），38个文件78行仅路径变化；另把9个指向已隔离文件的docs/链接改到archive/history/docs/。project_log、archive、report/technical/validation生成记录和delivery ZIP保持原字节，旧路径按历史时点解读。
+- tools/package_delivery.py改为读取report/design/*.md、report/reproduce_from_zero.md和report/technical/下报告源；pytest.ini与包内pytest.ini的norecursedirs由docs改为report。README新增推荐结构对照表；report/readme.md、report/design/readme.md、report/technical/README.md、project_board.md、AGENTS.md、delivery/README.md补说明。
+- 验证：Python3.13.9；pytest -q -p no:cacheprovider 122 passed/3 skipped（exit0，与D08一致）；py_compile package_delivery.py exit0；报告源路径存在性检查通过；相对链接178个，损坏13→4（余4个为移动前已失效且目标不在docs/，未改）。
+- 未做：未重新打包delivery四个ZIP（包内仍为旧docs/路径，已在delivery/README.md注明）；未重跑Vivado/板测/报告编译。接口变化：仅文档与打包脚本路径。下一接收任务：D05/D06不变，owner TBD。
+
 ## 2026-11-02 — D08 README目录说明与从零复现入口（owner TBD）
 
 - 用户要求参考仓库README的目录说明，并按所给图片风格补一份从零复现文件。入场main工作区干净、HEAD957256f；本轮仅文档，不改程序或重新装配交付。

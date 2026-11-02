@@ -62,4 +62,4 @@ D05 的完整验收必须在干净机器或干净 clone 实跑；检查源代码
 
 `.gitignore` 不忽略整个 build，也不泛化忽略 CSV/JSON/Tcl/XDC/XCI/BD/COE/MEM。缓存、runs、临时 waveform 与私有工具目录忽略；需要留存的摘要先导出到 `build/reports/` 或 `data/`。foundation 收口已从索引/工作区移除原先跟踪的 `.cache/wt/project.wpc` 与 `.hw/*.lpr`；它们不属于 579 个恢复资产。ignore 本身不会清理已有跟踪项。
 
-旧日期的原阶段门禁见 [历史milestones](../archive/history/tasks/milestones.md)，当前交付以根目录project_board.md为准。
+旧日期的原阶段门禁见 [历史milestones](../../archive/history/tasks/milestones.md)，当前交付以根目录project_board.md为准。

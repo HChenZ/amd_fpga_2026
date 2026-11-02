@@ -8,7 +8,7 @@
 | 想了解什么 | 入口 |
 |---|---|
 | **项目总看板、当前/历史与交付清单** | [项目看板](project_board.md) |
-| 第一次接手，从克隆到验证、重建与上板 | [从零复现指南](docs/reproduce_from_zero.md) |
+| 第一次接手，从克隆到验证、重建与上板 | [从零复现指南](report/reproduce_from_zero.md) |
 | 当前 PUF3 工程 | [board 工程入口](board/readme.md) |
 | 板上操作 | [PUF3 Notebook](src/pynq_puf3/readme.md) |
 | 当前源码/构建依赖 | [源码说明](src/readme.md)、[构建说明](build/readme.md) |
@@ -44,9 +44,12 @@ amd_fpga_2026/
 ├── data/                           # 锁定 KAT / 向量、分版本的原始板测
 ├── tools/                          # 源码打包、独立解包校验、原件恢复工具
 ├── skill/pynq-overlay-workflow/     # 可独立安装的 Skill、示例与测试
-├── docs/                           # 架构、接口、版本和工程约定
-│   └── reproduce_from_zero.md      # 环境准备 → 离线验证 → 固件 / Vivado → 上板
-├── report/                         # 报告入口、双语海报、演示脚本
+├── report/                         # 设计报告 + 大模型协作记录
+│   ├── technical/                  # 技术报告 PDF（可编辑 LaTeX 另见 delivery/technical_report.zip）
+│   ├── llm_collab/                 # 大模型协作原始会话：提示词、回答、自我纠错轨迹
+│   ├── design/                     # 架构、接口、版本入口和工程约定
+│   ├── reproduce_from_zero.md      # 环境准备 → 离线验证 → 固件 / Vivado → 上板
+│   └── poster/                     # 双语海报；另有演示脚本 demo_video_script.md
 ├── image/pynq/                     # 已保留的 PYNQ / Skill 界面截图，辅助展示
 ├── tasks/                          # 任务看板与阶段交付计划
 ├── project_log/                    # 实际进度、开发记录、踩坑与失败
@@ -56,6 +59,31 @@ amd_fpga_2026/
 ├── delivery/                       # 当前源码、历史源码、Skill、技术报告四个独立 ZIP
 └── submission/                     # 旧提交流程说明；当前下载入口是 delivery/
 ```
+
+### 与比赛推荐目录的对照
+
+赛题 3.3.5.4 推荐 `README.md / src / sim / build / board / data / skill / report` 八项，本仓库全部采用；
+其余目录为补充，对照如下：
+
+| 推荐项 | 本仓库位置 | 说明 |
+|---|---|---|
+| README.md | `README.md` | 项目简介、复现入口；完整步骤见 `report/reproduce_from_zero.md` |
+| src/ | `src/`、`ascon/` | RTL / 固件 / PS 侧 Python；`ascon/` 是 C / Python 算法参考实现 |
+| sim/ | `sim/` | Final host、独立 RTL、PUF3 协同仿真脚本与结果 |
+| build/ | `build/`、PUF3 工程目录 | `build/` 放共享 RO 约束 / hook 与校验元数据；PUF3 的 `build.tcl` 和综合/实现报告（`candidate/reports/`）在 `board/vivado_zynq7000_xc7z020_pynq_puf3/` |
+| board/ | `board/` | 上板工程、Notebook 运行入口（`src/pynq_puf3/`）与已验证 candidate |
+| data/ | `data/` | KAT / 向量与分版本原始板测 |
+| skill/ | `skill/` | 独立 Skill 与 README |
+| report/ | `report/` | 设计报告（`technical/`、`design/`）+ 大模型协作记录（`llm_collab/`） |
+| — | `tools/` | 源码打包、解包校验、原件恢复脚本 |
+| — | `tasks/`、`project_log/` | 任务看板、实际进度、开发记录与踩坑 |
+| — | `archive/` | 隔离的历史工程（`history/`）与原始记录归档（`evidence/`） |
+| — | `delivery/`、`submission/` | 四个独立交付 ZIP；旧提交流程说明 |
+| — | `image/` | 界面截图 |
+
+2026-11-02 起原 `docs/` 已并入 `report/`：`docs/tech_report/` → `report/technical/`，其余说明 → `report/design/`，
+`docs/reproduce_from_zero.md` → `report/reproduce_from_zero.md`。历史日志、任务看板旧条目、旧提交流程、原始记录和此前生成的 ZIP
+仍保留旧路径；其中此前已隔离的 `docs/<name>.md` / `docs/tech_report/<旧流水线>` 在 `archive/history/docs/` 下。
 
 **依赖不要误删：**PUF3 仍使用 `src/firmware/pynq_svc/`、`src/firmware/ascon_hw_rv32/`、
 公共 `src/pynq/` 和保留的 Ascon 工程 IP 配置；名称较旧不等于无用。
@@ -72,7 +100,7 @@ git rev-parse HEAD
 git status --short
 ```
 
-按[从零复现指南](docs/reproduce_from_zero.md)选择：
+按[从零复现指南](report/reproduce_from_zero.md)选择：
 
 - **先验证现成候选：**检查源码 / 工件身份 → 在匹配的 PYNQ 板端执行 Notebook。
 - **从源码重建：**环境准备 → Final host / RTL 验证 → 固件 → PUF3 协同仿真 → Vivado → 新候选上板。

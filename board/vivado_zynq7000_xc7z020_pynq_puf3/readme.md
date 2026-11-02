@@ -8,7 +8,7 @@
 板测用 src/pynq_puf3/pynq_puf3_board_test.ipynb，默认 FULL_KAT=True；旧 src/pynq 的三个 CLI
 仍为 pynq-svc-v1，不能只换 --release 路径使用。本轮仅说明分责，不改程序或工件。
 生成 manifest 的 NOT_RUN 是打包时快照，当前板测以10-31 result.json的工件绑定为准；不要直接改 manifest 成 PASS。
-共享依赖与历史入口见 docs/version_entrypoints.md。
+共享依赖与历史入口见 report/design/version_entrypoints.md。
 
 2026-10-30；owner TBD。独立入口：不打开、不修改 PYNQ 发布版
 （`../vivado_zynq7000_xc7z020_pynq/release/`）、`../vivado_zynq7000_xc7z020_pynq_puf/`

@@ -8,11 +8,11 @@
 `evidence/` 为此前生成的历史包，保留原样，不作为本轮最新版。
 
 **说明更新与冻结快照分开**：当前冻结包仍是18:38的267文件版本，源码点92159b9；本轮版本说明收口
-不回写旧包/PDF/manifest，也不自动生成新ZIP。当前/旧程序入口见 `docs/version_entrypoints.md`。
+不回写旧包/PDF/manifest，也不自动生成新ZIP。当前/旧程序入口见 `report/design/version_entrypoints.md`。
 它们不是仅含PUF3的精简部署包；旧v1、Skill工件和明确标注的历史原件仍有保留职责。
 
 > **2026-11-01 状态**：最终报告为独立 LaTeX 工程
-> `docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/`，PDF `output/pdf/final_report.pdf`
+> `report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/`，PDF `output/pdf/final_report.pdf`
 > **已入库**；LaTeX 源、Vivado 截图 PNG 与 ISE 截图仿真数据/脚本按用户要求**不单独入库**，完整随证据包提供。
 > 主演示为 PUF3，板测主采样 `data/pynq_puf3/notebook_20261031_114512/result.json`。
 > 当前证据包与冻结清单以 `current_evidence.json`、`freeze_manifest.md` 为准。
@@ -39,7 +39,7 @@ Git 中只保存证据包目录。ZIP 和历史包 `evidence/` 不入库，只�
 
 ```sh
 # 1. 报告侧（队友）：重建并通过报告自带核对
-python -X utf8 docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/build_review.py
+python -X utf8 report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/build_review.py
 # 2. 证据侧
 python -X utf8 docs/tech_report/evidence/build_evidence.py          # C 组清单
 python -X utf8 docs/tech_report/evidence/check_benchmark_tables.py  # D02，对最终报告

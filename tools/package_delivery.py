@@ -88,7 +88,8 @@ def main():
     # Normative input PDFs are test/reference inputs, not an evidence-package copy.
     current += list((ROOT/'data/ascon/sources').glob('*.pdf'))
     current += [ROOT/n for n in ['README.md','AGENTS.md','LICENSE','project_board.md','.gitattributes','.gitignore','pytest.ini']]
-    current += [p for p in (ROOT/'docs').glob('*.md') if p.is_file()]
+    current += [p for p in (ROOT/'report/design').glob('*.md') if p.is_file()]
+    current += [ROOT/'report/reproduce_from_zero.md']
     current += [ROOT/'src/pynq/jupyter_demo.ipynb',ROOT/'src/pynq/navigator_demo.ipynb']
     # Shared API's mock-test samples are small test fixtures, explicitly not new board data.
     items = add_paths(current)
@@ -99,7 +100,7 @@ def main():
                 name = 'data/ascon/results/key_lifecycle/'+stem+suffix
                 items[name] = z.read(name)
     # The project ZIP deliberately excludes the independent Skill tree.
-    items['pytest.ini'] = b'[pytest]\ntestpaths = src/pynq\nnorecursedirs = archive build data docs .git .venv\n'
+    items['pytest.ini'] = b'[pytest]\ntestpaths = src/pynq\nnorecursedirs = archive build data report .git .venv\n'
     cand = ROOT/'board/vivado_zynq7000_xc7z020_pynq_puf3/candidate'
     items['known_artifact_manifest.json'] = (cand/'manifest.json').read_bytes()
     items['source_package.md'] = (
@@ -146,7 +147,7 @@ def main():
     skill={p.relative_to(skill_dir).as_posix():p.read_bytes() for p in source_files(skill_dir)}
     skill['LICENSE']=(ROOT/'LICENSE').read_bytes()
 
-    report=ROOT/'docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report'
+    report=ROOT/'report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report'
     if (report/'main.tex').is_file():
         paper={'final_report.pdf':(report/'output/pdf/final_report.pdf').read_bytes()}
         for folder in ['chapters','figs','evidence']:

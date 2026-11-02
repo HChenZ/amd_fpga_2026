@@ -1,6 +1,6 @@
 # 项目总看板
 
-第一次接手先看 [README 目录说明](README.md#仓库结构) 和 [从零复现指南](docs/reproduce_from_zero.md)。
+第一次接手先看 [README 目录说明](README.md#仓库结构) 和 [从零复现指南](report/reproduce_from_zero.md)。
 
 ## 先看这三项
 
@@ -8,7 +8,7 @@
 |---|---|---|---|
 | **工程源码** | 当前PUF3及其依赖，与独立历史源码分开 | [当前工程](board/readme.md)、[历史工程](archive/history/README.md) | puf3_project.zip、historical_projects.zip |
 | **Skill** | 通用pynq-overlay-workflow，独立于工程 | [Skill说明](skill/readme.md) | pynq_overlay_workflow_skill.zip |
-| **技术报告** | 当前PDF与可编辑LaTeX源，另保留双语海报 | [报告与材料](report/readme.md) | technical_report.zip |
+| **技术报告** | 当前PDF与可编辑LaTeX源、大模型协作记录、设计说明，另保留双语海报 | [报告与材料](report/readme.md)、[协作记录](report/llm_collab/index.md) | technical_report.zip |
 
 交付ZIP与SHA-256以 [delivery清单](delivery/README.md) 为准。交付不使用旧“证据包”作为附件；
 仓库原始测试/实现资料仍在 [证据归档](archive/evidence/README.md) 中，不能把归档视为新测量。

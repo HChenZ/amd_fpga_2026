@@ -23,4 +23,4 @@ board_benchmark 的纯函数，不调用其旧 prepare_hardware。已执行 Note
 - PT/AD 各 ≤16 B；KAT #529、HWKEY 关闭时测三模式性能；PUF 功能在后续独立段验证。
 - 只有会话内注册/重建/HWKEY 证据；RO 计数器域、跨上电/PVT/BER 等未闭合。
 - 旧 PYNQ v1 的 9/9 错误门禁与 Skill L3 Ascon 结果不属于 PUF3 完整错误门禁。
-- 说明/重建/发布边界见 [版本入口](../../docs/version_entrypoints.md)；本页不授权重建或覆盖 candidate。
+- 说明/重建/发布边界见 [版本入口](../../report/design/version_entrypoints.md)；本页不授权重建或覆盖 candidate。

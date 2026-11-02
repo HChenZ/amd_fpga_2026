@@ -24,7 +24,7 @@ DMA/PUF v2/MIN主机工具已移到archive/history/src/pynq，旧硬件工件移
 | puf_helper_v2/puf_min | 独立 PUF v2/MIN，不参与当前 PUF3 运行 |
 | jupyter_demo/navigator_demo | 无板或注入式后端演示，不当作 PUF3 实板证据 |
 
-程序、默认值与旧输出不改；完整说明见 [版本入口](../../docs/version_entrypoints.md)。
+程序、默认值与旧输出不改；完整说明见 [版本入口](../../report/design/version_entrypoints.md)。
 Skill 在 `skill/` 中独立交付、S01–S05 已有对应范围证据；下面“本目录不包含 Skill”只是目录职责。
 
 ## 旧 PYNQ v1 使用说明与 10-29 验证记录

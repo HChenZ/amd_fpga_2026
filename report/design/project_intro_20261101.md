@@ -1,6 +1,6 @@
 # 当前项目简介（提交候选）
 
-更新：2026-11-01，与最终报告 `docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf`
+更新：2026-11-01，与最终报告 `report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf`
 及板测 `data/pynq_puf3/notebook_20261031_114512/result.json` 一致。
 
 本页是当前提交简介，不取代旧入口各自的协议/默认值；具体使用与历史边界见 [版本速查](version_entrypoints.md)。

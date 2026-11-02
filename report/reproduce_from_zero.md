@@ -3,7 +3,7 @@
 更新：2026-11-02；任务 D08；owner TBD。
 
 本指南按当前仓库布局编写，默认**在新克隆中操作**。先读 [README 目录说明](../README.md#仓库结构)、
-[项目看板](../project_board.md)、[接口契约](interfaces.md)；协作约定见 [AGENTS.md](../AGENTS.md)。
+[项目看板](../project_board.md)、[接口契约](design/interfaces.md)；协作约定见 [AGENTS.md](../AGENTS.md)。
 不要把 `archive/history/` 的旧 CPU / DMA / PUF v2 工具当作当前入口，也不要直接照搬旧截图里的路径和状态。
 
 ## 0. 先选复现目标

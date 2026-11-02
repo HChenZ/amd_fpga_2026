@@ -54,12 +54,12 @@ HWKEY_ON/HWKEY_OFF 操作。实板结果已完成单次上电的 289 组容量�
   延迟。MMIO 采用原固定延迟读回（检测 T，T+1 请求/等待，T+2 数据/解除等待），
   不等待仅用于 cacheable fill 的 `bus_rdata_valid_i`。CPU/总线端口与地址映射不变。
 
-验证与尚未验收项见 [历史V09报告](../archive/history/docs/timing_acb_validation.md)。
+验证与尚未验收项见 [历史V09报告](../../archive/history/docs/timing_acb_validation.md)。
 
 2026-10-16现行增量：软件/MMIO/ISE已在RV32仿真运行。MMIO CTRL[2]为idle ZEROIZE，
 BUSY写忽略、认证成功且有效长度内才允许OUT读取；ISE新增内部cancel/ack、EX hold接线，
 **没有新opcode**。ISE decrypt helper新增最后一个mlen指针，失败-1/0长度并擦除候选。
-当时地址、编码、端序、生命周期与局限见[历史密钥管理审查](../archive/history/docs/ascon_key_management.md)；
+当时地址、编码、端序、生命周期与局限见[历史密钥管理审查](../../archive/history/docs/ascon_key_management.md)；
 下文带2026-09/10-09日期的内容保留为历史，不能据其断言CPU ISE仍未实现。
 
 恢复阶段说明：原始XCI配置PLL 50→100 MHz，BRAM为32×32768 words（128 KiB），使用当时的COE输入。该源快照和报告现已隔离，不等于当前PUF3实测；当前源清单由PUF3专用Tcl定义。
@@ -112,7 +112,7 @@ C02 host 契约补记（2026-10-07）：production C 位于 `ascon/ascon_c/aead/
 成功解密返回 0、`*mlen=clen-16`、输出对应明文；认证失败返回 -1、`*mlen=0`，
 仅清零 `m[0..clen-16)` 的候选明文。`clen<16` 返回 -1、`*mlen=0`，不写 m。
 调用者必须提供有效 mlen 指针及足够容量、无重叠的输入/输出，检查返回值后
-才能使用成功输出；详见 [C API 说明](../ascon/ascon_c/aead/readme.md)。
+才能使用成功输出；详见 [C API 说明](../../ascon/ascon_c/aead/readme.md)。
 此为项目验收要求，不把擦除行为声称为 SUPERCOP API 的强制条件。
 
 ## ISE 契约（I02 待冻结）
@@ -126,7 +126,7 @@ m=0、correct=0，有效明文长度为0。解密不新增mlen/error/result。
 encrypt增加error，done && !error才是成功输出；17..31长度当拍done/error拒绝。
 解密17..31长度当拍done、correct=0、m=0、tag=0拒绝。
 key/nonce/tag_in须稳定至done；数据/AD与长度在start捕获。>=32长度须在缩窄端口前拒绝。
-完整端口与结果保持规则见 [RTL接口](../src/rtl/ascon/readme.md)。这些是独立AEAD
+完整端口与结果保持规则见 [RTL接口](../../src/rtl/ascon/readme.md)。这些是独立AEAD
 接口，不是已冻结的CPU ISE规范；CPU RTL未变。
 
 历史阶段尚无已分配的 Ascon custom opcode；现行custom-0规范见上方2026-10-16增量。现有 `ror/load_bytes/store_bytes` 不是 CPU 指令规范。I02 的交付应填满：指令名/编码、输入/输出寄存器、RV32 64-bit state 表示方式、状态布局、round constant、latency、stall/flush/interrupt、非法编码、clobber、软件封装、golden model、覆盖矩阵。禁止先让 RTL 与软件各自猜一个编码。

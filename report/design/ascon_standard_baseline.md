@@ -2,7 +2,7 @@
 
 本文件是 `feat/ascon-kat-validation` 的历史标准审计，软件/RTL 问题与测试数字
 固定到下面注明的审计 HEAD，不代表本分支的当前失败状态。C02 production C 的
-认证失败修复及最新实测见 [软件 API 与修复记录](../ascon/ascon_c/aead/readme.md)。
+认证失败修复及最新实测见 [软件 API 与修复记录](../../ascon/ascon_c/aead/readme.md)。
 
 日期：2026-10-07（Asia/Shanghai）。任务 C01/C03，owner TBD。
 HEAD：`8c8634f80f55cff50ae1ffcaf6fb79d67e5a7a93`；分支 `feat/ascon-kat-validation`。
@@ -13,7 +13,7 @@ HEAD：`8c8634f80f55cff50ae1ffcaf6fb79d67e5a7a93`；分支 `feat/ascon-kat-valid
 唯一目标为 **NIST SP 800-232 Final / Ascon-AEAD128**，August 2025。
 [NIST Final 发布页](https://csrc.nist.gov/pubs/sp/800/232/final) 的发布历史为
 2025-08-13；[规范 DOI](https://doi.org/10.6028/NIST.SP.800-232)。
-本地 [Final PDF](../data/ascon/sources/nist_sp_800_232.pdf) 的 §3、§4.1 算法 3/4、
+本地 [Final PDF](../../data/ascon/sources/nist_sp_800_232.pdf) 的 §3、§4.1 算法 3/4、
 附录 A（整数/字节与 padding）、附录 B 表 14 为本轮算法依据。
 采用 byte 输入、完整 128-bit tag；不采用 truncation 或 nonce masking。
 
@@ -37,7 +37,7 @@ commit `ed24e54abf9507d26fa49b46a56091570c7e743e`，`ascon.py`。
 核对 AEAD 参数并通过完整锁定 Final KAT 后才作为第二参考。
 本轮不为其 Hash/XOF/MAC 或其他历史 variant 作合规结论。
 
-下载日期 2026-10-07。[provenance.json](../data/ascon/provenance.json) 记录
+下载日期 2026-10-07。[provenance.json](../../data/ascon/provenance.json) 记录
 18 个文件的精确 raw URL、commit、原路径、本地路径、字节数与 SHA-256。
 两个上游许可均为 **CC0-1.0**，原文分别保存在
 `sim/ascon/reference/ascon_c/license.txt` 和 `sim/ascon/reference/pyascon/license.txt`。
@@ -53,7 +53,7 @@ NIST PDF Authority 声明在美国不受版权保护并请求署名。不将这�
 | RTL golden memory | `5f3c8321daa298cbd8ca0632ce6d34a52360ba9e5309a64456fc61b26d0ed30f` |
 
 参考源/header/许可证逐文件哈希见 provenance；派生数据哈希见
-[derived_integrity.json](../data/ascon/derived_integrity.json)。`.gitattributes` 仅新增
+[derived_integrity.json](../../data/ascon/derived_integrity.json)。`.gitattributes` 仅新增
 data/ascon、sim/ascon/reference 的字节保留规则和新测试脚本 LF 规则，防止 checkout
 换行转换破坏哈希；已有工程与 RTL 规则不变。
 
@@ -109,7 +109,7 @@ permutation 数据为 22 个输入状态：zero/ones/byte ramp/首末 bit/交替
 308 组，源自锁定 C helper，Python 二次检查。不是自写算法自证。
 `c_bridge.c` 只导出所选 C helper，不实现密码运算。
 JSON 与 656-bit `$readmemh` 数据、任意 state 的 `GoldenModel().permutation()`、
-round/P8/P12/AEAD CLI 的契约见 [sim/ascon/readme.md](../sim/ascon/readme.md)。
+round/P8/P12/AEAD CLI 的契约见 [sim/ascon/readme.md](../../sim/ascon/readme.md)。
 RTL bus 为 `{s4,s3,s2,s1,s0}`，expected byte 串为 LE64(s0)..LE64(s4)，不要混淆。
 AEAD golden 读取固定 case 的独立 expected C||T；不生成未冻结的任意 AEAD 输出。
 
