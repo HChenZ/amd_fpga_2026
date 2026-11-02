@@ -2504,3 +2504,8 @@ PUF3各模式289/289 KAT与289次坏Tag拒绝，质量127/128、同会话5次重
 ## 2026-11-02 D03-CODE：报告代码块排版完成（owner TBD）
 
 正式LaTeX统一codeblock修复，85页保持，指定命令一行，旧续行标记清除；87189字符正文比较与图片像素一致，review_evidence 194/194，无Overfull/缺字/未定义引用。仅重打技术报告包，其他包与历史冻结快照不变。完整交付校验的固件阶段缺交叉编译器未通过，不影响独立报告排版校验；接口无变化。命令/版本/退出码/备份/局限见 report/technical/validation/codeblock_layout_20261102/readme.md；下一接收D03/D06。
+
+
+## 2026-11-02 D09：最终RAR交付（owner TBD）
+
+基于main cfa3817整理当前PUF3及共享IP/固件/RO依赖、原candidate、最新85页报告和当前独立Skill，另写评委README；真正RAR5，367文件/7,025,851字节。RAR测试/解压/全部哈希/README链接/源码身份与展开通过，host61、Skill61/3可选skip。无RTL/固件/工件/报告正文变更；未运行固件重编/Vivado/实板。证据delivery/final_rar_readme.md及final_rar_manifest.json；下一接收D06平台上传。

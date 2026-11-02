@@ -75,3 +75,8 @@ sim/ascon 校验链在无 `.git` 时停在 Git 来源查询（快照说明逐项
 
 
 2026-11-02 代码块排版修复：**当前 technical_report.zip 已再次单独更新，仍为85页**，指定长命令在PDF第58页为一行；所有代码块取消续行符号。仅其PDF、preamble.tex、编译说明与清单改变。当前SHA-256见manifest.json；[排版/包校验](../report/technical/validation/codeblock_layout_20261102/readme.md)。其他三个包及上面的整仓快照仍为历史版本，未覆盖或重打。
+
+
+## 当前代码、报告与Skill的一体RAR交付
+
+[最终交付RAR](RISC-V轻量密码加速SoC_最终交付.rar)：7,025,851字节、367文件、单一中文顶层目录，源自当前main cfa3817；包含现成PUF3 candidate、85页最新PDF与LaTeX、独立Skill及新评委README。[范围/校验/复现](final_rar_readme.md)，哈希见final_rar_sha256.txt及manifest.json的final_rar项。原四ZIP与历史整仓快照保持原状。

@@ -48,5 +48,15 @@
     "generated": "2026-11-02T20:28:14+08:00",
     "scope": "every tracked file of git_commit except delivery/, plus the untracked editable LaTeX tree from delivery/technical_report.zip at report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/; per-file SHA-256 in amd_fpga_2026/snapshot_manifest.json",
     "verification": "delivery/snapshot_and_report_check.json"
+  },
+  "final_rar": {
+    "archive": "delivery/RISC-V轻量密码加速SoC_最终交付.rar",
+    "source_revision": "cfa3817799f0c8fb44a18f4f114226a229f019d3",
+    "bytes": 7025851,
+    "files": 367,
+    "sha256": "e216016471330cf3f4c2ab33cd2465e3c7a069389ee82e6fd15b6a8056e1f4da",
+    "report_pages": 85,
+    "rar_format": "RAR5",
+    "verification": "delivery/final_rar_manifest.json"
   }
 }

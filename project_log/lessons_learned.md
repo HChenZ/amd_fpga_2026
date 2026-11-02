@@ -869,3 +869,8 @@ COM保存可能仅重排XML namespace声明，逐字节比较布局会误报；�
 ## 2026-11-02 D03-CODE：字体依赖与换行符号
 
 fvextra默认续行符会进入PDF复制文本（提取为 ,→/⌋）；集中取消左右标记并禁用breakanywhere，源码命令不需拆行。首次本机编译缺DejaVu Sans Mono而回退，缺字门禁正确拦截；补齐原字体后重编通过。完整交付检查在固件重编因本机缺xPack GCC停止，不能把报告校验通过写成固件全链通过。详见报告排版验证记录。
+
+
+## 2026-11-02 D09：精简交付的路径依赖
+
+原脚本查询Git HEAD/origin/main，RAR又不含.git，因此新README明确code为工程根并给出解压副本本地快照步骤，原上游SHA另存manifest，不能将本地SHA冒充上游。PUF3复用旧名目录中的两项XCI/ascon_keys.coe、共享固件与六份host历史fixture；不能按目录新旧或只复制几个主目录裁掉依赖。旧ZIP/整仓快照保持历史，不用它们冒充当前源码。
