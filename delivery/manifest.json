@@ -25,14 +25,28 @@
     },
     {
       "path": "delivery/technical_report.zip",
-      "sha256": "d35fa2735b368440d796bac1e24a4cba133f8b4c85f3549757ca53c630bd50e2",
-      "bytes": 4054378,
+      "sha256": "e183bd4c4021bebeae44acc4b2a35457b589be0745f0dbd279a9cc88fddd376c",
+      "bytes": 4076080,
       "files": 62,
       "archive_root": "technical_report",
-      "source_revision": "9433ff1ebe4029a23d5a739a864b24eb8a6f1a85",
-      "generated": "2026-11-02T19:20:15+08:00",
-      "note": "rebuilt alone on 2026-11-02 after the report figure/path/reproduction update; the other three packages keep the top-level source_revision snapshot"
+      "source_revision": "cd0f3f362ef936a94a0b07874030f46af7c80eac",
+      "generated": "2026-11-02T20:28:14+08:00",
+      "note": "rebuilt alone on 2026-11-02 (figure/path/reproduction update, then section 4.3 AMD ROSS); the other three packages keep the top-level source_revision snapshot"
     }
   ],
-  "scope": "current and historical source separated; independent Skill; editable report; no evidence-package attachment"
+  "scope": "current and historical source separated; independent Skill; editable report; no evidence-package attachment",
+  "repository_snapshot": {
+    "path": "delivery/amd_fpga_2026_repo_snapshot.zip",
+    "sha256": "7f49b9e5bdc4e80cf5a4f131cf4c3989457eec05f2df670f6c0d594116ae51ec",
+    "bytes": 93496023,
+    "zip_entries": 1680,
+    "tracked_files": 1620,
+    "from_report_package": 58,
+    "archive_root": "amd_fpga_2026",
+    "git_commit": "cd0f3f362ef936a94a0b07874030f46af7c80eac",
+    "report_package_sha256": "e183bd4c4021bebeae44acc4b2a35457b589be0745f0dbd279a9cc88fddd376c",
+    "generated": "2026-11-02T20:28:14+08:00",
+    "scope": "every tracked file of git_commit except delivery/, plus the untracked editable LaTeX tree from delivery/technical_report.zip at report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/; per-file SHA-256 in amd_fpga_2026/snapshot_manifest.json",
+    "verification": "delivery/snapshot_and_report_check.json"
+  }
 }
