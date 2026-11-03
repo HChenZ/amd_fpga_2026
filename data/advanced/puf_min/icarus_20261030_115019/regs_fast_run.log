@@ -1,4 +1,0 @@
-PUF_MIN_TB_MODE=FAST WINDOW=64 CW=20
-CNT: c0=160 c1=80 c128=80 c129=160
-TEST_PASS tb_puf_min
-sim/puf_min/tb_puf_min.sv:248: $finish called at 4730000 (1ps)

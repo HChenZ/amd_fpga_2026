@@ -1,2 +1,0 @@
-DMA_CONTROL_TEST_PASS AW_W_order WSTRB backpressure identity capabilities reset epoch
-sim/pynq_dma_cpu/tb_dma_control.v:58: $finish called at 2200000 (1ps)

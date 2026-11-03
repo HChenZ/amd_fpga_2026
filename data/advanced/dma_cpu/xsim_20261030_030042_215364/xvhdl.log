@@ -1,4 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/ip/axi_bram_ctrl_0/sim/axi_bram_ctrl_0.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'axi_bram_ctrl_0'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.gen/sources_1/ip/cpu_dma_sim_dma/sim/cpu_dma_sim_dma.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'cpu_dma_sim_dma'

@@ -1,1 +1,0 @@
-RESULT tag=fc_100 clk_in=20.000 core_period=10.0 strategy=Performance_ExploreWithRemap wns=0.005 tns=0.000 failing=0 whs=0.013

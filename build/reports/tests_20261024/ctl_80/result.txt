@@ -1,1 +1,0 @@
-RESULT tag=ctl_80 clk_in=25.000 core_period=12.5 strategy=Performance_ExploreWithRemap wns=0.483 tns=0.000 failing=0 whs=0.018

@@ -1,0 +1,62 @@
+{
+  "source_revision": "124f5c7fc17374c343e28d0cf168bdcbffa1320a",
+  "generated": "2026-11-02T01:20:11+08:00",
+  "packages": [
+    {
+      "path": "delivery/puf3_project.zip",
+      "sha256": "a32ae752b4a7921348fb090a1e3f8adece89a068ead030bf10aa22b56156191d",
+      "bytes": 1959558,
+      "files": 263,
+      "archive_root": "puf3_project"
+    },
+    {
+      "path": "delivery/historical_projects.zip",
+      "sha256": "5a6bfeba473dafd19ea6609bb9bfe1c2363f135b7852c818a73335acd3b8101b",
+      "bytes": 30305437,
+      "files": 1484,
+      "archive_root": "historical_projects"
+    },
+    {
+      "path": "delivery/pynq_overlay_workflow_skill.zip",
+      "sha256": "de1e9a119a3bda0d5a61b33a6a43348b9c1dbbdd61386a6698f8f92dd2b85404",
+      "bytes": 59655,
+      "files": 28,
+      "archive_root": "pynq-overlay-workflow"
+    },
+    {
+      "path": "delivery/technical_report.zip",
+      "sha256": "623b18576565fb4ce945b2a6ad13ecf08d05fbf90844432676b75ee9d5ee1d8b",
+      "bytes": 4097523,
+      "files": 62,
+      "archive_root": "technical_report",
+      "source_revision": "3efdf5525cb2a9fe4325ee21fb0b3273ca97b868",
+      "generated": "2026-11-02T21:29:46+08:00",
+      "note": "codeblock formatting only; other packages and repository_snapshot remain historical frozen artifacts"
+    }
+  ],
+  "scope": "current and historical source separated; independent Skill; editable report; no evidence-package attachment",
+  "repository_snapshot": {
+    "path": "delivery/amd_fpga_2026_repo_snapshot.zip",
+    "sha256": "7f49b9e5bdc4e80cf5a4f131cf4c3989457eec05f2df670f6c0d594116ae51ec",
+    "bytes": 93496023,
+    "zip_entries": 1680,
+    "tracked_files": 1620,
+    "from_report_package": 58,
+    "archive_root": "amd_fpga_2026",
+    "git_commit": "cd0f3f362ef936a94a0b07874030f46af7c80eac",
+    "report_package_sha256": "e183bd4c4021bebeae44acc4b2a35457b589be0745f0dbd279a9cc88fddd376c",
+    "generated": "2026-11-02T20:28:14+08:00",
+    "scope": "every tracked file of git_commit except delivery/, plus the untracked editable LaTeX tree from delivery/technical_report.zip at report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/; per-file SHA-256 in amd_fpga_2026/snapshot_manifest.json",
+    "verification": "delivery/snapshot_and_report_check.json"
+  },
+  "final_rar": {
+    "archive": "delivery/RISC-V轻量密码加速SoC_最终交付.rar",
+    "source_revision": "cfa3817799f0c8fb44a18f4f114226a229f019d3",
+    "bytes": 7025851,
+    "files": 367,
+    "sha256": "e216016471330cf3f4c2ab33cd2465e3c7a069389ee82e6fd15b6a8056e1f4da",
+    "report_pages": 85,
+    "rar_format": "RAR5",
+    "verification": "delivery/final_rar_manifest.json"
+  }
+}

@@ -1,3 +1,0 @@
-Time resolution is 1 ps
-TEST_PASS tb_ro_health_v2
-$finish called at time : 15936 ns : File "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/keys_v2/tb_ro_health_v2.sv" Line 97

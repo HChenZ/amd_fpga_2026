@@ -1,8 +1,0 @@
-{
-  "status": "PASS",
-  "bytes": 131072,
-  "sha256_padded_bin": "ad7b10d439cb7116e380e9c7eb544c23713e6426f6b3807d1a9e9b6cd5f801a9",
-  "mif_sha256": "e7bc55b14f36f92abfeb8758777c12dcad119b8150566a37b46e747845e70d1e",
-  "bin_sha256": "723631655c30d92352e2b0c557bdb07a5776927c3f75baa57b4b330a85e33a4e",
-  "check": "Vivado generated BRAM MIF equals final ELF-derived BIN padded to 128KiB"
-}

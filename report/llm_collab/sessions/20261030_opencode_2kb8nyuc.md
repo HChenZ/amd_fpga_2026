@@ -9,63 +9,63 @@
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` git status --short | Select-Object -First 40; git log --oneline -8
-- `grep` PUF
+- `shell` `git status --short | Select-Object -First 40; git log --oneline -8`
+- `grep` `PUF`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\readme.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf
-- `glob` board/vivado_zynq7000_xc7z020_pynq/*
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\readme.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf`
+- `glob` `board/vivado_zynq7000_xc7z020_pynq/*`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\readme.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\build.tcl
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\build.tcl
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\readme.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\build.tcl`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\build.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\soc_top.v
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\keys\key_mmio.v
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\soc_top.v`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\keys\key_mmio.v`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff --no-index --stat board/vivado_zynq7000_xc7z020_pynq/rtl_p0/ascon_mmio.v src/rtl/ascon/ascon_mmio.v; git diff --no-index --ignore-c
+- `shell` `git diff --no-index --stat board/vivado_zynq7000_xc7z020_pynq/rtl_p0/ascon_mmio.v src/rtl/ascon/ascon_mmio.v; git diff --no-index --ignore-c`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\validation_20261029.md
-- `glob` data/pynq_puf/**
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\validation_20261029.md`
+- `glob` `data/pynq_puf/**`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\validation_20261029.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\validation_20261029.md`
 
 </details>
 
@@ -125,33 +125,33 @@
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc\main.c
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc\svc.h
-- `glob` {src/firmware/pynq_svc/*,sim/pynq_puf/*,sim/pynq/*,src/pynq/*}
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc\main.c`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc\svc.h`
+- `glob` `{src/firmware/pynq_svc/*,sim/pynq_puf/*,sim/pynq/*,src/pynq/*}`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_transport.py
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc\build.sh
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq\run_service.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_transport.py`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc\build.sh`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq\run_service.py`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq\tb_pynq_svc.v
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf\run.py
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf\tb_pynq_puf.v
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq\tb_pynq_svc.v`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf\run.py`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf\tb_pynq_puf.v`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `glob` src/firmware/**/*keys*/**
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc\svc_io.c
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc\ascon_modes.c
+- `glob` `src/firmware/**/*keys*/**`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc\svc_io.c`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc\ascon_modes.c`
 
 </details>
 
@@ -161,81 +161,81 @@ Now the keys_rv32 firmware, to port the PUF procedure.
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\keys_rv32\main.c
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\keys_rv32\main.c`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\keys\puf_key.v
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\keys\puf_key.v`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\mailbox_protocol.py
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\board_test.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\mailbox_protocol.py`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\board_test.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` Get-Command riscv-none-elf-gcc,riscv64-unknown-elf-gcc,iverilog,vivado,bash -ErrorAction SilentlyContinue | Format-Table Name,Source -AutoSi
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq
+- `shell` `Get-Command riscv-none-elf-gcc,riscv64-unknown-elf-gcc,iverilog,vivado,bash -ErrorAction SilentlyContinue | Format-Table Name,Source -AutoSi`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` RISCV_TOOLCHAIN=|riscv-none-elf-gcc.*(\\|/)|Vivado\\2025.2|vivado.bat
+- `grep` `RISCV_TOOLCHAIN=|riscv-none-elf-gcc.*(\\|/)|Vivado\\2025.2|vivado.bat`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Test-Path C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc.exe; Test-Path C:/ruanjian/2025.2/Vivado/bin/vivado.
+- `shell` `Test-Path C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc.exe; Test-Path C:/ruanjian/2025.2/Vivado/bin/vivado.`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\keys_v2\build.py
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\pynq\pynq_soc.v
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\keys_v2\build.py`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\rtl\pynq\pynq_soc.v`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\puf_opt_pre.tcl
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\pynq_puf_timing.xdc
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\package.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\puf_opt_pre.tcl`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\pynq_puf_timing.xdc`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\package.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Process vivado -ErrorAction SilentlyContinue | Format-Table Id,StartTime; New-Item -ItemType Directory -Force board/vivado_zynq7000_xc7z
+- `shell` `Get-Process vivado -ErrorAction SilentlyContinue | Format-Table Id,StartTime; New-Item -ItemType Directory -Force board/vivado_zynq7000_xc7z`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "b=open('src/rtl/soc_top.v','rb').read();  try:   b.decode('utf-8'); print('utf8 ok', b[:3], b.count(b'\r\n')) except Exception as
+- `shell` `python -c "b=open('src/rtl/soc_top.v','rb').read();  try:   b.decode('utf-8'); print('utf8 ok', b[:3], b.count(b'\r\n')) except Exception as`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\soc_top.v
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\soc_top.v`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\soc_top.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\soc_top.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\soc_top.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\soc_top.v
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\soc_top.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\soc_top.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\soc_top.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\soc_top.v`
 
 </details>
 
@@ -245,152 +245,152 @@ Now the key_mmio variant.
 
 <details><summary>工具调用 4 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\key_mmio.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\key_mmio.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\key_mmio.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\key_mmio.v
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\key_mmio.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\key_mmio.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\key_mmio.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\rtl\key_mmio.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\board_demo.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\board_demo.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\board_benchmark.py
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\board_benchmark.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\board_benchmark.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\board_benchmark.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\mailbox_backend.py
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\mailbox_backend.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\mailbox_backend.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\mailbox_backend.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.h
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.h`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.c
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.c`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.c
-- `shell` Copy-Item src/firmware/pynq_svc/main.c src/firmware/pynq_svc_puf/main.c
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.c`
+- `shell` `Copy-Item src/firmware/pynq_svc/main.c src/firmware/pynq_svc_puf/main.c`
 
 </details>
 
 <details><summary>工具调用 6 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\main.c`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\build.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\build.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem src/firmware/ascon_hw_rv32 | Select Name; Get-Content src/firmware/pynq_svc/bin2coe.py -TotalCount 15
+- `shell` `Get-ChildItem src/firmware/ascon_hw_rv32 | Select Name; Get-Content src/firmware/pynq_svc/bin2coe.py -TotalCount 15`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 src/firmware/pynq_svc_puf/build.py
+- `shell` `python -X utf8 src/firmware/pynq_svc_puf/build.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content build/local/pynq_svc_puf/compile.log
+- `shell` `Get-Content build/local/pynq_svc_puf/compile.log`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\run.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\run.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/pynq_puf3/run.py 2>&1 | Select-Object -Last 60
+- `shell` `python -X utf8 sim/pynq_puf3/run.py 2>&1 | Select-Object -Last 60`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\run.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\run.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\tb_pynq_puf3.v`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\run.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\sim\pynq_puf3\run.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item board/vivado_zynq7000_xc7z020_pynq_puf/puf_opt_pre.tcl board/vivado_zynq7000_xc7z020_pynq_puf3/; Copy-Item board/vivado_zynq7000_x
+- `shell` `Copy-Item board/vivado_zynq7000_xc7z020_pynq_puf/puf_opt_pre.tcl board/vivado_zynq7000_xc7z020_pynq_puf3/; Copy-Item board/vivado_zynq7000_x`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` New-Item -ItemType Directory -Force build/local/pynq_puf3 | Out-Null; & C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -nojournal -log
-- `shell` python -X utf8 sim/pynq_puf3/run.py 2>&1 | Select-Object -Last 25
+- `shell` `New-Item -ItemType Directory -Force build/local/pynq_puf3 | Out-Null; & C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -nojournal -log`
+- `shell` `python -X utf8 sim/pynq_puf3/run.py 2>&1 | Select-Object -Last 25`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_transport.py
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_transport.py`
 
 </details>
 
@@ -400,105 +400,105 @@ Now the Python driver.
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `shell` $f='src/pynq/test_pynq_puf3.py'; (Get-Content $f -Raw -Encoding utf8).Replace("    from .mailbox_backend import MailboxBackend`r`n    from .
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `shell` ``$f='src/pynq/test_pynq_puf3.py'; (Get-Content $f -Raw -Encoding utf8).Replace("    from .mailbox_backend import MailboxBackend`r`n    from .``
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "b=open('src/pynq/test_pynq_puf3.py','rb').read(); print(b[:4], b.count(b'\r\n'))"
+- `shell` `python -c "b=open('src/pynq/test_pynq_puf3.py','rb').read(); print(b[:4], b.count(b'\r\n'))"`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "p='src/pynq/test_pynq_puf3.py'; b=open(p,'rb').read(); b=b[3:] if b[:3]==b'\xef\xbb\xbf' else b; open(p,'wb').write(b); print(b[:
+- `shell` `python -c "p='src/pynq/test_pynq_puf3.py'; b=open(p,'rb').read(); b=b[3:] if b[:3]==b'\xef\xbb\xbf' else b; open(p,'wb').write(b); print(b[:`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `shell` python -X utf8 src/pynq/test_pynq_puf3.py; python -X utf8 src/pynq/test_pynq_transport.py | Select-Object -Last 3
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `shell` `python -X utf8 src/pynq/test_pynq_puf3.py; python -X utf8 src/pynq/test_pynq_transport.py | Select-Object -Last 3`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `shell` python -X utf8 src/pynq/test_pynq_puf3.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `shell` `python -X utf8 src/pynq/test_pynq_puf3.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\golden_checker.py
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\golden_checker.py`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `shell` python -X utf8 src/pynq/test_pynq_puf3.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `shell` `python -X utf8 src/pynq/test_pynq_puf3.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content build/local/pynq_puf3/build.log -Tail 8; Get-ChildItem build/local/pynq_puf3/vivado/pynq_puf3.runs -ErrorAction SilentlyContinue
+- `shell` `Get-Content build/local/pynq_puf3/build.log -Tail 8; Get-ChildItem build/local/pynq_puf3/vivado/pynq_puf3.runs -ErrorAction SilentlyContinue`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $m = Get-ChildItem -Recurse build/local/pynq_puf3/vivado -Filter blk_mem_gen_0.mif -ErrorAction SilentlyContinue; $m | % FullName; if ($m) {
+- `shell` `$m = Get-ChildItem -Recurse build/local/pynq_puf3/vivado -Filter blk_mem_gen_0.mif -ErrorAction SilentlyContinue; $m | % FullName; if ($m) {`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
 
 </details>
 
@@ -508,44 +508,44 @@ Vivado 实现正在后台运行，等完成后再继续收尾。
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\explore_impl.tcl
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\finalize_run.tcl
-- `shell` Select-String -Path build/local/pynq_puf3/vivado/reports/timing_summary.rpt -Pattern "^Slack \(VIOLATED\)|Source:|Destination:|Logic Levels|
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\explore_impl.tcl`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\finalize_run.tcl`
+- `shell` `Select-String -Path build/local/pynq_puf3/vivado/reports/timing_summary.rpt -Pattern "^Slack \(VIOLATED\)|Source:|Destination:|Logic Levels|`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\explore_impl.tcl
-- `shell` "impl_1 Performance_RefinePlacement routed (no post-route phys_opt) wns=-0.123 whs=0.027 (build.tcl gate stopped; CPU id_ex forwarding paths
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\explore_impl.tcl`
+- `shell` `"impl_1 Performance_RefinePlacement routed (no post-route phys_opt) wns=-0.123 whs=0.027 (build.tcl gate stopped; CPU id_ex forwarding paths`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` & C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -nojournal -log C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf3/exp
+- `shell` `& C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -nojournal -log C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf3/exp`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\finalize_run.tcl
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\finalize_run.tcl`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md`
 
 </details>
 
@@ -557,85 +557,85 @@ Vivado 实现正在后台运行，等完成后再继续收尾。
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` foreach ($i in 2..5) { $r="build/local/pynq_puf3/vivado/pynq_puf3.runs/impl_$i"; $s = (Select-String -Path "$r/runme.log" -Pattern "Command:
+- `shell` `foreach ($i in 2..5) { $r="build/local/pynq_puf3/vivado/pynq_puf3.runs/impl_$i"; $s = (Select-String -Path "$r/runme.log" -Pattern "Command:`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\explore_impl.tcl
-- `shell` $f='board/vivado_zynq7000_xc7z020_pynq_puf3/explore_impl.tcl'; $t=[IO.File]::ReadAllText($f); $t=$t.Replace('puts $fp "$r [get_property STRA
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\explore_impl.tcl`
+- `shell` `$f='board/vivado_zynq7000_xc7z020_pynq_puf3/explore_impl.tcl'; $t=[IO.File]::ReadAllText($f); $t=$t.Replace('puts $fp "$r [get_property STRA`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Select-String -Path build/local/pynq_puf3/vivado/pynq_puf3.xpr -Pattern '<Run Id="impl_\d"[^>]*' | % { ($_.Matches.Value -replace '.*Run Id=
+- `shell` `Select-String -Path build/local/pynq_puf3/vivado/pynq_puf3.xpr -Pattern '<Run Id="impl_\d"[^>]*' | % { ($_.Matches.Value -replace '.*Run Id=`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` & C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -nojournal -log C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf3/fin
+- `shell` `& C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -nojournal -log C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf3/fin`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select-Object -Last 4; Select-String -Path board/vivado_zynq7000_xc7z020
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select-Object -Last 4; Select-String -Path board/vivado_zynq7000_xc7z020`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\tasks\task_board.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\tasks\task_board.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\tasks\task_board.md
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select-Object -Last 1; Get-Content board/vivado_zynq7000_xc7z020_pynq_pu
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\tasks\task_board.md`
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select-Object -Last 1; Get-Content board/vivado_zynq7000_xc7z020_pynq_pu`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git log --oneline -3; git status --short | Select-String "puf3|pynq_svc_puf|pynq_puf3|project_log|task_board"
+- `shell` `git log --oneline -3; git status --short | Select-String "puf3|pynq_svc_puf|pynq_puf3|project_log|task_board"`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff --no-index --stat board/vivado_zynq7000_xc7z020_pynq_puf/pynq_puf_timing.xdc board/vivado_zynq7000_xc7z020_pynq_puf3/pynq_puf3_timi
+- `shell` `git diff --no-index --stat board/vivado_zynq7000_xc7z020_pynq_puf/pynq_puf_timing.xdc board/vivado_zynq7000_xc7z020_pynq_puf3/pynq_puf3_timi`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
 
 </details>
 
@@ -684,70 +684,70 @@ sudo -E python3 board/vivado_zynq7000_xc7z020_pynq_puf3/board_test.py --candidat
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git show --stat 5eb64a5 | Select-Object -First 40
+- `shell` `git show --stat 5eb64a5 | Select-Object -First 40`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` git show --stat 5eb64a5 | Select-Object -Skip 40; git show 5eb64a5 -- board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl board/vivado_zynq7000
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\ro_corner_sta.tcl
+- `shell` `git show --stat 5eb64a5 | Select-Object -Skip 40; git show 5eb64a5 -- board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl board/vivado_zynq7000`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\ro_corner_sta.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Copy-Item board/vivado_zynq7000_xc7z020_pynq_puf/ro_corner_sta.tcl board/vivado_zynq7000_xc7z020_pynq_puf3/ro_corner_sta.tcl; & C:/ruanjian/
+- `shell` `Copy-Item board/vivado_zynq7000_xc7z020_pynq_puf/ro_corner_sta.tcl board/vivado_zynq7000_xc7z020_pynq_puf3/ro_corner_sta.tcl; & C:/ruanjian/`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $c = Get-Content build/local/pynq_puf3/vivado/reports/timing_summary.rpt; $i = ($c | Select-String "^Intra Clock Table" | Select -First 1).L
+- `shell` `$c = Get-Content build/local/pynq_puf3/vivado/reports/timing_summary.rpt; $i = ($c | Select-String "^Intra Clock Table" | Select -First 1).L`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Select-String -Path build/local/pynq_puf3/vivado/reports/timing_summary.rpt -Pattern "^(clk_fpga_0|ro_clk)\s+-?\d|^(clk_fpga_0|ro_clk)\s+(cl
+- `shell` `Select-String -Path build/local/pynq_puf3/vivado/reports/timing_summary.rpt -Pattern "^(clk_fpga_0|ro_clk)\s+-?\d|^(clk_fpga_0|ro_clk)\s+(cl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Select-String -Path build/local/pynq_puf3/vivado/reports/timing_summary.rpt -Pattern "^\s*ro_clk\s" -Context 0,0 | Select -First 5 | % Line;
+- `shell` `Select-String -Path build/local/pynq_puf3/vivado/reports/timing_summary.rpt -Pattern "^\s*ro_clk\s" -Context 0,0 | Select -First 5 | % Line;`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select-Object -Last 1; Get-Content board/vivado_zynq7000_xc7z020_pynq_pu
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl`
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select-Object -Last 1; Get-Content board/vivado_zynq7000_xc7z020_pynq_pu`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md`
 
 </details>
 
@@ -790,51 +790,51 @@ sudo -E python3 board/vivado_zynq7000_xc7z020_pynq_puf3/board_test.py --candidat
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git branch --show-current; git fetch origin 2>&1 | Select -Last 2; git status -sb | Select -First 3; git log --oneline -1 origin/main; git d
+- `shell` `git branch --show-current; git fetch origin 2>&1 | Select -Last 2; git status -sb | Select -First 3; git log --oneline -1 origin/main; git d`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\stage_mine.py
-- `shell` git check-ignore -v board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/pynq_puf3.bit board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/pynq_s
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\stage_mine.py`
+- `shell` `git check-ignore -v board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/pynq_puf3.bit board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/pynq_s`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content .gitattributes -ErrorAction SilentlyContinue; git check-attr -a board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/pynq_puf3.hwh 
+- `shell` `Get-Content .gitattributes -ErrorAction SilentlyContinue; git check-attr -a board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/pynq_puf3.hwh `
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff --quiet -- .gitattributes; "clean=$LASTEXITCODE"
+- `shell` `git diff --quiet -- .gitattributes; "clean=$LASTEXITCODE"`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $t = [IO.File]::ReadAllText('.gitattributes'); $t = $t.TrimEnd("`r","`n") + "`n`n# pynq_puf3 candidate (three-mode + PUF v1): bytes pinned b
+- `shell` ``$t = [IO.File]::ReadAllText('.gitattributes'); $t = $t.TrimEnd("`r","`n") + "`n`n# pynq_puf3 candidate (three-mode + PUF v1): bytes pinned b``
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c " import subprocess,hashlib,json m=json.load(open('board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/manifest.json'))['artifacts']
+- `shell` `python -c " import subprocess,hashlib,json m=json.load(open('board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/manifest.json'))['artifacts']`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $msg = @" feat(pynq-puf3): 三模式 SW/MMIO/ISE + PUF v1 单一 overlay（离线门禁通过，board NOT_RUN）  - 变体 RTL（board/vivado_zynq7000_xc7z020_pynq_puf3/rtl）：
+- `shell` `$msg = @" feat(pynq-puf3): 三模式 SW/MMIO/ISE + PUF v1 单一 overlay（离线门禁通过，board NOT_RUN）  - 变体 RTL（board/vivado_zynq7000_xc7z020_pynq_puf3/rtl）：`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\commit_msg.txt
-- `shell` git commit -q -F C:\Users\HXZ\AppData\Local\Temp\opencode\commit_msg.txt; git log --oneline -1; git push origin main 2>&1 | Select -Last 2; 
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\commit_msg.txt`
+- `shell` `git commit -q -F C:\Users\HXZ\AppData\Local\Temp\opencode\commit_msg.txt; git log --oneline -1; git push origin main 2>&1 | Select -Last 2; `
 
 </details>
 
@@ -873,58 +873,58 @@ vivado_zynq7000_xc7z020_pynq_puf3，在这个工程中，我们进行分频，�
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $p='PCW_CRYSTAL_PERIPHERAL_FREQMHZ|PCW_FPGA0_PERIPHERAL_FREQMHZ|PCW_FCLK0_PERIPHERAL_DIVISOR\d|PCW_FCLK_CLK0_BUF|PCW_FCLK0_PERIPHERAL_CLKSRC
+- `shell` `$p='PCW_CRYSTAL_PERIPHERAL_FREQMHZ|PCW_FPGA0_PERIPHERAL_FREQMHZ|PCW_FCLK0_PERIPHERAL_DIVISOR\d|PCW_FCLK_CLK0_BUF|PCW_FCLK0_PERIPHERAL_CLKSRC`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_dma_cpu\pynq27_audit.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_dma_cpu\pynq27_audit.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\atk_navigator_7020\vendor_findings.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\atk_navigator_7020\vendor_findings.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\ps7_probe.tcl
-- `shell` & C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -nojournal -nolog -source C:/Users/HXZ/AppData/Local/Temp/opencode/ps7_probe.tcl -not
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\ps7_probe.tcl`
+- `shell` `& C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -nojournal -nolog -source C:/Users/HXZ/AppData/Local/Temp/opencode/ps7_probe.tcl -not`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem -Recurse -Force .srcs | Select -First 10 FullName; git status --short -- .srcs .gen; Get-ChildItem -Force -Directory | ? { $_.
+- `shell` `Get-ChildItem -Recurse -Force .srcs | Select -First 10 FullName; git status --short -- .srcs .gen; Get-ChildItem -Force -Directory | ? { $_.`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Remove-Item -Recurse -Force .srcs; Test-Path .srcs
+- `shell` `Remove-Item -Recurse -Force .srcs; Test-Path .srcs`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.c
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.c
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.h
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.c`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.c`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\firmware\pynq_svc_puf\puf_svc.h`
 
 </details>
 
@@ -934,17 +934,17 @@ Now the Python driver.
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_puf3.py`
 
 </details>
 
@@ -962,18 +962,18 @@ Now the Python driver.
 
 <details><summary>工具调用 5 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\board_test.py`
 
 </details>
 
@@ -983,45 +983,45 @@ Now build.tcl PS config.
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\build.tcl`
 
 </details>
 
 <details><summary>工具调用 7 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py
-- `shell` python -X utf8 src/pynq/test_pynq_puf3.py 2>&1 | Select-String "PASS t_|FAIL|/" | % Line
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\test_pynq_puf3.py`
+- `shell` `python -X utf8 src/pynq/test_pynq_puf3.py 2>&1 | Select-String "PASS t_|FAIL|/" | % Line`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 src/firmware/pynq_svc_puf/build.py | Select -Last 3; Rename-Item build/local/pynq_puf3/vivado vivado_iopll1600_62m5; Rename-I
+- `shell` `python -X utf8 src/firmware/pynq_svc_puf/build.py | Select -Last 3; Rename-Item build/local/pynq_puf3/vivado vivado_iopll1600_62m5; Rename-I`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` & C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -nojournal -log C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf3/bui
-- `shell` python -X utf8 sim/pynq_puf3/run.py 2>&1 | Select-Object -Last 3
+- `shell` `& C:/ruanjian/2025.2/Vivado/bin/vivado.bat -mode batch -nojournal -log C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/pynq_puf3/bui`
+- `shell` `python -X utf8 sim/pynq_puf3/run.py 2>&1 | Select-Object -Last 3`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\package.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
 
 </details>
 
@@ -1031,140 +1031,140 @@ Waiting for the Vivado rebuild to finish.
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Select-String -Path build/local/pynq_puf3/build_iopll1000.log -Pattern "CRITICAL WARNING" | % { $_.Line.Substring(0, [Math]::Min(220, $_.Lin
+- `shell` `Select-String -Path build/local/pynq_puf3/build_iopll1000.log -Pattern "CRITICAL WARNING" | % { $_.Line.Substring(0, [Math]::Min(220, $_.Lin`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @" 2026-10-30 rebuild with PS7 IO PLL pinned to the board (FBDIV 30, FCLK0 10x1): fresh build.tcl run impl_1 Performance_ExtraTimingOpt + po
+- `shell` `@" 2026-10-30 rebuild with PS7 IO PLL pinned to the board (FBDIV 30, FCLK0 10x1): fresh build.tcl run impl_1 Performance_ExtraTimingOpt + po`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select -Last 1; Get-Content board/vivado_zynq7000_xc7z020_pynq_puf3/cand
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select -Last 1; Get-Content board/vivado_zynq7000_xc7z020_pynq_puf3/cand`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git fetch origin 2>&1 | Out-Null; git log --oneline -3 origin/main; git log --oneline -1; $s = Get-Content C:\Users\HXZ\AppData\Local\Temp\o
+- `shell` `git fetch origin 2>&1 | Out-Null; git log --oneline -3 origin/main; git log --oneline -1; $s = Get-Content C:\Users\HXZ\AppData\Local\Temp\o`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git log --oneline --graph -8 main origin/main; git show --stat ff7360d | Select -First 25; git show --stat e92e782 | Select -First 20
+- `shell` `git log --oneline --graph -8 main origin/main; git show --stat ff7360d | Select -First 25; git show --stat e92e782 | Select -First 20`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git ls-tree -r --name-only origin/main -- src/pynq_puf3 src/pynq/pynq_puf3.py src/pynq/test_pynq_puf3.py board/vivado_zynq7000_xc7z020_pynq_
+- `shell` `git ls-tree -r --name-only origin/main -- src/pynq_puf3 src/pynq/pynq_puf3.py src/pynq/test_pynq_puf3.py board/vivado_zynq7000_xc7z020_pynq_`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git show origin/main:src/pynq_puf3/pynq_puf3_board_test.ipynb > $env:TEMP\opencode\nb_upstream.ipynb; python -c " import json,sys nb=json.lo
+- `shell` `git show origin/main:src/pynq_puf3/pynq_puf3_board_test.ipynb > $env:TEMP\opencode\nb_upstream.ipynb; python -c " import json,sys nb=json.lo`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\nb_dump.py
-- `shell` python C:\Users\HXZ\AppData\Local\Temp\opencode\nb_dump.py
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\nb_dump.txt
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\nb_dump.py`
+- `shell` `python C:\Users\HXZ\AppData\Local\Temp\opencode\nb_dump.py`
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\nb_dump.txt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "print(open(r'C:\Users\HXZ\AppData\Local\Temp\opencode\nb_dump.txt',encoding='utf-8').read()[:200]); import os; print(os.path.gets
+- `shell` `python -c "print(open(r'C:\Users\HXZ\AppData\Local\Temp\opencode\nb_dump.txt',encoding='utf-8').read()[:200]); import os; print(os.path.gets`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\Users\HXZ\AppData\Local\Temp\opencode\nb_dump.txt
+- `read` `C:\Users\HXZ\AppData\Local\Temp\opencode\nb_dump.txt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $b="$env:TEMP\opencode\fclk_backup"; New-Item -ItemType Directory -Force $b | Out-Null; foreach ($p in 'src/pynq/pynq_puf3.py','src/pynq/tes
+- `shell` `$b="$env:TEMP\opencode\fclk_backup"; New-Item -ItemType Directory -Force $b | Out-Null; foreach ($p in 'src/pynq/pynq_puf3.py','src/pynq/tes`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git stash push -m "puf3-fclk-wip" -- board/vivado_zynq7000_xc7z020_pynq_puf3/board_test.py board/vivado_zynq7000_xc7z020_pynq_puf3/candidate
+- `shell` `git stash push -m "puf3-fclk-wip" -- board/vivado_zynq7000_xc7z020_pynq_puf3/board_test.py board/vivado_zynq7000_xc7z020_pynq_puf3/candidate`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --porcelain | Select-String "^(UU|AA|DU|UD|AU|UA|DD) |pynq_puf3|actual_progress|task_board" | % Line
+- `shell` `git status --porcelain | Select-String "^(UU|AA|DU|UD|AU|UA|DD) |pynq_puf3|actual_progress|task_board" | % Line`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git rm -q board/vivado_zynq7000_xc7z020_pynq_puf3/board_test.py src/pynq/pynq_puf3.py src/pynq/test_pynq_puf3.py; git checkout --theirs -- b
+- `shell` `git rm -q board/vivado_zynq7000_xc7z020_pynq_puf3/board_test.py src/pynq/pynq_puf3.py src/pynq/test_pynq_puf3.py; git checkout --theirs -- b`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "b=open('src/pynq_puf3/pynq_puf3_board_test.ipynb','rb').read(); print(b[:300]); print(b.count(b'\r\n'), b[-60:])"
+- `shell` `python -c "b=open('src/pynq_puf3/pynq_puf3_board_test.ipynb','rb').read(); print(b[:300]); print(b.count(b'\r\n'), b[-60:])"`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `cactus_write` C:\Users\HXZ\AppData\Local\Temp\opencode\patch_nb.py
+- `cactus_write` `C:\Users\HXZ\AppData\Local\Temp\opencode\patch_nb.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\patch_nb.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\patch_nb.py; git diff --stat -- src/pynq_puf3/pynq_puf3_board_test.ipynb
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\patch_nb.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\patch_nb.py; git diff --stat -- src/pynq_puf3/pynq_puf3_board_test.ipynb`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select -Last 1; Get-Content board/vivado_zynq7000_xc7z020_pynq_puf3/cand
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select -Last 1; Get-Content board/vivado_zynq7000_xc7z020_pynq_puf3/cand`
 
 </details>
 
@@ -1174,28 +1174,28 @@ Now an offline harness that executes the notebook's own code against register mo
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py 2>&1 | Select-String "PASS|FAIL|Error" | % Line
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py 2>&1 | Select-String "PASS|FAIL|Error" | % Line`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py 2>&1 | Select-String "PASS|FAIL|Error|FCLK0" | % Line
+- `edit` `C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py 2>&1 | Select-String "PASS|FAIL|Error|FCLK0" | % Line`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf3\readme.md`
 
 </details>
 
@@ -1205,33 +1205,33 @@ Now fix my progress-log entry to match the notebook layout.
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\stage_fclk.py
-- `shell` git add board/vivado_zynq7000_xc7z020_pynq_puf3 src/firmware/pynq_svc_puf src/pynq_puf3/pynq_puf3_board_test.ipynb 2>$null; python C:\Users\
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\stage_fclk.py`
+- `shell` `git add board/vivado_zynq7000_xc7z020_pynq_puf3 src/firmware/pynq_svc_puf src/pynq_puf3/pynq_puf3_board_test.ipynb 2>$null; python C:\Users\`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c " import subprocess,hashlib,json m=json.loads(subprocess.run(['git','show',':board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/man
+- `shell` `python -c " import subprocess,hashlib,json m=json.loads(subprocess.run(['git','show',':board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/man`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git rev-parse --short HEAD; git rev-parse --short origin/main
+- `shell` `git rev-parse --short HEAD; git rev-parse --short origin/main`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\commit_msg2.txt
-- `shell` git commit -q -F C:\Users\HXZ\AppData\Local\Temp\opencode\commit_msg2.txt; git log --oneline -1; git push origin main 2>&1 | Select-String "
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\commit_msg2.txt`
+- `shell` `git commit -q -F C:\Users\HXZ\AppData\Local\Temp\opencode\commit_msg2.txt; git log --oneline -1; git push origin main 2>&1 | Select-String "`
 
 </details>
 
@@ -1280,8 +1280,8 @@ Now fix my progress-log entry to match the notebook layout.
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\tech_report`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026`
 
 </details>
 
@@ -1390,13 +1390,13 @@ print(fbdiv, d0, d1, 33.333333 * fbdiv / d0 / d1)   # 预期 30 4 4 62.5
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git fetch origin 2>&1 | Out-Null; git log --oneline -6 origin/main; git rev-parse --short HEAD; git diff --stat HEAD origin/main
+- `shell` `git fetch origin 2>&1 | Out-Null; git log --oneline -6 origin/main; git rev-parse --short HEAD; git diff --stat HEAD origin/main`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git merge --ff-only origin/main 2>&1 | Select -Last 1; Get-ChildItem -Recurse data/pynq_puf3 | Select FullName; Get-Content data/pynq_puf3/n
+- `shell` `git merge --ff-only origin/main 2>&1 | Select -Last 1; Get-ChildItem -Recurse data/pynq_puf3 | Select FullName; Get-Content data/pynq_puf3/n`
 
 </details>
 
@@ -1406,40 +1406,40 @@ data\pynq_puf3\notebook_20261030_123118你可以重点看一下这个文件夹
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git show 27f24bb -- src/pynq_puf3/pynq_puf3_board_test.ipynb | Select -First 150
+- `shell` `git show 27f24bb -- src/pynq_puf3/pynq_puf3_board_test.ipynb | Select -First 150`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\patch_nb2.py
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\patch_nb2.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py 2>&1 | Select-String "^PASS t_|^FAIL t_|/6" | % Line
+- `edit` `C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py 2>&1 | Select-String "^PASS t_|^FAIL t_|/6" | % Line`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\patch_nb2.py
-- `edit` C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py
-- `shell` python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py 2>&1 | Select-String "^PASS t_|^FAIL t_|/8|FCLK0" | % Line
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\patch_nb2.py`
+- `edit` `C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py`
+- `shell` `python -X utf8 C:\Users\HXZ\AppData\Local\Temp\opencode\nb_harness.py 2>&1 | Select-String "^PASS t_|^FAIL t_|/8|FCLK0" | % Line`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $f="$env:TEMP\opencode\nb_harness.py"; $t=[IO.File]::ReadAllText($f); $t=$t.Replace("mb = base.MboxModel(fw)","mb = base.MboxModel(fw, rx_de
+- `shell` `$f="$env:TEMP\opencode\nb_harness.py"; $t=[IO.File]::ReadAllText($f); $t=$t.Replace("mb = base.MboxModel(fw)","mb = base.MboxModel(fw, rx_de`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select -Last 1; git status --porcelain -- board/vivado_zynq7000_xc7z020_
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf3/package.py | Select -Last 1; git status --porcelain -- board/vivado_zynq7000_xc7z020_`
 
 </details>
 
@@ -1449,23 +1449,23 @@ Now the log entries.
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $f="$env:TEMP\opencode\stage_fclk.py"; $t=[IO.File]::ReadAllText($f,[Text.Encoding]::UTF8); $t=$t.Replace("## 2026-10-30 — pynq_puf3 FCLK0 修
+- `shell` `$f="$env:TEMP\opencode\stage_fclk.py"; $t=[IO.File]::ReadAllText($f,[Text.Encoding]::UTF8); $t=$t.Replace("## 2026-10-30 — pynq_puf3 FCLK0 修`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\stage_proto.py
-- `write` C:\Users\HXZ\AppData\Local\Temp\opencode\commit_msg3.txt
-- `shell` python "$env:TEMP\opencode\stage_proto.py"; git diff --cached --stat; git commit -q -F "$env:TEMP\opencode\commit_msg3.txt"; git log --oneli
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\stage_proto.py`
+- `write` `C:\Users\HXZ\AppData\Local\Temp\opencode\commit_msg3.txt`
+- `shell` `python "$env:TEMP\opencode\stage_proto.py"; git diff --cached --stat; git commit -q -F "$env:TEMP\opencode\commit_msg3.txt"; git log --oneli`
 
 </details>
 
@@ -1512,37 +1512,37 @@ Now the log entries.
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git fetch origin 2>&1 | Out-Null; git log --oneline -4 origin/main; git diff --stat HEAD origin/main
+- `shell` `git fetch origin 2>&1 | Out-Null; git log --oneline -4 origin/main; git diff --stat HEAD origin/main`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git stash list | Select -First 2; git merge --ff-only origin/main 2>&1 | Select -Last 1; python -c " import json r=json.load(open('data/pynq
+- `shell` `git stash list | Select -First 2; git merge --ff-only origin/main 2>&1 | Select -Last 1; python -c " import json r=json.load(open('data/pynq`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git merge --ff-only origin/main 2>&1 | Select -First 12
+- `shell` `git merge --ff-only origin/main 2>&1 | Select -First 12`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git stash push -m "others-wip-logs" -- project_log/actual_progress.md project_log/lessons_learned.md tasks/task_board.md 2>&1 | Select -Last
+- `shell` `git stash push -m "others-wip-logs" -- project_log/actual_progress.md project_log/lessons_learned.md tasks/task_board.md 2>&1 | Select -Last`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c " import json r=json.load(open('data/pynq_puf3/notebook_20261030_131920/result.json',encoding='utf-8')) print(r['status'], r.get('
+- `shell` `python -c " import json r=json.load(open('data/pynq_puf3/notebook_20261030_131920/result.json',encoding='utf-8')) print(r['status'], r.get('`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c " import sys; sys.path.insert(0,'src/pynq') from golden_checker import parse_kat k=parse_kat(); c=[x for x in k if len(x['PT'])<=1
+- `shell` `python -c " import sys; sys.path.insert(0,'src/pynq') from golden_checker import parse_kat k=parse_kat(); c=[x for x in k if len(x['PT'])<=1`
 
 </details>
 

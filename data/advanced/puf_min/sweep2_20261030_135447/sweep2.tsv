@@ -1,4 +1,0 @@
-combo	place	route	maxfanout	wns	whs	logic_levels	datapath_ns
-RQA_AMD_NETLIST-14	Default	Default	32	0.121	0.040	10	9.476
-6	ExtraTimingOpt	NoTimingRelaxation	32	0.124	0.047	9	9.420
-7	Default	Default	8	0.121	0.040	10	9.476

@@ -1,3 +1,0 @@
-sw {'kat_pass': 6, 'tag_reject': 6, 'samples': [{'kat': 1, 'cycles': 17584}, {'kat': 2, 'cycles': 22867}, {'kat': 17, 'cycles': 27990}, {'kat': 34, 'cycles': 17973}, {'kat': 273, 'cycles': 23544}, {'kat': 545, 'cycles': 33627}]}
-hw {'kat_pass': 6, 'tag_reject': 6, 'samples': [{'kat': 1, 'cycles': 1412}, {'kat': 2, 'cycles': 1229}, {'kat': 17, 'cycles': 1417}, {'kat': 34, 'cycles': 1352}, {'kat': 273, 'cycles': 1560}, {'kat': 545, 'cycles': 1797}]}
-ise {'kat_pass': 6, 'tag_reject': 6, 'samples': [{'kat': 1, 'cycles': 3012}, {'kat': 2, 'cycles': 3418}, {'kat': 17, 'cycles': 4072}, {'kat': 34, 'cycles': 3153}, {'kat': 273, 'cycles': 4100}, {'kat': 545, 'cycles': 5208}]}

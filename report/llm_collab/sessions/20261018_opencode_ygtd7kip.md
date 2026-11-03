@@ -9,19 +9,19 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` tasks/parallel_task_a_pynq_host.md
+- `read` `tasks/parallel_task_a_pynq_host.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` AGENTS.md
+- `read` `AGENTS.md`
 
 </details>
 
@@ -31,63 +31,63 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content README.md, docs/project_overview.md, docs/technical_rules.md, tasks/task_board.md, project_log/actual_progress.md, project_log/l
+- `shell` `Get-Content README.md, docs/project_overview.md, docs/technical_rules.md, tasks/task_board.md, project_log/actual_progress.md, project_log/l`
 
 </details>
 
 <details><summary>工具调用 10 次</summary>
 
-- `read` README.md
-- `read` docs/project_overview.md
-- `read` docs/technical_rules.md
-- `read` tasks/task_board.md
-- `read` project_log/actual_progress.md
-- `read` docs/interfaces.md
-- `read` docs/agent_workflow.md
-- `read` src
-- `read` ascon/python
-- `read` sim/ascon/test_harness.py
+- `read` `README.md`
+- `read` `docs/project_overview.md`
+- `read` `docs/technical_rules.md`
+- `read` `tasks/task_board.md`
+- `read` `project_log/actual_progress.md`
+- `read` `docs/interfaces.md`
+- `read` `docs/agent_workflow.md`
+- `read` `src`
+- `read` `ascon/python`
+- `read` `sim/ascon/test_harness.py`
 
 </details>
 
 <details><summary>工具调用 8 次</summary>
 
-- `read` sim/ascon/support.py
-- `read` data/ascon/provenance.json
-- `read` src/readme.md
-- `read` project_log/development_log.md
-- `read` data/ascon/results/key_lifecycle/sw_timing_acb_sw.json
-- `read` data/ascon/results/key_lifecycle/hw_timing_acb_hw.json
-- `read` data/ascon/results/key_lifecycle/ise_timing_acb_ise.json
-- `glob` src
+- `read` `sim/ascon/support.py`
+- `read` `data/ascon/provenance.json`
+- `read` `src/readme.md`
+- `read` `project_log/development_log.md`
+- `read` `data/ascon/results/key_lifecycle/sw_timing_acb_sw.json`
+- `read` `data/ascon/results/key_lifecycle/hw_timing_acb_hw.json`
+- `read` `data/ascon/results/key_lifecycle/ise_timing_acb_ise.json`
+- `glob` `src`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/ascon/results/key_lifecycle
+- `grep` `data/ascon/results/key_lifecycle`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "import json,pathlib,sys; print(sys.version); p=pathlib.Path('data/ascon/results/key_lifecycle'); [(print(n, json.loads((p/n).read
+- `shell` `python -c "import json,pathlib,sys; print(sys.version); p=pathlib.Path('data/ascon/results/key_lifecycle'); [(print(n, json.loads((p/n).read`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `shell` py -0p
-- `grep` data/ascon/results/key_lifecycle/sw_timing_acb_sw.log
-- `read` ascon/pyascon/ascon.py
-- `read` project_log/lessons_learned.md
-- `shell` Get-Content -Encoding utf8 project_log/development_log.md -Tail 18
+- `shell` `py -0p`
+- `grep` `data/ascon/results/key_lifecycle/sw_timing_acb_sw.log`
+- `read` `ascon/pyascon/ascon.py`
+- `read` `project_log/lessons_learned.md`
+- `shell` `Get-Content -Encoding utf8 project_log/development_log.md -Tail 18`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "from pathlib import Path; p=Path('data/ascon/results/key_lifecycle'); [(print(n),print('\n'.join((p/n).read_text(encoding='utf-8'
+- `shell` `python -c "from pathlib import Path; p=Path('data/ascon/results/key_lifecycle'); [(print(n),print('\n'.join((p/n).read_text(encoding='utf-8'`
 
 </details>
 
@@ -103,9 +103,9 @@
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` python src/pynq/golden_checker.py
-- `shell` uv python find 3.11 --offline
-- `read` src/firmware/ascon_rv32/main.c
+- `shell` `python src/pynq/golden_checker.py`
+- `shell` `uv python find 3.11 --offline`
+- `read` `src/firmware/ascon_rv32/main.c`
 
 </details>
 
@@ -117,21 +117,21 @@
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/test_host_api.py
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' --version
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/test_host_api.py`
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' --version`
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -c "from pathlib import Path; p=Path('project_log/development_log.md'); print(len(p.read_text(encoding='utf-8').splitlines()))"
+- `shell` `python -c "from pathlib import Path; p=Path('project_log/development_log.md'); print(len(p.read_text(encoding='utf-8').splitlines()))"`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` project_log/development_log.md
+- `read` `project_log/development_log.md`
 
 </details>
 
@@ -147,10 +147,10 @@
 
 <details><summary>工具调用 4 次</summary>
 
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/test_host_api.py
-- `shell` git diff --check -- src/pynq project_log/development_log.md
-- `shell` git status --short -- src/pynq project_log/development_log.md
-- `shell` python -c "from pathlib import Path; import ast,json; p=Path('src/pynq'); files=sorted(p.glob('*')); [(ast.parse(f.read_text(encoding='utf-8
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/test_host_api.py`
+- `shell` `git diff --check -- src/pynq project_log/development_log.md`
+- `shell` `git status --short -- src/pynq project_log/development_log.md`
+- `shell` `python -c "from pathlib import Path; import ast,json; p=Path('src/pynq'); files=sorted(p.glob('*')); [(ast.parse(f.read_text(encoding='utf-8`
 
 </details>
 
@@ -171,11 +171,11 @@
 
 <details><summary>工具调用 5 次</summary>
 
-- `shell` git status --short
-- `read` tasks/task_board.md
-- `read` docs/ascon_board_checklist.md
-- `read` docs/interfaces.md
-- `read` src/pynq/readme.md
+- `shell` `git status --short`
+- `read` `tasks/task_board.md`
+- `read` `docs/ascon_board_checklist.md`
+- `read` `docs/interfaces.md`
+- `read` `src/pynq/readme.md`
 
 </details>
 
@@ -191,7 +191,7 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
@@ -201,13 +201,13 @@
 
 <details><summary>工具调用 7 次</summary>
 
-- `read` src/pynq/ascon_host_api.py
-- `read` src/pynq/readme.md
-- `read` src/pynq/test_host_api.py
-- `read` docs/interfaces.md
-- `read` project_log/development_log.md
-- `read` tasks/parallel_task_a_pynq_host.md
-- `read` docs/agent_workflow.md
+- `read` `src/pynq/ascon_host_api.py`
+- `read` `src/pynq/readme.md`
+- `read` `src/pynq/test_host_api.py`
+- `read` `docs/interfaces.md`
+- `read` `project_log/development_log.md`
+- `read` `tasks/parallel_task_a_pynq_host.md`
+- `read` `docs/agent_workflow.md`
 
 </details>
 
@@ -225,8 +225,8 @@
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/test_mailbox.py
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/test_mailbox.py`
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox`
 
 </details>
 
@@ -242,19 +242,19 @@
 
 <details><summary>工具调用 5 次</summary>
 
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox --mode s
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox --mode h
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox --mode i
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/test_host_api.py
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/test_mailbox.py
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox --mode s`
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox --mode h`
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox --mode i`
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/test_host_api.py`
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/test_mailbox.py`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox --inject
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox --inject
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' -c "from src.pynq.ascon_host_api import AsconHost; fr
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox --inject`
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' src/pynq/golden_checker.py --backend mailbox --inject`
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' -c "from src.pynq.ascon_host_api import AsconHost; fr`
 
 </details>
 
@@ -266,10 +266,10 @@
 
 <details><summary>工具调用 4 次</summary>
 
-- `shell` & 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' -m unittest discover -s src/pynq -p 'test_*.py' -v
-- `shell` git diff --check -- src/pynq project_log/development_log.md
-- `shell` python -c "from pathlib import Path; import ast; files=[p for p in Path('src/pynq').iterdir() if p.is_file()]; [ast.parse(p.read_text(encodi
-- `shell` git status --short -- src/pynq project_log/development_log.md
+- `shell` `& 'C:\Users\HXZ\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe' -m unittest discover -s src/pynq -p 'test_*.py' -v`
+- `shell` `git diff --check -- src/pynq project_log/development_log.md`
+- `shell` `python -c "from pathlib import Path; import ast; files=[p for p in Path('src/pynq').iterdir() if p.is_file()]; [ast.parse(p.read_text(encodi`
+- `shell` `git status --short -- src/pynq project_log/development_log.md`
 
 </details>
 

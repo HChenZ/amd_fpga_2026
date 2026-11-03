@@ -1,4 +1,0 @@
-RESULT variant=pl_ndh_crit wns=0.030 tns=0.000 failing=0 whs=0.017 luts=13431 ffs=16368 rep_cells=36 routing_errors=na
-PATH start=u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[5]/C end=u_soc_axi_top/u_soc_top/u_cpu_core/u_ex_stage/u_ascon_ise/state_reg[262]/CE datapath=9.450 logic=1.960 net=7.490 levels=10
-KNOBS maxfanout=0 fanout_min=0 frn=0 eqreg=0 place=ExtraNetDelay_high popt=AggressiveExplore prout=AggressiveExplore route=AggressiveExplore fp= dens= crep=20
-SOURCE head=3c6f134 synth_dcp=top_pl_bram_opt.dcp tool=2025.2 date=Wed Oct 21 01:10:35 +0800 2026

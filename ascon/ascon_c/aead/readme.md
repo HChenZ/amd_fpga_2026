@@ -13,7 +13,7 @@ is retained; this is a local failure-output patch, not an upstream version updat
 The independently locked, unmodified C/Python references live under
 `sim/ascon/reference/`. Sources, original CC0 licenses, Final specification and
 KAT hashes are in [provenance](../../../data/ascon/provenance.json) and the
-[standard baseline](../../../docs/ascon_standard_baseline.md).
+[standard baseline](../../../report/design/ascon_standard_baseline.md).
 
 The repair branch directly descends from the pushed C01/C03 and RTL-validation
 branch `origin/feat/ascon-kat-validation` at `c347285`. Its software validation
@@ -39,7 +39,7 @@ require clearing mlen or the destination buffer on authentication failure;
 absence of that requirement is not permission to use unauthenticated plaintext.
 Both primary sources were read on 2026-10-07.
 
-This project's [technical_rules](../../../docs/technical_rules.md), custom
+This project's [technical_rules](../../../report/design/technical_rules.md), custom
 instruction completion definition item 5, adds “失败不得返回可使用明文”. This repair
 implements that acceptance rule directly in the production C function:
 

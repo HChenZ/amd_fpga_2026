@@ -1,2 +1,0 @@
-RESULT keys_sta strategy=Performance_ExploreWithRemap wns=0.213 tns=0.000 failing=0 whs=0.025
-PATH start=u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_mem_wb_rs1_o_reg/C end=u_soc_axi_top/u_soc_top/u_cpu_core/u_dcache/captured_wdata_reg[17]/CE

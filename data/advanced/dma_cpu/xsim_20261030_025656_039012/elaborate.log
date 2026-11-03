@@ -1,9 +1,0 @@
-Vivado Simulator v2025.2
-Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: C:/ruanjian/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L blk_mem_gen_v8_4_12 -L axi_bram_ctrl_v4_1_13 -L uvm -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_vendor_dma_cpu_behav xil_defaultlib.tb_vendor_dma_cpu xil_defaultlib.glbl -log elaborate.log 
-Using 2 slave threads.
-Starting static elaboration
-Pass Through NonSizing Optimizer
-ERROR: [VRFC 10-2063] Module <cpu_dma_dma_0> not found while processing module instance <dma> [C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/pynq_dma_cpu/tb_vendor_dma_cpu.sv:18]
-ERROR: [XSIM 43-3322] Static elaboration of top level Verilog design unit(s) in library work failed.

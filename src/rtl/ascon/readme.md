@@ -1,5 +1,10 @@
 # Ascon-AEAD128 RTL
 
+> 2026-11-01 scope: the standalone contract below is retained from10-09; its no-CPU/no-board statements are historical.
+> Current RV32 ISE/MMIO and PUF3 board evidence exist, but whole-system source selection is defined by the PUF3 board
+> build, not by adding this entire directory. Old lifecycle tests retain their recorded source versions.
+> See report/design/version_entrypoints.md; this documentation update does not change RTL or the contract.
+
 2026-10-09; V05/C03; owner TBD. Integration baseline: `0a425f9`.
 The standalone core supports NIST SP 800-232 Final with at most 16-byte data
 and 16-byte AD. It is not yet a CPU ISE or AXI peripheral.
@@ -57,7 +62,7 @@ The entire AEAD file, including get_bytes, has an include guard: the teammate
 TB's include and explicit complete production source lists both work.
 
 See [entry](../../../sim/ascon/readme.md) and
-[integration report](../../../docs/ascon_rtl_decrypt_validation.md).
+[integration report](../../../archive/history/docs/ascon_rtl_decrypt_validation.md).
 All 289 supported official KATs, 11 supplemental inputs, 2,579 tamper rejects,
 735 unsupported length pairs per direction, reset/restart, named/positional
 decrypt callers and full production compile/simulation pass. Vivado, target
@@ -65,4 +70,4 @@ CPU/board KAT, hardware cycles/PPA and longer RTL messages remain unverified.
 
 ## 2026-10-16 key lifecycle review
 
-Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands and build evidence: [review](../../../docs/ascon_key_management.md). Earlier dated status above is historical. Board model remains unknown; no programming performed.
+Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands and build evidence: [review](../../../archive/history/docs/ascon_key_management.md). Earlier dated status above is historical. Board model remains unknown; no programming performed.

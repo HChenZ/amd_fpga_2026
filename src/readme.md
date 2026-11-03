@@ -1,13 +1,10 @@
-# 设计源码
+# 当前源码布局
 
-现有 `rtl/` 是 CPU/SoC baseline，保持目录、文件名和工程引用。已有软件保持在 `../ascon/`，不为目录整齐迁移。`rtl/ascon/` 的standalone加解密与round/P8/P12已通过独立黄金回归；尚未完成CPU ISE，接口与边界见[RTL说明](rtl/ascon/readme.md)。
+- `rtl/`：公共CPU、Ascon、PUF v1和PYNQ桥接；PUF3两个关键变体在board下，必须按专用Tcl排除/替换。
+- `firmware/pynq_svc_puf/`：当前服务固件。
+- `firmware/pynq_svc/`、`firmware/ascon_hw_rv32/`：当前固件复用的I/O、三模式算法、启动/链接/转换支持；不要误删。
+- `pynq_puf3/`：完整板测Notebook，内嵌PUF3身份驱动；仍依赖pynq公共API/协议/参考函数。
+- `pynq/`：上述公共库，部分旧v1兼容模块因import复用保留；其旧CLI不是当前入口。
 
-修改前读 [interfaces](../docs/interfaces.md) 与 [technical_rules](../docs/technical_rules.md)。I02/I03/I05 交付 spec、RTL 与回归；10-07 单测、10-14 首版集成结果，10-27 功能冻结。普通新增文件用小写英文路径。
-
-源配置入库；生成 RTL/IP 输出回到构建流程生成，不能在这里伪造缺失 IP。
-
-已恢复 [CICC1000023 固件源](firmware/cicc1000023/readme.md)：CoreMark RV32/RV64、FreeRTOS 应用、RISC-V tests。原始文件名映射与哈希受控，构建前在 ignored 工作副本还原；尚缺精确 kernel/bootloader 依赖。
-
-## 2026-10-16 key lifecycle review
-
-Current software/MMIO/ISE runtime APIs, ZEROIZE, CPU handshake, test commands and build evidence: [review](../docs/ascon_key_management.md). Earlier dated status above is historical. Board model remains unknown; no programming performed.
+独立DMA/PUF v2/MIN、旧单镜像固件和原始CPU资产在archive/history/src，源码保留但不参与当前PUF3构建。
+版权/许可证按原文件保留；对外说明只描述实际结构、接口和验证，不以目录名推断来源或原创范围。

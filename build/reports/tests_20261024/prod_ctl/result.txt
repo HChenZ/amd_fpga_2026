@@ -1,2 +1,0 @@
-RESULT tag=prod_ctl mode=ctl strategy=Performance_ExploreWithRemap wns=0.087 tns=0.000 failing=0 whs=0.021 rep_cells=51
-PATH start=u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/FSM_sequential_state_reg[3]/C end=u_soc_axi_top/u_soc_top/u_ascon_mmio/u_ascon_core/u_crypto_aead/p12_in_reg[215]/D dp=9.870 logic=0.580 net=9.290 levels=1

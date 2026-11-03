@@ -1,2 +1,0 @@
-DMA_RESET_TEST_PASS async_abort synchronous_release
-sim/pynq_dma_cpu/tb_dma_reset.v:20: $finish called at 46000 (1ps)

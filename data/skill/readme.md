@@ -1,5 +1,8 @@
 # Skill validation raw results
 
+2026-11-01 版本边界：冻结L3的Ascon对象为旧PYNQ v1，不是PUF3；另有Base GPIO与非Ascon DMA回环。
+L2为simulated，L3不证明因果提升；本次说明更新不改原始JSON/哈希或已执行Notebook。
+
 本目录保存 Skill 验证的原始数据和结构化结果，不保存模拟输出冒充的实板数据。
 
 PYNQ L3 Notebook 默认创建：

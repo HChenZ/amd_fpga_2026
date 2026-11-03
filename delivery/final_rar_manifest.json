@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "source_revision": "cfa3817799f0c8fb44a18f4f114226a229f019d3",
+  "rar_format": "RAR5",
+  "archive": "delivery/RISC-V轻量密码加速SoC_最终交付.rar",
+  "bytes": 7025851,
+  "sha256": "e216016471330cf3f4c2ab33cd2465e3c7a069389ee82e6fd15b6a8056e1f4da",
+  "files": 367,
+  "top_level_directory": "RISC-V轻量密码加速SoC",
+  "report_pages": 85,
+  "report_sha256": "c3a474d8d9a98d9e1a08034a47a6531ef8d6be72cf70c31ee87f1584a5ff0e0e",
+  "skill_zip_sha256": "75a3aef79af0ada98c64baa42ae3aed9a30f8de6676a0160b7b39c65d61fe505",
+  "readme_links_checked": 9,
+  "missing_readme_links": [],
+  "all_packaged_files_match_after_extraction": true,
+  "all_current_source_files_match_repository": true,
+  "candidate_artifacts_and_reports_unchanged": true,
+  "credential_pattern_scan": "no high-confidence private-key/token matches",
+  "commands": [
+    {
+      "name": "create_rar",
+      "exit_code": 0,
+      "tail": ""
+    },
+    {
+      "name": "test_rar",
+      "exit_code": 0,
+      "tail": ""
+    },
+    {
+      "name": "extract_rar",
+      "exit_code": 0,
+      "tail": ""
+    },
+    {
+      "name": "checksums",
+      "exit_code": 0,
+      "tail": "366 files; missing=0, extra=0, changed=0\r\n"
+    },
+    {
+      "name": "source_identity_elaboration",
+      "exit_code": 0,
+      "tail": "{\r\n  \"status\": \"PASS\",\r\n  \"scope\": \"production source identity and optional elaboration only; no new functional/board verdict\",\r\n  \"production_inputs\": 56,\r\n  \"source_mismatches\": [],\r\n  \"artifacts\": {\r\n    \"pynq_puf3.bit\": \"MATCH\",\r\n    \"pynq_puf3.hwh\": \"MATCH\",\r\n    \"pynq_svc_puf.bin\": \"MATCH\",\r\n    \"pynq_svc_puf.coe\": \"MATCH\",\r\n    \"pynq_svc_puf.elf\": \"MATCH\"\r\n  },\r\n  \"build_support\": {\r\n    \"candidate_hashes_checked\": 7,\r\n    \"required_paths\": [\r\n      \"build/keys_ro_allow_loops.tcl\",\r\n      \"build/keys_ro_pblock.xdc\",\r\n      \"board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.srcs/sources_1/ip/axi_bram_ctrl_0/axi_bram_ctrl_0.xci\",\r\n      \"board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci\"\r\n    ],\r\n    \"missing\": []\r\n  },\r\n  \"elaboration\": {\r\n    \"exit_code\": 0,\r\n    \"diagnostics\": \"\"\r\n  }\r\n}\r\n\r\n"
+    },
+    {
+      "name": "host_unit_tests",
+      "exit_code": 0,
+      "tail": "sw simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured\r\nhw simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured\r\nise simulated CT= c8e3fece044ce5cac3c8521118b7829b tag= 97ccde364201c1fc0291d9591d27eca0 cycles= None cycle_status= not_measured\r\nsw official sample KAT PASS; tampered tag rejected\r\nhw official sample KAT PASS; tampered tag rejected\r\nise official sample KAT PASS; tampered tag rejected\r\nsw speedup= NOT_MEASURED\r\nhw speedup= NOT_MEASURED\r\nise speedup= NOT_MEASURED\r\n.............................................................\r\n----------------------------------------------------------------------\r\nRan 61 tests in 3.951s\r\n\r\nOK\r\n"
+    },
+    {
+      "name": "standalone_skill_tests",
+      "exit_code": 0,
+      "tail": ".................s......s......................................s         [100%]\r\n61 passed, 3 skipped in 3.20s\r\n"
+    },
+    {
+      "name": "skill_cli",
+      "exit_code": 0,
+      "tail": "usage: pynq_skill_cli.py [-h] {hwh,artifacts,gen,report} ...\r\n\r\npynq-overlay-workflow command line: hwh | artifacts | gen | report. Exit 0 =\r\npass, 1 = check failed.\r\n\r\npositional arguments:\r\n  {hwh,artifacts,gen,report}\r\n    hwh                 list IPs/addresses/clocks; optionally cross-check a\r\n                        contract\r\n    artifacts           bit/hwh pairing + manifest hash check\r\n    gen                 contract -> driver + pytest skeleton\r\n    report              golden/timing JSON + Vivado reports -> Markdown/JSON\r\n\r\noptions:\r\n  -h, --help            show this help message and exit\r\n"
+    },
+    {
+      "name": "checksums_after_tests",
+      "exit_code": 0,
+      "tail": "366 files; missing=0, extra=0, changed=0\r\n"
+    }
+  ],
+  "limitations": [
+    "no new firmware compilation, Vivado synthesis/implementation or board run",
+    "three optional Skill artifact tests may skip",
+    "original source/report may retain historical tool fallback paths; no local settings/configs bundled"
+  ],
+  "local_validation_directory": "build/local/final_rar_e82157zp",
+  "rar_tool": {
+    "name": "RAR for Linux x64 7.23 (official trial)",
+    "download_url": "https://www.rarlab.com/rar/rarlinux-x64-723.tar.gz",
+    "download_sha256": "759b4b6aa0d9f77131882162951193f3a0e54bf60e1d8dc4255aa308accab588",
+    "execution": "WSL Ubuntu; no Windows WinRAR/rar.exe found"
+  }
+}

@@ -1,18 +1,20 @@
 # RISC-V Lightweight Cryptography SoC 演示视频脚本
 
-更新：2026-10-31  
-对应任务：D04（脚本已完成；实机视频仍待录制）  
-建议成片：5 分 20 秒；另附 3 分钟压缩版剪法  
-画幅：16:9，1920×1080，30 fps；实板特写可用 4K 拍摄后缩至 1080p  
-语言：中文旁白，中英术语用字幕辅助  
-主证据：2026-10-29 PYNQ 实板 Notebook 与 warm benchmark
+- 更新：2026-11-01（10-31 初版基于 PYNQ v1 release；本版按最终报告改为 PUF3 主演示）
+- 对应任务：D04（脚本已完成；实机视频仍待录制）
+- 建议成片：5 分 20 秒；另附 3 分钟压缩版剪法
+- 画幅：16:9，1920×1080，30 fps；实板特写可用 4K 拍摄后缩至 1080p
+- 语言：中文旁白，中英术语用字幕辅助
+- 主证据：PUF3 overlay 2026-10-31 实板 Notebook `src/pynq_puf3/pynq_puf3_board_test.ipynb`，
+  结果 `data/pynq_puf3/notebook_20261031_114512/result.json`；数字与最终报告
+  `report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf` 一致
 
 ## 1. 一句话定位
 
 这不是“只展示一次加密成功”的演示，而是让观众看到：同一个 NIST Ascon-AEAD128
 标准输入，在自研 RV32 SoC 上分别经过纯软件、MMIO 加速器和定制指令加速，
-通过 KAT 正确性检查后，再用 CPU `mcycle` 比较真实执行成本，并在真实 PYNQ
-板上演示错误拒绝与恢复。
+通过 KAT 正确性检查后，再用 CPU `mcycle` 比较真实执行成本；同一 overlay 还提供
+RO-PUF/Device DNA 派生的硬件密钥通路，并在真实 PYNQ 板上演示注册、重建与切换。
 
 核心叙事：
 
@@ -20,24 +22,27 @@
 短消息安全需求
   → 自研 RV32 CPU
   → NIST Ascon-AEAD128
-  → 三种实现路径
-  → 同一 KAT
-  → 同一板卡、同一输入、同一计时口径
-  → 正确性、性能、错误恢复
+  → 三种实现路径（SW / MMIO / ISE）
+  → 同一 KAT、同一板卡、同一输入、同一计时口径
+  → 正确性、性能
+  → 同一 overlay 内的 PUF 硬件密钥通路
 ```
 
 ## 2. 录制原则
 
 1. 优先录当前板卡和 Jupyter 的实时画面。静态架构动画只作解释，不冒充实机运行。
-2. 主性能表只使用 2026-10-29 同一次 PYNQ run 的数据，不混入历史 PL-only 的
-   `20806 / 688 / 2570` cycles。
-3. 明确 `mcycle` 只测 RV32 固件 AEAD 调用边界，不包含 PS、Python 和 UART 传输；
-   PS wall time 不参与加速比。
-4. 讲清当前板端接口的 PT/AD 上限均为 16 bytes。不要把 host 的 1,089 组 KAT
+2. 主性能表只使用 2026-10-31 同一次 PUF3 run 的数据。不混入 PYNQ v1 release 的
+   `23342 / 1439 / 3995`，也不混入历史 PL-only 的 `20806 / 688 / 2570` cycles。
+3. 明确 `mcycle` 只测 RV32 固件 AEAD 调用边界，不包含 PS、Python、UART 传输，
+   也不包含响应后的收发缓冲擦除；PS 墙钟只有 summary 中位，不参与加速比。
+4. benchmark 时 HWKEY 关闭，使用官方 KAT 的公开密钥；不要把性能数字说成“PUF 密钥下的性能”。
+5. 讲清当前板端接口的 PT/AD 上限均为 16 bytes。不要把 host 的 1,089 组 KAT
    说成板端 1,089 组通过。
-5. PUF 是独立扩展原型，不与当前 PYNQ 三模式 overlay 混为同一镜像。若加入，
-   必须口播“单次上电功能证据，跨电源周期稳定性未测”。
-6. 使用锁定官方 KAT 中的公开输入，不在镜头中显示真实密钥或私人数据。
+6. PUF 段必须口播“会话内功能证据；跨上电、温度/电压、BER、熵与唯一性未测；
+   RO 计数器域时序未签核”。不展示真实设备 DNA、RAW/REF/MASK 原始响应或派生密钥。
+7. 错误恢复 9/9 门禁属于旧 PYNQ v1 release（固件 `pynq-svc-v1`），不能作为 PUF3 的通过项；
+   如需展示，只能放在第 5 节的历史对照段并加标注。
+8. 使用锁定官方 KAT 中的公开输入，不在镜头中显示真实密钥或私人数据。
 
 ## 3. 主版分镜与旁白（约 5 分 20 秒）
 
@@ -47,20 +52,20 @@
 
 - 0–5 秒：ZYNQ7020 板卡正面上电特写，LED 点亮，镜头缓慢推近。
 - 5–12 秒：笔记本画面切到 PYNQ Jupyter，再叠标题。
-- 12–18 秒：三行大字依次出现：`SW`、`MMIO`、`ISE`。
+- 12–18 秒：四个词依次出现：`SW`、`MMIO`、`ISE`、`PUF KEY`。
 
 标题字幕：
 
 ```text
 面向短消息的轻量级密码 SoC
-RISC-V + Ascon-AEAD128 + FPGA 加速
+RISC-V + Ascon-AEAD128 + FPGA 加速 + PUF 密钥通路
 ```
 
 旁白：
 
-> 一条 16 字节的短消息，加密应该占用处理器多久？
+> 一条 16 字节的短消息，加密应该占用处理器多久？密钥又从哪里来？
 > 我们在自研 RISC-V SoC 上，用同一套标准输入，比较纯软件、MMIO 硬件加速和
-> 定制指令三种实现。
+> 定制指令三种实现，并在同一个 FPGA 镜像里接入 PUF 派生的硬件密钥。
 
 剪辑提示：
 
@@ -99,34 +104,37 @@ RISC-V + Ascon-AEAD128 + FPGA 加速
 PC / Jupyter
     ↓
 Zynq PS：Python API、黄金参考
-    ↓  AXI-Lite 控制 + byte FIFO
-PL：RV32 CPU ← UART mailbox
+    ↓  AXI-Lite 控制 + byte FIFO（控制 ID PQF3 = 0x33465150）
+PL：RV32 CPU ← UART mailbox（固件 pynq-svc-puf3）
     ├─ 纯软件 AEAD
-    ├─ Ascon MMIO
+    ├─ Ascon MMIO ← 密钥选择：调用者密钥 / HWKEY
+    │                     ↑
+    │              RO-PUF + Device DNA → key_mmio
     └─ custom-0 ISE
     ↓
 ciphertext / tag / mcycle
 ```
 
-- 动画经过 `PS → AXI-Lite → mailbox → RV32` 时逐级高亮。
-- 最后把镜头切到 `docs/architecture.md` 或实际 Vivado block design 截图，停留 2 秒。
+- 动画经过 `PS → AXI-Lite → mailbox → RV32` 时逐级高亮，再高亮 `RO-PUF → key_mmio → Ascon MMIO`。
+- 最后切到最终报告图 2-10 的真实 Vivado Block Design 截图，停留 2 秒。
 
 屏幕字幕：
 
 ```text
 PS 负责控制与参考比对
 PL 中自研 RV32 完成受控执行
-UART mailbox 使用 uncached MMIO
+同一 overlay：三模式 AEAD + PUF/DNA 密钥通路
 ```
 
 旁白：
 
 > 演示平台是正点原子领航者 ZYNQ7020，目标器件为 XC7Z020，
-> PYNQ overlay 配置为 100 MHz。
+> PUF3 overlay 的 FCLK0 配置为 100 MHz。
 > PS 端运行 Python 和 Jupyter，负责输入、比对与展示；PL 中运行自研五级流水线
-> RV32 CPU。两者通过 AXI-Lite 控制窗口、字节 FIFO 和 RV32 原有 UART 邮箱交换
-> 请求与响应。这里使用的是 uncached MMIO，不依赖共享 cacheable buffer，
-> 因此每次输入、密文、标签、状态和 mcycle 都有明确的所有权和返回路径。
+> RV32 CPU。两者通过 AXI-Lite 控制窗口、字节 FIFO 和 RV32 的 UART 邮箱交换请求与响应，
+> 使用 uncached MMIO，每次输入、密文、标签、状态和 mcycle 都有明确的返回路径。
+> 同一个镜像里还集成了 256 路 RO-PUF 和 Device DNA：注册后可由固件打开 HWKEY，
+> 让 MMIO 加速器改用硬件派生密钥，调用者写入的密钥将不再生效。
 
 ### 01:36–02:18｜三种实现
 
@@ -142,7 +150,7 @@ UART mailbox 使用 uncached MMIO
 ```text
 SW：CPU 执行标准软件实现
 MMIO：整段 AEAD 卸载
-ISE：定制指令加速置换热点
+ISE：定制指令加速置换热点（固件内 22 条 custom-0）
 ```
 
 旁白：
@@ -158,81 +166,76 @@ ISE：定制指令加速置换热点
 > Ascon 的 P8、P12 置换热点。三种实现最终处理的是同一个标准请求，
 > 也必须给出同样的密文和标签。
 
-### 02:18–03:28｜真实板卡演示
+### 02:18–03:20｜真实板卡演示
 
 画面：
 
 - 先拍板卡全景，再切 Jupyter。
-- 显示 Notebook 标题：`领航者7020：真实 PYNQ Ascon 验证`。
-- 点击 `Restart Kernel and Run All Cells`。
+- 显示 Notebook 标题：`pynq_puf3 实板测试`，运行 `执行完整上板测试`。
 - 快速但真实地保留以下运行节点：
-  1. release 身份与服务握手；
-  2. `simulated=false`；
-  3. `firmware_id=pynq-svc-v1`；
-  4. `selftest_mask=7`；
-  5. SW/HW/ISE 各 `6/6` KAT 与 `6/6` 坏标签拒绝。
-- 如果完整 289 组 KAT 录像耗时过长，可单独录一段从命令启动到 `289/289 PASS`
-  的画面，并在剪辑中明确标注“2026-10-28 同版本 release”；不要把 6 组 smoke
-  画面伪装成 289 组全过程。
+  1. 下载前核对 SLCR 的 IO PLL 参数与 HWH 一致，加载后 bit/HWH/manifest 哈希匹配；
+  2. 控制 ID `0x33465150`（PQF3）、`firmware_id=pynq-svc-puf3`；
+  3. `simulated=false`、`selftest_mask=7`；
+  4. 时钟：寄存器推导 99.999999 MHz，mcycle/PS 时基估测 99.9723 MHz；
+  5. SW/HW/ISE 各 `289/289` KAT 与 `289/289` 坏标签拒绝。
+- 289 组 KAT 若录像过长，可加速播放但保留起止画面与计数，不要剪成只剩 PASS。
 - 在板上叠加醒目标记：`REAL BOARD / NOT SIMULATED`。
 
 屏幕字幕：
 
 ```text
 真实 overlay，无模拟回退
-firmware: pynq-svc-v1
-simulated: false
-selftest_mask: 7
+control ID: PQF3 (0x33465150)
+firmware: pynq-svc-puf3
+simulated: false   selftest_mask: 7
 ```
 
 旁白：
 
-> 现在直接在真实板卡上从头运行 Notebook。Overlay 加载后，先核对 bitstream、
-> HWH、固件和服务身份。服务返回 firmware ID 为 pynq-svc-v1，
-> simulated 为 false，三项自检掩码为 7，说明软件、MMIO 和 ISE 路径都来自
-> 真实硬件。
+> 现在直接在真实板卡上运行 Notebook。下载前先核对时钟寄存器，加载后核对 bitstream、
+> HWH 和 manifest 哈希，再握手确认控制 ID 为 PQF3、固件为 pynq-svc-puf3，
+> simulated 为 false，三项自检掩码为 7。
+> PYNQ 自带的频率显示会给出 150 MHz，那是它假设了错误的参考时钟；
+> 按寄存器推导是 100 MHz，用 mcycle 与 PS 时基估测为 99.97 MHz。
 >
 > 接着运行官方容量内 KAT。三种模式都要逐字节匹配标准密文和标签；
 > 对篡改标签还必须返回认证失败，不能发布明文。当前板上接口的明文与关联数据
-> 上限都是 16 字节；在这个接口范围内，三模式各通过 289 组官方 KAT，
+> 上限都是 16 字节；在这个范围内，三模式各通过 289 组官方 KAT，
 > 并各自拒绝 289 个坏标签。
 
-### 03:28–04:16｜性能结果
+### 03:20–04:05｜性能结果
 
 画面：
 
-- 运行 `warm benchmark`，显示固定 KAT `#529`。
-- 屏幕上先显示条件，再出现表格：
+- 显示 benchmark 条件，再出现表格：
 
 | 模式 | 加密中位 cycles | cycles/byte | 相对软件 |
 |---|---:|---:|---:|
-| SW | 23,342 | 1,458.875 | 1.000× |
-| MMIO | 1,439 | 89.938 | **16.221×** |
-| ISE | 3,995 | 249.688 | **5.843×** |
+| SW | 21,862 | 1,366.3750 | 1.000× |
+| MMIO | 1,369 | 85.5625 | **15.969×** |
+| ISE | 3,895 | 243.4375 | **5.613×** |
 
 - 表格下方固定一行小字：
 
 ```text
-PT=16 B, AD=0, warmup=5, n=30; mcycle excludes PS/UART
+KAT #529, PT=16 B, AD=0, HWKEY off, warmup=5, n=30; mcycle excludes PS/UART
 ```
 
-- 切到原始 JSON 中的 `raw_cycles` 数组，滚过重复采样值，证明不是手填柱状图。
+- 切到 `result.json` 中的 `raw_cycles` 数组，滚过 30 个采样值，证明不是手填柱状图。
 
 旁白：
 
-> 性能测试固定使用官方 KAT 529：明文 16 字节，关联数据为空。
+> 性能测试固定使用官方 KAT 529：明文 16 字节，关联数据为空，HWKEY 关闭。
 > 每种模式先预热 5 次，再用 CPU 的 mcycle 计数器采样 30 次。
-> 软件加密中位数为 23,342 个周期；MMIO 降到 1,439 个周期，
-> 相对软件为 16.221 倍；ISE 为 3,995 个周期，相对软件为 5.843 倍。
+> 软件加密中位数为 21,862 个周期；MMIO 降到 1,369 个周期，
+> 相对软件为 15.969 倍；ISE 为 3,895 个周期，相对软件为 5.613 倍。
 >
-> 解密方向同样通过：MMIO 为 1,388 个周期，相对软件 17.295 倍；
-> ISE 为 4,385 个周期，相对软件 5.474 倍。这里的加速比只使用 CPU 周期。
-> PS 调用的一次 wall time 约为 4.96 到 5.22 毫秒，包含 Python、MMIO 和 UART，
+> 解密方向：软件 22,562 个周期，MMIO 为 1,213 个周期，相对软件 18.600 倍；
+> ISE 为 4,288 个周期，相对软件 5.262 倍。这里的加速比只使用 CPU 周期。
+> PS 调用一次的墙钟中位约为 4.1 到 5.1 毫秒，包含 Python、MMIO 和 UART，
 > 只作端到端开销说明，不混入加速比。
 
 解释镜头：
-
-- 画面用两条路径动画解释结果：
 
 ```text
 MMIO：整段 AEAD 一次卸载 → 短消息优势最大
@@ -241,56 +244,47 @@ ISE：CPU 保持控制流，热点改用定制指令 → 更易与通用软件�
 
 旁白补充：
 
-> 这组结果也说明两种硬件加速的定位不同。MMIO 把整段 AEAD 交给外设，
-> 对当前短消息吞吐最有利；ISE 保留 CPU 的软件执行结构，只替换高成本置换，
-> 更适合需要通用控制逻辑、逐步扩展指令集的处理器路线。
+> 两种硬件加速的定位不同。MMIO 把整段 AEAD 交给外设，对当前短消息最有利；
+> ISE 保留 CPU 的软件执行结构，只替换高成本置换，更适合逐步扩展指令集的处理器路线。
 
-### 04:16–04:50｜错误与恢复
+### 04:05–04:45｜PUF 硬件密钥通路
 
 画面：
 
-- 切到 `PYNQ V03 错误与恢复门禁` Notebook。
-- 依次显示：
+- Notebook 的 PUF 段依次显示（只显示状态与判定，不显示 DNA/RAW/REF/MASK 原始值）：
 
 ```text
-17-byte PT / AD      → LENGTH
-tampered tag         → REJECT
-partial frame        → timeout + reset
-duplicate request_id → INTERNAL
-wrong epoch          → INTERNAL
-RX FIFO overflow     → reset recovery
+ENROLL            → quality 127/128
+RECONSTRUCT ×5    → stable
+HWKEY ON          → caller key rejected
+after reconstruct → same ciphertext
+HWKEY OFF         → official KAT restored
 ```
 
-- 最后停在：
-
-```text
-9/9 checks PASS
-7/7 recovery PASS
-50 encrypt + 50 decrypt per mode PASS
-```
-
-- 板卡与成功状态同框 2 秒。
+- 画面角落持续显示：`会话内功能证据 / 跨上电未测 / RO 域未签核`。
 
 旁白：
 
-> 一个只显示成功路径的加速器演示并不够。我们主动注入超长输入、半帧、
-> 超时、重复请求、错误 epoch 和接收 FIFO 溢出。系统必须显式报错，
-> 再通过 reset 和新的 epoch 恢复，并在恢复后重新跑三种模式的 KAT。
-> 最终 9 项错误检查全部通过，7 次故障后的恢复全部成功；
-> 三种模式各连续执行 50 次加密和 50 次解密，结果仍与 KAT 一致。
+> 同一个镜像里，RO-PUF 先完成注册，质量为 128 位中 127 位可用，
+> 随后在同一会话内连续 5 次重建都稳定。打开 HWKEY 后，MMIO 加速器改用硬件派生密钥，
+> 调用者写入的密钥被拒绝；重建后同一输入得到相同密文；关闭 HWKEY 后，
+> 官方 KAT 重新通过。
+> 需要说明边界：这是会话内的功能证据，helper 数据不跨上电保存；
+> 跨上电、温度电压、误码率、熵和唯一性都还没有测，RO 计数器域时序也没有签核，
+> 原始响应在调试接口上可读，因此不能把它说成已经保密可靠的密钥。
 
-### 04:50–05:20｜实现结果与收束
+### 04:45–05:20｜实现结果与收束
 
 画面：
 
-- 3 秒 Vivado timing/DRC 摘要：
+- 3 秒 Vivado 摘要（最终报告图 2-11/图 3-2 的真实截图）：
 
 ```text
-part: xc7z020clg400-1
-configured FCLK0: 100 MHz
-WNS: +0.034 ns
-TNS: 0
+part: xc7z020clg400-1   top: pynq_puf3_wrapper
+LUT 18674 / FF 32002 / BRAM 34.5 / DSP 4
+constrained paths: WNS +0.104 ns, TNS 0, WHS +0.041 ns, 0/73907 failing
 DRC: 0 Error / 0 Critical Warning
+RO counter domain: NOT signed off
 ```
 
 - 然后回到板卡、Jupyter 和三模式结果同框。
@@ -304,12 +298,12 @@ DRC: 0 Error / 0 Critical Warning
 
 旁白：
 
-> 最终 PYNQ 发布版在 100 MHz 配置下实现通过，WNS 为正、TNS 为零，
-> DRC 为零错误、零关键警告。普通警告和很小的时序余量仍然保留在证据中，
-> 不把它外推为跨温度、跨电压的长期稳定性结论。
+> PUF3 overlay 在 100 MHz 配置下实现通过：已约束路径 WNS 为正 0.104 纳秒、
+> TNS 为零，DRC 零错误、零关键警告。RO-PUF 的振荡计数器域不属于同步时序签核范围，
+> 我们把它单独列为未签核项，不外推为跨温度、跨电压的稳定性结论。
 >
-> 这个项目的核心，是把标准算法、RISC-V 软件、两种硬件加速路径、
-> 可追溯的周期数据和真实板级错误恢复，连成一条可以复现的演示链。
+> 这个项目的核心，是把标准算法、RISC-V 软件、两种硬件加速路径、PUF 密钥通路、
+> 可追溯的周期数据连成一条可以复现的演示链。
 > 我们的目标不是只追求一个漂亮数字，而是让每一个数字都能回到同一组输入、
 > 同一版 bitstream 和同一套 KAT。
 
@@ -325,50 +319,45 @@ Zynq-7000 XC7Z020 · PYNQ · Vivado 2025.2
 
 | 时间 | 内容 | 必须保留 |
 |---|---|---|
-| 00:00–00:15 | 板卡上电 + SW/MMIO/ISE | 标题、真实板卡 |
-| 00:15–00:40 | Ascon-AEAD128 与系统架构 | PS、RV32、mailbox、三模式 |
-| 00:40–01:15 | 板端身份 + 三模式 KAT | `simulated=false`、6/6 或 289/289 |
-| 01:15–01:55 | 16 B 性能表与原始 cycles | 23,342 / 1,439 / 3,995 和三个加速比 |
-| 01:55–02:25 | 坏标签与错误恢复 | 9/9、7/7、恢复后 KAT |
-| 02:25–02:45 | Vivado、边界、结论 | WNS/DRC、16 B 上限、可复现 |
+| 00:00–00:15 | 板卡上电 + SW/MMIO/ISE/PUF KEY | 标题、真实板卡 |
+| 00:15–00:40 | Ascon-AEAD128 与系统架构 | PS、RV32、mailbox、三模式、PUF 通路 |
+| 00:40–01:15 | 板端身份 + 三模式 KAT | PQF3、`simulated=false`、289/289 |
+| 01:15–01:55 | 16 B 性能表与原始 cycles | 21,862 / 1,369 / 3,895 和加速比 |
+| 01:55–02:25 | PUF 注册/重建/HWKEY | 127/128、5 次稳定、KAT 恢复、边界口播 |
+| 02:25–02:45 | Vivado、边界、结论 | WNS/DRC、RO 未签核、16 B 上限 |
 
-压缩版旁白可删去 P8/P12 细节、PS wall time、MMIO 与 ISE 的设计取舍说明；
-不要删除“16 字节接口上限”“mcycle 范围”和“simulated=false”。
+压缩版旁白可删去 P8/P12 细节、PS 墙钟、MMIO 与 ISE 的设计取舍说明；
+不要删除“16 字节接口上限”“mcycle 范围”“simulated=false”和 PUF 的未测边界。
 
-## 5. 可选 PUF 扩展段落（15–25 秒）
+## 5. 可选历史对照段（10–15 秒）
 
-仅当比赛材料需要展示扩展研究时加入；若正片已接近时限，建议不入正片。
+仅当需要说明错误恢复设计时加入；若正片已接近时限，建议不入正片。
 
-画面：
+画面角落持续显示：`旧 PYNQ v1 release（pynq-svc-v1），非 PUF3`。
 
-- 使用独立的 PUF3 overlay/Notebook，画面角落持续显示：
-
-```text
-独立扩展原型 / 非当前 PYNQ 三模式 overlay
-```
-
-- 展示 enroll、reconstruct、HWKEY 开关和恢复后的标准 KAT。
-- 不展示诊断原始响应、真实设备 DNA 或任何敏感值。
+- 来源：`data/pynq/error_gate_20261031_112812/pynq_board_error_gate.json`（2026-10-31 重测）。
+- 可展示：17-byte 输入 → LENGTH、半帧/超时/RX 溢出 → reset 恢复、重复 request_id/错误 epoch →
+  INTERNAL；9/9 checks、7/7 次 reset/epoch 恢复。
 
 旁白：
 
-> 项目还保留了一个独立的 RO-PUF 与 Device DNA 密钥通路原型。
-> 它已在单次上电流程中完成注册、重建、HWKEY 切换和标准 KAT 恢复。
-> 该结果不等同于跨电源周期稳定、密钥可保密或完整安全启动；
-> 相关可靠性与安全边界仍单列为未测项，也不混入当前三模式 overlay。
+> 在上一版 PYNQ 发布镜像上，我们还做过错误注入与恢复门禁，9 项检查全部通过。
+> 这组结果属于旧固件，PUF3 镜像尚未完整重跑该门禁。
 
 不要使用以下说法：
 
-- “PUF 已完全稳定”
+- “PUF 已完全稳定”“密钥不可提取，因此系统一定安全”
 - “已完成安全启动”
-- “PUF 与当前性能演示运行在同一 overlay”
-- “密钥不可提取，因此系统一定安全”
+- “PUF3 已通过 9/9 错误门禁”
+- “性能数字是在 PUF 密钥下测得”
 
 ## 6. 录制清单
 
 ### 录前
 
-- 确认板卡型号、overlay、bit/HWH/固件与 `release/manifest.json` 匹配。
+- 确认板卡型号、overlay，bit/HWH/固件与
+  `board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/manifest.json` 匹配
+  （`pynq_puf3.bit` 4,045,693 B）。
 - 只使用仓库中的公开 KAT 输入，不把个人或真实业务密钥放进镜头。
 - Jupyter 字号至少 16–18 px；终端命令和 PASS 行必须可读。
 - 关闭通知、聊天软件和其他会显示私人信息的窗口。
@@ -377,51 +366,53 @@ Zynq-7000 XC7Z020 · PYNQ · Vivado 2025.2
 ### 录制中
 
 - 第一遍完整录“Notebook 从头执行”，避免中途只截成功单元格。
-- 板端身份、三模式 smoke、benchmark 和错误门禁分别留完整屏幕录像或日志。
-- 所有动画图只引用 JSON 中的真实值；轴从零开始时避免夸大差异，
-  同时保留精确 cycles 表。
+- 身份/时钟、三模式 KAT、benchmark 和 PUF 段分别留完整屏幕录像或日志。
+- 所有动画图只引用 JSON 中的真实值；轴从零开始时避免夸大差异，同时保留精确 cycles 表。
 - 坏标签拒绝镜头中要能看到“失败/拒绝”语义，而不是只有绿色 PASS 字样。
+- PUF 段遮挡 DNA、RAW/REF/MASK 与派生密钥相关输出。
 
 ### 录后
 
 - 成片至少完整看两遍，核对口播与字幕数字一致。
 - 对每个数字回查：
-  - `data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json`
-  - `board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md`
-  - `data/pynq/error_gate_20261029_134023/pynq_board_error_gate.json`
+  - `data/pynq_puf3/notebook_20261031_114512/result.json`
+  - `board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/reports/`（utilization、timing_summary、drc）
+  - 最终报告 `final_report.pdf` 表 1-1、表 3-13/3-14
+- 若录制时重新运行 Notebook，新 run 的数值必须与上表一致或改用新 run 并同步更新报告；不能混用。
 - 将最终视频、脚本和证据文件 SHA-256 索引放入同一提交材料目录。
 - 只有实机录像与脚本都归档后，才把 D04 改为 `done`。
 
 ## 7. 事实卡
 
-录制时以本表为准：
+录制时以本表为准（来源：PUF3 2026-10-31 run 与 candidate 报告，已与最终报告核对）：
 
 | 项目 | 当前可陈述事实 |
 |---|---|
 | 平台 | 正点原子领航者 ZYNQ7020，part `xc7z020clg400-1` |
-| PYNQ 配置 | FCLK0 配置 100 MHz；独立频率测量未完成 |
+| overlay | PUF3：`pynq_puf3_wrapper`，控制 ID PQF3 `0x33465150`，固件 `pynq-svc-puf3` |
+| 时钟 | FCLK0 配置 100 MHz；寄存器推导 99.999999 MHz；mcycle/PS 估测 99.9723 MHz（非示波器/Fmax）；PYNQ 显示 150 MHz 不是真实频率 |
 | 标准 | NIST SP 800-232 Final，Ascon-AEAD128 |
-| CPU | RV32 五级流水线；当前板上演示使用 RV32 |
+| CPU | RV32 五级流水线 |
 | 板端接口 | PT ≤16 B，AD ≤16 B |
 | 板端 KAT | SW/HW/ISE 各 289/289；坏 Tag 各 289/289 拒绝 |
-| smoke | SW/HW/ISE 各 6/6；坏 Tag 各 6/6 拒绝 |
-| benchmark | KAT #529；PT=16 B、AD=0；预热 5 次，采样 30 次 |
-| SW 加密 | 23,342 cycles；1,458.875 cycles/B |
-| MMIO 加密 | 1,439 cycles；89.938 cycles/B；16.221× |
-| ISE 加密 | 3,995 cycles；249.688 cycles/B；5.843× |
-| SW 解密 | 24,005 cycles；1,500.312 cycles/B |
-| MMIO 解密 | 1,388 cycles；86.750 cycles/B；17.295× |
-| ISE 解密 | 4,385 cycles；274.062 cycles/B；5.474× |
-| 周期口径 | RV32 固件 AEAD `mcycle`；不含 PS/UART/Python |
-| 错误门禁 | 9/9 checks PASS；7/7 次 reset/epoch 恢复 PASS |
-| 连续请求 | 每模式 50 次加密 + 50 次解密全部匹配 KAT |
-| 实现 | Vivado 2025.2；WNS +0.034 ns、TNS 0；DRC 0 Error / 0 Critical Warning |
+| benchmark | KAT #529；PT=16 B、AD=0；HWKEY 关闭；预热 5 次，采样 30 次 |
+| SW 加密 | 21,862 cycles；1,366.3750 cycles/B |
+| MMIO 加密 | 1,369 cycles；85.5625 cycles/B；15.969× |
+| ISE 加密 | 3,895 cycles；243.4375 cycles/B；5.613× |
+| SW 解密 | 22,562 cycles；1,410.1250 cycles/B |
+| MMIO 解密 | 1,213 cycles；75.8125 cycles/B；18.600× |
+| ISE 解密 | 4,288 cycles；268.0000 cycles/B；5.262× |
+| PS 墙钟中位 | 加密 5.130/4.403/4.385 ms，解密 4.874/4.160/4.137 ms（仅 summary，无原始数组） |
+| 周期口径 | RV32 固件 AEAD `mcycle`；不含 PS/UART/Python，也不含响应后的缓冲擦除 |
+| PUF | 注册 quality 127/128；会话内重建 5/5 稳定；HWKEY 下调用者密钥被拒；关闭后 KAT 恢复 |
+| 实现 | Vivado 2025.2；LUT 18674、FF 32002、BRAM 34.5、DSP 4；已约束路径 WNS +0.104 ns、TNS 0、WHS +0.041 ns，0/73907 失败端点；DRC 0 Error / 0 Critical Warning |
 
 必须同时说明的边界：
 
-- 未把 host 的 1,089 组 KAT 全部搬到板端；超过当前 16-byte 接口的 800 组为
-  `NOT_RUN`。
-- 未完成跨电源周期、长时间运行、跨板、完整 RV64/异常矩阵和独立板级频率测量。
-- PUF3 只是独立扩展原型；跨电源周期、温度、BER、熵、唯一性和 RO timing
-  signoff 仍为 `not_measured`。
-- 当前时序余量很小，不能表述为跨工艺角、温度、电压的长期稳定性保证。
+- 未把 host 的 1,089 组 KAT 全部搬到板端；超过当前 16-byte 接口的 800 组为 `NOT_RUN`。
+- PUF：跨上电、温度/电压、BER、熵、唯一性 `not_measured`；RO 计数器域未签核
+  （5120 个无时钟引脚、15360 个未约束引脚、256 个组合环，Slow/Fast 角均有负 slack）；
+  REF/MASK/RAW/DNA 调试可读，未证明保密隔离。
+- PUF3 未完整重跑错误注入门禁；9/9 属于旧 `pynq-svc-v1`。
+- HW 驱动不发送每次调用的硬件 ZEROIZE；只有软件缓冲擦除，且在 mcycle 计时区间之外。
+- 未完成长时间运行、跨板、完整 RV64/异常矩阵和独立板级频率测量。

@@ -1,3 +1,0 @@
-
-TEST_PASS multiplier_pipeline checks=1259 seed=4d554c31
-sim/ascon/tb_multiplier_pipeline.v:66: $finish called at 113440000 (1ps)

@@ -1,0 +1,376 @@
+{
+  "status": "PASS",
+  "timestamp": "2026-11-02T20:37:24+08:00",
+  "scope": "D12: report-only repack of delivery/technical_report.zip after adding section 4.3 AMD ROSS, and the single repository snapshot ZIP; the other three ZIPs are unchanged 124f5c7 snapshots. Not a new Vivado/board verdict.",
+  "source_revision": "cd0f3f362ef936a94a0b07874030f46af7c80eac",
+  "environment": {
+    "os": "Windows 11 (zh-CN locale)",
+    "python": "3.13.9",
+    "tectonic": "Tectonic 0.15.0",
+    "riscv_gcc": "xPack GNU RISC-V Embedded GCC 15.2.0",
+    "icarus": "Icarus Verilog 14.0 (devel)",
+    "host_gcc": "MinGW-W64 x86_64 8.1.0",
+    "git": "git version 2.55.0.windows.3",
+    "env": "PYTHONUTF8=1"
+  },
+  "report_package": {
+    "path": "delivery/technical_report.zip",
+    "sha256": "e183bd4c4021bebeae44acc4b2a35457b589be0745f0dbd279a9cc88fddd376c",
+    "bytes": 4076080,
+    "files": 62,
+    "archive_root": "technical_report",
+    "source_revision": "cd0f3f362ef936a94a0b07874030f46af7c80eac",
+    "generated": "2026-11-02T20:28:14+08:00",
+    "note": "rebuilt alone on 2026-11-02 (figure/path/reproduction update, then section 4.3 AMD ROSS); the other three packages keep the top-level source_revision snapshot"
+  },
+  "packaged_pdf_sha256": "c071768b7b36afbbca60aa13bc05d2c5a7feb570b083a54272d80a367d0a6e34",
+  "packaged_pdf_equals_tracked_pdf": true,
+  "verify_delivery_all_four_zips": {
+    "command": "python -X utf8 tools/verify_delivery.py --reject-label <internal identifier removed in 124f5c7, not written here> --output <scratch>/delivery_check.json",
+    "status": "PASS",
+    "timestamp": "2026-11-02T20:29:53+08:00",
+    "checks": {
+      "delivery/puf3_project.zip": {
+        "zip_hash": "PASS",
+        "crc": "PASS",
+        "member_hashes": 262
+      },
+      "delivery/historical_projects.zip": {
+        "zip_hash": "PASS",
+        "crc": "PASS",
+        "member_hashes": 1483
+      },
+      "delivery/pynq_overlay_workflow_skill.zip": {
+        "zip_hash": "PASS",
+        "crc": "PASS",
+        "member_hashes": 27
+      },
+      "delivery/technical_report.zip": {
+        "zip_hash": "PASS",
+        "crc": "PASS",
+        "member_hashes": 61
+      },
+      "puf3_source_identity_elaboration": {
+        "exit_code": 0
+      },
+      "cold_host_tests": {
+        "exit_code": 0
+      },
+      "standalone_skill": {
+        "exit_code": 0
+      },
+      "cold_firmware": {
+        "exit_code": 0
+      },
+      "cold_binary_matches_verified_candidate": {
+        "passed": true,
+        "sha256": "857df29c4310cd483e92730d81f333a68e6970658d5cb81344faf29ec50dd9b7"
+      },
+      "report": {
+        "pages": 85,
+        "pdf_sha256": "c071768b7b36afbbca60aa13bc05d2c5a7feb570b083a54272d80a367d0a6e34",
+        "rejected_label_matches": 0,
+        "metric_tokens_present": true
+      }
+    }
+  },
+  "standalone_report_compile": {
+    "command": "tectonic -X compile main.tex --keep-logs (in unpacked technical_report/latex)",
+    "tool": "Tectonic 0.15.0",
+    "exit_code": 0,
+    "pages": 85,
+    "overfull_boxes": 0,
+    "missing_characters": 0,
+    "undefined_references": false,
+    "page_text_identical_to_tracked_pdf": true
+  },
+  "repository_snapshot": {
+    "zip": {
+      "path": "delivery/amd_fpga_2026_repo_snapshot.zip",
+      "sha256": "7f49b9e5bdc4e80cf5a4f131cf4c3989457eec05f2df670f6c0d594116ae51ec",
+      "bytes": 93496023,
+      "zip_entries": 1680,
+      "tracked_files": 1620,
+      "from_report_package": 58,
+      "archive_root": "amd_fpga_2026",
+      "git_commit": "cd0f3f362ef936a94a0b07874030f46af7c80eac",
+      "report_package_sha256": "e183bd4c4021bebeae44acc4b2a35457b589be0745f0dbd279a9cc88fddd376c",
+      "generated": "2026-11-02T20:28:14+08:00",
+      "scope": "every tracked file of git_commit except delivery/, plus the untracked editable LaTeX tree from delivery/technical_report.zip at report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/; per-file SHA-256 in amd_fpga_2026/snapshot_manifest.json",
+      "verification": "delivery/snapshot_and_report_check.json"
+    },
+    "built_by": "one-off script outside the repository: git ls-tree/cat-file of git_commit (exact blob bytes, delivery/ skipped) plus technical_report.zip latex/ members mapped to their original path; packaged PDF required byte-equal to the tracked PDF, packaged LICENSE text-equal (CRLF copy)",
+    "duplication_check": {
+      "method": "every member of the four delivery ZIPs compared (raw, LF and CRLF forms) with all blobs of cd0f3f3 and 124f5c7 and with members of tracked ZIP archives",
+      "delivery/puf3_project.zip": {
+        "members": 263,
+        "same_content_in_git_commit": 224,
+        "only_as_124f5c7_version": 35,
+        "without_repository_copy": [
+          "README.md",
+          "pytest.ini",
+          "source_manifest.json",
+          "source_package.md"
+        ],
+        "note": "the four wrappers are written from templates in tools/package_delivery.py"
+      },
+      "delivery/historical_projects.zip": {
+        "members": 1484,
+        "same_content_in_git_commit": 1455,
+        "only_as_124f5c7_version": 28,
+        "without_repository_copy": [
+          "source_manifest.json"
+        ]
+      },
+      "delivery/pynq_overlay_workflow_skill.zip": {
+        "members": 28,
+        "same_content_in_git_commit": 27,
+        "only_as_124f5c7_version": 0,
+        "without_repository_copy": [
+          "source_manifest.json"
+        ]
+      },
+      "delivery/technical_report.zip": {
+        "members": 62,
+        "same_content_in_repository": 42,
+        "without_repository_copy_count": 20,
+        "wrappers": [
+          "README.md",
+          "source_manifest.json"
+        ],
+        "latex_sources": 18,
+        "decision": "latex/ tree (58 files) included in the snapshot at its original path"
+      },
+      "old_version_members": "the 63 only_as_124f5c7_version members are documentation and maintenance scripts changed after 124f5c7 (old docs/ paths, readmes, .gitignore, AGENTS.md, project_board.md, tools/package_delivery.py, tools/restore_records.py, tools/verify_puf3_sources.py, report/llm_collab/export_sessions.py); no RTL, firmware or constraints; the snapshot carries their current versions and the old ones stay in Git history"
+    },
+    "identifier_scan": "internal identifier removed in 124f5c7, scanned in names and text of every blob of git_commit, members of tracked ZIPs, the 58 LaTeX files and the PDF text: 0 hits in the LaTeX files and the 85-page PDF; in tracked content only in 4 archive/evidence raw-record ZIPs and 1 verbatim session transcript under report/llm_collab/, kept as original records like the public repository",
+    "structure_check": {
+      "zip_sha256_matches": true,
+      "crc_ok": true,
+      "root_folder": "amd_fpga_2026/",
+      "file_set_equals_tree_minus_delivery_plus_report_latex": true,
+      "tracked_files": 1620,
+      "report_latex_files": 58,
+      "manifest_hash_mismatches": 0,
+      "git_blob_byte_mismatches": 0,
+      "report_latex_byte_mismatches": 0,
+      "manifest_commit_matches": true,
+      "packaged_pdf_equals_snapshot_pdf": true,
+      "no_dot_git": true
+    },
+    "offline_steps_in_extracted_snapshot": [
+      {
+        "name": "verify_sources_compile",
+        "command": "python -X utf8 tools/verify_puf3_sources.py --compile --output build/local/reproduce/run_01/source_check.json",
+        "exit_code": 0,
+        "seconds": 0.3,
+        "last_line": "}",
+        "result": {
+          "status": "PASS",
+          "production_inputs": 56,
+          "source_mismatches": 0,
+          "artifacts": {
+            "pynq_puf3.bit": "MATCH",
+            "pynq_puf3.hwh": "MATCH",
+            "pynq_svc_puf.bin": "MATCH",
+            "pynq_svc_puf.coe": "MATCH",
+            "pynq_svc_puf.elf": "MATCH"
+          },
+          "build_support_missing": [],
+          "elaboration_exit": 0
+        }
+      },
+      {
+        "name": "firmware",
+        "command": "python -X utf8 src/firmware/pynq_svc_puf/build.py --prefix C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc.exe",
+        "exit_code": 0,
+        "seconds": 1.6,
+        "last_line": "BUILD OK <snapshot>\\build\\local\\pynq_svc_puf",
+        "result": {
+          "bin_matches_candidate": true,
+          "coe_matches_candidate": true
+        }
+      },
+      {
+        "name": "cosim",
+        "command": "python -X utf8 sim/pynq_puf3/run.py",
+        "exit_code": 0,
+        "seconds": 467.3,
+        "last_line": "PASS normal_pass=True mutant_autolock_detected=True steps=54"
+      },
+      {
+        "name": "needs_git_rtl_vectors",
+        "command": "python -X utf8 sim/ascon/prepare_rtl_vectors.py --output build/local/reproduce/run_01/rtl_vectors",
+        "exit_code": 1,
+        "seconds": 1.0,
+        "last_line": "PermissionError: [WinError 5] 拒绝访问。: '<snapshot>\\\\build\\\\local\\\\ascon_kat\\\\upstream-c-dwiuy0um\\\\upstream-c.dll'",
+        "not_a_git_repository": true,
+        "expected": "stops at the Git provenance query without .git; rerun in a Git clone (see git_checkout_chain)",
+        "note": "the last output line is the known Windows temp-DLL cleanup PermissionError; the failing call is git rev-parse HEAD in support.Report"
+      },
+      {
+        "name": "needs_git_rtl_regression",
+        "command": "python -X utf8 sim/ascon/run_rtl_regression.py --vectors build/local/reproduce/run_01/rtl_vectors --report build/local/reproduce/run_01/rtl_regression.json",
+        "exit_code": 1,
+        "seconds": 0.1,
+        "last_line": "subprocess.CalledProcessError: Command '['git', 'rev-parse', 'HEAD']' returned non-zero exit status 128.",
+        "not_a_git_repository": true,
+        "expected": "stops at the Git provenance query without .git; rerun in a Git clone (see git_checkout_chain)"
+      },
+      {
+        "name": "needs_git_host_validation",
+        "command": "python -X utf8 sim/ascon/run_validation.py --report build/local/reproduce/run_01/host_validation.json",
+        "exit_code": 1,
+        "seconds": 0.3,
+        "last_line": "subprocess.CalledProcessError: Command '['git', 'rev-parse', 'HEAD']' returned non-zero exit status 128.",
+        "not_a_git_repository": true,
+        "expected": "stops at the Git provenance query without .git; rerun in a Git clone (see git_checkout_chain)"
+      },
+      {
+        "name": "needs_git_failure_contract",
+        "command": "python -X utf8 sim/ascon/check_failure_contract.py --report build/local/reproduce/run_01/failure_contract.json",
+        "exit_code": 1,
+        "seconds": 0.3,
+        "last_line": "subprocess.CalledProcessError: Command '['git', 'rev-parse', 'HEAD']' returned non-zero exit status 128.",
+        "not_a_git_repository": true,
+        "expected": "stops at the Git provenance query without .git; rerun in a Git clone (see git_checkout_chain)"
+      },
+      {
+        "name": "needs_git_test_harness",
+        "command": "python -X utf8 sim/ascon/test_harness.py",
+        "exit_code": 1,
+        "seconds": 2.9,
+        "last_line": "FAILED (errors=3)",
+        "not_a_git_repository": false,
+        "expected": "stops at the Git provenance query without .git; rerun in a Git clone (see git_checkout_chain)",
+        "cause": "3 ERROR (FileNotFoundError for the injected report): the child process runs run_validation.main(), which stops at git rev-parse HEAD (see needs_git_host_validation) before writing it; the same test passes in git_checkout_chain"
+      },
+      {
+        "name": "pytest_before_restore",
+        "command": "python -m pytest -q -p no:cacheprovider",
+        "exit_code": 1,
+        "seconds": 9.6,
+        "last_line": "1 failed, 121 passed, 3 skipped in 9.12s",
+        "expected": "test_host_api.py::HostTests::test_cycle_sources needs the restored records; run restore_records.py first"
+      },
+      {
+        "name": "restore_records",
+        "command": "python -X utf8 tools/restore_records.py",
+        "exit_code": 0,
+        "seconds": 1.6,
+        "last_line": "Record copies restored: 2420 already identical: 0"
+      },
+      {
+        "name": "pytest",
+        "command": "python -m pytest -q -p no:cacheprovider",
+        "exit_code": 0,
+        "seconds": 10.0,
+        "last_line": "122 passed, 3 skipped in 9.49s"
+      },
+      {
+        "name": "review_evidence",
+        "command": "python -X utf8 report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/review_evidence.py --output build/local/reproduce/run_01/evidence_check.json --pdf report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf",
+        "exit_code": 0,
+        "seconds": 0.6,
+        "last_line": "PASS: 194/194 checks -> build\\local\\reproduce\\run_01\\evidence_check.json",
+        "summary": "PASS: 194/194 checks -> build\\local\\reproduce\\run_01\\evidence_check.json"
+      },
+      {
+        "name": "build_review",
+        "command": "python -X utf8 report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/build_review.py --tectonic C:/wenjian/toolchain/tectonic/tectonic.exe",
+        "exit_code": 0,
+        "seconds": 12.8,
+        "last_line": "PDF -> <snapshot>\\report\\technical\\amd_fpga_2026_latex_final\\amd_fpga_2026_report\\output\\pdf\\final_report.pdf",
+        "result": {
+          "status": "PASS",
+          "pages": 85,
+          "checks_passed": 194,
+          "checks_total": 194,
+          "overfull": 0,
+          "page_text_identical_to_tracked_pdf": true,
+          "differing_pages": [],
+          "rebuilt_pdf_sha256": "799386a6ea1a9915b8182ff2d1a37dbe3e6338eae735f9c625e1a588dc0bd8aa",
+          "note": "fresh Tectonic build: bytes differ from the tracked PDF only through embedded metadata; page text identical"
+        }
+      }
+    ],
+    "git_checkout_chain": {
+      "worktree_revision": "cd0f3f362ef936a94a0b07874030f46af7c80eac",
+      "origin_main_at_run": "5f509e84ab086a7fbb524b2bfe3988b1167a83be",
+      "status_before_run": "clean",
+      "steps": [
+        {
+          "name": "rtl_vectors",
+          "command": "python -X utf8 sim/ascon/prepare_rtl_vectors.py --output build/local/reproduce/run_01/rtl_vectors",
+          "exit_code": 0,
+          "seconds": 1.9,
+          "result": {
+            "passed": 12936,
+            "failed": 0,
+            "exit_code": 0
+          }
+        },
+        {
+          "name": "rtl_regression",
+          "command": "python -X utf8 sim/ascon/run_rtl_regression.py --vectors build/local/reproduce/run_01/rtl_vectors --report build/local/reproduce/run_01/rtl_regression.json",
+          "exit_code": 0,
+          "seconds": 12.2,
+          "result": {
+            "summary": {
+              "status": "PASS",
+              "failed_gates": [],
+              "exit_code": 0
+            },
+            "source_head": "cd0f3f362ef936a94a0b07874030f46af7c80eac",
+            "origin_main": "5f509e84ab086a7fbb524b2bfe3988b1167a83be",
+            "production_sources_edited": false
+          }
+        },
+        {
+          "name": "rtl_harness",
+          "command": "python -X utf8 sim/ascon/test_rtl_harness.py --vectors build/local/reproduce/run_01/rtl_vectors --report build/local/reproduce/run_01/rtl_harness.json",
+          "exit_code": 0,
+          "seconds": 33.5,
+          "result": {
+            "passed": 4,
+            "failed": 0,
+            "exit_code": 0
+          }
+        },
+        {
+          "name": "host_validation",
+          "command": "python -X utf8 sim/ascon/run_validation.py --report build/local/reproduce/run_01/host_validation.json",
+          "exit_code": 0,
+          "seconds": 4.1,
+          "result": {
+            "passed": 28661,
+            "failed": 0,
+            "exit_code": 0
+          }
+        },
+        {
+          "name": "failure_contract",
+          "command": "python -X utf8 sim/ascon/check_failure_contract.py --report build/local/reproduce/run_01/failure_contract.json",
+          "exit_code": 0,
+          "seconds": 1.1,
+          "result": {
+            "passed": 23965,
+            "failed": 0,
+            "exit_code": 0
+          }
+        },
+        {
+          "name": "test_harness",
+          "command": "python -X utf8 sim/ascon/test_harness.py",
+          "exit_code": 0,
+          "seconds": 4.8,
+          "result": "OK"
+        }
+      ],
+      "status_after_run": "clean",
+      "status": "PASS",
+      "note": "Git-dependent sim/ascon chain of report section 3.4.3 rerun in a clean detached git worktree of git_commit (Windows CRLF checkout, PYTHONUTF8=1); worktree removed afterwards"
+    }
+  },
+  "note": "build/metadata/report_repack_check.json keeps the D11 record (report then 83 pages, package d35fa273...); build/metadata/source_delivery_check.json keeps the original 01:20 four-package record."
+}

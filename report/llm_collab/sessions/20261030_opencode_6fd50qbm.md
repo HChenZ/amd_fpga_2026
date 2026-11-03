@@ -9,67 +9,67 @@
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` git status --short; git log --oneline -15
-- `read` tasks/release_plan_20261101.md
-- `grep` project_log/actual_progress.md
+- `shell` `git status --short; git log --oneline -15`
+- `read` `tasks/release_plan_20261101.md`
+- `grep` `project_log/actual_progress.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` docs/advanced_offline_status_20261030.md
-- `read` docs/skill_test_guide_20261030.md
+- `read` `docs/advanced_offline_status_20261030.md`
+- `read` `docs/skill_test_guide_20261030.md`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` data/advanced/puf_soc/validation_20261030.md
-- `read` src/rtl/keys_v2/synchronous_timing_20261030.md
-- `read` project_log/actual_progress.md
+- `read` `data/advanced/puf_soc/validation_20261030.md`
+- `read` `src/rtl/keys_v2/synchronous_timing_20261030.md`
+- `read` `project_log/actual_progress.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_cpu
+- `grep` `data/advanced/dma_cpu`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` data/advanced/dma_cpu/vivado_20261030_025251/readme.md
-- `read` data/advanced/dma_cpu/vivado_20261030_015408/readme.md
+- `read` `data/advanced/dma_cpu/vivado_20261030_025251/readme.md`
+- `read` `data/advanced/dma_cpu/vivado_20261030_015408/readme.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` board/vivado_zynq7000_xc7z020_{puf_v2,dma_direct,pynq_dma_cpu}/verify*.py
+- `glob` `board/vivado_zynq7000_xc7z020_{puf_v2,dma_direct,pynq_dma_cpu}/verify*.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_puf_v2/verify_delivery.py; "exit=$LASTEXITCODE"
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_puf_v2/verify_delivery.py; "exit=$LASTEXITCODE"`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` **/verify_direct_evidence.py
+- `glob` `**/verify_direct_evidence.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 build/advanced/verify_direct_evidence.py; "exit=$LASTEXITCODE"
+- `shell` `python -X utf8 build/advanced/verify_direct_evidence.py; "exit=$LASTEXITCODE"`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` .
+- `grep` `.`
 
 </details>
 
@@ -119,7 +119,7 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` docs/dma_puf_implementation_plan.md
+- `read` `docs/dma_puf_implementation_plan.md`
 
 </details>
 
@@ -161,49 +161,49 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem board/vivado_zynq7000_xc7z020_puf_v2, board/vivado_zynq7000_xc7z020_dma_direct -File | Select-Object Directory,Name,Length | F
+- `shell` `Get-ChildItem board/vivado_zynq7000_xc7z020_puf_v2, board/vivado_zynq7000_xc7z020_dma_direct -File | Select-Object Directory,Name,Length | F`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` board/vivado_zynq7000_xc7z020_puf_v2/setup.tcl
-- `read` board/vivado_zynq7000_xc7z020_dma_direct/setup.tcl
-- `read` board/vivado_zynq7000_xc7z020_puf_v2/readme.md
-- `read` board/vivado_zynq7000_xc7z020_dma_direct/readme.md
+- `read` `board/vivado_zynq7000_xc7z020_puf_v2/setup.tcl`
+- `read` `board/vivado_zynq7000_xc7z020_dma_direct/setup.tcl`
+- `read` `board/vivado_zynq7000_xc7z020_puf_v2/readme.md`
+- `read` `board/vivado_zynq7000_xc7z020_dma_direct/readme.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` data/advanced/puf_soc
-- `read` board/vivado_zynq7000_xc7z020_puf_v2/capture.py
+- `grep` `data/advanced/puf_soc`
+- `read` `board/vivado_zynq7000_xc7z020_puf_v2/capture.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` .
+- `grep` `.`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` docs/advanced_board_handoff.md
-- `grep` src/pynq/dma_transport.py
+- `read` `docs/advanced_board_handoff.md`
+- `grep` `src/pynq/dma_transport.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` board/vivado_zynq7000_xc7z020_pynq_dma_cpu/bringup.py
-- `read` board/vivado_zynq7000_xc7z020_dma_direct/quickstart.md
+- `grep` `board/vivado_zynq7000_xc7z020_pynq_dma_cpu/bringup.py`
+- `read` `board/vivado_zynq7000_xc7z020_dma_direct/quickstart.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` foreach($d in 'data/advanced','src/rtl/keys_v2','src/rtl/puf_soc_v2','src/rtl/ascon_dma','board/vivado_zynq7000_xc7z020_puf_v2','board/vivad
+- `shell` `foreach($d in 'data/advanced','src/rtl/keys_v2','src/rtl/puf_soc_v2','src/rtl/ascon_dma','board/vivado_zynq7000_xc7z020_puf_v2','board/vivad`
 
 </details>
 
@@ -272,50 +272,50 @@ FCLK0 = 100MHz 驱动其余全部逻辑；FIXED_IO/DDR 引到顶层端口
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git ls-files src/rtl/keys src/firmware sim/keys | Select-String -NotMatch "\.(o|bin)$"; git ls-files board | Select-String -Pattern "\.(tcl|
+- `shell` `git ls-files src/rtl/keys src/firmware sim/keys | Select-String -NotMatch "\.(o|bin)$"; git ls-files board | Select-String -Pattern "\.(tcl|`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `grep` board/vivado_zynq7000_xc7z020_pynq/build.tcl
-- `grep` src/rtl/soc_top.v
-- `read` board/vivado_zynq7000_xc7z020_ascon/readme.md
+- `grep` `board/vivado_zynq7000_xc7z020_pynq/build.tcl`
+- `grep` `src/rtl/soc_top.v`
+- `read` `board/vivado_zynq7000_xc7z020_ascon/readme.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` board/vivado_zynq7000_xc7z020_pynq/build.tcl
-- `shell` git ls-files board/vivado_zynq7000_xc7z020_pynq src/pynq; Get-ChildItem build -File | Select-Object Name
+- `read` `board/vivado_zynq7000_xc7z020_pynq/build.tcl`
+- `shell` `git ls-files board/vivado_zynq7000_xc7z020_pynq src/pynq; Get-ChildItem build -File | Select-Object Name`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` git diff --no-index --stat board/vivado_zynq7000_xc7z020_pynq/rtl_p0/soc_top.v src/rtl/soc_top.v; git diff --no-index --stat board/vivado_zy
-- `grep` src/firmware/keys_rv32
-- `grep` src/firmware/pynq_svc
+- `shell` `git diff --no-index --stat board/vivado_zynq7000_xc7z020_pynq/rtl_p0/soc_top.v src/rtl/soc_top.v; git diff --no-index --stat board/vivado_zy`
+- `grep` `src/firmware/keys_rv32`
+- `grep` `src/firmware/pynq_svc`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff --no-index board/vivado_zynq7000_xc7z020_pynq/rtl_p0/soc_top.v src/rtl/soc_top.v | Select-Object -First 80; Get-ChildItem src/rtl/p
+- `shell` `git diff --no-index board/vivado_zynq7000_xc7z020_pynq/rtl_p0/soc_top.v src/rtl/soc_top.v | Select-Object -First 80; Get-ChildItem src/rtl/p`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `grep` src/rtl/pynq/pynq_soc.v
-- `grep` src/rtl/pynq/pynq_mbox.v
-- `shell` git diff --no-index board/vivado_zynq7000_xc7z020_pynq/rtl_p0/ascon_mmio.v src/rtl/ascon/ascon_mmio.v 2>$null | Select-Object -First 5; Get-
+- `grep` `src/rtl/pynq/pynq_soc.v`
+- `grep` `src/rtl/pynq/pynq_mbox.v`
+- `shell` `git diff --no-index board/vivado_zynq7000_xc7z020_pynq/rtl_p0/ascon_mmio.v src/rtl/ascon/ascon_mmio.v 2>$null | Select-Object -First 5; Get-`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem -Recurse -Include "*keys*.coe","*keys*.bin" -Path board,build,data,src -ErrorAction SilentlyContinue | Select-Object FullName,
+- `shell` `Get-ChildItem -Recurse -Include "*keys*.coe","*keys*.bin" -Path board,build,data,src -ErrorAction SilentlyContinue | Select-Object FullName,`
 
 </details>
 
@@ -437,51 +437,51 @@ RO 采样域原本就有 no_clock 问题，这一点照旧写成"未签核"。
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` git fetch origin; git status -sb | Select-Object -First 3; git log --oneline -3 origin/main
-- `read` src/rtl/pynq/pynq_soc.v
-- `read` build/keys_ro_allow_loops.tcl
+- `shell` `git fetch origin; git status -sb | Select-Object -First 3; git log --oneline -3 origin/main`
+- `read` `src/rtl/pynq/pynq_soc.v`
+- `read` `build/keys_ro_allow_loops.tcl`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` build/build_keys_sta.tcl
-- `grep` src/rtl/top.v
-- `grep` src/rtl/pynq/pynq_ctl.v
+- `read` `build/build_keys_sta.tcl`
+- `grep` `src/rtl/top.v`
+- `grep` `src/rtl/pynq/pynq_ctl.v`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` sim
-- `read` sim/keys/run_keys_fw.sh
+- `grep` `sim`
+- `read` `sim/keys/run_keys_fw.sh`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` sim/keys/tb_keys_fw.v
-- `read` sim/pynq/run_service.py
+- `read` `sim/keys/tb_keys_fw.v`
+- `read` `sim/pynq/run_service.py`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` sim/pynq/tb_pynq_bridge.v
-- `read` src/rtl/top.v
-- `grep` src/rtl
+- `read` `sim/pynq/tb_pynq_bridge.v`
+- `read` `src/rtl/top.v`
+- `grep` `src/rtl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git log --format="%h %ci %s" -- src/rtl/keys src/rtl/soc_top.v src/rtl/ascon/ascon_mmio.v src/firmware/keys_rv32 | Select-Object -First 12; 
+- `shell` `git log --format="%h %ci %s" -- src/rtl/keys src/rtl/soc_top.v src/rtl/ascon/ascon_mmio.v src/firmware/keys_rv32 | Select-Object -First 12; `
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' import hashlib,re,pathlib coe=pathlib.Path('board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.srcs/sources_1/
+- `shell` `@' import hashlib,re,pathlib coe=pathlib.Path('board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.srcs/sources_1/`
 
 </details>
 
@@ -493,119 +493,119 @@ RO 采样域原本就有 no_clock 问题，这一点照旧写成"未签核"。
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` src/rtl/keys/ro_unit.v
-- `shell` Get-ChildItem src/rtl/ascon -Name; Select-String -Path board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.xpr -Pa
+- `read` `src/rtl/keys/ro_unit.v`
+- `shell` `Get-ChildItem src/rtl/ascon -Name; Select-String -Path board/vivado_zynq7000_xc7z020_ascon/riscv_vivado_project/riscv_vivado_project.xpr -Pa`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` board/vivado_zynq7000_xc7z020_pynq/package_release.py
-- `shell` Get-Content .gitignore | Select-String -Pattern "build|local|work|\.bit|data" ; git diff .gitignore
+- `read` `board/vivado_zynq7000_xc7z020_pynq/package_release.py`
+- `shell` `Get-Content .gitignore | Select-String -Pattern "build|local|work|\.bit|data" ; git diff .gitignore`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl
+- `write` `board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` board/vivado_zynq7000_xc7z020_pynq_puf/puf_opt_pre.tcl
+- `write` `board/vivado_zynq7000_xc7z020_pynq_puf/puf_opt_pre.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` New-Item -ItemType Directory -Force build/local/pynq_puf | Out-Null; C:\Xilinx\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log buil
+- `shell` `New-Item -ItemType Directory -Force build/local/pynq_puf | Out-Null; C:\Xilinx\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log buil`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` sim/ascon/axi_slave_bram.v
-- `read` sim/pynq/tb_pynq_svc.v
+- `grep` `sim/ascon/axi_slave_bram.v`
+- `read` `sim/pynq/tb_pynq_svc.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem C:\Xilinx\2025.2 -Directory | Select-Object Name; Get-ChildItem C:\Xilinx\2025.2 -Recurse -Filter vivado.bat -Depth 3 -ErrorAc
+- `shell` `Get-ChildItem C:\Xilinx\2025.2 -Directory | Select-Object Name; Get-ChildItem C:\Xilinx\2025.2 -Recurse -Filter vivado.bat -Depth 3 -ErrorAc`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem C:\Xilinx\2025.2\Vitis -Directory | Select-Object Name; Get-ChildItem C:\Xilinx\2025.2\Vitis\bin -Filter vivado* | Select-Obje
+- `shell` `Get-ChildItem C:\Xilinx\2025.2\Vitis -Directory | Select-Object Name; Get-ChildItem C:\Xilinx\2025.2\Vitis\bin -Filter vivado* | Select-Obje`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` Get-PSDrive -PSProvider FileSystem | Select-Object Root; foreach($r in (Get-PSDrive -PSProvider FileSystem).Root){ Get-ChildItem "$r" -Direc
-- `grep` data/advanced
+- `shell` `Get-PSDrive -PSProvider FileSystem | Select-Object Root; foreach($r in (Get-PSDrive -PSProvider FileSystem).Root){ Get-ChildItem "$r" -Direc`
+- `grep` `data/advanced`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/build.log -source board/vivado_zynq7000_xc7z020_py
+- `shell` `C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/build.log -source board/vivado_zynq7000_xc7z020_py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` sim/pynq/tb_pynq_svc.v
+- `read` `sim/pynq/tb_pynq_svc.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` sim/pynq_puf/tb_pynq_puf.v
+- `write` `sim/pynq_puf/tb_pynq_puf.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Command iverilog,vvp -ErrorAction SilentlyContinue | Select-Object Source; iverilog -V 2>&1 | Select-Object -First 1
+- `shell` `Get-Command iverilog,vvp -ErrorAction SilentlyContinue | Select-Object Source; iverilog -V 2>&1 | Select-Object -First 1`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` sim/pynq_puf/run.py
+- `write` `sim/pynq_puf/run.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/pynq_puf/run.py; "exit=$LASTEXITCODE"
+- `shell` `python -X utf8 sim/pynq_puf/run.py; "exit=$LASTEXITCODE"`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` board/vivado_zynq7000_xc7z020_pynq_puf/board_test.py
+- `write` `board/vivado_zynq7000_xc7z020_pynq_puf/board_test.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
+- `write` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content build/local/pynq_puf/build.log -Tail 15
+- `shell` `Get-Content build/local/pynq_puf/build.log -Tail 15`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` board/vivado_zynq7000_xc7z020_pynq_puf/readme.md
+- `write` `board/vivado_zynq7000_xc7z020_pynq_puf/readme.md`
 
 </details>
 
@@ -619,21 +619,21 @@ PUF 联合仿真已通过，Vivado 正在综合和实现中。等构建完成后
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` board/vivado_zynq7000_xc7z020_pynq_puf/explore_impl.tcl
-- `write` board/vivado_zynq7000_xc7z020_pynq_puf/postroute_physopt.tcl
+- `write` `board/vivado_zynq7000_xc7z020_pynq_puf/explore_impl.tcl`
+- `write` `board/vivado_zynq7000_xc7z020_pynq_puf/postroute_physopt.tcl`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/explore.log -source board/vivado_zynq7000_xc7z020_
-- `shell` C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/physopt.log -source board/vivado_zynq7000_xc7z020_
+- `shell` `C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/explore.log -source board/vivado_zynq7000_xc7z020_`
+- `shell` `C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/physopt.log -source board/vivado_zynq7000_xc7z020_`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/pynq_puf/vivado/reports/timing_summary.rpt
+- `grep` `build/local/pynq_puf/vivado/reports/timing_summary.rpt`
 
 </details>
 
@@ -647,40 +647,40 @@ post-route 优化后仍为 −0.117ns，未收敛。剩下 4 种实现策略的�
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content build/local/pynq_puf/vivado/reports/explore_impl.txt -ErrorAction SilentlyContinue; Select-String -Path build/local/pynq_puf/exp
+- `shell` `Get-Content build/local/pynq_puf/vivado/reports/explore_impl.txt -ErrorAction SilentlyContinue; Select-String -Path build/local/pynq_puf/exp`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl
-- `shell` C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/finalize.log -source board/vivado_zynq7000_xc7z020
+- `write` `board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl`
+- `shell` `C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/finalize.log -source board/vivado_zynq7000_xc7z020`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl
-- `shell` C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/finalize.log -source board/vivado_zynq7000_xc7z020
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl`
+- `shell` `C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/finalize.log -source board/vivado_zynq7000_xc7z020`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $r='build/local/pynq_puf/vivado/reports'; Select-String -Path $r/utilization.rpt -Pattern "^\| (Slice LUTs|Slice Registers|Block RAM Tile|DS
+- `shell` `$r='build/local/pynq_puf/vivado/reports'; Select-String -Path $r/utilization.rpt -Pattern "^\| (Slice LUTs|Slice Registers|Block RAM Tile|DS`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $m = Get-ChildItem build/local/pynq_puf/vivado -Recurse -Filter blk_mem_gen_0.mif | Select-Object -First 1; $m.FullName; @" import re,sys mi
+- `shell` `$m = Get-ChildItem build/local/pynq_puf/vivado -Recurse -Filter blk_mem_gen_0.mif | Select-Object -First 1; $m.FullName; @" import re,sys mi`
 
 </details>
 
@@ -690,40 +690,40 @@ BRAM 初值与 10-27 板测固件逐字一致。再给仿真 TB 做一次故障�
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $o='build/local/pynq_puf/sim'; (Get-Content sim/pynq_puf/tb_pynq_puf.v -Raw).Replace('defparam u_top.u_soc_top.KEY_WINDOW = 256;','defparam 
+- `shell` `$o='build/local/pynq_puf/sim'; (Get-Content sim/pynq_puf/tb_pynq_puf.v -Raw).Replace('defparam u_top.u_soc_top.KEY_WINDOW = 256;','defparam `
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $o='build/local/pynq_puf/sim'; $f=@(); $f += Get-ChildItem src/rtl/*.v | Where-Object Name -ne 'top_pl_bram.v' | ForEach-Object FullName; $f
+- `shell` `$o='build/local/pynq_puf/sim'; $f=@(); $f += Get-ChildItem src/rtl/*.v | Where-Object Name -ne 'top_pl_bram.v' | ForEach-Object FullName; $f`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` sim/pynq_puf/tb_pynq_puf.v
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/board_test.py
+- `edit` `sim/pynq_puf/tb_pynq_puf.v`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/board_test.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `cactus_write` sim/pynq_puf/run.py
+- `cactus_write` `sim/pynq_puf/run.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` sim/pynq_puf/run.py
-- `shell` python -X utf8 sim/pynq_puf/run.py 2>&1 | Select-String -Pattern "====|TB_PYNQ_PUF|PASS key|FAIL|normal_pass" | ForEach-Object Line; "exit=$
+- `write` `sim/pynq_puf/run.py`
+- `shell` `python -X utf8 sim/pynq_puf/run.py 2>&1 | Select-String -Pattern "====|TB_PYNQ_PUF|PASS key|FAIL|normal_pass" | ForEach-Object Line; "exit=$`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` sim/pynq_puf/tb_pynq_puf.v
-- `shell` python -X utf8 sim/pynq_puf/run.py 2>&1 | Select-String -Pattern "====|TB_PYNQ_PUF|PASS key|FAIL|normal_pass" | ForEach-Object Line; "exit=$
+- `edit` `sim/pynq_puf/tb_pynq_puf.v`
+- `shell` `python -X utf8 sim/pynq_puf/run.py 2>&1 | Select-String -Pattern "====|TB_PYNQ_PUF|PASS key|FAIL|normal_pass" | ForEach-Object Line; "exit=$`
 
 </details>
 
@@ -733,97 +733,97 @@ BRAM 初值与 10-27 板测固件逐字一致。再给仿真 TB 做一次故障�
 
 <details><summary>工具调用 4 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $w='build/local/pynq_puf/vivado'; $lines=@("# Same synth_1 netlist, clocks and constraints; values = 'Post Routing Timing Summary' line of e
+- `shell` `$w='build/local/pynq_puf/vivado'; $lines=@("# Same synth_1 netlist, clocks and constraints; values = 'Post Routing Timing Summary' line of e`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf/package.py; "exit=$LASTEXITCODE"; Get-ChildItem board/vivado_zynq7000_xc7z020_pynq_puf
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf/package.py; "exit=$LASTEXITCODE"; Get-ChildItem board/vivado_zynq7000_xc7z020_pynq_puf`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf/package.py | Select-Object -Last 3; "exit=$LASTEXITCODE"; Get-Content board/vivado_zyn
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf/package.py | Select-Object -Last 3; "exit=$LASTEXITCODE"; Get-Content board/vivado_zyn`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $h='board/vivado_zynq7000_xc7z020_pynq_puf/candidate/pynq_puf.hwh'; Select-String -Path $h -Pattern 'MEMRANGE .*INSTANCE="(pynq_ctl_0|pynq_m
+- `shell` `$h='board/vivado_zynq7000_xc7z020_pynq_puf/candidate/pynq_puf.hwh'; Select-String -Path $h -Pattern 'MEMRANGE .*INSTANCE="(pynq_ctl_0|pynq_m`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/readme.md
-- `shell` git check-ignore -v board/vivado_zynq7000_xc7z020_pynq_puf/candidate/pynq_puf.bit board/vivado_zynq7000_xc7z020_pynq_puf/candidate/pynq_puf.
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/readme.md`
+- `shell` `git check-ignore -v board/vivado_zynq7000_xc7z020_pynq_puf/candidate/pynq_puf.bit board/vivado_zynq7000_xc7z020_pynq_puf/candidate/pynq_puf.`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` project_log/actual_progress.md
+- `read` `project_log/actual_progress.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` project_log/actual_progress.md
+- `edit` `project_log/actual_progress.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem board/vivado_zynq7000_xc7z020_pynq_puf, sim/pynq_puf -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Force; gi
+- `shell` `Get-ChildItem board/vivado_zynq7000_xc7z020_pynq_puf, sim/pynq_puf -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Force; gi`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff --cached --check -- . ':(exclude)board/vivado_zynq7000_xc7z020_pynq_puf/candidate/reports' ':(exclude)*.coe' ':(exclude)*.hwh'; "sr
+- `shell` `git diff --cached --check -- . ':(exclude)board/vivado_zynq7000_xc7z020_pynq_puf/candidate/reports' ':(exclude)*.coe' ':(exclude)*.hwh'; "sr`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git check-attr -a board/vivado_zynq7000_xc7z020_pynq_puf/candidate/pynq_puf.hwh board/vivado_zynq7000_xc7z020_pynq_puf/candidate/ascon_keys.
+- `shell` `git check-attr -a board/vivado_zynq7000_xc7z020_pynq_puf/candidate/pynq_puf.hwh board/vivado_zynq7000_xc7z020_pynq_puf/candidate/ascon_keys.`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git ls-files "*.gitattributes" ".gitattributes"; Get-Content board/vivado_zynq7000_xc7z020_pynq/release/.gitattributes -ErrorAction Silently
+- `shell` `git ls-files "*.gitattributes" ".gitattributes"; Get-Content board/vivado_zynq7000_xc7z020_pynq/release/.gitattributes -ErrorAction Silently`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short .gitattributes; Add-Content -Path .gitattributes -Value "`n# PYNQ + PUF v1 candidate: bytes are pinned by candidate/sha25
+- `shell` ``git status --short .gitattributes; Add-Content -Path .gitattributes -Value "`n# PYNQ + PUF v1 candidate: bytes are pinned by candidate/sha25``
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' import subprocess,hashlib base='board/vivado_zynq7000_xc7z020_pynq_puf/candidate/' for line in open(base+'sha256sums.txt'):     h,n=line.
+- `shell` `@' import subprocess,hashlib base='board/vivado_zynq7000_xc7z020_pynq_puf/candidate/' for line in open(base+'sha256sums.txt'):     h,n=line.`
 
 </details>
 
@@ -833,19 +833,19 @@ Staged 内容的哈希与 `sha256sums.txt` 全部一致。提交前先确认远�
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git fetch origin; git rev-parse HEAD origin/main; git diff --cached --name-only | Measure-Object | ForEach-Object Count
+- `shell` `git fetch origin; git rev-parse HEAD origin/main; git diff --cached --name-only | Measure-Object | ForEach-Object Count`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $msg = @" feat(pynq-puf): PYNQ overlay with PUF v1 self-test (100 MHz, board NOT_RUN)  The PYNQ release build uses rtl_p0/soc_top.v without 
+- `shell` `$msg = @" feat(pynq-puf): PYNQ overlay with PUF v1 self-test (100 MHz, board NOT_RUN)  The PYNQ release build uses rtl_p0/soc_top.v without `
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git push origin main 2>&1; "exit=$LASTEXITCODE"; git fetch origin; git rev-parse HEAD origin/main; git show --stat --format="%h %s" HEAD | S
+- `shell` `git push origin main 2>&1; "exit=$LASTEXITCODE"; git fetch origin; git rev-parse HEAD origin/main; git show --stat --format="%h %s" HEAD | S`
 
 </details>
 
@@ -945,8 +945,8 @@ FPGA 里每条"寄存器 → 组合逻辑 → 寄存器"的路径，信号都必
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` src/rtl/keys/ro_puf_core.v
-- `read` src/rtl/keys/key_mmio.v
+- `read` `src/rtl/keys/ro_puf_core.v`
+- `read` `src/rtl/keys/key_mmio.v`
 
 </details>
 
@@ -976,8 +976,8 @@ FPGA 里每条"寄存器 → 组合逻辑 → 寄存器"的路径，信号都必
 
 <details><summary>工具调用 2 次</summary>
 
-- `grep` src/rtl/keys/puf_key.v
-- `grep` src/rtl/soc_top.v
+- `grep` `src/rtl/keys/puf_key.v`
+- `grep` `src/rtl/soc_top.v`
 
 </details>
 
@@ -1001,7 +1001,7 @@ FPGA 里每条"寄存器 → 组合逻辑 → 寄存器"的路径，信号都必
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Start-Sleep -Seconds 240
+- `shell` `Start-Sleep -Seconds 240`
 
 </details>
 
@@ -1013,19 +1013,13 @@ FPGA 里每条"寄存器 → 组合逻辑 → 寄存器"的路径，信号都必
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content src/firmware/keys_rv32/build.sh; Get-Command riscv*gcc* -ErrorAction SilentlyContinue | Select-Object Source; Select-String -Pat
+- `shell` `Get-Content src/firmware/keys_rv32/build.sh; Get-Command riscv*gcc* -ErrorAction SilentlyContinue | Select-Object Source; Select-String -Pat`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Test-Path C:\wenjian\toolchain\xpack-riscv-none-elf-gcc-15.2.0-1\bin\riscv-none-elf-gcc.exe; Get-Command bash -ErrorAction SilentlyContinue 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
+- `shell` `Test-Path C:\wenjian\toolchain\xpack-riscv-none-elf-gcc-15.2.0-1\bin\riscv-none-elf-gcc.exe; Get-Command bash -ErrorAction SilentlyContinue `
 
 </details>
 
@@ -1037,13 +1031,19 @@ FPGA 里每条"寄存器 → 组合逻辑 → 寄存器"的路径，信号都必
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $r='build/local/pynq_puf'; Select-String -Path $r/ct_try.rpt -Pattern "There (is|are) \d+" | ForEach-Object Line | Select-Object -First 3; $
+- `execute` 
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $r='build/local/pynq_puf'; Select-String -Path $r/ts_try.rpt -Pattern "^\s*(clk_fpga_0|ro_clk|ro_osc\d)\s+[-\d]" | ForEach-Object Line; Sele
+- `shell` `$r='build/local/pynq_puf'; Select-String -Path $r/ct_try.rpt -Pattern "There (is|are) \d+" | ForEach-Object Line | Select-Object -First 3; $`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `$r='build/local/pynq_puf'; Select-String -Path $r/ts_try.rpt -Pattern "^\s*(clk_fpga_0|ro_clk|ro_osc\d)\s+[-\d]" | ForEach-Object Line; Sele`
 
 </details>
 
@@ -1083,74 +1083,74 @@ Now correct the gate in the two Tcl scripts so the check reflects physical place
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl
+- `read` `board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl
-- `read` board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl`
+- `read` `board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $g='build/local/pynq_puf/vivado/reports/gate.txt'; Get-Content $g; "run=impl_5 strategy=Performance_RefinePlacement wns=0.208 whs=0.016 drc_
+- `shell` `$g='build/local/pynq_puf/vivado/reports/gate.txt'; Get-Content $g; "run=impl_5 strategy=Performance_RefinePlacement wns=0.208 whs=0.016 drc_`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf/package.py | Select-Object -First 14; "exit=$LASTEXITCODE"; Get-Content board/vivado_z
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_pynq_puf/package.py | Select-Object -First 14; "exit=$LASTEXITCODE"; Get-Content board/vivado_z`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` board/vivado_zynq7000_xc7z020_pynq_puf/ro_corner_sta.tcl
-- `shell` C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/ro_sta.log -source board/vivado_zynq7000_xc7z020_p
+- `write` `board/vivado_zynq7000_xc7z020_pynq_puf/ro_corner_sta.tcl`
+- `shell` `C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/ro_sta.log -source board/vivado_zynq7000_xc7z020_p`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` board/vivado_zynq7000_xc7z020_pynq_puf/pynq_puf_timing.xdc
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl
+- `write` `board/vivado_zynq7000_xc7z020_pynq_puf/pynq_puf_timing.xdc`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Move-Item build/local/pynq_puf/vivado build/local/pynq_puf/vivado_noroclk_20261030; Get-Process vivado* -ErrorAction SilentlyContinue | Sele
+- `shell` `Move-Item build/local/pynq_puf/vivado build/local/pynq_puf/vivado_noroclk_20261030; Get-Process vivado* -ErrorAction SilentlyContinue | Sele`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/build_roclk.log -source board/vivado_zynq7000_xc7z
+- `shell` `C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/build_roclk.log -source board/vivado_zynq7000_xc7z`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/ro_corner_sta.tcl
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/ro_corner_sta.tcl
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/ro_corner_sta.tcl`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/ro_corner_sta.tcl`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
 
 </details>
 
@@ -1164,21 +1164,21 @@ Now correct the gate in the two Tcl scripts so the check reflects physical place
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $r='build/local/pynq_puf/vivado/reports/timing_summary.rpt'; Select-String -Path $r -Pattern "^\s*(clk_fpga_0|ro_clk)\s+[-\d]" | ForEach-Obj
+- `shell` `$r='build/local/pynq_puf/vivado/reports/timing_summary.rpt'; Select-String -Path $r -Pattern "^\s*(clk_fpga_0|ro_clk)\s+[-\d]" | ForEach-Obj`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/explore_impl.tcl
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/explore_impl.tcl
-- `shell` C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/explore_roclk.log -source board/vivado_zynq7000_xc
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/explore_impl.tcl`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/explore_impl.tcl`
+- `shell` `C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/explore_roclk.log -source board/vivado_zynq7000_xc`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/finalize_run.tcl`
 
 </details>
 
@@ -1188,53 +1188,53 @@ Now correct the gate in the two Tcl scripts so the check reflects physical place
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $w='build/local/pynq_puf/vivado/pynq_puf.runs'; foreach($i in 1..5){ $f="$w/impl_$i/runme.log"; if(Test-Path $f){ $s=(Select-String -Path "$
+- `shell` `$w='build/local/pynq_puf/vivado/pynq_puf.runs'; foreach($i in 1..5){ $f="$w/impl_$i/runme.log"; if(Test-Path $f){ $s=(Select-String -Path "$`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Select-String -Path build/local/pynq_puf/vivado/pynq_puf.xpr -Pattern '<Run Id="impl_\d"' | ForEach-Object { $_.Line -replace '.*Id="(impl_\
+- `shell` `Select-String -Path build/local/pynq_puf/vivado/pynq_puf.xpr -Pattern '<Run Id="impl_\d"' | ForEach-Object { $_.Line -replace '.*Id="(impl_\`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/finalize_roclk.log -source board/vivado_zynq7000_x
+- `shell` `C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch -nojournal -log build/local/pynq_puf/finalize_roclk.log -source board/vivado_zynq7000_x`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Remove-Item -Recurse -Force build/local/pynq_puf/ro_sta -ErrorAction SilentlyContinue; C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch 
+- `shell` `Remove-Item -Recurse -Force build/local/pynq_puf/ro_sta -ErrorAction SilentlyContinue; C:\ruanjian\2025.2\Vivado\bin\vivado.bat -mode batch `
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/build.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $w='build/local/pynq_puf/vivado'; $map=@{impl_1='Performance_RefinePlacement (build.tcl)';impl_2='Performance_Explore';impl_3='Performance_E
+- `shell` `$w='build/local/pynq_puf/vivado'; $map=@{impl_1='Performance_RefinePlacement (build.tcl)';impl_2='Performance_Explore';impl_3='Performance_E`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/package.py
-- `shell` @" import re mif=open(r'build/local/pynq_puf/vivado/pynq_puf.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.mif').read().split() coe=open(r'bo
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/package.py`
+- `shell` `@" import re mif=open(r'build/local/pynq_puf/vivado/pynq_puf.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.mif').read().split() coe=open(r'bo`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $h='board/vivado_zynq7000_xc7z020_pynq_puf/candidate/pynq_puf.hwh'; Select-String -Path $h -Pattern 'MEMRANGE .*INSTANCE="(pynq_ctl_0|pynq_m
+- `shell` `$h='board/vivado_zynq7000_xc7z020_pynq_puf/candidate/pynq_puf.hwh'; Select-String -Path $h -Pattern 'MEMRANGE .*INSTANCE="(pynq_ctl_0|pynq_m`
 
 </details>
 
@@ -1244,33 +1244,33 @@ Now the readme — rewrite it to match the new candidate, the pblock correction,
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` board/vivado_zynq7000_xc7z020_pynq_puf/readme.md
+- `write` `board/vivado_zynq7000_xc7z020_pynq_puf/readme.md`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` board/vivado_zynq7000_xc7z020_pynq_puf/readme.md
-- `edit` project_log/actual_progress.md
-- `read` project_log/lessons_learned.md
+- `edit` `board/vivado_zynq7000_xc7z020_pynq_puf/readme.md`
+- `edit` `project_log/actual_progress.md`
+- `read` `project_log/lessons_learned.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` project_log/lessons_learned.md
+- `edit` `project_log/lessons_learned.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem board/vivado_zynq7000_xc7z020_pynq_puf -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Force; git add board/vi
+- `shell` `Get-ChildItem board/vivado_zynq7000_xc7z020_pynq_puf -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Force; git add board/vi`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git log --oneline -4; git log --stat --format="%h %s" 56929b0..HEAD | Select-Object -First 25
+- `shell` `git log --oneline -4; git log --stat --format="%h %s" 56929b0..HEAD | Select-Object -First 25`
 
 </details>
 
@@ -1280,13 +1280,13 @@ Others' commits don't touch my files. Committing and pushing.
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $msg = @" fix(pynq-puf): sign off ro_clk domain, analyse RO counters, correct pblock claim  - pynq_puf_timing.xdc declares ro_clk = FCLK0/4 
+- `shell` `$msg = @" fix(pynq-puf): sign off ro_clk domain, analyse RO counters, correct pblock claim  - pynq_puf_timing.xdc declares ro_clk = FCLK0/4 `
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git rev-parse --short HEAD; git rev-parse --short origin/main; Get-Process vivado -ErrorAction SilentlyContinue | Select-Object Id,StartTime
+- `shell` `git rev-parse --short HEAD; git rev-parse --short origin/main; Get-Process vivado -ErrorAction SilentlyContinue | Select-Object Id,StartTime`
 
 </details>
 

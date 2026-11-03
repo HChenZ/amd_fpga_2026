@@ -13,52 +13,52 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content AGENTS.md, README.md, docs/project_overview.md, docs/technical_rules.md, tasks/task_board.md, project_log/actual_progress.md, pr
+- `shell` `Get-Content AGENTS.md, README.md, docs/project_overview.md, docs/technical_rules.md, tasks/task_board.md, project_log/actual_progress.md, pr`
 
 </details>
 
 <details><summary>工具调用 8 次</summary>
 
-- `read` README.md
-- `read` docs/project_overview.md
-- `read` docs/technical_rules.md
-- `read` tasks/task_board.md
-- `read` project_log/actual_progress.md
-- `glob` **/*20261029*
-- `read` submission
-- `read` docs/tech_report
+- `read` `README.md`
+- `read` `docs/project_overview.md`
+- `read` `docs/technical_rules.md`
+- `read` `tasks/task_board.md`
+- `read` `project_log/actual_progress.md`
+- `glob` `**/*20261029*`
+- `read` `submission`
+- `read` `docs/tech_report`
 
 </details>
 
 <details><summary>工具调用 8 次</summary>
 
-- `read` docs/current_status_20261029.md
-- `read` board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md
-- `read` docs/tech_report/data_gap_after_pull_20261029.md
-- `read` docs/tech_report/handoff_20261029.md
-- `read` docs/interfaces.md
-- `read` project_log/readme.md
-- `glob` data/pynq/**/*
-- `grep` docs
+- `read` `docs/current_status_20261029.md`
+- `read` `board/vivado_zynq7000_xc7z020_pynq/validation_20261029.md`
+- `read` `docs/tech_report/data_gap_after_pull_20261029.md`
+- `read` `docs/tech_report/handoff_20261029.md`
+- `read` `docs/interfaces.md`
+- `read` `project_log/readme.md`
+- `glob` `data/pynq/**/*`
+- `grep` `docs`
 
 </details>
 
 <details><summary>工具调用 8 次</summary>
 
-- `read` data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json
-- `read` data/pynq/error_gate_20261029_134023/pynq_board_error_gate.json
-- `read` docs/timing_acb_validation.md
-- `grep` src/firmware/pynq_svc
-- `read` board/vivado_zynq7000_xc7z020_pynq/validation_20261028.md
-- `read` project_log/development_log.md
-- `read` docs/tech_report/README.md
-- `read` skill
+- `read` `data/pynq/notebook_20261029_130920/pynq_warm_benchmark.json`
+- `read` `data/pynq/error_gate_20261029_134023/pynq_board_error_gate.json`
+- `read` `docs/timing_acb_validation.md`
+- `grep` `src/firmware/pynq_svc`
+- `read` `board/vivado_zynq7000_xc7z020_pynq/validation_20261028.md`
+- `read` `project_log/development_log.md`
+- `read` `docs/tech_report/README.md`
+- `read` `skill`
 
 </details>
 
@@ -68,24 +68,24 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' import json, pathlib, statistics, hashlib p=pathlib.Path('.') b=json.loads((p/'data/pynq/notebook_20261029_130920/pynq_warm_benchmark.jso
+- `shell` `@' import json, pathlib, statistics, hashlib p=pathlib.Path('.') b=json.loads((p/'data/pynq/notebook_20261029_130920/pynq_warm_benchmark.jso`
 
 </details>
 
 <details><summary>工具调用 6 次</summary>
 
-- `read` src/firmware/pynq_svc/ascon_modes.c
-- `read` src/firmware/pynq_svc/ascon_modes.c
-- `grep` src/firmware/pynq_svc/main.c
-- `read` board/vivado_zynq7000_xc7z020_pynq/release/manifest.json
-- `read` skill/readme.md
-- `read` project_log/lessons_learned.md
+- `read` `src/firmware/pynq_svc/ascon_modes.c`
+- `read` `src/firmware/pynq_svc/ascon_modes.c`
+- `grep` `src/firmware/pynq_svc/main.c`
+- `read` `board/vivado_zynq7000_xc7z020_pynq/release/manifest.json`
+- `read` `skill/readme.md`
+- `read` `project_log/lessons_learned.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' import json, pathlib, statistics, hashlib, sys p=pathlib.Path('.') print('PYTHON',sys.version.split()[0]) b=json.loads((p/'data/pynq/note
+- `shell` `@' import json, pathlib, statistics, hashlib, sys p=pathlib.Path('.') print('PYTHON',sys.version.split()[0]) b=json.loads((p/'data/pynq/note`
 
 </details>
 
@@ -97,7 +97,7 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff --check
+- `shell` `git diff --check`
 
 </details>
 
@@ -251,52 +251,52 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
 <details><summary>工具调用 8 次</summary>
 
-- `glob` docs
-- `read` docs/tech_report/src/01_front.md
-- `read` docs/tech_report/src/06_perf.md
-- `read` docs/tech_report/src/075_pynq.md
-- `read` docs/tech_report/src/08_summary.md
-- `read` docs/tech_report/src/09_review.md
-- `read` docs/tech_report/build_site.py
-- `read` docs/tech_report/build_template_src.py
+- `glob` `docs`
+- `read` `docs/tech_report/src/01_front.md`
+- `read` `docs/tech_report/src/06_perf.md`
+- `read` `docs/tech_report/src/075_pynq.md`
+- `read` `docs/tech_report/src/08_summary.md`
+- `read` `docs/tech_report/src/09_review.md`
+- `read` `docs/tech_report/build_site.py`
+- `read` `docs/tech_report/build_template_src.py`
 
 </details>
 
 <details><summary>工具调用 8 次</summary>
 
-- `read` docs/tech_report/src/02_cpu.md
-- `read` docs/tech_report/src/03_ascon.md
-- `read` docs/tech_report/src/04_impl.md
-- `read` docs/tech_report/src/05_verify.md
-- `read` docs/tech_report/build_latex.py
-- `read` docs/tech_report/src_template/new
-- `read` docs/tech_report/evidence/README.md
-- `read` docs/agent_workflow.md
+- `read` `docs/tech_report/src/02_cpu.md`
+- `read` `docs/tech_report/src/03_ascon.md`
+- `read` `docs/tech_report/src/04_impl.md`
+- `read` `docs/tech_report/src/05_verify.md`
+- `read` `docs/tech_report/build_latex.py`
+- `read` `docs/tech_report/src_template/new`
+- `read` `docs/tech_report/evidence/README.md`
+- `read` `docs/agent_workflow.md`
 
 </details>
 
 <details><summary>工具调用 8 次</summary>
 
-- `read` docs/tech_report/evidence/build_evidence.py
-- `read` docs/tech_report/evidence/assemble.sh
-- `grep` docs/tech_report/src_template/new
-- `grep` docs/tech_report/build_latex.py
-- `read` docs/tech_report/make_overleaf_zip.py
-- `read` docs/tech_report/prerender_figs.py
-- `glob` build/reports/pynq_final_20261028/**/*summary*
-- `read` docs/tech_report/latex/build.ps1
+- `read` `docs/tech_report/evidence/build_evidence.py`
+- `read` `docs/tech_report/evidence/assemble.sh`
+- `grep` `docs/tech_report/src_template/new`
+- `grep` `docs/tech_report/build_latex.py`
+- `read` `docs/tech_report/make_overleaf_zip.py`
+- `read` `docs/tech_report/prerender_figs.py`
+- `glob` `build/reports/pynq_final_20261028/**/*summary*`
+- `read` `docs/tech_report/latex/build.ps1`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' from pathlib import Path for p in sorted(Path('docs/tech_report/src_template/new').glob('*.md')):  print('\nFILE '+str(p)+'\n'+p.read_tex
+- `shell` `@' from pathlib import Path for p in sorted(Path('docs/tech_report/src_template/new').glob('*.md')):  print('\nFILE '+str(p)+'\n'+p.read_tex`
 
 </details>
 
@@ -306,27 +306,27 @@
 
 <details><summary>工具调用 8 次</summary>
 
-- `read` docs/tech_report/build_latex.py
-- `read` docs/tech_report/build_latex.py
-- `grep` docs/tech_report/figs
-- `read` build/reports/pynq_final_20261028/smoke/summary.json
-- `read` build/reports/pynq_final_20261028/regression_final/summary.json
-- `read` src/firmware/pynq_svc/build.sh
-- `read` docs/tech_report/figs
-- `read` docs/development_workflow.md
+- `read` `docs/tech_report/build_latex.py`
+- `read` `docs/tech_report/build_latex.py`
+- `grep` `docs/tech_report/figs`
+- `read` `build/reports/pynq_final_20261028/smoke/summary.json`
+- `read` `build/reports/pynq_final_20261028/regression_final/summary.json`
+- `read` `src/firmware/pynq_svc/build.sh`
+- `read` `docs/tech_report/figs`
+- `read` `docs/development_workflow.md`
 
 </details>
 
 <details><summary>工具调用 8 次</summary>
 
-- `read` docs/tech_report/figs/board_photo.jpg
-- `read` docs/tech_report/figs/fig_2_1.tex
-- `read` docs/tech_report/figs/fig_2_7.tex
-- `read` docs/tech_report/figs/fig_2_9.tex
-- `read` docs/tech_report/figs/fig_2_11.tex
-- `read` docs/tech_report/figs/fig_3_2.tex
-- `read` docs/tech_report/figs/fig_2_10.tex
-- `read` docs/tech_report/figs/fig_3_4.tex
+- `read` `docs/tech_report/figs/board_photo.jpg`
+- `read` `docs/tech_report/figs/fig_2_1.tex`
+- `read` `docs/tech_report/figs/fig_2_7.tex`
+- `read` `docs/tech_report/figs/fig_2_9.tex`
+- `read` `docs/tech_report/figs/fig_2_11.tex`
+- `read` `docs/tech_report/figs/fig_3_2.tex`
+- `read` `docs/tech_report/figs/fig_2_10.tex`
+- `read` `docs/tech_report/figs/fig_3_4.tex`
 
 </details>
 
@@ -338,7 +338,7 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' from pathlib import Path import shutil, datetime, json, ast root=Path('docs/tech_report') out=Path(r'C:/Users/HXZ/AppData/Local/Temp/open
+- `shell` `@' from pathlib import Path import shutil, datetime, json, ast root=Path('docs/tech_report') out=Path(r'C:/Users/HXZ/AppData/Local/Temp/open`
 
 </details>
 
@@ -356,7 +356,7 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` data/ascon/results/*failure*
+- `glob` `data/ascon/results/*failure*`
 
 </details>
 
@@ -386,25 +386,19 @@
 
 <details><summary>工具调用 7 次</summary>
 
-- `read` build/reports/pynq_final_20261028
-- `read` data/ascon/results/failure_contract.json
-- `read` data/pynq/board_20261028/identity.txt
-- `read` docs/tech_report/figs/fig_2_2.tex
-- `read` docs/tech_report/figs/fig_1_1.tex
-- `read` docs/tech_report/figs/fig_3_5.tex
-- `read` docs/tech_report/build_latex.py
+- `read` `build/reports/pynq_final_20261028`
+- `read` `data/ascon/results/failure_contract.json`
+- `read` `data/pynq/board_20261028/identity.txt`
+- `read` `docs/tech_report/figs/fig_2_2.tex`
+- `read` `docs/tech_report/figs/fig_1_1.tex`
+- `read` `docs/tech_report/figs/fig_3_5.tex`
+- `read` `docs/tech_report/build_latex.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/reports/pynq_final_20261028
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
+- `grep` `build/reports/pynq_final_20261028`
 
 </details>
 
@@ -440,7 +434,13 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' from pathlib import Path p=Path('docs/tech_report/build_latex.py') for i,l in enumerate(p.read_text(encoding='utf-8').splitlines()[529:53
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `@' from pathlib import Path p=Path('docs/tech_report/build_latex.py') for i,l in enumerate(p.read_text(encoding='utf-8').splitlines()[529:53`
 
 </details>
 
@@ -452,13 +452,13 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` docs/tech_report/build_latex.py
+- `read` `docs/tech_report/build_latex.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` data/ascon/results/board/*.XDat
+- `glob` `data/ascon/results/board/*.XDat`
 
 </details>
 
@@ -497,7 +497,7 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
@@ -513,24 +513,24 @@
 
 <details><summary>工具调用 7 次</summary>
 
-- `read` docs/key_subsystem.md
-- `read` data/ascon/results/board/uart_20261027_keys3.txt
-- `read` docs/tech_report/build_latex.py
-- `read` skill/rtl-design-discipline/SKILL.md
-- `read` tasks/milestones.md
-- `read` docs/decisions.md
-- `read` docs/tech_report/build_local.bat
+- `read` `docs/key_subsystem.md`
+- `read` `data/ascon/results/board/uart_20261027_keys3.txt`
+- `read` `docs/tech_report/build_latex.py`
+- `read` `skill/rtl-design-discipline/SKILL.md`
+- `read` `tasks/milestones.md`
+- `read` `docs/decisions.md`
+- `read` `docs/tech_report/build_local.bat`
 
 </details>
 
 <details><summary>工具调用 6 次</summary>
 
-- `read` src/rtl/keys/puf_key.v
-- `read` src/rtl/keys/key_mmio.v
-- `read` src/firmware/keys_rv32/main.c
-- `read` sim/keys
-- `read` docs/tech_report/figs/fig_2_8.tex
-- `read` docs/tech_report/prerender_figs.py
+- `read` `src/rtl/keys/puf_key.v`
+- `read` `src/rtl/keys/key_mmio.v`
+- `read` `src/firmware/keys_rv32/main.c`
+- `read` `sim/keys`
+- `read` `docs/tech_report/figs/fig_2_8.tex`
+- `read` `docs/tech_report/prerender_figs.py`
 
 </details>
 
@@ -548,32 +548,19 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/evidence/build_evidence.py
+- `shell` `python -X utf8 docs/tech_report/evidence/build_evidence.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_template_src.py
+- `shell` `python -X utf8 docs/tech_report/build_template_src.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` docs/tech_report/build_template_src.py
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 2 次</summary>
-
-- `shell` python -X utf8 docs/tech_report/prerender_figs.py
-- `shell` python -X utf8 docs/tech_report/build_template_src.py
+- `grep` `docs/tech_report/build_template_src.py`
 
 </details>
 
@@ -585,14 +572,27 @@
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_site.py
-- `shell` python -X utf8 docs/tech_report/build_latex.py
+- `shell` `python -X utf8 docs/tech_report/prerender_figs.py`
+- `shell` `python -X utf8 docs/tech_report/build_template_src.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` & 'C:\Users\HXZ\AppData\Local\hermes\cache\scratch\tectonic.exe' -X compile main.tex --keep-logs
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 2 次</summary>
+
+- `shell` `python -X utf8 docs/tech_report/build_site.py`
+- `shell` `python -X utf8 docs/tech_report/build_latex.py`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `& 'C:\Users\HXZ\AppData\Local\hermes\cache\scratch\tectonic.exe' -X compile main.tex --keep-logs`
 
 </details>
 
@@ -604,23 +604,17 @@
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` docs/tech_report/build_latex.py
-- `read` docs/tech_report/build_latex.py
-- `read` docs/tech_report/latex/chapters/ch04.tex
-- `read` docs/tech_report/latex/chapters/ch02.tex
-- `grep` docs/tech_report/README.md
+- `read` `docs/tech_report/build_latex.py`
+- `read` `docs/tech_report/build_latex.py`
+- `read` `docs/tech_report/latex/chapters/ch04.tex`
+- `read` `docs/tech_report/latex/chapters/ch02.tex`
+- `grep` `docs/tech_report/README.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` docs/tech_report/build_latex.py
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
+- `read` `docs/tech_report/build_latex.py`
 
 </details>
 
@@ -638,29 +632,35 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `python -X utf8 docs/tech_report/build_report.py`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `grep` docs/tech_report/src
-- `read` src/rtl/dcache.v
-- `read` src/rtl/ctrl.v
-- `read` ascon/ascon_c/aead/aead.c
-- `read` docs/tech_report/figs/fig_2_6.tex
+- `grep` `docs/tech_report/src`
+- `read` `src/rtl/dcache.v`
+- `read` `src/rtl/ctrl.v`
+- `read` `ascon/ascon_c/aead/aead.c`
+- `read` `docs/tech_report/figs/fig_2_6.tex`
 
 </details>
 
 <details><summary>工具调用 7 次</summary>
 
-- `read` docs/tech_report/figs/fig_2_3.tex
-- `read` docs/tech_report/figs/fig_2_4.tex
-- `read` docs/tech_report/figs/fig_2_5.tex
-- `read` src/rtl/ascon/ascon_permutation.v
-- `read` docs/tech_report/src/03_ascon.md
-- `grep` src/rtl/regfile.v
-- `read` src/rtl/regfile.v
+- `read` `docs/tech_report/figs/fig_2_3.tex`
+- `read` `docs/tech_report/figs/fig_2_4.tex`
+- `read` `docs/tech_report/figs/fig_2_5.tex`
+- `read` `src/rtl/ascon/ascon_permutation.v`
+- `read` `docs/tech_report/src/03_ascon.md`
+- `grep` `src/rtl/regfile.v`
+- `read` `src/rtl/regfile.v`
 
 </details>
 
@@ -678,7 +678,7 @@ PUF 已恢复为独立原型章节，并核实了两点：有效的 v3 日志是
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` docs/tech_report/src/02_cpu.md
+- `read` `docs/tech_report/src/02_cpu.md`
 
 </details>
 
@@ -690,33 +690,27 @@ PUF 已恢复为独立原型章节，并核实了两点：有效的 v3 日志是
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' from pathlib import Path import pymupdf, re p=Path('docs/tech_report/latex/main.pdf') d=pymupdf.open(p) print('PAGES',len(d)) for term in
+- `shell` `@' from pathlib import Path import pymupdf, re p=Path('docs/tech_report/latex/main.pdf') d=pymupdf.open(p) print('PAGES',len(d)) for term in`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:/Users/HXZ/AppData/Local/Temp/opencode/report_review/page_8.png
-- `read` C:/Users/HXZ/AppData/Local/Temp/opencode/report_review/page_21.png
-- `read` C:/Users/HXZ/AppData/Local/Temp/opencode/report_review/page_35.png
+- `read` `C:/Users/HXZ/AppData/Local/Temp/opencode/report_review/page_8.png`
+- `read` `C:/Users/HXZ/AppData/Local/Temp/opencode/report_review/page_21.png`
+- `read` `C:/Users/HXZ/AppData/Local/Temp/opencode/report_review/page_35.png`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` sim/ascon/reference/*
+- `glob` `sim/ascon/reference/*`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` sim/ascon/reference
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
+- `read` `sim/ascon/reference`
 
 </details>
 
@@ -728,13 +722,19 @@ PUF 已恢复为独立原型章节，并核实了两点：有效的 v3 日志是
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py
+- `patch` 
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` docs/tech_report/validation/build_20261029_232734/tool_version.log
+- `shell` `python -X utf8 docs/tech_report/build_report.py`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `docs/tech_report/validation/build_20261029_232734/tool_version.log`
 
 </details>
 
@@ -746,25 +746,25 @@ PUF 已恢复为独立原型章节，并核实了两点：有效的 v3 日志是
 
 <details><summary>工具调用 4 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/evidence/assemble.py
-- `shell` git diff --check
-- `shell` git diff --stat
-- `read` docs/tech_report/validation/build_20261029_233156/audit.log
+- `shell` `python -X utf8 docs/tech_report/evidence/assemble.py`
+- `shell` `git diff --check`
+- `shell` `git diff --stat`
+- `read` `docs/tech_report/validation/build_20261029_233156/audit.log`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` project_log/actual_progress.md
+- `read` `project_log/actual_progress.md`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` docs/tech_report/figs/fig_2_6.pdf
-- `read` docs/tech_report/figs/fig_2_8.pdf
-- `read` submission/current_evidence.json
-- `shell` git status --short
+- `read` `docs/tech_report/figs/fig_2_6.pdf`
+- `read` `docs/tech_report/figs/fig_2_8.pdf`
+- `read` `submission/current_evidence.json`
+- `shell` `git status --short`
 
 </details>
 
@@ -776,13 +776,13 @@ PUF 已恢复为独立原型章节，并核实了两点：有效的 v3 日志是
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/build_report.py
+- `shell` `python -X utf8 docs/tech_report/build_report.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` docs/tech_report/evidence/proposed_text_changes.md
+- `read` `docs/tech_report/evidence/proposed_text_changes.md`
 
 </details>
 
@@ -800,10 +800,10 @@ PUF 已恢复为独立原型章节，并核实了两点：有效的 v3 日志是
 
 <details><summary>工具调用 4 次</summary>
 
-- `shell` python -X utf8 docs/tech_report/evidence/assemble.py
-- `read` docs/tech_report/validation/build_20261029_233545/audit.log
-- `shell` git diff --check
-- `shell` git diff --name-only -- src board ascon
+- `shell` `python -X utf8 docs/tech_report/evidence/assemble.py`
+- `read` `docs/tech_report/validation/build_20261029_233545/audit.log`
+- `shell` `git diff --check`
+- `shell` `git diff --name-only -- src board ascon`
 
 </details>
 
@@ -833,7 +833,7 @@ PUF 已恢复为独立原型章节，并核实了两点：有效的 v3 日志是
 - 项目安排统一为 **11 月 1 日提交并冻结**；额外稳定性与通用性实验不阻塞提交。
 - 修复图件错误，并补齐报告自动构建、证据核验和封包工具。
 
-**验证结果：**完整构建通过；51 件证据哈希、16 张正文图、PDF、Overleaf 包及63文件证据包校验通过。普通排版提示仍保留。
+<strong>验证结果：</strong>完整构建通过；51 件证据哈希、16 张正文图、PDF、Overleaf 包及63文件证据包校验通过。普通排版提示仍保留。
 
 下一步按指导表完成 Skill 实测，再补团队信息、PPT/视频和人工提交。本轮任务 D01/D02/D03，owner TBD；未改生产 RTL、固件或发布镜像，未 commit/push。
 
@@ -851,18 +851,18 @@ PUF 已恢复为独立原型章节，并核实了两点：有效的 v3 日志是
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
 <details><summary>工具调用 6 次</summary>
 
-- `read` src/pynq/mailbox_protocol.md
-- `read` src/rtl/keys/ro_puf_core.v
-- `read` board/vivado_zynq7000_xc7z020_pynq/build.tcl
-- `read` docs/io_timing_signoff.md
-- `read` src/rtl/ascon/ascon_aead_core.v
-- `read` src/rtl/keys/ro_unit.v
+- `read` `src/pynq/mailbox_protocol.md`
+- `read` `src/rtl/keys/ro_puf_core.v`
+- `read` `board/vivado_zynq7000_xc7z020_pynq/build.tcl`
+- `read` `docs/io_timing_signoff.md`
+- `read` `src/rtl/ascon/ascon_aead_core.v`
+- `read` `src/rtl/keys/ro_unit.v`
 
 </details>
 
@@ -906,9 +906,9 @@ PUF 则先补功能错误处理：当前采样看门狗超时会发完成信号�
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` src/rtl/keys/ro_puf_core.v
-- `shell` git diff --check
-- `shell` python -c "from pathlib import Path; import math; paths=['docs/dma_puf_implementation_plan.md','tasks/advanced_features_plan_20261101.md']; 
+- `read` `src/rtl/keys/ro_puf_core.v`
+- `shell` `git diff --check`
+- `shell` `python -c "from pathlib import Path; import math; paths=['docs/dma_puf_implementation_plan.md','tasks/advanced_features_plan_20261101.md']; `
 
 </details>
 
@@ -1043,7 +1043,7 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short
+- `shell` `git status --short`
 
 </details>
 
@@ -1061,12 +1061,12 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 6 次</summary>
 
-- `shell` Get-Command vivado,iverilog,vvp,python,wsl -ErrorAction SilentlyContinue | Select-Object Name,Source
-- `read` C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/xsim.md
-- `read` src/rtl/ascon/readme.md
-- `read` src/pynq/readme.md
-- `read` docs/interfaces.md
-- `read` tasks/advanced_features_plan_20261101.md
+- `shell` `Get-Command vivado,iverilog,vvp,python,wsl -ErrorAction SilentlyContinue | Select-Object Name,Source`
+- `read` `C:/Users/HXZ/.agents/skills/vivado-simulate-rtl/references/xsim.md`
+- `read` `src/rtl/ascon/readme.md`
+- `read` `src/pynq/readme.md`
+- `read` `docs/interfaces.md`
+- `read` `tasks/advanced_features_plan_20261101.md`
 
 </details>
 
@@ -1096,13 +1096,13 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` PUF fail-closed implementation
+- `subagent` `PUF fail-closed implementation`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` CPU DMA host integration
+- `subagent` `CPU DMA host integration`
 
 </details>
 
@@ -1126,28 +1126,16 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` sim/ascon/golden.py
-- `read` sim/ascon/support.py
-- `read` src/rtl/ascon/ascon_round.v
-- `glob` data/ascon/**/LWC_AEAD_KAT_128_128.txt
+- `read` `sim/ascon/golden.py`
+- `read` `sim/ascon/support.py`
+- `read` `src/rtl/ascon/ascon_round.v`
+- `glob` `data/ascon/**/LWC_AEAD_KAT_128_128.txt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` sim/ascon/support.py
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` python -X utf8 sim/ascon_dma/run_regression.py --smoke
+- `grep` `sim/ascon/support.py`
 
 </details>
 
@@ -1159,7 +1147,7 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/run_regression.py --smoke
+- `shell` `python -X utf8 sim/ascon_dma/run_regression.py --smoke`
 
 </details>
 
@@ -1171,7 +1159,19 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/run_regression.py
+- `shell` `python -X utf8 sim/ascon_dma/run_regression.py --smoke`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `patch` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `python -X utf8 sim/ascon_dma/run_regression.py`
 
 </details>
 
@@ -1183,13 +1183,13 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/local/advanced_dma/dma_properties.txt
+- `read` `build/local/advanced_dma/dma_properties.txt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:/Users/HXZ/.agents/skills/vivado-ip-configurator/lib/ipcfg.tcl
+- `read` `C:/Users/HXZ/.agents/skills/vivado-ip-configurator/lib/ipcfg.tcl`
 
 </details>
 
@@ -1231,7 +1231,7 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/run_regression.py
+- `shell` `python -X utf8 sim/ascon_dma/run_regression.py`
 
 </details>
 
@@ -1261,7 +1261,7 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/local/advanced_dma/ps7_hp_properties.txt
+- `read` `build/local/advanced_dma/ps7_hp_properties.txt`
 
 </details>
 
@@ -1273,7 +1273,7 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' from pathlib import Path import shutil,json,hashlib root=Path('.').resolve(); out=root/'data/advanced/dma_direct/xsim_20261030_0010';out.
+- `shell` `@' from pathlib import Path import shutil,json,hashlib root=Path('.').resolve(); out=root/'data/advanced/dma_direct/xsim_20261030_0010';out.`
 
 </details>
 
@@ -1309,7 +1309,7 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` PUF adapter and firmware
+- `subagent` `PUF adapter and firmware`
 
 </details>
 
@@ -1339,24 +1339,24 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/run_control.py
+- `shell` `python -X utf8 sim/ascon_dma/run_control.py`
 
 </details>
 
 <details><summary>工具调用 6 次</summary>
 
-- `read` sim/pynq_dma_cpu/readme.md
-- `read` board/vivado_zynq7000_xc7z020_pynq_dma_cpu/readme.md
-- `read` src/pynq/dma_transport.py
-- `read` src/rtl/pynq_dma_cpu
-- `read` sim/keys_v2/sources.json
-- `read` src/rtl/keys_v2/puf_physical_v2.v
+- `read` `sim/pynq_dma_cpu/readme.md`
+- `read` `board/vivado_zynq7000_xc7z020_pynq_dma_cpu/readme.md`
+- `read` `src/pynq/dma_transport.py`
+- `read` `src/rtl/pynq_dma_cpu`
+- `read` `sim/keys_v2/sources.json`
+- `read` `src/rtl/keys_v2/puf_physical_v2.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` CPU DMA exhaustive regression
+- `subagent` `CPU DMA exhaustive regression`
 
 </details>
 
@@ -1422,24 +1422,24 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 6 次</summary>
 
-- `grep` build/local/dma_direct/d.runs/d_engine_0_synth_1
-- `read` src/rtl/keys_v2/mmio_abi.md
-- `read` sim/keys_v2/cpu_sources.json
-- `read` src/rtl/keys_v2/ro_array_v2.v
-- `read` src/rtl/keys_v2/puf_mmio_physical_v2.v
-- `read` src/rtl/pynq_dma_cpu/dma_control.v
+- `grep` `build/local/dma_direct/d.runs/d_engine_0_synth_1`
+- `read` `src/rtl/keys_v2/mmio_abi.md`
+- `read` `sim/keys_v2/cpu_sources.json`
+- `read` `src/rtl/keys_v2/ro_array_v2.v`
+- `read` `src/rtl/keys_v2/puf_mmio_physical_v2.v`
+- `read` `src/rtl/pynq_dma_cpu/dma_control.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/local/dma_direct/d.gen/sources_1/bd/d/ip/d_dma_0/sim/d_dma_0.v
+- `read` `build/local/dma_direct/d.gen/sources_1/bd/d/ip/d_dma_0/sim/d_dma_0.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/local/dma_direct/d.gen/sources_1/bd/d/ip/d_dma_0/sim/d_dma_0.vhd
+- `read` `build/local/dma_direct/d.gen/sources_1/bd/d/ip/d_dma_0/sim/d_dma_0.vhd`
 
 </details>
 
@@ -1451,7 +1451,7 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/run_control.py
+- `shell` `python -X utf8 sim/ascon_dma/run_control.py`
 
 </details>
 
@@ -1475,13 +1475,13 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` build/local/**/puf_v2.hex
+- `glob` `build/local/**/puf_v2.hex`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` data/advanced/puf/**/puf_v2.hex
+- `glob` `data/advanced/puf/**/puf_v2.hex`
 
 </details>
 
@@ -1529,28 +1529,22 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 4 次</summary>
 
-- `read` data/advanced/puf/physical_ooc_20261030_0054/cdc.rpt
-- `read` data/advanced/puf/physical_ooc_20261030_0054/timing.rpt
-- `read` data/advanced/puf/physical_ooc_20261030_0054/drc.rpt
-- `read` src/rtl/keys_v2/ro_puf_core_v2.v
+- `read` `data/advanced/puf/physical_ooc_20261030_0054/cdc.rpt`
+- `read` `data/advanced/puf/physical_ooc_20261030_0054/timing.rpt`
+- `read` `data/advanced/puf/physical_ooc_20261030_0054/drc.rpt`
+- `read` `src/rtl/keys_v2/ro_puf_core_v2.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/puf/physical_ooc_20261030_0054/cdc.rpt
+- `grep` `data/advanced/puf/physical_ooc_20261030_0054/cdc.rpt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` PUF CDC report repair
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
+- `subagent` `PUF CDC report repair`
 
 </details>
 
@@ -1562,13 +1556,19 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `glob` build/local/dma_direct/**/d_dma_0.xci
+- `execute` 
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/local/dma_direct/d.gen/sources_1/bd/d/ip/d_dma_0
+- `glob` `build/local/dma_direct/**/d_dma_0.xci`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `build/local/dma_direct/d.gen/sources_1/bd/d/ip/d_dma_0`
 
 </details>
 
@@ -1592,17 +1592,17 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` data/advanced/dma_cpu/full_20261030_002958_293520/xsim_all/manifest.json
-- `read` data/advanced/dma_cpu/full_20261030_002958_293520/xsim_all/sources.json
-- `read` board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq_dma_cpu.v
-- `read` sim/pynq_dma_cpu/tb_dma_cpu.v
-- `read` src/rtl/pynq_dma_cpu/top_dma.v
+- `read` `data/advanced/dma_cpu/full_20261030_002958_293520/xsim_all/manifest.json`
+- `read` `data/advanced/dma_cpu/full_20261030_002958_293520/xsim_all/sources.json`
+- `read` `board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq_dma_cpu.v`
+- `read` `sim/pynq_dma_cpu/tb_dma_cpu.v`
+- `read` `src/rtl/pynq_dma_cpu/top_dma.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` CPU DMA Vivado implementation
+- `subagent` `CPU DMA Vivado implementation`
 
 </details>
 
@@ -1626,22 +1626,22 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 4 次</summary>
 
-- `grep` build/local/dma_direct/d.runs/impl_1/runme.log
-- `glob` data/advanced/dma_direct/vendor_xsim_*/result.txt
-- `read` src/rtl/keys_v2/cdc_review_20261030.md
-- `read` src/rtl/ascon_dma/ascon_aead_multiblock.v
+- `grep` `build/local/dma_direct/d.runs/impl_1/runme.log`
+- `glob` `data/advanced/dma_direct/vendor_xsim_*/result.txt`
+- `read` `src/rtl/keys_v2/cdc_review_20261030.md`
+- `read` `src/rtl/ascon_dma/ascon_aead_multiblock.v`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content 'build/local/dma_direct/d.runs/impl_1/runme.log' -Tail 70
+- `shell` `Get-Content 'build/local/dma_direct/d.runs/impl_1/runme.log' -Tail 70`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` PUF physical offline closure
+- `subagent` `PUF physical offline closure`
 
 </details>
 
@@ -1653,7 +1653,7 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/run_regression.py
+- `shell` `python -X utf8 sim/ascon_dma/run_regression.py`
 
 </details>
 
@@ -1677,7 +1677,7 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/run_regression.py
+- `shell` `python -X utf8 sim/ascon_dma/run_regression.py`
 
 </details>
 
@@ -1689,7 +1689,7 @@ RV32 服务固件 → SW / MMIO / ISE
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` Audit highspeed security tests
+- `subagent` `Audit highspeed security tests`
 
 </details>
 
@@ -1737,7 +1737,7 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` sim/ascon_dma/direct_review.md
+- `read` `sim/ascon_dma/direct_review.md`
 
 </details>
 
@@ -1749,7 +1749,7 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` Close core contract probes
+- `subagent` `Close core contract probes`
 
 </details>
 
@@ -1761,7 +1761,7 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/run_regression.py
+- `shell` `python -X utf8 sim/ascon_dma/run_regression.py`
 
 </details>
 
@@ -1821,13 +1821,13 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/dma_direct_bram/d.runs/d_engine_0_synth_1/d_engine_0_utilization_synth.rpt
+- `grep` `build/local/dma_direct_bram/d.runs/d_engine_0_synth_1/d_engine_0_utilization_synth.rpt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/dma_direct_bram/d.runs/d_engine_0_synth_1/runme.log
+- `grep` `build/local/dma_direct_bram/d.runs/d_engine_0_synth_1/runme.log`
 
 </details>
 
@@ -1839,13 +1839,13 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/run_regression.py
+- `shell` `python -X utf8 sim/ascon_dma/run_regression.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/run_lifecycle.py --backend iverilog
+- `shell` `python -X utf8 sim/ascon_dma/run_lifecycle.py --backend iverilog`
 
 </details>
 
@@ -1857,13 +1857,13 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` build/local/dma_direct/d.runs/impl_1/.vivado.begin.rst
+- `read` `build/local/dma_direct/d.runs/impl_1/.vivado.begin.rst`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-CimInstance Win32_Process -Filter "ProcessId=30092" | Select-Object ProcessId,ParentProcessId,CommandLine
+- `shell` `Get-CimInstance Win32_Process -Filter "ProcessId=30092" | Select-Object ProcessId,ParentProcessId,CommandLine`
 
 </details>
 
@@ -1875,19 +1875,13 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' from pathlib import Path import shutil,json,datetime root=Path('.'); src=root/'build/local/dma_direct/d.runs/impl_1';dst=root/'data/advan
+- `shell` `@' from pathlib import Path import shutil,json,datetime root=Path('.'); src=root/'build/local/dma_direct/d.runs/impl_1';dst=root/'data/advan`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` taskkill /PID 30092 /T /F
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
+- `shell` `taskkill /PID 30092 /T /F`
 
 </details>
 
@@ -1911,7 +1905,13 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/dma_direct_bram/d.runs/d_engine_0_synth_1/d_engine_0_utilization_synth.rpt
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `grep` `build/local/dma_direct_bram/d.runs/d_engine_0_synth_1/d_engine_0_utilization_synth.rpt`
 
 </details>
 
@@ -1941,17 +1941,17 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 build/advanced/package_direct.py data/advanced/dma_direct/vivado_20261030_015458
+- `shell` `python -X utf8 build/advanced/package_direct.py data/advanced/dma_direct/vivado_20261030_015458`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` data/advanced/dma_direct/vivado_20261030_015458/result.txt
-- `grep` data/advanced/dma_direct/vivado_20261030_015458/utilization.rpt
-- `grep` data/advanced/dma_direct/vivado_20261030_015458/timing.rpt
-- `read` data/advanced/dma_direct/vendor_xsim_20261030_011029/result.txt
-- `grep` data/advanced/dma_direct/vendor_xsim_20261030_011029/simulate.log
+- `read` `data/advanced/dma_direct/vivado_20261030_015458/result.txt`
+- `grep` `data/advanced/dma_direct/vivado_20261030_015458/utilization.rpt`
+- `grep` `data/advanced/dma_direct/vivado_20261030_015458/timing.rpt`
+- `read` `data/advanced/dma_direct/vendor_xsim_20261030_011029/result.txt`
+- `grep` `data/advanced/dma_direct/vendor_xsim_20261030_011029/simulate.log`
 
 </details>
 
@@ -1963,19 +1963,7 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` PUF synchronous timing repair
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
+- `subagent` `PUF synchronous timing repair`
 
 </details>
 
@@ -1993,13 +1981,25 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/dma_direct/lifecycle_20261030_014019_800532/sources.json
+- `execute` 
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` CPU build integration note
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `data/advanced/dma_direct/lifecycle_20261030_014019_800532/sources.json`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `subagent` `CPU build integration note`
 
 </details>
 
@@ -2029,13 +2029,13 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` build/local/dma_vendor_sim/v.sim/sim_1/behav/xsim/simulate.log
+- `grep` `build/local/dma_vendor_sim/v.sim/sim_1/behav/xsim/simulate.log`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' from pathlib import Path import shutil,json,hashlib,datetime r=Path('.').resolve();out=r/'data/advanced/dma_direct/vendor_final_20261030_
+- `shell` `@' from pathlib import Path import shutil,json,hashlib,datetime r=Path('.').resolve();out=r/'data/advanced/dma_direct/vendor_final_20261030_`
 
 </details>
 
@@ -2095,10 +2095,10 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 4 次</summary>
 
-- `shell` git diff --name-only -- src/rtl board ascon
-- `shell` git diff --check
-- `read` src/rtl/pynq_dma_cpu/readme.md
-- `read` data/advanced/dma_direct/vivado_20261030_015458/manifest.json
+- `shell` `git diff --name-only -- src/rtl board ascon`
+- `shell` `git diff --check`
+- `read` `src/rtl/pynq_dma_cpu/readme.md`
+- `read` `data/advanced/dma_direct/vivado_20261030_015458/manifest.json`
 
 </details>
 
@@ -2116,7 +2116,7 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/run_regression.py
+- `shell` `python -X utf8 sim/ascon_dma/run_regression.py`
 
 </details>
 
@@ -2188,7 +2188,7 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 build/advanced/package_direct.py data/advanced/dma_direct/vivado_20261030_024214
+- `shell` `python -X utf8 build/advanced/package_direct.py data/advanced/dma_direct/vivado_20261030_024214`
 
 </details>
 
@@ -2218,58 +2218,22 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' from pathlib import Path import hashlib p=Path('board/vivado_zynq7000_xc7z020_pynq/release/sha256sums.txt') for l in p.read_text(encoding
+- `shell` `@' from pathlib import Path import hashlib p=Path('board/vivado_zynq7000_xc7z020_pynq/release/sha256sums.txt') for l in p.read_text(encoding`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `grep` src/pynq/dma_transport.py
-- `grep` board/vivado_zynq7000_xc7z020_pynq_dma_cpu/bringup.py
-- `read` src/pynq/puf_helper_v2.py
-- `read` board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq27_audit.md
+- `grep` `src/pynq/dma_transport.py`
+- `grep` `board/vivado_zynq7000_xc7z020_pynq_dma_cpu/bringup.py`
+- `read` `src/pynq/puf_helper_v2.py`
+- `read` `board/vivado_zynq7000_xc7z020_pynq_dma_cpu/pynq27_audit.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_pynq_dma_cpu/bringup.py --help
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `execute` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `grep` src/pynq/dma_transport.py
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `read` src/pynq/dma_transport.py
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` @' from pathlib import Path import ast, json, sys files=[Path('src/pynq/dma_transport.py'),Path('src/pynq/puf_helper_v2.py'),Path('board/viv
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `grep` data/advanced/dma_direct/vivado_20261030_024214/candidate/dma_direct.hwh
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `grep` sim/pynq_dma_cpu/tb_dma_cpu.v
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_pynq_dma_cpu/bringup.py --help`
 
 </details>
 
@@ -2281,7 +2245,43 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' from pathlib import Path import hashlib,json,shutil r=Path('.').resolve(); out=r/'data/advanced/dma_direct/vendor_final_20261030_0302';ou
+- `grep` `src/pynq/dma_transport.py`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `src/pynq/dma_transport.py`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `@' from pathlib import Path import ast, json, sys files=[Path('src/pynq/dma_transport.py'),Path('src/pynq/puf_helper_v2.py'),Path('board/viv`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `grep` `data/advanced/dma_direct/vivado_20261030_024214/candidate/dma_direct.hwh`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `grep` `sim/pynq_dma_cpu/tb_dma_cpu.v`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `execute` 
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `@' from pathlib import Path import hashlib,json,shutil r=Path('.').resolve(); out=r/'data/advanced/dma_direct/vendor_final_20261030_0302';ou`
 
 </details>
 
@@ -2293,19 +2293,19 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/dma_direct/lifecycle_20261030_014019_800532
+- `read` `data/advanced/dma_direct/lifecycle_20261030_014019_800532`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 build/advanced/verify_direct_evidence.py --implementation data/advanced/dma_direct/vivado_20261030_024214 --vendor-test data/
+- `shell` `python -X utf8 build/advanced/verify_direct_evidence.py --implementation data/advanced/dma_direct/vivado_20261030_024214 --vendor-test data/`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_direct/vivado_20261030_024214/candidate/dma_direct.hwh
+- `grep` `data/advanced/dma_direct/vivado_20261030_024214/candidate/dma_direct.hwh`
 
 </details>
 
@@ -2317,19 +2317,19 @@ CPU-DMA 路径已完成真实 RV32 仿真：SW/ISE 各全量 1,089 组、原 HW 
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 sim/ascon_dma/check_hwh.py data/advanced/dma_direct/vivado_20261030_024214/candidate/dma_direct.hwh --output data/advanced/dm
+- `shell` `python -X utf8 sim/ascon_dma/check_hwh.py data/advanced/dma_direct/vivado_20261030_024214/candidate/dma_direct.hwh --output data/advanced/dm`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/dma_direct/vivado_20261030_024214/manifest.json
+- `read` `data/advanced/dma_direct/vivado_20261030_024214/manifest.json`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `subagent` PUF SoC board candidate
+- `subagent` `PUF SoC board candidate`
 
 </details>
 
@@ -2341,7 +2341,7 @@ PUF 的同步逻辑关键路径也已修复并通过复验；RO 实际频率和�
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/dma_direct/vivado_20261030_024214/result.txt
+- `read` `data/advanced/dma_direct/vivado_20261030_024214/result.txt`
 
 </details>
 
@@ -2351,13 +2351,13 @@ PUF 的同步逻辑关键路径也已修复并通过复验；RO 实际频率和�
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_direct/vivado_20261030_024214/utilization.rpt
+- `grep` `data/advanced/dma_direct/vivado_20261030_024214/utilization.rpt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_direct/vivado_20261030_024214/timing.rpt
+- `grep` `data/advanced/dma_direct/vivado_20261030_024214/timing.rpt`
 
 </details>
 
@@ -2381,31 +2381,13 @@ PUF 的同步逻辑关键路径也已修复并通过复验；RO 实际频率和�
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Process -Id 44316 -ErrorAction SilentlyContinue | Select-Object Id,ProcessName
+- `shell` `Get-Process -Id 44316 -ErrorAction SilentlyContinue | Select-Object Id,ProcessName`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/dma_direct/vivado_20261030_024214/candidate/dma_direct.hwh
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `patch` 
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `shell` python -X utf8 sim/ascon_dma/check_hwh.py data/advanced/dma_direct/vivado_20261030_024214/candidate/dma_direct.hwh --output data/advanced/dm
-
-</details>
-
-<details><summary>工具调用 1 次</summary>
-
-- `read` src/pynq/dma_transport.py
+- `grep` `data/advanced/dma_direct/vivado_20261030_024214/candidate/dma_direct.hwh`
 
 </details>
 
@@ -2417,25 +2399,43 @@ PUF 的同步逻辑关键路径也已修复并通过复验；RO 实际频率和�
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/puf/physical_quality_decode_20261030_023728
+- `shell` `python -X utf8 sim/ascon_dma/check_hwh.py data/advanced/dma_direct/vivado_20261030_024214/candidate/dma_direct.hwh --output data/advanced/dm`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` data/advanced/puf/physical_quality_decode_20261030_023728/verification_manifest.json
+- `read` `src/pynq/dma_transport.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `grep` data/advanced/puf/physical_quality_decode_20261030_023728/verification_manifest.json
+- `patch` 
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' from pathlib import Path import json,hashlib r=Path('.').resolve();p=r/'data/advanced/puf/physical_quality_decode_20261030_023728';m=json
+- `read` `data/advanced/puf/physical_quality_decode_20261030_023728`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `read` `data/advanced/puf/physical_quality_decode_20261030_023728/verification_manifest.json`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `grep` `data/advanced/puf/physical_quality_decode_20261030_023728/verification_manifest.json`
+
+</details>
+
+<details><summary>工具调用 1 次</summary>
+
+- `shell` `@' from pathlib import Path import json,hashlib r=Path('.').resolve();p=r/'data/advanced/puf/physical_quality_decode_20261030_023728';m=json`
 
 </details>
 
@@ -2447,29 +2447,29 @@ CPU-DMA 和 PUF 独立上板工程仍在后台验证。结果返回后继续核�
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` data/advanced/puf_soc/validation_20261030.md
-- `read` data/advanced/puf_soc/handoff_updates.md
-- `read` board/vivado_zynq7000_xc7z020_puf_v2/readme.md
-- `read` board/vivado_zynq7000_xc7z020_puf_v2/candidate
-- `shell` git status --short
+- `read` `data/advanced/puf_soc/validation_20261030.md`
+- `read` `data/advanced/puf_soc/handoff_updates.md`
+- `read` `board/vivado_zynq7000_xc7z020_puf_v2/readme.md`
+- `read` `board/vivado_zynq7000_xc7z020_puf_v2/candidate`
+- `shell` `git status --short`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` .gitignore
+- `read` `.gitignore`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` board/vivado_zynq7000_xc7z020_puf_v2/verify_delivery.py
+- `read` `board/vivado_zynq7000_xc7z020_puf_v2/verify_delivery.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python -X utf8 board/vivado_zynq7000_xc7z020_puf_v2/verify_delivery.py
+- `shell` `python -X utf8 board/vivado_zynq7000_xc7z020_puf_v2/verify_delivery.py`
 
 </details>
 
@@ -2509,51 +2509,51 @@ CPU-DMA 的最终结果已返回：**80 MHz 实现通过**，完整 7,418 项 XS
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` data/advanced/dma_cpu/handoff_summary.json
-- `read` data/advanced/dma_cpu/vivado_20261030_040257
-- `read` board/vivado_zynq7000_xc7z020_pynq_dma_cpu/readme.md
-- `glob` board/vivado_zynq7000_xc7z020_pynq_dma_cpu/*verify*
-- `read` data/advanced/dma_cpu/vivado_20261030_040257/candidate
+- `read` `data/advanced/dma_cpu/handoff_summary.json`
+- `read` `data/advanced/dma_cpu/vivado_20261030_040257`
+- `read` `board/vivado_zynq7000_xc7z020_pynq_dma_cpu/readme.md`
+- `glob` `board/vivado_zynq7000_xc7z020_pynq_dma_cpu/*verify*`
+- `read` `data/advanced/dma_cpu/vivado_20261030_040257/candidate`
 
 </details>
 
 <details><summary>工具调用 6 次</summary>
 
-- `read` board/vivado_zynq7000_xc7z020_pynq_dma_cpu/readme.md
-- `read` board/vivado_zynq7000_xc7z020_pynq_dma_cpu/setup.tcl
-- `read` data/advanced/dma_cpu/vivado_20261030_040257/candidate_audit.json
-- `read` data/advanced/dma_cpu/vivado_20261030_040257/sha256.json
-- `read` data/advanced/dma_cpu/vivado_20261030_040257/result.txt
-- `read` data/advanced/dma_cpu/vivado_20261030_040257/readme.md
+- `read` `board/vivado_zynq7000_xc7z020_pynq_dma_cpu/readme.md`
+- `read` `board/vivado_zynq7000_xc7z020_pynq_dma_cpu/setup.tcl`
+- `read` `data/advanced/dma_cpu/vivado_20261030_040257/candidate_audit.json`
+- `read` `data/advanced/dma_cpu/vivado_20261030_040257/sha256.json`
+- `read` `data/advanced/dma_cpu/vivado_20261030_040257/result.txt`
+- `read` `data/advanced/dma_cpu/vivado_20261030_040257/readme.md`
 
 </details>
 
 <details><summary>工具调用 5 次</summary>
 
-- `read` data/advanced/dma_cpu/xsim_20261030_014606_238543/verified.json
-- `read` data/advanced/dma_cpu/xsim_20261030_030042_215364/verified.json
-- `read` data/advanced/dma_cpu/unit_20261030_043721_118939
-- `glob` sim/pynq_dma_cpu/*verify*
-- `read` build/advanced/cpu_dma_80mhz.tcl
+- `read` `data/advanced/dma_cpu/xsim_20261030_014606_238543/verified.json`
+- `read` `data/advanced/dma_cpu/xsim_20261030_030042_215364/verified.json`
+- `read` `data/advanced/dma_cpu/unit_20261030_043721_118939`
+- `glob` `sim/pynq_dma_cpu/*verify*`
+- `read` `build/advanced/cpu_dma_80mhz.tcl`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` sim/pynq_dma_cpu/verify_xsim.py
+- `read` `sim/pynq_dma_cpu/verify_xsim.py`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python -X utf8 sim/pynq_dma_cpu/verify_xsim.py data/advanced/dma_cpu/xsim_20261030_014606_238543 --marker CPU_DMA_VENDOR_TEST_PASS --cases 7
-- `shell` python -X utf8 sim/pynq_dma_cpu/verify_xsim.py data/advanced/dma_cpu/xsim_20261030_030042_215364 --marker CPU_VENDOR_DMA_TEST_PASS --cases 9
+- `shell` `python -X utf8 sim/pynq_dma_cpu/verify_xsim.py data/advanced/dma_cpu/xsim_20261030_014606_238543 --marker CPU_DMA_VENDOR_TEST_PASS --cases 7`
+- `shell` `python -X utf8 sim/pynq_dma_cpu/verify_xsim.py data/advanced/dma_cpu/xsim_20261030_030042_215364 --marker CPU_VENDOR_DMA_TEST_PASS --cases 9`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` @' from pathlib import Path import json,hashlib,xml.etree.ElementTree as ET r=Path('.').resolve();out=r/'data/advanced/dma_cpu/vivado_202610
+- `shell` `@' from pathlib import Path import json,hashlib,xml.etree.ElementTree as ET r=Path('.').resolve();out=r/'data/advanced/dma_cpu/vivado_202610`
 
 </details>
 
@@ -2577,9 +2577,9 @@ CPU-DMA 的最终结果已返回：**80 MHz 实现通过**，完整 7,418 项 XS
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` git diff --check
-- `shell` git diff --name-only -- src/rtl board ascon
-- `shell` @' from pathlib import Path import json,hashlib r=Path('.');index=json.loads((r/'data/advanced/current_candidates.json').read_text(encoding=
+- `shell` `git diff --check`
+- `shell` `git diff --name-only -- src/rtl board ascon`
+- `shell` `@' from pathlib import Path import json,hashlib r=Path('.');index=json.loads((r/'data/advanced/current_candidates.json').read_text(encoding=`
 
 </details>
 
@@ -2603,7 +2603,7 @@ CPU-DMA 的最终结果已返回：**80 MHz 实现通过**，完整 7,418 项 XS
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Process -Id 17680,43728,42504,10524,44316 -ErrorAction SilentlyContinue | Select-Object Id,ProcessName
+- `shell` `Get-Process -Id 17680,43728,42504,10524,44316 -ErrorAction SilentlyContinue | Select-Object Id,ProcessName`
 
 </details>
 
@@ -2623,7 +2623,7 @@ CPU-DMA 的最终结果已返回：**80 MHz 实现通过**，完整 7,418 项 XS
 | **CPU-DMA** | 保留 SW/MMIO/ISE；**7,418 项 XSim＋95 项实际 DMA IP 联合仿真通过**；合格候选为 **80MHz，WNS +0.601ns**，100MHz 失败证据保留 |
 | **PUF v2 SoC** | 已实现失败关闭、内部 key 驱动 AEAD、诊断 helper 持久化及小镜像认证原型；固件和联合仿真通过，已生成**结构诊断候选** |
 
-**边界：**新版本均未上板。PUF 尚未完成 RO 全域时序、熵与可靠性验证；保密 helper/ECC 安全定案及完整可信启动仍未完成。
+<strong>边界：</strong>新版本均未上板。PUF 尚未完成 RO 全域时序、熵与可靠性验证；保密 helper/ECC 安全定案及完整可信启动仍未完成。
 
 ### 交接入口
 - [候选文件与哈希索引](data/advanced/current_candidates.json)

@@ -1,3 +1,0 @@
-RESULT tag=rep_ctl mode=ctl minfo=150 with_rst=0 wns=0.003 tns=0.000 failing=0 whs=0.024 luts=13473 ffs=17181 rep_cells=51 cand=24
-PATH start=u_soc_axi_top/u_soc_top/u_cpu_core/u_if_stage/pc_reg[6]/C end=u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_mem_wb_rs2_o_reg/D dp=9.374 logic=2.138 net=7.236 levels=10
-SOURCE dcp=top_pl_bram_opt.dcp seed=d_100_routed.dcp tool=2025.2 date=Sat Oct 24 23:40:32 +0800 2026 head=8e51bee

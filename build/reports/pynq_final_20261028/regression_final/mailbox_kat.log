@@ -1,4 +1,0 @@
-{"command": ["C:\\Users\\xiong\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe", "-B", "src/pynq/golden_checker.py", "--backend", "mailbox", "--mode", "ise"], "cwd": "E:\\amd_fpga_2026", "exit_code": 0, "status": "PASS", "elapsed_s": 1.695}
-BACKEND simulated-mailbox-ise; simulated=True
-KAT PASS 1089 / FAIL 0
-TAMPER REJECT 4290; cycle provenance is reported by the API; no board measurements collected

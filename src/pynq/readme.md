@@ -1,5 +1,34 @@
 # PYNQ host layer and board validation
 
+**2026-11-02 隔离说明**：本目录保留PUF3所需的公共API/协议及因import复用保留的旧兼容模块；
+DMA/PUF v2/MIN主机工具已移到archive/history/src/pynq，旧硬件工件移到archive/history/board。
+下面v1 CLI默认路径是历史行为，当前不作为可直接运行入口；PUF3只用src/pynq_puf3的Notebook。
+本轮不改共享库算法、身份常量或Notebook来强行统一。
+
+## 2026-11-01 版本适用范围（优先阅读）
+
+本目录是**多版本公共主机库 + 旧 PYNQ v1 入口 + 独立实验主机工具**，不是 PUF3 专属目录。
+当前主演示请打开 [src/pynq_puf3/readme.md](../pynq_puf3/readme.md) 所指的 Notebook。
+以下 10-29 的 9/9 门禁和使用命令都属于 **pynq-svc-v1 / ID 0x514e5950 / 无 PUF 的 release**，
+不据此宣称当前 PUF3 完整错误恢复矩阵已通过。
+
+| 文件/用法 | 当前职责 |
+|---|---|
+| ascon_host_api/mailbox_protocol/mailbox_backend/golden_checker | PUF3 等多个版本共享的 API/编解码/参考 |
+| board_benchmark 的 _run_once/select_kat_case/summarize | PUF3 Notebook 正常复用的纯函数；不调用其旧 prepare_hardware |
+| board_demo/board_benchmark/board_error_gate 的 CLI | **旧 v1 专用**：固定 pynq.bit/hwh、pynq_svc.elf、pynq-svc-v1；仅换 --release 路径也不能用于 PUF3 |
+| pynq_board_demo/pynq_board_error_gate.ipynb | 已执行的旧 v1 板测/门禁，保留证据；不要录作当前 PUF3 视频 |
+| pynq_transport 的 BridgeRegs/from_overlay | 默认旧控制 ID；PUF3 使用内嵌子类覆写，不全局改共享身份门禁 |
+| make_pynq_profile | 有通用 HWH 解析，来源描述/使用示例仍是旧 v1，不是完整 PUF3 loader |
+| dma_transport | 独立 CPU-DMA/HW_DIRECT 的 D01/ABI v2，不是 PUF3 UART 服务 |
+| puf_helper_v2/puf_min | 独立 PUF v2/MIN，不参与当前 PUF3 运行 |
+| jupyter_demo/navigator_demo | 无板或注入式后端演示，不当作 PUF3 实板证据 |
+
+程序、默认值与旧输出不改；完整说明见 [版本入口](../../report/design/version_entrypoints.md)。
+Skill 在 `skill/` 中独立交付、S01–S05 已有对应范围证据；下面“本目录不包含 Skill”只是目录职责。
+
+## 旧 PYNQ v1 使用说明与 10-29 验证记录
+
 更新：2026-10-29。owner TBD。
 
 当前状态：Y01-Y05 与 V03 已完成实板验收。三模式容量内 289/289 KAT、坏 Tag 拒绝、

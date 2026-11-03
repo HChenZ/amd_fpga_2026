@@ -1,0 +1,222 @@
+{
+  "status": "PASS_WITH_WINDOWS_NOTE",
+  "timestamp": "2026-11-02T18:29:14+08:00",
+  "scope": "offline reproduction commands of technical report section 3.4.3 and pytest after restore_records, run in a clean git worktree of the source revision (no ignored files); not a Vivado rebuild, not a board run, not a new hardware verdict",
+  "source_revision": "864520dc519800eb72ea7833a65a17a536170c42",
+  "worktree_status_before_run": "clean (git status --short empty)",
+  "environment": {
+    "os": "Windows 11 (zh-CN locale)",
+    "python": "3.13.9",
+    "host_gcc": "MinGW-W64 x86_64-posix-seh-rev0 8.1.0",
+    "icarus": "Icarus Verilog 14.0 (devel)",
+    "riscv_gcc": "xPack GNU RISC-V Embedded GCC x86_64 15.2.0 (riscv-none-elf-gcc)",
+    "note": "archived host results were produced on WSL (Python 3.12.3, GCC 13.3.0); this rerun uses native Windows tools"
+  },
+  "started": "2026-11-02T17:24:08+08:00",
+  "resumed_after_interruption": [
+    "2026-11-02T18:23:53+08:00"
+  ],
+  "steps": [
+    {
+      "name": "git_head",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "seconds": 0.1,
+      "result": "864520dc519800eb72ea7833a65a17a536170c42"
+    },
+    {
+      "name": "git_status",
+      "command": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exit_code": 0,
+      "seconds": 0.4,
+      "result": "empty (clean checkout)"
+    },
+    {
+      "name": "verify_sources",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/verify_puf3_sources.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.1,
+      "result": "status=PASS; production_inputs=56; source_mismatches=[]; artifacts 5x MATCH; build_support missing=[]"
+    },
+    {
+      "name": "verify_sources_compile",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/verify_puf3_sources.py",
+        "--compile",
+        "--output",
+        "build/local/reproduce/run_01/source_check.json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.3,
+      "result": "status=PASS; production_inputs=56; artifacts 5x MATCH; build_support 7 hashes, missing=[]; elaboration.exit_code=0"
+    },
+    {
+      "name": "firmware",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "src/firmware/pynq_svc_puf/build.py",
+        "--prefix",
+        "C:/wenjian/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc.exe"
+      ],
+      "exit_code": 0,
+      "seconds": 5.8,
+      "result": "BUILD OK; custom0 all_opcode_0x0b=22 (p12=1, p8=4); BIN and COE byte-identical to candidate"
+    },
+    {
+      "name": "cosim",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "sim/pynq_puf3/run.py"
+      ],
+      "exit_code": 0,
+      "seconds": 251.8,
+      "result": "result=PASS; steps=54; normal_pass=true; mutant_autolock_detected=true (mutant TB exit 1 as required)"
+    },
+    {
+      "name": "rtl_vectors",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "sim/ascon/prepare_rtl_vectors.py",
+        "--output",
+        "build/local/reproduce/run_01/rtl_vectors"
+      ],
+      "exit_code": 0,
+      "seconds": 2.1,
+      "result": "reference gate passed=12936 failed=0; 300 vector cases (289 in-capacity official KAT + 6 tail + 5 peer); 800 official cases outside the 16 B interface"
+    },
+    {
+      "name": "rtl_regression",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "sim/ascon/run_rtl_regression.py",
+        "--vectors",
+        "build/local/reproduce/run_01/rtl_vectors",
+        "--report",
+        "build/local/reproduce/run_01/rtl_regression.json"
+      ],
+      "exit_code": 0,
+      "seconds": 11.7,
+      "result": "summary.status=PASS; failed_gates=[]"
+    },
+    {
+      "name": "rtl_harness",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "sim/ascon/test_rtl_harness.py",
+        "--vectors",
+        "build/local/reproduce/run_01/rtl_vectors",
+        "--report",
+        "build/local/reproduce/run_01/rtl_harness.json"
+      ],
+      "exit_code": 0,
+      "seconds": 33.2,
+      "result": "summary passed=4 failed=0"
+    },
+    {
+      "name": "host_validation",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "sim/ascon/run_validation.py",
+        "--report",
+        "build/local/reproduce/run_01/host_validation.json"
+      ],
+      "exit_code": 0,
+      "seconds": 4.0,
+      "result": "summary passed=28661 failed=0 (Windows temp-DLL cleanup PermissionError printed at exit; exit code 0)"
+    },
+    {
+      "name": "failure_contract",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "sim/ascon/check_failure_contract.py",
+        "--report",
+        "build/local/reproduce/run_01/failure_contract.json"
+      ],
+      "exit_code": 0,
+      "seconds": 1.0,
+      "result": "summary passed=23965 failed=0"
+    },
+    {
+      "name": "test_harness",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "sim/ascon/test_harness.py"
+      ],
+      "exit_code": 1,
+      "seconds": 4.5,
+      "result": "FAILED (errors=3) without UTF-8 mode: child stderr from temp-DLL cleanup is localized (GBK) and cannot be decoded, so result.stderr is None and the assertion message raises TypeError"
+    },
+    {
+      "name": "test_harness_utf8_mode",
+      "command": [
+        "PYTHONUTF8=1",
+        "python",
+        "-X",
+        "utf8",
+        "sim/ascon/test_harness.py"
+      ],
+      "exit_code": 0,
+      "seconds": 4.8,
+      "result": "Ran 5 tests, OK (same clean worktree; only the environment variable changed)"
+    },
+    {
+      "name": "restore_records",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/restore_records.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.8,
+      "result": "Record copies restored: 2420 already identical: 0"
+    },
+    {
+      "name": "pytest",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "seconds": 9.9,
+      "result": "122 passed, 3 skipped"
+    }
+  ],
+  "windows_note": "On Chinese-locale Windows set PYTHONUTF8=1 before sim/ascon/test_harness.py; the functional assertions pass, the failure without UTF-8 mode is a decoding artifact of the harness."
+}

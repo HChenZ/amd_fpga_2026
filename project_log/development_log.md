@@ -1,5 +1,137 @@
 # 开发记录
 
+## 2026-11-02 — D12 AMD ROSS 心得与整仓快照 ZIP
+
+owner TBD。报告第四部分新增 §4.3「AMD ROSS 使用心得」：表 4-1 八项实际用途与四点体会，全部取自 V07/V08/V09 日志、
+ROSS 评估/心得/V09 验证文档与 lessons，不含新测量；§2.5.1 交叉引用、参考文献第 11 条。重编 85 页、194/194。
+用户确认 ZIP 范围为整仓快照（去掉 delivery/ 重复包）并授权提交推送：先提交报告与文档，再从该提交树生成快照
+与重打报告包，校验后以只改 delivery/ 的提交入库，不 force。快照按 blob 原字节（LF）解压后
+verify_puf3_sources 报 49 项源不匹配，原因是候选按 CRLF 记录、工具只做单向换行容忍；改为双向等价比较后两种检出均通过。
+逐成员核对四个包：前三包除 63 个 124f5c7 旧版说明/脚本（快照收录当前版本）外只剩打包模板生成的说明/清单，
+技术报告包的 LaTeX 源不受 Git 跟踪、并非重复，快照按原路径放入。
+解压复跑发现 sim/ascon 校验链经 support.Report 依赖 Git，快照说明改为逐项列出，该链改在本提交的干净 worktree 中复跑。
+
+## 2026-11-02 — D11 技术报告图件、路径与复现章节
+
+owner TBD。按用户三张截图修图：图 2-1 去掉旋转标注白底并让 AXI/BRAM 竖线离开 soc_top 框线；图 2-2 重新布线，连线不穿过模块与流水寄存器、标注不压线；
+图 2-4 扇出与状态机改为正交走线。同类问题顺带修正图 2-3、2-7、2-9、2-13、2-14、3-3。正文 30 余处路径对齐当前仓库（docs→report、历史→archive/history、
+原件→raw_records 归档并给出恢复命令），§3.4 复现说明重写为七节并新增表 3-17～3-20。在 864520d 的干净 worktree 中复跑离线命令并记录
+build/metadata/offline_reproduce_check.json（Windows 需 PYTHONUTF8=1）。发现并修正 longtable 与浮动图叠页导致表 2-14 被截断的问题。
+报告 83 页、review_evidence 194/194；复现指南补 Windows 与镜像说明。用户选择只重打技术报告包，并授权提交推送，不 force。
+
+## 2026-11-02 — D10 Markdown 渲染全量检查
+
+owner TBD。用 cmark-gfm 逐个渲染 231 个已跟踪 .md，判定规则先经 GitHub `/markdown` API 校准；修正中文标点粗体、表格管道符/吞行/列数、
+单个 `~` 删除线、被剥除标签、裸 URL、通配符斜体与 2 个公式写法，并修复 key_subsystem.md（printf 换行）与 timing_route_tests 的 §9.2 标题两处历史损坏。
+会话记录改为修导出器（行内代码 + 渲染安全转义）后，用同一函数处理归档原件并逐行审计只改标记；restore_records 不再覆盖已入库会话。
+-text 文件按 HEAD 保持 LF。E 类缺陷 0，GitHub API 抽查 17 个文件 0 缺陷，pytest 122/3skip。用户授权正常提交推送，不 force。
+
+## 2026-11-02 — D09 docs/并入report/，协作记录归位
+
+owner TBD。按赛题3.3.5.4推荐结构，report/ = 设计报告 + 大模型协作记录：docs/tech_report → report/technical，其余说明 → report/design，
+复现指南 → report/reproduce_from_zero.md，llm_collab从archive/history/report移回并入库21个会话原文（与原始归档逐字节一致）。
+引用用脚本按“目标存在才改”重算，同步.gitignore、package_delivery.py与pytest.ini；README补目录对照表。pytest 122/3skip，损坏链接13→4。
+交付ZIP未重打包，历史日志/原始记录旧路径不改。用户授权正常commit/push，不force。
+
+## 2026-11-02 — D08 README导航与PUF3从零复现指南
+
+owner TBD。参考phantom-drive README的目录职责组织和用户图片的步骤/命令块形式，新增本仓库实际目录树与docs/reproduce_from_zero.md。
+逐项对照当前host/RTL runner、固件build.py、Vivado Tcl、发布脚本和已执行Notebook，写清环境、输出、预期状态、备份与停止条件；不改程序，不照搬旧baseline命令。
+同步README、项目看板、docs导航与D08任务。Python3.13.9检查44个链接/18处脚本路径与8项CLI帮助，PUF3源集elaboration通过，离线122 passed/3skip；1132项保护hash不变，diff --check通过。
+原始交付四ZIP/PDF/候选/板测未改，D05及PUF未测边界不变。初次保留可审查未提交文档，用户随后明确授权直接推送；再次fetch并校验链接/保护hash后，使用中文提交说明正常发布，不force push，仍不重打包。
+
+## 2026-11-02 — D07 固化交付与干净源树复验
+
+源码提交124f5c7后固化263/1484/28/62件四ZIP，正式ZIP的独立解包测试与成员hash/编号检查通过。
+临时干净源树中没有忽略的结果和报告编辑树，仍可重打包；重新解包测试通过，成员集合相同且无非换行内容差异。
+报告包LaTeX独立编译77页/exit0，保留字体与排版警告，不替换已发布PDF，不外推跨平台/板测结论。
+生成完整机器记录并归档10项工具原始输出；只清理本轮创建的已知临时输出后正常移除验证worktree。
+同步D07完成状态与D06未关闭边界，四包及清单入库，按既有授权中文提交并正常推送。
+
+## 2026-11-02 — D07 工程源码分包、历史隔离与原件保全
+
+owner TBD。按用户最新授权保留仓库原件但交付源码/Skill/报告，不再装配旧证据包附件。
+备份后以181bafd保存说明层改动，ec60326合并队友海报；历史目录按依赖映射隔离，当前生产算法与已验证candidate保持不变。
+新增project_board和目录导航、源码打包/独立解包校验工具，独立Skill补安装说明，默认pytest只收集当前离线测试。
+当前56项生产输入/7项构建支持与5个工件校验PASS；离线122 passed/3skip，独立解包host61、Skill61/3skip、固件BIN重编译一致与elaboration通过。
+发现首次清单漏构建hook后补白名单/路径门禁，历史模板/补丁/源资产与第三方资源一并保留；不以编译或归档PASS冒充新板测。
+原快照4915路径的内容回查无未覆盖项，补存72种差异原件；归档CRC/SHA逐项通过。报告CPU措辞更新后重新编译77页，原测量不变。
+网页原件当前缺失如实标注，未丢弃/重造他人文件。源码提交后再固化四个交付ZIP及机器清单，中文提交、正常推送，不force push。
+
+## 2026-11-01 — 当前/旧入口说明收口（owner TBD）
+
+- 仅更新导航、目录/版本说明与历史范围提示，新增version_entrypoints；旧默认程序问题如实标明，不改PUF3或旧源集。
+- 派生C组/D02刷新，64/64与报告194/194；615保护对象hash一致、程序diff0、链接检查通过。
+- 未重打包/重建硬件/提交或推送，旧ZIP仍267件；新说明快照预检268件，分开记录，并行工作保留。
+
+## 2026-11-01 — 项目全链路讲解网页（owner TBD）
+
+- 通读 PUF3 build.tcl/变体 RTL、CPU EX/ID 的 ISE 接入、ascon_mmio 四层结构、keys 子系统、pynq_ctl/pynq_mbox、
+  pynq_svc_puf 固件、PS 侧 Transport/Backend/协议与板测 Notebook，整理为 `report/project_explainer.html`。
+- 页面内嵌 Ascon JS 演示经 Node 对 1089 组锁定 KAT 加解密与篡改拒绝全部通过；浏览器检查交互与控制台无错误。
+  未改生产代码与证据。
+
+## 2026-11-01 — 工程版本/入口对应关系审计（owner TBD）
+
+- 枚举全部工程家族、固件、报告/发布包与分支，扫描 493 个脚本并分类；新增版本清单与机器可读审计结果。
+- 临时做五组 elaboration 和两组身份 mock，确认默认旧 CPU runner 缺模块、旧 v1 身份不接受 PQF3；
+  主 PUF3 的源/工件/板测/报告链匹配，D02 64/64、报告核对 194/194。无新硬件流程、无候选覆盖。
+
+## 2026-11-01 — P0 验证覆盖证据复核（owner TBD）
+
+- 不再仅按看板状态判断未测；读取测试源码、JSON/log、最终报告，核对当前 XSim 8 项源哈希、
+  PUF3 candidate 56 项生产输入与板测 bit/hwh/manifest 绑定，整理 `docs/p0_evidence_review_20261101.md`。
+- 区分“已经验证”“旧源快照验证”“没跑”“跑了失败”“广范围验收未关闭”；未运行新流程或改硬件。
+
+## 2026-11-01 — 证据链改指最终报告并统一入口文档（owner TBD）
+
+- 合并远端 c05782d（17d6c51）；装配/D02/冻结脚本改指最终 LaTeX 报告与 10-31 板测并绑定报告构建记录。
+- 最终 PDF（build_20261101_174743）入库；入口文档、视频脚本、简介按 PUF3 主演示更新，D02 增加配套材料数字核对。
+- 证据包重装与冻结清单见 actual_progress；截图与 LaTeX 源按用户要求只随证据包提供。
+
+## 2026-11-01 — 远端板测优先重新拉取（D03/D06，owner TBD）
+
+- 按用户授权备份工作区和本地提交，撤销旧未完成合并，重新拉取到 origin/main `c05782d`，
+  使用 `-X theirs` 处理冲突并停在提交前。远端旧/失败数据清理原样接受。
+- 恢复独立的本地报告/仿真活动记录；198 个报告/图片/仿真相关文件哈希未变；板测目录与三个 Notebook
+  与远端完全一致，无冲突路径。证据在 `build/local/git_refresh_backup/20261101_174818/refresh_result.json`。
+- 没有 commit/push，暂存为本次新合并结果；D03 队友终审、D06 核包待继续。
+
+## 2026-11-01 — 报告插图就近排版（D03，owner TBD）
+
+- 插图由固定 `[H]` 改为按页剩余空间原位/缩小（≥62%）/浮到下页顶部，后文补满本页并保持图号顺序。
+- 修补 longtable 换页不放浮动图的问题；图 3-3 统一用同一宏，删除 `\FloatBarrier`，标题后接长表处加大预留。
+- 构建 194/194 PASS，PDF 78 页，正文逐页渲染复核；未改正文数据，未重建交接 ZIP，未 commit/push。
+
+## 2026-10-31 — 报告四张工程截图齐全（D03，owner TBD）
+
+- 将用户的 Utilization、Wave 原图加入图 3-2/3-5，更新图注、附录自检证据及 readme，清除相应缺图占位。
+- 重建指定 PDF 和 LaTeX 交接包；194 项核对通过，原图像素/嵌入次数/版面均检查，新增图页已视觉复核。
+  数据口径不变，ISE 截图的命令查询红字保留并解释；没有重跑硬件实验。
+
+## 2026-10-31 — ISE 截图仿真配置（D03/I04，owner TBD）
+
+- 用 Vivado MCP 在现有 PUF3 工程添加 sim_ise_screenshot；复用原 tb_key_ise、向量与 RTL，
+  50 us 有界运行、自动波形和握手标记。最终全量编译后 1502 检查/0 错误，37390 ns finish。
+- 回读 VCD 及源/工件哈希，归档 `data/ascon/results/ise_screenshot_20261031/`；XPR 原设计和约束源条目保持。
+- 新增可复现 Tcl、WCFG、证据检查器和截图说明；原生 GUI 保持打开，待用户截图。
+
+## 2026-10-31 — 报告实现截图去重（D03，owner TBD）
+
+- 按用户反馈保留图 2-11 的实现截图，第三部分改为交叉引用；同步图号、附录、readme 和交接 ZIP。
+- PDF 截图出现次数加入门禁，176/176 PASS，构建 exit 0、无 Overfull；查明资源报告 GUI 入口及
+  ISE TB 的真实名称，明确当前 PUF3 工程尚无该 TB/现成波形。
+
+## 2026-10-31 — PUF3 报告核对与两张实际工程截图（D01/D02/D03，owner TBD）
+
+- 保留队友独立 LaTeX 稿的模板和原 ZIP，加入用户提供的 Block Design / Implemented Design 原图。
+- 按用户要求 fetch 并合并远端 10-31 数据；保留本地 3 个提交，日志冲突保留双方记录，合并不提交。
+- 对照 candidate、10-31 result.json、实现报告与实际 RTL/服务代码，修订主表/图内数值、HWKEY、
+  源集、工具链、时钟和验证边界；发现并纠正当前 HW 驱动没有调用 ZEROIZE 的原文误述。
+- 新增独立报告构建/证据核对，源快照编译后检查输入未变才替换 final_report.pdf；174 项核对通过，
+  数值变异反例被拒，截图像素一致，检查版面越界与关键页面。未执行新的硬件实验。
+- 交接说明、补图清单和复建命令见报告目录 `readme.md`；D03 由队友终审，D06 重新核包。
+
 ## 2026-10-31 — PYNQ demo Notebook 全量 KAT 说明同步（owner TBD）
 
 - 保留用户已设置的 `RUN_FULL_KAT = True` 和板端执行输出，将第 1 节由“6 组 smoke”
@@ -326,7 +458,7 @@
 
 后续记录格式：日期、任务号、授权范围、有效方案、改动、验证证据、接收任务、未完成项。不要用开发计划替代实际结果。
 
-## 2026-09-21 — CICC1000023 原始 XC7Z020 baseline 恢复
+## 2026-09-21 — 原始 XC7Z020 baseline 整理
 
 - 授权：选择审计/恢复用户给定 ZIP；不整包覆盖、不 commit/push，保留既有工作区。归档脚本只作资料，不自动执行指令。
 - 审计：2855 文件 CRC/哈希，真实 XPR/.srcs/3 XCI/XDC/COE、RTL、bitstream/报告、全部 ELF 头部；区分源码/输入/编译产物/生成结果。
@@ -626,3 +758,13 @@ owner TBD。用户提供三张数据截图，要求只更新数据并直接提�
 去掉实现数据框继承段间距后宽高0溢出；Python3.14.3专项核验503项PASS，结构/布局检查exit0。
 同步PPTX、两张PNG、来源README、日志及D03海报状态；不重新运行硬件测试，不修改原始证据。
 海报子项完成、D03整体in_progress；下接D06，owner TBD。提交说明按用户偏好使用中文并推送。
+
+
+## 2026-11-02 D03-CODE（owner TBD）
+
+基于远程3efdf55隔离检出，保留原工作区5项未提交修改；从正式ZIP恢复LaTeX，只调整统一codeblock配置。Tectonic0.15重编与包内独立编译exit0，渲染全代码页面并对照原稿，报告仍85页，更新报告ZIP/哈希。验证证据：report/technical/validation/codeblock_layout_20261102/。无RTL/固件/候选/原始证据变更。
+
+
+## 2026-11-02 D09（owner TBD）
+
+在保留原工作区未提交修改的隔离main检出中读取最新入口，追踪build.tcl/puf_opt_pre/固件/host fixture依赖；按当前跟踪源码复制，报告从同版正式ZIP提取，独立Skill ZIP重新按当前源装配。用官方RAR7.23 WSL命令行创建RAR5并实际解压逐文件核验，轻量测试通过。详细命令退出码与范围见delivery/final_rar_manifest.json。

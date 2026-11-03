@@ -1,1 +1,0 @@
-session=retry_impl run2 (root path fixed to ../../..)

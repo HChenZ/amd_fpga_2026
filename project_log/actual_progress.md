@@ -1,5 +1,426 @@
 # 实际进度
 
+## 2026-11-02 — D12 报告补 AMD ROSS 使用心得，全部内容打包为单个 ZIP（owner TBD）
+
+- 用户要求在技术报告结尾加上对 AMD ROSS 的心得体会，并把所有内容打包成一个 ZIP；经确认 ZIP 范围为“仓库快照，去掉 delivery 重复包”，完成后提交推送（不 force）。入场 HEAD 5f509e8、工作区干净。
+- 报告：第四部分末尾新增 §4.3「AMD ROSS 使用心得」，放在“心得体会”之后、参考文献之前。表 4-1 列八项实际用途：10-17 接入评估（官方下载 BIG-IP 错误 19，not_measured）、10-18 以 stdio 将 vivado-mcp-server 2026.9.1 接入 OpenCode（Vivado 2025.2）、D-cache 修复后 lint 2 条 WARNING 与 HEAD 相同、fix_r1 DCP 副本导出 156 端点（93/48/11/4）、双策略实现 exit0 3895.571 s（+0.001/+0.007 ns）、DSP 打包实测（AREG/BREG=1，仅 1 个 PREG，MREG 0）、PUF v2 方法学 TIMING-6/7/17 处置、PUF3 工程 sim_ise_screenshot 1502/0。随后四点体会：价值（对话内闭环、全量端点、长任务托管）、版本边界（2026.1 基线与各 Skill 最低版本，linterCsvFile 不支持）、MCP 注意事项（命令去重 SKIPPED、批命令中途失败、execute 可写工程、并行会话抢工程、无 amd-doc-search）、团队裁决（案例一否决降频，ROSS 不替代验证）。
+- 出处逐条核对：archive/history/docs/ross_usage_experience.md、ross_and_engineering_skills_evaluation.md、timing_acb_validation.md，project_log V07/V08/V09 条目与 lessons L68/L85/L87/L88/L91/L93，development_log 10-31 ISE 截图条目；不含新测量。§2.5.1 加交叉引用，参考文献补第 11 条（Xilinx/ross-ai-assistant，审阅提交 2cdc9eef，MIT）。
+- 编译 build_20261102_194053：85 页，evidence/PDF 检查 194/194，日志无 Overfull，PDF 全页扫描无版心外文字；新节与表 4-1 逐页目视复核。
+- 整仓快照：从本提交（含本条记录）的 Git 树逐 blob 取原字节生成 delivery/amd_fpga_2026_repo_snapshot.zip，排除 delivery/ 目录（快照不能包含自身），另附 snapshot_manifest.json（提交号、逐文件 SHA-256 与来源）和 snapshot_readme.md（范围、排除项、Git 依赖步骤说明）。按 git archive 试算约 88 MB，低于 GitHub 100 MB 单文件上限。
+- 排除前逐成员核对 delivery/ 四个包是否真与仓库重复（按 LF/CRLF 等价比较，比对本提交树、124f5c7 树及已跟踪 ZIP 归档的成员）：PUF3 源码、历史源码、Skill 三包的成员都能在本提交或 124f5c7 中找到相同内容，其中 PUF3 包 35 个、历史包 28 个是此后更新过的说明文档与维护脚本（docs/ 旧路径、readme、.gitignore、AGENTS.md、project_board.md、tools/ 三个脚本、export_sessions.py）的 124f5c7 旧版，无 RTL/固件/约束，快照收录其当前版本；此外只余 package_delivery.py 按模板生成的 README.md、pytest.ini、source_package.md 与 source_manifest.json；技术报告包的 latex/ 编辑源被 .gitignore 排除，其中 18 个文件在仓库别处没有相同内容。因此快照另把重打后报告包的 latex/ 按原路径放到 report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/（D11 干净检出复核用的也是这一放法），报告包内 PDF 与已跟踪 PDF 同字节、不重复放。
+- 报告包随之按 package_delivery.py 同一规则重打。两个 ZIP 的 SHA-256、大小与复验结果记在随后只改 delivery/ 的交付提交（delivery/manifest.json、delivery/README.md、delivery/snapshot_and_report_check.json），保证快照内容等于最终仓库去掉 delivery/、再加报告 LaTeX 源。
+- 快照不含 .git。解压后可直接运行源集身份与 elaboration、固件重编译、PUF3 协同仿真与原件恢复，恢复原件后再运行 pytest、报告核对与重建（不先恢复时 pytest 中 test_host_api.py 的 test_cycle_sources 因缺原始记录失败）；sim/ascon 的主机/RTL 校验链用 Git 记录来源（support.py 的 Report 读取 HEAD，run_rtl_regression.py 另读 origin/main 并对照 HEAD，run_key_rtl.py、run_tail_equivalence.py 读取历史提交 c37ecae），须在完整 Git 克隆中运行。试跑时快照说明只写了 run_rtl_regression.py，解压目录中 prepare_rtl_vectors.py 报 not a git repository 才发现范围更大，说明已逐项改正。两部分复跑（快照解压目录、本提交的干净 worktree）结果记在 delivery/snapshot_and_report_check.json。
+- 快照试做时发现跨平台缺陷：候选 manifest 的源 hash 取自 Windows CRLF 工作副本，而 Git blob 与 Linux 检出为 LF；tools/verify_puf3_sources.py 与报告 review_evidence.py 只容忍“文件 CRLF、记录 LF”一个方向，按 blob 原字节打包的快照（等同 Linux 检出）报 49 项源不匹配。两处改为 LF/CRLF 双向等价比较（记录的 hash 不变），修正后主仓库（CRLF）与 LF 快照均 status=PASS、elaboration exit0，review_evidence 均 194/194。delivery/puf3_project.zip 仍是 124f5c7 快照，内含旧的单向比较版本。
+- 未做：未重跑 Vivado 与实板；D05、PUF/RO 未签核边界不变。接口变化：verify_puf3_sources.py 对 LF 检出不再误报，输出格式不变。
+
+## 2026-11-02 — D11 技术报告图件修正、仓库路径对齐与复现章节完善（owner TBD）
+
+- 用户给出图 2-1/2-2/2-4 三张截图：去掉图 2-1 标注旁白底分割；修正图 2-2 连线穿框与文字压线；图 2-4 斜线改为竖直/水平；并按新仓库结构更新报告路径、重点完善复现内容。入场 HEAD 864520d、工作区干净；LaTeX 编辑树先备份到本机 build/local/report_puf3_review/before_figfix_20261102_170615.zip。
+- 图件：图 2-1 旋转标注去白底、放到竖线外侧，AXI/BRAM 竖线移出 soc_top 框线，BRAM 与 Ascon 两路在总线右端分开接入，控制窗口虚线改为直落 cpu_core；图 2-2 控制分发分左右两组、ex_stall_req 从 EX 上沿引出，重定向/训练、操作数旁路、GPR 写回各走独立通道，分支点加圆点，仅保留三处必要的正交跨越；图 2-4 扇出改为竖直分配线、汇聚线止于首尾两路、握手虚线留出竖直段、状态机改为两条正交回路。同类问题顺带修正图 2-3（斜线与压线标注）、2-7/2-9/2-13（白底压线标注）、2-14（旧 run_tests.py 改为 sim/ 脚本）、3-3（-0.118 压零线），以及图 2-4/2-5 说明中的 Markdown 反引号残留。
+- 路径：正文与附录 30 余处按当前仓库更新——docs/ 文档改指 report/design/ 或 archive/history/docs/，旧 v1 验证/交接、keys_rv32、sim/board、sim/pynq、ab_eval_pynq 改指 archive/history/，照片改为 report/technical/figs/board_photo.jpg（与图 3-1 内嵌 JPEG 字节一致），ascon_ise.v 更正为 src/rtl/ascon/；不随 Git 跟踪的 data/ascon/results、build/reports、build/local 原件统一注明 archive/evidence/raw_records_20261102.zip 与 tools/restore_records.py，本地 PL-only bitstream 注明未入库。
+- §3.4 复现说明重写为七节（仓库结构与原始记录、环境与版本、离线验证、比特流构建、上板运行、交付包与报告复核、复现边界），新增表 3-17～3-20；命令全部改为显式 --report/--output 新目录，删去已隔离的 sim/board、sim/pynq 命令，判据逐项对照脚本源码与既有记录（56/7/5 身份、28,661/0、23,965/0、RTL PASS 与 4/0、22 条 custom-0、54 步协同仿真、build.tcl 门禁与打印、package.py 复查项、Notebook 时钟/KAT/基准/PUF 判据）。镜像来源与 SHA-256 位置取自 archive/history 旧 v1 交接 §B/§C。
+- 干净检出复跑：git worktree（864520d，无忽略文件）中于中文 Windows 11（Python 3.13.9、MinGW-w64 GCC 8.1.0、Icarus 14.0 devel、xPack GCC 15.2.0）按 §3.4.3 执行：源集身份 PASS 且 elaboration exit0；固件 BIN/COE 与 candidate 逐字节一致；协同仿真 54 步 PASS、自动锁定反例检出；RTL 回归 PASS、反例 4/0；host 28,661/0、失败契约 23,965/0；restore_records 恢复 2420 件后 pytest 122 passed/3 skipped。test_harness.py 首次 3 个 error（子进程 GBK 错误信息解码失败），设置 PYTHONUTF8=1 后 5 项 OK；首轮复跑曾因服务重启在协同仿真中断，按记录续跑。机器记录 build/metadata/offline_reproduce_check.json（路径已脱敏）。
+- 编译：build_review.py（Tectonic 0.15.0）首轮发现表 2-14 后三行被推出页面——longtable 重置 \@colroom 后，图 2-10/2-11 两张浮动图被叠到同一页顶部；在图 2-10 前加 \Needspace{300pt} 使其就地排放后消除，另补 3 处长路径断行点消除 Overfull \hbox。最终 build_20261102_191808：83 页，evidence/PDF 检查 194/194，日志无 Overfull，PDF 全页扫描无版心外文字。性能/资源/时序数值与原件不变。
+- 报告复核脚本：把打包后的 latex/ 放进干净检出运行 review_evidence.py 时，3 项“ISE screenshot source”因 .tcl/.wcfg 被 autocrlf 检出为 CRLF 而失败（Linux 检出则 4 个 .v 会因记录为 CRLF 而失败）。改为与同脚本 RTL 输入核对一致的 LF/CRLF 等价比较后，主仓库与干净检出均 194/194；只改比较方式，记录的 hash 与原件不变。
+- 同步：report/reproduce_from_zero.md 增补 Windows 原生运行与 PYTHONUTF8 说明、镜像来源及“已有离线复跑记录”一节；report/technical/README.md、report/readme.md、LaTeX readme（构建命令改为 report/technical 路径）与任务看板 D11 更新。
+- 交付：用户选择只重打技术报告包并授权提交推送（不 force）。先提交 9433ff1（PDF、文档、记录），再按 package_delivery.py 同一内容规则单独重建 delivery/technical_report.zip（62 件，4054378 B，SHA-256 d35fa273…），manifest 只更新该项并另记 source_revision 9433ff1；其余三包保持 124f5c7 快照。
+  复验：verify_delivery.py 按新 manifest 四包全部 PASS（host61、Skill61/3 skip、固件 BIN 857df29c… 一致、elaboration、报告 83 页）；包内 LaTeX 独立编译 exit0、83 页、无 Overfull；打包 PDF 与跟踪 PDF 字节一致；干净检出 review_evidence 194/194。记录 build/metadata/report_repack_check.json，01:20 的 source_delivery_check.json 保留原样。
+- 未做：未重跑 Vivado 综合/实现与实板；D05 与 PUF/RO 未签核边界不变。另记：赛题要求文件名纯英文，根目录“AMD 自主选题赛道.md”不符合，本轮未改名。接口变化：无。
+
+## 2026-11-02 — D10 全部 Markdown 渲染检查与修正（owner TBD）
+
+- 用户要求检查所有 md 文档、保证渲染正确后重新上传。范围为 231 个已跟踪 .md：维护文档、archive/history 137 个、协作会话 21 个与索引。入场 HEAD 51f4365，工作区干净。
+- 方法：临时 venv 安装 cmarkgfm（GitHub 同款 cmark-gfm），逐文件渲染并按源码行检查：贴中文标点的粗体失效、表格单元格（含行内代码）中的 `|` 拆列丢字、表格后紧跟的行被吞成表格行、表头与分隔行列数不等、成对单个 `~` 变删除线、被剥除的 `<tag>`、裸 URL 吞掉中文标点、未闭合代码围栏、`*` 通配符变斜体、数学公式。先用 GitHub `/markdown` API 验证判定与 GitHub 一致；数学按 API 结果收紧（闭合 `$` 后接字母不成公式，PowerShell 的 `$var` 不受影响）。
+- 维护文档（只改标记、不改文字）：README 3 处与复现指南 3 处“标签：”粗体；设计基线与邮箱协议 4 行表格中的 `||` 转义；actual_progress、lessons_learned、task_board 的删除线、通配符斜体、`<install>`/`<ver>`、裸 URL 与 3 处被吞进表格的结论行（前加空行）；另把 2 个已隔离文件的旧链接改指 archive/history。
+- archive/history 16 个文件：2 张因分隔行列数不等而不渲染的表、表格内管道符、粗体、删除线、斜体、1 处缺失的闭合反引号，2 个公式中会被 Markdown 吃掉的 `\,\|\,`/`\|` 改为等价的 `\mathbin{\Vert}`/`\Vert`。
+- 两处历史结构损坏：key_subsystem.md 自首次提交 ad38eda 起 printf 里的 `\n` 被写成真实换行，列表与代码围栏错位，第 301 行后整篇变成代码，恢复为 `\n`；timing_route_tests_20261024.md 的 §9.2 标题在 adcd9ee 被误插一段证据清单（编辑工具匹配到同名补丁的第一次出现），同样 5 行已在证据块中，恢复 8e51bee 的标题并删除重复。
+- 协作会话：按“修生成器”处理 export_sessions.py（code_span/md_safe：工具调用摘要放进行内代码；正文代码外，含 GitHub 会剥除标签的段落整段转义标签，可成对的单个 `~` 转义，贴中文标点失效的 `**` 改 `<strong>`，作者写的原始 HTML 块不动）。源库在 10-30 后继续增长，重导出无法复现原范围，所以用同一函数处理 raw_records_20261102.zip 中的逐字节原件一次生成仓库副本。逐行审计只有 3922 个反引号、91 个 `\<`、7 个 `\~`、4 处 `**`→`<strong>`，撤销后与原件逐行一致。index.md 说明与导出器生成文字一致；restore_records.py 不再恢复已入库会话（否则遇不同字节拒绝覆盖而退出）。
+- 换行：archive/history 为 -text，工作区此前残留 CRLF 而 Git 状态缓存未显示，编辑后会整文件改换行；已把修改文件恢复为与 HEAD 相同的 LF。20_part2.md 与 1 个会话在 HEAD 中本就含 CRLF，保持原样。
+- 验证：cmark-gfm 复扫 231 个文件 E 类缺陷 0（余 3 条为 `__file__`、`__udivdi3`、`_rep__0` 字面量误报）；GitHub API 渲染 17 个代表文件（README、复现指南、协议、基线、本次三份日志与任务板、report 与会话索引、2 个修复的历史文档、campaign、4 个会话含最大的 3 个）0 缺陷；pytest -q -p no:cacheprovider 122 passed/3 skipped；tools/restore_records.py exit0（恢复 20 个本机忽略的 data/build 副本）；相对链接 181 个，损坏 2 个（目标为 .gitignore 中的本机文件）。
+- 未改：上游第三方 README（pyascon、riscv-tests、ascon-c）按原作者的 setext 标题、缩进代码与 `*` 脚注渲染；中文硬换行在 GitHub 显示为空格属写法风格，未全量重排；交付 ZIP 未重打包。接口变化：无。
+
+## 2026-11-02 — D09 仓库结构对齐赛题推荐目录（owner TBD）
+
+- 用户给出当前README目录树与赛题3.3.5.4推荐结构截图，要求report/对齐“设计报告 + 大模型协作记录”。经确认：docs/整体并入report/；llm_collab移回report/且会话原文入库；README补目录对照；完成后正常commit/push。入场工作区干净、HEAD c300ba9。
+- 移动（git rename，保留历史）：docs/tech_report/ → report/technical/（含本地忽略的LaTeX编辑树与旧ZIP，层级深度不变），其余15个docs/*.md → report/design/，docs/reproduce_from_zero.md → report/reproduce_from_zero.md，archive/history/report/llm_collab/ → report/llm_collab/。顶层docs/与archive/history/report/已不存在。
+- 21个会话原文先与archive/evidence/raw_records_20261102.zip逐字节比对（diff 0），并做密钥/口令/邮箱模式扫描（0命中）后入库；.gitignore去掉两条sessions忽略规则，LaTeX编辑树/旧ZIP的忽略与PDF例外改到report/technical/，忽略结果与移动前一致。
+- 引用：脚本只改“映射后目标真实存在”的路径（链接按新旧相对位置重算，正文仓库相对路径按前缀替换），38个文件78行仅路径变化；另把9个指向已隔离文件的docs/链接改到archive/history/docs/。project_log、archive、report/technical/validation生成记录和delivery ZIP保持原字节，旧路径按历史时点解读。
+- tools/package_delivery.py改为读取report/design/*.md、report/reproduce_from_zero.md和report/technical/下报告源；pytest.ini与包内pytest.ini的norecursedirs由docs改为report。README新增推荐结构对照表；report/readme.md、report/design/readme.md、report/technical/README.md、project_board.md、AGENTS.md、delivery/README.md补说明。
+- 验证：Python3.13.9；pytest -q -p no:cacheprovider 122 passed/3 skipped（exit0，与D08一致）；py_compile package_delivery.py exit0；报告源路径存在性检查通过；相对链接178个，损坏13→4（余4个为移动前已失效且目标不在docs/，未改）。
+- 未做：未重新打包delivery四个ZIP（包内仍为旧docs/路径，已在delivery/README.md注明）；未重跑Vivado/板测/报告编译。接口变化：仅文档与打包脚本路径。下一接收任务：D05/D06不变，owner TBD。
+
+## 2026-11-02 — D08 README目录说明与从零复现入口（owner TBD）
+
+- 用户要求参考仓库README的目录说明，并按所给图片风格补一份从零复现文件。入场main工作区干净、HEAD957256f；本轮仅文档，不改程序或重新装配交付。
+- 查阅phantom-drive的README“仓库结构”组织（<https://github.com/Freebird415/phantom-drive>，访问2026-11-02），只参考目录职责和快速导航形式，不把该项目的技术/成员/来源关系移植到本项目。
+- README新增当前布局目录树、共享依赖提醒、克隆与复现入口；新增docs/reproduce_from_zero.md，分清现成candidate、从源码重建和四ZIP校验三种目标。
+  指南覆盖工具/Windows与WSL、身份检查、Final host、独立RTL、真实RV32固件/协同仿真、Vivado2025.2、RO分析、候选备份和Notebook新副本；不照搬图片中的历史恢复入口。
+- 明确输出写到新的build/local目录，不覆盖冻结build/metadata/、候选、已执行Notebook和旧板测；发布脚本只在独立克隆中备份candidate后运行；新bit须绑定新板测，不能回用旧PASS。
+- 同步project_board.md、docs/readme.md和D08任务导航；现有四ZIP、manifest、PDF、RTL/固件、锁定参考与原始记录保持原字节，新增指南未暗装入旧交付包。
+- 验证：Python3.13.9；5份入口/指南文档44个相对链接、18处命令脚本路径有效，8个argparse CLI的--help均exit0；tools/verify_puf3_sources.py --compile输出到新build/local目录，exit0，56项源/7项构建支持匹配、五工件MATCH。
+  python -B -m pytest -q -p no:cacheprovider：122 passed/3 skipped，exit0；1132个程序/工件/数据/交付保护对象hash全部不变，git diff --check exit0。记录build/local/reproduction_docs_check_20261102/doc_check.json及同目录日志。
+- 未运行新的Vivado综合/实现、PUF3功能协同仿真或实板，不将D05、RO域与PUF可靠性改成通过。D08仅文档完成，接口变化无，阻塞无；下一接收D05独立硬件端到端实做与D06材料审阅，owner TBD。
+- 文档准备阶段停在未提交工作区；随后用户明确要求“直接推送”，授权提交这8份文档及任务/活动记录。发布前再次fetch、核验44个链接及1132个保护对象不变，正常提交推送，不force push；远端同步以Git main引用为准。仍未重打包，不改原始验收状态。
+
+## 2026-11-02 — D07 最终四包固化与独立复验完成（owner TBD）
+
+- 源码/整理提交124f5c7后生成四个独立ZIP：PUF3源码263件（1959558 B）、历史源码1484件（30305437 B）、独立Skill28件（59655 B）、技术报告62件（3982718 B）；每包均含逐文件hash，最终ZIP SHA-256见delivery/manifest.json。
+- tools/verify_delivery.py对这一次正式ZIP完整复验exit0：CRC/成员hash与编号扫描通过；host61、Skill61 passed/3可选skip、固件重编译BIN857df29c…一致、elaboration和56项输入/7项候选支持检查全部通过。未把bit/DCP/波形/旧证据ZIP装进源码附件。
+- 在仓库外创建124f5c7的临时干净工作树，确认忽略的host结果副本与LaTeX编辑树不存在，重新运行package_delivery.py与verify_delivery.py均exit0。
+  四包成员集合相同，除checkout LF/CRLF外内容差异0；现成五工件仍完全匹配。该临时工作树只删除本轮创建的6个文件后正常移除，无force，不影响其他worktree。
+- 技术报告ZIP的LaTeX在独立解包目录用Tectonic再编译exit0，仍77页，关键性能数字及编号检查通过；未替换已冻结交付PDF。字体绝对路径/fontconfig、lineno编码、Underfull与PDF版本警告保留，不宣称跨平台逐位复现。
+- 完整机器结果在build/metadata/source_delivery_check.json；10个原始工具输出/编译记录存archive/evidence/source_delivery_checks_20261102.zip，CRC/成员SHA通过。
+- D07可定位源码的分包/导航/验证已完成，当前提交随后按用户授权正常推送，远端状态以Git引用为准；D06人工材料审阅/上传、D05硬件端到端、网页原件补交和所有PUF未测边界不因此关闭。
+
+## 2026-11-02 — D07 源码隔离与三类独立交付准备（owner TBD）
+
+- 最新用户授权：工程当前PUF3及依赖、独立历史源码分别压缩，另交付独立Skill与技术报告；不以旧证据包作附件，但仓库保留源码和原始资料，允许正常commit/push。
+- 入场保留文档审计、报告编辑树和并行记录，备份于本机opencode临时目录；181bafd保存说明层工作，ec60326正常合并origin/main，保留队友最新双语PUF3海报；未force push或丢弃他人修改。
+- 当前board只保留PUF3、实际共享IP来源及板卡资料；独立历史board/src/sim/build/Skill验证工具隔离到archive/history。
+  当前PYNQ公共库、pynq_svc/ascon_hw_rv32固件支持、Ascon参考/向量和build共享hook保留。当前RTL、固件算法、已执行PUF3 Notebook与candidate未改。
+- 原始报告/日志/高级实验/恢复/会话等压缩归档，旧展开提交包去重。对ec60326的4915个路径/3632种Git blob做内容回查，当前树或归档均有对应内容（文本允许LF/CRLF等价）；额外保存未覆盖的72种旧字节变体。
+  所有归档CRC与显式成员SHA-256校验通过，索引见archive/evidence/index.json；原标识/第三方许可与真实原件不伪造清除。
+- README→project_board→当前源码/构建/Notebook/历史/原件/Skill/交付导航已建立。当前维护内容与交付源码中的指定内部编号已清理，CPU只描述RV32五级流水线，不新增独占原创声明。
+- 报告仅调整CPU架构措辞并重新编译：build_20261102_002644，编译/证据/PDF检查均exit0，77页，PDF SHA-256 8cd1493eb9125950d6ea813984fd9c302be2c55cd0b1337774ed12ca9300aae4。
+  新编译记录归档，原始测量不改；报告源和图件单独ZIP，四张Vivado截图不散放入库。
+- 验证（Python3.13.9、pytest8.4.2、Icarus14.0 devel、xPack GCC15.2.0）：tools/verify_puf3_sources.py --compile exit0，56项候选生产输入、7项构建支持hash与5个现成工件匹配；共享hook/两个XCI路径检查通过。
+  仓库pytest为122 passed/3 skipped，exit0；源码包仓库外解压后主机61项、独立Skill61 passed/3工程实物可选项skip、固件重编译与elaboration均exit0；BIN完全匹配原candidate的857df29c…。
+- 初包曾漏带build共享hook，现已修打包源清单并增加专门依赖门禁，不能以elaboration代替Vivado输入核验。最终ZIP须在源码提交后重新生成/复核，以delivery/manifest.json为准；tools/verify_delivery.py为可复验入口。
+- 例外：历史日志记录的report/project_explainer.html在当前工作区、Git和现有备份中均未找到，不声称已入库/已扫描；需原制作会话补交原件，不重造网页冒充保留。
+- 接口变化：无硬件/固件ABI变化，仅仓库导航/归档/打包工具。未新跑Vivado实现、实板、完整历史工程复现或PUF可靠性，D05与原宽范围门禁不因解包测试转done。
+  下一接收D07最终清单固化与推送、D06人工材料审核/上传；网页补交待原制作会话，owner TBD。
+
+## 2026-11-01 — 说明层按版本分责收口，不强行修改 PUF3/旧程序（owner TBD）
+
+- 用户授权仅更新说明：明确旧入口与当前现状，不把全部程序强制改成PUF3。未改脚本、RTL、固件、
+  已执行Notebook、SKILL.md、原始板测、已发布manifest/PDF/ZIP/冻结指针，未commit/push。
+- 新增 `docs/version_entrypoints.md` 及目录导航，修正README/AGENTS/board/src/build/data/sim旧当前状态；
+  逐工程区分主演示、旧v1、PUF-only、PL-only、原baseline、独立DMA/PUF v2/MIN及Skill。
+  明示共享firmware/IP依赖必须保留，旧CPU runner缺keys/BUFG、v1 CLI不兼容PQF3仍是未修程序问题。
+- 历史评审/时序/交接/任务卡只加适用范围，保留原文与成败；旧报告/旧final ZIP不用作当前稿。
+  包内快照、锁定参考与实验固定材料不为文案同步重写。更新/补充125份说明，范围见documentation_scope_20261101.json。
+- PUF3 readme按实际固件纠正Y01K末8B为now_mcycle，按现有Notebook纠正FULL_KAT默认及不存在的CLI参数说明；
+  看板只澄清已有证据、目标版本和冻结已生成，不新增验收PASS。
+- 现有脚本刷新派生C组sha256清单/D02输入hash：build_evidence PASS52、D02 64/64、报告/PDF核对194/194（temp输出）。
+  assemble --check-only PASS，拟装配268件（新增文档引用）；**未写新包**，旧指针仍18:38的267件/2a0f0304…，旧包未回写。
+- 615个保护对象hash全部未变，程序diff0；61个新增相对链接有效，旧ZIP hash与指针一致。
+  明细 `build/metadata/documentation_scope_20261101.json`。并行新增讲解网页/日志已保留，不纳入本轮程序变更。
+- 后续要交付新说明快照时再独立核对/装配/冻结；本轮停在可审查工作区。
+
+## 2026-11-01 — 项目全链路讲解网页（owner TBD）
+
+- 用户要求制作通俗、严谨、详细的项目讲解网页，重点覆盖密码模块接入、PYNQ 工作方式及 CPU→密码→软件展示全链路。
+  新增单文件离线页面 `report/project_explainer.html`（无外部依赖），内容只整理仓库现有源码、构建脚本、实现报告、
+  最终报告与 `data/pynq_puf3/notebook_20261031_114512/result.json`，不新增任何测量；按“实板/仿真/实现报告/源码事实/
+  推算/背景知识/未测”逐项标注证据类别，PUF3 为主演示，PYNQ v1 与 PL-only 只作历史对照，版本表述按 `docs/version_entrypoints.md`。
+- 页面内嵌 JS 版 Ascon-AEAD128 演示（BigInt，与 RTL/固件同构）：本机 Node v24.15.0 从页面抽取库，对锁定
+  `data/ascon/kat/asconaead128.txt` 执行加密 1089/1089、解密 1089/1089、Tag/密文篡改拒绝 2145/2145、0 错，exit 0。
+  浏览器实测（本地 http.server 加载）各交互组件可运行、控制台无错误。该实现仅用于讲解，不是板上实现或证据。
+- 文中标为“推算”的量级（如 #529 一次 ISE 加密动态 73 条 custom-0、置换约占 ISE 周期 1%、P8/P12 在 EX 约 13/17 拍、
+  往返 176 B 理论线路 0.28 ms）均按源码/RTL 计算，未实测分项，不能当作板测结论。
+- 未修改 RTL、固件、Notebook、manifest、证据包或报告；未运行 Vivado、未上板、未 commit/push。
+
+## 2026-11-01 — 全部工程版本与 PUF3 入口一致性审计（owner TBD）
+
+- 用户要求列清全部版本、历史用途和本次不用的版本，并检查脚本是否对应 PUF3。本轮未改生产程序/RTL/固件/Notebook/
+  已发布 manifest，未新板测、未运行 Vivado、未重新打包、未 commit/push。保留原有未提交改动与新出现的 project_explainer.html。
+- 交付 `docs/version_inventory_20261101.md`、`build/metadata/version_alignment_20261101.json`：枚举 board 12 目录
+  （11 工程家族 + 1 资料目录）、固件 9 目录、Git 5 个 XPR 与本机 ASCON.xpr、六个本地分支、报告/证据/源码 ZIP；
+  扫描 493 个跟踪/明确未跟踪脚本，逐个列路径、hash、分类和版本引用。排除包重复副本、LLM 会话、第三方恢复固件与锁定 reference。
+- 当前 PUF3 五个工件、56 个选定生产输入、固件 build.json 的 12 个输入、10-31 板测 bit/hwh/manifest 绑定均匹配；
+  D02 64/64、报告/PDF 核对 194/194（输出到 temp）、assemble --check-only PASS 267，当前 ZIP 与冻结指针一致。
+- 全 70 项 candidate source 只有 Notebook 不同：追到 dd0dc25 的 CRLF 原件，当前代码仅 FULL_KAT False→True，
+  加执行输出/元数据变动；这是测试版本演进，不改构建 manifest 来假装一致。
+- 用临时输出复现源列表的 elaboration（不运行 vvp）：默认 run_cpu_regression 源集 exit 4，缺 BUFG/puf_key/key_mmio；
+  pynq-p0、PUF3 专用源集、当前 ISE TB、旧 MMIO TB 均 exit 0。v1 BridgeRegs 对 PQF3 模拟寄存器明确拒绝，
+  Notebook 的 PUF3 身份子类接受；不能仅改 --release 路径就把 v1 CLI 变成 PUF3。
+- 发现未收口入口：src/pynq 的 board_demo/benchmark/error_gate 仍默认 v1，Skill L3 Ascon 也有意测 v1；
+  src/rtl/soc_top.v 是自动锁钥旧版，PUF3 依赖 board 下两个变体；evidence/README.md 仍推荐旧 build_report.py；
+  README 表格/board/readme/src 与 data readme 等仍有旧状态，之前“全部入口已更新”的结论过满。
+- 四个旧报告 ZIP 全部不是当前 PDF，最近的 amd_fpga_2026_report.zip 也有 fig_2_9.tex 不同；18:38 证据包才是当前提交包。
+- 另纠正 P0 审计的全仓表述：CPU-DMA 实验已有真实 CPU 的 SW1089/ISE1089/HW289、vendor XSim 7418/7418，
+  均为独立 DMA 版本离线结果（board NOT_RUN），不能套给当前 PUF3。已补正 P0 复核文档及看板说明。
+
+## 2026-11-01 — P0 未验收项按现有证据复核与答复纠正（owner TBD）
+
+- 用户要求结合当前数据重新核对。此前把 11 个非 done 任务近似说成未验证，尤其“缺 I04 随机/边界/复位/seed、
+  没有中断验证、没有板卡 revision/频率记录”等说法不准确，已纠正。逐项证据见
+  `docs/p0_evidence_review_20261101.md`；本轮只读现有结果/源码，不运行硬件或仿真流程。
+- I04：`permutation_cases.json` 为 seed 0x800232、6 定向/边界 + 16 伪随机状态，P8/P12 各 22 次；
+  当前 XSim 原始日志 ISE 1502/0，summary 中 8 个源/配置/向量哈希与工作区完全一致。
+- I03/I05/C03：PUF3 候选 56 个选定生产输入 raw/LF 哈希全部一致、行为协同仿真 54 步 PASS，
+  固件构建 7 步 exit 0、静态 custom-0=22；10-31 板测 PASS、simulated=false、三模式各 289+289，
+  bit/hwh/manifest 三项绑定通过。当前 RV32 实现与容量内板测不是未验证。
+- V01/I05：现有真实 CPU+CLINT 六场景均接受中断并执行 handler/mret，Cache 四 seed 差分与独立事务已验证；
+  10-28 regression=15 PASS/0 FAIL/0 BLOCKED/1 NOT_RUN。ISA 为 49 PASS/ma_data 1 FAIL，不是没跑。
+  老 ACB 生命周期 MMIO 13212/0、ISE 1502/0、EX 11/0、单元 5/5，但若干当前源码哈希已改变，不能外推为最新全套重跑。
+- B03：10-27 冻结记录已有底板 V3.9/核心板 2V5；10-31 PUF3 有 mcycle/PS 时基估测 99.9723 MHz，
+  “尚无示波器/Fmax 测量”不能说成“没有任何频率核验”。完整芯片丝印/速度等级、真实 IO 延迟仍未闭合。
+- 真正剩余：原 baseline 独立复现/原 FreeRTOS 与 bootloader 构建依赖，完整保留编码/特权异常/RV64/
+  ISE 抢占上下文恢复/ISE-disabled 配置、全 1089 目标 KAT；PUF3 完整错误门禁、RO 计数器域与跨上电/PVT 等。
+  V10 是文件留存检查未收口，不是功能未测；V04 冻结留档已生成，不等于整个 P0 验收。
+- 看板补复核说明，不自动提升旧任务状态；未改 RTL、报告 PDF、原始证据或打包快照，未 commit/push。
+
+## 2026-11-01 — 证据包重装与冻结清单（owner TBD）
+
+- 顺序执行（Python 3.13.9）：`build_evidence.py` PASS 52；`check_benchmark_tables.py` 64/64；`assemble.py --check-only` PASS 267；
+  `assemble.py` exit 0 → `submission/evidence_20261101_20261101_183826/`，267 文件，9.0 MB，ZIP SHA-256
+  `2a0f0304e975dd14ca3d53989cac78e000f7584aa8303ed6e5f82fe1500dffec`（比 18:17 版多项目简介）。
+  独立解包 267/267 一致、0 清单外；PDF=构建记录，52 报告源与 98 证据输入齐全；包内简介/视频脚本/计划与仓库一致。
+- 提交 `92159b9`：入口文档更新、`final_report.pdf` 入库、证据包目录；LaTeX 源、截图 PNG、ISE 截图数据/脚本、两个旧 Overleaf ZIP
+  保持未跟踪（196 个未入库文件）。
+- `freeze_manifest.py` exit 0：冻结源码 `92159b9eb2b368814f86fef0030bd95b71613896`；源码包 `submission/source_92159b9.zip`
+  4881 文件、132.8 MB、SHA-256 `0ade4e665743d94d0e3fd173197eb5e34b5ccc3db3b289f3fdba2a22031d95eb`（不入库），CRC 通过，
+  报告工程中只含 PDF、不含截图；清单记录报告构建/PDF 哈希/板测主采样与未入库文件列表。冻结时未推送。
+- V04 仍 in_progress（P0 未验收项不变）；视频实机录制、PPT 与上传待项目方。
+
+## 2026-11-01 — 入口文档按最终报告/PUF3 10-31 统一，PDF 入库，证据包重装（owner TBD）
+
+- 用户要求：未更新的都更新，内容不过时、数据对应；截图不单独提交；PDF 入库；重新打包并提交。
+  经确认：ISE 截图仿真数据/脚本与报告 figs 截图 PNG 都不单独入库，证据包作为完整快照仍包含；Git 继续提交包目录。
+- 扫描旧口径（23342/16.221/WNS+0.034/14269、10-29/10-30 板测路径、latex/main.pdf、“PUF 不混入 overlay”）后更新：
+  `AGENTS.md`（交付安排与规则 13 加 11-01 PUF3 主演示说明）、`README.md`（状态入口、data 目录、旧计划标注）、
+  `docs/project_intro_20261101.md`（重写为 PUF3：21862/1369/3895、15.969×/5.613×、解密 22562/1213/4288、
+  18.600×/5.262×、LUT18674/FF32002、WNS+0.104、PUF 127/128 与边界）、`docs/project_overview.md`、`docs/architecture.md`、
+  `docs/technical_rules.md`、`tasks/milestones.md`（11-04 作废说明）、`report/readme.md`、
+  `report/demo_video_script.md`（整篇改为 PUF3 主演示：身份 PQF3/pynq-svc-puf3、时钟 99.9723、289/289、性能表 4 位小数
+  cycles/B、PUF 密钥通路段替换原错误恢复段；v1 9/9 降为可选历史对照段）、PUF3 board readme（10-31 板测）、
+  `docs/tech_report/README.md`（旧 Markdown 流水线标注作废）、`docs/current_status_20261029.md`（标为快照）、看板/计划。
+  带日期的验证/交接/评审记录与执行过的 Notebook 不改（后者 PUF3 版被报告构建锁定哈希）。改动文件均不在报告构建锁定输入内。
+- `check_benchmark_tables.py` 新增配套材料检查：简介、视频脚本、README 必须含由原始数据重算的关键数字，64/64；
+  临时把简介 1369 改 1370 后 exit 1，try/finally 恢复哈希一致。简介放回证据包。
+- `freeze_manifest.py` 改为只要求已跟踪文件无改动，记录未跟踪（不入库的截图/LaTeX 源）数量与列表，并记录 PDF 是否入库。
+- 18:17 的证据包被取代（保留）；新包与冻结结果见下一条。
+
+## 2026-11-01 — 最终报告 PDF 装入证据包（owner TBD）
+
+- 用户确认最终 PDF 已制作完成。核实：`output/pdf/final_report.pdf`（17:47，2430237 B，SHA-256 `603c625a…4825`）
+  即报告构建 `build_20261101_174743`（PASS）的产物，与 `build/local/report_puf3_review/build_20261101_174743/main.pdf`
+  同字节；之后无新构建，报告源未再改动。
+- 顺序执行（Python 3.13.9）：`build_evidence.py` PASS 52 件；`check_benchmark_tables.py` 43/43；`assemble.py --check-only`
+  PASS；`assemble.py` exit 0 → `submission/evidence_20261101_20261101_181751/` 与同名 ZIP，266 文件，9.0 MB，
+  ZIP SHA-256 `01000e5c2665c638002c95d030a8c73170ca0af3ba12b6cfd19aede41a7a8a53`；`current_evidence.json` 已指向，
+  并记录报告构建、PDF 哈希与板测主采样 `data/pynq_puf3/notebook_20261031_114512/result.json`。
+- 独立解包：266/266 哈希一致、0 个清单外文件；包内 PDF 哈希 = 构建记录，PyMuPDF 打开 77 页，含 21862/15.969；
+  构建记录的 52 个报告源与 98 个证据输入全部在包内且哈希一致；旧 report.md 与过时的项目简介不在包内。
+  Git 跟踪 263 件，3 件历史 PL-only `build/local` 报告按 .gitignore 排除（与以往一致），PDF 未被忽略。
+- 修正 `--check-only` 预估文件数多算 1（把根 sha256sums 计入），重跑显示 266。
+- 未做：冻结清单与源码包（需报告工程入库、工作区干净）；项目简介仍待更新；未 push。
+
+## 2026-11-01 — 合并 ae7a270/c05782d；装配/D02/冻结改指最终 LaTeX 报告与 10-31 板测（owner TBD）
+
+- 用户指出：最终报告引用 `data/pynq_puf3/notebook_20261031_114512/result.json`，而 assemble.py 仍固定 10-30 目录。
+  核实属实，且问题更大：证据包收录的是旧 `report.md`/`latex/main.pdf`，最终报告是独立 LaTeX 工程
+  `docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/`（未入库，仍在修改），主表已改为 PUF3；
+  10-31 的 D02 15/15 核对的是旧报告，对最终报告无效；10-31 的三个证据包与冻结清单作废（保留未删）。
+- 10-31 数据核实为真实重测：PYNQ v1 benchmark/错误门禁 identity 时间 10-31 11:20/11:28、源码 `ac9143d`，
+  release 哈希绑定、`simulated=false`，周期与 10-29 相同；PUF3 10-31 11:45 PASS，bit/hwh/manifest 绑定 candidate，
+  三模式 289/289；报告表中 21862/1369/3895、15.969×/5.613×、解密 18.600×/5.262× 与原始数组重算一致。
+- 合并：工作区已有另一会话的 `merge --no-commit origin/main c05782d`（冲突以远端为准）。按用户指示原样提交为
+  `17d6c51`，未带入其后未暂存的日志/看板改动与未跟踪的报告工程。c05782d 删除 10-30 三次 PUF3 运行（含首次
+  62.5 MHz 失败），ae7a270 移走 10-29 主线目录；按用户“以最新一版为主”不恢复，均可从 Git 历史取回。
+  远端优先合并丢掉了本文件中 10-31 的 D02/V04 条目，已在下方按原文恢复并标注作废。
+- 脚本：`build_evidence.py` 集中维护 `REPORT_DIR`/`REPORT_PDF`/`BENCH`/`GATE`/`PUF3_RUN`（10-31）；C-4/C-5 改收
+  已执行的 `src/pynq/pynq_board_{demo,error_gate}.ipynb`（引用 10-31 目录），C 组标为 PYNQ v1 历史对照；重跑 PASS 52 件。
+  `check_benchmark_tables.py` 重写为对最终 LaTeX：表 1-1、表 3-13/3-14、摘要、PUF3 资源/时序、PDF 文本、报告引用的
+  PUF3 目录必须等于 `PUF3_RUN`，43/43 exit 0；隔离反例（1369→1370、报告追加 10-30 引用）均 exit 1。
+  `assemble.py` 新增报告门禁：最近一次 `validation/build_*/summary.json` 必须 PASS，PDF 哈希、52 个报告源、98 个证据输入
+  与之一致，`pdf_check`/`evidence_check` PASS 且 `board_result` 为 PUF3_RUN，报告引用的仓库文件全部存在；
+  随包收 PDF、LaTeX 源、核对脚本与构建记录、98 个证据原件、引用文件；移除旧 report.md/main.pdf/latex_project.zip/
+  appendix_c_raw.md，以及口径过时的 `docs/project_intro_20261101.md`（仍写 23342/1439/3995、WNS+0.034，需队友更新）。
+  新增 `--check-only`：267 文件，PASS，exit 0。临时副本上的反例（构建后改报告源、替换 PDF、打包用别的 PUF3 目录）均被拒绝。
+  `freeze_manifest.py` 改为引用同一组路径，PUF3 列为主演示工件，增加证据包须绑定当前报告 PDF/PUF3_RUN 的检查，限制同步更新。
+- 未生成新证据包与冻结清单：报告仍在修改，且冻结要求工作区干净（报告工程未入库）。`submission/README.md`、
+  `tasks/release_plan_20261101.md` 已写明作废与重新生成顺序。未 push。
+
+## 2026-10-31 — D02 数值核对、V04 冻结留档、源码包、证据包再装配（owner TBD；11-01 恢复：合并时被远端优先覆盖。本条 D02 15/15 针对旧 report.md，证据包与冻结清单均已作废）
+
+- D02：新增 `docs/tech_report/evidence/check_benchmark_tables.py`（只读报告），从 warm benchmark JSON、
+  `utilization.rpt`、`timing.rpt` 重算并核对 report.md 中表 3-13/3-14 的 6 行、摘要两组 SW/HW/ISE 中位、
+  JSON 加速比 4 项、资源与 WNS/TNS/WHS，15/15 PASS，exit 0；故意改报告副本 1439→1440 后 exit 1。
+  结果 `docs/tech_report/validation/benchmark_tables_check.json` 记录输入哈希；范围不含历史 PL-only/PUF。D02→done。
+- assemble.py 新增 X-7（D02 核对）、X-8（视频脚本），并在 D02 不是 PASS 或输入已过期时拒绝装配。新包
+  `submission/evidence_20261101_20261031_163056/`，122 文件，ZIP SHA-256
+  `3452e05cd68d182ef5c368b10a997421173e3d444fb291ae6cf9c9f10c01a314`；独立解包 122/122 一致、0 个清单外文件。
+  15:40 的包已入库，按规则保留，作为上一版；15:32 的作废包（未入库）已删除。
+- V04：新增 `freeze_manifest.py`，要求工作区已提交且干净；用 git archive 生成本机源码包，核对三套工件
+  sha256sums、主线 benchmark/错误门禁与 release 绑定、pynq_puf3 板测绑定、L3/DMA 绑定、D02、证据包 ZIP，
+  然后写出 `submission/freeze_manifest.{md,json}`。P0 尚有未验收项，V04 保持 in_progress。
+- 第一次运行 exit 1：主线 release 的 sha256sums 用的是仓库相对路径。修好后提交为 `af34e65`，在干净工作区重跑 exit 0。
+  冻结源码提交 `af34e65895cebf24f066b0a7b6abe9cd14a785cb`；源码包 `submission/source_af34e65.zip`
+  （4356 文件，112.3 MB，SHA-256 `d00fa6697aa4c96553393996c3a4d74a8afd2ce00c8f6b49fe6211f25458e31c`，不入库）。
+  解压到仓库外后，在包内运行 Skill pytest 64 passed，D02 核对 15/15，均 exit 0。这不等于 D05 完整复现：没有重新构建 Vivado/固件，也没有上板。
+  冻结时未推送（`pushed=false`）。
+
+## 2026-11-01 — 撤销旧暂存合并并重新拉取，冲突以远端为准（D03/D06，owner TBD）
+
+- 用户要求放弃上次暂存并重新拉取，冲突优先队友提交的新数据。先创建
+  `backup/pre_remote_refresh_20261101_174818` 保留本地 HEAD 的 3 个提交，备份 215 个工作区文件和
+  staged/unstaged 补丁至 `build/local/git_refresh_backup/20261101_174818/`，ZIP 逐文件读回校验通过。
+- 第一次 `git merge --abort` 因 actual_progress 含未暂存的新记录而拒绝；已有完整备份后暂时还原四份
+  日志/看板的工作区增量，成功撤销旧合并。随后 fetch 到 `c05782d510a2c1936b3bb7c45a943ef76cc6bd02`，
+  执行 `git pull --no-rebase --no-commit -X theirs origin main`，冲突按远端解决，无未合并文件。
+  远端删除旧/失败 PUF3 测试文件的改动按用户授权保留，不从本地备份恢复这些数据。
+- 仅恢复不冲突的本地报告/仿真活动记录和看板增量；actual_progress 只插回独立新增的 141 行记录，
+  没有恢复被远端冲突策略替换的旧 D02 段。报告、图片、用户后续排版、仿真配置等 198 个受保护文件 SHA-256 未变。
+- 验证：`data/pynq/`、`data/pynq_puf3/` 与三个板测 Notebook 对 origin/main 的 diff 为空；无冲突路径；
+  PUF3 最新 result 为 PASS/simulated=false，SHA-256 仍为 `958bc66099137c9e7b258d6fee438de911b138d6baf1d4f3559bf7c14d4b3554`。
+  结果见备份目录 `refresh_result.json`。未重测板卡或更改数据，未改 RTL/接口。
+- 当前是本次新拉取的待提交合并，Git 暂存区为新的合并结果，未 commit/push。本地 3 个提交保留，
+  D03/D06 仍按既有终审/核包状态处理；最终提交动作由用户决定。
+
+## 2026-11-01 — D03 图 2-9 连线不再插入框内（owner TBD）
+
+- 用户指出图 2-9 黑线插入框内。原因：PS→MAILBOX 实线在 x=-6.6 下行，而 pynq_mbox.v 框横跨约 -7.7～-4.1，
+  线穿过框和文字后再折向左边；pynq-svc-puf3→Ascon 的竖线在 x=6.2，距 Ascon 框右边仅 0.1 cm，像插进框角。
+- 只改 `figs/fig_2_9.tex` 连线：实线改为从上方进入 MAILBOX 框顶边左段，link_flush 虚线进入框顶边右段，二者不交叉；
+  服务固件→Ascon 改为竖直短箭头进入 Ascon 框顶边。框、文字与说明框未改。
+- 单图预编译无 Overfull，渲染确认所有箭头止于框边；`build_review.py` exit 0，194/194 PASS，PDF 77 页，图在印刷页码 23，
+  各图排放决定不变。PDF SHA-256 `603c625a8e8f3c1271d9d96f1d4982e15ded676de9262c4ef3813111124e4825`，
+  记录 `validation/build_20261101_174743/`。构建与同时进行的重新拉取（上条）相邻；报告目录未被 Git 跟踪，
+  事后核对 fig_2_9.tex、preamble.tex 与发布 PDF 哈希均完好。交接 ZIP 未重建，未 commit/push。
+
+## 2026-11-01 — D03 第一部分压缩为 2 页（owner TBD）
+
+- 用户澄清：压缩 1.5、1.6 与图 1-1，使其与 1.4 同在第 3 页。撤回上两轮的 `\Needspace{470pt}`/`{310pt}`（恢复 85pt）。
+- `chapters/ch02.tex`：1.5 第 4 条改为一行（“……墙钟与 PUF 门禁构成可复核演示链，旧版证据分列。”）；1.6 正文由 4 行
+  压到 3 行，保留六个阶段，删去“11 月 1 日”和 PUF3 未执行的“错误恢复”，引号改为“”。`figs/fig_1_1.tex`：框内行距
+  1.05、行间距 1.72/1.55 cm，字号不变；“HWKEY 开关与 KAT 恢复”改为“HWKEY 开关/KAT 恢复”使各框均为三行。
+- `preamble.tex`：图题与说明先排入盒子实测高度（`\captionof` 仅执行一次），以 `\pagegoal-\pagetotal-\pagedepth-\intextsep`
+  判断，替代原 3.2 行距 + 1 行的保守估计（图 1-1 原被缩到 70% 且下方仍余约 33pt）。图 1-1 现缩放约 92%；
+  3-4/3-5 缩放由约 87%/80% 变为约 98%/91%；其余图的原位/浮动决定不变，逐页渲染无溢出。
+- `build_review.py` exit 0，194/194 PASS，无 Overfull；PDF 78→77 页，第 3 页含 1.4–1.6 与图 1-1。
+  PDF SHA-256 见 `validation/build_20261101_010857/summary.json`。交接 ZIP 未重建，未 commit/push。
+
+## 2026-11-01 — D03 1.5、1.6 与图 1-1 同页（owner TBD）
+
+- 用户要求 1.5 与 1.6 放在一起：`chapters/ch02.tex` 在 1.5 标题前改为 `\Needspace{470pt}`（1.5+1.6+图约 460pt），
+  三者一起位于第 4 页；第 3 页在 1.4 后约留半页空白，为用户接受的代价。
+- `build_review.py` exit 0，194/194 PASS，PDF 78 页，渲染复核第 3/4/5 页。PDF SHA-256
+  `692794de1012e9ba937dc3ef57640f0af5bfc38e691634d36ed76d4626c9aa00`，记录 `validation/build_20261101_004724/`。
+  交接 ZIP 未重建，未 commit/push。
+
+## 2026-11-01 — D03 1.6 与图 1-1 同页（owner TBD）
+
+- 用户指出图 1-1 仍与 1.6 正文分页。核实指定 `output/pdf/final_report.pdf` 已是最新构建（封面新名称、78 页），
+  图 1-1 未动是因为第一部分末页只剩约 128pt、图需约 194pt（须缩到约 57%，低于 62% 下限）。
+- 用户在三种方案中选择“1.6 整节移到第 4 页”：`chapters/ch02.tex` 在 1.6 标题前改为 `\Needspace{310pt}`，
+  空间不足时标题、正文和图整体换页；第 3 页在 1.5 后留约 1/3 页空白，为用户接受的代价。
+- 首次构建核对通过，但发布时 PDF 被阅读器占用（WinError 32），脚本按设计停止、未覆盖；解锁后重跑
+  `build_review.py` exit 0，194/194 PASS，PDF 78 页，第 4 页含 1.6 与图 1-1（原尺寸）。
+  PDF SHA-256 `0a95263be6504cfd8eae14f94c5a147c3b9780dacc2d7ea1e3174cf24b5cc890`，记录 `validation/build_20261101_004133/`。
+  交接 ZIP 未重建，未 commit/push。
+
+## 2026-11-01 — D03 报告作品名称与报告类型（owner TBD）
+
+- 用户确定作品名称为“RISC-V轻量密码加速SoC”，报告类型去掉“竞赛”。改 `cover.tex` 作品名称与报告类型
+  （“技术报告”）、`main.tex` 的 `\title`、`preamble.tex` 的 PDF 标题元数据；报告内仅这三处使用旧名称，正文描述未改。
+- `build_review.py` exit 0，194/194 PASS；PDF 78 页，标题元数据为新名称，封面渲染复核。
+  PDF SHA-256 `e40afc62fbc96c55a42abe8531b5e71a0f7337df5b4a2aec89f1198d429bb7f8`，记录 `validation/build_20261101_002257/`。
+  交接 ZIP 未重建，未 commit/push。
+
+## 2026-11-01 — D03 图 2-14 连线不再穿过框（owner TBD）
+
+- 用户指出图 2-14 右侧连线与“当前 pynq_svc_puf”框重合。原因：该框文字自动换成 4 行、框高超出预设，
+  而连线写死从框底引出、在 y=-5.2 横走，正好穿过框内文字。
+- 只改 `figs/fig_2_11.tex`：连线改为从框右侧引出，沿右侧空白通道下行再绕到 RV32 CPU 底部，不依赖框高；
+  框内文字改为“当前 / pynq_svc_puf / SW / MMIO / ISE / + PUF”四行，按词断行，文字与含义不变。
+- 单图预编译无 Overfull；`build_review.py` exit 0，194/194 PASS；PDF 仍 78 页，图在 PDF 第 35 页（印刷页码 31），
+  渲染复核无交叠。PDF SHA-256 `d17b058db077b0ce805697ff278cd6dbc652c8dddfc2f86035062f612b24e140`，
+  记录 `validation/build_20261101_001522/`。交接 ZIP 未重建，未 commit/push。
+
+## 2026-11-01 — D03 报告插图就近排版（owner TBD）
+
+- 用户反馈图与正文分得太开，并给出此前认可的规则截图。原因：所有插图用 `[H]`，放不下就整体跳到下页、
+  本页留白（原 PDF 第 9/14/25/30/47/49 页等）。改为按当前页剩余版面排放：放得下原位；差一点等比缩小
+  （不小于 62%）留在本页；仍放不下则浮到下一页顶部、本页由后文补满；已有待排图时后续图一并浮动保持顺序。
+- 改动仅限 `docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/`：`preamble.tex`
+  （`\placefigure`、浮动页顶对齐、longtable 换页时放置待排浮动图的补丁）；`chapters/ch04.tex` 图 3-3 改用同一宏
+  并删除两处 `\FloatBarrier`；ch03/ch04/app02 中“标题后紧跟长表”的 10 处 Needspace 85→150pt（含 3.3.5）。
+  正文文字、数据、图件内容均未改。
+- 发现并修复：长表跨页时 longtable 自带输出例程不放待排浮动图，图 2-10/2-11/2-12 被推后两页；补丁后
+  均在所属小节旁。2.3.3.11、3.3.5 标题落在页底而表在下页的问题已消除。
+- Python 3.13.9 / Tectonic 0.15.0：`build_review.py` exit 0，194/194 PASS，四张原图像素与各出现一次通过，
+  无 Overfull/未解析引用/缺字。PDF 81→78 页，SHA-256 `d1941ebbe7fdcd866656b3f90d9fa30d9439ed7e2c3dd07adf7401c02a922b39`，
+  记录 `validation/build_20261031_235755/`、`validation/layout_check.json`；正文 6–66 页逐页渲染复核。
+- 已知余项：图 1-1 因第一部分已无空间、被第二部分换页推出，单独位于第 8 页顶部；第 51 页因表 3-11 首行
+  不能拆分底部约 24% 留白。交接 ZIP 未重建；D03 仍待队友终审，未 commit/push。
+
+## 2026-10-31 — D03 补入资源利用率和 ISE 实际截图（owner TBD）
+
+- 用户提供 `Report Utilization.png` 与 `Wave.png`，核对与父目录同名原文件一致，按原字节复制为报告
+  `figs/vivado_utilization.png`、`figs/vivado_ise_waveform.png`，分别替换图 3-2、3-5 占位；现有四张工程截图各出现一次。
+- 资源图的 top/LUT/FF/BRAM/DSP 与 PUF3 实现报告一致。ISE 图注限定实际可见的 P8 start=380 ns、done=495 ns；
+  说明 Objects 末态 1502/0 与 Wave 150 ns 光标值的区别，以及控制台 get_waves 缺 patterns 的查询错误，
+  不把局部图外的 ack/cancel/P12 当作截图已展示。附录增加同日 ISE 自检日志、源哈希和 1502/0 证据。
+- Python 3.13.9 / Tectonic 0.15.0：`build_review.py` exit 0，核对 194/194 PASS，四张原图像素及各一次嵌入通过，
+  无 Overfull/页边界溢出/未解析引用；新增图的 PDF 文件页 46、52 已视觉复核。
+- 指定 final_report.pdf 为 81 页，SHA-256 `ddc915c0a57faee46a50187036ed39f4362dcbd20c36f3886d94f47711403a7c`。
+  同步交接 ZIP，69 文件读回哈希一致，ZIP SHA-256 `6f76d92ff434378ddb3f35a9bba2186d813424a8349971c14eacdeb0407fa44b`。
+  工程截图缺项已补齐，D03 保持队友终审状态，D06 仍需重新装配比赛证据包；本次仅报告工作，未修改硬件或 commit/push。
+
+## 2026-10-31 — D03/I04 配置 PUF3 工程的 ISE 截图仿真（owner TBD）
+
+- 用户要求配置现有工程后自行截图。在 `build/local/pynq_puf3/vivado/pynq_puf3.xpr` 新建并激活
+  `sim_ise_screenshot`，top=`tb_key_ise`；设计 top 仍为 `pynq_puf3_wrapper`，part=`xc7z020clg400-1`。
+  原 XPR 备份在 `build/local/pynq_puf3/ise_screenshot_backup/20261031_224938/`。
+- 新增 `sim/ascon/configure_ise_screenshot.tcl`、`run_ise_screenshot.tcl`、
+  `ise_screenshot_view.wcfg`、`check_ise_screenshot.py` 与 `ise_screenshot_readme.md`。
+  使用原 TB、原置换向量和原 ISE RTL；运行前自动安置向量，记录 15 个重点信号，保存 WDB/VCD/WCFG，
+  加入 P8/P12 start/done/ack 与 cancel 标记，50 us 有界运行。
+- 验证（Vivado/XSim 2025.2，Python 3.13.9）：编译、展开、真实运行 exit 0；
+  `SUMMARY ISE checks=1502 errors=0`，37390 ns 正常 finish。最终关闭增量编译后全量重新编译验证 PASS；
+  `python -X utf8 sim/ascon/check_ise_screenshot.py` exit 0，从 VCD 重读 1502/0 及握手边沿。
+  日志/源哈希/波形哈希在 `data/ascon/results/ise_screenshot_20261031/`，波形在
+  `build/local/pynq_puf3/ise_screenshot/`。sources_1/constrs_1 文件条目和 candidate bit/hwh/manifest 哈希均未变。
+- 原生 Vivado GUI 已打开并保留已完成仿真，当前视图 `ise_screenshot_view.wcfg`；推荐截图范围
+  300–1800 ns，取消场景 36650–37100 ns。资源图仍从同工程的 implemented design 读取。
+- 边界：这是 ISE 单元行为仿真，不是整机/时序/CDC/实板复验；没有改 DUT、TB、接口或重跑实现。
+  BD protoinst 可视化提示“无 pynq_puf3 实例”保留，原因是仿真 top 为单元 TB。D03 仍待用户截图与终审，
+  I04 的完整验收边界不变。未 commit/push，Vivado 保持打开供用户操作。
+
+## 2026-10-31 — D03 删除重复实现截图并说明补图入口（owner TBD）
+
+- 用户指出 Implemented Design 被放了两次；删除第三部分的重复插图，改为引用图 2-11，第三部分图号顺延。
+  缺图现为图 3-2（PUF3 资源利用率）、图 3-5（ISE 仿真波形）；只调整文档，无硬件/接口改动。
+- 查实当前工程 `build/local/pynq_puf3/vivado/pynq_puf3.xpr`，资源入口是 Open Implemented Design →
+  Reports → Report Utilization；当前 sim_1 top=top_pynq，未挂 ISE TB，build/data 未找到 WDB。
+  可用 TB 为 `sim/ascon/tb_key_ise.v`，EX hold 交互为 `tb_key_execute.v`；说明写入报告 readme。
+- Tectonic 0.15.0 构建 exit 0，核对增加“每张截图恰出现一次”，176/176 PASS、无 Overfull；交接 ZIP 同步重建，
+  66 文件读回哈希通过。最新 PDF 80 页，SHA-256 `09ef4bde0e9306b585385e90926d6d8d140df0877bfc6135c1856b5a1fa1fdb3`；
+  ZIP SHA-256 `1ef847b0aa2274ec389079f3396c6da50e7d5da1fce8d4137d3687869f5e0639`，取代下条的本轮上一版交接产物。
+  D03 继续待队友终审/补图；未 commit/push。
+
+## 2026-10-31 — D01/D02/D03 队友 LaTeX 终稿按 PUF3 核对（owner TBD）
+
+- 用户指定最终演示对象为 PUF3，要求将两张实际 Vivado 截图加入
+  `docs/tech_report/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf`。
+  以该独立交付目录的 `chapters/*.tex`、`figs/*.tex` 为维护源，保留封面/页眉/版心/五部分结构；
+  原 ZIP 保留，修改前副本在 `build/local/report_puf3_review/before_review.zip`。
+- 按用户补充要求 `git fetch origin`，远端更新到 `c385a9d`，本地有 3 个未推送提交，故
+  `git merge --no-commit --no-ff origin/main` 纳入更新；actual_progress 顶部冲突同时保留双方条目并标记解决。
+  没有创建合并提交、没有 push；Git 仍处于待提交合并状态。新增 10-31 板测与 Notebook 来自远端，不是本轮重测。
+- 主证据改为 `data/pynq_puf3/notebook_20261031_114512/result.json`，与 candidate 的 bit/hwh/manifest
+  哈希一致。摘要、主表、图内数字、身份/源集/构建/上板说明统一到 PUF3：加密 21862/1369/3895、
+  解密 22562/1213/4288 cycles；PS 墙钟改用当天摘要；mcycle/PS 时基估测 99.9723 MHz。
+  LUT/FF=18674/32002、WNS/WHS=+0.104/+0.041，明确 RO 计数器域未签核、DRC 与 methodology 分开。
+- 两张 PNG 原字节入 figs；图 2-10 为 Block Design，图 2-11/3-2 复用 Implemented Design。
+  附录 C 由 `review_evidence.py` 从原件生成；旧 release 9/9 错误门禁、全长度周期统计与历史 PL-only
+  保留原归属。PUF3 quality=127、连续 5 次重建/HWKEY 恢复通过不升级为跨上电或安全性验收。
+- 源码复核纠正“驱动结束显式清零”：当前 `pynq_svc/ascon_modes.c` HW 路径没有发 ZEROIZE；
+  `pynq_svc_puf/main.c` 响应后清 rxbuf/txbuf 位于计时外，不能等同硬件状态或 PUF helper/key 清零。
+  本轮只改报告与核对工具，没有改 RTL/固件/工件/ABI，也没有重跑 Vivado、仿真或实板。
+- 验证：Python 3.13.9、Tectonic 0.15.0；本目录 `build_review.py`、`review_evidence.py --pdf ...`
+  exit 0，证据/正文/PDF 174/174；隔离副本将表 3-13 的 1369 改成 1370，核对器 exit 1 正确检出。
+  PDF 截图像素与原 PNG 一致；无未解析引用/缺字，布局越界检查通过；详情见该目录 validation/。
+- 最终 PDF 81 页，SHA-256 `d777912b656d74b136c525a1e190a7180bb417120383d169052abdd04555a8e2`。
+  同目录 `output/amd_fpga_2026_report_puf3_review.zip` 为 LaTeX 源/原图/摘录/验证记录/PDF 交接包，
+  66 个文件逐项读回哈希一致，ZIP SHA-256 `3337e58334980707cce200c967de9579de0704eb1c5b49cd1c8f387343c4e2fb`；
+  这不是包含全工程的 D06 最终比赛包。
+- 未补：图 3-3 的 PUF3 资源界面、图 3-6 的真实 ISE 波形、完整丝印等现场材料；完整 PUF3 错误门禁、
+  RO 签核、跨上电/PVT/熵/BER/唯一性、小时级与 D05 不升级为完成。D03 待队友终审，D06 须用本稿和
+  新板测重新装配证据包/冻结清单；`submission/current_evidence.json` 的旧包不包含本次报告更新。
+
 ## 2026-10-31 — PYNQ demo Notebook 全量 KAT 说明同步（owner TBD）
 
 - 用户将 `src/pynq/pynq_board_demo.ipynb` 的 `RUN_FULL_KAT` 设为 `True` 后在板上执行；
@@ -804,7 +1225,7 @@ owner TBD；基线 `3c6f134`（工作区 clean）。未改 RTL/XDC/XCI/COE，未
   新增脚本 `build/sweep_margin_phys.tcl`、`build/probe_timing_wall.tcl`、`build/probe_geometry{,2}.tcl`；
   证据 `build/reports/margin_20261020/*/`、`build/local/margin_20261020/`。
 - **未完成**：降频后的实测 STA（需改 XCI，待用户决定）；L1 RTL 断链（属 RTL owner）；
-  B02/B03/B04/V01/V03/Y01~Y05/S01~S05 状态不变。
+  B02/B03/B04/V01/V03/Y01\~Y05/S01\~S05 状态不变。
 - 首轮脚本用 `get_timing_paths -pulse_width` 取 WPWS 抛错（2025.2 无该选项），
   发生在写 result.txt 之前；RPT 正常，数字取自 `route_timing.rpt`，脚本已修正。
 
@@ -855,7 +1276,7 @@ owner TBD；基线 `3c6f134`（工作区 clean）。未改 RTL/XDC/XCI/COE，未
   `src/rtl/ex_stage.v` 非对齐判定改用 3 位部分和（`(a+b)[2:0] == (a[2:0]+b[2:0])[2:0]`），
   把 32 位地址加法器从 `trap → flush → ID/EX 使能` 锥里摘出。
   实测 **WNS +0.016 / TNS 0 / 0 失败端点 / WHS +0.012 / LUT 11821(+3)**；
-  最差类由 13 级/8 CARRY4/logic 3.564 ns 变为 9~10 级/1~2 CARRY4/logic ~1.93 ns。
+  最差类由 13 级/8 CARRY4/logic 3.564 ns 变为 9\~10 级/1\~2 CARRY4/logic \~1.93 ns。
   功能与周期六场景逐项一致（ise/stall/reset 2496、安全 402/0、hw PASS、sw 17353/21515/17847/22094）。
 - **100 MHz 天花板**：A1 + 4 个 floorplan/directive 变体 = +0.003 / +0.022 / −0.041 / −0.297，
   最优 **+0.022**（A1 + pblock X50Y0:X113Y99）。最差路径始终是 `pc → icache tag → CE`
@@ -898,7 +1319,7 @@ owner TBD；基线 f52bc49 + 工作区 dcache/ascon_ise/ex_stage/mult 修改（�
 - **未完成**：板级 IO delay/板型/pinout（B02/B03）、PS/PYNQ（P1）、Ascon 固件镜像
   替换（COE 仍 FreeRTOS）、板上 KAT/benchmark（V01/I08/Y01）。芯片级收敛不等于上板通过。
 - 证据：build/reports/timing_acb_20261018/{postroute,remap}/、
-  data/ascon/results/key_lifecycle/*_timing_acb*.json、data/ascon/results/isa/{fix_r1_control,timing_acb}/。
+  data/ascon/results/key_lifecycle/\*_timing_acb\*.json、data/ascon/results/isa/{fix_r1_control,timing_acb}/。
 
 ## 2026-10-18 — V09 A→C→B 与双策略完成：既有 100 MHz STA 通过
 
@@ -1197,8 +1618,8 @@ E:/amd_fpga_2026_integration，分支feat/ascon-decrypt-kat-integration。
 - 所有四个production.v编译exit0，10module无重复，全源加解密仿真exit0，
   原队友TB5组PASS。故障注入4/4，三个功能故障vvp exit1、坏向量runner exit1。
   参考全1,089 KAT gate12,936/0；软件四backend本worktree重跑28,661/0。
-- 新证据rtl_integration_regression.*、rtl_integration_harness.json、
-  host_integration_validation.*，记录0a425f9+实际dirty source/TB/scripts hashes，
+- 新证据rtl_integration_regression.\*、rtl_integration_harness.json、
+  host_integration_validation.\*，记录0a425f9+实际dirty source/TB/scripts hashes，
   不是旧7139a80结果复用。工具版本/命令/退出码及保护说明见最新解密整合报告。
 - 最终integration_review.json核验当前源码/验证源哈希、原28dirty和89备份未变，
   远程main仍0a425f9、diff --check exit0；暂存/提交/推送/PR为0。
@@ -1304,13 +1725,13 @@ checkpoint 无新增 commit。看板仍不改；交接 RTL owner/TBD 修重复/�
 
 | 任务 / 范围 | 实际结果 | 证据 | 状态 / 局限 |
 |---|---|---|---|
-| B01 / D00 | 初始仓库审计、协作骨架已完成；现补充归档审计与结论更正 | docs/repository_audit.md、docs/cicc1000023_recovery_audit.md | done；审计不是功能验收 |
+| B01 / D00 | 初始仓库审计、协作骨架已完成；现补充归档审计与结论更正 | 历史审计/恢复记录（已隔离） | done；审计不是功能验收 |
 | B02 | Rebuild and verify recovered XC7Z020 CICC baseline；原始 XC7Z020 XPR、31 RTL/header、3 XCI、XDC/COE 恢复；活动文件引用闭合；Kintex 保留 | board/vivado_zynq7000_xc7z020_baseline；manifest 双哈希 | in_progress；未运行 Vivado/IP 再生成/综合/实现 |
 | B03 | 原始 target xc7z020clg400-1、PLL 50→100 MHz、128 KiB BRAM 配置已知 | 原 XPR/XCI/XDC 与恢复审计 | blocked；target part 已确认，physical board model pending；revision/引脚适用性/PYNQ image 未核验 |
-| B04 | CoreMark RV32/RV64、FreeRTOS 应用、RISC-V tests 源与构建输入共 465 文件恢复 | src/firmware/cicc1000023；原名还原脚本 | blocked；准确 kernel/bootloader 源不在所供 ZIP；未编译/加载 |
-| V01 | 原始 RTL top elaboration、tb_bypass 7 项与 tb_regfile 15 项通过 | build/metadata/cicc1000023_recovery_verification.json | in_progress；ISA/Cache/AXI/中断/counter 完整回归待做 |
+| B04 | CoreMark RV32/RV64、FreeRTOS应用、ISA源与构建输入共465文件的恢复记录 | archive/history中的original_cpu资产 | blocked；准确kernel/bootloader源未闭合 |
+| V01 | 原始RTL top elaboration、tb_bypass7项与tb_regfile15项通过 | 归档中的original_cpu恢复验证记录 | in_progress；原宽范围验收未关闭 |
 | 历史硬件输出 | ZIP 有 bitstream、综合/实现成功日志；100 MHz 下 WNS 0.056 ns；placed LUT 4806 / FF 3129 / BRAM 38.5 / DSP 4 | 精选 6 个报告/日志与 archive_inventory | historical_archive_evidence；有未设 IO delay，非本轮重建或实测 |
-| RTL 比较 | 31 共有文件：14 字节同、17 仅换行差异；repo-only 两个 Ascon helper | docs/cicc1000023_rtl_diff.md | 没有选择哪个更新；当前 src/rtl 未改 |
+| RTL比较 | 当时31共有文件：14字节同、17仅换行差异；两个Ascon helper仅在仓库 | 历史RTL比较（已隔离） | 未据换行差异选择更新版本 |
 | C02 | 既有 Ascon C/Python 保留 | ascon/ | in_progress；未移植或运行最终标准 KAT |
 | C01/C03/C04 | 无锁定的最终标准 KAT 及板上 benchmark | 尚无相关结果 | todo；Ascon cycles/code size 均 not_measured |
 | Ixx | Ascon RTL 仍只有 ror/load_bytes/store_bytes | src/rtl/ascon/ | I01-I08 todo |
@@ -1468,7 +1889,7 @@ owner TBD。用户要求：在站点里加一张能看出"当前布局布线是�
 | hf_clock_hold | `-clock_opt` + `-aggressive_hold_fix` | +0.138 | +0.017 | 0.000 / 0.000 |
 
 结论：WHS 为正时 hold 修复指令无事可做（help 只对 "hold violators" 生效），LUT 数也不变。
-hold 薄的结构原因是 Ascon 核内 0~1 级逻辑的相邻寄存器对（数据 0.30~0.44 ns，最差
+hold 薄的结构原因是 Ascon 核内 0\~1 级逻辑的相邻寄存器对（数据 0.30\~0.44 ns，最差
 `p12_inst/s_out_reg[315] → u_crypto_aead/s4_reg[59]`，靠 +0.271 ns 时钟偏斜撑到 +0.017）。
 35 臂统计 `corr(WNS,WHS) = −0.516`，WHS ≥ +0.05 的 7 个臂 WNS 全部 ≤ −0.102（setup 违例），
 官方生产也只有 +0.023/+0.031 → 建议把 hold 门限改为 "hold 失败端点 = 0 且 WHS > 0"。
@@ -1567,6 +1988,7 @@ WHS 由一整群 0~1 级逻辑的寄存器对决定，不是单点。**结论：
   | SCD / DCD / CPR | −2.156 / −1.675 / −0.504 | −2.423 / −2.146 / −0.528 |
   | **skew** | **−0.024** | **−0.252** |
   | data path | 9.152 | 9.103 |
+
   → 结论：唯一倒退不是数据路径变差（快 0.049），而是 **MMIO 那 2048 个 FF 从 clock region X0Y2 搬到 X0Y1**，捕获时钟提前 0.233 ns，skew 由 −0.024 变 −0.252。同一搬动也解释了 `u_crypto_aead` 的 −0.180。
 - 全站 16 条路径的 skew 分布：base −0.225…+0.052，ndh −0.252…+0.054 —— **离散步长几乎不变（0.28 vs 0.31 ns）**，变的是「哪条路径抽到下签」。所以设计的时钟树本来就带 ~0.25 ns 的落地差，WNS 只有 0.1 ns 余量时等于听天由命。
 - 站点修正：Δ 列改为「本页 − 对比」；彩线恒为本页网表；路径列表标题与 Δ 表头改为动态 tag；`next.html` 的 ndh WHS 由 `not_measured` 更正为 **+0.017**（比基线 +0.023 更差）。
@@ -1645,6 +2067,7 @@ WHS 由一整群 0~1 级逻辑的寄存器对决定，不是单点。**结论：
   | control（10-20 记录） | +0.007 | 0 | 0 | +0.023 | 11509 | 16040 | 38.5 |
   | **c_100（C）** | **+0.057** | 0 | **0** | +0.019 | 11476 | 16146 | **34.5** |
   | fc_100（F+C） | +0.005 | 0 | 0 | +0.013 | 11784 | 16189 | 34.5 |
+
   → C 是第一个既把目标族打穿、又在 100 MHz 上正收益的 RTL 改动；**F+C 不如 C 单独**（F 的 +202 LUT 纯负担）。
 - **等价性两道**：① 全 SoC 6 场景（`check_C.sh`）KAT 全 PASS，cycles 与 control 完全相同
   （ise/ise_stall/ise_reset 2496、hw full MMIO **670** 与 latency 99 不变、sw 17353/21515/17847/22094 不变）；
@@ -1733,6 +2156,7 @@ WHS 由一整群 0~1 级逻辑的寄存器对决定，不是单点。**结论：
   | **rep_ff400** | **只 state[3]** | **+0.130** | +0.013 | 0 | 60 |
   | rep_any150 | 24 根宽网 | +0.124 | +0.013 | 0 | 93 |
   | e_100 | RTL `max_fanout=64` + 生产策略 | **−0.008** | +0.028 | **1** | — |
+
   → **只复制一根网就 +0.127（同流程对照），复制 24 根反而略差**；
   **合成期复制（RTL 属性）是反例**：放置后复制才能把 628 个负载分给就近副本。
 - 复制后 `state[*]` 从 fo≥128 清单消失；新最差 `sel_ex_mem_rs1_o_reg →
@@ -1868,7 +2292,7 @@ owner TBD；用户明确授权首次commit/push，后续新增测试保留本地
 owner TBD；分支feat/navigator_preboard，HEAD仍68fafc8，保留既有13项未提交工作，本轮未commit/push/merge。
 
 - 独立连续两次复现原TB四项FAIL/exit1，保留修改前文件与日志。根因是IDLE接受请求后经过MISS_CAPTURE才发单拍request；旧36/206ns检查早于45/215ns合法事件。分类TB_STALE，不是生产RTL修复。
-- 仅修订sim/cicc1000023/unit/dcache/tb_dcache.v：8拍有界请求事件等待、独立预期事务队列、方向/地址/data/mask/qualifier/次数和回填检查；完成上限仍30拍，negedge驱动/posedge NBA后采样。原场景和expected保留，增加byte lane、连续store、跨拍stall、半条line reset中止以及已有效line的reset失效检查。
+- 当时仅修订原CPU的dcache TB：8拍有界请求事件等待、独立事务队列、方向/地址/data/mask/qualifier/次数和回填检查；完成上限仍30拍。原场景/expected保留，补byte lane、连续store、跨拍stall与reset中止/失效场景；源码现已隔离。
 - 修订TB在Store Buffer前与当前生产源码均PASS：116检查、13事务、18回填beat；独立事务TB保持578读/671写/404读事务/1616beat PASS；4种子逐拍差分一致。
 - 修订TB的坏回填、缺读、重复读、错地址、错写data、错mask、缺写7种反例均exit1；原事务TB的坏回填/丢写和中断3种反例也全部按预期失败。历史原TB+RTL按已发布68fafc8冻结，只用于历史复现，不驱动当前正常测试的FAIL豁免。
 - 按要求实际执行python -B sim/board/run_tests.py --mode smoke：6 PASS/0 FAIL/0 BLOCKED/9 NOT_RUN，exit0，16.394s。完整--mode regression：15 PASS/0 FAIL/0 BLOCKED/1 NOT_RUN，exit0，757.713s；SW/MMIO/ISE、完整Host KAT、Mailbox、COE/CPU镜像一致性、修订TB、独立事务TB与6个真实CPU+CLINT中断场景均实际运行。
@@ -2075,3 +2499,13 @@ PUF3各模式289/289 KAT与289次坏Tag拒绝，质量127/128、同会话5次重
 接口无变化；未重新板测、未验证其他Office/WPS/印刷，未新增PUF稳定性或安全验收结论。
 无阻塞，D03仅海报子项完成、整体仍in_progress；下一接收D06材料归档，owner TBD。
 按用户明确授权，使用中文提交标题/说明并推送。
+
+
+## 2026-11-02 D03-CODE：报告代码块排版完成（owner TBD）
+
+正式LaTeX统一codeblock修复，85页保持，指定命令一行，旧续行标记清除；87189字符正文比较与图片像素一致，review_evidence 194/194，无Overfull/缺字/未定义引用。仅重打技术报告包，其他包与历史冻结快照不变。完整交付校验的固件阶段缺交叉编译器未通过，不影响独立报告排版校验；接口无变化。命令/版本/退出码/备份/局限见 report/technical/validation/codeblock_layout_20261102/readme.md；下一接收D03/D06。
+
+
+## 2026-11-02 D09：最终RAR交付（owner TBD）
+
+基于main cfa3817整理当前PUF3及共享IP/固件/RO依赖、原candidate、最新85页报告和当前独立Skill，另写评委README；真正RAR5，367文件/7,025,851字节。RAR测试/解压/全部哈希/README链接/源码身份与展开通过，host61、Skill61/3可选skip。无RTL/固件/工件/报告正文变更；未运行固件重编/Vivado/实板。证据delivery/final_rar_readme.md及final_rar_manifest.json；下一接收D06平台上传。

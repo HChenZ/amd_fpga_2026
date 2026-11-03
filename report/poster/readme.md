@@ -30,8 +30,8 @@
 - 周期/加速比、KAT、PUF与频率：[PUF3实板原始记录](../../data/pynq_puf3/notebook_20261031_114512/result.json)，时间2026-10-31T11:45:13.863864+00:00，`physical_board_pynq_puf3`、`pynq-svc-puf3`、非仿真。KAT #529，PT=16 B、AD=0、HWKEY关闭，预热5次，每模式30次采样，CPU mcycle中位数，不含PS/UART。
 - PUF3三模式每模式289/289容量内KAT通过、289次坏Tag拒绝。注册质量127/128，同一会话连续5次重建稳定，HWKEY关闭后KAT恢复。
 - 9项错误门禁/7次reset/epoch恢复：[PYNQ v1历史error gate](../../data/pynq/error_gate_20261031_112812/pynq_board_error_gate.json)，海报明确归属v1，不计为PUF3通过项。
-- PUF3资源/时序：[utilization](../../board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/reports/utilization.rpt)、[timing summary](../../board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/reports/timing_summary.rpt)、[gate](../../board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/reports/gate.txt)。架构、ISE仍参考[技术报告](../../docs/tech_report/report.md)。
-- Skill L3：[汇总](../../data/skill/l3_20261031_063709/40_summary.json)。右上实物照片来自 `docs/tech_report/figs/board_photo.jpg`。
+- PUF3资源/时序：[utilization](../../board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/reports/utilization.rpt)、[timing summary](../../board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/reports/timing_summary.rpt)、[gate](../../board/vivado_zynq7000_xc7z020_pynq_puf3/candidate/reports/gate.txt)。架构、ISE参考[当前技术报告](../technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf)。
+- Skill L3：[汇总](../../data/skill/l3_20261031_063709/40_summary.json)。右上实物照片来自 `report/technical/figs/board_photo.jpg`。
 
 | 模式 | 加密cycles | 加密加速比 | 解密cycles | 解密加速比 |
 | --- | ---: | ---: | ---: | ---: |
@@ -48,7 +48,7 @@ TNS 0、WHS +0.041 ns；RO计数器域尚未签核，不能据此宣称全域时
 与固定上下文组成输入，经Ascon P12派生128-bit key。依据技术报告§2.3.4及
 `src/rtl/keys/puf_key.v`、`device_dna.v`。两者是独立输入，DNA非秘密。
 图示为PUF参与的正常派生路径；DNA-only回退未展开，不提供秘密密钥保证。
-依据[接口说明](../../docs/interfaces.md)，PUF3仍是独立于PYNQ release ABI的变体，但其自身同一overlay已集成RO-PUF/DNA通路；
+依据[接口说明](../design/interfaces.md)，PUF3仍是独立于PYNQ release ABI的变体，但其自身同一overlay已集成RO-PUF/DNA通路；
 左右数据现在统一为PUF3，普通SW/MMIO/ISE benchmark在HWKEY关闭时测量，不冒充PUF硬件密钥模式的性能。
 
 仅有同会话功能验证，诊断量REF/MASK/RAW/DNA可读，不能据此宣称密钥保密隔离。

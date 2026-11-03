@@ -1,7 +1,0 @@
-Time resolution is 1 ps
-[BRAM] loaded C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/data/advanced/puf_soc/firmware/puf_v2.hex (32768 words max)
-PUF_V2_OFFLINE_SELFTEST
-
-PUF_V2_TEST_PASS
-TEST_PASS tb_puf_soc_v2 diagnostic=0 commands=11 reads=4321 cycles=34661 core=100MHz management=25MHz
-$finish called at time : 346805 ns : File "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/puf_soc_v2/tb_puf_soc_v2.sv" Line 107

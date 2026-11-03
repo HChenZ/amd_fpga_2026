@@ -1,1 +1,0 @@
-RESULT a1_variant=nopb_et pblock= place=ExtraTimingOpt route=AggressiveExplore wns=0.003 tns=0.000 failing=0 whs=0.027

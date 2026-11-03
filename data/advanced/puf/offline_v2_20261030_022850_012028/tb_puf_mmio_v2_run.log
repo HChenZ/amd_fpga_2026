@@ -1,2 +1,0 @@
-TEST_PASS tb_puf_mmio_v2
-sim/keys_v2/tb_puf_mmio_v2.sv:119: $finish called at 28200000 (1ps)

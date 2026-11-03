@@ -1,6 +1,0 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/src/rtl/pynq_dma_cpu/dma_control.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module dma_control
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/sim/pynq_dma_cpu/tb_dma_control.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module tb_dma_control
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/wenjian/game/FPGA2026/ours/amd_fpga_2026/build/local/dma_cpu/cpu_dma.sim/sim_dma_control/behav/xsim/glbl.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module glbl

@@ -13,17 +13,17 @@
 
 <details><summary>工具调用 3 次</summary>
 
-- `shell` git status --short | Select-Object -First 40; git log --oneline -5
-- `glob` **/SKILL.md
-- `glob` **/*{pynq,PYNQ,overlay,skill}*
+- `shell` `git status --short | Select-Object -First 40; git log --oneline -5`
+- `glob` `**/SKILL.md`
+- `glob` `**/*{pynq,PYNQ,overlay,skill}*`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\rtl-design-discipline\SKILL.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\skill_test_guide_20261030.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\rtl-design-discipline\SKILL.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\skill_test_guide_20261030.md`
 
 </details>
 
@@ -33,23 +33,23 @@
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_transport.py
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\dma_transport.py
-- `grep` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\pynq_transport.py`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\src\pynq\dma_transport.py`
+- `grep` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_dma_cpu\pynq27_audit.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_dma_cpu\pynq27_audit.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` python --version; python -c "import pytest;print('pytest',pytest.__version__)"; Get-Command opencode -ErrorAction SilentlyContinue | Select-
+- `shell` `python --version; python -c "import pytest;print('pytest',pytest.__version__)"; Get-Command opencode -ErrorAction SilentlyContinue | Select-`
 - `skill` 
 
 </details>
@@ -69,21 +69,21 @@
 
 <details><summary>工具调用 2 次</summary>
 
-- `shell` $f='board/vivado_zynq7000_xc7z020_pynq/release/pynq.hwh'; (Get-Item $f).Length; Select-String -Path $f -Pattern '<MEMRANGE ' | Select-Object
-- `glob` {src/pynq/readme.md,src/pynq/test_pynq_transport.py,board/vivado_zynq7000_xc7z020_pynq/readme.md,board/vivado_zynq7000_xc7z020_pynq/release/
+- `shell` `$f='board/vivado_zynq7000_xc7z020_pynq/release/pynq.hwh'; (Get-Item $f).Length; Select-String -Path $f -Pattern '<MEMRANGE ' | Select-Object`
+- `glob` `{src/pynq/readme.md,src/pynq/test_pynq_transport.py,board/vivado_zynq7000_xc7z020_pynq/readme.md,board/vivado_zynq7000_xc7z020_pynq/release/`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\release\manifest.json
-- `glob` board/**/*{utilization,util}*.rpt
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq\release\manifest.json`
+- `glob` `board/**/*{utilization,util}*.rpt`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\candidate\reports\utilization.rpt
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\board\vivado_zynq7000_xc7z020_pynq_puf\candidate\reports\utilization.rpt`
 
 </details>
 
@@ -109,7 +109,7 @@
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\SKILL.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\SKILL.md`
 
 </details>
 
@@ -119,8 +119,8 @@
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\references\failure_signatures.md
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\references\contract_format.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\references\failure_signatures.md`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\references\contract_format.md`
 
 </details>
 
@@ -130,9 +130,9 @@
 
 <details><summary>工具调用 3 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\__init__.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\artifacts.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\hwh.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\__init__.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\artifacts.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\hwh.py`
 
 </details>
 
@@ -142,13 +142,13 @@ Clean up a leftover no-op loop in hwh.py:
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\hwh.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\hwh.py`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\overlay_check.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\overlay_check.py`
 
 </details>
 
@@ -158,7 +158,7 @@ Register contract module (load/validate, field access with rc/w1c protection, hw
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py`
 
 </details>
 
@@ -168,8 +168,8 @@ That constructor check is convoluted; simplify with a validation marker:
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py`
 
 </details>
 
@@ -179,9 +179,9 @@ Generated driver would embed JSON `null` (invalid Python) — switch to a Python
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\regmap.py`
 
 </details>
 
@@ -191,8 +191,8 @@ Now the bounded DMA helper and HLS control helper:
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\dma.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\hls_ctrl.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\dma.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\hls_ctrl.py`
 
 </details>
 
@@ -202,7 +202,7 @@ Now the offline fakes (MMIO, non-coherent cache buffers, AXI DMA model with faul
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\fakes.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\fakes.py`
 
 </details>
 
@@ -212,7 +212,7 @@ Fix the fake: per PYNQ's `_first_transfer` workaround, Idle is not set merely by
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\fakes.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\fakes.py`
 
 </details>
 
@@ -222,8 +222,8 @@ Now golden comparison/timing and report collection:
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\golden.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\report.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\golden.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\report.py`
 
 </details>
 
@@ -233,10 +233,10 @@ Now the CLI and the three non-Ascon example contracts:
 
 <details><summary>工具调用 4 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill_cli.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\examples\axi_gpio.contract.json
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\examples\hls_vadd.contract.json
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\examples\axi_dma_simple.contract.json
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill_cli.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\examples\axi_gpio.contract.json`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\examples\hls_vadd.contract.json`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\examples\axi_dma_simple.contract.json`
 
 </details>
 
@@ -246,16 +246,16 @@ Now offline tests, including a synthetic ZynqMP-style hwh fixture (cross-family)
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\fixtures\mini_zynqmp.hwh
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\conftest.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\fixtures\mini_zynqmp.hwh`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\conftest.py`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_overlay.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_regmap.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_dma_golden_report.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_overlay.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_regmap.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_dma_golden_report.py`
 
 </details>
 
@@ -265,8 +265,8 @@ Tidy up that messy quarantine test:
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_dma_golden_report.py
-- `shell` python -m pytest skill/pynq-overlay-workflow/tests -q -p no:cacheprovider 2>&1 | Select-Object -Last 40
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_dma_golden_report.py`
+- `shell` `python -m pytest skill/pynq-overlay-workflow/tests -q -p no:cacheprovider 2>&1 | Select-Object -Last 40`
 
 </details>
 
@@ -276,24 +276,24 @@ Only a test-regex mismatch; make the error message explicit instead:
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\dma.py
-- `shell` python -m pytest skill/pynq-overlay-workflow/tests -q -p no:cacheprovider -rs 2>&1 | Select-Object -Last 8; python skill/pynq-overlay-workfl
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\scripts\pynq_skill\dma.py`
+- `shell` `python -m pytest skill/pynq-overlay-workflow/tests -q -p no:cacheprovider -rs 2>&1 | Select-Object -Last 8; python skill/pynq-overlay-workfl`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\SKILL.md
-- `shell` python -c "import numpy; print(numpy.__version__)"
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\SKILL.md`
+- `shell` `python -c "import numpy; print(numpy.__version__)"`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\fake_pynq\pynq\__init__.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\fake_pynq\pynq\lib\dma.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\fake_pynq\pynq\lib\__init__.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\fake_pynq\pynq\ps.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\fake_pynq\pynq\__init__.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\fake_pynq\pynq\lib\dma.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\fake_pynq\pynq\lib\__init__.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\fake_pynq\pynq\ps.py`
 
 </details>
 
@@ -303,7 +303,7 @@ Now task definitions (prompts, agent-visible files, hidden scenarios, and per-sc
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\tasks.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\tasks.py`
 
 </details>
 
@@ -313,7 +313,7 @@ Clean up a garbled expression in the T3 check:
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\tasks.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\tasks.py`
 
 </details>
 
@@ -323,9 +323,9 @@ Now the trial generator, grader and statistics:
 
 <details><summary>工具调用 3 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\make_trials.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\grade.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\stats.py
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\make_trials.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\grade.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\stats.py`
 
 </details>
 
@@ -335,15 +335,15 @@ Placebo skill (controls for "a skill was loaded / extra context" without PYNQ te
 
 <details><summary>工具调用 9 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\placebo\pynq-style-notes\SKILL.md
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t1_overlay\good\solution.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t1_overlay\naive\solution.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t2_hls\good\solution.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t2_hls\naive\solution.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t3_dma\good\solution.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t3_dma\naive\solution.py
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t4_diagnose\good\answers.md
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t4_diagnose\naive\answers.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\placebo\pynq-style-notes\SKILL.md`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t1_overlay\good\solution.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t1_overlay\naive\solution.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t2_hls\good\solution.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t2_hls\naive\solution.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t3_dma\good\solution.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t3_dma\naive\solution.py`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t4_diagnose\good\answers.md`
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\selftest\t4_diagnose\naive\answers.md`
 
 </details>
 
@@ -353,29 +353,29 @@ Now validate the measuring instrument itself — the good reference must pass ev
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $h='skill/ab_eval_pynq/harness'; foreach ($t in 't1_overlay','t2_hls','t3_dma','t4_diagnose') { foreach ($v in 'good','naive') { "=== $t / $
+- `shell` `$h='skill/ab_eval_pynq/harness'; foreach ($t in 't1_overlay','t2_hls','t3_dma','t4_diagnose') { foreach ($v in 'good','naive') { "=== $t / $`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\skill_mutation_check.py
-- `shell` python skill/ab_eval_pynq/harness/skill_mutation_check.py; echo "exit=$LASTEXITCODE"
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\skill_mutation_check.py`
+- `shell` `python skill/ab_eval_pynq/harness/skill_mutation_check.py; echo "exit=$LASTEXITCODE"`
 
 </details>
 
 <details><summary>工具调用 3 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_regmap.py
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_regmap.py
-- `shell` python -m pytest skill/pynq-overlay-workflow/tests -q -p no:cacheprovider 2>&1 | Select-Object -Last 3; python skill/ab_eval_pynq/harness/sk
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_regmap.py`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\pynq-overlay-workflow\tests\test_regmap.py`
+- `shell` `python -m pytest skill/pynq-overlay-workflow/tests -q -p no:cacheprovider 2>&1 | Select-Object -Last 3; python skill/ab_eval_pynq/harness/sk`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\skill_mutation_check.py
-- `shell` python skill/ab_eval_pynq/harness/skill_mutation_check.py; echo "exit=$LASTEXITCODE"
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\skill_mutation_check.py`
+- `shell` `python skill/ab_eval_pynq/harness/skill_mutation_check.py; echo "exit=$LASTEXITCODE"`
 
 </details>
 
@@ -385,26 +385,26 @@ The "unbounded wait" mutant makes the suite itself spin forever — which *is* d
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\skill_mutation_check.py
-- `shell` Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Where-Object { $_.CommandLine -match 'pytest' -and $_.CommandLine -match 'Temp' 
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\skill_mutation_check.py`
+- `shell` `Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Where-Object { $_.CommandLine -match 'pytest' -and $_.CommandLine -match 'Temp' `
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` python skill/ab_eval_pynq/harness/skill_mutation_check.py; echo "exit=$LASTEXITCODE"
+- `shell` `python skill/ab_eval_pynq/harness/skill_mutation_check.py; echo "exit=$LASTEXITCODE"`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $h='skill/ab_eval_pynq/harness'; python $h/make_trials.py --root build/local/ab_should_refuse --reps 1 2>&1 | Select-Object -Last 1 $r='C:\U
+- `shell` `$h='skill/ab_eval_pynq/harness'; python $h/make_trials.py --root build/local/ab_should_refuse --reps 1 2>&1 | Select-Object -Last 1 $r='C:\U`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $h='skill/ab_eval_pynq/harness'; $r='C:\Users\HXZ\AppData\Local\Temp\opencode\ab_dry' foreach ($t in 't1_overlay','t3_dma','t4_diagnose') { 
+- `shell` `$h='skill/ab_eval_pynq/harness'; $r='C:\Users\HXZ\AppData\Local\Temp\opencode\ab_dry' foreach ($t in 't1_overlay','t3_dma','t4_diagnose') { `
 
 </details>
 
@@ -414,7 +414,7 @@ Pipeline works end to end. One anomaly: t4 "with" scored 5/8 although it holds t
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $r='C:\Users\HXZ\AppData\Local\Temp\opencode\ab_dry'; python -c "import sys;b=open(r'$r\t4_diagnose\with\rep01\answers.md','rb').read();prin
+- `shell` `$r='C:\Users\HXZ\AppData\Local\Temp\opencode\ab_dry'; python -c "import sys;b=open(r'$r\t4_diagnose\with\rep01\answers.md','rb').read();prin`
 
 </details>
 
@@ -424,13 +424,13 @@ Confirmed — it's my PowerShell step (PS 5 read the UTF-8 file as GBK and re-en
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` $h='skill/ab_eval_pynq/harness'; $r='C:\Users\HXZ\AppData\Local\Temp\opencode\ab_dry' python -c "import pathlib;src=pathlib.Path(r'$h/selfte
+- `shell` `$h='skill/ab_eval_pynq/harness'; $r='C:\Users\HXZ\AppData\Local\Temp\opencode\ab_dry' python -c "import pathlib;src=pathlib.Path(r'$h/selfte`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\make_trials.py
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\harness\make_trials.py`
 
 </details>
 
@@ -440,7 +440,7 @@ Now the validation plan document:
 
 <details><summary>工具调用 1 次</summary>
 
-- `write` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\README.md
+- `write` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\ab_eval_pynq\README.md`
 
 </details>
 
@@ -450,30 +450,30 @@ Now update the repo's skill index and project logs (required by AGENTS.md rule 1
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-Content project_log/actual_progress.md -Encoding UTF8 -TotalCount 25; "-----"; Get-Content project_log/development_log.md -Encoding UTF8
+- `shell` `Get-Content project_log/actual_progress.md -Encoding UTF8 -TotalCount 25; "-----"; Get-Content project_log/development_log.md -Encoding UTF8`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md`
 
 </details>
 
 <details><summary>工具调用 4 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\actual_progress.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\development_log.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\project_log\lessons_learned.md`
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md`
 
 </details>
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md
-- `shell` Get-ChildItem skill -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Force; $env:PYTHONDONTWRITEBYTECODE='1'; python -m pytes
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md`
+- `shell` `Get-ChildItem skill -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Force; $env:PYTHONDONTWRITEBYTECODE='1'; python -m pytes`
 
 </details>
 
@@ -535,13 +535,13 @@ Now update the repo's skill index and project logs (required by AGENTS.md rule 1
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git branch --show-current; git remote -v; git diff --cached --name-only; git fetch origin 2>&1 | Select-Object -Last 3; git status -sb | Sel
+- `shell` `git branch --show-current; git remote -v; git diff --cached --name-only; git fetch origin 2>&1 | Select-Object -Last 3; git status -sb | Sel`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` Get-ChildItem skill/pynq-overlay-workflow -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Force; git add -- skill/pynq-overl
+- `shell` `Get-ChildItem skill/pynq-overlay-workflow -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Force; git add -- skill/pynq-overl`
 
 </details>
 
@@ -551,7 +551,7 @@ Now update the repo's skill index and project logs (required by AGENTS.md rule 1
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git commit -q -m "feat(skill): 新增通用 PYNQ Skill pynq-overlay-workflow（L1 离线测试通过，待队友验证）" -m "五段门禁流程（工件/加载/寄存器契约/数据通路/证据）、错误定位表、标准库工具包与 47 个离线测
+- `shell` `git commit -q -m "feat(skill): 新增通用 PYNQ Skill pynq-overlay-workflow（L1 离线测试通过，待队友验证）" -m "五段门禁流程（工件/加载/寄存器契约/数据通路/证据）、错误定位表、标准库工具包与 47 个离线测`
 
 </details>
 
@@ -561,7 +561,7 @@ Now update the repo's skill index and project logs (required by AGENTS.md rule 1
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git show --stat --format="%H" HEAD | Select-Object -Last 3; git ls-remote origin refs/heads/main
+- `shell` `git show --stat --format="%H" HEAD | Select-Object -Last 3; git ls-remote origin refs/heads/main`
 
 </details>
 
@@ -588,7 +588,7 @@ Skill 已推送到 `main`，提交是 `7bc1abf`，远端 `main` 已经指向这�
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git fetch origin 2>&1 | Out-Null; git status -sb | Select-Object -First 1; git diff --cached --name-only; Get-ChildItem skill/ab_eval_pynq -
+- `shell` `git fetch origin 2>&1 | Out-Null; git status -sb | Select-Object -First 1; git diff --cached --name-only; Get-ChildItem skill/ab_eval_pynq -`
 
 </details>
 
@@ -598,7 +598,7 @@ Skill 已推送到 `main`，提交是 `7bc1abf`，远端 `main` 已经指向这�
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git commit -q -m "feat(skill-eval): 新增 pynq-overlay-workflow 受控对照实验工具 ab_eval_pynq" -m "with/without/placebo 三组隔离试验生成、假 PYNQ 隐藏场景判分、置换检验统计与变
+- `shell` `git commit -q -m "feat(skill-eval): 新增 pynq-overlay-workflow 受控对照实验工具 ab_eval_pynq" -m "with/without/placebo 三组隔离试验生成、假 PYNQ 隐藏场景判分、置换检验统计与变`
 
 </details>
 
@@ -635,25 +635,25 @@ Skill 已推送到 `main`，提交是 `7bc1abf`，远端 `main` 已经指向这�
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git status --short -- skill docs/skill_test_guide_20261030.md project_log; "---- readme diff"; git diff --stat -- skill/readme.md skill/rtl-
+- `shell` `git status --short -- skill docs/skill_test_guide_20261030.md project_log; "---- readme diff"; git diff --stat -- skill/readme.md skill/rtl-`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git diff -- skill/readme.md skill/rtl-design-discipline/SKILL.md | Out-File -Encoding utf8 $env:TEMP\opencode\skilldiff.txt; Get-Content -En
+- `shell` `git diff -- skill/readme.md skill/rtl-design-discipline/SKILL.md | Out-File -Encoding utf8 $env:TEMP\opencode\skilldiff.txt; Get-Content -En`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `read` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md
+- `read` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md`
 
 </details>
 
 <details><summary>工具调用 1 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\skill\readme.md`
 
 </details>
 
@@ -663,8 +663,8 @@ Skill 已推送到 `main`，提交是 `7bc1abf`，远端 `main` 已经指向这�
 
 <details><summary>工具调用 2 次</summary>
 
-- `edit` C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\skill_test_guide_20261030.md
-- `shell` git add -- skill/readme.md skill/rtl-design-discipline/SKILL.md docs/skill_test_guide_20261030.md 2>&1 | Out-Null; git diff --cached --name-
+- `edit` `C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\docs\skill_test_guide_20261030.md`
+- `shell` `git add -- skill/readme.md skill/rtl-design-discipline/SKILL.md docs/skill_test_guide_20261030.md 2>&1 | Out-Null; git diff --cached --name-`
 
 </details>
 
@@ -674,7 +674,7 @@ Only these three files are staged and the whitespace check passes. Committing an
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git commit -q -m "docs(skill): 同步 Skill 目录说明、RTL Skill 措辞修订与 Skill 测试指导表" -m "skill/readme.md 增加目录一览与队友快速上手；rtl-design-discipline 去除未经验证的绝对化
+- `shell` `git commit -q -m "docs(skill): 同步 Skill 目录说明、RTL Skill 措辞修订与 Skill 测试指导表" -m "skill/readme.md 增加目录一览与队友快速上手；rtl-design-discipline 去除未经验证的绝对化`
 
 </details>
 
@@ -684,7 +684,7 @@ Only these three files are staged and the whitespace check passes. Committing an
 
 <details><summary>工具调用 1 次</summary>
 
-- `shell` git log --oneline -5; git show --stat --format="%h %an %ad %s" f70ddc8 | Select-Object -First 8
+- `shell` `git log --oneline -5; git show --stat --format="%h %an %ad %s" f70ddc8 | Select-Object -First 8`
 
 </details>
 

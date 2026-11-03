@@ -1,5 +1,9 @@
 # 领航者 7020 上板准备（B03 / Y01，owner TBD）
 
+> 2026-11-01 阅读提示：本目录为资料/板前验证交接，不是 overlay。下面镜像缺失/未上板等状态是当时记录；
+> 后续旧 PYNQ v1、PUF3 均已实板。完整丝印/速度等级与真实 IO 延迟等仍未闭合。
+> 当前入口见 report/design/version_entrypoints.md，本文不回写原数据或改变操作程序。
+
 2026-10-25；只读厂家证据、独立配置与接口准备。未修改两个 baseline、CPU/Cache/Ascon/PUF RTL 或 `skill/`，未生成正式 bitstream，未下载板卡。
 
 | 项目 | 本轮结论 | 状态 |
@@ -11,7 +15,7 @@
 | PYNQ | 指南 V3.2 §2.2/§2.3 描述 PYNQ 2.7.0、Ubuntu 20.04、kernel 5.4.0 | PASS 文档提取；实板 NOT_RUN |
 | 镜像 | 文档列 `ZYNQ-7020-2.7.0.zip` / `.img`，说明出厂镜像不支持 PYNQ | 当前资料树与 7020 ZIP 未找到，BLOCKED |
 
-源码入口：[统一测试](../../sim/board/readme.md)、[接口建议](interface_plan.md)、[厂家证据](vendor_findings.md)、[待配置后端](backend_profile.json)、[最小 XDC](navigator_uart.xdc)。本目录不是第三套 Vivado 工程。
+源码入口：[统一测试](../../archive/history/sim/board/readme.md)、[接口建议](interface_plan.md)、[厂家证据](vendor_findings.md)、[待配置后端](backend_profile.json)、[最小 XDC](navigator_uart.xdc)。本目录不是第三套 Vivado 工程。
 
 ## 最小引脚与串口
 

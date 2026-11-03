@@ -1,4 +1,0 @@
-RESULT variant=pl_spread_lo wns=-0.027 tns=-0.084 failing=6 whs=0.012 luts=13436 ffs=16368 rep_cells=36 routing_errors=na
-PATH start=u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/sel_ex_mem_rs2_o_reg/C end=u_soc_axi_top/u_soc_top/u_cpu_core/id_ex_u/rs1_o_reg[31]/CE datapath=9.573 logic=2.208 net=7.365 levels=11
-KNOBS maxfanout=0 fanout_min=0 frn=0 eqreg=0 place=AltSpreadLogic_low popt=AggressiveExplore prout=AggressiveExplore route=AggressiveExplore fp= dens= crep=0
-SOURCE head=3c6f134 synth_dcp=top_pl_bram_opt.dcp tool=2025.2 date=Wed Oct 21 01:52:26 +0800 2026

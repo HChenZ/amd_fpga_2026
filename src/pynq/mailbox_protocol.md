@@ -84,7 +84,7 @@ idle --submit--> busy --原子完成--> complete --匹配ACK并清理--> idle
 | 36 | 4 | input_bytes（不包含tag） |
 | 40 | 4 | output_capacity（包含加密输出tag所需空间） |
 | 44 | 4 | tag_bytes：加密0，解密16 |
-| 48起 | 变长 | `key[16] || nonce[16] || AD || input || tag` |
+| 48起 | 变长 | `key[16] \|\| nonce[16] \|\| AD \|\| input \|\| tag` |
 
 算法仅 Ascon-AEAD128 / NIST SP800-232 Final：固定16B key/nonce/tag，不接受截短tag。
 加密 input 是明文；解密 input 是密文，tag 独立附于请求末尾。
@@ -110,7 +110,7 @@ codec 的消息/AD最大值各65536B，服务容量另以握手为准；先检�
 | 32 | 4 | mode（原样回显） |
 | 36 | 4 | output_bytes |
 | 40 | 8 | cycles；无效时必须0，不以数值0表示“未测” |
-| 48起 | 变长 | 成功：加密 `ciphertext || tag`、解密 `plaintext` |
+| 48起 | 变长 | 成功：加密 `ciphertext \|\| tag`、解密 `plaintext` |
 
 | status | 编码 | host 行为 |
 |---|---:|---|

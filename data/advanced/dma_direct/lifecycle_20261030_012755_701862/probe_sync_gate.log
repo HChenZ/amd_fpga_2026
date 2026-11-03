@@ -1,3 +1,0 @@
-REQUIRED_SYNC_GATE_PASS
-TEST_PASS lifecycle probe=SYNC_GATE
-C:\wenjian\game\FPGA2026\ours\amd_fpga_2026\data\advanced\dma_direct\lifecycle_20261030_012755_701862\tb_core_lifecycle.sv:155: $finish called at 23347000 (1ps)

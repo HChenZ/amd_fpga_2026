@@ -1,5 +1,15 @@
 # pynq_puf3：三模式 SW/HW(MMIO)/ISE 服务 + PUF v1，单一 bitstream
 
+2026-11-02 隔离补注：旧v1/PUF-only工程已移至archive/history/board；下文当时相邻工程路径仅保留设计语境。
+当前构建/固件/Notebook及共享IP路径不改，当前源包另附必要依赖。交付从project_board.md和delivery/README.md开始，
+不再把旧证据包作为比赛附件；原始记录仍保留在仓库归档。
+
+**2026-11-01 入口说明**：本目录是当前主演示，PUF3 意为三模式 + PUF v1，不是 PUF 第三代。
+板测用 src/pynq_puf3/pynq_puf3_board_test.ipynb，默认 FULL_KAT=True；旧 src/pynq 的三个 CLI
+仍为 pynq-svc-v1，不能只换 --release 路径使用。本轮仅说明分责，不改程序或工件。
+生成 manifest 的 NOT_RUN 是打包时快照，当前板测以10-31 result.json的工件绑定为准；不要直接改 manifest 成 PASS。
+共享依赖与历史入口见 report/design/version_entrypoints.md。
+
 2026-10-30；owner TBD。独立入口：不打开、不修改 PYNQ 发布版
 （`../vivado_zynq7000_xc7z020_pynq/release/`）、`../vivado_zynq7000_xc7z020_pynq_puf/`
 与 JTAG 工程；共享的 `src/rtl/soc_top.v`、`src/rtl/keys/key_mmio.v` 也没有改。
@@ -68,7 +78,8 @@ Y01P 16B：`'Y01P' | u32 version=1 | u32 cmd | u32 seq`。cmd：0 STATUS、1 ENR
 2 RECONSTRUCT、3 HWKEY_ON、4 HWKEY_OFF。
 
 Y01K 112B：`magic | u16 version | u16 flags | u32 cmd | u32 seq | u32 result | u32 STATUS |
-u32 DNA_LO | u32 DNA_HI | u64 op_mcycle | REF16 | MASK16 | RAW16 | DITHER16 | 8B 0`。
+u32 DNA_LO | u32 DNA_HI | u64 op_mcycle | REF16 | MASK16 | RAW16 | DITHER16 | u64 now_mcycle`。
+末8字节是发帧时刻 mcycle，不是零填充；本处只按已实现固件更正说明。
 result：0 OK、1 TIMEOUT、2 NOT_ACCEPTED、3 BAD_CMD、4 BAD_VERSION、5 NO_PUF_KEY、6 BUSY_STUCK。
 
 固件策略（不是硬件强制）：ENROLL/RECONSTRUCT 开始前关 HWKEY；HWKEY_ON 只在
@@ -101,8 +112,9 @@ cosim 两个用例、固件 bin 哈希、变体 RTL 哈希，以及生成的 `.m
 
 ## 离线结果
 
-候选（2026-10-30，离线门禁 PASS；首次板上功能测试 PASS），完整信息见 `candidate/manifest.json`；
-板测原始证据见 `data/pynq_puf3/notebook_20261030_131920/`：
+候选（2026-10-30，离线门禁 PASS），完整信息见 `candidate/manifest.json`；
+当前板测原始证据（最终报告唯一主采样）见 `data/pynq_puf3/notebook_20261031_114512/`。
+10-30 的三次运行（含首次 62.5 MHz 失败）已于 11-01 由 c05782d 移出工作树，可从 Git 历史取回：
 
 | 项 | 结果 |
 |---|---|
@@ -152,17 +164,21 @@ cosim 用例：
 `src/pynq_puf3/pynq_puf3_board_test.ipynb`。
 ```
 
-最近一次板测（2026-10-30）：
+最近一次板测（2026-10-31 11:45 UTC，`data/pynq_puf3/notebook_20261031_114512/result.json`，最终报告引用）：
 
-- Notebook 状态 `PASS`、exit code `0`；FCLK0 寄存器推算 `99.999999 MHz`，mcycle 实测 `99.9882 MHz`。
-- SW/HW/ISE 各 6 个代表性 KAT 通过，错误 Tag 各 6 次拒绝；HW encrypt/decrypt 相对 SW 中位数加速比分别为 `15.969x` / `18.6x`，ISE 为 `5.613x` / `5.262x`。
-- PUF quality `127`，5 次 reconstruct 稳定，HWKEY 隔离和关闭后 KAT 恢复均通过。
-- 结论仅为 `in-session functional pass`；完整 529 KAT、跨电源周期、温度/BER/熵/唯一性和 RO 振荡环计数器时序签核仍未完成。
+- Notebook 状态 `PASS`、exit code `0`；bit/hwh/manifest 哈希与 `candidate/` 一致；FCLK0 寄存器推算
+  `99.999999 MHz`，mcycle/PS 时基估测 `99.9723 MHz`（非示波器/Fmax 测量）。
+- SW/HW/ISE 各 289 个容量内 KAT 通过，错误 Tag 各 289 次拒绝。
+- KAT #529（HWKEY 关闭）中位 cycles：加密 21862/1369/3895，解密 22562/1213/4288；HW 相对 SW 加速比
+  `15.969x` / `18.600x`，ISE `5.613x` / `5.262x`。墙钟只有 summary 中位，不保存原始数组。
+- PUF quality `127`（/128），5 次 reconstruct 稳定，HWKEY 隔离和关闭后 KAT 恢复均通过。
+- 结论仅为 `in-session functional pass`；超过 16 B 接口的 KAT、完整错误门禁、跨电源周期、温度/BER/熵/唯一性和
+  RO 振荡环计数器时序签核仍未完成。
 
 测试分四段，全部通过才 exit 0：
 1. 身份与时钟：哈希、ID、固件 ID；下载前 IO PLL FBDIV = 30，下载后 SLCR 推算 FCLK0 = 100 ± 0.5 MHz，
    mcycle 实测 100 MHz ± 1 %（见上文"FCLK0 时钟配置"；原版 `pynq.Clocks` 显示 150 属正常）；
-2. 三模式 KAT：6 个官方用例，加 `--full-kat` 则跑 289 个；
+2. 三模式 KAT：当前 Notebook 默认 `FULL_KAT=True`，每模式跑289个；False是旧6例抽样，不是本 Notebook 的 `--full-kat` CLI 参数；
 3. 基准：KAT #529，预热 5 次、采集 30 次，输出中位 mcycle 和相对 SW 的加速比；
 4. PUF：enroll，5 次 reconstruct 稳定且 helper 不变；HWKEY 打开后 HW 拒绝官方密文；
    PUF 密钥往返成功；reconstruct 后密文相同；HWKEY 关闭后官方 KAT 恢复。
