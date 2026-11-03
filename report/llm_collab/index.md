@@ -1,10 +1,10 @@
 # 大模型协作原始记录索引（自动导出）
 
-由 `export_sessions.py` 从本机工具会话库只读导出；提示词与回答为原文，仅折叠工具输出、截断超长回答、打码疑似密钥，并省略 1 条与工程无关的用户提示原文（保留轮次与计数）。为在 GitHub 上正确渲染，另做只改标记、不改文字的处理：工具调用摘要放进行内代码，正文中会被剥除的 HTML 样式标签和单个 `~` 加转义，贴着中文标点而失效的 `**粗体**` 改写为 `<strong>`；2026-10-30 那次导出的逐字节原件见 `archive/evidence/raw_records_20261102.zip`。公开前请人工复核隐私信息。
+由 `export_sessions.py` 从本机工具会话库只读导出；提示词与回答为原文，统一换行并去除行尾空白；工具输出仅保留调用摘要；本次刷新记录的提示词和可见回答按 --full-text 选项决定是否截断，既有导出保留原截断边界；打码疑似密钥，并省略 1 条与工程无关的用户提示原文（保留轮次与计数）。为在 GitHub 上正确渲染，另做只改标记、不改文字的处理：工具调用摘要放进行内代码，正文中会被剥除的 HTML 样式标签和单个 `~` 加转义，贴着中文标点而失效的 `**粗体**` 改写为 `<strong>`；2026-10-30 那次导出的逐字节原件见 `archive/evidence/raw_records_20261102.zip`。公开前请人工复核隐私信息。
 
-导出时间 2026-10-30 22:25。会话 21 个，其中有工具调用的工程会话 13 个（用户提示 76 条、工具调用 2635 次）；其余为无工具调用的问答或模型/工具自检，一并保留，不删除。
+导出时间 2026-11-03 14:43（Asia/Shanghai）。会话 26 个，其中有工具调用的工程会话 18 个（用户提示 90 条、工具调用 2923 次）；其余为无工具调用的问答或模型/工具自检，一并保留，不删除。
 
-范围限制：仅含本机 OpenCode / Claude Code / Codex 保存的会话；队友设备、网页对话及 2026-10-09 前的会话未收录。
+范围限制：保留既有导出，本次仅刷新所选工具在本机保存的项目会话（Codex 含 archived_sessions）；不含未保存或其他设备上的对话。当前会话仅截至导出时，工具输出为摘要，图片不内嵌，系统/开发者指令及隐藏推理不导出。
 
 | 开始时间 | 工具 | 模型 | 类型 | 提示 | 工具调用 | 标题 | 文件 |
 |---|---|---|---|---:|---:|---|---|
@@ -16,6 +16,7 @@
 | 2026-10-18 01:03 | claude-code | claude-opus-4-7 | 主会话 | 15 | 103 | 请你加载一下AMD ROSS的skill，然后我们当前代码需要完成不同策略的im | [20261018_claude-code_c2452d2d.md](sessions/20261018_claude-code_c2452d2d.md) |
 | 2026-10-18 12:16 | opencode | gpt-6.1-sol | 主会话 | 7 | 325 | Finishing dcache fix checklist doc | [20261018_opencode_z6payu1i.md](sessions/20261018_opencode_z6payu1i.md) |
 | 2026-10-18 20:18 | opencode | gpt-6.1-sol | 主会话 | 3 | 76 | 完成 PYNQ 主机端并行任务文件要求 | [20261018_opencode_ygtd7kip.md](sessions/20261018_opencode_ygtd7kip.md) |
+| 2026-10-28 14:23 | codex | openai | 主会话 | 1 | 87 | # AMD FPGA 2026 — PYNQ 最终集成、验证、提交与上板交接 你 | [20261028_codex_f6619c40.md](sessions/20261028_codex_f6619c40.md) |
 | 2026-10-28 15:29 | claude-code | claude-opus-4-7 | 问答/环境自检 | 4 | 0 | 不搜索网页，不使用MEMORY，告诉我日本首相是谁 | [20261028_claude-code_c784efcd.md](sessions/20261028_claude-code_c784efcd.md) |
 | 2026-10-28 15:34 | claude-code | claude-opus-4-7 | 问答/环境自检 | 1 | 0 | 你现在是什么模型 | [20261028_claude-code_d14c01b7.md](sessions/20261028_claude-code_d14c01b7.md) |
 | 2026-10-29 22:03 | opencode | gpt-6.1-sol | 问答/环境自检 | 1 | 0 | 询问答案是多少 | [20261029_opencode_4uaqixo6.md](sessions/20261029_opencode_4uaqixo6.md) |
@@ -29,3 +30,7 @@
 | 2026-10-30 13:20 | opencode | claude-opus-5-5 | 主会话 | 4 | 117 | PYNQ skill 制作与验证方案 | [20261030_opencode_mt8ybnnx.md](sessions/20261030_opencode_mt8ybnnx.md) |
 | 2026-10-30 13:29 | opencode | claude-opus-5-5 | 主会话 | 10 | 280 | PYNQ+PUF三模式加速比演示方案评估 | [20261030_opencode_2kb8nyuc.md](sessions/20261030_opencode_2kb8nyuc.md) |
 | 2026-10-30 14:03 | opencode | claude-opus-5-5 | 主会话 | 9 | 278 | LaTeX转Word页眉图片插入 | [20261030_opencode_pmuel9y9.md](sessions/20261030_opencode_pmuel9y9.md) |
+| 2026-11-01 19:28 | codex | openai | 主会话 | 7 | 75 | 现在要仿照这个模板做一个PPT，请你参考仓库里面的内容[https://gith | [20261101_codex_853d38fa.md](sessions/20261101_codex_853d38fa.md) |
+| 2026-11-02 17:20 | codex | openai | 主会话 | 3 | 22 | ### 你要做的事情 请在仓库里查找并优先复用这些现有素材（如存在）： - 中文 | [20261102_codex_91b9f9d0.md](sessions/20261102_codex_91b9f9d0.md) |
+| 2026-11-02 21:06 | codex | openai | 主会话 | 2 | 77 | 请帮我解决当前 AMD FPGA 项目技术报告的代码块中的长命令被强制拆行、出现 | [20261102_codex_45a9efb2.md](sessions/20261102_codex_45a9efb2.md) |
+| 2026-11-03 14:27 | codex | openai | 主会话 | 1 | 27 | 把我和你在这个AMD项目的聊天记录，导出成md文件上传到仓库对应位置，仓库里面好 | [20261103_codex_85e910d4.md](sessions/20261103_codex_85e910d4.md) |

@@ -14,10 +14,12 @@ OMIT_PROMPTS 列出的与工程无关的提示只保留轮次、省略原文。
 为在 GitHub 上正确渲染，另做只改标记、不改文字的处理（md_safe / code_span）：工具调用摘要放进行内代码；
 正文代码以外，GitHub 会剥除的 HTML 样式标签与可能配成删除线的单个 ~ 加反斜杠转义；
 因中文标点无法被 GitHub 识别的 **粗体** 改写为 <strong>。
-用法：python -X utf8 report/llm_collab/export_sessions.py
+用法：python -X utf8 report/llm_collab/export_sessions.py [--tool codex] [--full-text]
+增量更新：保留其他设备/工具的既有 Markdown 和索引；时间统一为 Asia/Shanghai。
 """
 from __future__ import annotations
 
+import argparse
 import datetime as dt
 import glob
 import json
@@ -49,7 +51,8 @@ def omitted(sid: str, text: str) -> bool:
 
 def clean(text: str) -> str:
     text = SECRET.sub("[REDACTED]", text or "")
-    if len(text) > MAX_TEXT:
+    text = "\n".join(line.rstrip() for line in text.replace("\r\n", "\n").replace("\r", "\n").split("\n"))
+    if MAX_TEXT and len(text) > MAX_TEXT:
         text = text[:MAX_TEXT // 2] + "\n\n…（中间省略 %d 字）…\n\n" % (len(text) - MAX_TEXT) + text[-MAX_TEXT // 2:]
     return text.strip()
 
@@ -57,7 +60,7 @@ def clean(text: str) -> str:
 def ts(ms: float | None) -> str:
     if not ms:
         return "?"
-    return dt.datetime.fromtimestamp(ms / 1000).strftime("%Y-%m-%d %H:%M")
+    return dt.datetime.fromtimestamp(ms / 1000, dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M")
 
 
 # ------------------------------------------------------------------ GitHub 渲染安全（只改标记，不改文字）
@@ -212,8 +215,8 @@ def tool_line(name: str, inp) -> str:
         key = next((inp[k] for k in ("path", "command", "pattern", "description", "file_path", "cmd") if k in inp), "")
     else:
         key = inp
-    key = str(key).replace("\n", " ")[:140]
-    return f"- `{name}` {code_span(key)}"
+    key = SECRET.sub("[REDACTED]", str(key)).replace("\n", " ")[:140]
+    return f"- `{name}` {code_span(key)}".rstrip()
 
 
 # ------------------------------------------------------------------ OpenCode
@@ -304,13 +307,14 @@ def claude_sessions():
 # ------------------------------------------------------------------ Codex
 def codex_sessions():
     out = []
-    for f in sorted(glob.glob(str(HOME / ".codex/sessions/**/*.jsonl"), recursive=True)):
+    for f in sorted([*glob.glob(str(HOME / ".codex/sessions/**/*.jsonl"), recursive=True),
+                     *glob.glob(str(HOME / ".codex/archived_sessions/**/*.jsonl"), recursive=True)]):
         lines = Path(f).read_text(encoding="utf-8", errors="replace").splitlines()
         try:
             meta = json.loads(lines[0]).get("payload", {})
         except (IndexError, json.JSONDecodeError):
             continue
-        if REPO_KEY not in str(meta.get("cwd", "")):
+        if REPO_KEY not in str(meta.get("cwd", "")).lower():
             continue
         turns, model = [], meta.get("model_provider", "?")
         for line in lines[1:]:
@@ -323,9 +327,9 @@ def codex_sessions():
             t = dt.datetime.fromisoformat(when.replace("Z", "+00:00")).timestamp() * 1000 if when else None
             if r.get("type") == "response_item" and p.get("type") == "message":
                 text = "\n".join(c.get("text", "") for c in p.get("content", []) if "text" in c)
-                if p.get("role") == "user" and not text.lstrip().startswith(("<environment_context", "<user_instructions", "# AGENTS.md")):
+                if p.get("role") == "user" and not text.lstrip().startswith(("<environment_context", "<user_instructions", "# AGENTS.md", "<external_codex_apps_open_page>")):
                     turns.append(("user", t, text, []))
-                elif p.get("role") == "assistant" and text:
+                elif p.get("role") == "assistant" and p.get("channel") in (None, "final", "commentary") and text:
                     turns.append(("assistant", t, text, []))
             elif r.get("type") == "response_item" and p.get("type") in ("function_call", "local_shell_call", "custom_tool_call"):
                 args = p.get("arguments") or p.get("input") or p.get("action", {})
@@ -348,16 +352,14 @@ def codex_sessions():
 # ------------------------------------------------------------------ 输出
 def write(sessions):
     OUT.mkdir(parents=True, exist_ok=True)
-    for old in OUT.glob("*.md"):
-        old.unlink()
     rows = []
     for s in sessions:
         # 标题取第一条真实提示词，去掉 IDE/命令注入的标签
         first = next((re.sub(r"<[^>]+>[^<]*</[^>]+>|<[^>]+>", " ", x[2]).strip()
                       for x in s["turns"] if x[0] == "user" and not x[2].lstrip().startswith(("<local-command", "<command-"))), "")
-        s["title"] = s["title"] if s["tool"] == "opencode" else re.sub(r"\s+", " ", first)[:40]
+        s["title"] = s["title"] if s["tool"] == "opencode" else re.sub(r"\s+", " ", first.split("## My request:")[-1].strip())[:40]
     for s in sorted(sessions, key=lambda s: s["created"] or 0):
-        day = ts(s["created"])[:10].replace("-", "")
+        day = ts(s["created"])[:10].replace("-", "") if s["created"] else "unknown_date"
         name = f"{day}_{s['tool']}_{re.sub(r'[^a-z0-9]', '', s['id'].lower())[-8:]}.md"
         users = [x for x in s["turns"] if x[0] == "user"]
         ntools = sum(len(x[3]) for x in s["turns"])
@@ -373,22 +375,34 @@ def write(sessions):
                     lines += [f"### 模型回答（{ts(t)}）", "", md_safe(clean(text)), ""]
                 if tools:
                     lines += ["<details><summary>工具调用 %d 次</summary>" % len(tools), ""] + tools + ["", "</details>", ""]
-        (OUT / name).write_text("\n".join(lines), encoding="utf-8")
+        (OUT / name).write_text("\n".join(lines), encoding="utf-8", newline="\n")
         kind = ("子代理" if s["parent"] else "主会话") if ntools else "问答/环境自检"
         rows.append((ts(s["created"]), s["tool"], s["model"], kind,
                      len(users), ntools, s["title"].replace("|", "/")[:40], name))
+    # Other machines/tools may not exist here. Keep their exports and index rows.
+    written = {r[7] for r in rows}
+    previous = HERE / "index.md"
+    if previous.exists():
+        for line in previous.read_text(encoding="utf-8").splitlines():
+            cols = [c.strip() for c in line.strip("|").split("|")]
+            if len(cols) != 8 or not cols[4].isdigit() or not cols[5].isdigit():
+                continue
+            match = re.search(r"\(sessions/([^/)]+)\)", cols[7])
+            if match and match[1] not in written and (OUT / match[1]).is_file():
+                rows.append((*cols[:4], int(cols[4]), int(cols[5]), cols[6], match[1]))
+    rows.sort(key=lambda r: (r[0], r[7]))
     work = [r for r in rows if r[5]]
     idx = ["# 大模型协作原始记录索引（自动导出）", "",
            "由 `export_sessions.py` 从本机工具会话库只读导出；提示词与回答为原文，"
-           "仅折叠工具输出、截断超长回答、打码疑似密钥，并省略 1 条与工程无关的用户提示原文（保留轮次与计数）。"
+           "统一换行并去除行尾空白；工具输出仅保留调用摘要；本次刷新记录的提示词和可见回答按 --full-text 选项决定是否截断，既有导出保留原截断边界；打码疑似密钥，并省略 1 条与工程无关的用户提示原文（保留轮次与计数）。"
            "为在 GitHub 上正确渲染，另做只改标记、不改文字的处理：工具调用摘要放进行内代码，"
            "正文中会被剥除的 HTML 样式标签和单个 `~` 加转义，贴着中文标点而失效的 `**粗体**` 改写为 `<strong>`；"
            "2026-10-30 那次导出的逐字节原件见 `archive/evidence/raw_records_20261102.zip`。"
            "公开前请人工复核隐私信息。", "",
-           f"导出时间 {dt.datetime.now():%Y-%m-%d %H:%M}。会话 {len(rows)} 个，其中有工具调用的工程会话 {len(work)} 个"
+           f"导出时间 {dt.datetime.now(dt.timezone(dt.timedelta(hours=8))):%Y-%m-%d %H:%M}（Asia/Shanghai）。会话 {len(rows)} 个，其中有工具调用的工程会话 {len(work)} 个"
            f"（用户提示 {sum(r[4] for r in work)} 条、工具调用 {sum(r[5] for r in work)} 次）；"
            "其余为无工具调用的问答或模型/工具自检，一并保留，不删除。", "",
-           "范围限制：仅含本机 OpenCode / Claude Code / Codex 保存的会话；队友设备、网页对话及 2026-10-09 前的会话未收录。", "",
+           "范围限制：保留既有导出，本次仅刷新所选工具在本机保存的项目会话（Codex 含 archived_sessions）；不含未保存或其他设备上的对话。当前会话仅截至导出时，工具输出为摘要，图片不内嵌，系统/开发者指令及隐藏推理不导出。", "",
            "| 开始时间 | 工具 | 模型 | 类型 | 提示 | 工具调用 | 标题 | 文件 |", "|---|---|---|---|---:|---:|---|---|"]
     idx += [f"| {r[0]} | {r[1]} | {r[2]} | {r[3]} | {r[4]} | {r[5]} | {r[6]} | [{r[7]}](sessions/{r[7]}) |" for r in rows]
     (HERE / "index.md").write_text("\n".join(idx) + "\n", encoding="utf-8")
@@ -396,4 +410,11 @@ def write(sessions):
 
 
 if __name__ == "__main__":
-    write(opencode_sessions() + claude_sessions() + codex_sessions())
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--tool", choices=["all", "codex", "claude-code", "opencode"], default="all")
+    parser.add_argument("--full-text", action="store_true", help="不截断提示词和可见回答；工具调用仍为摘要")
+    args = parser.parse_args()
+    if args.full_text:
+        MAX_TEXT = 0
+    selected = {"opencode": opencode_sessions, "claude-code": claude_sessions, "codex": codex_sessions}
+    write([s for name, reader in selected.items() if args.tool in ("all", name) for s in reader()])

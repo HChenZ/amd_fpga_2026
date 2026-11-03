@@ -54,3 +54,6 @@
 报告正文引用其中的代表性案例。公开或提交前须人工复核隐私信息；队友设备上的会话需各自导出补充。
 
 LLM 协作记录至少覆盖任务要求、读取依据、授权范围、输出文件、验证、自我纠错、未完成项和人工审核结论。本轮活动可由 project_log/development_log.md 追踪；不把摘要伪称完整聊天原始记录，正式提交前按核实后的比赛要求整理可分享记录。
+
+2026-11-03：本机Codex聊天新增导出5份，[索引](llm_collab/index.md)共26份；使用`export_sessions.py --tool codex --full-text`，保留历史记录。
+[报告包说明修订](technical/validation/readme_corrections_20261103/readme.md)已直接更新正式ZIP内两份Markdown与清单，PDF仍85页；其他冻结包保留历史版本。

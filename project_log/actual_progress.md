@@ -2509,3 +2509,16 @@ PUF3各模式289/289 KAT与289次坏Tag拒绝，质量127/128、同会话5次重
 ## 2026-11-02 D09：最终RAR交付（owner TBD）
 
 基于main cfa3817整理当前PUF3及共享IP/固件/RO依赖、原candidate、最新85页报告和当前独立Skill，另写评委README；真正RAR5，367文件/7,025,851字节。RAR测试/解压/全部哈希/README链接/源码身份与展开通过，host61、Skill61/3可选skip。无RTL/固件/工件/报告正文变更；未运行固件重编/Vivado/实板。证据delivery/final_rar_readme.md及final_rar_manifest.json；下一接收D06平台上传。
+
+## 2026-11-03 — D11 聊天导出与报告包说明更正（owner TBD）
+
+按用户授权合并远端d5a985b并保留本地全貌图提交，恢复入场5份文档改动及双方日志。
+report/llm_collab新增本机5份Codex项目会话，保留原21份，共26份；--tool codex --full-text导出用户提示和可见回答，工具仅摘要，当前会话截至导出时。
+导出器改增量保留、支持选工具/不截断/归档会话，过滤UI上下文及隐藏推理，工具摘要打码；不改原始会话库。
+直接修正technical_report.zip内两份Markdown，更新source_manifest与delivery/manifest条目，并同步版本入口。
+版本/85页/归档路径/Python3.14.3/提交状态/DejaVu字体说明已更正；59个其他成员逐字节不变，未重编PDF或改技术数据。
+Python3.14.3运行export_sessions.py --tool codex --full-text、ignored update_report.py/verify.py及git diff --check均exit0；
+61成员哈希/CRC、四ZIP总哈希、85页PDF字节一致、26条会话索引、合成会话保留/过滤/完整性/打码校验通过。
+证据report/technical/validation/readme_corrections_20261103/{readme.md,check.json,package_readme.md}。
+接口无变化；其他ZIP/RAR/整仓快照保持历史，未重跑194项证据、RTL/固件/Vivado/板测，未测边界与平台上传状态不变。
+本次中文提交并正常push；入场未提交内容仅恢复保留，不混入D11提交。下一接收D03/D06，owner TBD。

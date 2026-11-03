@@ -25,13 +25,13 @@
     },
     {
       "path": "delivery/technical_report.zip",
-      "sha256": "623b18576565fb4ce945b2a6ad13ecf08d05fbf90844432676b75ee9d5ee1d8b",
-      "bytes": 4097523,
+      "sha256": "7e8461520b7935ed1f73454441eb9ec09f89aafc9ba99537e98d7224a5c81ad0",
+      "bytes": 4098088,
       "files": 62,
       "archive_root": "technical_report",
-      "source_revision": "3efdf5525cb2a9fe4325ee21fb0b3273ca97b868",
-      "generated": "2026-11-02T21:29:46+08:00",
-      "note": "codeblock formatting only; other packages and repository_snapshot remain historical frozen artifacts"
+      "source_revision": "1347cbebb5840f869ee3da00e6e601825ec2ca34",
+      "generated": "2026-11-03T14:40:34+08:00",
+      "note": "2026-11-03 README corrections only; PDF/LaTeX/figures unchanged"
     }
   ],
   "scope": "current and historical source separated; independent Skill; editable report; no evidence-package attachment",

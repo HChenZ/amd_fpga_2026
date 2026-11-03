@@ -23,7 +23,7 @@
 | 关键源选择 | 排除 src/rtl/soc_top.v、keys/key_mmio.v，换入 PUF3 board 下的两个变体；以专用 build.tcl 为准 |
 | 报告主采样 | `data/pynq_puf3/notebook_20261031_114512/result.json` |
 | 报告 PDF | `report/technical/amd_fpga_2026_latex_final/amd_fpga_2026_report/output/pdf/final_report.pdf` |
-| 发布入口 | `submission/current_evidence.json`、`submission/freeze_manifest.md`，不是按 ZIP 名称选“final” |
+| 发布入口 | `delivery/manifest.json` 与 `delivery/README.md`；旧证据索引在 `archive/evidence/`，按各包清单选择版本 |
 
 PUF3 指三模式 + PUF v1，不是 PUF 第三代。板端 PT/AD 各 ≤16 B；PUF 只有会话内功能证据，
 RO 计数器域未签核、跨上电/PVT/BER 未测。加载 candidate 与重新构建是两件事：重建/重发布可能改变工件，

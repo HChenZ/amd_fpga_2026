@@ -768,3 +768,10 @@ owner TBD。用户提供三张数据截图，要求只更新数据并直接提�
 ## 2026-11-02 D09（owner TBD）
 
 在保留原工作区未提交修改的隔离main检出中读取最新入口，追踪build.tcl/puf_opt_pre/固件/host fixture依赖；按当前跟踪源码复制，报告从同版正式ZIP提取，独立Skill ZIP重新按当前源装配。用官方RAR7.23 WSL命令行创建RAR5并实际解压逐文件核验，轻量测试通过。详细命令退出码与范围见delivery/final_rar_manifest.json。
+
+## 2026-11-03 — D11（owner TBD）
+
+合并队友远端交付版本，恢复5项既有未提交改动，冲突日志同时保留双方。复用并修正export_sessions.py增量导出Codex：新增5会话、总索引26。
+对照截图直接修正正式ZIP两份Markdown，重算包内/外清单；85页PDF及59个其他成员不变。
+Python3.14.3验证包CRC/逐成员/整体哈希、索引、合成会话不截断/保留/过滤/打码均exit0；仅文档与导出器，无RTL/固件/测量接口变化。
+证据report/technical/validation/readme_corrections_20261103/；用户授权中文提交并推送，既有未提交增量留在工作区。下接D03/D06。

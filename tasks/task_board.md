@@ -245,3 +245,10 @@ D03-CODE / owner TBD / done：仅代码块排版、85页PDF重编与独立报告
 ## 2026-11-02 D09 最终RAR材料
 
 D09 / owner TBD / done：当前PUF3代码与必要依赖、未改candidate、最新PDF/LaTeX、独立Skill和新中文README打成真实RAR5，测试/解压/哈希与轻量检查通过；证据delivery/final_rar_manifest.json。接口无变化，硬件未新增验收，下一接收D06上传。
+
+## 2026-11-03 D11：聊天导出与报告包说明修订
+
+owner TBD；status done（仅本子任务）。本机5份Codex项目会话新增导出，连同原21份共26份；导出器增量保留与完整正文/过滤/打码通过。
+正式technical_report.zip内两份Markdown修正85页/版本/归档路径/Python3.14.3/已提交状态/字体依赖，内外哈希已更新；其余59成员字节不变。
+证据[说明与校验](../report/technical/validation/readme_corrections_20261103/readme.md)，Python3.14.3导出/包哈希/索引/隔离会话校验exit0。
+接口无变化；其他冻结ZIP/RAR保留原版。D03/D06整体状态与原未测边界不因本子任务改为通过，下一接收D03/D06。
